@@ -1,4 +1,0 @@
-Eternity
-========
-
-IHN Eternity
