@@ -1,0 +1,260 @@
+create keyspace NETWORK;
+
+use NETWORK;
+
+create column family CF_EVENTS
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type';
+
+create column family HIN_IDENTITY 
+	with column_type = 'Super' 
+	and comparator = 'UTF8Type' 
+	and subcomparator = 'UTF8Type' 
+	and column_metadata = [
+		{column_name: USERNAME, validation_class: UTF8Type},
+		{column_name: PASSWORD, validation_class: UTF8Type},
+		{column_name: PROFILE, validation_class: UTF8Type},
+		{column_name: REQUEST, validation_class: UTF8Type}
+	];
+
+create column family INDEX_HIN_IDENTITY 
+	with column_type = 'Super' 
+	and comparator = 'UTF8Type' 
+	and subcomparator = 'UTF8Type' 
+	and column_metadata = [
+		{column_name: PROFILE, validation_class: UTF8Type},
+		{column_name: REQUEST, validation_class: UTF8Type}
+	];
+
+set HIN_IDENTITY[1]['USERNAME']['VALUE'] = 'John';
+set HIN_IDENTITY[1]['PASSWORD']['VALUE'] = 'jo123';
+set HIN_IDENTITY[1]['PROFILE']['123451'] = 'PROFILE1';
+set HIN_IDENTITY[1]['PROFILE']['123452'] = 'PROFILE2';
+set HIN_IDENTITY[1]['REQUEST']['123451'] = 'REQ1';
+set HIN_IDENTITY[1]['REQUEST']['123452'] = 'REQ2';
+
+set INDEX_HIN_IDENTITY[1]['PROFILE']['VALUE'] = 'PROFILE2';
+set INDEX_HIN_IDENTITY[1]['REQUEST']['123451'] = 'REQ1';
+
+create column family IN_MESSAGE_TYPE_MASTER
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: DESCRIPTION, validation_class: UTF8Type},
+	];
+	
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM440001']['DESCRIPTION']='Admit Request';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM460001']['DESCRIPTION']='Bed Status Observation Event';
+	set IN_MESSAGE_TYPE_MASTER['POCD_RM000040']['DESCRIPTION']='CDA Document';
+	set IN_MESSAGE_TYPE_MASTER['POCD_RM000002']['DESCRIPTION']='Clinical Document Message';
+	set IN_MESSAGE_TYPE_MASTER['PORT_RM030001']['DESCRIPTION']='Clinical Trial Laboratory Observation Periodic Report';
+	set IN_MESSAGE_TYPE_MASTER['POPR_RM930000']['DESCRIPTION']='Condition Problem';
+	set IN_MESSAGE_TYPE_MASTER['FIAB_RM020000']['DESCRIPTION']='Detailed Financial Transaction';
+	set IN_MESSAGE_TYPE_MASTER['POXX_RM112000']['DESCRIPTION']='Diagnostic Report Observation Event';
+	set IN_MESSAGE_TYPE_MASTER['PODI_RM941000']['DESCRIPTION']='Diet Request';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM450001']['DESCRIPTION']='Discharge Request';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM410001']['DESCRIPTION']='Encounter Appointment';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM400001']['DESCRIPTION']='Encounter Event';
+	set IN_MESSAGE_TYPE_MASTER['PORR_RM040001']['DESCRIPTION']='Individual Case Safety Report';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM470001']['DESCRIPTION']='Intolerance Observation Event';
+	set IN_MESSAGE_TYPE_MASTER['POSA_RM940100']['DESCRIPTION']='Medication Supply Event';
+	set IN_MESSAGE_TYPE_MASTER['PORR_RM100001']['DESCRIPTION']='Notifiable Condition (Case Report)';
+	set IN_MESSAGE_TYPE_MASTER['POXX_RM110000']['DESCRIPTION']='Observation Event';
+	set IN_MESSAGE_TYPE_MASTER['POXX_RM120000']['DESCRIPTION']='Observation Order';
+	set IN_MESSAGE_TYPE_MASTER['REPC_RM002000']['DESCRIPTION']='Patient Referral Request';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM203000']['DESCRIPTION']='Person Merge';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM201000']['DESCRIPTION']='Person Registry';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM204000']['DESCRIPTION']='Person Unmerge';
+	set IN_MESSAGE_TYPE_MASTER['POXX_RM130000']['DESCRIPTION']='Procedure Order';
+	set IN_MESSAGE_TYPE_MASTER['POLB_RM004000']['DESCRIPTION']='Result Event';
+	set IN_MESSAGE_TYPE_MASTER['POXX_RM111000']['DESCRIPTION']='Specimen Observation Event';
+	set IN_MESSAGE_TYPE_MASTER['POXX_RM121000']['DESCRIPTION']='Specimen Observation Order';
+	set IN_MESSAGE_TYPE_MASTER['MFPM_RM010000']['DESCRIPTION']='Staff Registry';
+	set IN_MESSAGE_TYPE_MASTER['POSA_RM920100']['DESCRIPTION']='Substance Administration Event';
+	set IN_MESSAGE_TYPE_MASTER['POSA_RM920000']['DESCRIPTION']='Substance Administration Order';
+	set IN_MESSAGE_TYPE_MASTER['POSP_RM940000']['DESCRIPTION']='Supply Request';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM302001']['DESCRIPTION']='Transfer Request';
+	set IN_MESSAGE_TYPE_MASTER['POSA_IN000001']['DESCRIPTION']='Substance Administration Order';
+	set IN_MESSAGE_TYPE_MASTER['POXX_IN121001']['DESCRIPTION']='Specimen Observation Order';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_IN000001']['DESCRIPTION']='Registration';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_IN400000']['DESCRIPTION']='Encounter';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_IN410001']['DESCRIPTION']='Appointment';
+	set IN_MESSAGE_TYPE_MASTER['COCT_MT150000']['DESCRIPTION']='Organization';
+	set IN_MESSAGE_TYPE_MASTER['POXX_IN120001']['DESCRIPTION']='Observation Order';
+
+create column family IN_HIN_STATISTICS
+	with column_type = 'Super' 
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type' 
+	and comparator = 'UTF8Type' 
+	and subcomparator = 'UTF8Type' 
+	and column_metadata = [
+		{column_name: PRPA_RM440001, validation_class: UTF8Type},
+		{column_name: PRPA_RM460001, validation_class: UTF8Type}
+		{column_name: POCD_RM000040, validation_class: UTF8Type}
+		{column_name: POCD_RM000002, validation_class: UTF8Type}
+		{column_name: PORT_RM030001, validation_class: UTF8Type}
+		{column_name: POPR_RM930000, validation_class: UTF8Type}
+		{column_name: FIAB_RM020000, validation_class: UTF8Type}
+		{column_name: POXX_RM112000, validation_class: UTF8Type}
+		{column_name: PODI_RM941000, validation_class: UTF8Type}
+		{column_name: PRPA_RM450001, validation_class: UTF8Type}
+		{column_name: PRPA_RM410001, validation_class: UTF8Type}
+		{column_name: PRPA_RM400001, validation_class: UTF8Type}
+		{column_name: PORR_RM040001, validation_class: UTF8Type}
+		{column_name: PRPA_RM470001, validation_class: UTF8Type}
+		{column_name: POSA_RM940100, validation_class: UTF8Type}
+		{column_name: PORR_RM100001, validation_class: UTF8Type}
+		{column_name: POXX_RM110000, validation_class: UTF8Type}
+		{column_name: POXX_RM120000, validation_class: UTF8Type}
+		{column_name: REPC_RM002000, validation_class: UTF8Type}
+		{column_name: PRPA_RM203000, validation_class: UTF8Type}
+		{column_name: PRPA_RM201000, validation_class: UTF8Type}
+		{column_name: PRPA_RM204000, validation_class: UTF8Type}
+		{column_name: POXX_RM130000, validation_class: UTF8Type}
+		{column_name: POLB_RM004000, validation_class: UTF8Type}
+		{column_name: POXX_RM111000, validation_class: UTF8Type}
+		{column_name: POXX_RM121000, validation_class: UTF8Type}
+		{column_name: MFPM_RM010000, validation_class: UTF8Type}
+		{column_name: POSA_RM920100, validation_class: UTF8Type}
+		{column_name: POSA_RM920000, validation_class: UTF8Type}
+		{column_name: POSP_RM940000, validation_class: UTF8Type}
+		{column_name: PRPA_RM302001, validation_class: UTF8Type}
+		{column_name: POSA_IN000001, validation_class: UTF8Type}
+		{column_name: POXX_IN121001, validation_class: UTF8Type}
+		{column_name: PRPA_IN000001, validation_class: UTF8Type}
+		{column_name: PRPA_IN400000, validation_class: UTF8Type}
+		{column_name: PRPA_IN410001, validation_class: UTF8Type}
+		{column_name: COCT_MT150000, validation_class: UTF8Type}
+		{column_name: POXX_IN120001, validation_class: UTF8Type}
+	];
+	
+create column family IDENTITY_REPO 
+	with column_type = 'Super' 
+	and comparator = 'UTF8Type' 
+	and subcomparator = 'UTF8Type' 
+	and column_metadata = [
+		{column_name: IS_ORG, validation_class: UTF8Type},
+		{column_name: ORGNISATION, validation_class: UTF8Type},
+		{column_name: USER_NAME, validation_class: UTF8Type},
+		{column_name: PASSWORD, validation_class: UTF8Type},
+		{column_name: REG_MESSAGE, validation_class: UTF8Type},
+		{column_name: WORKFLOW, validation_class: UTF8Type},
+		{column_name: LINKED_PROFILE, validation_class: UTF8Type}
+	];
+
+create column family CF_GMAP_LOCATIONS 
+	with comparator = 'UTF8Type' 
+	and key_validation_class = 'UTF8Type'
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: LOCATION_JSON, validation_class: UTF8Type}
+	];
+
+create column family IN_IDENTITY_REPO_BY_NAME with column_type = 'Super' and comparator = 'UTF8Type' and subcomparator = 'UTF8Type' and column_metadata = [{column_name: IDENTITY_REPO_KEY, validation_class: UTF8Type}];
+
+create column family IN_GMAP_BY_ORG_NAME with column_type = 'Super' and comparator = 'UTF8Type' and subcomparator = 'UTF8Type' and column_metadata = [{column_name: ORG_KEY, validation_class: UTF8Type}];
+
+create column family MESSAGE_STORE 
+	with comparator = 'UTF8Type' 
+	and column_metadata = [
+		{column_name: messageId, validation_class: UTF8Type},
+		{column_name: message, validation_class: UTF8Type}
+	];
+		
+create column family ORGANISATION_USER_MESSAGE 
+	with column_type = 'Super' 
+	and comparator = 'UTF8Type' 
+	and subcomparator = 'UTF8Type' 
+	and column_metadata = [
+		{column_name: ORGNISATION, validation_class: UTF8Type},
+		{column_name: USER_ID, validation_class: UTF8Type},
+		{column_name: ORG_USER_ID, validation_class: UTF8Type},
+		{column_name: MESSAGE, validation_class: UTF8Type}
+	];
+	
+create column family MESSAGE_WORKFLOW_STORE 
+	with comparator = 'UTF8Type' 
+	and column_metadata = [
+		{column_name: MESSAGE_TYPE, validation_class: UTF8Type},
+		{column_name: WORKFLOWNAME, validation_class: UTF8Type}
+	];
+
+
+
+create keyspace Blog;
+use Blog;
+create column family ROLE
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [  
+		{column_name: MESSAGE, validation_class: UTF8Type, index_type: KEYS},		
+		{column_name: ROLE_NAME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: CONTACT, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: PLAYER_OR_SCOPER, validation_class: UTF8Type, index_type: KEYS},		
+		{column_name: ACTIVE, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: CREATION_TIME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: CREATED_BY, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: LAST_MODIFIED_TIME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: MODIFIED_BY, validation_class: UTF8Type, index_type: KEYS}
+	];
+
+create column family SUBSCRIBER_PROFILE
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: MESSAGE, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: USERNAME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: PASSWORD, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SUBSCRIBER_TYPE, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SECURITY_QUESTION, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SECURITY_ANSWER, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: EMAIL, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: FULLNAME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: ACTIVE, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: CREATION_TIME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: CREATED_BY, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: LAST_MODIFIED_TIME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: MODIFIED_BY, validation_class: UTF8Type, index_type: KEYS}
+	];
+
+create column family INBOX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [ 
+		{column_name: MESSAGE, validation_class: UTF8Type, index_type: KEYS},		
+		{column_name: STATUS, validation_class: UTF8Type, index_type: KEYS}
+	];
+
+create column family SERVICES_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [ 
+		{column_name: SERVICE, validation_class: UTF8Type},		
+	];
+
+create column family ROLE_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type';
+
+create column family INBOX_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type';
+
+create column family SERVICES
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type';
+
+create column family SUBSCRIBER_PROFILE_INDEX_BY_NAME
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type';

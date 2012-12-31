@@ -1,0 +1,145 @@
+@CHARSET "ISO-8859-1";
+
+.service_des
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid ;
+    border-bottom: medium none;
+    border-right: medium none;
+    height: 36px;
+}
+
+.service_amt
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid ;
+    border-bottom: medium none;
+  	height: 36px;
+}
+
+.description
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid ;
+	border-bottom: medium none;
+    border-top: medium none;
+    border-left: medium none;
+    width:68.49%;
+    
+}
+
+.amount
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+    /* border: 1px solid ;
+    border-bottom: medium none;
+    border-top: medium none;
+    border-right: medium none; */
+    
+}
+
+.amount_val
+{
+	text-align:right;
+	margin-right: 31px;
+}
+
+.main_dev
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+}
+
+.total
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid ;
+   	border-style: none none none none;
+}
+
+.total_amt
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+   /*  border: 1px solid ; */
+    border-style: none solid solid; 
+    border-width: 0 1px 1px;
+    height:36px;
+}
+
+.total_txt
+{
+	text-align:right;
+	margin-right: 10px;
+	margin-top: -1px;
+	
+}
+
+.amount_txt
+{
+	bottom : 20px;
+	position : relative;
+	text-align:right;
+	margin-right: 38px;
+}
+.discount
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid ;
+   	border-style: none none none none;
+}
+
+.discount_amt
+{
+	background: none repeat scroll 0 0 #FFFFFF;
+   /*  border: 1px solid ; */
+    border-style: none solid solid; 
+    border-width: 0 1px 1px;
+    height:36px;
+}
+
+.discount_txt
+{
+	text-align:right;
+	margin-right: 10px;
+	margin-top: -1px;	
+}
+.discount_amount_txt
+{
+	bottom : 20px;
+	position : relative;
+	text-align:right;
+	margin-right: 38px;
+	padding-top:15px;
+}
+#hospitalName
+{
+	color:#500E4A;
+}
+
+.commonDiv
+{
+	float:left;
+}
+
+.colHeading
+{
+	padding-left:10px;
+	font-weight:bold;
+	margin-top:10px;
+}
+
+.borderHeight
+{
+	border: 1px solid #e9e7ed;
+	float: left;
+	
+	left: 10px;
+	height: 525px; 
+	/* height:auto; */
+	width: 100%;
+}
+
+.image
+{
+	max-width: 40%;
+    padding-left:13px;
+}

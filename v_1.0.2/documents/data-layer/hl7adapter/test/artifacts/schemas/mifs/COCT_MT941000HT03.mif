@@ -1,0 +1,292 @@
+<!--$Header: /lafrz/jw1_top/CVS/hc/ctb_docs/cscg/input/artifacts/cmets/mifs/COCT_MT941000HT03.mif,v 1.1 2008/04/17 03:44:27 katryan Exp $-->
+<mif:serializedStaticModel xmlns:mif="urn:hl7-org:v3/mif"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                           xsi:schemaLocation=""
+                           packageKind="version"
+                           representationKind="serialized"
+                           isSerializable="true"
+                           isAbstract="false"
+                           name="03">
+   <mif:packageLocation root="DEFN" section="IM" subSection="CO" domain="CT" artifact="MT-deprecated"
+                        realm="HT"
+                        version="03"
+                        id="941000"/>
+   <mif:header>
+      <mif:renderingInformation schemaVersion="1" application="Visio to MIF transform"/>
+      <mif:legalese copyrightOwner="Health Level Seven" copyrightYears="2007"/>
+   </mif:header>
+   <mif:graphicRepresentation presentation="HL7">
+      <mif:graphElement name="Main">
+         <mif:position x="0.0" y="0.0"/>
+         <mif:size width="5.551" height="3.928"/>
+      </mif:graphElement>
+   </mif:graphicRepresentation>
+   <mif:derivationSupplier staticModelDerivationId="1">
+      <mif:targetStaticModel root="DEFN" artifact="RIM" version="00"/>
+   </mif:derivationSupplier>
+   <mif:derivationSupplier staticModelDerivationId="2">
+      <mif:targetStaticModel root="DEFN" section="IM" subSection="CO" domain="CT" artifact="RM-deprecated"
+                             realm="HT"
+                             version="03"
+                             id="941000"/>
+   </mif:derivationSupplier>
+   <mif:derivationSupplier staticModelDerivationId="3">
+      <mif:targetStaticModel root="DEFN" section="IM" subSection="CO" domain="CT" artifact="HD-deprecated"
+                             realm="HT"
+                             version="03"
+                             id="941000"/>
+   </mif:derivationSupplier>
+   <mif:ownedEntryPoint id="COCT_MT941000HT03" name="R_DietItem" isAbstract="false">
+      <mif:annotations>
+         <mif:description>
+            <mif:text>This CMET is used to order diet items such as food and supplements. It provides for specification of diet items by manufacturer.</mif:text>
+         </mif:description>
+      </mif:annotations>
+      <mif:graphicRepresentation>
+         <mif:graphElement shapeId="Sheet.21" containerDiagramName="Main">
+            <mif:position x="3.578" y="0.028"/>
+            <mif:size width="1.945" height="0.900"/>
+            <mif:anchorage connectToShapeId="Sheet.21">
+               <mif:position x="4.500" y="0.928"/>
+               <mif:graphEdge>
+                  <mif:anchor connectToShapeId="Sheet.11">
+                     <mif:position x="4.600" y="1.528"/>
+                  </mif:anchor>
+               </mif:graphEdge>
+            </mif:anchorage>
+         </mif:graphElement>
+      </mif:graphicRepresentation>
+      <mif:specializedClass>
+         <mif:class name="DietItem" isAbstract="false">
+            <mif:derivationSupplier staticModelDerivationId="1" className="Role"/>
+            <mif:derivationSupplier staticModelDerivationId="2" className="DietItem"/>
+            <mif:derivationSupplier staticModelDerivationId="3" className="DietItem"/>
+            <mif:graphicRepresentation presentation="HL7">
+               <mif:graphElement shapeId="Sheet.11" containerDiagramName="Main" shapeTemplate="Role"
+                                 isWidthAutoSize="true"
+                                 isHeightAutoSize="true">
+                  <mif:position x="3.975" y="1.528"/>
+                  <mif:size width="1.250" height="0.500"/>
+               </mif:graphElement>
+            </mif:graphicRepresentation>
+            <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                           conformance="R"
+                           isMandatory="true"
+                           isStructural="true">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Role" attributeName="classCode"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="DietItem" attributeName="classCode"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="DietItem" attributeName="classCode"/>
+               <mif:type name="CS"/>
+               <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="RoleClass" mnemonic="DST"/>
+            </mif:attribute>
+            <mif:association sortKey="4">
+               <mif:graphicRepresentation>
+                  <mif:graphElement connectToShapeId="Sheet.11" containerDiagramName="Main">
+                     <mif:position x="4.100" y="1.978"/>
+                     <mif:graphEdge>
+                        <mif:anchor connectToShapeId="Sheet.28">
+                           <mif:position x="1.870" y="2.114"/>
+                        </mif:anchor>
+                     </mif:graphEdge>
+                  </mif:graphElement>
+               </mif:graphicRepresentation>
+               <mif:targetConnection name="distributedFoodItem" minimumMultiplicity="1" maximumMultiplicity="1"
+                                     conformance="R"
+                                     isMandatory="true"
+                                     sortKey="AZ">
+                  <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="player"/>
+                  <mif:derivationSupplier staticModelDerivationId="2" className="DietItem"
+                                          associationEndName="distributedFoodItem"/>
+                  <mif:derivationSupplier staticModelDerivationId="3" className="DietItem"
+                                          associationEndName="distributedFoodItem"/>
+                  <mif:participantClass>
+                     <mif:class name="FoodItem" isAbstract="false">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Material"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="FoodItem"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="FoodItem"/>
+                        <mif:graphicRepresentation presentation="HL7">
+                           <mif:graphElement shapeId="Sheet.28" containerDiagramName="Main" shapeTemplate="Entity"
+                                             isWidthAutoSize="true"
+                                             isHeightAutoSize="true">
+                              <mif:position x="0.030" y="1.819"/>
+                              <mif:size width="1.840" height="1.181"/>
+                           </mif:graphElement>
+                        </mif:graphicRepresentation>
+                        <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="true">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Material" attributeName="classCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="FoodItem" attributeName="classCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="FoodItem" attributeName="classCode"/>
+                           <mif:type name="CS"/>
+                           <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="EntityClass" mnemonic="FOOD"/>
+                        </mif:attribute>
+                        <mif:attribute name="determinerCode" sortKey="2" minimumMultiplicity="1"
+                                       maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="true">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Material" attributeName="determinerCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="FoodItem" attributeName="determinerCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="FoodItem" attributeName="determinerCode"/>
+                           <mif:type name="CS"/>
+                           <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="EntityDeterminer" mnemonic="KIND"/>
+                        </mif:attribute>
+                        <mif:attribute name="id" sortKey="3" minimumMultiplicity="0" maximumMultiplicity="*"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Material" attributeName="id"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="FoodItem" attributeName="id"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="FoodItem" attributeName="id"/>
+                           <mif:type name="SET">
+                              <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="II"/>
+                           </mif:type>
+                        </mif:attribute>
+                        <mif:attribute name="code" sortKey="4" minimumMultiplicity="1" maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Material" attributeName="code"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="FoodItem" attributeName="code"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="FoodItem" attributeName="code"/>
+                           <mif:type name="CE"/>
+                           <mif:supplierDomainSpecification codingStrength="CWE" domainName="EntityCode"/>
+                        </mif:attribute>
+                        <mif:attribute name="quantity" sortKey="5" minimumMultiplicity="0" maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Material" attributeName="quantity"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="FoodItem" attributeName="quantity"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="FoodItem" attributeName="quantity"/>
+                           <mif:type name="PQ"/>
+                        </mif:attribute>
+                        <mif:attribute name="name" sortKey="6" minimumMultiplicity="0" maximumMultiplicity="*"
+                                       conformance="R"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Material" attributeName="name"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="FoodItem" attributeName="name"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="FoodItem" attributeName="name"/>
+                           <mif:type name="BAG">
+                              <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="TN"/>
+                           </mif:type>
+                        </mif:attribute>
+                        <mif:attribute name="desc" sortKey="7" minimumMultiplicity="0" maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Material" attributeName="desc"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="FoodItem" attributeName="desc"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="FoodItem" attributeName="desc"/>
+                           <mif:type name="ED"/>
+                        </mif:attribute>
+                        <mif:association sortKey="2">
+                           <mif:graphicRepresentation>
+                              <mif:graphElement connectToShapeId="Sheet.28" containerDiagramName="Main">
+                                 <mif:position x="1.870" y="2.705"/>
+                                 <mif:graphEdge>
+                                    <mif:anchor connectToShapeId="Sheet.1">
+                                       <mif:position x="4.140" y="2.819"/>
+                                    </mif:anchor>
+                                 </mif:graphEdge>
+                              </mif:graphElement>
+                           </mif:graphicRepresentation>
+                           <mif:targetConnection name="asManufacturedProduct" minimumMultiplicity="0" maximumMultiplicity="1"
+                                                 isMandatory="false"
+                                                 sortKey="AAABD_____">
+                              <mif:derivationSupplier staticModelDerivationId="1" className="Entity" associationEndName="playedRole"/>
+                              <mif:derivationSupplier staticModelDerivationId="2" className="FoodItem"
+                                                      associationEndName="asManufacturedProduct"/>
+                              <mif:derivationSupplier staticModelDerivationId="3" className="FoodItem"
+                                                      associationEndName="asManufacturedProduct"/>
+                              <mif:participantClass>
+                                 <mif:class name="ManufacturedProduct" isAbstract="false">
+                                    <mif:derivationSupplier staticModelDerivationId="1" className="Role"/>
+                                    <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedProduct"/>
+                                    <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedProduct"/>
+                                    <mif:graphicRepresentation presentation="HL7">
+                                       <mif:graphElement shapeId="Sheet.1" containerDiagramName="Main" shapeTemplate="Role"
+                                                         isWidthAutoSize="true"
+                                                         isHeightAutoSize="true">
+                                          <mif:position x="3.990" y="2.769"/>
+                                          <mif:size width="1.491" height="0.500"/>
+                                       </mif:graphElement>
+                                    </mif:graphicRepresentation>
+                                    <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                                                   conformance="R"
+                                                   isMandatory="true"
+                                                   isStructural="true">
+                                       <mif:derivationSupplier staticModelDerivationId="1" className="Role" attributeName="classCode"/>
+                                       <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedProduct"
+                                                               attributeName="classCode"/>
+                                       <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedProduct"
+                                                               attributeName="classCode"/>
+                                       <mif:type name="CS"/>
+                                       <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="RoleClass" mnemonic="MANU"/>
+                                    </mif:attribute>
+                                    <mif:association sortKey="1">
+                                       <mif:graphicRepresentation>
+                                          <mif:graphElement connectToShapeId="Sheet.1" containerDiagramName="Main">
+                                             <mif:position x="4.140" y="3.219"/>
+                                             <mif:graphEdge>
+                                                <mif:anchor connectToShapeId="Sheet.32">
+                                                   <mif:position x="1.567" y="3.729"/>
+                                                </mif:anchor>
+                                             </mif:graphEdge>
+                                          </mif:graphElement>
+                                       </mif:graphicRepresentation>
+                                       <mif:targetConnection name="manufacturerOrganization" minimumMultiplicity="1" maximumMultiplicity="1"
+                                                             conformance="R"
+                                                             isMandatory="false"
+                                                             sortKey="BZ">
+                                          <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="scoper"/>
+                                          <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedProduct"
+                                                                  associationEndName="manufacturerOrganization"/>
+                                          <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedProduct"
+                                                                  associationEndName="manufacturerOrganization"/>
+                                          <mif:participantClass>
+                                             <mif:commonModelElementRef name="E_OrganizationUniversal">
+                                                <mif:derivationSupplier staticModelDerivationId="1" className="Organization"/>
+                                                <mif:derivationSupplier staticModelDerivationId="2" className="E_OrganizationUniversal"/>
+                                                <mif:derivationSupplier staticModelDerivationId="3" className="E_OrganizationUniversal"/>
+                                                <mif:supplierStructuralDomain domainName="EntityClass" mnemonic="ORG"/>
+                                                <mif:graphicRepresentation presentation="HL7">
+                                                   <mif:graphElement shapeId="Sheet.32" containerDiagramName="Main" shapeTemplate="CMET"
+                                                                     isWidthAutoSize="true"
+                                                                     isHeightAutoSize="true">
+                                                      <mif:position x="0.347" y="3.290"/>
+                                                      <mif:size width="1.220" height="0.628"/>
+                                                   </mif:graphElement>
+                                                </mif:graphicRepresentation>
+                                                <mif:generalizationParent name="COCT_MT150000HT04"/>
+                                             </mif:commonModelElementRef>
+                                          </mif:participantClass>
+                                       </mif:targetConnection>
+                                       <mif:sourceConnection>
+                                          <mif:nonTraversableConnection participantClassName="ManufacturedProduct">
+                                             <mif:derivationSupplier staticModelDerivationId="1" className="Entity" associationEndName="scopedRole"/>
+                                          </mif:nonTraversableConnection>
+                                       </mif:sourceConnection>
+                                    </mif:association>
+                                 </mif:class>
+                              </mif:participantClass>
+                           </mif:targetConnection>
+                           <mif:sourceConnection>
+                              <mif:nonTraversableConnection participantClassName="FoodItem">
+                                 <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="player"/>
+                              </mif:nonTraversableConnection>
+                           </mif:sourceConnection>
+                        </mif:association>
+                     </mif:class>
+                  </mif:participantClass>
+               </mif:targetConnection>
+               <mif:sourceConnection>
+                  <mif:nonTraversableConnection participantClassName="DietItem">
+                     <mif:derivationSupplier staticModelDerivationId="1" className="Entity" associationEndName="playedRole"/>
+                  </mif:nonTraversableConnection>
+               </mif:sourceConnection>
+            </mif:association>
+         </mif:class>
+      </mif:specializedClass>
+   </mif:ownedEntryPoint>
+</mif:serializedStaticModel>

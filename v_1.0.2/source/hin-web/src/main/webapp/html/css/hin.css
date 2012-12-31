@@ -1,0 +1,127 @@
+/* 
+Beware: lots of last-minute CSS going on in here 
+*/
+@font-face {
+font-family: MyriadPro-Light;
+     src: url("MyriadPro-Light.otf");
+}
+
+body { background: #ffffff; font-family:MyriadPro-Light;font-size:11pt}
+.ui-mobile .type-home .ui-content { margin: 0; background: #fff url(../../images/jqm-sitebg.png) top center repeat-x; }
+/* mobile positioning */
+.ui-page {
+	min-width: 650px;
+	max-width: 750px;
+ 	max-width: 1024px; 
+	margin: 0 auto;
+	position: relative !important;
+	white-space: normal;
+	font-family:MyriadPro-Light ;
+	border:1px solid #000;
+}
+#ui-input-text {
+	width:50%;
+}
+a , b , ul , li ,p , h1 ,h2 ,h3 ,h4 ,h5 ,h6, input{
+	font-family:MyriadPro-Light ;
+	white-space:normal;
+	text-decoration:none;
+}
+li{
+	margin-left:0px;
+	font-size:10pt;
+}
+span{
+	font-weight:normal;
+	white-space:normal;
+	font-size:9pt;
+}
+form{
+	padding:5px;
+}
+.page{
+	border:1px solid #000;
+}
+.align-left { float:left; margin: 0 15px 15px 0; }
+
+.normal{
+	smargin-right:20px;
+	
+}
+.minimal{
+	swidth:90%;
+}
+/* docs site layout */
+
+@media all and (min-width: 650px){
+		
+	.content-primary {
+		widths: 69%;
+		float: left;
+		/*margin-top: 30px;
+		margin-right: 1%;*/
+		padding-rights: 5px;
+		border:0px solid #000;
+	}
+	
+	.content-secondary {
+		text-align: left;
+		float: right;
+		widths: 29%;
+		border:0px solid #000;
+	}
+	
+	
+}
+
+/* docs site layout */
+
+@media all and (min-width: 750px){
+		
+	.content-primary {
+		widths: 59%;
+		width:58%;
+		float: left;
+		/*margin-top: 30px;
+		margin-right: 1%;
+		padding-right: 1%;*/
+		padding:10px;
+		border:0px solid #000;
+	}
+	
+	.content-secondary {
+		text-align: left;
+		float: right;
+		widths: 39%;
+		width:40%;
+		border:0px solid #000;
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#programContent{
+	padding: 3px;	
+	padding-top:-5px;
+	border-bottom: none;
+}
+
+#programHeader{
+	padding: 1px; 
+	sheight:30px;
+}
+
+
+

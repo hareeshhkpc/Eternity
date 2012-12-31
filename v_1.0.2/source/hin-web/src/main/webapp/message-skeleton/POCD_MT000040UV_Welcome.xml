@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POCD_MT000040UV_Welcome" >
+    <POCD_MT000040UV_Welcome>
+        <id />
+        <code />
+        <title />
+        <effectiveTime />
+        <confidentialityCode />
+        <recordTarget>
+            <patientRole>
+                <id />
+            </patientRole>
+        </recordTarget>
+        <author>
+            <time />
+            <assignedAuthor>
+                <id />
+            </assignedAuthor>
+        </author>
+        <custodian>
+            <assignedCustodian>
+                <representedCustodianOrganization>
+                    <id />
+                </representedCustodianOrganization>
+            </assignedCustodian>
+        </custodian>
+        <relatedDocument>
+            <parentDocument>
+                <id />
+                <code />
+            </parentDocument>
+        </relatedDocument>
+        <component>
+            <structuredBody>
+                <component>
+                    <section>
+                        <code />
+                        <text >
+                            <thumbnail>
+                                <div>
+									<div style="float:left;font-weight:bold;font-size:15pt;">
+										To: <span id="patientId" style="color: #5D2A8F;text-decoration: underline;"></span>
+									</div>
+									<div style="font-weight:bold;font-size:15pt;margin-left:350px;">
+										Subject: Welcome to Eternity
+										<br/><br/>
+									</div>
+									<div style="font-size:12pt;">
+										Dear <span id="patientName"></span>
+									</div><br/><br/>
+									<div style="font-size:12pt;">
+										Please allow us to personally welcome you to the Eternity Membership Program. We at Eternity believe that Life is precious and by taking the
+										Eternity proactive approach you can safe guard your life and those who you love.  
+										<br/><br/>
+										We are proud to be one of the most advanced screening and testing centers in the world. By measuring and monitoring hundreds of 
+										biomarkers, health indicators and hormones, you can rest assured that you are giving your body the care it deserves for a healthier and happier
+										life.
+										<br/><br/>
+										At Eternity we employ three simple, yet effective step to ensure your body receives the respect it deserves.
+										<br/><br/>
+										Step one: MEASURE We measure, depending on your Program your Biomarkers, Health Indicators and Hormones at regular intervals. This
+										can help detect early life  threatening situations such as Cardio-Metabolic Disease, Cancer, Diabetes, Alzheimer's and other. By keeping you in
+										'The Eternity Zone' (E- Zone) which is an area of optimal health, we help protect you against chronic disease.
+										<br/><br/>
+										Step two: MENTOR At Eternity we believe that each person is an individual, and this is why our eight part Integral Health Program is tailored
+										to each client. With evidence-based knowledge and wisdom we focus on ensuring health for your wellbeing.
+										<br/><br/>
+										Step three: MONITOR We monitor through Eternity's propriety LHAMP (Lifestyle Health Assessment and Monitoring Program). We evaluate 
+										your subjective feelings and objective biomarkers to ensure you stay within the E- Zone of wellbeing. We are honored that you have chosen
+										Eternity to be "Your Personal Age Manager".
+										<br/><br/>
+										Please click <a href="http://119.226.87.12/hin-web/"><u>here</u></a> to login.
+										<br/><br/>
+										Yours in Health,
+										<br/><br/><br/>
+									</div>
+								</div>
+							</thumbnail>
+                        </text>
+                    </section>
+                </component>
+            </structuredBody>
+        </component>
+    </POCD_MT000040UV_Welcome>
+</message>

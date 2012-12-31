@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config-generation configFilePath="src/main/webapp/message-configuration/COCT_MT150000HT04.xml" rootClass="COCT_MT150000HT04.Organization" description="Organization Registration Message" artifactId="COCT_MT150000HT04">
+
+	<schema-set type="MESSAGE" path="src/main/webapp/WEB-INF/htb/schemas/COCT_MT150000HT04.xsd" />
+	<schema-set type="CORESCHEMA" path="src/main/webapp/WEB-INF/htb/coreschemas" />
+	<schema-set type="SCHEMAS" path="src/main/webapp/WEB-INF/htb/schemas" />
+
+	<!-- traverseChildWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- repeatCount="numeric(default 1)" -->
+	<!-- traverseMessageObjectChild="true(default)" -->
+	<!-- traverseHL7DataTypeChild="false(default)" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- traveseChildList="comma(,) seperated list" -->
+	<tree-node xpath="/" />
+	<tree-node xpath="/name/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/desc/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/telecom/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/addr/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/contactParty/" considerChildrenWhen="ALWAYS" traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/contactParty/contactPerson/name/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/contactParty/contactPerson/telecom/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/contactParty/contactPerson/asPersonDomain/" considerChildrenWhen="ALWAYS" traverseChildWhen="ALWAYS" />
+
+</config-generation>

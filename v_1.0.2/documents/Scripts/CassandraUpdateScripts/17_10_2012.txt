@@ -1,0 +1,13 @@
+use HIN_ETERNITY;
+
+assume COCT_MT150000HT04_ST keys as utf8;
+assume COCT_MT150000HT04_ST validator as utf8;
+
+assume LICENSEE_ST keys as utf8;
+assume LICENSEE_ST validator as utf8;
+
+set COCT_MT150000HT04_ST['HINORG']['1']='<message config="COCT_MT150000HT04"><COCT_MT150000HT04><id><root>SUBSCRIBER_ID</root><extension>HINORG</extension></id><id><root>HIN_MSG_ID</root><extension>HINORG</extension></id><name><prefix>Eternity</prefix></name><code><code>AE</code><displayName>REGION</displayName><originalText>United Arab Emirates</originalText></code><desc/><telecom><use>EmailB</use><value>admin@eternity.org</value></telecom><addr /><contactParty><telecom /><contactPerson><name /><telecom/><asPersonDomain><id/><code/></asPersonDomain></contactPerson></contactParty><id><root>LICENSEE_ID</root><extension>7277bc41-6dff-273c-134f-84d5234511c1</extension></id></COCT_MT150000HT04></message>';
+
+set LICENSEE_ST['7277bc41-6dff-273c-134f-84d5234511c1']['1']='<message config="LICENSEE"><LICENSEE><desc><mediaType>application/pdf,80641</mediaType><reference><value>88fc16be-5c42-47e7-b5a0-c615350dffc2</value></reference><language><value>FromAbuDhabi.pdf</value></language></desc><desc><mediaType>application/pdf,78169</mediaType><reference><value>901deb06-0169-421e-a511-0ff9dae261b7</value></reference><language><value>FromDubai.pdf</value></language></desc><desc><nullFlavor>[object Object]</nullFlavor></desc><telecom><value>eternitymedical@gmail.com</value></telecom><id><root>HIN_MSG_ID</root><extension>7277bc41-6dff-273c-134f-84d5234511c1</extension></id><id><root>PASSWORD</root><extension>Password@@123</extension></id><currency><code>AE</code><conversion>3.67299</conversion></currency></LICENSEE></message>';
+
+set MESSAGE_ID_TYPE['7277bc41-6dff-273c-134f-84d5234511c1']['MESSAGETYPE']='LICENSEE';

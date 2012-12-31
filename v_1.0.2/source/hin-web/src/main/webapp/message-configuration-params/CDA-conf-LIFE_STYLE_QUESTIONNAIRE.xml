@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config-generation
+	configFilePath="src/main/webapp/message-configuration/POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE.xml"
+	rootClass="POCD_MT000040UV.ClinicalDocument" description="CDA Message for life style Questionnaire"
+	artifactId="POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE"
+	artifactIDAsRootTag="true">
+
+	<schema-set type="MESSAGE"
+		path="src/main/webapp/WEB-INF/hl7/schemas/POCD_MT000040UV.xsd" />
+	<schema-set type="CORESCHEMA" path="src/main/webapp/WEB-INF/hl7/coreschemas" />
+	<schema-set type="SCHEMAS" path="src/main/webapp/WEB-INF/hl7/schemas" />
+
+	<!-- traverseChildWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- repeatCount="numeric(default 1)" -->
+	<!-- traverseMessageObjectChild="true(default)" -->
+	<!-- traverseHL7DataTypeChild="false(default)" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- traveseChildList="comma(,) seperated list" -->
+	<tree-node xpath="/" repeatCount="1" considerChildrenWhen="MANDATORY"
+		traverseChildWhen="MANDATORY" traverseMessageObjectChild="true"
+		traverseHL7DataTypeChild="false" />
+	<tree-node xpath="/title/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/recordTarget/" considerChildrenWhen="MANDATORY"
+	    	traverseChildWhen="ALWAYS"/>
+	 <tree-node xpath="/recordTarget/patientRole/" considerChildrenWhen="MANDATORY"
+	    	traverseChildWhen="ALWAYS"/>  
+	 <tree-node xpath="/recordTarget/patientRole/telecom/"
+	      	considerChildrenWhen="ALWAYS"/>   	
+	 <tree-node xpath="/recordTarget/patientRole/patient/" considerChildrenWhen="OPTIONAL"
+	    	traverseChildWhen="ALWAYS"/> 
+	 <tree-node xpath="/recordTarget/patientRole/patient/id/" 
+	     considerChildrenWhen="ALWAYS" />
+	 <tree-node xpath="/recordTarget/patientRole/patient/name/" 
+	     considerChildrenWhen="ALWAYS" />
+	 <tree-node xpath="/author/" considerChildrenWhen="MANDATORY"
+	    	traverseChildWhen="ALWAYS"/>
+	  <tree-node xpath="/author/assignedAuthor/" considerChildrenWhen="MANDATORY"
+	    	traverseChildWhen="ALWAYS"/>
+	  <tree-node xpath="/author/assignedAuthor/telecom/" 
+	      considerChildrenWhen="OPTIONAL"/>
+	  <tree-node xpath="/author/assignedAuthor/assignedPerson/"considerChildrenWhen="ALWAYS"
+	    	traverseChildWhen="ALWAYS"/>
+	  <tree-node xpath="/author/assignedAuthor/assignedPerson/name/"
+	        considerChildrenWhen="ALWAYS"/>
+	   <tree-node xpath="/custodian/" considerChildrenWhen="MANDATORY"
+	    	traverseChildWhen="ALWAYS"/>
+	   <tree-node xpath="/custodian/" considerChildrenWhen="MANDATORY"
+	    	traverseChildWhen="ALWAYS"/>
+	   <tree-node xpath="/custodian/ assignedCustodian/" considerChildrenWhen="MANDATORY"
+	    	traverseChildWhen="ALWAYS"/>
+	   <tree-node xpath="/custodian/assignedCustodian/representedCustodianOrganization/" considerChildrenWhen="MANDATORY"
+	    	traverseChildWhen="ALWAYS"/>
+	   <tree-node xpath="/custodian/assignedCustodian/representedCustodianOrganization/id/" 
+	       considerChildrenWhen="MANDATORY" />
+	    <tree-node xpath="/custodian/assignedCustodian/representedCustodianOrganization/name/" 
+	       considerChildrenWhen="ALWAYS" />
+	    <tree-node xpath="/custodian/assignedCustodian/representedCustodianOrganization/telecom/" 
+	       considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/component/structuredBody/component/section/"
+		repeatCount="1" />
+	<tree-node xpath="/component/structuredBody/component/section/entry/"
+		traveseChildList="observation" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node
+		xpath="/component/structuredBody/component/section/entry/observation/"
+		repeatCount="1" />
+	<tree-node xpath="/component/structuredBody/component/section/entry/observation/value/"
+	overriddenFieldType="ED" considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/component/nonXMLBody/" repeatCount="0" />
+</config-generation>

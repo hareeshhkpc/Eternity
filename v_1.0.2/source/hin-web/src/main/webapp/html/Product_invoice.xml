@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="FIAB_MT020000HT02" >
+
+    <FIAB_MT020000HT02>
+        <id>572</id>
+        <code />
+        <statusCode />
+        <effectiveTime>04/07/2012</effectiveTime>
+        <activityTime />
+        <amt>4700.00</amt>
+        <component>
+               <financialTransactionChargeDetail>
+                <id />
+                <code />
+                <title >Progesterone Capsules 120</title>
+                <statusCode />
+                <effectiveTime />
+                <activityTime />
+                <unitQuantity />
+                <unitPriceAmt />
+                <netAmt>700.00</netAmt>
+            </financialTransactionChargeDetail>
+            
+               <financialTransactionChargeDetail>
+                <id />
+                <code />
+                <title >Thyroid T3/T4 120</title>
+                <statusCode />
+                <effectiveTime />
+                <activityTime />
+                <unitQuantity />
+                <unitPriceAmt />
+                <netAmt>500.00</netAmt>
+            </financialTransactionChargeDetail>
+       </component>
+        <postingTo>
+            <patientAccount>
+                <id />
+                <code />
+                <statusCode />
+                <activityTime />
+                <balanceAmt />
+                <pertinentInformation>
+                    <encounterEvent>
+                        <id />
+                        <code />
+                        <statusCode />
+                        <subject>
+                            <patient>
+                                <id />
+                                <patientPerson>
+                                    <id />
+                                    <name>Henry Hill</name>
+                                    <telecom />
+                                </patientPerson>
+                            </patient>
+                        </subject>
+                        <consultant>
+                            <employmentStaff>
+                                <employeePerson>
+                                    <id />
+                                    <name>Steve Waugh</name>
+                                    <telecom />
+                                </employeePerson>
+                            </employmentStaff>
+                        </consultant>
+                    </encounterEvent>
+                </pertinentInformation>
+            </patientAccount>
+        </postingTo>
+    </FIAB_MT020000HT02>
+
+</message>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="jquery-1.6.4.js"></script>
+		<script type="text/javascript" src="jquery.xml.js"></script>
+		<script type="text/javascript" src="DataTypeAPI.js"></script>
+		<script type="text/javascript" src="XmlUtil.js"></script>
+		<script type="text/javascript">
+			var TELxml = null;
+			function TELtestGetValue(){
+				TELxml = getTELvaluesFromUI('idtel','profileId');
+			}
+			function TELtestSetValue(){
+				TELsetValue('idtel', TELxml);
+			}
+			 function TELtestDisplay(){
+				$("#DivForSXCM_TS").toggle();
+			} 
+			
+			/* function TELcloseDiv(){
+					$("#DivForSXCM_TS").hide();
+					$("#b1").hide();
+				} */
+			
+		</script>
+	</head>
+	<body>
+		<form>
+  			<fieldset>
+  				value: <input type="text" id="idtel_attr_1"/> <br/>
+  				use: <input type="text" id="idtel_attr_2"/> <br/>
+  				
+				useablePeriod: <a href="#" onclick="TELtestDisplay();">SXCM_TS</a> <br/>
+					<div id="DivForSXCM_TS" style="display:none;">
+		  				value: <input type="text" id="idsxcm_attr_1"/>
+						operator: <input type="text" id="idsxcm_attr_2"/>				
+					</div>
+				
+				<input type="button"  value="getValue" onclick="TELtestGetValue();"/>
+				<input type="button"  value="clearValue" onclick="TELclearValues('idtel');"/>
+				<input type="button"  value="setValue" onclick="TELtestSetValue();"/>
+				
+
+			</fieldset>
+		</form>
+	</body>
+</html>

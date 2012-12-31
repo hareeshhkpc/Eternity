@@ -1,0 +1,1004 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="cache-control" content="no-cache" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Eternity: Login</title>
+
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" type="text/css" />
+<link rel="stylesheet" href="css/fluid.css" type="text/css" />
+<link rel="stylesheet" href="css/jquery.mobile.simpledialog.css" />
+<link rel="stylesheet" href="css/chat.css" type="text/css" />
+
+<script src="js/jquery-1.7.1.js"></script>
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+<script src="js/jquery.mobile.simpledialog.js"></script>
+
+<script src='js/calendar/src/_loader.js?debug'></script>
+<script src="../tinyMCE/jscripts/tiny_mce/tiny_mce.js"></script>
+
+<link rel="stylesheet" href="css/healthhistoryquestionnaire.css" />
+
+
+<link rel="StyleSheet" href="css/xmlViewer/style.css" type="text/css"
+	media="screen">
+<link rel="StyleSheet" href="css/xmlViewer/xmlGrid.css" type="text/css"
+	media="screen">
+<link rel="StyleSheet" href="css/xmlViewer/buttons.css" type="text/css"
+	media="screen">
+
+<script>
+	var appController = null;
+	var idGenerator = null;
+	/* var page = null; */
+	var factoryClass = null;
+
+	$(document)
+			.ready(
+					function() {
+						var filesArray = new Array();
+						filesArray = [
+								{
+									filename : "css/invoice.css",
+									filetype : "css"
+								},
+								{
+									filename : "js/jquery.mobile.datebox.min.css",
+									filetype : "css"
+								},
+
+								/* {
+																filename : "css/healthhistoryquestionnaire.css",
+																filetype : "css"
+															}, */
+								{
+									filename : "images/favicon.ico",
+									filetype : "css",
+									rel : "shortcut icon"
+								},
+								{
+									filename : "css/jquery.mCustomScrollbar.css",
+									filetype : "css"
+								},
+								{
+									filename : "js/jquery.ui.datepicker.mobile.css",
+									filetype : "css"
+								},
+								/* {
+									filename : "css/jquery.mobile.simpledialog.css",
+									filetype : "css"
+								}, */
+								{
+									filename : "css/jquery.scroller-1.0.2.min.css",
+									filetype : "css"
+								},
+								{
+									filename : "css/validationEngine.jquery.css",
+									filetype : "css"
+								},
+								{
+									filename : "css/jackedup.css",
+									filetype : "css",
+									media : "screen"
+								},
+
+								{
+									filename : "js/jquery.json-2.3.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jquery.mobile.datebox.min.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jqm-datebox.core.min.js",
+									filetype : "js"
+								},
+								{
+									filename : "res/js/jWebSocket.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jqm-datebox.mode.slidebox.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jqm-datebox.mode.calbox.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jquery.easydate-0.2.4.js",
+									filetype : "js"
+								},
+								/* {
+									filename : "js/jquery.mobile.simpledialog.js",
+									filetype : "js"
+								}, */
+								{
+									filename : "js/jsCharts/highcharts.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jquery.xcolor.min.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jquery.mousewheel.min.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/AjaxMultipart.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/AppConstants.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ApplicationController.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/AppUtil.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/Callback.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/CommonUtil.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/Context.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/DataLayer.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/DataTypeAPI.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/EventQueue.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/HashMap.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/FactoryClass.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/IDGenerator.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/IFrameAPI.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/LookupHandler.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/MessageAndUIBinder.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/MessageLoader.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/RenderingEngine.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ServiceLayer.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/UpdatePathfield.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/XmlUtil.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/WorkFlowManagerCache.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/CacheManager.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ProcessManagerCache.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/ReportPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/AppCalendar.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/AppSchedule.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Archive.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Form.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Home.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Licensee.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Login.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Navigation.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/NavigationLine.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Patient.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Process.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Program.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Resize.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Search.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Settings.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/SignUp.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Staff.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Statistics.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/TestResult.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Documents.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/Products.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/PatientCalendar.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/custom/User.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/AccountsPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/AppointmentsPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/AppointmentSchedule.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/AppointmentSchedulePage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/AutoCompleteSearch.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/BalancePage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/BillingPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/CalendarData.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/CollectionPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/ConsentPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/ContactPersonPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/EnrollmentPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/HistoryPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/InvoicePage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/LicenseeRegistrationPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/IMCommunication.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/LicenseeBooksPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/LicenseeCommissionPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/LicenseeNewProductPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/LicenseeNewServicePage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/LicenseePaymentPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/MeasurePage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/MonitorMeasurePage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/MonitorPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/Page.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/PatientDemographicsPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/PatientRegistrationPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/PermissionPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/PhysicalExaminationPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/ProfilePage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/ProgramsPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/QuestionnairePage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/ResultsPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/RemindersPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/ReviewPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/RolesPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/SettingsPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/SignUpPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/StaffRegistrationPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/StepPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/SubstancesPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/ColorPicker.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/UIGenerator.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/UserRegistrationPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/WelcomePage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/RoleDefinitionPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/RoleRightsPage.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/AppointmentVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/ChartData.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/ChartVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/ConceptLookup.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/ConceptVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/CurrencyVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/ChatContent.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/LicenseeVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/Message.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/MessageType.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/MessageVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/OrganizationVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/PatientVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/ProcessDefinition.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/ProcessVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/ProfileVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/ProgramVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/PhysicianVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/Query.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/SearchVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/DocumentsVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/StaffVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/StatisticsVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/Step.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/StepGroup.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/TaskVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/UserProcess.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/UserVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/ObservationVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/EntityState.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/ProductVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/vo/NotificationVO.js",
+									filetype : "js"
+								},
+								{
+									filename : "../client-report/ConsultationIntegral.js",
+									filetype : "js"
+								},
+
+								{
+									filename : "js/jquery.base64.min.js",
+									filetype : "js"
+								},
+								/*  {filename: "js/calendar/src/_loader.js",filetype:"js"}, */
+								{
+									filename : "../process-scripts/ProcessEntry.js",
+									filetype : "js"
+								},
+								{
+									filename : "../process-scripts/ProcessScript.js",
+									filetype : "js"
+								},
+								{
+									filename : "../message-scripts/MessageTypeScript.js",
+									filetype : "js"
+								},
+								{
+									filename : "../form-scripts/FormScript.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jquery.mobile.message.min.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/languages/jquery.validationEngine-en.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jquery.validationEngine.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jquery.easing.1.3.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jquery.mCustomScrollbar.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/humane.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jqm.autoComplete-1.4.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/jquery.cuteTime.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/utils/QuestionnaireFormGenerator.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/ui/PatientInfo.js",
+									filetype : "js"
+								},
+								{
+									filename : "../client-report/indicator.js",
+									filetype : "js"
+								},
+								{
+									filename : "../client-report/ReportModel.js",
+									filetype : "js"
+								},
+								{
+									filename : "../client-report/ChartModel.js",
+									filetype : "js"
+								},
+								{
+									filename : "../client-report/ReportModelV22_10_12.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/editor/EditorXmlApi.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/editor/EditorSMOValueApi.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/editor/EditorUIApi.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/message_api/script/xml2json.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/message_api/script/json2xml.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/message_api/script/lawnchair/Lawnchair.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/message_api/script/lawnchair/adapters/webkit-sqlite.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/message_api/script/lawnchair/adapters/dom.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/MessageQueue.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/message_api/script/hl7adapter.js",
+									filetype : "js"
+								},
+								{
+									filename : "js/message_api/script/hl7adapter.unit.js",
+									filetype : "js"
+								}, {
+									filename : "js/ui/UITable.js",
+									filetype : "js"
+								}, {
+									filename : "js/custom/Messages.js",
+									filetype : "js"
+								}, {
+									filename : "js/LookUpCache.js",
+									filetype : "js"
+								}, {
+									filename : "js/ui/ReceiptPage.js",
+									filetype : "js"
+								}, {
+									filename : "js/xmlViewer/ptpage.js",
+									filetype : "js"
+								}, {
+									filename : "js/xmlViewer/style.js",
+									filetype : "js"
+								}, {
+									filename : "js/xmlViewer/myAjaxLib.js",
+									filetype : "js"
+								}, {
+									filename : "js/custom/RoleDefinition.js",
+									filetype : "js"
+								} ];
+						loadjscssfile(filesArray, 0);
+					});
+
+	function openModalDialog(message) {
+		var fullHTML = "";
+		if (!message) {
+			message = "";
+		}
+
+		fullHTML += "<div class='ui-body ui-body-v'>";
+		fullHTML += "<h3>Please Wait ...</h3>";
+		fullHTML += "<p>" + message + "<strong></strong> <em></em></p>";
+		fullHTML += "<div data-role='collapsible' data-collapsed='true' data-theme='v'>";
+		/*
+		 * fullHTML += "<h3>More</h3>"; fullHTML += "<p></p>";
+		 */
+		fullHTML += "</div>";
+		fullHTML += "</div>";
+
+		/*
+		 * fullHTML = "<ul data-role='listview'><li>Please Wait ... " +
+		 * message + " ...</li></ul>";
+		 */
+
+		$('#main').simpledialog({
+			'mode' : 'blank',
+			'prompt' : false,
+			'forceInput' : true,
+			'cleanOnClose' : true,
+			'useModal' : true,
+			'fullHTML' : fullHTML
+		});
+	};
+
+	function closeModalDialog() {
+		try {
+			$('#main').simpledialog('close');
+
+		} catch (e) {
+
+		}
+	};
+
+	function loadjscssfile(filesArray, index) {
+
+		openModalDialog("Initializing application ...");
+
+		$
+				.ajax({
+					url : filesArray[index].filename,
+					cache : false,
+					success : function(data) {
+						if (filesArray[index].filetype == "js") {
+							var scriptRef = document.createElement('script');
+							scriptRef.setAttribute("type", "text/javascript");
+							scriptRef.setAttribute("id", "js" + index);
+							scriptRef.text = data;
+							var head = document.getElementsByTagName("head");
+							head = head[head.length - 1];
+							head.appendChild(scriptRef);
+						} else {
+							if (filesArray[index].filetype == "css") {
+
+								var media = (filesArray[index].media) ? filesArray[index].media
+										: null;
+								var rel = (filesArray[index].rel) ? filesArray[index].rel
+										: null;
+								var styleTag = "<style type='text/css' id='css"
+										+ index + "'";
+
+								if (media != null) {
+									styleTag += ' media="' + media + '"';
+								}
+								if (rel != null) {
+									styleTag += ' rel="' + rel + '"';
+								}
+								styleTag += '>' + data + "</style>";
+
+								$("head").append(styleTag);
+
+								/* if(filesArray[index].media){
+									$("#css"+index).attr("media", filesArray[index].media);
+								}
+								if(filesArray[index].rel){
+									$("#css"+index).attr("rel", filesArray[index].rel);
+								}else{
+									$("#css"+index).attr("rel", "stylesheet");
+								} */
+
+								/* 			var styleRef = document.createElement("style");
+											styleRef.setAttribute("type", "text/css");
+											styleRef.setAttribute("id", "css"+index);
+											if(filesArray[index].media){
+												styleRef.setAttribute("media", filesArray[index].media);
+											}
+											if(filesArray[index].rel){
+												styleRef.setAttribute("rel", filesArray[index].rel);
+											}else{
+												styleRef.setAttribute("rel", "stylesheet");
+											}
+											var head = document.getElementsByTagName("head")[0];
+										    head.appendChild(styleRef);
+										    $("#css"+index).html(data); */
+							}
+						}
+					},
+					complete : function(data) {
+						index++;
+						if (index < filesArray.length) {
+							loadjscssfile(filesArray, index);
+						} else {
+
+							closeModalDialog();
+
+							startApllicationController();
+						}
+					}
+				});
+
+	}
+
+	function startApllicationController() {
+		var version = localStorage.getItem('Version');
+
+		if (!version || version < 2) {
+			localStorage.clear();
+			localStorage.setItem('Version', '2');
+		}
+
+		appController = new ApplicationController();
+		idGenerator = new IDGenerator();
+		factoryClass = new FactoryClass();
+
+		$(window).load(
+				function() { // On load
+					appController.getComponent("RenderingEngine").fireEvent(
+							AppConstants.Event.RESIZE);
+				});
+
+		$(window).resize(
+				function(e) {
+					if (appController)
+						appController.getComponent("RenderingEngine")
+								.fireEvent(AppConstants.Event.RESIZE);
+				});
+	};
+</script>
+
+
+</head>
+<body>
+
+	<div id="main" data-role="page" class="ui-corner-all ui-shadow-inset"
+		data-theme="d">
+		<div data-role="header" data-theme="v" data-backBtn="true"
+			class="header_bg" id="header" style="display: none">
+			<fieldset class="ui-header-text ui-grid-b">
+				<div class="ui-header-left-text ui-block-a" id="leftHeader"></div>
+				<div class="ui-header-left-text ui-block-b" id="mainHeader"></div>
+				<div class="ui-header-right-text ui-block-c" id="logout"
+					style="float: right; width: 3%; margin-right: 40px;">Logout</div>
+
+				<!-- <div class="loading">
+					<img src="images/orange.png" />
+					<div id="loadingMsg"
+						style="font-weight: normal; padding-right: 5px; border: 0px solid #6E1766; position: fixed; top: 20px; right: 0;"></div>
+				</div> -->
+
+
+				<div class="busy settings">
+					<img src="images/orange.png" />
+				</div>
+				<div class="idle settings">
+					<img src="images/green.png" />
+				</div>
+				<div class="failure settings">
+					<img src="images/red.png" />
+				</div>
+
+
+
+				<div class="ui-header-right-text ui-block-c" id="loginPage"
+					style="float: right; width: 3%; display: none; margin-right: 40px;">Login</div>
+			</fieldset>
+		</div>
+		<div data-role="none" data-theme="v" id="navigationHeader">
+			<fieldset class="ui-form-header ui-grid-a" id="navigation">
+			</fieldset>
+		</div>
+		<!-- <div id="msg" style="padding: 2%; align: center; text-align: center"
+		data-theme="a"></div> -->
+
+		<div id="template">
+
+			<!-- div id="programHeader" class="ui-body ui-corner-all" data-theme="a">
+
+			<div data-role="header" data-theme="v" id="headerPage">
+				<div id="program" class="ui-block-b">Mentor</div>
+			</div>
+
+
+			</div-->
+
+		</div>
+
+		<div id="okDialog"></div>
+		<div id="okCancelDialog"></div>
+
+		<!-- <div data-role="footer" class="footer-docs" data-theme="c">
+			<p>&copy; 2012 The Eternity Project</p>
+		</div> -->
+
+	</div>
+</body>
+</html>

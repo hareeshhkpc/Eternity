@@ -1,0 +1,94 @@
+<script>		
+	var pageIdArray = new Array();
+	$(document)
+			.ready(
+					function() {
+						pageIdArray.push("");
+						pageIdArray.push("");
+						pageIdArray.push("");
+						pageIdArray.push("togglePage3");
+						pageIdArray.push("togglePage4");
+						pageIdArray.push("togglePage5");
+						pageIdArray.push("togglePage6");
+						pageIdArray.push("togglePage7");
+						pageIdArray.push("togglePage8");
+						pageIdArray.push("togglePage9");
+						pageIdArray.push("togglePage10");
+						pageIdArray.push("togglePage11");	
+
+						for ( var newID = 3; newID <= 11; newID++) {
+								$('#page' + newID).hide();
+							}
+
+							$(".pageClass").click(function() {
+								//alert("click");
+
+								for (id in pageIdArray) {
+
+									if (pageIdArray[id] == $(this).attr('id')) {
+										$('#page' + id).slideToggle();
+									}
+								}
+								;
+							});
+					});
+</script>
+<div id="mainHeaderDivId">
+		<div id="togglePage3"
+			class="pageClass msg_head1 ui-sub-head-inner-bg ui-sub-header-text"
+			style="width: 100%">OverView</div>
+		<div id="page3">
+			<embed src="../html/charts/page3.svg" width="900" height="1100"></embed>
+		</div>
+		<div id="togglePage4"
+			class="pageClass msg_head1 ui-sub-head-inner-bg ui-sub-header-text"
+			style="width: 100%">Inflammation Control</div>
+		<div id="page4">
+			<embed src="../html/charts/page4.svg" width="1000" height="1100"></embed>
+		</div>
+		<div id="togglePage5"
+			class="pageClass msg_head1 ui-sub-head-inner-bg ui-sub-header-text"
+			style="width: 100%">Nutrition And Metabolism</div>
+		<div id="page5">
+			<embed src="../html/charts/page5.svg" width="1000" height="1100"></embed>
+		</div>
+		<div id="togglePage6"
+			class="pageClass msg_head1 ui-sub-head-inner-bg ui-sub-header-text"
+			style="width: 100%">Toxin Reduction</div>
+		<div id="page6">
+			<embed src="../html/charts/page6.svg" width="1000" height="1100"></embed>
+		</div>
+		<div id="togglePage7"
+			class="pageClass msg_head1 ui-sub-head-inner-bg ui-sub-header-text"
+			style="width: 100%">Exercise</div>
+		<div id="page7">
+			<embed src="../html/charts/page7.svg" width="1000" height="1100"></embed>
+		</div>
+		<div id="togglePage8"
+			class="pageClass resultsToggle msg_head1 ui-sub-head-inner-bg ui-sub-header-text"
+			style="width: 100%">Genetics And Aesthetics</div>
+		<div id="page8">
+			<embed src="../html/charts/page8.svg" width="1000" height="1100"></embed>
+		</div>
+		<div id="togglePage9"
+			class="pageClass resultsToggle msg_head1 ui-sub-head-inner-bg ui-sub-header-text"
+			style="width: 100%">Restoration Of Hormones</div>
+		<div id="page9">
+			<embed src="../html/charts/page9.svg" width="1000" height="1100"></embed>
+			<embed src="../html/charts/page10.svg" width="1000" height="1100"></embed>
+		</div>		
+		<div id="togglePage10"
+			class="pageClass resultsToggle msg_head1 ui-sub-head-inner-bg ui-sub-header-text"
+			style="width: 100%">Advanced Supplementation</div>
+		<div id="page10">
+			<embed src="../html/charts/page11.svg" width="1000" height="1100"></embed>
+		</div>
+		<div id="togglePage11"
+			class="pageClass resultsToggle msg_head1 ui-sub-head-inner-bg ui-sub-header-text"
+			style="width: 100%">Lifelong (mind-body) Learning</div>
+		<div id="page11">
+			<embed src="../html/charts/page12.svg" width="1000" height="1100"></embed>
+		</div>
+		
+</div>
+	

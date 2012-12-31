@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+		<h:outputScript name="jsf.js" library="javax.faces" target="body">
+		</h:outputScript>
+		<h:form>
+			<rich:panel header="#{msg['numericRange.title']}">
+
+				<rich:dataTable id="numericRangeList"
+					value="#{numericRangeBean.numericRangeList}" var="numeric"
+					rows="10" width="100%">
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Unit" />
+						</f:facet>
+						<h:outputText value="#{numeric.unit.unitType}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['numericRange.absoluteHigh']}" />
+						</f:facet>
+						<h:outputText value="#{numeric.absoluteHigh}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['numericRange.absoluteLow']}" />
+						</f:facet>
+						<h:outputText value="#{numeric.absoluteLow}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['numericRange.criticalHigh']}" />
+						</f:facet>
+						<h:outputText value="#{numeric.criticalHigh}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['numericRange.criticalLow']}" />
+						</f:facet>
+						<h:outputText value="#{numeric.criticalLow}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['numericRange.normalHigh']}" />
+						</f:facet>
+						<h:outputText value="#{numeric.normalHigh}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['numericRange.normalLow']}" />
+						</f:facet>
+						<h:outputText value="#{numeric.normalLow}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Action" />
+						</f:facet>
+						<h:commandLink action="#{numericRangeBean.modify}" value="modify">
+							<f:param name="objId" value="#{numeric.id}" />
+						</h:commandLink>
+					</rich:column>
+				</rich:dataTable>
+				<rich:dataScroller for="numericRangeList" maxPages="5" />
+				<h:panelGrid>
+					<h:commandButton value="Add NumericRange"
+						action="numericRange.xhtml" />
+				</h:panelGrid>
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
+

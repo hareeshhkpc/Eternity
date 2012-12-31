@@ -1,0 +1,1287 @@
+
+<!-- <link rel="stylesheet" href="../../js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="../../css/violet.css" />
+<link rel="stylesheet" href="../../css/mobile.css" type="text/css" />
+<script src="../../js/jquery-1.6.4.min.js"></script>
+<script src="../../js/jquery.json-2.3.js"></script>
+<script src="../../js/jquery.mobile-1.0.1.min.js"></script>
+
+<script src="../../js/vo/FormVO.js"></script>
+<script src="../../js/vo/Message.js"></script>
+<script src="../../js/vo/ProcessDefinition.js"></script>
+<script src="../../js/vo/Step.js"></script> -->
+
+
+<script type="text/javascript">
+	
+	var measureProcessDefinition = null;
+	var forms = null;
+	var currentFormVO = null;
+	var selectedProcessVO = null;
+	var groupHeaderMap = new HIN.HashMap();
+	var maxId = 0;
+	var maxMessageIndex=0;
+	var formIndex=0;
+	
+	$(document).ready(
+			function() {
+				
+			
+				measureProcessDefinition = appController.getComponent("RenderingEngine")
+				.getChildComponent("Process").getProcessDefinition();
+				//alert( $.toJSON(processDefinition));
+				selectedProcessVO = appController.getComponent("RenderingEngine").getChildComponent("Form").selectedProcessVO;
+				//alert(selectedProcessVO);
+				forms = selectedProcessVO.forms;
+				loadForms();
+				
+				/*TEST Save*/
+				//$('#saveMessage').die('click', appController.getComponent("DataLayer").saveMessages);
+				$('#saveMessage').live('click', function() {
+					appController.getComponent("DataLayer").saveMessages();
+					//alert("saveMessages");
+				});
+				//$('#saveProcess').die('click', appController.getComponent("DataLayer").saveProcess);
+				$('#saveProcess').live('click',  function() {
+					appController.getComponent("DataLayer").saveProcess();
+					//alert("saveProcess");
+				});
+
+				//$('#main').trigger('create');
+		
+			//	bindDiagnosticEvent();
+				
+				});
+	
+	
+	
+	function bindDiagnosticEvent(){
+		
+		for(var i=1; i<15; i++){
+			alert("i value is  "+i);
+			$("#inner-form"+i).hide();						
+			$("#inner-form-head"+i).click(function(){
+				//alert("inside func body   "+$(this).attr("id"));
+				$(this).next("div").slideToggle();
+				
+			}); 
+			continue;
+		}
+	}
+	
+	function loadForms(){
+		if(formIndex < forms.length) {
+			
+			var formVO = forms[formIndex];
+			formVO.id = formIndex + 1;
+			//alert(formVO);
+			var map=groupHeaderMap.get(formVO.messageType);
+			if(map == null){
+				groupHeaderMap.put(formVO.messageType,formVO.id);
+				var groupHeader = createGroupHeader(formVO.id,formVO.messageType);
+				$('#forms').append(groupHeader);
+				map = groupHeaderMap.get(formVO.messageType);
+			}
+			
+			
+			//if(formVO.messageId != null && formVO.messageId.length >0){
+				$('#sub-head'+map.value).append(createGroupChildHeader(formVO.id,formVO.formName,formVO.messageType));
+				var strFun ="loadPageForm(formVO,loadForm)";
+				//alert(strFun);
+				eval(strFun);
+				maxId=formVO.id;
+				maxMessageIndex=formVO.messageIndex;
+			//}
+			
+			
+		}	
+	}
+
+	function loadForm(formVO,data){
+		//alert("loadForm : "+formVO.id)
+		$('#inner-form'+formVO.id).append(data); 
+		maxId=formVO.id;
+		maxMessageIndex=formVO.messageIndex;
+		/* appController.getComponent("DataLayer").processMessage(
+				formVO.messageType,formVO.messageId, "", function (messageId,msg){
+					//alert("callback : "+msg);
+					messageCreated(messageId,msg,formVO);
+				}); */
+				
+				formIndex++;
+				loadForms();		
+		$('#main').trigger('create');
+		
+	}
+	
+	function getFormVO(id){
+		for ( var index = 0; index < forms.length; index++) {
+			if(forms[index].id == id){
+				return forms[index];
+			}
+		}
+	}
+	
+	function removeFormVO(id){
+		for ( var index = 0; index < forms.length; index++) {
+			if(forms[index].id == id){
+				forms.splice(index);
+			}
+		}
+	}
+	
+	
+
+	function messageCreated(messageId,msg,currentFormVO) {
+		currentFormVO.messageId=messageId;
+		//alert("msg : "+msg);
+		currentFormVO.messageAndUIBinder = new MessageAndUIBinder('inner-form'+currentFormVO.id,msg,currentFormVO.messageType);
+		currentFormVO.messageAndUIBinder.bindFieldEvents();
+		measureProcessDefinition.setMessageId(selectedProcessVO.stepName,currentFormVO.messageType,currentFormVO.messageIndex,currentFormVO.messageId);
+		//alert("currentFormVO : " +currentFormVO);
+		//alert( $.toJSON(processDefinition));
+		formIndex++;
+		loadForms();
+	}
+	
+	function createGroupHeader(id,messageType){
+		var groupHeader='<div id="sub-head'+id+'" style="width: 99%;">';
+		groupHeader+='<div id="inner-main-head'+id+'" class="ui-inner-display-box">';
+		/* groupHeader+='<div class="ui-sub-header-bg ui-page-header-text ">';
+		groupHeader+=messageType+'</div>'; */
+		/* groupHeader+='<div class="ui-add-icon">';
+		messageType="'"+messageType+"'";
+		groupHeader+='<img src="images/add.png" onclick="createForm('+messageType+','+messageType+');" />';
+		groupHeader+='</div>'; */
+		groupHeader+='</div>';
+		/* groupHeader+='<div id="'+messageType+'"></div>'; */
+		groupHeader+='</div>';
+		return groupHeader;
+	}
+	
+	function createGroupChildHeader(id,message,messageType){
+		var groupChildHeader='<div id="inner-sub-head'+id+'" class="ui-inner-display-box">';	
+		groupChildHeader+='<div id="inner-form-head'+id+'" class="ui-sub-head-inner-bg ui-sub-header-text" style="width:100%;" >';
+		groupChildHeader+=messageType;									
+		groupChildHeader+='</div>';	
+		/* groupChildHeader+='<div class="ui-delete-icon">';
+		groupChildHeader+='<img src="images/delete.png" onclick="removeForm('+id+');" />';
+		groupChildHeader+='</div>'; */
+		groupChildHeader+='<div id="inner-form'+id+'" style="float:left;border:1px solid;padding:6px;width:100%;" >';
+		//groupChildHeader+='Form';									
+		groupChildHeader+='</div>';
+		groupChildHeader+='</div>';
+		return groupChildHeader;
+	}
+
+	
+	
+	function loadPageForm(formVO,func) {
+		//alert(formVO);
+		var url =  "pages/form/"+formVO.formName+".html";
+		$.ajax({
+
+			type : "POST",
+			url : url,
+			dataType : "html",
+			cache : false,
+			success : function(data) {
+				if (func)
+				func(formVO,data); 							
+			},
+
+			error : function(request, error) {
+				alert(request + ": " + error);
+			}
+		});
+	}
+	
+	
+		
+</script>
+
+<div class="ui-inner-display-box ui-header-corner-top" id="forms">
+	<div data-role="navbar">
+		<ul>
+			<li><a href="#" id="saveMessage">Save Message</a></li>
+			<li><a href="#" id="saveProcess">Save Process</a></li>
+		</ul>
+	</div>
+</div>
+
+
+<!-- <style>
+.msg_list {
+	margin: 0px;
+	padding: 2px;
+	background-color: #F4F4F8;
+}
+
+.msg_head {
+	padding: 2px;
+	cursor: pointer;
+	position: relative;
+	margin: 0px;
+	color: #6E1766;
+	background-color: #DCDCDC;
+}
+
+.msg_body {
+	padding: 0px;
+	background-color: #F4F4F8;
+}
+</style>
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+						$(".msg_body").hide();
+						
+						$(".msg_head").click(function() {
+							$(this).next(".msg_body").slideToggle();
+						});
+						
+						$('#rightAnklepresure, #rightArmPresure').change(
+								function(event) {
+									$('#rightabi').html("");
+									var rightAnklepresure = $('#rightAnklepresure').attr("value");
+									var rightArmpresure = $('#rightArmPresure').attr("value");
+
+									if (rightAnklepresure.length == 0) {
+										// alert("provide rigntAnklepresure");
+										$('#rightAnklepresure').focus();
+									} else if (rightArmpresure.length == 0) {
+										// alert("provide rigntArmpresure");
+										$('#rightArmPresure').focus();
+									} 
+									else if (rightAnklepresure && rightArmpresure) {
+										var res = rightAnklepresure / rightArmpresure;
+										var newnumber = Math.round(res * Math.pow(10, 2))
+												/ Math.pow(10, 2);
+										$('#rightabi').html(parseFloat(newnumber));
+									} else {
+											alert("please provide the values");
+										
+									}
+								});
+
+
+						$('#leftAnklePresure,#leftArmPresure')
+								.change(
+										function(event) {
+											$('#leftabi').html("");
+											var leftAnklePresure = $('#leftAnklePresure').attr(
+													"value");
+											var leftArmPresure = $('#leftArmPresure').attr(
+													"value");
+
+											if (leftAnklePresure.length == 0) {
+												// alert("provide leftAnklePresure");
+												$('#leftAnklePresure').focus();
+											} else if (leftArmPresure.length == 0) {
+												// alert("provide leftArmPresure");
+												$('#leftArmPresure').focus();
+											} else if (leftAnklePresure && leftArmPresure) {
+												var res = leftAnklePresure / leftArmPresure;
+												var newnumber = Math.round(res
+														* Math.pow(10, 2))
+														/ Math.pow(10, 2);
+												// $('#leftabi').val(parseFloat(newnumber)); //this is for input box
+												$('#leftabi').html(parseFloat(newnumber));   // this is for div
+											} else {
+												alert("please provide the values");
+											}
+										});
+
+					});
+</script>
+
+<div class="msg_list">
+	<p class="msg_head">CAC- Full Body Scan</p>
+	<div class="msg_body">
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<label for="lm">Left Main(LM)</label> <input type="text" name="lm">
+			</div>
+			<div class="ui-block-b">
+				<label for="lad">Left Anterior Descending(LAD)</label> <input
+					type="text" name="lad" />
+			</div>
+			<div class="ui-block-a">
+				<label for="lcx">Left Circumflex(LCX)</label> <input type="text"
+					name="lcx">
+			</div>
+			<div class="ui-block-b">
+				<label for="rca">Right Coronary Artery(RCA)</label> <input
+					type="text" name="rca" />
+			</div>
+			<div class="ui-block-a">
+				<label for="total">Total Agatson Score</label> <input type="text"
+					name="total">
+			</div>
+			<div class="ui-block-b"></div>
+
+			<div class="ui-block-a">
+				<label for="rank">Percentile Ranking</label> <input type="text"
+					name="rank">
+			</div>
+			<div class="ui-block-b">
+				<label for="score">Calcium Score</label> <input type="text"
+					name="score" />
+			</div>
+			<div class="ui-block-a">
+				<label for="volume">Calcium Volume</label> <input type="text"
+					name="volume">
+			</div>
+			<div class="ui-block-b"></div>
+			<div>
+				<div data-role="fieldcontain">
+					<input type="submit" value="Save" data-inline="true" /> <input
+						type="reset" value="Cancel" data-inline="true" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="msg_list">
+	<p class="msg_head">MCG</p>
+	<div class="msg_body"></div>
+</div>
+
+<div class="msg_list">
+	<p class="msg_head">IMT</p>
+	<div class="msg_body">
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<div data-role="fieldcontain">
+					<label for="imtMeanRight">IMT Mean(Right)</label> <input
+						type="text" id="imtMeanRight" class="inputTextSize" />
+				</div>
+			</div>
+
+			<div class="ui-block-b">
+				<div data-role="fieldcontain">
+					<label for="plaqueRight">Plaque Present/Absent(Right)</label> <input
+						type="text" id="plaqueRight" class="inputTextSize" />
+				</div>
+			</div>
+
+			<div class="ui-block-a">
+				<div data-role="fieldcontain">
+					<label for="imtMeanLeft">IMT Mean(Left)</label> <input type="text"
+						id="imtMeanLeft" class="inputTextSize" />
+				</div>
+
+			</div>
+			<div class="ui-block-b">
+				<div data-role="fieldcontain">
+					<label for="plaqueleft" data-inline="true">Plaque
+						Present/Absent(Left)</label> <input type="text" id="plaqueleft" />
+				</div>
+			</div>
+
+			<div class="ui-block-a">
+				<div data-role="fieldcontain">
+					<label for="riskScore" data-mini="true">Risk Score</label> <input
+						type="text" id="riskScore" data-mini="true" class="inputTextSize" />
+				</div>
+
+			</div>
+			<div class="ui-block-b">
+				<div data-role="fieldcontain">
+					<label for="percentile" data-inline="true">IMT Percentile</label> <input
+						type="text" id="percentile" />
+				</div>
+			</div>
+
+			<div>
+				<div data-role="fieldcontain">
+					<input type="submit" value="Save" data-inline="true" /> <input
+						type="reset" value="Cancel" data-inline="true" />
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="msg_list">
+	<p class="msg_head">SphygmoCor</p>
+	<div class="msg_body">
+		<b>CENTRAL CLINICAL PARAMETERS</b><br />
+		<table border="0" align="center">
+			<tr>
+				<td>
+					<table border="0"
+						style="font-size: 15px; margin-left: 55px; align: right"
+						width="75%">
+						<tr>
+							<td>Aortic SP</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><b>94 </b>mmHg</td>
+							<td>[91->118]</td>
+						</tr>
+						<tr>
+							<td>Aortic PP</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><b>28 </b>mmHg</td>
+							<td>[19->39]</td>
+						</tr>
+						<tr>
+							<td>AP</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><b>4 </b>mmHg</td>
+							<td>[-1->12]</td>
+						</tr>
+						<tr>
+							<td>Alx @ HR75</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><b>14% </b>
+							</td>
+							<td>[4->27]</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table border="0" style="font-size: 12px;">
+						<tr>
+							<th>Lower 5%</th>
+							<th>Reference Range <br />(31 yo FEMALE)</th>
+							<th>Upper5%</th>
+						</tr>
+						<tr>
+							<td colspan="4"><img src="images/program/SphygmoCor1.png"
+								width="100%" />
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<table border="0"
+						style="font-size: 15px; margin-left: 55px; align: right">
+						<tr>
+							<td colspan="1">Ejection Duration</td>
+						</tr>
+						<tr>
+							<td><b>37 </b>%</td>
+							<td>[34->40]</td>
+						</tr>
+						<tr>
+							<td>SEVR</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><b>147 </b>%</td>
+							<td>[117->168]</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table border="0" style="font-size: 12px;">
+						<tr>
+							<th>Lower 5%</th>
+							<th>Reference Range <br />(75 bpm)</th>
+							<th>Upper5%</th>
+						</tr>
+						<tr>
+							<td colspan="4"><img src="images/program/SphygmoCor2.png"
+								width="100%" />
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+
+		</table>
+	</div>
+</div>
+
+<div class="msg_list" style="border-color: #6E1766;">
+	<p class="msg_head">Biospace</p>
+	<div class="msg_body">
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<label for="recommendation" width="70%">Recommendation for</label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal"
+							id="recomm">
+							<input type="radio" name="recommendation" id="recommendation1"
+								data-mini="true" data-inline="true" value="weightLoss" /> <label
+								for="recommendation1">Weight Loss</label> <input type="radio"
+								name="recommendation" id="recommendation2" value="weightGain" />
+							<label for="recommendation2">Weight Gain</label>
+						</fieldset>
+					</div>
+					<div class="ui-block-a">
+						<label for="suggestedWeight">Suggested Weight Loss/Weight
+							Gain(Kg/lb)</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="suggestedWeight" value="" />
+					</div>
+
+					<div class="ui-block-a">
+						<label for="suggestedMuscleMass">Suggested increase in
+							Muscle Mass(Kg/lb)</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="suggestedMuscleMass" />
+					</div>
+
+				</div>
+				<div data-role="fieldcontain">
+					<input type="submit" value="Save" data-inline="true"
+						onclick="saveBioSpace()" /> <input type="reset" value="Cancel"
+						data-inline="true" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="msg_list">
+	<p class="msg_head">ABI</p>
+	<div class="msg_body" style="height: 280px;">
+
+		<table border="0" width="100%" align="left" bgcolor="FFFDFF">
+			<tr>
+				<td width="40%">
+					<table border="0" align="left">
+						<tr>
+							<td></td>
+							<td class="label">Pressure</td>
+							<td><input type="text" class="inputTextSize"
+								style="background-color: FFFDFF;" id="rightArmPresure"
+								name="rightArmPresure" />
+							</td>
+							<td class="label">mmHg</td>
+						</tr>
+						<tr>
+							<td class="calculation"><b>Right ABI</b><br /> Right Ankle
+								Pressure<br />
+								<hr style="width: 100%" align="left" /> Highest Arm Pressure</td>
+							<td align="right">=</td>
+							<td align="right">
+								<div class="ui-body ui-body-b  ui-corner-all"
+									background-color="#787878"
+									style="padding: 15px; width: 80%; float: left;">
+									<div id="rightabi" align="center"></div>
+								</div>
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="label">Pressure</td>
+							<td><input type="text" id="rightAnklepresure"
+								style="background-color: FFFDFF;" name="rightAnklepresure"
+								class="inputTextSize"></td>
+							<td class="label">mmHg</td>
+						</tr>
+					</table>
+				</td>
+
+				<td align="center">
+					<table border="0">
+						<tr>
+							<img src="images/program/pic.png" width="125px" />
+						</tr>
+					</table>
+				</td>
+
+				<td width="40%" align="center">
+					<table border="0" align="left">
+						<tr>
+							<td></td>
+							<td align="right" class="label">Pressure</td>
+							<td><input type="text" id="leftArmPresure"
+								style="background-color: FFFDFF;" name="leftArmPresure"
+								class="inputTextSize"></td>
+							<td style="width: 10px; align: left" class="label">mmHg</td>
+						</tr>
+						<tr>
+							<td class="calculation"><b>Left ABI</b><br /> Left Ankle
+								Pressure<br />
+								<hr style="width: 100%" align="left" /> Highest Arm Pressure</td>
+							<td align="right">=</td>
+							<td align="left">
+								<div class="ui-body ui-body-b  ui-corner-all" data-theme="g"
+									style="padding: 15px; width: 80%; float: left;">
+									<div id="leftabi" align="center"></div>
+								</div></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td align="right" class="label">Pressure</td>
+							<td><input type="text" id="leftAnklePresure"
+								style="background-color: FFFDFF;" name="leftAnklePresure"
+								class="inputTextSize"></td>
+							<td style="width: 10px; align: left" class="label"><b>mmHg</b>
+							</td>
+						</tr>
+					</table>
+				</td>
+
+			</tr>
+		</table>
+		<div>
+			<div data-role="fieldcontain">
+				<input type="submit" value="Save" data-inline="true" /> <input
+					type="reset" value="Cancel" data-inline="true" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="msg_list">
+	<p class="msg_head">Cardioscan</p>
+	<div class="msg_body"></div>
+</div>
+
+<div class="msg_list">
+	<p class="msg_head">CNS Report(not mentioned)</p>
+	<div class="msg_body">
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<b>Visual Memory Test(VBM)</b>
+					</div>
+					<div class="ui-block-b">
+						<b>Score</b>
+					</div>
+
+					<div class="ui-block-a">Correct Hits-Immediate</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Correct Passes-Immediate</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Correct Hits-Delay</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Correct Passes-Delay</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+				</div>
+			</div>
+			<div class="ui-block-b">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<b>Verbal Memory Test(VBM)</b>
+					</div>
+					<div class="ui-block-b">
+						<b>Score</b>
+					</div>
+
+					<div class="ui-block-a">Correct Hits-Immediate</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Correct Passes-Immediate</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Correct Hits-Delay</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Correct Passes-Delay</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<b>Finger Trapping Test(FTT)</b>
+					</div>
+					<div class="ui-block-b">
+						<b>Score</b>
+					</div>
+
+					<div class="ui-block-a">Right Taps Average</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Left Taps Average</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+				</div>
+			</div>
+			<div class="ui-block-b">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<b>Symbol Digit Coding(SDC)</b>
+					</div>
+					<div class="ui-block-b">
+						<b>Score</b>
+					</div>
+
+					<div class="ui-block-a">Correct Response</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Error*</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<b>Stroop Test(ST)</b>
+					</div>
+					<div class="ui-block-b">
+						<b>Score</b>
+					</div>
+
+					<div class="ui-block-a">Simple Reaction Time*</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Complex Reaction Time Correct*</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Stroop Reaction Time Correct*</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Stroop Commission Error*</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+				</div>
+			</div>
+			<div class="ui-block-b">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<b>Continuous Performance Test(CPT)</b>
+					</div>
+					<div class="ui-block-b">
+						<b>Score</b>
+					</div>
+
+					<div class="ui-block-a">Correct Responses</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Omission Errors*</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Commission Errors*</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Choice Reaction Time Correct*</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<b>Shifting Attention Test(SAT)</b>
+					</div>
+					<div class="ui-block-b">
+						<b>Score</b>
+					</div>
+
+					<div class="ui-block-a">Correct Responses</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+					<div class="ui-block-a">Errors*</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+
+
+					<div class="ui-block-a">Choice Reaction Time Correct*</div>
+					<div class="ui-block-b">
+						<input type="text" class="ui-body">
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<div data-role="fieldcontain">
+					<input type="submit" value="Save" data-inline="true" /> <input
+						type="reset" value="Cancel" data-inline="true" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+<div class="msg_list">
+	<p class="msg_head">Thyroflex</p>
+	<div class="msg_body">
+		<div>
+			<p align="center" style="font-weight: bold;">
+				Do you suffer from any of the following? <br />Rate your symptoms
+				below from a scale of 0 to 3 ( 0 = No symptoms, 1 = Mild symptoms, 2
+				= Moderate symptoms, 3 = Severe symptoms )
+			</p>
+		</div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<label for="input1" data-mini="true">Tiredness &
+							Sluggishness,lethargic </label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="input1" data-inline="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="input2">Drying Hair or Skin(Thick,Dry,scaly)</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="input2" />
+					</div>
+					<div class="ui-block-a">
+						<label for="sleep" data-mini="true">Sleep more than usual</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="sleep" data-inline="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="muscles">Weaker Muscles</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="muscles" />
+					</div>
+					<div class="ui-block-a">
+						<label for="cold" data-inline="true">Constant feeling of
+							cold(fingers/hands/feel)</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="cold" data-mini="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="cramps">Frequent Muscule Cramps</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="cramps" />
+					</div>
+					<div class="ui-block-a">
+						<label for="memory" data-inline="true">Poorer Memory</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="memory" data-mini="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="depress">More Depressed(mood change easily)</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="depress" />
+					</div>
+
+					<div class="ui-block-a">
+						<label for="puffier" data-inline="true">Puffier Eyes</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="puffier" data-mini="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="math">Difficulty with Math</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="math" />
+					</div>
+
+					<div class="ui-block-a">
+						<label for="voice" data-inline="true">Hoarser or Deeper
+							Voice</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="voice" data-mini="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="constipation">Constipation</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="constipation" />
+					</div>
+					<div class="ui-block-a">
+						<label for="hairloss" data-inline="true">Coarse Hair/Hair
+							loss/brittle</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="hairloss" data-mini="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="joinPain">Muscle /Join Pain</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="joinPain" />
+					</div>
+					<div class="ui-block-a">
+						<label for="lowSex" data-inline="true">Low Sex
+							Drive/Impotence</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="lowSex" data-mini="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="puffyHands">Puffy Hands and Feet</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="puffyHands" />
+					</div>
+					<div class="ui-block-a">
+						<label for="unsteady" data-inline="true">Unsteady
+							Gall(bump into things)</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="unsteady" data-mini="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="gainWeight">Gain Weight Easy</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="gainWeight" />
+					</div>
+					<div class="ui-block-a">
+						<label for="eyebrows" data-inline="true">Outer Third of
+							Eyebrows Thin</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="eyebrows" data-mini="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="menses">Menses More irregular(should be 28
+							Days)</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="menses" />
+					</div>
+					<div class="ui-block-a">
+						<label for="havierMenses" data-inline="true">Havier
+							Menses(clotting/3+days)</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="havierMenses" data-mini="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="syndrome">Carpel Tunnel Syndrome</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="syndrome" />
+					</div>
+					<div>
+						<div data-role="fieldcontain">
+							<input type="submit" value="Save" data-inline="true" /> <input
+								type="reset" value="Cancel" data-inline="true" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ui-block-b">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<label for="tachycardia" data-mini="true">Tachycardia(Rapid
+							or irregular heart beat)</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="tachycardia" data-inline="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="palpitations">Palpitations(Skipping of heart
+							beat)</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="palpitations" />
+					</div>
+
+					<div class="ui-block-a">
+						<label for="insomnia" data-mini="true">Insomnia</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="insomnia" data-inline="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="shakiness">Shakiness</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="shakiness" />
+					</div>
+					<div class="ui-block-a">
+						<label for="sweating" data-mini="true">Increased sweating</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="sweating" data-inline="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="nail">Brittle Nails</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="nail" />
+					</div>
+					<div class="ui-block-a">
+						<label for="appetite" data-mini="true">Loss of Appetite</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="appetite" data-inline="true" />
+					</div>
+					<div class="ui-block-a">
+						<label for="hyper">Total HYPER Score(0)</label>
+					</div>
+					<div class="ui-block-b">
+						<input type="text" id="hyper" />
+					</div>
+
+
+					<div style="font-weight: bold;">For Patient to fill
+						out(circle one)(cort)</div>
+					<div class="ui-block-a">
+						<label for="wekeup">Wakeup Tired</label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="wakeupRadio" id="wakeupRadio1"
+								value="yes" /> <label for="wakeupRadio1">Yes</label> <input
+								type="radio" name="wakeupRadio" id="wakeupRadio2" value="no"
+								checked /> <label for="wakeupRadio2">No</label>
+
+						</fieldset>
+					</div>
+
+					<div class="ui-block-a">
+						<label>Wakeup full of Energy</label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="energyRadio" id="energyRadio1" /> <label
+								for="energyRadio1">Yes</label> <input type="radio"
+								name="energyRadio" id="energyRadio2" /> <label
+								for="energyRadio2">no</label>
+						</fieldset>
+					</div>
+
+					<div class="ui-block-a">
+						<label for="snack">2 to 4 pm feel tired,seek
+							snack/Tea/Coffee/coke</label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="snackRadio" id="snack1" /> <label
+								for="snack1">Yes</label> <input type="radio" name="snackRadio"
+								id="snack2" /> <label for="snack2">no</label>
+						</fieldset>
+					</div>
+
+					<div class="ui-block-a">
+						<label>Fall asleep infront of TV/reading/Computer</label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="asleepRadio" id="asleep1" /> <label
+								for="asleep1">Yes</label> <input type="radio" name="asleepRadio"
+								id="asleep2" /> <label for="asleep2">no</label>
+						</fieldset>
+					</div>
+
+					<div class="ui-block-a">
+						<label>As soon as i go to bed -Drop to Sleep</label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="sleepRadio" id="sleep1" /> <label
+								for="sleep1">Yes</label> <input type="radio" name="sleepRadio"
+								id="sleep2" /> <label for="sleep2">no</label>
+						</fieldset>
+					</div>
+
+					<div class="ui-block-a">
+						<label>Need to read 10 to 15 mins to drift into sleep</label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="sleepRadio" id="sleep1" /> <label
+								for="sleep1">Yes</label> <input type="radio" name="sleepRadio"
+								id="sleep2" /> <label for="sleep2">no</label>
+						</fieldset>
+					</div>
+
+					<div style="font-weight: bold; align: left;">Circle one(iodi)</div>
+					<div class="ui-block-a">
+						<label>Fibrocystic Breast/lumps or ovarian cysts</label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="fibrocysticRadio" id="fibrocystic1" />
+							<label for="fibrocystic1">Yes</label> <input type="radio"
+								name="fibrocysticRadio" id="fibrocystic2" /> <label
+								for="fibrocystic2">no</label>
+						</fieldset>
+					</div>
+
+					<div class="ui-block-a">
+						<label for="neck">Goiter Bulge Or Band Around the Neck</label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="neckRadio" id="neck1" /> <label
+								for="neck1">Yes</label> <input type="radio" name="neckRadio"
+								id="neck2" /> <label for="neck2">no</label>
+						</fieldset>
+					</div>
+
+					<div class="ui-block-a">
+						<label for="speech">slow Speech</label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="speechRadio" id="speech1" /> <label
+								for="speech1">Yes</label> <input type="radio" name="speechRadio"
+								id="speech2" /> <label for="speech2">no</label>
+						</fieldset>
+					</div>
+
+					<div class="ui-block-a">
+						<label for="tongue">Enlarged Tongue</label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="tongueRadio" id="tongue1" /> <label
+								for="tongue1">Yes</label> <input type="radio" name="tongueRadio"
+								id="tongue2" /> <label for="tongue2">no</label>
+						</fieldset>
+					</div>
+
+					<div class="ui-block-a">
+						<label for="face">Puffy Face Puffy Hands </label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="faceRadio" id="face1" /> <label
+								for="face1">Yes</label> <input type="radio" name="faceRadio"
+								id="face2" /> <label for="face2">no</label>
+						</fieldset>
+					</div>
+
+					<div class="ui-block-a">
+						<label for="salt">Do you use Iodized salt</label>
+					</div>
+					<div class="ui-block-b">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="saltRadio" id="salt1" /> <label
+								for="salt1">Yes</label> <input type="radio" name="saltRadio"
+								id="salt2" /> <label for="salt2">no</label>
+						</fieldset>
+					</div>
+
+					<div class="ui-block-a">
+						<label for="seafood">Do you eat seafood 4 plus times per
+							week</label>
+					</div>
+					<div class="ui-block-b">
+
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<input type="radio" name="seafoodRadio" id="seafood1" /> <label
+								for="seafood1">Yes</label> <input type="radio"
+								name="seafoodRadio" id="seafood2" /> <label for="seafood2">no</label>
+						</fieldset>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="msg_list">
+	<p class="msg_head">Bioclip</p>
+	<div class="msg_body">
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<label for="vascular">Vascular Age</label> <input type="text"
+					name="vascular">
+			</div>
+			<div class="ui-block-b">
+				<label for="heartRate">Heart Rate</label> <input type="text"
+					name="heartRate" />
+			</div>
+			<div class="ui-block-a">
+				<label for="si">SI</label> <input type="text" name="si">
+			</div>
+			<div class="ui-block-b">
+				<label for="ri">RI</label> <input type="text" name="ri" />
+			</div>
+			<div class="ui-block-a">
+				<label for="oxygenation">SP02(Oxygenation)</label> <input
+					type="text" name="oxygenation">
+			</div>
+		</div>
+		<div data-role="fieldcontain">
+			<input type="submit" value="Save" data-inline="true" /> <input
+				type="reset" value="Cancel" data-inline="true" />
+		</div>
+
+	</div>
+</div>
+
+
+<div class="msg_list">
+	<p class="msg_head">Labs</p>
+	<div class="msg_body"></div>
+</div>
+ -->

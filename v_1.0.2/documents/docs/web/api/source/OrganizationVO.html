@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">var HIN;
+if (!HIN)
+	HIN = {};
+<span id='HIN-OrganizationVO'>/**
+</span> * OrganizationVO is nothing but a value object which hold the organization
+ * relevant information
+ */
+HIN.OrganizationVO = function() {
+<span id='HIN-OrganizationVO-property-subscriberId'>	/**
+</span>	 * subscriberId holds unique id.
+	 */
+	this.subscriberId = null;
+<span id='HIN-OrganizationVO-property-name'>	/**
+</span>	 * name holds the name of the organization.
+	 */
+	this.name = &quot;&quot;;
+<span id='HIN-OrganizationVO-property-message'>	/**
+</span>	 * message holds stringified xml
+	 */
+	this.message = null;
+<span id='HIN-OrganizationVO-property-image'>	/**
+</span>	 * image holds the image/logo of the organization.
+	 */
+	this.image = null;
+<span id='HIN-OrganizationVO-property-addr'>	/**
+</span>	 * addr holds the addr of the organization.
+	 */
+	this.addr = null;
+<span id='HIN-OrganizationVO-property-msg'>	/**
+</span>	 * msg holds message xml document
+	 */
+	this.msg = null;
+<span id='HIN-OrganizationVO-property-licenseeId'>	/**
+</span>	 * licenseeId holds the licensee id of the organization.
+	 */
+	this.licenseeId = null;
+<span id='HIN-OrganizationVO-property-regionCode'>	/**
+</span>	 * name regionCode the region code of the organization.
+	 */
+	this.regionCode = null;
+<span id='HIN-OrganizationVO-property-regionName'>	/**
+</span>	 * regionName holds the region name of the organization.
+	 */
+	this.regionName = null;
+<span id='HIN-OrganizationVO-property-houseNumber'>	/**
+</span>	 * houseNumber holds the house number of the organization.
+	 */
+	this.houseNumber = null;
+<span id='HIN-OrganizationVO-property-streetName'>	/**
+</span>	 * streetName holds the street name of the organization.
+	 */
+	this.streetName = null;
+<span id='HIN-OrganizationVO-property-city'>	/**
+</span>	 * city holds the city of the organization.
+	 */
+	this.city = null;
+<span id='HIN-OrganizationVO-property-state'>	/**
+</span>	 * state holds the state of the organization.
+	 */
+	this.state = null;
+<span id='HIN-OrganizationVO-property-country'>	/**
+</span>	 * country holds the country of the organization.
+	 */
+	this.country = null;
+<span id='HIN-OrganizationVO-property-postalCode'>	/**
+</span>	 * postalCode holds the postal code of the organization.
+	 */
+	this.postalCode = null;
+<span id='HIN-OrganizationVO-property-contactType'>	/**
+</span>	 * contactType holds the contact type of the organization.
+	 */
+	this.contactType = null;
+<span id='HIN-OrganizationVO-property-telecom'>	/**
+</span>	 * telecom holds the contact number of the organization.
+	 */
+	this.telecom = null;
+
+	this.nameType = null;
+
+	this.userName = &quot;&quot;;
+	this.password = &quot;&quot;;
+};
+
+<span id='HIN-OrganizationVO-method-setMsg'>/**
+</span> * set message document object
+ * 
+ * @param msg :
+ *            Its an object of msg document.
+ * @returns {void}
+ */
+HIN.OrganizationVO.prototype.setMsg = function(msg) {
+	this.msg = msg;
+};
+
+<span id='HIN-OrganizationVO-method-setMessage'>/**
+</span> * set stringify message document object
+ * 
+ * @param message :
+ *            Its a string value of msg document.
+ * @returns {void}
+ */
+HIN.OrganizationVO.prototype.setMessage = function(message) {
+	if (message) {
+		this.message = message;
+		/*
+		 * set subscriberId
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.SUBSCRIBER_ID,
+				XPathResult.STRING_TYPE);
+		this.subscriberId = (value &amp;&amp; value.stringValue) ? value.stringValue
+				: &quot;&quot;;
+
+		/*
+		 * set nameType
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.NAME_TYPE,
+				XPathResult.STRING_TYPE);
+		this.nameType = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+
+		/*
+		 * set prefixName
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.PREFIX_NAME,
+				XPathResult.STRING_TYPE);
+		this.prefixName = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		this.name = (this.prefixName) ? this.prefixName : &quot;&quot;;
+		/*
+		 * set givenName
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.GIVEN_NAME,
+				XPathResult.STRING_TYPE);
+		this.givenName = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		this.name = (this.givenName) ? this.name + &quot; &quot; + this.givenName
+				: this.name;
+		/*
+		 * set familyName
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.FAMILY_NAME,
+				XPathResult.STRING_TYPE);
+		this.familyName = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		this.name = (this.familyName) ? this.name + &quot; &quot; + this.familyName
+				: this.name;
+		/*
+		 * set sufixName
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.SUFIX_NAME,
+				XPathResult.STRING_TYPE);
+		this.sufixName = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		this.name = (this.sufixName) ? this.name + &quot; &quot; + this.sufixName
+				: this.name;
+		/*
+		 * set image
+		 */
+		/*
+		 * var value = XmlUtil.getXPathResult(message,
+		 * AppConstants.XPaths.Organization.IMAGE, XPathResult.STRING_TYPE);
+		 * this.image = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		 */
+		/*
+		 * set regionCode
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.REGION_CODE,
+				XPathResult.STRING_TYPE);
+		this.regionCode = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		/*
+		 * set regionName
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.REGION_NAME,
+				XPathResult.STRING_TYPE);
+		this.regionName = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		/*
+		 * set houseNumber
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.HOUSE_NUMBER,
+				XPathResult.STRING_TYPE);
+		this.houseNumber = (value &amp;&amp; value.stringValue) ? value.stringValue
+				: &quot;&quot;;
+		this.addr = (this.houseNumber) ? this.houseNumber : &quot;&quot;;
+		/*
+		 * set streetName
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.STREET_NAME,
+				XPathResult.STRING_TYPE);
+		this.streetName = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		this.addr = (this.streetName) ? this.addr + &quot; &quot; + this.streetName
+				: this.addr;
+
+		/*
+		 * set city
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.CITY, XPathResult.STRING_TYPE);
+		this.city = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		this.addr = (this.city) ? this.addr + &quot; &quot; + this.city : this.addr;
+
+		/*
+		 * set sate
+		 */
+		var value = XmlUtil
+				.getXPathResult(message,
+						AppConstants.XPaths.Organization.STATE,
+						XPathResult.STRING_TYPE);
+		this.state = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		this.addr = (this.state) ? this.addr + &quot; &quot; + this.state : this.addr;
+
+		/*
+		 * set country
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.COUNTRY,
+				XPathResult.STRING_TYPE);
+		this.country = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		this.addr = (this.country) ? this.addr + &quot; &quot; + this.country : this.addr;
+
+		/*
+		 * set postalCode
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.POSTAL_CODE,
+				XPathResult.STRING_TYPE);
+		this.postalCode = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+
+		this.addr = (this.postalCode.length &gt; 0) ? this.addr + &quot; &quot;
+				+ this.postalCode : this.addr;
+
+		/*
+		 * set contactType
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.CONTACT_TYPE,
+				XPathResult.STRING_TYPE);
+		this.contactType = (value &amp;&amp; value.stringValue) ? value.stringValue
+				: &quot;&quot;;
+		/*
+		 * set telecom
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.CONTACT_VALUE,
+				XPathResult.STRING_TYPE);
+		this.telecom = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		/*
+		 * set licenseeId
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.LICENSEE_ID,
+				XPathResult.STRING_TYPE);
+		this.licenseeId = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+
+		/*
+		 * set userName
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.USERNAME,
+				XPathResult.STRING_TYPE);
+		this.userName = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		/*
+		 * set password
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Organization.PASSWORD,
+				XPathResult.STRING_TYPE);
+		this.password = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+
+	}
+};
+HIN.OrganizationVO.prototype.toString = function() {
+	return &quot;[&quot; + this.subscriberId + &quot; , &quot; + this.name + &quot; , &quot; + this.telecom
+			+ &quot; , &quot; + this.addr + &quot; , &quot; + this.image + &quot; , &quot; + this.message
+			+ &quot; , &quot; + this.licenseeId + &quot; , &quot; + this.country + &quot; , &quot;
+			+ this.username + &quot; , &quot; + this.password + &quot;]&quot;;
+};
+</pre>
+</body>
+</html>

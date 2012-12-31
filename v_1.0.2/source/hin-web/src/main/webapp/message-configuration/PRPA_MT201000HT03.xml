@@ -1,0 +1,92 @@
+<HL7MessageConfiguration>
+  <MetaInfo artifactID="PRPA_MT201000HT03" createdDate="2012-09-11 05:17:24.753 UTC" entryPoint="PRPA_MT201000HT03.IdentifiedEntity" description="Person Registry Message"/>
+  <IndexConfiguration indexName="RegistrtionIndex">
+    <Field name="subscriberId" indexed="true" xpath="message/PRPA_MT201000HT03/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="false"/>
+    <Field name="messageId" indexed="true" xpath="message/PRPA_MT201000HT03/id[root=&apos;HIN_MSG_ID&apos;]/extension" analyzed="false"/>
+    <Field name="prefixName" indexed="false" xpath="message/PRPA_MT201000HT03/identifiedPerson/name/prefix" analyzed="true"/>
+    <Field name="givenName" indexed="true" xpath="message/PRPA_MT201000HT03/identifiedPerson/name/given" analyzed="true"/>
+    <Field name="familyName" indexed="true" xpath="message/PRPA_MT201000HT03/identifiedPerson/name/family" analyzed="true"/>
+    <Field name="suffixName" indexed="true" xpath="message/PRPA_MT201000HT03/identifiedPerson/name/suffix" analyzed="true"/>
+    <Field name="image" indexed="false" xpath="message/PRPA_MT201000HT03/identifiedPerson/desc/thumbnail" analyzed="false"/>
+    <Field name="organizationId" indexed="true" xpath="message/PRPA_MT201000HT03/assigningOrganization/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="false"/>
+    <Field name="createddate" indexed="true" xpath="message/PRPA_MT201000HT03/effectiveTime" analyzed="true"/>
+    <Field name="messageTypeInfo" indexed="true" xpath="message/PRPA_MT201000HT03/assigningOrganization/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="true"/>
+    <Field name="subscriberType" indexed="true" xpath="name(//PRPA_MT201000HT03[1])" analyzed="false"/>
+    <Field name="programId" indexed="true" xpath="//PRPA_MT201000HT03/id[root=&apos;PROGRAM_ID&apos;]/extension" analyzed="false"/>
+    <Field name="consultantId" indexed="true" xpath="//PRPA_MT201000HT03/id[root=&apos;CONSULTANT_ID&apos;]/extension" analyzed="false"/>
+    <Field name="messageTitle" indexed="true" xpath="//PRPA_MT201000HT03/id[root=&apos;MSG_TITLE&apos;]/extension" analyzed="true"/>
+    <Field name="membershipId" indexed="true" xpath="message/PRPA_MT201000HT03/identifiedPerson/asIdentifications/id[root=&apos;Eternity_Membership_ID&apos;]/extension" analyzed="false"/>
+  </IndexConfiguration>
+  <ArchiveConfiguration columnFamilyName="PRPA_MT201000HT03">
+    <Field name="subscriberId" indexed="true" xpath="message/PRPA_MT201000HT03/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="messageId" indexed="true" xpath="message/PRPA_MT201000HT03/id[root=&apos;HIN_MSG_ID&apos;]/extension" type="ROWKEY"/>
+    <Field name="prefixName" indexed="false" xpath="message/PRPA_MT201000HT03/identifiedPerson/name/prefix" type="COLUMN"/>
+    <Field name="givenName" indexed="true" xpath="message/PRPA_MT201000HT03/identifiedPerson/name/given" type="COLUMN"/>
+    <Field name="familyName" indexed="true" xpath="message/PRPA_MT201000HT03/identifiedPerson/name/family" type="COLUMN"/>
+    <Field name="suffixName" indexed="false" xpath="message/PRPA_MT201000HT03/identifiedPerson/name/suffix" type="COLUMN"/>
+    <Field name="image" indexed="false" xpath="message/PRPA_MT201000HT03/identifiedPerson/desc/thumbnail" type="COLUMN"/>
+    <Field name="organizationId" indexed="true" xpath="message/PRPA_MT201000HT03/assigningOrganization/id/root" type="COLUMN"/>
+    <Field name="programId" indexed="true" xpath="//PRPA_MT201000HT03/id[root=&apos;PROGRAM_ID&apos;]/extension"/>
+    <Field name="consultantId" indexed="true" xpath="//PRPA_MT201000HT03/id[root=&apos;CONSULTANT_ID&apos;]/extension"/>
+    <Field name="messageTitle" indexed="true" xpath="//PRPA_MT201000HT03/id[root=&apos;MSG_TITLE&apos;]/extension" type="COLUMN"/>
+    <Field name="membershipId" indexed="true" xpath="message/PRPA_MT201000HT03/identifiedPerson/asIdentifications/id[root=&apos;Eternity_Membership_ID&apos;]/extension" type="COLUMN"/>
+  </ArchiveConfiguration>
+  <WorkFlowDefinition id="1" version="1.0">
+    <name>New Patient Registration</name>
+    <start g="20,20,48,48">
+      <transition name="true" to="Save"/>
+    </start>
+    <task name="Save">
+      <transition name="Save" to="Save"/>
+    </task>
+  </WorkFlowDefinition>
+  <Class rimType="ROLE" tagName="PRPA_MT201000HT03" type="PRPA_MT201000HT03.IdentifiedEntity">
+    <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+    <Field tagName="effectiveTime" type="IVL_TS" inputControl="IVL_TS" label="Effective Time" displayOrder="1" minOccurs="0" maxOccurs="1"/>
+    <Class rimType="ENTITY" tagName="identifiedPerson" type="PRPA_MT201000HT03.Person" label="Identified Person" displayOrder="2" minOccurs="0" maxOccurs="1">
+      <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+      <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="1" minOccurs="0" maxOccurs="-1"/>
+      <Field tagName="desc" type="ED" inputControl="ED" label="Desc" displayOrder="2" minOccurs="0" maxOccurs="1"/>
+      <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="3" minOccurs="1" maxOccurs="1"/>
+      <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="4" minOccurs="0" maxOccurs="-1"/>
+      <Field tagName="administrativeGenderCode" type="CE" inputControl="CE" label="Administrative Gender Code" displayOrder="5" minOccurs="0" maxOccurs="1"/>
+      <Field tagName="birthTime" type="TS" inputControl="TS" label="Birth Time" displayOrder="6" minOccurs="0" maxOccurs="1"/>
+      <Field tagName="addr" type="AD" inputControl="AD" label="Addr" displayOrder="7" minOccurs="0" maxOccurs="-1"/>
+      <Field tagName="maritalStatusCode" type="CE" inputControl="CE" label="Marital Status Code" displayOrder="8" minOccurs="0" maxOccurs="1"/>
+      <Field tagName="educationLevelCode" type="CE" inputControl="CE" label="Education Level Code" displayOrder="9" minOccurs="0" maxOccurs="1"/>
+      <Field tagName="disabilityCode" type="CE" inputControl="CE" label="Disability Code" displayOrder="10" minOccurs="0" maxOccurs="1"/>
+      <Field tagName="religiousAffiliationCode" type="CE" inputControl="CE" label="Religious Affiliation Code" displayOrder="11" minOccurs="0" maxOccurs="1"/>
+      <Field tagName="raceCode" type="CE" inputControl="CE" label="Race Code" displayOrder="12" minOccurs="0" maxOccurs="-1"/>
+      <Field tagName="ethnicGroupCode" type="CE" inputControl="CE" label="Ethnic Group Code" displayOrder="13" minOccurs="0" maxOccurs="-1"/>
+      <Class rimType="ROLE" tagName="asEmployment" type="PRPA_MT201000HT03.Employment" label="As Employment" displayOrder="14" minOccurs="0" maxOccurs="-1">
+        <Field tagName="jobTitleName" type="ST" inputControl="II" label="Job Title Name" displayOrder="0" minOccurs="0" maxOccurs="1"/>
+        <Class rimType="ENTITY" tagName="employerOrganization" type="COCT_MT150002HT02.Organization" label="Employer Organization" displayOrder="1" minOccurs="0" maxOccurs="1">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+          <Field tagName="name" type="ON" inputControl="ON" label="Name" displayOrder="1" minOccurs="0" maxOccurs="-1"/>
+        </Class>
+      </Class>
+      <Class rimType="ROLE" tagName="asIdentifications" type="PRPA_MT201000HT03.Identifications" label="As Identifications" displayOrder="15" minOccurs="0" maxOccurs="-1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+        <Field tagName="code" type="CE" inputControl="CE" label="Code" displayOrder="1" minOccurs="0" maxOccurs="1"/>
+        <Field tagName="effectiveTime" type="IVL_TS" inputControl="IVL_TS" label="Effective Time" displayOrder="2" minOccurs="0" maxOccurs="1"/>
+        <Class rimType="ENTITY" tagName="assigningOrganization" type="COCT_MT150002HT02.Organization" label="Assigning Organization" displayOrder="3" minOccurs="0" maxOccurs="1">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+        </Class>
+      </Class>
+      <Class rimType="ROLE" tagName="contactParty" type="PRPA_MT201000HT03.ContactParty" label="Contact Party" displayOrder="16" minOccurs="0" maxOccurs="-1">
+        <Field tagName="code" type="CE" inputControl="CE" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+        <Class rimType="ENTITY" tagName="contactPerson" type="COCT_MT030202HT04.Person" label="Contact Person" displayOrder="1" minOccurs="0" maxOccurs="1">
+          <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+          <Field tagName="desc" type="ED" inputControl="ED" label="Desc" displayOrder="1" minOccurs="0" maxOccurs="1"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class rimType="ENTITY" tagName="assigningOrganization" type="COCT_MT150002HT02.Organization" label="Assigning Organization" displayOrder="3" minOccurs="0" maxOccurs="1">
+      <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+      <Field tagName="code" type="CE" inputControl="ON" label="Code" displayOrder="1" minOccurs="0" maxOccurs="1"/>
+      <Field tagName="name" type="ON" inputControl="TEL" label="Name" displayOrder="2" minOccurs="0" maxOccurs="-1"/>
+      <Field tagName="desc" type="ED" inputControl="ED" label="Desc" displayOrder="3" minOccurs="0" maxOccurs="1"/>
+      <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="4" minOccurs="0" maxOccurs="-1"/>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

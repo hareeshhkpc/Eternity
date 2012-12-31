@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config-generation
+	configFilePath="src/main/webapp/message-configuration/PRPA_MT201000HT03.xml"
+	rootClass="PRPA_MT201000HT03.IdentifiedEntity" description="Person Registry Message"
+	artifactId="PRPA_MT201000HT03">
+
+	<schema-set type="MESSAGE"
+		path="src/main/webapp/WEB-INF/htb/schemas/PRPA_MT201000HT03.xsd" />
+	<schema-set type="CORESCHEMA" path="src/main/webapp/WEB-INF/htb/coreschemas" />
+	<schema-set type="SCHEMAS" path="src/main/webapp/WEB-INF/htb/schemas" />
+
+
+	<!-- traverseChildWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- repeatCount="numeric(default 1)" -->
+	<!-- traverseMessageObjectChild="true(default)" -->
+	<!-- traverseHL7DataTypeChild="false(default)" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- traveseChildList="comma(,) seperated list" -->
+	<tree-node xpath="/" />
+	<tree-node xpath="/id/" considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/effectiveTime/" considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/id/"
+		considerChildrenWhen="OPTIONAL" repeatCount="1" />
+	<tree-node xpath="/identifiedPerson/name/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/desc/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/telecom/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/administrativeGenderCode/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/birthTime/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/addr/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/maritalStatusCode/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/educationLevelCode/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/religiousAffiliationCode/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/disabilityCode/"
+		considerChildrenWhen="OPTIONAL" />
+		
+	<tree-node xpath="/identifiedPerson/raceCode/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/ethnicGroupCode/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/asIdentifications/"
+		considerChildrenWhen="OPTIONAL" traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/asIdentifications/code/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/asIdentifications/effectiveTime/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/asIdentifications/assigningOrganization/"
+		considerChildrenWhen="OPTIONAL" traverseChildWhen="OPTIONAL" />
+
+	<tree-node xpath="/assigningOrganization/"
+		considerChildrenWhen="OPTIONAL" traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/assigningOrganization/name/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/assigningOrganization/telecom/"
+		considerChildrenWhen="OPTIONAL" />
+		
+	<tree-node xpath="/identifiedPerson/asEmployment/"
+		considerChildrenWhen="OPTIONAL" traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/asEmployment/jobTitleName/"
+		considerChildrenWhen="ALWAYS" overriddenFieldType="ST" />
+	<tree-node xpath="/identifiedPerson/asEmployment/employerOrganization/"
+		considerChildrenWhen="ALWAYS" traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/asEmployment/employerOrganization/name/"
+		considerChildrenWhen="OPTIONAL" />
+	<!-- for comments -->
+	<tree-node xpath="/assigningOrganization/desc/"
+		considerChildrenWhen="OPTIONAL" />
+	<!-- look up of how the patient came to know about Eternity -->
+	<tree-node xpath="/assigningOrganization/code/"
+		considerChildrenWhen="OPTIONAL" />
+		
+	<tree-node xpath="/identifiedPerson/contactParty/"
+		considerChildrenWhen="OPTIONAL" traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/contactParty/contactPerson/"
+		considerChildrenWhen="OPTIONAL" traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/identifiedPerson/contactParty/contactPerson/desc/"
+		considerChildrenWhen="OPTIONAL" />
+	
+</config-generation>

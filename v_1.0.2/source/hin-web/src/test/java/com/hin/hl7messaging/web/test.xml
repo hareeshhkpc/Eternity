@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PRPA_IN101001UV01 id="id1_1">
+	<id id="id1_1_id786_1" root="${messageID}" extension=""
+		assigningAuthorityName="${messageAuthority}" displayable=""
+		nullFlavor=""></id>
+	<controlActProcess id="id1_1_id801_1">
+		<subject id="id1_1_id801_1_id29_1">
+			<registrationEvent id="id1_1_id801_1_id29_1_id31_1">
+				<subject1 id="id1_1_id801_1_id29_1_id31_1_id35_1">
+					<identifiedPerson id="id1_1_id801_1_id29_1_id31_1_id35_1_id41_1">
+						<id id="id1_1_id801_1_id29_1_id31_1_id35_1_id41_1_id418_1"
+							root="${formalID}" extension="" assigningAuthorityName="${formalAuthority}"
+							displayable="" nullFlavor=""></id>
+						<telecom id="id1_1_id801_1_id29_1_id31_1_id35_1_id41_1_id420_1"
+							use="${formalMail}" value="" nullFlavor=""></telecom>
+						<identifiedPerson
+							id="id1_1_id801_1_id29_1_id31_1_id35_1_id41_1_id423_1">
+							<id id="id1_1_id801_1_id29_1_id31_1_id35_1_id41_1_id423_1_id436_1"
+								root="${profileID}" extension="" assigningAuthorityName="${profileAuthority}"
+								displayable="" nullFlavor=""></id>
+							<name id="id1_1_id801_1_id29_1_id31_1_id35_1_id41_1_id423_1_id437_1"
+								use="L" nullFlavor="">${personName}</name>
+						</identifiedPerson>
+					</identifiedPerson>
+				</subject1>
+			</registrationEvent>
+		</subject>
+	</controlActProcess>
+</PRPA_IN101001UV01>

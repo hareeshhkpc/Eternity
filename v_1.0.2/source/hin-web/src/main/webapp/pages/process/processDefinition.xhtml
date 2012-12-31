@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:util="http://java.sun.com/jsf/composite/util"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<h:form id="processDef" style="width:100%;">
+			<rich:panel header="Process">
+				<h:panelGrid columns="2">
+					<h:outputText value=" Process Name" />
+					<h:inputText id="processName" required="true"
+						requiredMessage="Process Name is required"
+						value="#{processDefBean.processDefinition.processName}"
+						disabled="#{processDefBean.disableProcess}" />
+					<h:column>
+					<h:outputText id="description" value="Description" />
+					</h:column>
+					<h:column>
+						<h:inputText id="descriptionValue"
+							value="#{processDefBean.processDefinition.description}" />
+					</h:column>
+					<h:outputText value="Initialize Script" />
+					<h:inputTextarea cols="100" rows="3" id="processInitializeScript"
+						value="#{processDefBean.processDefinition.initializeScript}" />
+					<h:outputText value="Status" />
+					<h:selectOneMenu id="statusId"
+						value="#{processDefBean.processDefinition.status}"
+						disabled="#{processDefBean.disableProcess}">
+						<f:selectItems value="#{processDefBean.statuses}" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+				<a4j:region rendered="#{!processDefBean.newProcess}">
+					<rich:collapsiblePanel header="Steps" expanded="true"
+						switchType="client">
+						<h:commandButton value="Add New Step "
+							action="#{processDefBean.newStep}" reRender="stepsId" />
+						<br />
+						<rich:dataTable id="stepsId" style="width:700px"
+							value="#{processDefBean.processDefinition.steps}" var="step"
+							rows="10" rowClasses="odd-row, even-row" rowClass="row"
+							styleClass="stable">
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Order" />
+								</f:facet>
+								<h:outputText value="#{step.order}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Step Name" />
+								</f:facet>
+								<h:outputText value="#{step.stepName}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Group Name" />
+								</f:facet>
+								<h:outputText value="#{step.groupName}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Short Description" />
+								</f:facet>
+								<h:outputText value="#{step.shortDescription}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Long Description" />
+								</f:facet>
+								<h:outputText value="#{step.longDescription}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Form Html" />
+								</f:facet>
+								<h:outputText value="#{step.formHtml}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Status" />
+								</f:facet>
+								<center>
+									<h:graphicImage id="image1"
+										value="../../html/images/action_check.gif" alt="active"
+										title="active" rendered="#{step.status eq 'ACTIVE'}" />
+									<h:graphicImage id="image2" value="../../html/images/cross.png"
+										alt="active" title="inactive"
+										rendered="#{step.status ne 'ACTIVE'}" />
+								</center>
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Action" />
+								</f:facet>
+								<center>
+									<h:commandButton value="Edit"
+										action="#{processDefBean.viewStep}"
+										image="../../html/images/iconedit.gif" title="Edit" alt="Edit">
+										<f:setPropertyActionListener
+											target="#{processDefBean.stepName}" value="#{step.stepName}" />
+									</h:commandButton>
+								</center>
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Action" />
+								</f:facet>
+								<center>
+									<h:commandButton image="../../html/images/icondelete.gif"
+										alt="delete" title="delete" value="Delete"
+										action="#{processDefBean.removeStep}"
+										onclick="return confirm('Are you sure that you want to delete this Step #{step.stepName}');">
+										<f:setPropertyActionListener
+											target="#{processDefBean.stepName}" value="#{step.stepName}" />
+									</h:commandButton>
+								</center>
+							</rich:column>
+							<br />
+							<f:facet name="footer">
+								<rich:dataScroller for="stepsId" align="right"
+									renderIfSinglePage="false" fastStep="5" fastControls="auto"
+									render="id3 id4" />
+							</f:facet>
+						</rich:dataTable>
+						<a4j:outputPanel id="stepPanel" layout="block">
+							<a4j:region rendered="#{processDefBean.showStepView}">
+								<ui:include src="step.xhtml" />
+							</a4j:region>
+						</a4j:outputPanel>
+					</rich:collapsiblePanel>
+				</a4j:region>
+				<br />
+				<h:panelGrid columns="2">
+					<h:commandButton value="Save Process " id="saveProcess"
+						action="#{processDefBean.saveProcess}" reRender="processDef" />
+					<a4j:region rendered="#{!processDefBean.newProcess}">
+						<h:commandButton value="Back " id="back"
+							action="processdefinitionlist" />
+					</a4j:region>
+				</h:panelGrid>
+			</rich:panel>
+			<rich:jQuery id="id3" selector=".stable tr.row" event="mouseover"
+				query="jQuery(this).addClass('active-row')" />
+			<rich:jQuery id="id4" selector=".stable tr.row" event="mouseout"
+				query="jQuery(this).removeClass('active-row')" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
+
+
+

@@ -1,0 +1,28 @@
+name							= The column family name
+column_metadata					= Defines the validation and indexes for known columns in this column family. Columns not listed in the
+								  column_metadata section will use the default_validator to validate their values.
+
+	[
+		name			= 
+	]
+	
+create column family CF_ADDRESS_BOOK 
+	with column_type = 'Super'
+	and key_validation_class = 'UTF8Type'
+	and comparator = 'UTF8Type'
+	and subcomparator = 'UTF8Type'
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{ column_name: Name, validation_class: 'UTF8Type'},
+		{ column_name: Address, validation_class: 'UTF8Type'},
+		{ column_name: Phone, validation_class: 'UTF8Type'}
+	];
+
+Column Family: CF_MYCOLUMN
+Index Column: IN_MYCOLUMN
+
+Gmap: CF_GMAP_LOCATION
+Index: IN_GMAP_LOCATION_BY_ORG_NAME
+	Index Row Key: 3 characters of the Organization Name (in upper case)
+	Index Column Name: Full name of the Organiztion
+	Index Column Value: ORG_PROFILE_ID

@@ -1,0 +1,49 @@
+use MessageKS;
+create column family IN_HIN_STATISTICS
+	with column_type = 'Super' 
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type' 
+	and comparator = 'UTF8Type' 
+	and subcomparator = 'UTF8Type' 
+	and column_metadata = [
+		{column_name: PRPA_RM440001, validation_class: UTF8Type},
+		{column_name: PRPA_RM460001, validation_class: UTF8Type}
+		{column_name: POCD_RM000040, validation_class: UTF8Type}
+		{column_name: POCD_RM000002, validation_class: UTF8Type}
+		{column_name: PORT_RM030001, validation_class: UTF8Type}
+		{column_name: POPR_RM930000, validation_class: UTF8Type}
+		{column_name: FIAB_RM020000, validation_class: UTF8Type}
+		{column_name: POXX_RM112000, validation_class: UTF8Type}
+		{column_name: PODI_RM941000, validation_class: UTF8Type}
+		{column_name: PRPA_RM450001, validation_class: UTF8Type}
+		{column_name: PRPA_RM410001, validation_class: UTF8Type}
+		{column_name: PRPA_RM400001, validation_class: UTF8Type}
+		{column_name: PORR_RM040001, validation_class: UTF8Type}
+		{column_name: PRPA_RM470001, validation_class: UTF8Type}
+		{column_name: POSA_RM940100, validation_class: UTF8Type}
+		{column_name: PORR_RM100001, validation_class: UTF8Type}
+		{column_name: POXX_RM110000, validation_class: UTF8Type}
+		{column_name: POXX_RM120000, validation_class: UTF8Type}
+		{column_name: REPC_RM002000, validation_class: UTF8Type}
+		{column_name: PRPA_RM203000, validation_class: UTF8Type}
+		{column_name: PRPA_RM201000, validation_class: UTF8Type}
+		{column_name: PRPA_RM204000, validation_class: UTF8Type}
+		{column_name: POXX_RM130000, validation_class: UTF8Type}
+		{column_name: POLB_RM004000, validation_class: UTF8Type}
+		{column_name: POXX_RM111000, validation_class: UTF8Type}
+		{column_name: POXX_RM121000, validation_class: UTF8Type}
+		{column_name: MFPM_RM010000, validation_class: UTF8Type}
+		{column_name: POSA_RM920100, validation_class: UTF8Type}
+		{column_name: POSA_RM920000, validation_class: UTF8Type}
+		{column_name: POSP_RM940000, validation_class: UTF8Type}
+		{column_name: PRPA_RM302001, validation_class: UTF8Type}
+		{column_name: POSA_IN000001, validation_class: UTF8Type}
+		{column_name: POXX_IN121001, validation_class: UTF8Type}
+		{column_name: PRPA_IN000001, validation_class: UTF8Type}
+		{column_name: PRPA_IN400000, validation_class: UTF8Type}
+		{column_name: PRPA_IN410001, validation_class: UTF8Type}
+		{column_name: COCT_MT150000, validation_class: UTF8Type}
+		{column_name: POXX_IN120001, validation_class: UTF8Type}
+	];
+
+	

@@ -1,0 +1,8 @@
+use HIN_ETERNITY;
+
+assume LICENSEE_ST keys as utf8;
+assume LICENSEE_ST validator as utf8;
+
+set LICENSEE_ST['7277bc41-6dff-273c-134f-84d5234511c1']['1']='<message config="LICENSEE"><LICENSEE><telecom><value>eternitymedical@gmail.com</value></telecom><id><root>HIN_MSG_ID</root><extension>7277bc41-6dff-273c-134f-84d5234511c1</extension></id><id><root>PASSWORD</root><extension>Password@@123</extension></id><currency><code>SA</code><conversion>3.75020</conversion></currency></LICENSEE></message>';
+
+set MESSAGE_ID_TYPE['7277bc41-6dff-273c-134f-84d5234511c1']['MESSAGETYPE']='LICENSEE';

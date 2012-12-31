@@ -1,0 +1,329 @@
+<html>
+<head>
+<title>Encounter Appointment</title>
+<link rel="stylesheet" href="../../js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="../../css/violet.css" />
+<link rel="stylesheet" href="../../css/grey.css" />
+<link rel="stylesheet" href="../../css/hin.css" />
+<link rel="stylesheet" href="../../css/appointment.css" />
+<script type="text/javascript" src="../../js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.mobile-1.0.1.min.js"></script>
+<script type="text/javascript" src="../../js/custom/appointment.js"></script>
+<script src="../../js/XmlUtil.js"></script>
+
+</head>
+<body>
+	<div data-role="page">
+
+		<div data-role="header" data-id="navBar" class="appointment_headerPage"
+			data-position="fixed" data-theme="v">
+
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#">Gien Carroll</a>
+					</li>
+					<li><a href="#">Ms Mellissa Blair - Reception At Dubai
+							Clinic</a>
+					</li>
+					<li><a href="#">Logout</a>
+					</li>
+				</ul>
+			</div>
+			<!-- /navbar -->
+		</div>
+		<!-- /header -->
+
+		<fieldset class="ui-grid-a">
+			<ul>
+				<div class="appointment_title ui-block-a">Demographics and Background</div>
+				<div id="period" class="ui-block-b"><a href="#">Patients</a></div>
+				<div class="ui-block-c"><a href="#">Calender</a></div>
+			</ul>
+		</fieldset>
+		
+		<div data-role="content">
+			<div class="appointment_MainDiv ui-body ui-corner-all" data-theme="a">
+
+				<div data-role="header" data-theme="v" class="appointment_headerPage">
+					<div class="heading ui-block-b">Choose a Program</div>
+				</div>
+
+				<div class="appointment_programContent ui-body">
+				
+					<div data-role="header" data-theme="v" class="appointment_headerPage">
+						<fieldset class="ui-grid-a">
+							<div class="heading" class="ui-block-b">Age Management Program
+							</div>
+							<div id="period" class="ui-block-b">1 May 2012 - 5 May 2012</div>
+						</fieldset>
+					</div>
+					
+					
+						<fieldset class="ui-grid-a">
+							<div id="question" class="program ui-body-b" data-theme="g">
+								<label>Questionnaires</label>
+							</div>
+							<div class="ui-block-b" id="button">
+								<a href="#" data-role="button" id="addQuestionnaires" data-theme="c"
+									data-icon="plus" data-iconpos="notext"></a>
+							</div>
+						</fieldset>
+
+					<!-- questionnaires -->
+					<div id="questionnaires" class="hiddenDivs">
+					
+					<!-- <div class="ui-grid-a" id="addQuestionType">
+								<div id="default" class="questionType ui-body-b ui-grid-a">
+										<div class="type">Add
+											Questionnaires</div>
+										<div class="include">clickplus</div>
+								</div>
+								<div class="ui-block-b" id="button">
+									<a href="#" data-role="button" id="remove" data-theme="a"
+										data-icon="delete" data-iconpos="notext"></a>
+								</div>
+					</div> -->
+					
+					<div class="ui-grid-a">
+								<div class="questionType ui-body-b ui-grid-a">
+										<div class="type">Lifestyle
+											Questionnaires</div>
+										<div class="include">included</div>
+								</div>
+								<div class="ui-block-b" id="button">
+									<a href="#" data-role="button" id="add" data-theme="a"
+										data-icon="delete" data-iconpos="notext"></a>
+								</div>
+					</div>
+
+					<div class="ui-grid-a">
+								<div class="questionType ui-body-b ui-grid-a">
+										<div class="type">Awareness
+											Questionnaires</div>
+										<div class="include">included</div>
+								</div>
+								<div class="ui-block-b" id="button">
+									<a href="#" data-role="button" id="add" data-theme="a"
+										data-icon="delete" data-iconpos="notext"></a>
+								</div>
+					</div>
+
+					<div class="ui-grid-a">
+								<div class="questionType ui-body-b ui-grid-a">
+										<div class="type">Culture
+											Questionnaires</div>
+										<div class="include">included</div>
+								</div>
+								<div class="ui-block-b" id="button">
+									<a href="#" data-role="button" id="add" data-theme="a"
+										data-icon="delete" data-iconpos="notext"></a>
+								</div>
+					</div>
+
+						<div class="ui-grid-a">
+								<div class="questionType ui-body-b ui-grid-a">
+										<div class="type">Environment
+											Questionnaires</div>
+										<div class="include">included</div>
+								</div>
+								<div class="ui-block-b" id="button">
+									<a href="#" data-role="button" id="add" data-theme="a"
+										data-icon="delete" data-iconpos="notext"></a>
+								</div>
+						</div>
+
+					</div>
+					<!-- end of questionnaires-->
+
+					<div class="ui-grid-a">
+							<div id="diagnostic" class="program ui-body-b">
+								<label>Diagnostic Tests</label>
+							</div>
+							<div class="ui-block-b" id="button">
+								<a href="#" data-role="button" id="add" data-theme="c"
+									data-icon="plus" data-iconpos="notext"></a>
+							</div>
+					</div>
+
+					<!-- diagnosticTest -->
+					<div id="daignosticTest" class="hiddenDivs">
+						<div class="ui-grid-a">
+								<div class="daignosticType ui-body-b">
+										<div class="type">MCG</div>
+										<div class="include">included</div>
+								</div>
+								<div class="ui-block-b" id="button">
+									<a href="#" data-role="button" id="add" data-theme="a"
+										data-icon="delete" data-iconpos="notext"></a>
+								</div>
+						</div>
+
+						<div class="ui-grid-a">
+								<div class="daignosticType ui-body-b">
+										<div class="type">Sphygmocor</div>
+										<div class="include">included</div>
+								</div>
+								<div class="ui-block-b" id="button">
+									<a href="#" data-role="button" id="add" data-theme="a"
+										data-icon="delete" data-iconpos="notext"></a>
+								</div>
+						</div>
+
+						<div class="ui-grid-a">
+								<div  class="daignosticType ui-body-b">
+										<div class="type">IMT</div>
+										<div class="include" >included</div>
+								</div>
+								<div class="ui-block-b" id="button">
+									<a href="#" data-role="button" id="add" data-theme="a"
+										data-icon="delete" data-iconpos="notext"></a>
+								</div>
+						</div>
+
+						<div class="ui-grid-a">
+								<div class="daignosticType ui-body-b">
+										<div class="type">Bio Clip</div>
+										<div class="include">AED 1200.00</div>
+								</div>
+
+								<div class="ui-block-b" id="button">
+									<a href="#" data-role="button" id="add" data-theme="a"
+										data-icon="delete" data-iconpos="notext"></a>
+								</div>
+						</div>
+
+					</div>
+					<!-- end of diagnosticTest-->
+
+					<div class="ui-grid-a">
+							<div id="appointment" class="program ui-body-b">
+								<label>Appointments</label>
+							</div>
+							<div class="ui-block-b" id="button">
+								<a href="#" data-role="button" id="add" data-theme="c"
+									data-icon="plus" data-iconpos="notext"></a>
+							</div>
+					</div>
+					
+					<!-- appointment dates -->
+					<div id="appoinmentFields" class="hiddenDivs ui-grid-a">
+								<div id="appointmentTab1" class="appointmentTab ui-body-b">
+											<div id="encounter" class="ui-block-a"></div>
+											<div id="process" class="ui-block-b"></div>
+											<div id="physician" class="ui-block-c"></div>
+								</div>
+								<div class="ui-block-b" id="button">
+									<a href="#" data-role="button" id="add" data-theme="a"
+										data-icon="delete" data-iconpos="notext"></a>
+								</div>
+					</div>
+					<!-- end of appointment dates -->
+
+					<!-- appointments fields -->
+					<div id="appointmentfields" class="hiddenDivs">
+						<fieldset class="ui-grid-a">
+							<div id="attribute" class="ui-block-b">
+								<fieldset class="ui-grid-a">
+									<div id="field" class="ui-block-b">
+										<p>Desired Time</p>
+									</div>
+									<div id="attribute" class="ui-block-b">
+										<div id="appointmentDate" contenteditable="true"
+											class="ui-body ui-body-b"></div>
+									</div>
+								</fieldset>
+							</div>
+							<div id="attribute" class="ui-block-b">
+								<fieldset class="ui-grid-a">
+									<div id="field" class="ui-block-b">
+										<p>Physician</p>
+									</div>
+									<div id="attribute" class="ui-block-b">
+										<div id="consultant" contenteditable="true"
+											class="ui-body ui-body-b"></div>
+									</div>
+								</fieldset>
+							</div>
+						</fieldset>
+
+						<fieldset class="ui-grid-a">
+							<div id="attribute" class="ui-block-b">
+								<fieldset class="ui-grid-a">
+									<div id="field" class="ui-block-b">
+										<p>Reason</p>
+									</div>
+									<div id="attribute" class="ui-block-b">
+										<div id="reason" contenteditable="true"
+											class="ui-body ui-body-b"></div>
+									</div>
+								</fieldset>
+							</div>
+							<div id="attribute" class="ui-block-b">
+								<fieldset class="ui-grid-a">
+									<div id="field" class="ui-block-b">
+										<p>Patients</p>
+									</div>
+									<div id="attribute" class="ui-block-b">
+										<div id="patient" contenteditable="true"
+											class="ui-body ui-body-b"></div>
+									</div>
+								</fieldset>
+							</div>
+						</fieldset>
+
+						<fieldset class="ui-grid-a">
+							<div id="commentDiv" class="ui-block-b">Comments</div>
+							<div id="comment" class="ui-block-b">
+								<div id="comment" contenteditable="true"
+									class="ui-body ui-body-b"></div>
+							</div>
+						</fieldset>
+
+					</div>
+					<!-- end of appoinment fields -->
+
+					<div class="ui-grid-a">
+							<div id="financial" class="program ui-body-b">
+								<label>Fees</label>
+							</div>
+
+							<div class="ui-block-b" id="button">
+								<a href="#" data-role="button" id="add" data-theme="c"
+									data-icon="plus" data-iconpos="notext"></a>
+							</div>
+					</div>
+
+					<div id="transaction" class="hiddenDivs">
+						<div class="ui-grid-a">
+								<div id="fees" class="ui-block-a ui-body-b ">
+									<label>Age Management Program Premium - 100,000 AED</label>
+								</div>
+								<div class="ui-block-b" id="button">
+									<a href="#" data-role="button" id="add" data-theme="a"
+										data-icon="delete" data-iconpos="notext"></a>
+								</div>
+						</div>
+					</div>
+
+					<div id="feesDetails" class="hiddenDivs">
+						<p id="field">Details of financial transaction</p>
+					</div>
+
+				</div>
+				<!-- end of program content -->
+
+			</div>
+			<!-- main Div -->
+
+		</div>
+		<!-- /content -->
+		
+		<div data-role="footer" data-theme="g" class="appointment_footer" data-position="fixed">
+					<h1>V</h1>
+				</div>
+
+	</div>
+	<!-- /page -->
+
+</body>
+</html>

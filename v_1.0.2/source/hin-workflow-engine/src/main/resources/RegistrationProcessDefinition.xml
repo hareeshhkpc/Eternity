@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProcessInstance id="">
+<ProcessDefinition id="1" version="1.0">
+    <name>New Patient Registrat6ion</name>
+    <description></description>
+<Scripts>
+    <Script></Script>
+    <Script></Script>
+    <Script></Script>
+</Scripts>
+<Group>
+    <name>Measure</name>
+				<Step id="1" name="Registrartion" >
+				    <Name>History</Name>
+				    <Description>
+							Record Basic Information
+				    </Description>
+				    <MessageType>
+				          <Name>History</Name>
+				          <Message id="" ></Message>
+				     	 <State xpath="">true
+				      	 </State>
+				    </MessageType>
+				     <MessageType>
+				           <Name>History</Name>
+				            <Message id=""></Message>
+				         	<State xpath="">true
+				      	 	</State>
+				    </MessageType>
+				</Step>
+				<Step id="2" name="Appointment"  >
+				    <Name>Examination</Name>
+				    <Description>
+						      Schedule Appointment
+				    </Description>
+				    <MessageType>
+				          <Name>History</Name>
+				           <Message id=""></Message>
+				          	<State xpath="">true
+				      	 	</State>
+				    </MessageType>
+				    <MessageType>
+				          <Name>History</Name>
+				          <Message id=""></Message>
+				         <State xpath="">true
+				      	 </State>
+				    </MessageType>
+				</Step>
+</Group>
+<Group>
+    <name>Booking</name>
+   	<Step id="3" name="Welcome" >
+	    <Description>
+		        Welcome and BookingConfirmation
+	    </Description>
+	    <MessageType>
+	          <Name>History</Name>
+	           <Message id=""></Message>
+				 <State xpath="">true
+				 </State>
+	    </MessageType>
+	     <MessageType>
+	           <Name>History</Name>
+	             <Message id=""></Message>
+				 <State xpath="">true
+				 </State>
+	    </MessageType>
+	</Step>
+</Group>
+</ProcessDefinition>  
+</ProcessInstance>

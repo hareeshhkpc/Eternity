@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<message config="POXX_MT111000HT02_THYROFLEX">
+	<POXX_MT111000HT02_THYROFLEX>
+		<observation>
+			<id/>
+			<code code="Tiredness and Sluggishness,lethargic " displayName="Tiredness and Sluggishness,lethargic "/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Mild"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Drying Hair or Skin(Thick,Dry,scaly)" displayName="Drying Hair or Skin(Thick,Dry,scaly)"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Severe"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Sleep more than usual" displayName="Sleep more than usual"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Moderate"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Weaker Muscles" displayName="Weaker Muscles"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="No"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Constant feeling of cold(fingers/hands/feel)" displayName="Constant feeling of cold(fingers/hands/feel)"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="No"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Frequent Muscule Cramps" displayName="Frequent Muscule Cramps"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Moderate"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Poorer Memory" displayName="Poorer Memory"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Mild"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="More Depressed(mood change easily)" displayName="More Depressed(mood change easily)"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="No"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Puffier Eyes" displayName="Puffier Eyes"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Moderate"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Difficulty with Math" displayName="Difficulty with Math"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="No"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Hoarser or Deeper Voice" displayName="Hoarser or Deeper Voice"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Mild"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Constipation" displayName="Constipation"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Moderate"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Coarse Hair/Hair loss/brittle" displayName="Coarse Hair/Hair loss/brittle"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="No"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Muscle /Join Pain" displayName="Muscle /Join Pain"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Severe"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Low Sex Drive/Impotence" displayName="Low Sex Drive/Impotence"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Moderate"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Puffy Hands and Feet" displayName="Puffy Hands and Feet"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Mild"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Unsteady Gall(bump into things)" displayName="Unsteady Gall(bump into things)"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="No"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Gain Weight Easy" displayName="Gain Weight Easy"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Moderate"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Outer Third of Eyebrows Thin" displayName="Outer Third of Eyebrows Thin"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Severe"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Menses More irregular(should be 28 Days)" displayName="Menses More irregular(should be 28 Days)"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Severe"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Havier Menses(clotting/3+days)" displayName="Havier Menses(clotting/3+days)"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Mild"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Carpel Tunnel Syndrome" displayName="Carpel Tunnel Syndrome"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="No"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Tachycardia(Rapid or irregular heart beat)" displayName="Tachycardia(Rapid or irregular heart beat)"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Moderate"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Palpitations(Skipping of heart beat)" displayName="Palpitations(Skipping of heart beat)"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Moderate"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Insomnia" displayName="Insomnia"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Severe"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Shakiness" displayName="Shakiness"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="No"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Increased sweating" displayName="Increased sweating"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Severe"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Brittle Nails" displayName="Brittle Nails"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Mild"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Loss of Appetite" displayName="Loss of Appetite"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="Severe"/>
+		</observation>
+		<observation>
+			<id/>
+			
+			<statusCode/>
+			<effectiveTime/>
+			
+		<code code="Wakeup Tired" displayName="Wakeup Tired"/><value value="Moderate"/></observation>
+		<observation>
+			<id/>
+			
+			<statusCode/>
+			<effectiveTime/>
+			
+		<code code="Wakeup full of Energy" displayName="Wakeup full of Energy"/><value value="Mild"/></observation>
+		<observation>
+			<id/>
+			<code code="2 to 4 pm feel tired,seek snack/Tea/Coffee/coke" displayName="2 to 4 pm feel tired,seek snack/Tea/Coffee/coke"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="1"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Fall asleep infront of TV/reading/Computer" displayName="Fall asleep infront of TV/reading/Computer"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="0"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="As soon as i go to bed -Drop to Sleep" displayName="As soon as i go to bed -Drop to Sleep"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="1"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Need to read 10 to 15 mins to drift into sleep" displayName="Need to read 10 to 15 mins to drift into sleep"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="0"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Fibrocystic Breast/lumps or ovarian cysts" displayName="Fibrocystic Breast/lumps or ovarian cysts"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="1"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Goiter Bulge Or Band Around the Neck" displayName="Goiter Bulge Or Band Around the Neck"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="0"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="slow Speech" displayName="slow Speech"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="1"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Enlarged Tongue" displayName="Enlarged Tongue"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="0"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Puffy Face Puffy Hands " displayName="Puffy Face Puffy Hands "/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="1"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Do you use Iodized salt" displayName="Do you use Iodized salt"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="0"/>
+		</observation>
+		<observation>
+			<id/>
+			<code code="Do you eat seafood 4 plus times per week" displayName="Do you eat seafood 4 plus times per week"/>
+			<statusCode/>
+			<effectiveTime/>
+			<value value="0"/>
+		</observation>
+		<subject>
+			<specimen>
+				<code/>
+				<specimenMaterial>
+					<code/>
+				</specimenMaterial>
+				<sourcePerson>
+					<id/>
+				</sourcePerson>
+			</specimen>
+		</subject>
+		<recordTarget>
+			<patient>
+				<id/>
+			</patient>
+		</recordTarget>
+		<author>
+			<employmentStaff>
+				<employeePerson>
+					<id/>
+					<name/>
+				</employeePerson>
+			</employmentStaff>
+		</author>
+	<observation><code displayName="Puffy Face Puffy Hands"/><value value="1"/></observation><observation><code displayName="Do you use Iodized salt"/><value value="1"/></observation><observation><code displayName="Do you eat seafood 4 plus times per week"/><value value="1"/></observation></POXX_MT111000HT02_THYROFLEX>
+</message>

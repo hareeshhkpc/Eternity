@@ -1,0 +1,76 @@
+<HL7MessageConfiguration>
+  <MetaInfo artifactID="POSA_MT920000HT03_Genetics" createdDate="2012-09-01 13:51:42.390 UTC" entryPoint="POSA_MT920000HT03.SubstanceAdministrationOrder" description="Substance Administration Order Message for Genetics"/>
+  <IndexConfiguration indexName="POSA_MT920000HT03_Genetics_Index">
+    <Field name="messageId" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;HIN_MSG_ID&apos;]/extension" analyzed="false"/>
+    <Field name="documentId" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;HIN_DOC_ID&apos;]/extension"/>
+    <Field name="patientid" indexed="true" xpath="message/POSA_MT920000HT03_Genetics/subject/patient/patientPerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension"/>
+    <Field name="subscriberId" indexed="true" xpath="message/POSA_MT920000HT03_Genetics/subject/patient/patientPerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="false"/>
+    <Field name="subscriberName" indexed="true" xpath="message/POSA_MT920000HT03_Genetics/subject/patient/patientPerson/name/given"/>
+    <Field name="subscriberTelecom" indexed="true" xpath="message/POSA_MT920000HT03_Genetics/subject/patient/patientPerson/telcom/value"/>
+    <Field name="programId" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;PROGRAM_ID&apos;]/extension"/>
+    <Field name="messageTitle" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;MSG_TITLE&apos;]/extension" analyzed="true"/>
+    <Field name="messageStatus" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;MSG_STATUS&apos;]/extension" analyzed="true"/>
+    <Field name="financeStatus" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;FINANCE_STATUS&apos;]/extension" analyzed="true"/>
+    <Field name="organizationId" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;ORGANIZATION_ID&apos;]/extension" analyzed="false"/>
+  </IndexConfiguration>
+  <ArchiveConfiguration columnFamilyName="POSA_MT920000HT03_Genetics">
+    <Field name="messageId" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;HIN_MSG_ID&apos;]/extension" type="ROWKEY"/>
+    <Field name="documentId" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;HIN_DOC_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="patientid" indexed="true" xpath="message/POSA_MT920000HT03_Genetics/subject/patient/patientPerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="ROWKEY"/>
+    <Field name="subscriberId" indexed="true" xpath="message/POSA_MT920000HT03_Genetics/subject/patient/patientPerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="subscriberName" indexed="true" xpath="message/POSA_MT920000HT03_Genetics/subject/patient/patientPerson/name/given" type="COLUMN"/>
+    <Field name="subscriberTelecom" indexed="true" xpath="message/POSA_MT920000HT03_Genetics/subject/patient/patientPerson/telcom/value" type="COLUMN"/>
+    <Field name="programId" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;PROGRAM_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="messageTitle" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;MSG_TITLE&apos;]/extension" type="COLUMN"/>
+    <Field name="messageStatus" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;MSG_STATUS&apos;]/extension" type="COLUMN"/>
+    <Field name="financeStatus" indexed="true" xpath="//POSA_MT920000HT03_Genetics/id[root=&apos;FINANCE_STATUS&apos;]/extension" type="COLUMN"/>
+  </ArchiveConfiguration>
+  <WorkFlowDefinition id="id">
+    <name>Workflow Configuration For: POSA_MT920000HT03_Genetics</name>
+    <start g="20,20,48,48">
+      <transition name="true" to="Save"/>
+    </start>
+    <task name="Save">
+      <transition name="Save" to="Save"/>
+    </task>
+  </WorkFlowDefinition>
+  <Class rimType="ACT" tagName="POSA_MT920000HT03_Genetics" type="POSA_MT920000HT03.SubstanceAdministrationOrder">
+    <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+    <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="2" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="effectiveTime" type="SXCM_TS" inputControl="SXCM_TS" label="Effective Time" displayOrder="3" minOccurs="0" maxOccurs="-1"/>
+    <Field tagName="priorityCode" type="CE" inputControl="CE" label="Priority Code" displayOrder="4" minOccurs="0" maxOccurs="-1"/>
+    <Field tagName="repeatNumber" type="IVL_INT" inputControl="IVL_INT" label="Repeat Number" displayOrder="5" minOccurs="0" maxOccurs="1"/>
+    <Field tagName="routeCode" type="CE" inputControl="CE" label="Route Code" displayOrder="6" minOccurs="0" maxOccurs="1"/>
+    <Field tagName="doseQuantity" type="IVL_PQ" inputControl="IVL_PQ" label="Dose Quantity" displayOrder="7" minOccurs="0" maxOccurs="1"/>
+    <Field tagName="doseCheckQuantity" type="RTO_PQ_PQ" inputControl="RTO_PQ_PQ" label="Dose Check Quantity" displayOrder="8" minOccurs="0" maxOccurs="1"/>
+    <Field tagName="maxDoseQuantity" type="RTO_PQ_PQ" inputControl="RTO_PQ_PQ" label="Max Dose Quantity" displayOrder="9" minOccurs="0" maxOccurs="1"/>
+    <Class rimType="PARTICIPATION" tagName="subject" type="POSA_MT920000HT03.Subject" label="Subject" displayOrder="10" minOccurs="1" maxOccurs="1">
+      <Class rimType="ROLE" tagName="patient" type="COCT_MT050000HT04.Patient" label="Patient" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+        <Class rimType="ENTITY" tagName="patientPerson" type="COCT_MT030000HT01.Person" label="Patient Person" displayOrder="1" minOccurs="1" maxOccurs="1">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+          <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="1" minOccurs="0" maxOccurs="-1"/>
+          <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="2" minOccurs="0" maxOccurs="-1"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class rimType="PARTICIPATION" tagName="consumable" type="POSA_MT920000HT03.Consumable" label="Consumable" displayOrder="11" minOccurs="1" maxOccurs="1">
+      <Class rimType="ROLE" tagName="materialMedProduct" type="COCT_MT920010HT03.MaterialMedProduct" label="Material Med Product" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Class rimType="ENTITY" tagName="manufacturedMaterialKind" type="COCT_MT920010HT03.ManufacturedMaterialKind" label="Manufactured Material Kind" displayOrder="0" minOccurs="1" maxOccurs="1">
+          <Field tagName="code" type="CE" inputControl="CE" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class rimType="PARTICIPATION" tagName="author" type="POSA_MT920000HT03.Author" label="Author" displayOrder="12" minOccurs="1" maxOccurs="-1">
+      <Class rimType="ROLE" tagName="employmentStaff" type="COCT_MT410000HT02.EmploymentStaff" label="Employment Staff" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+        <Class rimType="ENTITY" tagName="employeePerson" type="COCT_MT410000HT02.Person" label="Employee Person" displayOrder="1" minOccurs="0" maxOccurs="1">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+          <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="1" minOccurs="1" maxOccurs="-1"/>
+          <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="2" minOccurs="0" maxOccurs="-1"/>
+        </Class>
+      </Class>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

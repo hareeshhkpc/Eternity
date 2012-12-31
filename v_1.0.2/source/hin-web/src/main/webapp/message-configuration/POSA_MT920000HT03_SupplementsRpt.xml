@@ -1,0 +1,87 @@
+<HL7MessageConfiguration>
+  <MetaInfo artifactID="POSA_MT920000HT03_SupplementsRpt" createdDate="2012-09-01 13:51:46.125 UTC" entryPoint="POSA_MT920000HT03.SubstanceAdministrationOrder" description="Substance Administration Order Message for SupplementsRpt"/>
+  <IndexConfiguration indexName="POSA_MT920000HT03_SupplementsRpt_Index">
+    <Field name="messageId" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;HIN_MSG_ID&apos;]/extension" analyzed="false"/>
+    <Field name="documentId" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;HIN_DOC_ID&apos;]/extension"/>
+    <Field name="patientid" indexed="true" xpath="message/POSA_MT920000HT03_SupplementsRpt/subject/patient/patientPerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension"/>
+    <Field name="subscriberId" indexed="true" xpath="message/POSA_MT920000HT03_SupplementsRpt/subject/patient/patientPerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="false"/>
+    <Field name="subscriberName" indexed="true" xpath="message/POSA_MT920000HT03_SupplementsRpt/subject/patient/patientPerson/name/given"/>
+    <Field name="subscriberTelecom" indexed="true" xpath="message/POSA_MT920000HT03_SupplementsRpt/subject/patient/patientPerson/telcom/value"/>
+    <Field name="programId" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;PROGRAM_ID&apos;]/extension" analyzed="false"/>
+    <Field name="messageTitle" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;MSG_TITLE&apos;]/extension" analyzed="true"/>
+    <Field name="messageStatus" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;MSG_STATUS&apos;]/extension" analyzed="true"/>
+    <Field name="financeStatus" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;FINANCE_STATUS&apos;]/extension" analyzed="true"/>
+    <Field name="organizationId" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;ORGANIZATION_ID&apos;]/extension" analyzed="false"/>
+  </IndexConfiguration>
+  <ArchiveConfiguration columnFamilyName="POSA_MT920000HT03_SupplementsRpt">
+    <Field name="messageId" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;HIN_MSG_ID&apos;]/extension" type="ROWKEY"/>
+    <Field name="documentId" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;HIN_DOC_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="patientid" indexed="true" xpath="message/POSA_MT920000HT03_SupplementsRpt/subject/patient/patientPerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="ROWKEY"/>
+    <Field name="subscriberId" indexed="true" xpath="message/POSA_MT920000HT03_SupplementsRpt/subject/patient/patientPerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="subscriberName" indexed="true" xpath="message/POSA_MT920000HT03_SupplementsRpt/subject/patient/patientPerson/name/given" type="COLUMN"/>
+    <Field name="subscriberTelecom" indexed="true" xpath="message/POSA_MT920000HT03_SupplementsRpt/subject/patient/patientPerson/telcom/value" type="COLUMN"/>
+    <Field name="programId" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;PROGRAM_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="messageTitle" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;MSG_TITLE&apos;]/extension" type="COLUMN"/>
+    <Field name="messageStatus" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;MSG_STATUS&apos;]/extension" type="COLUMN"/>
+    <Field name="financeStatus" indexed="true" xpath="//POSA_MT920000HT03_SupplementsRpt/id[root=&apos;FINANCE_STATUS&apos;]/extension" type="COLUMN"/>
+  </ArchiveConfiguration>
+  <WorkFlowDefinition id="id">
+    <name>Workflow Configuration For: POSA_MT920000HT03_SupplementsRpt</name>
+    <start g="20,20,48,48">
+      <transition name="true" to="Save"/>
+    </start>
+    <task name="Save">
+      <transition name="Save" to="Save"/>
+    </task>
+  </WorkFlowDefinition>
+  <Class rimType="ACT" tagName="POSA_MT920000HT03_SupplementsRpt" type="POSA_MT920000HT03.SubstanceAdministrationOrder">
+    <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+    <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+    
+    <!-- Physician's comments -->
+    <Field tagName="text" type="ED" inputControl="ED" label="Text" displayOrder="2" minOccurs="0" maxOccurs="1"/>
+    
+    <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="3" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="effectiveTime" type="SXCM_TS" inputControl="SXCM_TS" label="Effective Time" displayOrder="4" minOccurs="0" maxOccurs="-1"/>
+    <Class rimType="PARTICIPATION" tagName="subject" type="POSA_MT920000HT03.Subject" label="Subject" displayOrder="5" minOccurs="1" maxOccurs="1">
+      <Class rimType="ROLE" tagName="patient" type="COCT_MT050000HT04.Patient" label="Patient" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+        
+        <!-- Patient Info -->
+        <Class rimType="ENTITY" tagName="patientPerson" type="COCT_MT030000HT01.Person" label="Patient Person" displayOrder="1" minOccurs="1" maxOccurs="1">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+          <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="1" minOccurs="0" maxOccurs="-1"/>
+          <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="2" minOccurs="0" maxOccurs="-1"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class rimType="PARTICIPATION" tagName="consumable" type="POSA_MT920000HT03.Consumable" label="Consumable" displayOrder="6" minOccurs="1" maxOccurs="1">
+      <Class rimType="ROLE" tagName="materialMedProduct" type="COCT_MT920010HT03.MaterialMedProduct" label="Material Med Product" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Class rimType="ENTITY" tagName="manufacturedMaterialKind" type="COCT_MT920010HT03.ManufacturedMaterialKind" label="Manufactured Material Kind" displayOrder="0" minOccurs="1" maxOccurs="1">
+          <Field tagName="code" type="CE" inputControl="CE" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class rimType="PARTICIPATION" tagName="author" type="POSA_MT920000HT03.Author" label="Author" displayOrder="7" minOccurs="1" maxOccurs="-1">
+      <Class rimType="ROLE" tagName="employmentStaff" type="COCT_MT410000HT02.EmploymentStaff" label="Employment Staff" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+        
+        <!-- Consultant's info -->
+        <Class rimType="ENTITY" tagName="employeePerson" type="COCT_MT410000HT02.Person" label="Employee Person" displayOrder="1" minOccurs="0" maxOccurs="1">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+          <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="1" minOccurs="1" maxOccurs="-1"/>
+          <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="2" minOccurs="0" maxOccurs="-1"/>
+        </Class>
+      </Class>
+    </Class>
+    
+    <!-- Drug Details -->
+    <Class rimType="ACTRELATIONSHIP" tagName="pertinentInformation2" type="POSA_MT920000HT03.PertinentInformation2" label="Pertinent Information2" displayOrder="8" minOccurs="0" maxOccurs="-1">
+      <Class rimType="ACT" tagName="observationEventGeneral" type="COCT_MT120500HT04.ObservationEventGeneral" label="Observation Event General" displayOrder="0" minOccurs="1" maxOccurs="1">
+      
+      	<!-- Drug Order ID collection -->
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+      </Class>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>File Transfer Example</title>
+
+<script type="text/javascript" charset="utf-8" src="cordova-1.6.0.js"></script>
+<script type="text/javascript" charset="utf-8" src="jquery.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+	// Wait for Cordova to load
+	//
+	//document.addEventListener("deviceready", onDeviceReady, false);
+
+	// Cordova is ready
+	//
+	function onDeviceReady() {
+
+		// Retrieve image file location from specified source
+		navigator.camera.getPicture(uploadPhoto, function(message) {
+			alert('get picture failed');
+		}, {
+			quality : 50,
+			destinationType : navigator.camera.DestinationType.FILE_URI,
+			sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY
+		});
+
+	}
+
+	function uploadPhoto(imageURI) {
+		var options = new FileUploadOptions();
+		options.fileKey = "file";
+		options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+		options.mimeType = "image/jpeg";
+
+		var params = new Object();
+		params.value1 = "test";
+		params.value2 = "param";
+
+		options.params = params;
+
+		var ft = new FileTransfer();
+		ft.upload(imageURI, "http://172.25.251.11:8082/hin-web/ConfigServices?action=UPLOAD_PIC", win, fail,
+				options);
+	}
+
+	function win(r) {
+		console.log("Code = " + r.responseCode);
+		console.log("Response = " + r.response);
+		console.log("Sent = " + r.bytesSent);
+	}
+
+	function fail(error) {
+		alert("An error has occurred: Code = " + error.code);
+		console.log("upload error source " + error.source);
+		console.log("upload error target " + error.target);
+	}
+	
+	var imageURI = null;
+	function pickAPhoto() {
+
+		// Retrieve image file location from specified source
+		navigator.camera.getPicture(uploadImage, function(message) {
+			alert('get picture failed');
+		}, {
+			quality : 50,
+			destinationType : navigator.camera.DestinationType.FILE_URI,
+			sourceType : navigator.camera.PictureSourceType.PHOTOLIBRARY
+		});
+
+	}
+	function uploadImage(uri){
+		imageURI = uri;
+		var options = new FileUploadOptions();
+		options.fileKey = "fileInUploadRequest";
+		options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+		options.mimeType = "image/jpeg";
+
+		var params = new Object();
+		params.action = "FILE_UPLOAD";
+
+		options.params = params;
+
+		var ft = new FileTransfer();
+		ft.upload(imageURI, "http://172.25.251.11:8082/hin-web/ConfigServices", win, fail,
+				options);
+	}
+	
+	function downloadImage(){
+		var imgName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+		var url = "http://172.25.251.11:8082/hin-web/uploaded_files/" + imgName;
+		$('body').append('<img src="' + url + '" width="100"/>');
+	}
+</script>
+</head>
+<body>
+	<h1>Example</h1>
+	<div>Upload Photo: <input type="button" value="Upload" onclick="pickAPhoto()"></div>
+	<div>Download Photo: <input type="button" value="Download" onclick="downloadImage()"></div>
+	
+</body>
+</html>

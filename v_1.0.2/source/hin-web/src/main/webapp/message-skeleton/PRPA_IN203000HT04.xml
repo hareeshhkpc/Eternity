@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="PRPA_IN203000HT04">
+	<PRPA_IN203000HT04>
+		<id />
+		<code />
+		<subject>
+			<subsumedBy>
+				<id />
+				<statusCode />
+				<subsumingPerson>
+					<id />
+					<name />
+					<desc />
+					<statusCode />
+					<telecom />
+					<administrativeGenderCode />
+					<birthTime />
+					<deceasedInd />
+					<deceasedTime />
+					<multipleBirthInd />
+					<multipleBirthOrderNumber />
+					<organDonorInd />
+					<addr />
+					<maritalStatusCode />
+					<educationLevelCode />
+					<disabilityCode />
+					<livingArrangementCode />
+					<religiousAffiliationCode />
+					<raceCode />
+					<ethnicGroupCode />
+				</subsumingPerson>
+				<subsumedPerson>
+					<id />
+					<name />
+					<desc />
+					<statusCode />
+					<telecom />
+					<administrativeGenderCode />
+					<birthTime />
+					<deceasedInd />
+					<deceasedTime />
+					<multipleBirthInd />
+					<multipleBirthOrderNumber />
+					<organDonorInd />
+					<addr />
+					<maritalStatusCode />
+					<disabilityCode />
+					<livingArrangementCode />
+					<religiousAffiliationCode />
+					<raceCode />
+					<ethnicGroupCode />
+				</subsumedPerson>
+			</subsumedBy>
+		</subject>
+	</PRPA_IN203000HT04>
+</message>

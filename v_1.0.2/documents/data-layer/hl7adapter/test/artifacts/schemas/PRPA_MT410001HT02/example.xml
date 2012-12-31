@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<PRPA_MT410001HT02
+         xmlns="urn:hl7-org:v3" 
+         xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+         xs:schemaLocation="urn:hl7-org:v3  file:///home/schalk/workspacextend/HL7Adapter/test/artifacts/schemas/PRPA_MT410001HT02/simple_PRPA_MT410001HT02.xsd"         
+         classCode="ENC" moodCode="APT" 
+         >
+  <id extension="1" root="1.2.3.4"/>
+  <code code="1554-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LN" displayName="GLUCOSE^POST 12H CFST:MCNC:PT:SER/PLAS:QN">
+    <originalText>some original text</originalText>
+  </code>
+  <statusCode code="complete"/>
+  <subject contextControlCode="" typeCode="SBJ">
+    <patient classCode="PAT">
+      <id extension="1" root="5.6.7.8"/>
+      <patientPerson classCode="PSN" determinerCode="INSTANCE" xs:nil="true"/>      
+    </patient>
+  </subject>
+  <responsibleParty typeCode="RESP">
+    <assignedEntityOrganization classCode="ASSIGNED">
+      <assignedOrganization classCode="ORG" determinerCode="INSTANCE">
+        <id extension="1" root="1.2.3.4"/>
+      </assignedOrganization>
+    </assignedEntityOrganization>
+  </responsibleParty>
+</PRPA_MT410001HT02>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1500px" height="320"
+   
+  >
+   
+  <g stroke="gray" stroke-width="2">
+ <g transform="translate(0,0)">
+ <rect id="optimumRange" x="50" y="107" width="100" height="60" rx="15" 
+		fill="#56004e" />
+	  <text x="" y="" id="legendTitleHead" zIndex="2"> 
+        <tspan
+           id="legendTitle"
+           sodipodi:role="line"
+           y=""
+           x=""
+           style="font-size:14px;font-variant:normal;text-decoration:underline;font-weight:bold;writing-mode:lr-tb;fill:#56004e;fill-opacity:2;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri"></tspan>
+      </text>
+	   <text x="" y="" id="optimumTitleHead1" zIndex="2"> 
+        <tspan
+           id="optimumTitle1"
+           sodipodi:role="line"
+           y=""
+           x=""
+           style="font-size:9px;font-variant:normal;text-decoration:underline;font-weight:bold;writing-mode:lr-tb;fill:#ffffff;fill-opacity:2;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">Eternity Zone (E-Zone)</tspan>
+      </text>
+	  <text x="" y="" id="optimumTitleHead2" zIndex="2"> 
+        <tspan
+           id="optimumTitle2"
+           sodipodi:role="line"
+           y=""
+           x=""
+           style="font-size:9px;font-variant:normal;text-decoration:underline;font-weight:bold;writing-mode:lr-tb;fill:#ffffff;fill-opacity:2;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">The Optimum Range</tspan>
+      </text>
+	  <text x="" y="" id="legendHead"> 
+        <tspan
+           id="legend"
+           sodipodi:role="line"
+           y=""
+           x=""
+           style="font-size:14px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#56004e;fill-opacity:2;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">Legend:</tspan>
+      </text>
+	  <rect id="legendSymbol" x="50" y="107" width="50" height="15" rx="1"
+        fill="" />
+	   <text x="45" y="50" id="titleHead" zIndex=""> 
+        <tspan
+           id="title"
+           sodipodi:role="line"
+           y=""
+           x=""
+           style="font-size:14px;font-variant:normal;text-decoration:underline;font-weight:bold;writing-mode:lr-tb;fill:#56004e;fill-opacity:2;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri"></tspan>
+      </text>	  
+		 <rect id="referenceRange" x="50" y="107" width="550" height="35" rx="7"
+        fill="#56004e" />
+		
+		<path id="arrow" inkscape:connector-curvature="0" d="m 630,150 0,-10.4 -24.98,0 0,-28.65 24.98,0 0,-16.41 26.68,31.23 -26.68,31.23 z" style="fill:#56004e;fill-opacity:1;fill-rule:evenodd;stroke:none"/>
+		<path
+         id="path"
+         style="fill:none;stroke:#ff7209;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         d="M 45.365,648.46 C 183.5,648.31 300.16,623.93 319.15,591.23"
+         inkscape:connector-curvature="0" />
+	   	<path
+         id="verticalLine"
+         style="fill:none;stroke:#c0c0c0;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         d=""
+         inkscape:connector-curvature="0" />				 	 
+		 <path
+         id="horizontalLine"
+         style="fill:none;stroke:#c0c0c0;stroke-width:2.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         d="m 20,300 1000,0"
+         inkscape:connector-curvature="0" />	
+<path id="plot" inkscape:connector-curvature="0" d="" style="fill:#56004e;fill-opacity:1;fill-rule:evenodd;stroke:none"/>		 
+
+<path id="scaleMarker" inkscape:connector-curvature="0" d="" style="fill:none;stroke:#c0c0c0;stroke-width:2.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"/>	
+<text x="45" y="50" id="scale"> 
+        <tspan
+           id="yAxisScale"
+           sodipodi:role="line"
+           y=""
+           x=""
+           style="font-size:13px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#000000;fill-opacity:2;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri"></tspan>
+      </text>
+	  <path id="lastNode" inkscape:connector-curvature="0" d="" style="fill:none;stroke:#c0c0c0;stroke-width:2.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"/>			
+	  <text x="45" y="50" id="xScale"> 
+        <tspan
+           id="xData"
+           sodipodi:role="line"
+           y=""
+           x=""
+           style="font-size:12px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#000000;fill-opacity:2;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri"></tspan>
+      </text>
+	  <text x="45" y="50" id="plotingValue"> 
+        <tspan
+           id="plotValue"
+           sodipodi:role="line"
+           y=""
+           x=""
+           style="font-size:10px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#000000;fill-opacity:2;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri"></tspan>
+      </text>
+<path id="lastXscaleNode" inkscape:connector-curvature="0" d="" style="fill:none;stroke:#c0c0c0;stroke-width:2.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"/>			
+
+</g>
+		 
+ </g>
+</svg>

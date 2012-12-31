@@ -1,0 +1,119 @@
+<HL7MessageConfiguration id="id1" configType="MESSAGE">
+  <MetaInfo id="id2" artifactID="PRPA_IN203000HT04" description="PRPA_IN203000HT04">
+    <selected>false</selected>
+    <configType>META_INFO</configType>
+  </MetaInfo>
+  <Class id="id3" rimType="ACT" configType="CLASS" tagName="registrationEvent" type="MFMI_MT700700HT03.RegistrationEvent" inputControl="Class" label="Registration Event" displayOrder="1">
+    <Field id="id4" tagName="id" type="II" inputControl="II" label="Title" displayOrder="4" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+    <Field id="id5" tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="5" minOccurs="1" maxOccurs="1" configType="FIELD">
+      <ControlParameters>
+        <Param name="code" value="CodeLookup"/>
+      </ControlParameters>
+    </Field>
+    <Class id="id6" rimType="PARTICIPATION" configType="CLASS" tagName="subject" type="MFMI_MT700700HT03.Subject2" inputControl="Class" label="Subject2" displayOrder="6">
+      <Class id="id7" rimType="ROLE" configType="CLASS" tagName="subsumedBy" type="PRPA_MT203000HT04.SubsumedBy" label="Subsumed By">
+        <Field id="id8" tagName="id" type="II" inputControl="II" label="Id" displayOrder="7" minOccurs="1" maxOccurs="-1" configType="FIELD"/>
+        <Field id="id9" tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="8" minOccurs="1" maxOccurs="1" configType="FIELD">
+          <ControlParameters>
+            <Param name="code" value="StatusCodeLookup"/>
+          </ControlParameters>
+        </Field>
+        <Class id="id10" rimType="ENTITY" configType="CLASS" tagName="subsumingPerson" type="COCT_MT030200HT04.Person" label="Subsuming Person">
+          <Field id="id11" tagName="id" type="II" inputControl="II" label="Id" displayOrder="8" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field id="id12" tagName="name" type="PN" inputControl="PN" label="Name(s)" displayOrder="2" minOccurs="0" maxOccurs="-1" configType="FIELD">
+            <ControlParameters>
+              <Param name="prefix" value="PrefixLookup"/>
+            </ControlParameters>
+          </Field>
+          <Field id="id13" tagName="desc" type="ED" inputControl="image" label="Desc" displayOrder="1" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id14" tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="3" minOccurs="0" maxOccurs="1" configType="FIELD">
+            <ControlParameters>
+              <Param name="code" value="StatusCodeLookup"/>
+            </ControlParameters>
+          </Field>
+          <Field id="id15" tagName="telecom" type="TEL" inputControl="TEL" label="Telecom(s)" displayOrder="10" minOccurs="0" maxOccurs="2" configType="FIELD"/>
+          <Field id="id16" tagName="administrativeGenderCode" type="CE" inputControl="CE" label="Gender" displayOrder="11" minOccurs="0" maxOccurs="1" configType="FIELD">
+            <ControlParameters>
+              <Param name="code" value="GenderLookup"/>
+            </ControlParameters>
+          </Field>
+          <Field id="id17" tagName="birthTime" type="TS" inputControl="TS" label="Birth Time" displayOrder="12" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id18" tagName="deceasedInd" type="BL" inputControl="BL" label="Deceased Ind" displayOrder="13" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id19" tagName="deceasedTime" type="TS" inputControl="TS" label="Deceased Time" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id20" tagName="multipleBirthInd" type="BL" inputControl="BL" label="Multiple Birth Ind" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id21" tagName="multipleBirthOrderNumber" type="INT" inputControl="INT" label="Multiple Birth Order Number" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id22" tagName="organDonorInd" type="BL" inputControl="BL" label="Organ Donor Ind" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id23" tagName="addr" type="AD" inputControl="AD" label="Addr" displayOrder="4" minOccurs="0" maxOccurs="-1" configType="FIELD">
+            <ControlParameters>
+              <Param name="country" value="CountryLookup"/>
+              <Param name="state" value="StateLookup"/>
+              <Param name="city" value="CityLookup"/>
+            </ControlParameters>
+          </Field>
+          <Field id="id24" tagName="maritalStatusCode" type="CE" inputControl="CE" label="Marital Status Code" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD">
+            <ControlParameters>
+              <Param name="code" value="MaritalStatusLookup"/>
+            </ControlParameters>
+          </Field>
+          <Field id="id25" tagName="educationLevelCode" type="CE" inputControl="CE" label="Education Level Code" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD">
+            <ControlParameters>
+              <Param name="code" value="EducationLevelLookup"/>
+            </ControlParameters>
+          </Field>
+          <Field id="id26" tagName="disabilityCode" type="CE" inputControl="" label="Disability Code" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id27" tagName="livingArrangementCode" type="CE" inputControl="" label="Living Arrangement Code" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id28" tagName="religiousAffiliationCode" type="CE" inputControl="" label="Religious Affiliation Code" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD">
+            <ControlParameters>
+              <Param name="code" value="ReligiousLookup"/>
+            </ControlParameters>
+          </Field>
+          <Field id="id29" tagName="raceCode" type="CE" inputControl="" label="Race Code" displayOrder="4" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field id="id30" tagName="ethnicGroupCode" type="CE" inputControl="" label="Ethnic Group Code" displayOrder="4" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+        </Class>
+        <Class id="id10" rimType="ENTITY" configType="CLASS" tagName="subsumedPerson" type="COCT_MT030202HT04.Person" label="Subsumed Person">
+          <Field id="id11" tagName="id" type="II" inputControl="" label="Id" displayOrder="4" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field id="id12" tagName="name" type="PN" inputControl="" label="Name" displayOrder="4" minOccurs="1" maxOccurs="-1" configType="FIELD">
+            <ControlParameters>
+              <Param name="prefix" value="PrefixLookup" type="lookup/multiple/browse/date/datetime"  request="server/client/xml"  />
+            </ControlParameters>
+          </Field>
+          <Field id="id13" tagName="desc" type="ED" inputControl="" label="Desc" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id14" tagName="statusCode" type="CS" inputControl="" label="Status Code" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id15" tagName="telecom" type="TEL" inputControl="" label="Telecom" displayOrder="4" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field id="id16" tagName="administrativeGenderCode" type="CE" inputControl="" label="Administrative Gender Code" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD">
+            <ControlParameters>
+              <Param name="code" value="GenderLookup"/>
+            </ControlParameters>
+          </Field>
+          <Field id="id17" tagName="birthTime" type="TS" inputControl="" label="Birth Time" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id18" tagName="deceasedInd" type="BL" inputControl="" label="Deceased Ind" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id19" tagName="deceasedTime" type="TS" inputControl="" label="Deceased Time" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id20" tagName="multipleBirthInd" type="BL" inputControl="" label="Multiple Birth Ind" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id21" tagName="multipleBirthOrderNumber" type="INT" inputControl="" label="Multiple Birth Order Number" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id22" tagName="organDonorInd" type="BL" inputControl="" label="Organ Donor Ind" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id23" tagName="addr" type="AD" inputControl="" label="Addr" displayOrder="4" minOccurs="0" maxOccurs="-1" configType="FIELD">
+            <ControlParameters>
+              <Param name="country" value="CountryLookup"/>
+              <Param name="state" value="StateLookup"/>
+              <Param name="city" value="CityLookup"/>
+            </ControlParameters>
+          </Field>
+          <Field id="id24" tagName="maritalStatusCode" type="CE" inputControl="" label="Marital Status Code" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD">
+            <ControlParameters>
+              <Param name="code" value="MaritalStatusLookup"/>
+            </ControlParameters>
+          </Field>
+          <Field id="id25" tagName="disabilityCode" type="CE" inputControl="CE" label="Disability Code" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id26" tagName="livingArrangementCode" type="CE" inputControl="CE" label="Living Arrangement Code" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field id="id27" tagName="religiousAffiliationCode" type="CE" inputControl="CE" label="Religious Affiliation Code" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD">
+            <ControlParameters>
+              <Param name="code" value="ReligiousLookup"/>
+            </ControlParameters>
+          </Field>
+          <Field id="id28" tagName="raceCode" type="CE" inputControl="CE" label="Race Code" displayOrder="4" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field id="id29" tagName="ethnicGroupCode" type="CE" inputControl="CE" label="Ethnic Group Code" displayOrder="4" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+        </Class>
+      </Class>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

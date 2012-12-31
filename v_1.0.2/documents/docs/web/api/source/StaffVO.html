@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">var HIN;
+if (!HIN)
+	HIN = {};
+<span id='HIN-StaffVO'>/**
+</span> * StaffVO is nothing but a value object which hold the staff relevant
+ * information
+ */
+HIN.StaffVO = function() {
+<span id='HIN-StaffVO-property-subscriberId'>	/**
+</span>	 * subscriberId holds unique id.
+	 */
+	this.subscriberId = null;
+	this.roles = null;
+<span id='HIN-StaffVO-property-name'>	/**
+</span>	 * name holds the name of the staff.
+	 */
+	this.name = null;
+	this.nameType = null;
+<span id='HIN-StaffVO-property-prefix'>	/**
+</span>	 * prefix holds prefix name of the staff
+	 */
+	this.prefix = null;
+<span id='HIN-StaffVO-property-given'>	/**
+</span>	 * givenName holds given name of the staff
+	 */
+	this.given = null;
+<span id='HIN-StaffVO-property-family'>	/**
+</span>	 * family holds family name of the staff
+	 */
+	this.family = null;
+<span id='HIN-StaffVO-property-suffix'>	/**
+</span>	 * suffix holds suffix name of the staff
+	 */
+	this.suffix = null;
+<span id='HIN-StaffVO-property-message'>	/**
+</span>	 * message holds stringified xml
+	 */
+	this.message = null;
+
+	this.image = null;
+<span id='HIN-StaffVO-property-gender'>	/**
+</span>	 * gender holds gender of the staff
+	 */
+	this.gender = null;
+
+	this.consultant = null;
+<span id='HIN-StaffVO-property-msg'>	/**
+</span>	 * msg holds message xml document
+	 */
+	this.msg = null;
+	this.userName = &quot;&quot;;
+	this.password = &quot;&quot;;
+};
+<span id='HIN-StaffVO-method-setMsg'>/**
+</span> * set message document object
+ * 
+ * @param msg :
+ *            Its an object of msg document.
+ * @returns {void}
+ */
+HIN.StaffVO.prototype.setMsg = function(msg) {
+	this.msg = msg;
+};
+
+<span id='HIN-StaffVO-method-setMessage'>/**
+</span> * set stringify message document object
+ * 
+ * @param message :
+ *            Its a string value of msg document.
+ * @returns {void}
+ */
+HIN.StaffVO.prototype.setMessage = function(message) {
+
+	this.message = message;
+	/*
+	 * get identifiedPerson child nodes.
+	 */
+
+	// alert(&quot;generateId : &quot; + XmlUtil.xmlToString(message));
+	var messageNode = XmlUtil.findByName(message, &quot;message&quot;, true);
+
+	if (messageNode) {
+		var node = XmlUtil.findByName(messageNode, &quot;PRPA_MT201000HT03&quot;, true);
+
+		if (node) {
+
+			var dataXPath = AppConstants.XPaths.PRPA_MT201000HT03.SUBSCRIBER_ID;
+			// alert(dataXPath);
+			try {
+				var value = XmlUtil.getXPathResult(message, dataXPath,
+						XPathResult.STRING_TYPE);
+				value = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+				this.subscriberId = value;
+				// alert(this.subscriberId);
+			} catch (e) {
+				alert(&quot;Element does not exist : &quot; + e);
+			}
+
+			var identifiedPerson = XmlUtil.findByName(node, &quot;identifiedPerson&quot;,
+					true);
+			if (identifiedPerson) {
+
+				/*
+				 * set subscriberId.
+				 */
+				/*
+				 * try { this.subscriberId = XmlUtil.attr(XmlUtil.findByName(
+				 * identifiedPerson, &quot;id&quot;, true), &quot;extension&quot;); } catch (e) {
+				 * console.log(&quot;element does not exist&quot;); }
+				 */
+
+				/*
+				 * set gender.
+				 */
+				var administrativeGenderCode = XmlUtil.findByName(
+						identifiedPerson, &quot;administrativeGenderCode&quot;, true);
+				if (administrativeGenderCode) {
+					var genderNode = XmlUtil.findByName(identifiedPerson,
+							&quot;administrativeGenderCode&quot;, true);
+					if (genderNode) {
+						try {
+
+							this.gender = XmlUtil.text(XmlUtil.findByName(
+									genderNode, &quot;code&quot;, true));
+						} catch (e) {
+							console.log(&quot;Element does not exist&quot;);
+						}
+					}
+				}
+
+				/*
+				 * set name.
+				 */
+				var nameNode = XmlUtil.findByName(identifiedPerson, &quot;name&quot;,
+						true)
+
+				if (nameNode) {
+					var name = &quot;&quot;;
+					try {
+						if (XmlUtil.text(XmlUtil.findByName(nameNode, &quot;use&quot;,
+								true))) {
+							this.nameType = XmlUtil.text(XmlUtil.findByName(
+									nameNode, &quot;use&quot;, true));
+							name = this.nameType;
+						}
+					} catch (e) {
+						console.log(&quot;Element does not exist&quot;);
+					}
+
+					try {
+						if (XmlUtil.text(XmlUtil.findByName(nameNode, &quot;prefix&quot;,
+								true))) {
+							this.prefix = XmlUtil.text(XmlUtil.findByName(
+									nameNode, &quot;prefix&quot;, true));
+							name = this.prefix;
+						}
+					} catch (e) {
+						console.log(&quot;Element does not exist&quot;);
+					}
+					try {
+						if (XmlUtil.text(XmlUtil.findByName(nameNode, &quot;given&quot;,
+								true))) {
+							this.given = XmlUtil.text(XmlUtil.findByName(
+									nameNode, &quot;given&quot;, true));
+							name += &quot; &quot; + this.given;
+						}
+					} catch (e) {
+						console.log(&quot;Element does not exist&quot;);
+					}
+					try {
+						if (XmlUtil.text(XmlUtil.findByName(nameNode, &quot;family&quot;,
+								true))) {
+							this.family = XmlUtil.text(XmlUtil.findByName(
+									nameNode, &quot;family&quot;, true));
+							name += &quot; &quot; + this.family;
+						}
+					} catch (e) {
+						console.log(&quot;Element does not exist&quot;);
+					}
+					try {
+						if (XmlUtil.text(XmlUtil.findByName(nameNode, &quot;suffix&quot;,
+								true))) {
+							this.suffix = XmlUtil.text(XmlUtil.findByName(
+									nameNode, &quot;suffix&quot;, true));
+							name += &quot; &quot; + this.suffix;
+						}
+					} catch (e) {
+						console.log(&quot;Element does not exist&quot;);
+					}
+					this.name = jQuery.trim(name);
+				}
+
+				/*
+				 * set image.
+				 */
+				var descNode = XmlUtil.findByName(identifiedPerson, &quot;desc&quot;,
+						true);
+				if (descNode) {
+					try {
+						this.image = XmlUtil.text(XmlUtil.findByName(descNode,
+								&quot;thumbnail&quot;, true));
+					} catch (e) {
+						console.log(&quot;Element does not exist&quot;);
+					}
+				}
+			}
+
+			/*
+			 * set userName
+			 */
+			var value = XmlUtil
+					.getXPathResult(message,
+							AppConstants.XPaths.Staff.USERNAME,
+							XPathResult.STRING_TYPE);
+			this.userName = (value &amp;&amp; value.stringValue) ? value.stringValue
+					: &quot;&quot;;
+
+			/*
+			 * set password
+			 */
+			var value = XmlUtil
+					.getXPathResult(message,
+							AppConstants.XPaths.Staff.PASSWORD,
+							XPathResult.STRING_TYPE);
+			this.password = (value &amp;&amp; value.stringValue) ? value.stringValue
+					: &quot;&quot;;
+		}
+
+	}
+
+};
+HIN.StaffVO.prototype.toString = function() {
+	return &quot;[&quot; + this.subscriberId + &quot; , &quot; + this.name + &quot; , &quot; + this.roles
+			+ &quot; , &quot; + this.image + &quot; , &quot; + this.message + &quot; , &quot; + this.gender
+			+ &quot; , &quot; + this.consultant + &quot; , &quot; + this.userName + &quot; , &quot;
+			+ this.password + &quot;]&quot;;
+};
+</pre>
+</body>
+</html>

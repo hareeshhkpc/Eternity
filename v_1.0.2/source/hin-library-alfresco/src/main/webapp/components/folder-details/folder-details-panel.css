@@ -1,0 +1,18 @@
+.folder-details-panel
+{
+   background-color: #D9D9D9;
+   border-top: 1px solid #CCCCCC;
+   padding: 1em 0 1em 1em;
+   border:1px solid #BABABA;
+} 
+
+.folder-details-panel .panel-body
+{
+   padding: 1em 1em 0;
+}
+
+.folder-details-panel .form-container .form-fields
+{
+   border-bottom: none;
+   padding: 1em 1em 0;
+}

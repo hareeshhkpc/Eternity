@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="../sarissa/sarissa.js"></script>
+<title>Insert title here</title>
+<script type="text/javascript" src="sarissa.js"></script>
+<script type="text/javascript" src="jquery-1.6.4.js"></script>
+<script type="text/javascript" src="jquery.xml.js"></script>
+<script type="text/javascript">
+
+var xml = Sarissa.getDomDocument();
+xml.async = false;
+xml.load("Demo.xml");
+	//var xml= $("<info> <name>Swetha</name><addr>Domlur</addr> </info>"); 
+			
+	function update()
+	{
+		//$("input[@name=testGroup]:checked").val();
+		alert($("input[@name=rname]:checked").val());
+	}
+	function appending(bl)
+	{
+		if(bl == false)
+			$("#r2").attr("checked", "true");
+		else
+			$("#r1").attr("checked", "true");
+	} 
+</script>
+</head>
+<body>
+
+<input type="radio" name="rname" id="r1" value="true"/>true:
+<input type="radio" name="rname" id="r2" value="false"/>false: 
+
+<input type="button" onclick="update()" value="Update"> <br/><br/>
+<input type="button" onclick="appending(false)" value="Append">
+
+</body>
+</html>

@@ -1,0 +1,259 @@
+
+<link rel="stylesheet" href="../html/css/healthhistoryquestionnaire.css" />
+
+<div id="programContent" class="ui-body">
+	<div data-role="header" data-theme="v"
+		class="ui-header ui-body-b ui-question-title headerPage" data-position="inline"
+		role="banner" id="personalHealthToggle" toggleOption="header">
+		<fieldset class="ui-grid-a">
+			<div class="ui-block-b">
+				<div class="program1">Personal Health History</div>
+			</div>
+		</fieldset>
+	</div>
+
+	<div class="hiddenDivs" id="personalHealthToggle_child">
+	<label>Childhood Illness</label>
+	
+		<div class="questions" id="childhoodIllness"  pathFields="component,structuredBody,component,section[1],entry[1],observation[1]" isEditor="true"
+			 tagName="value"  dataType="CVList" idSuffix="1" editorType="CVListCheckBox" 
+			 configParams="[{name:'conceptClass',value:'questionnair-childhood-illness-questions'},{name:'lookupType',value:'static'},
+                            {name:'lookupSelectType',value:'multiple'},{name:'lookupControl',value:'multiple'}]"></div>                            
+			
+			<br/>
+		 
+				
+		<div  editorLabel="How healthy are you? " pathFields="component,structuredBody,component,section[1],entry[2],observation[1]" isEditor="true"
+					tagName="value"  dataType="CVList" idSuffix="1"
+					editorType="CVListSlider"></div>
+		
+		<div isEditor="true" editorLabel="How often did you consult a medical professional in the past year?" idSuffix="1"
+						pathFields="component,structuredBody,component,section[1],entry[3],observation"
+						tagName="value" dataType="CVList" editorType="CVListTextbox"></div>								
+		
+		<div isEditor="true" editorLabel="Date of last exam?" pathFields="component,structuredBody,component,section[1],entry[4],observation[1]" 
+		tagName="value" dataType="TS" editorType="TS" configParams="[{name:'width',value:'50%'},{name:'validate',value:'validate[required]'},{name:'beforeToday',value:true}]"></div>
+		
+						
+		<div isEditor="true" editorLabel="List any medical problems that other doctors have diagnosed" idSuffix="1"
+						 pathFields="component,structuredBody,component,section[1],entry[5],observation[1]"
+						tagName="value" dataType="CVList" editorType="CVListTextarea"></div>	
+						
+																	
+	</div>
+	
+	 <div id="WrapperSurgeriesToggle" class="headerAllignment">
+		<div data-role="header" data-theme="v"
+			class="ui-header ui-body-b ui-question-title headerPage" data-position="inline"
+			role="banner" id="SurgeriesToggle" toggleOption="header">
+			<fieldset class="ui-grid-a">
+				<div class="ui-block-b">
+					<div class="program1">Surgeries</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="hiddenDivs" id="SurgeriesToggle_child">
+			
+			<div isEditor="true" editorLabel="Surgeries:" idSuffix="1" 
+				pathFields="component,structuredBody,component,section[2],entry,observation[1]"
+				tagName="value" dataType="CVList" editorType="Grid" groupId="surgeriesQues1"
+				gridEditorType="CVListThreeTextbox"></div>
+		</div>
+	</div>
+	<div id="WrapperSurgeriesToggle" class="headerAllignment">
+		<div data-role="header" data-theme="v"
+			class="ui-header ui-body-b ui-question-title headerPage" data-position="inline"
+			role="banner" id="HospitalizationsToggle" toggleOption="header">
+			<fieldset class="ui-grid-a">
+				<div class="ui-block-b">
+					<div class="program1">Other hospitalizations:</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="hiddenDivs" id="HospitalizationsToggle_child">
+				
+				<div isEditor="true" editorLabel="Other hospitalizations:"
+					idSuffix="1" id="demo"
+					pathFields="component,structuredBody,component,section[3],entry,observation[1]"
+					tagName="value" dataType="CVList" editorType="Grid" groupId="hospitalizationsQues1"
+					gridEditorType="CVListThreeTextbox"></div>
+		</div>
+	</div>
+	<div id="WrapperSurgeriesToggle" class="headerAllignment">
+		<div data-role="header" data-theme="v"
+			class="ui-header ui-body-b ui-question-title headerPage" data-position="inline"
+			role="banner" id="MedicationsToggle" toggleOption="header">
+			<fieldset class="ui-grid-a">
+				<div class="ui-block-b">
+					<div class="program1">Medications And Allergies</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="hiddenDivs" id="MedicationsToggle_child">
+				
+			<div isEditor="true" editorLabel="Medications" idSuffix="1"  
+				pathFields="component,structuredBody,component,section[4],entry,observation[1]"
+				tagName="value" dataType="CVList" editorType="Grid" groupId="medicationsQues1"
+				configParams="[{name:'column1',value:'Name the Drug'},{name:'column2',value:'Strength'},{name:'column3',value:'Frequency Taken'}]"
+				gridEditorType="CVListThreeTextbox"></div>
+				
+				<div isEditor="true" editorLabel="Allergies to Medications" idSuffix="1" id="demo"
+				pathFields="component,structuredBody,component,section[5],entry,observation[1]"
+				tagName="value" dataType="CVList" editorType="Grid" groupId="allergiesQues1"
+				configParams="[{name:'column1',value:'Name the Drug'},{name:'column2',value:'Reaction You Had'}]"
+				gridEditorType="CVListTwoTextbox"></div> 
+		</div>
+	</div>
+
+
+
+
+	<div id="WrapperSurgeriesToggle" class="headerAllignment">
+		<div data-role="header" data-theme="v"
+			class="ui-header ui-body-b ui-question-title headerPage" data-position="inline"
+			role="banner" id="FamilyHealthHistoryToggle" toggleOption="header">
+			<fieldset class="ui-grid-a">
+				<div class="ui-block-b">
+					<div class="program1">Family Health History</div>
+				</div>
+			</fieldset>
+		</div>
+
+		<div class="hiddenDivs" id="FamilyHealthHistoryToggle_child">
+		
+			<div class="questions" id="familyHealth"  pathFields="component,structuredBody,component,section[6],entry[1],observation" isEditor="true"
+			 tagName="value"  dataType="CVList" idSuffix="2" editorType="CVListCheckBox"
+			 configParams="[{name:'conceptClass',value:'questionnair-family-health-history'},{name:'lookupType',value:'static'},
+                            {name:'lookupSelectType',value:'multiple'},{name:'lookupControl',value:'multiple'}]"></div> 
+                            
+              <br><br>              
+			
+			
+				<div class="insideheaderAllignment">
+		     <div isEditor="true" editorLabel="Father" idSuffix="1" style="width:99%"
+					id="demo" pathFields="component,structuredBody,component,section[6],entry[2],observation"
+					tagName="value" dataType="CVList" editorType="CVListTwoTextbox" 
+					configParams="[{name:'column1',value:' Age'},{name:'column2',value:' Significant Health Problems'}]"></div> 
+					
+			 	<div isEditor="true" editorLabel="Mother" idSuffix="1" style="width:99%"
+					id="demo" pathFields="component,structuredBody,component,section[6],entry[3],observation"
+					tagName="value" dataType="CVList" editorType="CVListTwoTextbox" 
+					configParams="[{name:'column1',value:' Age'},{name:'column2',value:' Significant Health Problems'}]"></div>
+				<div style="width:98%;float:left">
+			 	<div isEditor="true" editorLabel="Siblings" idSuffix="1"
+					id="demo" pathFields="component,structuredBody,component,section[6],entry[4],observation"
+					configParams="[{name:'column1',value:' Age'},{name:'column2',value:' Significant Health Problems'}]"
+					tagName="value" dataType="CVList" editorType="Grid" groupId="familyHealthQues3"
+					gridEditorType="CVListTwoTextbox"></div>
+				
+				<div isEditor="true" editorLabel="Grandmother" idSuffix="1"
+					id="demo" pathFields="component,structuredBody,component,section[6],entry[5],observation"
+					configParams="[{name:'column1',value:' Age'},{name:'column2',value:' Significant Health Problems'}]"
+					tagName="value" dataType="CVList" editorType="Grid" groupId="familyHealthQues4"
+					gridEditorType="CVListTwoTextbox"></div>
+					
+				<div isEditor="true" editorLabel="Grandfather" idSuffix="1"
+					id="demo" pathFields="component,structuredBody,component,section[6],entry[6],observation"
+					configParams="[{name:'column1',value:' Age'},{name:'column2',value:' Significant Health Problems'}]"
+					tagName="value" dataType="CVList" editorType="Grid" groupId="familyHealthQues5"
+					gridEditorType="CVListTwoTextbox"></div> 
+					
+				</div>
+		</div>
+	</div>
+
+	<div id="WrapperSurgeriesToggle" class="headerAllignment">
+		<div data-role="header" data-theme="v"
+			class="ui-header ui-body-b ui-question-title headerPage" data-position="inline"
+			role="banner" id="HealthHabitsToggle" toggleOption="header">
+			<fieldset class="ui-grid-a">
+				<div class="ui-block-b">
+					<div class="program1">Health Habits</div>
+				</div>
+			</fieldset>
+		</div>
+	<div class="hiddenDivs" id="HealthHabitsToggle_child">
+		<div class="ui-form-border" style="width:98%">
+			<label class="ui-health-habit-font">Exercise :</label>
+			
+			<div isEditor="true" editorLabel="Do you Exercise? :" idSuffix="1" 
+			id="demo" pathFields="component,structuredBody,component,section[7],entry[1],observation[1]"
+			tagName="value" dataType="CVList"  editorType="CVListBoolean"></div>
+			
+			<div isEditor="true" editorLabel=" how often?:" idSuffix="1" 
+			id="demo" pathFields="component,structuredBody,component,section[7],entry[1],observation[2]"
+			tagName="value" dataType="CVList" editorType="CVListTextbox"> </div>					
+		</div>
+		
+		<div class="ui-form-border" style="width:98%">
+			<label class="ui-health-habit-font">Diet :</label>
+			
+			<div isEditor="true" editorLabel="Are you dieting? :" idSuffix="2" 
+			id="demo" pathFields="component,structuredBody,component,section[7],entry[2],observation[1]"
+			tagName="value" dataType="CVList"  editorType="CVListBoolean"></div>
+			
+			<div isEditor="true" editorLabel=" how often?:" idSuffix="1" 
+			id="demo" pathFields="component,structuredBody,component,section[7],entry[2],observation[2]"
+			tagName="value" dataType="CVList" editorType="CVListTextbox"> </div>					
+		</div>
+		
+		<div class="ui-form-border" style="width:98%">
+			<label class="ui-health-habit-font">Sodas :</label>
+			
+			<div isEditor="true" editorLabel="Do you drink sodas?" idSuffix="3" 
+			id="demo" pathFields="component,structuredBody,component,section[7],entry[3],observation[1]"
+			tagName="value" dataType="CVList"  editorType="CVListBoolean"></div>
+			
+			<div isEditor="true" editorLabel="# of cups/cans per day?:" idSuffix="1" 
+			id="demo" pathFields="component,structuredBody,component,section[7],entry[3],observation[2]"
+			tagName="value" dataType="CVList" editorType="CVListTextbox"> </div>
+					
+		</div>
+		
+		<div class="ui-form-border" style="width:98%">
+			<label class="ui-health-habit-font">Alcohol :</label>			
+			<div isEditor="true" editorLabel="Do you drink alcohol? :" idSuffix="4" 
+			id="demo" pathFields="component,structuredBody,component,section[7],entry[4],observation[1]"
+			tagName="value" dataType="CVList"  editorType="CVListBoolean"></div>			
+			<div isEditor="true" editorLabel=" How many drinks per day?:" idSuffix="1" 
+			id="demo" pathFields="component,structuredBody,component,section[7],entry[4],observation[2]"
+			tagName="value" dataType="CVList" editorType="CVListTextbox"> </div>					
+		</div>
+		
+
+		</div>
+	</div>
+	
+	
+	
+		<div data-role="header" data-theme="v"
+			class="ui-header ui-body-b ui-question-title headerPage headerAllignment" data-position="inline"
+			role="banner" id="OtherProblemsToggle" toggleOption="header">
+			<fieldset class="ui-grid-a">
+				<div class="ui-block-b">
+					<div class="program1">Other Problems</div>
+				</div>
+			</fieldset>
+		</div>
+
+		<div class="hiddenDivs" id="OtherProblemsToggle_child">
+		
+			<div class="questions" id="childhoodIllness"  pathFields="component,structuredBody,component,section[8],entry[1],observation[1]" isEditor="true"
+			 tagName="value"  dataType="CVList" idSuffix="3" editorType="CVListCheckBox"
+			 configParams="[{name:'conceptClass',value:'questionnair-other-problems'},{name:'lookupType',value:'static'},
+                            {name:'lookupSelectType',value:'multiple'},{name:'lookupControl',value:'multiple'}]"></div>  
+			
+			<div isEditor="true" editorLabel="Recent changes in:" idSuffix="1"
+						pathFields="component,structuredBody,component,section[8],entry[2],observation"
+						tagName="value" dataType="CVList" editorType="CVListTextbox" configParams="[{name:'width',value:'50%'}]"></div>	
+			<div isEditor="true" editorLabel="Other pain/discomfort" idSuffix="1"
+						pathFields="component,structuredBody,component,section[8],entry[3],observation"
+						tagName="value" dataType="CVList" editorType="CVListTextbox" configParams="[{name:'width',value:'50%'}]"></div>	
+			
+		</div>
+
+	
+</div> 
+
+</div>
+

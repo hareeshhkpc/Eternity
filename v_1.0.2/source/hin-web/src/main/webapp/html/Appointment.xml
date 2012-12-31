@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Appointments id="A1">
+    <encounter id="E1">
+	    <encounterDate value="20120104103010"/>
+	    <process>Measure</process>
+	    <physician>Dr Graham Simpson</physician>
+	    <appointmentDate id="" value="11/04/2012 10:00 AM"/>
+	    <reason>First Visit</reason>
+	    <patient>Julia Moore</patient>
+	    <comments></comments>	
+    </encounter>
+    
+     <encounter id="E2">
+	    <encounterDate value="20120404153010"/>
+	    <process>Mentor</process>
+	    <physician>Dr Graham Simpson</physician>
+	    <appointmentDate id="" value="11/05/2012 10:00 AM"/>
+	    <reason>First Visit</reason>
+	    <patient>Khan Gulnar</patient>
+	    <comments></comments>	
+    </encounter>
+</Appointments>

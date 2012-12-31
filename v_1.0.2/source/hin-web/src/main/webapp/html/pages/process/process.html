@@ -1,0 +1,71 @@
+
+
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+
+				/* var processDefinition = appController.getComponent(
+						"RenderingEngine").getChildComponent("Process")
+						.getProcessDefinition();
+				alert(processDefinition.processName); */
+				appController.getComponent("DataLayer").clearProcesses();
+				var processName = appController.getComponent("RenderingEngine")
+						.getChildComponent("Process").getProcessName();
+
+				var processId = appController.getComponent("RenderingEngine")
+						.getChildComponent("Process").getProcessId();
+				/* alert("processName = " + processName + " : processId = "
+						+ processId); */
+				if (processId) {
+					appController.getComponent("DataLayer")
+							.getProcessDefinitionInstance(processId);
+				} else {
+					var processEntry = new HIN.ProcessEntry(appController,
+							processName, loadProcess);
+					processEntry.getProcessInstance();//fetchProcessInstance();
+				}
+			});
+
+	function loadProcess(processDefinition) {
+		//alert($.toJSON(processDefinition));
+		appController.getComponent("RenderingEngine").getChildComponent(
+				"Process").setProcessDefinition(processDefinition);
+		appController.getComponent("RenderingEngine").getChildComponent(
+				"Process").loadProcess();
+	}
+</script>
+<!-- <div id="mcs_container_left">
+	<div class="customScrollBox">
+		<div class="container" style="top:0px">
+			<div class="content"> -->
+<div class="ui-left-top">
+	<div id="processLeftNavigation" class="inner-left">
+		<!--div class="ui-nav nav-current">
+			<div class="rotate-text registration">Registration</div>
+		</div-->
+
+	</div>
+	<div id="processNavigation" class="inner-right">
+		<!-- div class="ui-box current registration"><div class="ui-box-spacing">Registration</div></div-->
+	</div>
+	<div id="patientHomeIcon" style="display: none"
+		class="inner-right-corner other home-icon-link"></div>
+	<div id="staffHomeIcon" style="display: none"
+		class="inner-right-corner other home-icon-link"></div>
+	<div id="licenseeHomeIcon" style="display: none"
+		class="inner-right-corner other home-icon-link"></div>
+		
+</div>
+<div class="ui-left-bottom">
+	<div class="ui-end-btn">
+		<input type="button" id="terminateProcess" value="Terminate Process" />
+	</div>
+</div>
+<!-- 			</div>
+		</div>
+		<div class="dragger_container" style="display: none">
+			<div class="dragger"></div>
+		</div>
+	</div>
+</div>
+ -->

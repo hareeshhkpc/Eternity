@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?><POLB_IN224200 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ITSVersion="XML_1.0" category="rim" e_id="id1" maxOccurs="1" minOccurs="1" type="AnonymComplex_1" use="required" xsi:schemaLocation="urn:hl7-org:v3   ../schemas/POLB_IN224200.xsd">
+  <realmCode code="AUS"/>
+  <!--
+    - NOTE: The oid "2.16.840.1.113883.19" is a 'sample' OID.  It will need to be replaced
+    - by application-specific OIDs representing the application which actually created the
+    - identifier.
+    - 2.16.840.1.113883.19.1 = Application message identifiers
+    - 2.16.840.1.113883.19.2 = Application identifiers
+    - 2.16.840.1.113883.19.3 = Facility identifiers
+    - 2.16.840.1.113883.19.4 = Filler identifiers
+    - 2.16.840.1.113883.19.5 = Hospital-assigned patient identifier
+    - 2.16.840.1.113883.19.6 = Lab Application-assigned patient identifier
+    - 2.16.840.1.113883.19.7 = HIC-assigned patient identifier
+    - 2.16.840.1.113883.19.8 = HIC-assigned provider identifier
+    - 2.16.840.1.113883.19.9 = Hospital-assigned provider identifier
+    
+    - In addition, some code systems do not yet have assigned OIDs.  For the purposes of this
+    - example, the following have been used:
+    - 2.16.840.1.113883.6.100001 = Realm
+    - 2.16.840.1.113883.6.100002 = Local lab battery codes
+    - 2.16.840.1.113883.6.100003 = Specimen action codes (e.g. Received)
+    - 2.16.840.1.113883.6.100004 = Lab area type
+    - 2.16.840.1.113883.6.100005 = Local lab codes
+    
+    - This sample message was based on a V2 sample message from the Australian Pathology sample 
+    - set by Lloyd Mackenzie and Grahame Grieve Aug/Sept 2005 for the Australian and New Zealand
+    - HL7 Conference. This message validates against the schema using XMLSpy. 
+  -->
+  <id assigningAuthorityName="Kestral     Message Builder" category="hl7" e_id="id1634" extension="KEST_000401191439251" maxOccurs="1" minOccurs="1" root="2.16.840.1.113883.19.1" type="II" use="required"/>
+  <creationTime category="hl7" e_id="id1635" maxOccurs="1" minOccurs="1" type="TS" use="required" value="20040119143926+1000"/>
+  <versionCode category="hl7" code="NE2006" e_id="id1637" maxOccurs="1" minOccurs="0" type="CS" use="optional"/>
+  <interactionId assigningAuthorityName="HL7" category="hl7" e_id="id1638" extension="POLB_IN224200" maxOccurs="1" minOccurs="1" root="2.16.840.1.113883.1.6" type="II" use="required"/>
+  <processingCode category="hl7" code="D" e_id="id1640" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+  <processingModeCode category="hl7" code="T" e_id="id1641" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+  <acceptAckCode category="hl7" code="AL" e_id="id1642" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+  <receiver category="rim" e_id="id1645" maxOccurs="unbounded" minOccurs="1" type="MCCI_MT000100UV01.Receiver" typeCode="RCV" use="required">
+    <device category="rim" classCode="DEV" determinerCode="INSTANCE" e_id="id59" maxOccurs="1" minOccurs="1" type="MCCI_MT000100UV01.Device" use="required">
+      <id category="hl7" e_id="id38" extension="HIS_Application" maxOccurs="unbounded" minOccurs="1" root="2.16.840.1.113883.19.2" type="II" use="required"/>
+      <asLocatedEntity category="rim" classCode="LOCE" e_id="id46" maxOccurs="unbounded" minOccurs="0" type="MCCI_MT000100UV01.LocatedEntity" use="optional">
+        <location category="rim" classCode="PLC" determinerCode="INSTANCE" e_id="id50" maxOccurs="1" minOccurs="0" type="MCCI_MT000100UV01.Place" use="optional">
+          <id category="hl7" e_id="id55" extension="Kestville_Hospital" maxOccurs="unbounded" minOccurs="1" root="2.16.840.1.113883.19.3" type="II" use="required"/>
+        </location>
+      </asLocatedEntity>
+    </device>
+  </receiver>
+  <sender category="rim" e_id="id1647" maxOccurs="1" minOccurs="1" type="MCCI_MT000100UV01.Sender" typeCode="SND" use="required">
+    <device category="rim" classCode="DEV" determinerCode="INSTANCE" e_id="id63" maxOccurs="1" minOccurs="1" type="MCCI_MT000100UV01.Device" use="required">
+      <id category="hl7" e_id="id38.1" extension="Lab_Application" maxOccurs="unbounded" minOccurs="1" root="2.16.840.1.113883.19.2" type="II" use="required"/>
+      <asLocatedEntity category="rim" classCode="LOCE" e_id="id46.1" maxOccurs="unbounded" minOccurs="0" type="MCCI_MT000100UV01.LocatedEntity" use="optional">
+        <location category="rim" classCode="PLC" determinerCode="INSTANCE" e_id="id50.1" maxOccurs="1" minOccurs="0" type="MCCI_MT000100UV01.Place" use="optional">
+          <id category="hl7" e_id="id55.1" extension="Kestville_Hospital" maxOccurs="unbounded" minOccurs="1" root="2.16.840.1.113883.19.3" type="II" use="required"/>
+        </location>
+      </asLocatedEntity>
+    </device>
+  </sender>
+  <controlActProcess category="rim" classCode="CACT" e_id="id1649" maxOccurs="1" minOccurs="1" moodCode="EVN" type="POLB_IN224200.MCAI_MT700201UV01.ControlActProcess" use="required">
+    <subject category="rim" contextConductionInd="false" e_id="id29" maxOccurs="unbounded" minOccurs="0" type="POLB_IN224200.MCAI_MT700201UV01.Subject2" typeCode="SUBJ" use="optional">
+      <observationBattery category="rim" classCode="BATTERY" e_id="id31" maxOccurs="1" minOccurs="1" moodCode="EVN" type="POLB_MT004000.ObservationBattery" use="required">
+        <code category="hl7" code="E" codeSystem="2.16.840.1.113883.6.100002" displayName="Elecs,Urea,Crea" e_id="id287" maxOccurs="1" minOccurs="1" type="CD" use="required">
+          <translation code="LOINC_code_for_E" codeSystem="2.16.840.1.113883.6.1"/>
+        </code>
+        <text category="hl7" e_id="id288" maxOccurs="1" mediaType="text/x-hl7-ft" minOccurs="0" type="ED" use="optional">\H\SERUM/PLASMA\N\\.br\Sodium \H\ 130\N\ mmol/L ( 135-145
+          )\.br\Potassium \H\ 5.6\N\ mmol/L ( 3.5-5.5 )\.br\Chloride 100 mmol/L ( 95-110 )\.br\HCO3
+          24 mmol/L ( 22-30 )\.br\\.br\\.br\Comment: Creatinine and urea to follow this
+          afternoon.\.br\Request No: P800000\.br\ Date: 19/01/04\.br\ Time: 11:25 Units Ref
+          Range\.br\ -------- -------- -------- -------- -------- ------
+          ---------\.br\\H\SERUM/PLASMA\N\\.br\Sodium \H\ 130L\N\ mmol/L 135-145\.br\Potassium \H\
+          5.6H\N\ mmol/L 3.5-5.5\.br\Chloride 100 mmol/L 95-110\.br\HCO3 24 mmol/L
+          22-30\.br\Creatinine mmol/L 0.05-0.11\.br\Urea mmol/L 2.5-8.3\.br\\.br\\H\19/01/04
+          04P800000\N\\.br\\H\General Comments:\N\ Creatinine and urea to follow this afternoon.</text>
+        <statusCode category="hl7" code="active" e_id="id289" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+        <effectiveTime category="hl7" e_id="id290" maxOccurs="1" minOccurs="1" type="TS" use="required" value="20040119112500+1000"/>
+        <confidentialityCode category="hl7" code="N" codeSystem="2.16.840.1.113883.5.25" e_id="id292" maxOccurs="unbounded" minOccurs="1" type="CE" use="required"/>
+        <subject category="rim" e_id="id294" maxOccurs="unbounded" minOccurs="1" type="POLB_MT004000.Subject2" typeCode="SBJ" use="required">
+          <specimen category="rim" e_id="id396" maxOccurs="1" minOccurs="0" type="COCT_MT080100.Specimen" use="optional">
+            <id category="hl7" e_id="id1315" maxOccurs="1" minOccurs="1" nullFlavor="UNK" type="II" use="required"/>
+            <code category="hl7" e_id="id1316" maxOccurs="1" minOccurs="1" nullFlavor="UNK" type="CE" use="required"/>
+            <specimenNatural category="rim" classCode="MAT" determinerCode="INSTANCE" e_id="id1320" maxOccurs="1" minOccurs="1" nullFlavor="UNK" type="COCT_MT080100.Natural" use="required">
+              <code category="hl7" e_id="id1239" maxOccurs="1" minOccurs="1" nullFlavor="UNK" type="CE" use="required"/>
+            </specimenNatural>
+            <subjectOf2 category="rim" e_id="id1326" maxOccurs="unbounded" minOccurs="0" type="COCT_MT080100.Subject5" typeCode="SBJ" use="optional">
+              <processStep category="rim" classCode="TRNS" e_id="id1343" maxOccurs="1" minOccurs="1" moodCode="EVN" type="COCT_MT080100.ProcessStep" use="required">
+                <code category="hl7" code="RCV" codeSystem="2.16.840.1.113883.6.100003" displayName="Specimen                   Received" e_id="id1306" maxOccurs="1" minOccurs="0" type="CD" use="optional"/>
+                <effectiveTime category="hl7" e_id="id1309" maxOccurs="1" minOccurs="0" type="IVL_TS" use="optional" value="20040119130000+1000"/>
+              </processStep>
+            </subjectOf2>
+            <productOf category="rim" e_id="id1327" maxOccurs="1" minOccurs="0" type="COCT_MT080100.Product" typeCode="PRD" use="optional">
+              <process category="rim" classCode="PROC" e_id="id1314" maxOccurs="1" minOccurs="1" moodCode="EVN" type="COCT_MT080100.Process" use="required">
+                <code category="hl7" e_id="id1297" maxOccurs="1" minOccurs="1" nullFlavor="UNK" type="CE" use="required"/>
+                <performer category="rim" e_id="id1303" maxOccurs="unbounded" minOccurs="0" type="COCT_MT080100.Performer2" typeCode="PRF" use="optional">
+                  <assignedEntity category="rim" classCode="ASSIGNED" e_id="id1270" maxOccurs="1" minOccurs="1" type="COCT_MT090000UV01.AssignedEntity" use="required">
+                    <id category="hl7" e_id="id626" extension="Hosp" maxOccurs="unbounded" minOccurs="0" root="2.16.840.1.113883.19.3" type="II" use="optional"/>
+                    <assignedOrganization category="rim" classCode="ORG" determinerCode="INSTANCE" e_id="id632" maxOccurs="1" minOccurs="0" type="COCT_MT090000UV01.Organization" use="optional">
+                      <name category="hl7" e_id="id663" maxOccurs="unbounded" minOccurs="0" type="EN" use="optional">Hospital Collection</name>
+                    </assignedOrganization>
+                  </assignedEntity>
+                </performer>
+              </process>
+            </productOf>
+          </specimen>
+        </subject>
+        <recordTarget category="rim" e_id="id295" maxOccurs="1" minOccurs="0" type="POLB_MT004000.RecordTarget" typeCode="RCT" use="optional">
+          <patientClinical category="rim" classCode="PAT" e_id="id373" maxOccurs="1" minOccurs="1" type="COCT_MT050004UV01.PatientClinical" use="required">
+            <id assigningAuthorityName="Kestville               Hospital Patient Identifier" category="hl7" e_id="id403" extension="134680" maxOccurs="unbounded" minOccurs="1" root="2.16.840.1.113883.19.5" type="II" use="required"/>
+            <id assigningAuthorityName="Kestral               Application Patient Identifier" category="hl7" e_id="id403.1" extension="302533" maxOccurs="unbounded" minOccurs="1" root="2.16.840.1.113883.19.6" type="II" use="required"/>
+            <id assigningAuthorityName="HIC               Australia Patient Identifier" category="hl7" e_id="id403.2" extension="6187/59213/4" maxOccurs="unbounded" minOccurs="1" root="2.16.840.1.113883.19.7" type="II" use="required"/>
+            <addr category="hl7" e_id="id404" maxOccurs="unbounded" minOccurs="0" type="AD" use="optional">
+              <streetAddressLine>1 SMITH STREET</streetAddressLine>
+              <city>MELBOURNE</city>
+              <postalCode>3000</postalCode>
+            </addr>
+            <statusCode category="hl7" code="active" e_id="id406" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+            <patientPerson category="rim" classCode="PSN" determinerCode="INSTANCE" e_id="id410" maxOccurs="1" minOccurs="1" type="COCT_MT030000UV04.Person" use="required">
+              <name category="hl7" e_id="id496" maxOccurs="unbounded" minOccurs="0" type="EN" use="optional">
+                <given>John</given>
+                <family>Citizen</family>
+              </name>
+              <administrativeGenderCode category="hl7" code="M" codeSystem="2.16.840.1.113883.5.1" e_id="id499" maxOccurs="1" minOccurs="0" type="CE" use="optional"/>
+              <birthTime category="hl7" e_id="id500" maxOccurs="1" minOccurs="0" type="TS" use="optional" value="19730701"/>
+            </patientPerson>
+          </patientClinical>
+        </recordTarget>
+        <performer category="rim" e_id="id296" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.Performer" typeCode="PRF" use="optional">
+          <assignedEntity category="rim" classCode="ASSIGNED" e_id="id356" maxOccurs="1" minOccurs="1" type="COCT_MT090000UV01.AssignedEntity" use="required">
+            <id category="hl7" e_id="id626.1" extension="Manager" maxOccurs="unbounded" minOccurs="0" root="2.16.840.1.113883.19.9" type="II" use="optional"/>
+            <code category="hl7" code="CH" codeSystem="2.16.840.1.113883.6.100004" displayName="Chemistry" e_id="id627" maxOccurs="1" minOccurs="0" type="CE" use="optional"/>
+            <assignedPerson category="rim" e_id="id633" maxOccurs="1" minOccurs="0" type="COCT_MT090000UV01.Person" use="optional">
+              <name category="hl7" e_id="id669" maxOccurs="unbounded" minOccurs="1" type="EN" use="required">
+                <family>Manager</family>
+              </name>
+            </assignedPerson>
+          </assignedEntity>
+        </performer>
+        <inFulfillmentOf category="rim" e_id="id301" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.InFulfillmentOf1" typeCode="FLFS" use="optional">
+          <fulfillerPromise category="rim" classCode="OBS" e_id="id276" maxOccurs="1" minOccurs="1" moodCode="PRMS" type="POLB_MT004000.FulfillerPromise" use="required">
+            <id category="hl7" e_id="id269" extension="04P800000-1049151" maxOccurs="unbounded" minOccurs="1" root="2.16.840.1.113883.19.4" type="II" use="required"/>
+            <statusCode category="hl7" code="active" e_id="id270" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+            <inFulfillmentOf category="rim" e_id="id271" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.InFulfillmentOf3" typeCode="FLFS" use="optional">
+              <observationRequest category="rim" e_id="id278" maxOccurs="1" minOccurs="1" type="POLB_MT001001.ObservationRequest" use="required">
+                <id category="hl7" e_id="id793" maxOccurs="unbounded" minOccurs="1" nullFlavor="UNK" type="II" use="required"/>
+                <code category="hl7" code="E" codeSystem="2.16.840.1.113883.6.100002" displayName="Elecs,Urea,Crea" e_id="id794" maxOccurs="1" minOccurs="1" type="CD" use="required">
+                  <translation code="LOINC_code_for_E" codeSystem="2.16.840.1.113883.6.1"/>
+                </code>
+                <effectiveTime category="hl7" e_id="id797" maxOccurs="unbounded" minOccurs="0" type="SXCM_TS" use="optional" value="20040119143900+1000"/>
+                <priorityCode category="hl7" code="R" codeSystem="2.16.840.1.113883.5.7" displayName="routine" e_id="id798" maxOccurs="unbounded" minOccurs="0" type="CE" use="optional"/>
+                <confidentialityCode category="hl7" e_id="id799" maxOccurs="unbounded" minOccurs="1" nullFlavor="UNK" type="CE" use="required"/>
+                <author category="rim" e_id="id810" maxOccurs="1" minOccurs="1" type="POLB_MT001001.Author" typeCode="AUT" use="required">
+                  <time category="hl7" e_id="id768" maxOccurs="1" minOccurs="1" type="TS" use="required" value="20040119113000+1000"/>
+                  <modeCode category="hl7" e_id="id769" maxOccurs="1" minOccurs="1" nullFlavor="UNK" type="CE" use="required"/>
+                  <signatureCode category="hl7" e_id="id770" maxOccurs="1" minOccurs="1" nullFlavor="UNK" type="CS" use="required"/>
+                  <assignedEntity category="rim" classCode="ASSIGNED" e_id="id772" maxOccurs="1" minOccurs="1" type="COCT_MT090000UV01.AssignedEntity" use="required">
+                    <id assigningAuthorityName="HIC Australia Provider Identifier" category="hl7" e_id="id626.2" extension="1234567A" maxOccurs="unbounded" minOccurs="0" root="2.16.840.1.113883.19.8" type="II" use="optional"/>
+                    <assignedPerson category="rim" classCode="PSN" determinerCode="INSTANCE" e_id="id633.1" maxOccurs="1" minOccurs="0" type="COCT_MT090000UV01.Person" use="optional">
+                      <name category="hl7" e_id="id669.1" maxOccurs="unbounded" minOccurs="1" type="EN" use="required">
+                        <given>Ned</given>
+                        <family qualifier="BR">Kelly</family>
+                      </name>
+                    </assignedPerson>
+                  </assignedEntity>
+                </author>
+                <dataEnterer category="rim" e_id="id811" maxOccurs="1" minOccurs="0" type="POLB_MT001001.DataEnterer" typeCode="ENT" use="optional">
+                  <modeCode category="hl7" e_id="id788" maxOccurs="1" minOccurs="1" nullFlavor="UNK" type="CE" use="required"/>
+                  <assignedEntity category="rim" classCode="ASSIGNED" e_id="id789" maxOccurs="1" minOccurs="1" type="COCT_MT090000UV01.AssignedEntity" use="required">
+                    <!-- No id was specified in original message, so no meaning in bringing across the assigning authority -->
+                    <assignedPerson category="rim" classCode="PSN" determinerCode="INSTANCE" e_id="id633.2" maxOccurs="1" minOccurs="0" type="COCT_MT090000UV01.Person" use="optional">
+                      <name category="hl7" e_id="id669.2" maxOccurs="unbounded" minOccurs="1" type="EN" use="required">
+                        <given>MANAGER</given>
+                        <family>MANAGER</family>
+                      </name>
+                    </assignedPerson>
+                  </assignedEntity>
+                </dataEnterer>
+                <pertinentInformation2 category="rim" e_id="id816" maxOccurs="unbounded" minOccurs="0" type="POLB_MT001001.PertinentInformation1" typeCode="PERT" use="optional">
+                  <observationGeneral category="rim" classCode="OBS" e_id="id831" maxOccurs="1" minOccurs="1" moodCode="EVN" type="COCT_MT120500.ObservationGeneral" use="required">
+                    <code category="hl7" e_id="id699" maxOccurs="1" minOccurs="1" nullFlavor="NA" type="CE" use="required"/>
+                    <text category="hl7" e_id="id700" maxOccurs="1" minOccurs="0" type="ED" use="optional">? Kidney Failure</text>
+                    <statusCode category="hl7" code="complete" e_id="id701" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+                    <value category="hl7" e_id="id705" maxOccurs="1" minOccurs="1" nullFlavor="NA" type="ANY" use="required" xsi:type="ST"/>
+                  </observationGeneral>
+                </pertinentInformation2>
+              </observationRequest>
+            </inFulfillmentOf>
+          </fulfillerPromise>
+        </inFulfillmentOf>
+        <component2 category="rim" e_id="id305" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.Component2" typeCode="COMP" use="optional">
+          <observationEvent category="rim" classCode="OBS" e_id="id255" maxOccurs="1" minOccurs="1" moodCode="EVN" type="POLB_MT004000.ObservationEvent" use="required">
+            <code category="hl7" code="2823-1" codeSystem="2.16.840.1.113883.6.1" displayName="Potassium" e_id="id308" maxOccurs="1" minOccurs="1" type="CD" use="required">
+              <translation code="K" codeSystem="2.16.840.1.113883.6.100005" displayName="Potassium"/>
+            </code>
+            <statusCode category="hl7" code="active" e_id="id311" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+            <effectiveTime category="hl7" e_id="id312" maxOccurs="1" minOccurs="1" type="IVL_TS" use="required" value="20040119142756+1000"/>
+            <confidentialityCode category="hl7" e_id="id314" maxOccurs="unbounded" minOccurs="1" nullFlavor="UNK" type="CE" use="required"/>
+            <value category="hl7" e_id="id316" maxOccurs="1" minOccurs="0" type="ANY" unit="mmol/L" use="optional" value="5.6" xsi:type="PQ"/>
+            <interpretationCode category="hl7" code="H" e_id="id317" maxOccurs="unbounded" minOccurs="0" type="CS" use="optional"/>
+            <subject category="rim" e_id="id320" maxOccurs="unbounded" minOccurs="1" nullFlavor="NA" type="POLB_MT004000.Subject2" typeCode="SBJ" use="required" xsi:nil="true"/>
+            <performer category="rim" e_id="id322" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.Performer" typeCode="PRF" use="optional">
+              <assignedEntity category="rim" classCode="ASSIGNED" e_id="id356.1" maxOccurs="1" minOccurs="1" type="COCT_MT090000UV01.AssignedEntity" use="required">
+                <id category="hl7" e_id="id626.3" extension="Manager" maxOccurs="unbounded" minOccurs="0" root="2.16.840.1.113883.19.9" type="II" use="optional"/>
+                <assignedPerson category="rim" e_id="id633.3" maxOccurs="1" minOccurs="0" type="COCT_MT090000UV01.Person" use="optional">
+                  <name category="hl7" e_id="id669.3" maxOccurs="unbounded" minOccurs="1" type="EN" use="required">
+                    <family>Manager</family>
+                  </name>
+                </assignedPerson>
+              </assignedEntity>
+            </performer>
+            <referenceRange category="rim" e_id="id330" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.ReferenceRange" typeCode="REFV" use="optional">
+              <interpretationRange category="rim" classCode="OBS" e_id="id374" maxOccurs="1" minOccurs="1" moodCode="EVN.CRT" type="POLB_MT004000.InterpretationRange" use="required">
+                <value category="hl7" e_id="id283" maxOccurs="1" minOccurs="0" type="ANY" use="optional" xsi:type="IVL_PQ">
+                  <low nullFlavor="NINF"/>
+                  <high unit="mmol/L" value="3.5"/>
+                </value>
+                <interpretationCode category="hl7" code="L" e_id="id284" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+              </interpretationRange>
+            </referenceRange>
+            <referenceRange category="rim" e_id="id330.1" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.ReferenceRange" typeCode="REFV" use="optional">
+              <interpretationRange category="rim" classCode="OBS" e_id="id374.1" maxOccurs="1" minOccurs="1" moodCode="EVN.CRT" type="POLB_MT004000.InterpretationRange" use="required">
+                <value category="hl7" e_id="id283.1" maxOccurs="1" minOccurs="0" type="ANY" use="optional" xsi:type="IVL_PQ">
+                  <low unit="mmol/L" value="5.5"/>
+                  <high nullFlavor="PINF"/>
+                </value>
+                <interpretationCode category="hl7" code="H" e_id="id284.1" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+              </interpretationRange>
+            </referenceRange>
+          </observationEvent>
+        </component2>
+        <component2 category="rim" e_id="id305.1" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.Component2" typeCode="COMP" use="optional">
+          <observationEvent category="rim" classCode="OBS" e_id="id255.1" maxOccurs="1" minOccurs="1" moodCode="EVN" type="POLB_MT004000.ObservationEvent" use="required">
+            <code category="hl7" code="2951-2" codeSystem="2.16.840.1.113883.6.1" displayName="Sodium" e_id="id308.1" maxOccurs="1" minOccurs="1" type="CD" use="required">
+              <translation code="Na" codeSystem="2.16.840.1.113883.6.100005" displayName="Sodium"/>
+            </code>
+            <statusCode category="hl7" code="active" e_id="id311.1" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+            <effectiveTime category="hl7" e_id="id312.1" maxOccurs="1" minOccurs="1" type="IVL_TS" use="required" value="20040119142756+1000"/>
+            <confidentialityCode category="hl7" e_id="id314.1" maxOccurs="unbounded" minOccurs="1" nullFlavor="UNK" type="CE" use="required"/>
+            <value category="hl7" e_id="id316.1" maxOccurs="1" minOccurs="0" type="ANY" unit="mmol/L" use="optional" value="130" xsi:type="PQ"/>
+            <interpretationCode category="hl7" code="L" e_id="id317.1" maxOccurs="unbounded" minOccurs="0" type="CS" use="optional"/>
+            <subject category="rim" e_id="id320.1" maxOccurs="unbounded" minOccurs="1" nullFlavor="NA" type="POLB_MT004000.Subject2" typeCode="SBJ" use="required" xsi:nil="true"/>
+            <performer category="rim" e_id="id322.1" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.Performer" typeCode="PRF" use="optional">
+              <assignedEntity category="rim" classCode="ASSIGNED" e_id="id356.2" maxOccurs="1" minOccurs="1" type="COCT_MT090000UV01.AssignedEntity" use="required">
+                <id category="hl7" e_id="id626.4" extension="Manager" maxOccurs="unbounded" minOccurs="0" root="2.16.840.1.113883.19.9" type="II" use="optional"/>
+                <assignedPerson category="rim" e_id="id633.4" maxOccurs="1" minOccurs="0" type="COCT_MT090000UV01.Person" use="optional">
+                  <name category="hl7" e_id="id669.4" maxOccurs="unbounded" minOccurs="1" type="EN" use="required">
+                    <family>Manager</family>
+                  </name>
+                </assignedPerson>
+              </assignedEntity>
+            </performer>
+            <referenceRange category="rim" e_id="id330.2" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.ReferenceRange" typeCode="REFV" use="optional">
+              <interpretationRange category="rim" classCode="OBS" e_id="id374.2" maxOccurs="1" minOccurs="1" moodCode="EVN.CRT" type="POLB_MT004000.InterpretationRange" use="required">
+                <value category="hl7" e_id="id283.2" maxOccurs="1" minOccurs="0" type="ANY" use="optional" xsi:type="IVL_PQ">
+                  <low nullFlavor="NINF"/>
+                  <high unit="mmol/L" value="135"/>
+                </value>
+                <interpretationCode category="hl7" code="L" e_id="id284.2" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+              </interpretationRange>
+            </referenceRange>
+            <referenceRange category="rim" e_id="id330.3" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.ReferenceRange" typeCode="REFV" use="optional">
+              <interpretationRange category="rim" classCode="OBS" e_id="id374.3" maxOccurs="1" minOccurs="1" moodCode="EVN.CRT" type="POLB_MT004000.InterpretationRange" use="required">
+                <value category="hl7" e_id="id283.3" maxOccurs="1" minOccurs="0" type="ANY" use="optional" xsi:type="IVL_PQ">
+                  <low unit="mmol/L" value="145"/>
+                  <high nullFlavor="PINF"/>
+                </value>
+                <interpretationCode category="hl7" code="H" e_id="id284.3" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+              </interpretationRange>
+            </referenceRange>
+          </observationEvent>
+        </component2>
+        <component2 category="rim" e_id="id305.2" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.Component2" typeCode="COMP" use="optional">
+          <observationEvent category="rim" classCode="OBS" e_id="id255.2" maxOccurs="1" minOccurs="1" moodCode="EVN" type="POLB_MT004000.ObservationEvent" use="required">
+            <code category="hl7" code="2075-0" codeSystem="2.16.840.1.113883.6.1" displayName="Chloride" e_id="id308.2" maxOccurs="1" minOccurs="1" type="CD" use="required">
+              <translation code="Cl" codeSystem="2.16.840.1.113883.6.100005" displayName="Chloride"/>
+            </code>
+            <statusCode category="hl7" code="active" e_id="id311.2" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+            <effectiveTime category="hl7" e_id="id312.2" maxOccurs="1" minOccurs="1" type="IVL_TS" use="required" value="20040119112500+1000"/>
+            <confidentialityCode category="hl7" e_id="id314.2" maxOccurs="unbounded" minOccurs="1" nullFlavor="UNK" type="CE" use="required"/>
+            <value category="hl7" e_id="id316.2" maxOccurs="1" minOccurs="0" type="ANY" unit="mmol/L" use="optional" value="100" xsi:type="PQ"/>
+            <subject category="rim" e_id="id320.2" maxOccurs="unbounded" minOccurs="1" nullFlavor="NA" type="POLB_MT004000.Subject2" typeCode="SBJ" use="required" xsi:nil="true"/>
+            <performer category="rim" e_id="id322.2" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.Performer" typeCode="PRF" use="optional">
+              <assignedEntity category="rim" classCode="ASSIGNED" e_id="id356.3" maxOccurs="1" minOccurs="1" type="COCT_MT090000UV01.AssignedEntity" use="required">
+                <id category="hl7" e_id="id626.5" extension="Manager" maxOccurs="unbounded" minOccurs="0" root="2.16.840.1.113883.19.9" type="II" use="optional"/>
+                <assignedPerson category="rim" e_id="id633.5" maxOccurs="1" minOccurs="0" type="COCT_MT090000UV01.Person" use="optional">
+                  <name category="hl7" e_id="id669.5" maxOccurs="unbounded" minOccurs="1" type="EN" use="required">
+                    <family>Manager</family>
+                  </name>
+                </assignedPerson>
+              </assignedEntity>
+            </performer>
+            <referenceRange category="rim" e_id="id330.4" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.ReferenceRange" typeCode="REFV" use="optional">
+              <interpretationRange category="rim" classCode="OBS" e_id="id374.4" maxOccurs="1" minOccurs="1" moodCode="EVN.CRT" type="POLB_MT004000.InterpretationRange" use="required">
+                <value category="hl7" e_id="id283.4" maxOccurs="1" minOccurs="0" type="ANY" use="optional" xsi:type="IVL_PQ">
+                  <low nullFlavor="NINF"/>
+                  <high unit="mmol/L" value="95"/>
+                </value>
+                <interpretationCode category="hl7" code="L" e_id="id284.4" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+              </interpretationRange>
+            </referenceRange>
+            <referenceRange category="rim" e_id="id330.5" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.ReferenceRange" typeCode="REFV" use="optional">
+              <interpretationRange category="rim" classCode="OBS" e_id="id374.5" maxOccurs="1" minOccurs="1" moodCode="EVN.CRT" type="POLB_MT004000.InterpretationRange" use="required">
+                <value category="hl7" e_id="id283.5" maxOccurs="1" minOccurs="0" type="ANY" use="optional" xsi:type="IVL_PQ">
+                  <low unit="mmol/L" value="110"/>
+                  <high nullFlavor="PINF"/>
+                </value>
+                <interpretationCode category="hl7" code="H" e_id="id284.5" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+              </interpretationRange>
+            </referenceRange>
+          </observationEvent>
+        </component2>
+        <component2 category="rim" e_id="id305.3" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.Component2" typeCode="COMP" use="optional">
+          <observationEvent category="rim" classCode="OBS" e_id="id255.3" maxOccurs="1" minOccurs="1" moodCode="EVN" type="POLB_MT004000.ObservationEvent" use="required">
+            <code category="hl7" code="1963-8" codeSystem="2.16.840.1.113883.6.1" displayName="Total CO2" e_id="id308.3" maxOccurs="1" minOccurs="1" type="CD" use="required">
+              <translation code="HC03" codeSystem="2.16.840.1.113883.6.100005" displayName="Total                 CO2"/>
+            </code>
+            <statusCode category="hl7" code="active" e_id="id311.3" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+            <effectiveTime category="hl7" e_id="id312.3" maxOccurs="1" minOccurs="1" type="IVL_TS" use="required" value="20040119112500+1000"/>
+            <confidentialityCode category="hl7" e_id="id314.3" maxOccurs="unbounded" minOccurs="1" nullFlavor="UNK" type="CE" use="required"/>
+            <value category="hl7" e_id="id316.3" maxOccurs="1" minOccurs="0" type="ANY" unit="mmol/L" use="optional" value="24" xsi:type="PQ"/>
+            <subject category="rim" e_id="id320.3" maxOccurs="unbounded" minOccurs="1" nullFlavor="NA" type="POLB_MT004000.Subject2" typeCode="SBJ" use="required" xsi:nil="true"/>
+            <performer category="rim" e_id="id322.3" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.Performer" typeCode="PRF" use="optional">
+              <assignedEntity category="rim" classCode="ASSIGNED" e_id="id356.4" maxOccurs="1" minOccurs="1" type="COCT_MT090000UV01.AssignedEntity" use="required">
+                <id category="hl7" e_id="id626.6" extension="Manager" maxOccurs="unbounded" minOccurs="0" root="2.16.840.1.113883.19.9" type="II" use="optional"/>
+                <assignedPerson category="rim" e_id="id633.6" maxOccurs="1" minOccurs="0" type="COCT_MT090000UV01.Person" use="optional">
+                  <name category="hl7" e_id="id669.6" maxOccurs="unbounded" minOccurs="1" type="EN" use="required">
+                    <family>Manager</family>
+                  </name>
+                </assignedPerson>
+              </assignedEntity>
+            </performer>
+            <referenceRange category="rim" e_id="id330.6" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.ReferenceRange" typeCode="REFV" use="optional">
+              <interpretationRange category="rim" classCode="OBS" e_id="id374.6" maxOccurs="1" minOccurs="1" moodCode="EVN.CRT" type="POLB_MT004000.InterpretationRange" use="required">
+                <value category="hl7" e_id="id283.6" maxOccurs="1" minOccurs="0" type="ANY" use="optional" xsi:type="IVL_PQ">
+                  <low nullFlavor="NINF"/>
+                  <high unit="mmol/L" value="22"/>
+                </value>
+                <interpretationCode category="hl7" code="L" e_id="id284.6" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+              </interpretationRange>
+            </referenceRange>
+            <referenceRange category="rim" e_id="id330.7" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.ReferenceRange" typeCode="REFV" use="optional">
+              <interpretationRange category="rim" classCode="OBS" e_id="id374.7" maxOccurs="1" minOccurs="1" moodCode="EVN.CRT" type="POLB_MT004000.InterpretationRange" use="required">
+                <value category="hl7" e_id="id283.7" maxOccurs="1" minOccurs="0" type="ANY" use="optional" xsi:type="IVL_PQ">
+                  <low unit="mmol/L" value="30"/>
+                  <high nullFlavor="PINF"/>
+                </value>
+                <interpretationCode category="hl7" code="H" e_id="id284.7" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+              </interpretationRange>
+            </referenceRange>
+          </observationEvent>
+        </component2>
+        <component2 category="rim" e_id="id305.4" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.Component2" typeCode="COMP" use="optional">
+          <observationEvent category="rim" classCode="OBS" e_id="id255.4" maxOccurs="1" minOccurs="1" moodCode="EVN" type="POLB_MT004000.ObservationEvent" use="required">
+            <code category="hl7" code="8266-9" codeSystem="2.16.840.1.113883.6.1" displayName="Comment" e_id="id308.4" maxOccurs="1" minOccurs="1" type="CD" use="required">
+              <translation code="Com" codeSystem="2.16.840.1.113883.6.100005" displayName="Comment"/>
+            </code>
+            <statusCode category="hl7" code="active" e_id="id311.4" maxOccurs="1" minOccurs="1" type="CS" use="required"/>
+            <effectiveTime category="hl7" e_id="id312.4" maxOccurs="1" minOccurs="1" type="IVL_TS" use="required" value="20040119152222+1000"/>
+            <confidentialityCode category="hl7" e_id="id314.4" maxOccurs="unbounded" minOccurs="1" nullFlavor="UNK" type="CE" use="required"/>
+            <value category="hl7" e_id="id316.4" maxOccurs="1" minOccurs="0" type="ANY" use="optional" xsi:type="ST">Creatinine and urea to follow this afternoon.</value>
+            <subject category="rim" e_id="id320.4" maxOccurs="unbounded" minOccurs="1" nullFlavor="NA" type="POLB_MT004000.Subject2" typeCode="SBJ" use="required" xsi:nil="true"/>
+            <performer category="rim" e_id="id322.4" maxOccurs="unbounded" minOccurs="0" type="POLB_MT004000.Performer" typeCode="PRF" use="optional">
+              <assignedEntity category="rim" classCode="ASSIGNED" e_id="id356.5" maxOccurs="1" minOccurs="1" type="COCT_MT090000UV01.AssignedEntity" use="required">
+                <id category="hl7" e_id="id626.7" extension="Manager" maxOccurs="unbounded" minOccurs="0" root="2.16.840.1.113883.19.9" type="II" use="optional"/>
+                <assignedPerson category="rim" e_id="id633.7" maxOccurs="1" minOccurs="0" type="COCT_MT090000UV01.Person" use="optional">
+                  <name category="hl7" e_id="id669.7" maxOccurs="unbounded" minOccurs="1" type="EN" use="required">
+                    <family>Manager</family>
+                  </name>
+                </assignedPerson>
+              </assignedEntity>
+            </performer>
+          </observationEvent>
+        </component2>
+      </observationBattery>
+    </subject>
+  </controlActProcess>
+</POLB_IN224200>

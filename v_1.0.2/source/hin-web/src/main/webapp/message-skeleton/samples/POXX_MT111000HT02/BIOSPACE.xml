@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POXX_MT111000HT02_BIOSPACE">
+	<POXX_MT111000HT02_BIOSPACE>
+		<observation>
+			<id />
+			<code code="Recommendation for" displayName="Recommendation for"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="Weight_Loss"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="Suggested Weight Loss/Weight Gain(Kg/lb)" displayName="Suggested Weight Loss/Weight Gain(Kg/lb)"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="120"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="Suggested increase in Muscle Mass(Kg/lb)" displayName="Suggested increase in Muscle Mass(Kg/lb)"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="50"/>
+		</observation>
+		<subject>
+			<specimen>
+				<code />
+				<specimenMaterial>
+					<code />
+				</specimenMaterial>
+				<sourcePerson>
+					<id />
+				</sourcePerson>
+			</specimen>
+		</subject>
+		<recordTarget>
+			<patient>
+				<id />
+			</patient>
+		</recordTarget>
+		<author>
+			<employmentStaff>
+				<employeePerson>
+					<id />
+					<name />
+				</employeePerson>
+			</employmentStaff>
+		</author>
+	</POXX_MT111000HT02_BIOSPACE>
+</message>

@@ -1,0 +1,26 @@
+<HL7MessageConfiguration id="id101" configType="MESSAGE">
+  <MetaInfo id="id102" artifactID="PRPA_MT410001HT02" createdDate="2012-05-21 04:25:33.828 UTC" entryPoint="PRPA_MT410001HT02.EncounterAppointment" description="Appointment Message" configType="META_INFO"/>
+  <Class id="id103" rimType="ACT" configType="CLASS" tagName="PRPA_MT410001HT02" type="PRPA_MT410001HT02.EncounterAppointment">
+    <Field id="id104" tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1" configType="FIELD"/>
+    <Field id="id105" tagName="code" type="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+    <Field id="id106" tagName="statusCode" type="CS" label="Status Code" displayOrder="2" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+    <Field id="id107" tagName="effectiveTime" type="IVL_TS" label="Effective Time" displayOrder="3" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+    <Class id="id108" rimType="PARTICIPATION" configType="CLASS" tagName="subject" type="PRPA_MT410001HT02.Subject1" label="Subject" displayOrder="4" minOccurs="1" maxOccurs="1">
+      <Class id="id109" rimType="ROLE" configType="CLASS" tagName="patient" type="COCT_MT050000HT04.Patient" label="Patient" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field id="id110" tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1" configType="FIELD"/>
+      </Class>
+    </Class>
+    <Class id="id108" rimType="PARTICIPATION" configType="CLASS" tagName="responsibleParty" type="PRPA_MT410001HT02.ResponsibleParty2" label="Responsible Party" displayOrder="5" minOccurs="1" maxOccurs="1">
+      <Class id="id109" rimType="ROLE" configType="CLASS" tagName="assignedEntityOrganization" type="COCT_MT090202HT04.AssignedEntityOrganization" label="Assigned Entity Organization" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Class id="id110" rimType="ENTITY" configType="CLASS" tagName="assignedOrganization" type="COCT_MT090202HT04.Organization" label="Assigned Organization" displayOrder="0" minOccurs="1" maxOccurs="1">
+          <Field id="id111" tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1" configType="FIELD"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class id="id108" rimType="PARTICIPATION" configType="CLASS" tagName="consultant" type="PRPA_MT410001HT02.Consultant" label="Consultant" displayOrder="6" minOccurs="0" maxOccurs="-1">
+      <Class id="id109" rimType="ROLE" configType="CLASS" tagName="employmentStaff" type="COCT_MT410002HT03.EmploymentStaff" label="Employment Staff" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field id="id110" tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1" configType="FIELD"/>
+      </Class>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

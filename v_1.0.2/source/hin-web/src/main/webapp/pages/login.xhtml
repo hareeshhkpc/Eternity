@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:composition template="../template.xhtml">
+	<ui:define name="content" style="margin-left:550px;">
+		<h:form id="loginForm">
+			<div id="login_form">
+				<div class="membersLogin">
+					<h2>Admin Login</h2>
+				</div>
+				<br />
+				<h:panelGrid columns="2" class="panel">
+					<h:outputText value=" User Name:" />
+					<h:inputText class="input-txt-box" id="username" type="text"
+						value="#{loginBean.userVO.userName}" />
+					<h:outputText value="Password:" />
+					<h:inputSecret class="input-txt-box" id="password" type="password"
+						value="#{loginBean.userVO.password}" />
+				</h:panelGrid>
+				<br />
+				<h:commandButton image="../html/images/login_but.jpg" alt="login"
+					title="login" value="login" class="submit"
+					action="#{loginBean.authenticate}">
+				</h:commandButton>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

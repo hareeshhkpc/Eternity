@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:util="http://java.sun.com/jsf/composite/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<rich:collapsiblePanel header="#{msg['concept.title']}"
+			switchType="client" style="width:650px">
+			<!--  h:graphicImage value="#{resource['images:eternity.png']}"
+						style="float:right;height:60px"/-->
+			<h:form>
+				<a4j:jsFunction name="renderImages" ajaxSingle="true"
+					immediate="true" reRender="f1" />
+				<h:panelGrid columns="2">
+					<h:column>
+						<h:outputText id="name" value="Name" />
+					</h:column>
+					<h:column>
+						<h:inputText id="nameValue" value="#{conceptBean.concept.name}"
+							required="true" requiredMessage="Concept Name is required" />
+					</h:column>
+					<h:column>
+						<h:outputText id="shortName" value="Short Name" />
+					</h:column>
+					<h:column>
+						<h:inputText id="shortNameValue"
+							value="#{conceptBean.concept.shortName}" />
+					</h:column>
+					<h:column>
+						<h:outputText id="description" value="Description" />
+					</h:column>
+					<h:column>
+						<h:inputText id="descriptionValue"
+							value="#{conceptBean.concept.description}" />
+					</h:column>
+
+					<!-- Upload Code Starts Here -->
+
+					<h:column>
+						<h:outputText id="sicon" value="Small Icon" />
+					</h:column>
+					<h:column>
+						<rich:fileUpload id="smallicon" uploadData="#{bean.data}"
+							maxRequestSize="100" maxFilesQuantity="1" listHeight="150"
+							acceptedTypes="jpg,png" immediateUpload="false" listWidth="240"
+							onuploadcomplete="renderImages();"
+							fileUploadListener="#{conceptBean.fileUploaded}">
+							<!-- 							<a4j:ajax event="uploadcomplete" reRender="f1" /> -->
+						</rich:fileUpload>
+						<a4j:outputPanel ajaxRendered="true" id="f1">
+							<h:graphicImage
+								value="data:image/jpg;base64,#{conceptBean.concept.smallIcon}"
+								style="width: 100 px;height:100px;" />
+						</a4j:outputPanel>
+
+					</h:column>
+
+					<h:column>
+						<h:outputText id="licon" value="Large Icon" />
+					</h:column>
+					<h:column>
+						<rich:fileUpload id="largeicon" uploadData="#{bean.data}"
+							maxRequestSize="100000" maxFilesQuantity="1" listHeight="150"
+							acceptedTypes="jpg,png" immediateUpload="false" listWidth="240"
+							fileUploadListener="#{conceptBean.fileUploaded2}">
+							<!-- <a4j:ajax event="uploadcomplete" reRender="f2" /> -->
+						</rich:fileUpload>
+						<a4j:outputPanel ajaxRendered="true" id="f2">
+							<h:graphicImage
+								value="data:image/jpg;base64,#{conceptBean.concept.largeIcon}"
+								style="width:100px;height:100px;" />
+						</a4j:outputPanel>
+					</h:column>
+
+					<!-- Upload Code Ends Here -->
+
+
+					<h:column>
+						<h:outputText value="Concept Type" />
+					</h:column>
+
+					<h:selectOneMenu id="conceptType"
+						value="#{conceptBean.concept.conceptDataType}">
+						<f:selectItems value="#{conceptBean.conceptTypeList}" />
+						<f:ajax event="change" listener="#{conceptBean.changeDataType}"
+							execute="conceptType" render="dataTypePanel" />
+					</h:selectOneMenu>
+					<h:column>
+						<h:outputText value="Parent Concept" />
+					</h:column>
+
+					<h:selectOneMenu id="parentConcept"
+						value="#{conceptBean.concept.parentConcept}">
+						<f:selectItems value="#{conceptBean.conceptNames}" />						
+					</h:selectOneMenu>
+					<h:column>
+						<h:outputText value="Status" />
+					</h:column>
+
+					<h:selectOneMenu id="statusId"
+						value="#{conceptBean.concept.status}">
+						<f:selectItems value="#{conceptBean.statuses}" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+				<a4j:outputPanel id="dataTypePanel" layout="block">
+					<a4j:outputPanel
+						rendered="#{conceptBean.concept.conceptDataType eq 'NUMERICRANGE'}">
+						<ui:include src="numericRange.xhtml" />
+					</a4j:outputPanel>
+				</a4j:outputPanel>
+				<rich:collapsiblePanel header="Concept Class" expanded="false"
+					switchType="client">
+					<h:outputText value="Add Concept Class : " />
+
+					<h:selectOneMenu value="#{conceptBean.conceptClassId}"
+						id="conceptClassId">
+						<f:selectItems value="#{conceptBean.conceptClassList}" />
+						<a4j:ajax event="valueChange" execute="@this" render="conceptsId" />
+					</h:selectOneMenu>
+
+					<h:commandButton action="#{conceptBean.addConceptClass}"
+						value="Add" />
+					<h:commandButton action="conceptClass" value="New" />
+
+					<rich:dataTable id="conceptsId"
+						value="#{conceptBean.concept.conceptClasses}" var="conceptCls"
+						rows="10" style="width:600px">
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="name" />
+							</f:facet>
+							<h:commandLink action="#{conceptClassBean.viewConceptClass}"
+								value="#{conceptCls.name}">
+								<f:setPropertyActionListener
+									target="#{conceptClassBean.conceptClassId}"
+									value="#{conceptCls.id}" />
+							</h:commandLink>
+
+
+
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Description" />
+							</f:facet>
+							<h:outputText value="#{conceptCls.description}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Action" />
+							</f:facet>
+							<center>
+								<h:commandButton id="removeConcept"
+									image="../../html/images/icondelete.gif" alt="delete"
+									title="delete" action="#{conceptBean.deleteConceptClass}"
+									value="Delete ">
+									<f:setPropertyActionListener
+										target="#{conceptBean.conceptClassId}"
+										value="#{conceptCls.id}" />
+								</h:commandButton>
+							</center>
+						</rich:column>
+						<f:facet name="footer">
+							<rich:dataScroller for="conceptsId" align="right"
+								renderIfSinglePage="false" fastStep="5" fastControls="auto" />
+						</f:facet>
+					</rich:dataTable>
+
+				</rich:collapsiblePanel>
+
+				<rich:collapsiblePanel header="Concept Attribute" expanded="false"
+					switchType="client">
+					<a4j:outputPanel id="dataTypePanelAttribute" layout="block">
+						<a4j:outputPanel rendered="#{conceptBean.conceptAttributeShow}">
+							<ui:include src="conceptAttribute.xhtml" />
+						</a4j:outputPanel>
+					</a4j:outputPanel>
+					<a4j:outputPanel id="updateAttribute" layout="block">
+						<a4j:outputPanel
+							rendered="#{conceptBean.updateConceptAttributeShow}">
+							<ui:include src="conceptAttribute.xhtml" />
+						</a4j:outputPanel>
+					</a4j:outputPanel>
+					<h:commandButton action="#{conceptBean.setConceptAttributeShow}"
+						value="New" />
+					<h:commandButton action="#{conceptBean.addConceptAttribute}"
+						value="Add" rendered="#{conceptBean.conceptAttributeShow}">
+					</h:commandButton>
+					<h:commandButton action="#{conceptBean.addConceptAttribute}"
+						value="Update"
+						rendered="#{conceptBean.updateConceptAttributeShow}">
+					</h:commandButton>
+					<rich:dataTable id="conceptAttributeTableId"
+						value="#{conceptBean.concept.conceptAttributes}"
+						var="conceptAttributeObj" rows="10" style="width:600px">
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Key" />
+							</f:facet>
+							<h:outputText value="#{conceptAttributeObj.key}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="value" />
+							</f:facet>
+							<h:outputText value="#{conceptAttributeObj.value}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Action" />
+							</f:facet>
+							<center>
+								<h:commandButton id="editlink"
+									image="../../html/images/iconedit.gif"
+									action="#{conceptBean.viewConceptAttribute}" value="Edit "
+									alt="Edit" title="Edit">
+									<f:setPropertyActionListener
+										target="#{conceptBean.conceptAttrKey}"
+										value="#{conceptAttributeObj.key}" />
+								</h:commandButton>
+							</center>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Action" />
+							</f:facet>
+							<center>
+								<h:commandButton id="removeConcept"
+									image="../../html/images/icondelete.gif" alt="delete"
+									title="delete" action="#{conceptBean.removeConceptAttribute}"
+									value="Delete ">
+									<f:setPropertyActionListener
+										target="#{conceptBean.conceptAttributeId}"
+										value="#{conceptAttributeObj.key}" />
+								</h:commandButton>
+							</center>
+						</rich:column>
+
+						<f:facet name="footer">
+							<rich:dataScroller for="conceptAttributeTableId" align="right"
+								renderIfSinglePage="false" fastStep="5" fastControls="auto" />
+						</f:facet>
+					</rich:dataTable>
+				</rich:collapsiblePanel>
+				<rich:collapsiblePanel header="Concept Souce" expanded="false"
+					switchType="client">
+					<h:outputText value="Add Concept Source : " />
+					<h:selectOneMenu value="#{conceptBean.conceptSourceId}"
+						id="conceptSourceId" onchange="submit();">
+						<f:selectItems value="#{conceptBean.sourcesList}" />
+						<a4j:ajax event="valueChange" execute="@this"
+							render="conceptSourcesId" />
+					</h:selectOneMenu>
+
+					<h:commandButton action="#{conceptBean.addConceptSource}"
+						value="Add" />
+					<h:commandButton action="addconceptsource" value="New" />
+
+					<rich:dataTable id="conceptSourcesId"
+						value="#{conceptBean.concept.sources}" var="conceptSrs" rows="10"
+						style="width:600px">
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText value="#{conceptSrs.name}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Description" />
+							</f:facet>
+							<h:outputText value="#{conceptSrs.description}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Action" />
+							</f:facet>
+							<center>
+								<h:commandButton id="removeConcept"
+									image="../../html/images/icondelete.gif" alt="delete"
+									title="delete" action="#{conceptBean.deleteConceptSource}"
+									value="Delete ">
+									<f:setPropertyActionListener
+										target="#{conceptBean.conceptSourceId}"
+										value="#{conceptSrs.id}" />
+								</h:commandButton>
+							</center>
+						</rich:column>
+					</rich:dataTable>
+				</rich:collapsiblePanel>
+				<rich:collapsiblePanel header="Concept Locale" expanded="false"
+					switchType="client">
+					<h:outputText value="Add Concept Locale : " />
+					<h:selectOneMenu value="#{conceptBean.conceptLocaleId}"
+						id="conceptLocaleId" onchange="submit();">
+						<f:selectItems value="#{conceptBean.localesList}" />
+						<a4j:ajax event="valueChange" execute="@this"
+							render="conceptLocaledataTableId" />
+					</h:selectOneMenu>
+
+					<h:commandButton action="#{conceptBean.addConceptLocale}"
+						value="Add" />
+					<h:commandButton action="addLocale" value="New" />
+
+					<rich:dataTable id="conceptLocaledataTableId"
+						value="#{conceptBean.concept.locales}" var="conceptLce" rows="10"
+						style="width:600px">
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText value="#{conceptLce.name}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Description" />
+							</f:facet>
+							<h:outputText value="#{conceptLce.description}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Action" />
+							</f:facet>
+							<center>
+								<h:commandButton id="removeConcept"
+									image="../../html/images/icondelete.gif" alt="delete"
+									title="delete" action="#{conceptBean.deleteConceptLocale}"
+									value="Delete ">
+									<f:setPropertyActionListener
+										target="#{conceptBean.conceptLocaleId}"
+										value="#{conceptLce.id}" />
+								</h:commandButton>
+							</center>
+						</rich:column>
+					</rich:dataTable>
+				</rich:collapsiblePanel>
+				<rich:collapsiblePanel header="Concept Synonym" expanded="false"
+					switchType="client">
+					<h:outputText value="Add Concept Synonym : " />
+					<h:selectOneMenu value="#{conceptBean.conceptSynonymId}"
+						id="concepSynonymId">
+						<f:selectItems value="#{conceptBean.conceptSynonymss}" />
+						<a4j:ajax event="valueChange" execute="@this" render="synonymsId" />
+					</h:selectOneMenu>
+
+					<h:commandButton action="#{conceptBean.addSynonym}" value="Add" />
+					<h:commandButton action="addConceptSynonym" value="New" />
+
+					<rich:dataTable id="synonymsId"
+						value="#{conceptBean.concept.synonyms}" var="synonym" rows="10"
+						style="width:600px">
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText value="#{synonym.name}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Action" />
+							</f:facet>
+							<center>
+								<h:commandButton id="removeConcept"
+									image="../../html/images/icondelete.gif" alt="delete"
+									title="delete" action="#{conceptBean.deleteSynonym}"
+									value="Delete ">
+									<f:setPropertyActionListener
+										target="#{conceptBean.conceptSynonymId}" value="#{synonym.id}" />
+								</h:commandButton>
+							</center>
+						</rich:column>
+						<f:facet name="footer">
+							<rich:dataScroller for="synonymsId" align="right"
+								renderIfSinglePage="false" fastStep="5" fastControls="auto" />
+						</f:facet>
+					</rich:dataTable>
+
+				</rich:collapsiblePanel>
+				<rich:collapsiblePanel header="Parent Concept" expanded="false"
+					switchType="client">
+					<rich:dataTable id="parentViewId"
+						value="#{conceptBean.parentConcepts}" var="parentConcept" rows="10"
+						style="width:600px">
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText value="#{parentConcept.concept.description}" />
+						</rich:column>											
+					</rich:dataTable>
+
+				</rich:collapsiblePanel>
+				<h:commandButton value="#{msg['concept.save']} "
+					action="#{conceptBean.saveConcept}" />
+				<h:commandButton value="Back " action="concepts" />
+			</h:form>
+		</rich:collapsiblePanel>
+
+
+	</ui:define>
+
+</ui:composition>
+</html>

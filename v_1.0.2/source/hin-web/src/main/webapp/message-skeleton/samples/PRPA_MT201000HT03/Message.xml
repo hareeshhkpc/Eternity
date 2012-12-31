@@ -1,0 +1,72 @@
+<message config="PRPA_MT201000HT03" >
+
+    <PRPA_MT201000HT03>
+      <id root="9cf3690f-863b-428f-be09-9d6ff545a916"/>
+        <identifiedPerson>
+
+            <name use="L">
+                <prefix>ms</prefix>
+
+                <family>Geeta</family>
+
+                <given>ccccc</given>
+
+                <suffix>hhhhhhhhh</suffix>
+            </name>
+
+            <statusCode code="active" />
+
+            <telecom use="BIR" value="9999999999999"></telecom>>
+
+            <addr>
+
+                <country>mmmmmmmm</country>
+
+                <state>nnnn</state>
+
+                <city>hhhhhhhhhh</city>
+
+                <houseNumber>dddddddddd</houseNumber>
+
+                <streetName>ggggggggg</streetName>
+
+                <postalCode>xxxxxx</postalCode>
+            </addr>
+
+            <birthTime value="12/12/2012" />
+
+            <maritalStatusCode code="single" />
+
+            <administrativeGenderCode code="female" />
+
+            <religiousAffiliationCode code="hindu" />
+            
+            <disabilityCode code="VI"/>
+            
+            <raceCode>
+            	<item code="HN">
+            		<originalText>Hindu</originalText>
+            	</item>
+            	<item code="CHR">
+            		<originalText>Christian</originalText>
+            	</item>
+            </raceCode>
+
+            <desc>
+            <thumbnail>
+            data:image/jpeg;base64,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
+            </thumbnail>
+            </desc>
+            
+        </identifiedPerson>
+
+        <effectiveTime>
+
+            <low value="2012-12-12"></low>
+
+            <high value="2013-01-01">
+            </high>
+        </effectiveTime>
+    </PRPA_MT201000HT03>
+
+</message>

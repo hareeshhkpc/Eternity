@@ -1,0 +1,234 @@
+@CHARSET "ISO-8859-1";
+
+.culturetitle{
+	background: #BFBFBF;
+}
+#mainCulture{
+	width:97.4%;
+}
+#temperamentCulture{
+	float:left;
+	width:97.4%;
+}
+.culturehistory{
+	background: #D9D9D9;
+}
+
+.cultureoption{
+	width: 50%;
+}
+
+.cultureTotal {
+	border: 1px solid #7F7F7F;
+	border-top:0px;
+    float: left;
+    font-weight: bold;
+    height: 37px;
+    text-align: right;
+    /* width: 81.6%; */
+    width:72.9%;
+}
+
+.cultureTotalCheck {
+	border: 1px solid #7F7F7F;
+	border-left:0px;
+	border-top:0px;
+    float: left;
+    height: 37px;
+    width: 13.25%;
+	
+}
+
+.cultureHistory {
+	width: 99.6%;
+	border: 1px solid #7f7f7f;
+	float: left;
+	height: 22px;
+	text-align: left;
+	float: left;
+	border-top:0px;
+}
+
+.cultureHead {
+	text-align: center;
+	width: 99.6%;
+	border: 1px solid #7f7f7f;
+	float: left;
+	height: 22px;
+	border-top:0px;
+}
+
+.cultureBreak {
+	width: 99.6%;
+	border: 1px solid #7f7f7f;
+	float: left;
+	height: 22px;
+	border-top:0px;
+	background: #FFFFFF;
+}
+
+.cultureQuestionnaireYes {
+	/* width: 15%;
+	border: 1px solid #7f7f7f;
+	float: left;
+	height: 37px;
+	border-top:0px;
+	border-left:0px; */
+	border: 0px solid #7F7F7F;
+    float: left;
+    height: 37px;
+    /* width: 18%; */
+    width:100%;
+}
+
+.cultureQuestionnaireNo {
+	width: 4%;
+	border: 1px solid #7f7f7f;
+	float: left;
+	height: 22px;
+	border-top:0px;
+}
+
+.cultureQuestionnaireNumber {
+	/* width: 3%;
+	border: 1px solid #7f7f7f;
+	float: left;
+	height: 37px;
+	text-align: left;
+	float: left;
+	border-top:0px; */
+	background-color: #F2F2F2;
+    border: 0px solid #7F7F7F;
+    float: left;
+    height: 37px;
+    text-align: center;
+    width: 100%;
+}
+
+.cultureQuestionnaireTable {
+	background-color: #F2F2F2;
+    border: 0px solid #7F7F7F;
+    float: left;
+    height: 37px;
+    text-align: left;
+    /* width: 78.4%; */
+    width:100%;
+	
+}
+
+.cultureYesTotal {
+	font-size: 13px;
+	display: block;
+	font-size: 16px;
+	line-height: 1.4;
+	padding: 0.4em;
+	height: 25px;
+	width: 97%;
+	border-top:0px;
+}
+
+.cultureNoTotal {
+	font-size: 13px;
+	display: block;
+	font-size: 16px;
+	line-height: 1.4;
+	height: 25px;
+	padding: 0.4em;
+	width: 97%;
+	border-top:0px;
+}
+
+.cultureoptionA{
+	text-align:center;
+	width:50.2%;
+	border:1px solid;
+	float:left;
+	border-top:0px;
+}
+
+.cultureoptionB{
+	text-align:center;
+	width:49.4%;
+	border:1px solid; 
+	border-left:0px;
+	float:left;
+	border-top:0px;
+	border-right:0px;
+}
+ 
+.culturetitle2{
+	 text-align: center;
+	 border: 1px solid; 
+	 border-top: 0px; 
+	 padding-top:5px;
+	 padding-bottom:5px;
+	 width: 99.6%;
+}
+.culturetemperamenttitle{
+	 text-align: left;
+	 font-weight: bold;
+	 background-color:#BFBFBF;
+	 width: 99.6%;
+}
+
+.culturetitle2{
+	text-align: center;
+	width: 99.6%;
+	border: 1px solid #7f7f7f;
+	float: left;
+	height: 22px;
+	border-top:0px;
+	background: #BFBFBF;
+}
+
+.culturetotaloptionA{
+	text-align:center;
+	width:50.2%;
+	border:1px solid;
+	float:left;
+	border-top:0px;
+	height: 40px;
+	
+}
+
+.culturetotaloptionB{
+	text-align:center;
+	width:49.3%;
+	border:1px solid; 
+	border-left:0px;
+	float:left;
+	border-top:0px;
+	height: 40px;
+}
+
+.cultureTotals{
+	background: #FFFFFF;
+	width: 7.4%;
+	border: 0px solid #7f7f7f;
+	float: left;
+	height: 37px;
+	border-top:0px;
+	border-left:0px;
+	
+}
+
+.cultureTotalOptionsCheck {
+	background: #FFFFFF;
+	float: left;
+	height: 37px;
+	width: 14.4%;	
+	left: 371px;
+    position: relative;
+    top: -5px;
+}
+/**** New****/
+
+.ui-table-questionnare{
+	border-collapse:collapse;
+	float:left;
+	width:99.8%;	
+}
+.ui-table-questionnare th,td{
+	border: 1px solid;
+	border-top:0px;
+}

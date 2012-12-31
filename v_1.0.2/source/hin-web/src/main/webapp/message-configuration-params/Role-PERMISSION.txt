@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config-generation
+	configFilePath="src/main/webapp/message-configuration/COCT_MT050000HT04_PATIENT.xml"
+	rootClass="COCT_MT050000HT04.Patient" description="Role message for patient"
+	artifactId="COCT_MT050000HT04_PATIENT"
+	artifactIDAsRootTag="true">
+
+	<schema-set type="MESSAGE"
+		path="src/main/webapp/WEB-INF/htb/schemas/COCT_MT050000HT04.xsd" />
+	<schema-set type="CORESCHEMA" path="src/main/webapp/WEB-INF/htb/coreschemas" />
+	<schema-set type="SCHEMAS" path="src/main/webapp/WEB-INF/htb/schemas" />
+
+	<!-- traverseChildWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- repeatCount="numeric(default 1)" -->
+	<!-- traverseMessageObjectChild="true(default)" -->
+	<!-- traverseHL7DataTypeChild="false(default)" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- traveseChildList="comma(,) seperated list" -->
+	<tree-node xpath="/" considerChildrenWhen="ALWAYS" />
+	
+	<tree-node xpath="/addr/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/telecom/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/statusCode/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/effectiveTime/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/confidentialityCode/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/veryImportantPersonCode/" considerChildrenWhen="ALWAYS" />
+	
+	<tree-node xpath="/patientPerson/id/" considerChildrenWhen="ALWAYS" />
+	
+</config-generation>

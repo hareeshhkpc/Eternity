@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Message Reg Api</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="css/hin.css" />
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.json-2.3.js"></script>
+
+
+<script>
+	//reset type=date inputs to text	
+	$(document).bind("mobileinit", function() {
+		$.mobile.page.prototype.options.degradeInputs.date = true;
+	});
+</script>
+
+
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+
+<script src="js/AjaxMultipart.js"></script>
+<script src="js/AppConstants.js"></script>
+<script src="js/ApplicationController.js"></script>
+<script src="js/AppUtil.js"></script>
+<script src="js/Callback.js"></script>
+<script src="js/CommonUtil.js"></script>
+<script src="js/Context.js"></script>
+<script src="js/DataLayer.js"></script>
+<script src="js/DataTypeAPI.js"></script>
+<script src="js/EventQueue.js"></script>
+<script src="js/HashMap.js"></script>
+<script src="js/IDGenerator.js"></script>
+<script src="js/hl7adapter_new.js"></script>
+<!-- <script src="js/hl7adapter.js"></script> -->
+<script src="js/LookupHandler.js"></script>
+<script src="js/MessageAndUIBinder.js"></script>
+<script src="js/RenderingEngine.js"></script>
+<script src="js/XmlUtil.js"></script>
+
+<script src="js/vo/AppointmentVO.js"></script>
+<script src="js/custom/AppSchedule.js"></script>
+<script src="js/custom/Form.js"></script>
+<script src="js/custom/Home.js"></script>
+<script src="js/custom/Library.js"></script>
+<script src="js/custom/Login.js"></script>
+<script src="js/custom/Mentor.js"></script>
+<script src="js/custom/Monitor.js"></script>
+<script src="js/custom/Measure.js"></script>
+<script src="js/custom/Navigation.js"></script>
+<script src="js/custom/Patient.js"></script>
+<script src="js/custom/Process.js"></script>
+<script src="js/custom/Program.js"></script>
+<script src="js/custom/Review.js"></script>
+<script src="js/custom/Search.js"></script>
+<script src="js/custom/TestResult.js"></script>
+<script src="js/custom/WorkFlow.js"></script>
+<script src="js/custom/Statistics.js"></script>
+
+<script src="js/hl7adapter_new.js"></script>
+<script type="text/javascript" src="js/xml2json.js"></script>
+<script type="text/javascript" src="js/json2xml.js"></script>
+
+
+<link rel="stylesheet" href="js/jquery.ui.datepicker.mobile.css" />
+<script src="js/jQuery.ui.datepicker.js"></script>
+<script src="js/jquery.ui.datepicker.mobile.js"></script>
+
+<script src="js/jquery.easydate-0.2.4.js"></script>
+
+<script>
+
+$(document).ready(function(){
+	
+	//alert("Load Configuration");
+	
+	$("#loadMessage").click(function(){
+		loadMessage('/message-skeleton/samples/PRPA_MT201000HT03/Message_no_image.xml');
+	});
+	
+	$("#loadConfig").click(function(){
+		loadConfiguration('/message-configuration/PRPA_MT201000HT03.xml');
+	});	
+	
+	
+	$('#saveMessage').click(function(){
+		 alert("Message xml: \n" +  XmlUtil.xmlToString(msgBinder.messageObject.getXML()));
+	});
+
+});
+
+function loadMessage(messageId){
+	getMessageDocument(messageId, 
+		function(messageObj){
+			msgBinder = new MessageAndUIBinder('MSG-10001', messageObj, 'PRPA_MT201000HT03');
+			
+			var lookupHandler = appController.getComponent("DataLayer").lookupHandler;
+			/* alert("lookupHandler: " + lookupHandler); */
+			msgBinder.loadDataOntoForm(lookupHandler);
+		},
+		function(status){
+			alert("Failed to load message for ID : " + messageId + ", Status: " + status);
+		}
+	);
+}
+
+function loadConfiguration(messageConfigId){
+	//alert("in load");
+	getMessage(messageConfigId, 
+		function(configData){
+			
+			var doc = new ConfigDocument(configData)
+	        var result = 0;
+	        result = doc.getArtifactId();
+	        // alert("result :"+result);
+	         
+	        config = doc;
+	        
+	        alert('Configuration for ' + messageConfigId + " Loaded");
+	        
+	        msgBinder = new MessageAndUIBinder('MSG-10001', config.createMessage(), 'PRPA_MT201000HT03');
+	        msgBinder.bindFieldEvents();
+		},
+		function(status){
+			alert("Failed to load configuration for ID : " + messageConfigId + ", Status: " + status);
+		}
+	);
+}
+
+</script>
+</head>
+<body>
+<div parentDiv="true" id="MSG-10001">
+
+	<div class="ui-form-fields">
+	<div data-role="none" class="ui-align-text">
+ 	 
+
+				  <label>Status:</label>
+			    <input type="text" id="CSstatus" value=""
+			    		pathFields="identifiedPerson"   
+			    		tagName="statusCode" fields="CSstatus"  
+			    		dataType="CS" dataField="true" />	
+			    		
+			    <label>Telecom:</label>
+			    <input type="text" id="TELuse" value=""
+			    		pathFields="identifiedPerson"   
+			    		tagName="telecom" fields="TELuse"  
+			    		dataType="TEL" dataField="true" />	
+			 
+
+	</div>				
+</div>
+	
+</div>
+<br/>
+<input type="button" data-inline="true" id="loadConfig" value="Load Configuration"/>
+<input type="button" data-inline="true" id="loadMessage" value="Load Message"/>
+<input type="button" data-inline="true" id="saveMessage" value="Save Message"/>
+</body>
+</html>

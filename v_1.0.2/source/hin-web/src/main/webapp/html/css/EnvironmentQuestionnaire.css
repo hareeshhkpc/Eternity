@@ -1,0 +1,172 @@
+@CHARSET "ISO-8859-1";
+
+
+.envTotal {
+    border: 1px solid #7F7F7F;
+    border-top:0px;
+    float: left;
+    font-weight: bold;
+    height: 37px;
+    text-align: right;
+    width: 73%;
+}
+#mainAwareness{
+	width:97.2%;
+}
+#mainEnvironment{
+	width:97.1%;
+}
+.envTotalCheck {
+    border: 1px solid #7F7F7F;
+    border-top:0px;
+    border-left:0px;
+    float: left;
+    height: 37px;
+    width: 13.31%;
+}
+.envHistory {
+    background-color: #D9D9D9;
+    border: 1px solid #7F7F7F;
+    float: left;
+    font-weight: bold;
+    height: 22px;
+    text-align: left;
+    width: 99.8%;
+}
+.environmentHead {
+    background-color: #BFBFBF;
+    border: 1px solid #7F7F7F;
+    float: left;
+    font-weight: bold;
+    height: 22px;
+    text-align: center;
+    width: 99.8%;
+}
+.environmentBreak {
+    background-color: #FFFFFF;
+    border: 1px solid #7F7F7F;
+    float: left;
+    height: 22px;
+    width: 99.8%;
+}
+.environmentQuetionaireYes {
+    border: 1px solid #7F7F7F;
+    float: left;
+    height: 22px;
+    width: 15%;
+}
+.environmentQuetionaireNo {
+    border: 1px solid #7F7F7F;
+    float: left;
+    height: 22px;
+    width: 4%;
+}
+.environmentQuetionaireNumber {
+    background-color: #F2F2F2;
+    border: 0px solid #7F7F7F;
+    float: left;
+    height: 37px;
+    text-align: center;
+    width: 100%;
+}
+.environmentQuetionaireTable {
+    background-color: #F2F2F2;
+    border: 0px solid #7F7F7F;
+    float: left;
+    height: 37px;
+    text-align: left;
+    width: 100%;
+}
+.environmentYesTotal {
+    background-color: #E1E0E2;
+    background-image: none;
+    display: block;
+    font-size: 16px;
+    height: 30px;
+    line-height: 1.4;
+    padding: 0.4em;
+    width: 97%;
+}
+.environmentNoTotal {
+    background-color: #E1E0E2;
+    background-image: none;
+    display: block;
+    font-size: 16px;
+    height: 30px;
+    line-height: 1.4;
+    padding: 0.4em;
+    width: 98%;
+}
+.environmentQuetionaireRadioYes {
+    border: 0px solid #7F7F7F;
+    float: left;
+    height: 37px;
+    width: 100%;
+}
+.awarenessQuetionaireWorldViewTable {
+    background-color: #F2F2F2;
+    border: 1px solid #7F7F7F;
+    float: left;
+    height: 37px;
+    text-align: left;
+    width: 66%;
+}
+.worldViewTotalCheck {
+    border: 0px solid #7F7F7F;
+    float: left;
+    height: 37px;
+    width: 100%;
+}
+.worldViewTwoRadio {
+    border: 0px solid #7F7F7F;
+    float: left;
+    height: 37px;
+    width: 100%;
+}
+.worldViewHeader {
+    background-color: #D9D9D9;
+    border: 1px solid #7F7F7F;
+    float: left;
+    font-weight: bold;
+    height: 36px;
+    width: 56.7%;
+}
+.worldViewYearHeader {
+    background-color: #D9D9D9;
+    border: 1px solid #7F7F7F;
+    float: left;
+    font-weight: bold;
+    height: 36px;
+    text-align: center;
+    /* width: 7.5%; */
+     width: 10.55%;
+}
+.awarenessTotalCheck{
+	/* width: 14.9%; */
+	width: 12.95%;
+	float:left;
+	border: 1px solid #7F7F7F;
+	border-top:0px;
+	border-left:0px;
+	height: 37px;
+}
+.awarenessTotal {
+    border: 1px solid #7F7F7F;
+    border-top:0px;
+    float: left;
+    font-weight: bold;
+    height: 37px;
+    text-align: right;
+    width: 70.8%;
+}
+/**** New****/
+
+.ui-table-questionnare{
+	border-collapse:collapse;
+	float:left;
+	width:100%;	
+}
+.ui-table-questionnare th,td{
+	border: 1px solid;
+	border-top:0px;
+}

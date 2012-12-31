@@ -1,0 +1,102 @@
+@font-face {
+	font-family: my-font;
+	src: url('MyriadPro-Light.otf');
+}
+body{
+	font-family: my-font, Georgia, Palatino, Times New Roman, serif;
+	margin:0 auto;
+}
+/**** Login ****/
+.loginscreen{
+	border:0px solid #000000;
+	background:url(../images/login_bg.jpg) no-repeat left 110px;
+	margin:0 auto;
+	height:623px;
+	min-width:800px;
+	max-width:1024px;
+}
+.logintop_left{
+	float:left;	
+	width:25%;
+}
+.logintop_middle{
+	float:left;
+	padding-top:80px;
+	width:55%
+}
+.logintop_right{
+	float:left;
+	padding-top:30px;
+	width:20%
+}
+.loginfrm_left{	
+	float:left;
+	width:40%;
+}
+.loginfrm_middle{	
+	padding-top:100px;
+	float:left;
+	width:50%;
+}
+#login_head{
+	font-size:18px;
+	font-weight:bold;
+	color:#6b1e64;
+	height:40px;
+	float:right;
+	width:350px;
+}
+
+#login_form{
+	float:right;
+	font-size:14px;
+	font-weight:bold;
+	color:#7f7f7f;
+	border:1px solid #7f7f7f;
+	border-radius:15px 15px 15px 15px;	
+	padding:5px;
+	width:350px;
+}
+#login_form  input{
+	border:1px solid #7f7f7f;
+	font-family: my-font, Georgia, Palatino, Times New Roman, serif;
+	border-radius:5px 5px 5px 5px;	
+	padding:5px;
+	width:230px;
+}
+#login_form fieldset {
+  padding: 1em; 
+  border:0;
+}
+#login_form fieldset label {
+  float:left;
+  width:22%;
+  margin-right:0.5em;
+  padding-top:0.2em;
+  text-align:right;
+  font-weight:bold;
+}
+#login_form .button{
+	background:url(../images/login_but.jpg) no-repeat;
+	border:0;
+	position:relative;
+	left:92px;
+	height:35px;
+	width:163px;
+}
+.loginfrm_right{
+	float:left;
+	width:8%;
+}
+#append-search-button {
+ 	background-image: url("images/search.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    float: right;
+    height: 28px;
+    left: -11px;
+    position: relative;
+    top: -28px;
+    width: 31px;
+}
+/************/

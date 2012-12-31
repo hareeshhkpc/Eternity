@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--$Header: /lafrz/jw1_top/CVS/hc/ctbR12/src/oracle/apps/ctb/message/defs/rim214101/schemas/POXX_IN111006.xsd,v 1.1 2007/11/12 09:44:02 rpanigra Exp $-->
+<xs:schema xmlns="urn:hl7-org:v3" xmlns:mif="urn:hl7-org:v3/mif"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn:hl7-org:v3"
+           elementFormDefault="qualified">
+   <xs:annotation>
+      <xs:documentation>Generated using schema builder version 2.0. Stylesheets:
+HMD was rendered into XML using software provided to HL7 by Beeler Consulting LLC.
+ HMD to MIF Transform: $Id: POXX_IN111006.xsd,v 1.1 2007/11/12 09:44:02 rpanigra Exp $
+  Base transform: $Id: POXX_IN111006.xsd,v 1.1 2007/11/12 09:44:02 rpanigra Exp $
+  Package Id Conversion: $Id: POXX_IN111006.xsd,v 1.1 2007/11/12 09:44:02 rpanigra Exp $
+  HTML To MIF markup: $Id: POXX_IN111006.xsd,v 1.1 2007/11/12 09:44:02 rpanigra Exp $
+ Flat to Serialization Transform: $Id: POXX_IN111006.xsd,v 1.1 2007/11/12 09:44:02 rpanigra Exp $
+ Fix Names Transform: $Id: POXX_IN111006.xsd,v 1.1 2007/11/12 09:44:02 rpanigra Exp $
+  Base transform: $Id: POXX_IN111006.xsd,v 1.1 2007/11/12 09:44:02 rpanigra Exp $
+  Package Id Conversion: $Id: POXX_IN111006.xsd,v 1.1 2007/11/12 09:44:02 rpanigra Exp $
+StaticMifToXsd.xsl version 2.0</xs:documentation>
+   </xs:annotation>
+   <xs:include schemaLocation="../coreschemas/infrastructureRoot.xsd"/>
+   <xs:include schemaLocation="MCCI_MT000100HT04.xsd"/>
+   <xs:include schemaLocation="MCAI_MT700200HT01.xsd"/>
+   <xs:include schemaLocation="POXX_MT111000HT02.xsd"/>
+   
+    <xs:element name="POXX_IN111006">
+    <xs:complexType>
+    <xs:complexContent>
+    <xs:extension base="MCCI_MT000100HT04.Message">
+    <xs:attribute name="ITSVersion" type="xs:string" 
+    use="required" fixed="XML_1.0"/>
+    </xs:extension>
+    </xs:complexContent>
+    </xs:complexType>
+    </xs:element>
+
+
+      <xs:complexType name="MCCI_MT000100HT04.Message">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="creationTime" type="TS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="securityText" type="ST" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="responseModeCode" type="CS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="versionCode" type="CS" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="interactionId" type="II" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="profileId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="processingCode" type="CS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="processingModeCode" type="CS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="acceptAckCode" type="CS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="sequenceNumber" type="INT" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="receiver" type="MCCI_MT000100HT04.Receiver" nillable="true" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="respondTo" type="MCCI_MT000100HT04.RespondTo" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="sender" type="MCCI_MT000100HT04.Sender" nillable="true" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="attentionLine" type="MCCI_MT000100HT04.AttentionLine" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="attachment" type="MCCI_MT000100HT04.Attachment" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="controlActProcess" type="MCAI_MT700200HT01.ControlActProcess" nillable="true" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+   </xs:complexType>
+
+ <xs:complexType name="MCAI_MT700200HT01.ControlActProcess">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="code" type="CD" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="text" type="ED" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="effectiveTime" type="IVL_TS" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="priorityCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="reasonCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="languageCode" type="CE" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="overseer" type="MCAI_MT700200HT01.Overseer" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="authorOrPerformer" type="MCAI_MT700200HT01.AuthorOrPerformer" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="dataEnterer" type="MCAI_MT700200HT01.DataEnterer" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="informationRecipient" type="MCAI_MT700200HT01.InformationRecipient" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="reason" type="MCAI_MT700200HT01.Reason" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="subject" type="MCAI_MT700200HT01.Subject" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="ActClassControlAct" use="optional" default="CACT"/>
+      <xs:attribute name="moodCode" type="x_ActMoodIntentEvent" use="required"/>
+   </xs:complexType>
+
+      <xs:complexType name="MCAI_MT700200HT01.Subject">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>         
+        
+<xs:element name="specimenObservationEvent" type="POXX_MT111000HT02.SpecimenObservationEvent" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ActRelationshipType" use="optional" fixed="SUBJ"/>
+      <xs:attribute name="contextConductionInd" type="bl" use="optional" default="false"/>
+   </xs:complexType>
+
+</xs:schema>

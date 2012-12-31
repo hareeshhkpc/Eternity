@@ -1,0 +1,716 @@
+<!--$Header: /lafrz/jw1_top/CVS/hc/ctb_docs/cscg/input/artifacts/cmets/mifs/COCT_MT060003HT04.mif,v 1.1 2008/04/17 03:44:26 katryan Exp $-->
+<mif:serializedStaticModel xmlns:mif="urn:hl7-org:v3/mif"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                           xsi:schemaLocation=""
+                           packageKind="version"
+                           representationKind="serialized"
+                           isSerializable="true"
+                           isAbstract="false"
+                           name="04">
+   <mif:packageLocation root="DEFN" section="IM" subSection="CO" domain="CT" artifact="MT-deprecated"
+                        realm="HT"
+                        version="04"
+                        id="060003"/>
+   <mif:header>
+      <mif:renderingInformation schemaVersion="1" application="Visio to MIF transform"/>
+      <mif:legalese copyrightOwner="Health Level Seven" copyrightYears="2007"/>
+   </mif:header>
+   <mif:graphicRepresentation presentation="HL7">
+      <mif:graphElement name="Main">
+         <mif:position x="0.0" y="0.0"/>
+         <mif:size width="9.145" height="4.724"/>
+      </mif:graphElement>
+   </mif:graphicRepresentation>
+   <mif:derivationSupplier staticModelDerivationId="1">
+      <mif:targetStaticModel root="DEFN" artifact="RIM" version="00"/>
+   </mif:derivationSupplier>
+   <mif:derivationSupplier staticModelDerivationId="2">
+      <mif:targetStaticModel root="DEFN" section="IM" subSection="CO" domain="CT" artifact="RM-deprecated"
+                             realm="HT"
+                             version="04"
+                             id="060003"/>
+   </mif:derivationSupplier>
+   <mif:derivationSupplier staticModelDerivationId="3">
+      <mif:targetStaticModel root="DEFN" section="IM" subSection="CO" domain="CT" artifact="HD-deprecated"
+                             realm="HT"
+                             version="04"
+                             id="060003"/>
+   </mif:derivationSupplier>
+   <mif:ownedEntryPoint id="COCT_MT060003HT04" name="A_Transportation" isAbstract="false">
+      <mif:annotations>
+         <mif:description>
+            <mif:text>Used to refer to the act of transporting a patient</mif:text>
+         </mif:description>
+      </mif:annotations>
+      <mif:graphicRepresentation>
+         <mif:graphElement shapeId="Sheet.129" containerDiagramName="Main">
+            <mif:position x="3.898" y="0.028"/>
+            <mif:size width="1.982" height="0.586"/>
+            <mif:anchorage connectToShapeId="Sheet.129">
+               <mif:position x="4.890" y="0.614"/>
+               <mif:graphEdge>
+                  <mif:anchor connectToShapeId="Sheet.1">
+                     <mif:position x="4.890" y="1.236"/>
+                  </mif:anchor>
+               </mif:graphEdge>
+            </mif:anchorage>
+         </mif:graphElement>
+      </mif:graphicRepresentation>
+      <mif:specializedClass>
+         <mif:class name="TransportationEventPatient" isAbstract="false">
+            <mif:derivationSupplier staticModelDerivationId="1" className="Act"/>
+            <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"/>
+            <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"/>
+            <mif:graphicRepresentation presentation="HL7">
+               <mif:graphElement shapeId="Sheet.1" containerDiagramName="Main" shapeTemplate="Act"
+                                 isWidthAutoSize="true"
+                                 isHeightAutoSize="false">
+                  <mif:position x="3.411" y="1.236"/>
+                  <mif:size width="2.958" height="3.478"/>
+               </mif:graphElement>
+            </mif:graphicRepresentation>
+            <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                           conformance="R"
+                           isMandatory="true"
+                           isStructural="true">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Act" attributeName="classCode"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                       attributeName="classCode"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                       attributeName="classCode"/>
+               <mif:type name="CS"/>
+               <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="ActClass" mnemonic="TRNS"/>
+            </mif:attribute>
+            <mif:attribute name="moodCode" sortKey="2" minimumMultiplicity="1" maximumMultiplicity="1"
+                           conformance="R"
+                           isMandatory="true"
+                           isStructural="true">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Act" attributeName="moodCode"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                       attributeName="moodCode"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                       attributeName="moodCode"/>
+               <mif:type name="CS"/>
+               <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="ActMood" mnemonic="EVN"/>
+            </mif:attribute>
+            <mif:attribute name="id" sortKey="3" minimumMultiplicity="0" maximumMultiplicity="*"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Act" attributeName="id"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                       attributeName="id"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                       attributeName="id"/>
+               <mif:type name="SET">
+                  <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="II"/>
+               </mif:type>
+            </mif:attribute>
+            <mif:attribute name="code" sortKey="4" minimumMultiplicity="0" maximumMultiplicity="1"
+                           conformance="R"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Act" attributeName="code"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                       attributeName="code"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                       attributeName="code"/>
+               <mif:type name="CE"/>
+               <mif:supplierDomainSpecification codingStrength="CWE" domainName="ActCode"/>
+            </mif:attribute>
+            <mif:attribute name="text" sortKey="5" minimumMultiplicity="0" maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Act" attributeName="text"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                       attributeName="text"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                       attributeName="text"/>
+               <mif:type name="ED"/>
+            </mif:attribute>
+            <mif:attribute name="statusCode" sortKey="6" minimumMultiplicity="0" maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Act" attributeName="statusCode"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                       attributeName="statusCode"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                       attributeName="statusCode"/>
+               <mif:type name="CS"/>
+               <mif:supplierDomainSpecification codingStrength="CNE" domainName="ActStatus"/>
+            </mif:attribute>
+            <mif:attribute name="effectiveTime" sortKey="7" minimumMultiplicity="0"
+                           maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Act" attributeName="effectiveTime"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                       attributeName="effectiveTime"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                       attributeName="effectiveTime"/>
+               <mif:type name="IVL">
+                  <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="TS"/>
+               </mif:type>
+            </mif:attribute>
+            <mif:attribute name="priorityCode" sortKey="8" minimumMultiplicity="0" maximumMultiplicity="*"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Act" attributeName="priorityCode"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                       attributeName="priorityCode"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                       attributeName="priorityCode"/>
+               <mif:type name="SET">
+                  <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="CE"/>
+               </mif:type>
+               <mif:supplierDomainSpecification codingStrength="CWE" domainName="ActPriority"/>
+            </mif:attribute>
+            <mif:attribute name="confidentialityCode" sortKey="9" minimumMultiplicity="0"
+                           maximumMultiplicity="*"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Act" attributeName="confidentialityCode"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                       attributeName="confidentialityCode"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                       attributeName="confidentialityCode"/>
+               <mif:type name="SET">
+                  <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="CE"/>
+               </mif:type>
+               <mif:supplierDomainSpecification codingStrength="CWE" domainName="Confidentiality"/>
+            </mif:attribute>
+            <mif:attribute name="independentInd" sortKey="10" minimumMultiplicity="0"
+                           maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Act" attributeName="independentInd"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                       attributeName="independentInd"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                       attributeName="independentInd"/>
+               <mif:type name="BL"/>
+            </mif:attribute>
+            <mif:association sortKey="4">
+               <mif:graphicRepresentation>
+                  <mif:graphElement connectToShapeId="Sheet.1" containerDiagramName="Main">
+                     <mif:position x="6.369" y="2.627"/>
+                     <mif:graphEdge>
+                        <mif:anchor connectToShapeId="Sheet.23">
+                           <mif:position x="6.369" y="2.627"/>
+                        </mif:anchor>
+                     </mif:graphEdge>
+                  </mif:graphElement>
+               </mif:graphicRepresentation>
+               <mif:targetConnection name="subject" minimumMultiplicity="0" maximumMultiplicity="1" conformance="R"
+                                     isMandatory="false"
+                                     sortKey="AAA_______">
+                  <mif:derivationSupplier staticModelDerivationId="1" className="Act" associationEndName="participation"/>
+                  <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                          associationEndName="subject"/>
+                  <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                          associationEndName="subject"/>
+                  <mif:participantClass>
+                     <mif:class name="Subject" isAbstract="false">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Participation"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="Subject"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="Subject"/>
+                        <mif:graphicRepresentation presentation="HL7">
+                           <mif:graphElement shapeId="Sheet.23" containerDiagramName="Main" shapeTemplate="Participation"
+                                             textWrappingWidth="66.0"
+                                             nodeOrientation="Right">
+                              <mif:position x="6.369" y="2.386"/>
+                              <mif:size width="1.547" height="0.303"/>
+                           </mif:graphElement>
+                        </mif:graphicRepresentation>
+                        <mif:attribute name="typeCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="true">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Participation" attributeName="typeCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Subject" attributeName="typeCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Subject" attributeName="typeCode"/>
+                           <mif:type name="CS"/>
+                           <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="ParticipationType" mnemonic="SBJ"/>
+                        </mif:attribute>
+                        <mif:association sortKey="18">
+                           <mif:graphicRepresentation>
+                              <mif:graphElement connectToShapeId="Sheet.23" containerDiagramName="Main">
+                                 <mif:position x="7.916" y="2.447"/>
+                                 <mif:graphEdge>
+                                    <mif:anchor connectToShapeId="Sheet.35">
+                                       <mif:position x="7.916" y="2.447"/>
+                                    </mif:anchor>
+                                 </mif:graphEdge>
+                              </mif:graphElement>
+                           </mif:graphicRepresentation>
+                           <mif:targetConnection name="patient" minimumMultiplicity="1" maximumMultiplicity="1" conformance="R"
+                                                 isMandatory="false"
+                                                 sortKey="BZ">
+                              <mif:derivationSupplier staticModelDerivationId="1" className="Participation" associationEndName="role"/>
+                              <mif:derivationSupplier staticModelDerivationId="2" className="Subject" associationEndName="patient"/>
+                              <mif:derivationSupplier staticModelDerivationId="3" className="Subject" associationEndName="patient"/>
+                              <mif:participantClass>
+                                 <mif:commonModelElementRef name="R_PatientUniversal">
+                                    <mif:derivationSupplier staticModelDerivationId="1" className="Patient"/>
+                                    <mif:derivationSupplier staticModelDerivationId="2" className="R_PatientUniversal"/>
+                                    <mif:derivationSupplier staticModelDerivationId="3" className="R_PatientUniversal"/>
+                                    <mif:supplierStructuralDomain domainName="RoleClass" mnemonic="PAT"/>
+                                    <mif:graphicRepresentation presentation="HL7">
+                                       <mif:graphElement shapeId="Sheet.35" containerDiagramName="Main" shapeTemplate="CMET"
+                                                         isWidthAutoSize="true"
+                                                         isHeightAutoSize="true">
+                                          <mif:position x="7.916" y="2.196"/>
+                                          <mif:size width="1.220" height="0.628"/>
+                                       </mif:graphElement>
+                                    </mif:graphicRepresentation>
+                                    <mif:generalizationParent name="COCT_MT050000HT04"/>
+                                 </mif:commonModelElementRef>
+                              </mif:participantClass>
+                           </mif:targetConnection>
+                           <mif:sourceConnection>
+                              <mif:nonTraversableConnection participantClassName="Subject">
+                                 <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="participation"/>
+                              </mif:nonTraversableConnection>
+                           </mif:sourceConnection>
+                        </mif:association>
+                     </mif:class>
+                  </mif:participantClass>
+               </mif:targetConnection>
+               <mif:sourceConnection>
+                  <mif:nonTraversableConnection participantClassName="TransportationEventPatient">
+                     <mif:derivationSupplier staticModelDerivationId="1" className="Participation" associationEndName="act"/>
+                  </mif:nonTraversableConnection>
+               </mif:sourceConnection>
+            </mif:association>
+            <mif:association sortKey="3">
+               <mif:graphicRepresentation>
+                  <mif:graphElement connectToShapeId="Sheet.1" containerDiagramName="Main">
+                     <mif:position x="3.411" y="1.932"/>
+                     <mif:graphEdge>
+                        <mif:anchor connectToShapeId="Sheet.5">
+                           <mif:position x="3.411" y="1.932"/>
+                        </mif:anchor>
+                     </mif:graphEdge>
+                  </mif:graphElement>
+               </mif:graphicRepresentation>
+               <mif:targetConnection name="performer" minimumMultiplicity="0" maximumMultiplicity="*"
+                                     isMandatory="false"
+                                     sortKey="AD________">
+                  <mif:derivationSupplier staticModelDerivationId="1" className="Act" associationEndName="participation"/>
+                  <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                          associationEndName="performer"/>
+                  <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                          associationEndName="performer"/>
+                  <mif:participantClass>
+                     <mif:class name="Performer" isAbstract="false">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Participation"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="Performer"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="Performer"/>
+                        <mif:graphicRepresentation presentation="HL7">
+                           <mif:graphElement shapeId="Sheet.5" containerDiagramName="Main" shapeTemplate="Participation"
+                                             textWrappingWidth="66.0"
+                                             nodeOrientation="Left">
+                              <mif:position x="1.805" y="1.457"/>
+                              <mif:size width="1.605" height="0.436"/>
+                           </mif:graphElement>
+                        </mif:graphicRepresentation>
+                        <mif:attribute name="typeCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="true">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Participation" attributeName="typeCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Performer" attributeName="typeCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Performer" attributeName="typeCode"/>
+                           <mif:type name="CS"/>
+                           <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="ParticipationType" mnemonic="PRF"/>
+                        </mif:attribute>
+                        <mif:attribute name="time" sortKey="2" minimumMultiplicity="0" maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Participation" attributeName="time"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Performer" attributeName="time"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Performer" attributeName="time"/>
+                           <mif:type name="IVL">
+                              <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="TS"/>
+                           </mif:type>
+                        </mif:attribute>
+                        <mif:association sortKey="16">
+                           <mif:graphicRepresentation>
+                              <mif:graphElement connectToShapeId="Sheet.5" containerDiagramName="Main">
+                                 <mif:position x="1.805" y="1.419"/>
+                                 <mif:graphEdge>
+                                    <mif:anchor connectToShapeId="Sheet.52">
+                                       <mif:position x="1.805" y="1.419"/>
+                                    </mif:anchor>
+                                 </mif:graphEdge>
+                              </mif:graphElement>
+                           </mif:graphicRepresentation>
+                           <mif:targetConnection name="roleChoice" minimumMultiplicity="1" maximumMultiplicity="1"
+                                                 isMandatory="false"
+                                                 sortKey="BZ">
+                              <mif:derivationSupplier staticModelDerivationId="1" className="Participation" associationEndName="role"/>
+                              <mif:derivationSupplier staticModelDerivationId="2" className="Performer"
+                                                      associationEndName="roleChoice"/>
+                              <mif:derivationSupplier staticModelDerivationId="3" className="Performer"
+                                                      associationEndName="roleChoice"/>
+                              <participantClassSpecialization xmlns="urn:hl7-org:v3/mif" className="R_EmploymentStaffIdentified-confirmable"
+                                                              traversalName="employmentStaff"/>
+                              <participantClassSpecialization xmlns="urn:hl7-org:v3/mif" className="R_IdentifiedPersonIdentified-confirmable"
+                                                              traversalName="identifiedEntityPerson"/>
+                              <mif:participantClass>
+                                 <mif:reference name="RoleChoice"/>
+                              </mif:participantClass>
+                           </mif:targetConnection>
+                           <mif:sourceConnection>
+                              <mif:nonTraversableConnection participantClassName="Performer">
+                                 <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="participation"/>
+                              </mif:nonTraversableConnection>
+                           </mif:sourceConnection>
+                        </mif:association>
+                     </mif:class>
+                  </mif:participantClass>
+               </mif:targetConnection>
+               <mif:sourceConnection>
+                  <mif:nonTraversableConnection participantClassName="TransportationEventPatient">
+                     <mif:derivationSupplier staticModelDerivationId="1" className="Participation" associationEndName="act"/>
+                  </mif:nonTraversableConnection>
+               </mif:sourceConnection>
+            </mif:association>
+            <mif:association sortKey="2">
+               <mif:graphicRepresentation>
+                  <mif:graphElement connectToShapeId="Sheet.1" containerDiagramName="Main">
+                     <mif:position x="3.411" y="2.627"/>
+                     <mif:graphEdge>
+                        <mif:anchor connectToShapeId="Sheet.11">
+                           <mif:position x="3.411" y="2.627"/>
+                        </mif:anchor>
+                     </mif:graphEdge>
+                  </mif:graphElement>
+               </mif:graphicRepresentation>
+               <mif:targetConnection name="escort" minimumMultiplicity="0" maximumMultiplicity="*"
+                                     isMandatory="false"
+                                     sortKey="AFG_______">
+                  <mif:derivationSupplier staticModelDerivationId="1" className="Act" associationEndName="participation"/>
+                  <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                          associationEndName="escort"/>
+                  <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                          associationEndName="escort"/>
+                  <mif:participantClass>
+                     <mif:class name="Escort" isAbstract="false">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Participation"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="Escort"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="Escort"/>
+                        <mif:graphicRepresentation presentation="HL7">
+                           <mif:graphElement shapeId="Sheet.11" containerDiagramName="Main" shapeTemplate="Participation"
+                                             textWrappingWidth="66.0"
+                                             nodeOrientation="Left">
+                              <mif:position x="1.805" y="2.244"/>
+                              <mif:size width="1.605" height="0.436"/>
+                           </mif:graphElement>
+                        </mif:graphicRepresentation>
+                        <mif:attribute name="typeCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="true">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Participation" attributeName="typeCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Escort" attributeName="typeCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Escort" attributeName="typeCode"/>
+                           <mif:type name="CS"/>
+                           <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="ParticipationType" mnemonic="ESC"/>
+                        </mif:attribute>
+                        <mif:attribute name="time" sortKey="2" minimumMultiplicity="0" maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Participation" attributeName="time"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Escort" attributeName="time"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Escort" attributeName="time"/>
+                           <mif:type name="IVL">
+                              <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="TS"/>
+                           </mif:type>
+                        </mif:attribute>
+                        <mif:association sortKey="12">
+                           <mif:graphicRepresentation>
+                              <mif:graphElement connectToShapeId="Sheet.11" containerDiagramName="Main">
+                                 <mif:position x="1.805" y="2.297"/>
+                                 <mif:graphEdge>
+                                    <mif:anchor connectToShapeId="Sheet.52">
+                                       <mif:position x="1.805" y="2.297"/>
+                                    </mif:anchor>
+                                 </mif:graphEdge>
+                              </mif:graphElement>
+                           </mif:graphicRepresentation>
+                           <mif:targetConnection name="roleChoice" minimumMultiplicity="1" maximumMultiplicity="1"
+                                                 isMandatory="false"
+                                                 sortKey="BZ">
+                              <mif:derivationSupplier staticModelDerivationId="1" className="Participation" associationEndName="role"/>
+                              <mif:derivationSupplier staticModelDerivationId="2" className="Escort" associationEndName="roleChoice"/>
+                              <mif:derivationSupplier staticModelDerivationId="3" className="Escort" associationEndName="roleChoice"/>
+                              <participantClassSpecialization xmlns="urn:hl7-org:v3/mif" className="R_EmploymentStaffIdentified-confirmable"
+                                                              traversalName="employmentStaff"/>
+                              <participantClassSpecialization xmlns="urn:hl7-org:v3/mif" className="R_IdentifiedPersonIdentified-confirmable"
+                                                              traversalName="identifiedEntityPerson"/>
+                              <mif:participantClass>
+                                 <mif:class name="RoleChoice" isAbstract="true">
+                                    <mif:derivationSupplier staticModelDerivationId="1" className="Role"/>
+                                    <mif:derivationSupplier staticModelDerivationId="2" className="RoleChoice"/>
+                                    <mif:derivationSupplier staticModelDerivationId="3" className="RoleChoice"/>
+                                    <mif:graphicRepresentation presentation="HL7">
+                                       <mif:graphElement shapeId="Sheet.52" containerDiagramName="Main" shapeTemplate="Choice"
+                                                         isWidthAutoSize="true"
+                                                         isHeightAutoSize="true"
+                                                         nodeOrientation="Portrait">
+                                          <mif:position x="0.216" y="1.068"/>
+                                          <mif:size width="1.590" height="1.756"/>
+                                       </mif:graphElement>
+                                    </mif:graphicRepresentation>
+                                    <mif:specializationChild>
+                                       <mif:graphicRepresentation>
+                                          <mif:graphElement shapeId="Sheet.47" containerDiagramName="Main" shapeTemplate="CMET"
+                                                            isWidthAutoSize="true"
+                                                            isHeightAutoSize="true">
+                                             <mif:position x="0.341" y="1.318"/>
+                                             <mif:size width="1.340" height="0.628"/>
+                                          </mif:graphElement>
+                                       </mif:graphicRepresentation>
+                                       <mif:specializedClass>
+                                          <mif:commonModelElementRef name="R_EmploymentStaffIdentified-confirmable">
+                                             <mif:derivationSupplier staticModelDerivationId="1" className="Employee"/>
+                                             <mif:derivationSupplier staticModelDerivationId="2" className="R_EmploymentStaffIdentified-confirmable"/>
+                                             <mif:derivationSupplier staticModelDerivationId="3" className="R_EmploymentStaffIdentified-confirmable"/>
+                                             <mif:supplierStructuralDomain domainName="RoleClass" mnemonic="EMP"/>
+                                             <mif:graphicRepresentation presentation="HL7">
+                                                <mif:graphElement shapeId="Sheet.47" containerDiagramName="Main" shapeTemplate="CMET"
+                                                                  isWidthAutoSize="true"
+                                                                  isHeightAutoSize="true">
+                                                   <mif:position x="0.341" y="1.318"/>
+                                                   <mif:size width="1.340" height="0.628"/>
+                                                </mif:graphElement>
+                                             </mif:graphicRepresentation>
+                                             <mif:generalizationParent name="COCT_MT410002HT03"/>
+                                          </mif:commonModelElementRef>
+                                       </mif:specializedClass>
+                                    </mif:specializationChild>
+                                    <mif:specializationChild>
+                                       <mif:graphicRepresentation>
+                                          <mif:graphElement shapeId="Sheet.55" containerDiagramName="Main" shapeTemplate="CMET"
+                                                            isWidthAutoSize="true"
+                                                            isHeightAutoSize="true">
+                                             <mif:position x="0.341" y="2.071"/>
+                                             <mif:size width="1.340" height="0.628"/>
+                                          </mif:graphElement>
+                                       </mif:graphicRepresentation>
+                                       <mif:specializedClass>
+                                          <mif:commonModelElementRef name="R_IdentifiedPersonIdentified-confirmable">
+                                             <mif:derivationSupplier staticModelDerivationId="1" className="Role"/>
+                                             <mif:derivationSupplier staticModelDerivationId="2"
+                                                                     className="R_IdentifiedPersonIdentified-confirmable"/>
+                                             <mif:derivationSupplier staticModelDerivationId="3"
+                                                                     className="R_IdentifiedPersonIdentified-confirmable"/>
+                                             <mif:supplierStructuralDomain domainName="RoleClass" mnemonic="IDENT"/>
+                                             <mif:graphicRepresentation presentation="HL7">
+                                                <mif:graphElement shapeId="Sheet.55" containerDiagramName="Main" shapeTemplate="CMET"
+                                                                  isWidthAutoSize="true"
+                                                                  isHeightAutoSize="true">
+                                                   <mif:position x="0.341" y="2.071"/>
+                                                   <mif:size width="1.340" height="0.628"/>
+                                                </mif:graphElement>
+                                             </mif:graphicRepresentation>
+                                             <mif:generalizationParent name="COCT_MT990002HT04"/>
+                                          </mif:commonModelElementRef>
+                                       </mif:specializedClass>
+                                    </mif:specializationChild>
+                                 </mif:class>
+                              </mif:participantClass>
+                           </mif:targetConnection>
+                           <mif:sourceConnection>
+                              <mif:nonTraversableConnection participantClassName="Escort">
+                                 <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="participation"/>
+                              </mif:nonTraversableConnection>
+                           </mif:sourceConnection>
+                        </mif:association>
+                     </mif:class>
+                  </mif:participantClass>
+               </mif:targetConnection>
+               <mif:sourceConnection>
+                  <mif:nonTraversableConnection participantClassName="TransportationEventPatient">
+                     <mif:derivationSupplier staticModelDerivationId="1" className="Participation" associationEndName="act"/>
+                  </mif:nonTraversableConnection>
+               </mif:sourceConnection>
+            </mif:association>
+            <mif:association sortKey="1">
+               <mif:graphicRepresentation>
+                  <mif:graphElement connectToShapeId="Sheet.1" containerDiagramName="Main">
+                     <mif:position x="3.411" y="3.323"/>
+                     <mif:graphEdge>
+                        <mif:anchor connectToShapeId="Sheet.17">
+                           <mif:position x="3.411" y="3.323"/>
+                        </mif:anchor>
+                     </mif:graphEdge>
+                  </mif:graphElement>
+               </mif:graphicRepresentation>
+               <mif:targetConnection name="origin" minimumMultiplicity="0" maximumMultiplicity="1"
+                                     isMandatory="false"
+                                     sortKey="AJA_______">
+                  <mif:derivationSupplier staticModelDerivationId="1" className="Act" associationEndName="participation"/>
+                  <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                          associationEndName="origin"/>
+                  <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                          associationEndName="origin"/>
+                  <mif:participantClass>
+                     <mif:class name="Origin" isAbstract="false">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Participation"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="Origin"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="Origin"/>
+                        <mif:graphicRepresentation presentation="HL7">
+                           <mif:graphElement shapeId="Sheet.17" containerDiagramName="Main" shapeTemplate="Participation"
+                                             textWrappingWidth="66.0"
+                                             nodeOrientation="Left">
+                              <mif:position x="1.616" y="3.385"/>
+                              <mif:size width="1.795" height="0.303"/>
+                           </mif:graphElement>
+                        </mif:graphicRepresentation>
+                        <mif:attribute name="typeCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="true">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Participation" attributeName="typeCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Origin" attributeName="typeCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Origin" attributeName="typeCode"/>
+                           <mif:type name="CS"/>
+                           <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="ParticipationType" mnemonic="ORG"/>
+                        </mif:attribute>
+                        <mif:association sortKey="10">
+                           <mif:graphicRepresentation>
+                              <mif:graphElement connectToShapeId="Sheet.17" containerDiagramName="Main">
+                                 <mif:position x="1.616" y="3.749"/>
+                                 <mif:graphEdge>
+                                    <mif:anchor connectToShapeId="Sheet.41">
+                                       <mif:position x="1.616" y="3.749"/>
+                                    </mif:anchor>
+                                 </mif:graphEdge>
+                              </mif:graphElement>
+                           </mif:graphicRepresentation>
+                           <mif:targetConnection name="serviceDeliveryLocation" minimumMultiplicity="1" maximumMultiplicity="1"
+                                                 isMandatory="false"
+                                                 sortKey="BZ">
+                              <mif:derivationSupplier staticModelDerivationId="1" className="Participation" associationEndName="role"/>
+                              <mif:derivationSupplier staticModelDerivationId="2" className="Origin"
+                                                      associationEndName="locationServiceDelivery"/>
+                              <mif:derivationSupplier staticModelDerivationId="3" className="Origin"
+                                                      associationEndName="locationServiceDelivery"/>
+                              <mif:participantClass>
+                                 <mif:reference name="R_LocationServiceDeliveryUniversal"/>
+                              </mif:participantClass>
+                           </mif:targetConnection>
+                           <mif:sourceConnection>
+                              <mif:nonTraversableConnection participantClassName="Origin">
+                                 <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="participation"/>
+                              </mif:nonTraversableConnection>
+                           </mif:sourceConnection>
+                        </mif:association>
+                     </mif:class>
+                  </mif:participantClass>
+               </mif:targetConnection>
+               <mif:sourceConnection>
+                  <mif:nonTraversableConnection participantClassName="TransportationEventPatient">
+                     <mif:derivationSupplier staticModelDerivationId="1" className="Participation" associationEndName="act"/>
+                  </mif:nonTraversableConnection>
+               </mif:sourceConnection>
+            </mif:association>
+            <mif:association sortKey="0">
+               <mif:graphicRepresentation>
+                  <mif:graphElement connectToShapeId="Sheet.1" containerDiagramName="Main">
+                     <mif:position x="3.411" y="4.018"/>
+                     <mif:graphEdge>
+                        <mif:anchor connectToShapeId="Sheet.29">
+                           <mif:position x="3.411" y="4.018"/>
+                        </mif:anchor>
+                     </mif:graphEdge>
+                  </mif:graphElement>
+               </mif:graphicRepresentation>
+               <mif:targetConnection name="destination" minimumMultiplicity="0" maximumMultiplicity="1"
+                                     isMandatory="false"
+                                     sortKey="AJC_______">
+                  <mif:derivationSupplier staticModelDerivationId="1" className="Act" associationEndName="participation"/>
+                  <mif:derivationSupplier staticModelDerivationId="2" className="TransportationEventPatient"
+                                          associationEndName="destination"/>
+                  <mif:derivationSupplier staticModelDerivationId="3" className="TransportationEventPatient"
+                                          associationEndName="destination"/>
+                  <mif:participantClass>
+                     <mif:class name="Destination" isAbstract="false">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Participation"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="Destination"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="Destination"/>
+                        <mif:graphicRepresentation presentation="HL7">
+                           <mif:graphElement shapeId="Sheet.29" containerDiagramName="Main" shapeTemplate="Participation"
+                                             textWrappingWidth="66.0"
+                                             nodeOrientation="Left">
+                              <mif:position x="1.616" y="3.995"/>
+                              <mif:size width="1.795" height="0.303"/>
+                           </mif:graphElement>
+                        </mif:graphicRepresentation>
+                        <mif:attribute name="typeCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="true">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Participation" attributeName="typeCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Destination" attributeName="typeCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Destination" attributeName="typeCode"/>
+                           <mif:type name="CS"/>
+                           <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="ParticipationType" mnemonic="DST"/>
+                        </mif:attribute>
+                        <mif:association sortKey="6">
+                           <mif:graphicRepresentation>
+                              <mif:graphElement connectToShapeId="Sheet.29" containerDiagramName="Main">
+                                 <mif:position x="1.616" y="4.275"/>
+                                 <mif:graphEdge>
+                                    <mif:anchor connectToShapeId="Sheet.41">
+                                       <mif:position x="1.616" y="4.275"/>
+                                    </mif:anchor>
+                                 </mif:graphEdge>
+                              </mif:graphElement>
+                           </mif:graphicRepresentation>
+                           <mif:targetConnection name="serviceDeliveryLocation" minimumMultiplicity="1" maximumMultiplicity="1"
+                                                 isMandatory="false"
+                                                 sortKey="BZ">
+                              <mif:derivationSupplier staticModelDerivationId="1" className="Participation" associationEndName="role"/>
+                              <mif:derivationSupplier staticModelDerivationId="2" className="Destination"
+                                                      associationEndName="locationServiceDelivery"/>
+                              <mif:derivationSupplier staticModelDerivationId="3" className="Destination"
+                                                      associationEndName="locationServiceDelivery"/>
+                              <mif:participantClass>
+                                 <mif:commonModelElementRef name="R_LocationServiceDeliveryUniversal">
+                                    <mif:derivationSupplier staticModelDerivationId="1" className="Role"/>
+                                    <mif:derivationSupplier staticModelDerivationId="2" className="R_LocationServiceDeliveryUniversal"/>
+                                    <mif:derivationSupplier staticModelDerivationId="3" className="R_LocationServiceDeliveryUniversal"/>
+                                    <mif:supplierStructuralDomain domainName="RoleClass" mnemonic="SDLOC"/>
+                                    <mif:graphicRepresentation presentation="HL7">
+                                       <mif:graphElement shapeId="Sheet.41" containerDiagramName="Main" shapeTemplate="CMET"
+                                                         isWidthAutoSize="true"
+                                                         isHeightAutoSize="false">
+                                          <mif:position x="0.010" y="3.224"/>
+                                          <mif:size width="1.606" height="1.314"/>
+                                       </mif:graphElement>
+                                    </mif:graphicRepresentation>
+                                    <mif:generalizationParent name="COCT_MT240000HT02"/>
+                                 </mif:commonModelElementRef>
+                              </mif:participantClass>
+                           </mif:targetConnection>
+                           <mif:sourceConnection>
+                              <mif:nonTraversableConnection participantClassName="Destination">
+                                 <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="participation"/>
+                              </mif:nonTraversableConnection>
+                           </mif:sourceConnection>
+                        </mif:association>
+                     </mif:class>
+                  </mif:participantClass>
+               </mif:targetConnection>
+               <mif:sourceConnection>
+                  <mif:nonTraversableConnection participantClassName="TransportationEventPatient">
+                     <mif:derivationSupplier staticModelDerivationId="1" className="Participation" associationEndName="act"/>
+                  </mif:nonTraversableConnection>
+               </mif:sourceConnection>
+            </mif:association>
+         </mif:class>
+      </mif:specializedClass>
+   </mif:ownedEntryPoint>
+</mif:serializedStaticModel>

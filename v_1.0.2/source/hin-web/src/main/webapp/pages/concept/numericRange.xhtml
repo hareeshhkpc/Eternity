@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:util="http://java.sun.com/jsf/composite/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition>
+	<rich:panel header="#{msg['numericRange.title']}">
+		<h:panelGrid columns="2">
+			<h:outputText value="#{msg['unit.title']}" />
+			<h:selectOneMenu value="#{conceptBean.unitId}" id="unitClassId">
+				<f:selectItems value="#{conceptBean.unitList}" />
+				<f:ajax event="change" listener="#{conceptBean.unitChange}" execute="unitClassId" />
+			</h:selectOneMenu>
+			<h:outputText value="#{msg['numericRange.absoluteHigh']}: " />
+			<h:inputText id="absoluteHigh"
+				value="#{conceptBean.concept.dataType.absoluteHigh}" />
+			<h:outputText value="#{msg['numericRange.criticalHigh']}: " />
+			<h:inputText id="criticalHigh"
+				value="#{conceptBean.concept.dataType.criticalHigh}" />
+			<h:outputText value="#{msg['numericRange.normalHigh']}: " />
+			<h:inputText id="normalHigh"
+				value="#{conceptBean.concept.dataType.normalHigh}" />
+			<h:outputText value="#{msg['numericRange.absoluteLow']}: " />
+			<h:inputText id="absoluteLow"
+				value="#{conceptBean.concept.dataType.absoluteLow}" />
+			<h:outputText value="#{msg['numericRange.criticalLow']}: " />
+			<h:inputText id="criticalLow"
+				value="#{conceptBean.concept.dataType.criticalLow}" />
+			<h:outputText value="#{msg['numericRange.normalLow']}: " />
+			<h:inputText id="normalLow"
+				value="#{conceptBean.concept.dataType.normalLow}" />
+		</h:panelGrid>
+	</rich:panel>
+</ui:composition>
+</html>
+

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<KeyspaceDef name="HIN_ETERNITY1339975235484"
+	strategy_class="org.apache.cassandra.locator.NetworkTopologyStrategy">
+	<StrategyOptions>
+		<Option name="datacenter1" value="1" />
+	</StrategyOptions>
+	<ColumnFamily column_type="Super" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1041" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="ROLE_DEFINITION" subcomparator_type="org.apache.cassandra.db.marshal.UTF8Type" />
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1040" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="WORKFLOW_TASK" />
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1042" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="POXX_MT111000HT02" />
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1043" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="MESSAGE_STORE" />
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1044" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="SUBSCRIBER_PROFILE" />
+	<ColumnFamily column_type="Super" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1045" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="ROLE" subcomparator_type="org.apache.cassandra.db.marshal.UTF8Type" />
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1046" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="GENERATE_SUBSCRIBERID" />
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1047" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="WORKFLOW_DEFINITION" />
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1049" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="ROLE_PERMISSION" />
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1048" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="ENTITY_STATE" />
+</KeyspaceDef>

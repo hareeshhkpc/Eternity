@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>DataType Editor Test </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../html/js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="../../../html/css/hin.css" />
+<link rel="stylesheet" href="../../../html/css/violet.css" />
+<link rel="stylesheet" href="../../../html/css/mobile.css" />
+
+<link rel="stylesheet" href="../../../html/js/jquery.mobile.datebox.min.css">
+<link rel="stylesheet" href="../../../html/js/jquery.ui.datepicker.mobile.css" />
+<link rel="stylesheet" href="../../../html/js/jquery.mobile.datebox.min.css">
+
+<script src="../../../html/js/jquery-1.6.4.min.js"></script>
+<script src="../../../html/js/jquery.json-2.3.js"></script>
+<script src="../../../html/js/jquery.mobile-1.0.1.min.js"></script>
+
+<script src="../../../html/js/jquery.mobile.datebox.min.js"></script>
+<script src="../../../mobile/js/jquery.mousewheel.min.js"></script>
+
+<script src="../../../html/js/hl7adapter_new.js"></script>
+<script src="../../../html/js/LookupHandler.js"></script>
+<script src="../../../html/js/MessageAndUIBinder.js"></script>
+<script src="../../../html/js/UpdatePathfield.js"></script>
+<script src="../../../html/js/XmlUtil.js"></script>
+<script src="../../../html/js/HashMap.js"></script>
+
+<script type="text/javascript" src="../../../html/js/xml2json.js"></script>
+<script type="text/javascript" src="../../../html/js/json2xml.js"></script>
+
+<link rel="stylesheet" href="../../../html/js/jquery.ui.datepicker.mobile.css" />
+<script src="../../../html/js/jQuery.ui.datepicker.js"></script>
+<script src="../../../html/js/jquery.ui.datepicker.mobile.js"></script>
+
+<script src="../../../html/js/jquery.easydate-0.2.4.js"></script>
+
+<link rel="stylesheet" href="../../../html/css/healthhistoryquestionnaire.css" />
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	//loadForm("/hin-web/html/pages/form/HEALTH_HISTORY_QUESTIONNAIRE_FORM_Test.html");
+	//D:\HIN\hin-web\src\main\webapp\message-forms\CAC_FORM.html
+	loadForm("/hin-web/message-forms/THYROFLEX_FORM.html");
+	
+	$("#loadMessage").click(function(){
+		loadMessage('/message-skeleton/samples/POXX_MT111000HT02/THYROFLEX.xml');
+	});
+
+	$('#saveMessage').click(function(){
+		 alert("Message xml: \n" +  XmlUtil.xmlToString(msgBinder.messageObject.getXML()));
+	});
+});
+
+function loadMessage(messageId){
+	getMessageDocument(messageId, 
+		function(messageObj){
+			msgBinder = new MessageAndUIBinder('MSG-10001', messageObj, 'POXX_MT111000HT02_THYROFLEX');
+			//alert("msgBinder : "+msgBinder);
+			var lookupHandler = new LookupHandler();
+			msgBinder.loadDataOntoForm(lookupHandler);			
+		},
+		function(status){
+			alert("Failed to load message for ID : " + messageId + ", Status: " + status);
+		}
+	);
+}
+
+function loadForm(formUrl, callbackOnComplete){
+	$.ajax({
+		url: formUrl, 
+		dataType: 'html',
+		cache: false,
+		success: function(data) {
+			$('#MSG-10001').append(data);
+			if (callbackOnComplete) {
+				callbackOnComplete();
+			}
+			
+			$('#MSG-10001').trigger('create');
+		},
+		error: function(e){
+			alert(e);
+		}
+	});
+
+}
+
+</script>
+
+</head>
+<body>
+
+<div id="MSG-10001">
+<!-- form is loaded here -->
+</div>	
+<br/>
+<input type="button" data-inline="true" id="loadMessage" value="Load Message"/>
+<input type="button" data-inline="true" id="saveMessage" value="Save Message"/>	
+</body>
+</html>

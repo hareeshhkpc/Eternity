@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="PRPA_MT410001HT02">
+	<PRPA_MT410001HT02>
+		<id />
+		<code />
+		<statusCode />
+		<effectiveTime />
+		<subject>
+			<patient>
+				<id />
+				<patientPerson>
+					<id />
+					<name />
+					<desc />
+					<administrativeGenderCode />
+					<birthTime />
+				</patientPerson>
+			</patient>
+		</subject>
+		<responsibleParty>
+			<assignedEntityOrganization>
+				<assignedOrganization>
+					<id />
+				</assignedOrganization>
+			</assignedEntityOrganization>
+		</responsibleParty>
+		<consultant>
+			<employmentStaff>
+				<id />
+			</employmentStaff>
+		</consultant>
+	</PRPA_MT410001HT02>
+</message>

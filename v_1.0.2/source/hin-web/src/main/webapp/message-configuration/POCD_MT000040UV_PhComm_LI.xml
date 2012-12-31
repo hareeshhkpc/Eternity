@@ -1,0 +1,78 @@
+<HL7MessageConfiguration>
+  <MetaInfo artifactID="POCD_MT000040UV_PhComm_LI" createdDate="2012-09-14 08:01:21.46 UTC" entryPoint="POCD_MT000040UV.ClinicalDocument" description="CDA Message for POCD_MT000040UV_PhComm_LI"/>
+   <IndexConfiguration indexName="POCD_MT000040UV_PhComm_LI_Index">
+    <Field name="messageId" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;HIN_MSG_ID&apos;]/extension" analyzed="false"/>
+    <Field name="documentId" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;HIN_DOC_ID&apos;]/extension"/>
+    <Field name="telecom" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/recordTarget/patientRole/telecom/value"/>
+    <Field name="patientRoleId" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/recordTarget/patientRole/id[root=&apos;SUBSCRIBER_ID&apos;]/extension"/>
+    <Field name="patientName" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/recordTarget/patientRole/patient/name/given"/>
+    <Field name="subscriberId" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/recordTarget/patientRole/patient/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="false"/>
+    <Field name="programId" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;PROGRAM_ID&apos;]/extension" analyzed="false"/>
+    <Field name="messageTitle" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;MSG_TITLE&apos;]/extension" analyzed="true"/>
+    <Field name="messageStatus" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;MSG_STATUS&apos;]/extension" analyzed="true"/>
+    <Field name="financeStatus" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;FINANCE_STATUS&apos;]/extension" analyzed="true"/>
+    <Field name="organizationId" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;ORGANIZATION_ID&apos;]/extension" analyzed="false"/>
+  </IndexConfiguration>
+  <ArchiveConfiguration columnFamilyName="POCD_MT000040UV_PhComm_LI">
+    <Field name="messageId" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;HIN_MSG_ID&apos;]/extension" type="ROWKEY"/>
+    <Field name="documentId" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;HIN_DOC_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="telecom" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/recordTarget/patientRole/telecom/value" type="COLUMN"/>
+    <Field name="patientRoleId" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/recordTarget/patientRole/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="patientName" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/recordTarget/patientRole/patient/name/given" type="COLUMN"/>
+    <Field name="subscriberId" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/recordTarget/patientRole/patient/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="programId" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;PROGRAM_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="messageTitle" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;MSG_TITLE&apos;]/extension" type="COLUMN"/>
+    <Field name="messageStatus" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;MSG_STATUS&apos;]/extension" type="COLUMN"/>
+    <Field name="financeStatus" indexed="true" xpath="//POCD_MT000040UV_PhComm_LI/id[root=&apos;FINANCE_STATUS&apos;]/extension" type="COLUMN"/>
+  </ArchiveConfiguration>
+  <WorkFlowDefinition id="id">
+    <name>Workflow Configuration For: POCD_MT000040UV_PhComm_LI</name>
+    <start g="20,20,48,48">
+      <transition name="true" to="Save"/>
+    </start>
+    <task name="Save">
+      <transition name="Save" to="Save"/>
+    </task>
+  </WorkFlowDefinition>
+  <Class rimType="ACT" tagName="POCD_MT000040UV_PhComm_LI" type="POCD_MT000040UV.ClinicalDocument">
+    <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="title" type="ST" inputControl="ST" label="Title" displayOrder="2" minOccurs="0" maxOccurs="1"/>
+    <Field tagName="effectiveTime" type="TS" inputControl="TS" label="Effective Time" displayOrder="3" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="confidentialityCode" type="CD" inputControl="CD" label="Confidentiality Code" displayOrder="4" minOccurs="1" maxOccurs="1"/>
+    <Class rimType="PARTICIPATION" tagName="recordTarget" type="POCD_MT000040UV.RecordTarget" label="Record Target" displayOrder="5" minOccurs="1" maxOccurs="-1">
+      <Class rimType="ROLE" tagName="patientRole" type="POCD_MT000040UV.PatientRole" label="Patient Role" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="DSET_II" inputControl="DSET_II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="telecom" type="DSET_TEL" inputControl="DSET_TEL" label="Telecom" displayOrder="1" minOccurs="0" maxOccurs="1"/>
+        <Class rimType="ENTITY" tagName="patient" type="POCD_MT000040UV.Patient" label="Patient" displayOrder="2" minOccurs="0" maxOccurs="1">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="1"/>
+          <Field tagName="name" type="DSET_EN" inputControl="DSET_EN" label="Name" displayOrder="1" minOccurs="0" maxOccurs="1"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class rimType="PARTICIPATION" tagName="participation" type="POCD_MT000040UV.Participant1" label="Participation" displayOrder="6" minOccurs="0" maxOccurs="-1">
+      <Class rimType="ROLE" tagName="assignedEntity" type="POCD_MT000040UV.AssignedEntity" label="Assigned Entity" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="1" minOccurs="0" maxOccurs="1"/>
+        <Class rimType="ENTITY" tagName="assignedPerson" type="POCD_MT000040UV.Person" label="Assigned Person" displayOrder="2" minOccurs="0" maxOccurs="1">
+          <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="0" minOccurs="0" maxOccurs="1"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class rimType="ACTRELATIONSHIP" tagName="component" type="POCD_MT000040UV.Component2" label="Component" displayOrder="7" minOccurs="1" maxOccurs="1">
+      <Class rimType="ACT" tagName="structuredBody" type="POCD_MT000040UV.StructuredBody" label="Structured Body" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Class rimType="ACTRELATIONSHIP" tagName="component" type="POCD_MT000040UV.Component3" label="Component" displayOrder="0" minOccurs="1" maxOccurs="-1">
+          <Class rimType="ACT" tagName="section" type="POCD_MT000040UV.Section" label="Section" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+            <Class rimType="ACTRELATIONSHIP" tagName="entry" type="POCD_MT000040UV.Entry" label="Entry" displayOrder="1" minOccurs="0" maxOccurs="-1">
+              <Class rimType="ACT" tagName="observation" type="POCD_MT000040UV.Observation" label="Observation" displayOrder="0" minOccurs="1" maxOccurs="1">
+                <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+                <Field tagName="value" type="ED" inputControl="ED" label="Value" displayOrder="1" minOccurs="0" maxOccurs="1"/>
+              </Class>
+            </Class>
+          </Class>
+        </Class>
+      </Class>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

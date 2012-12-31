@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:util="http://java.sun.com/jsf/composite/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+		<script>
+		function test(){
+			alert("upload completed");
+		}
+		</script>
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<rich:collapsiblePanel header="Update Role"
+			switchType="client" style="width:650px">
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:column>
+						<h:outputText id="messageId" value="Message ID" />
+					</h:column>
+					<h:column>
+						<h:inputText id="messageIdValue" value="#{updateAttributeBean.messageId}"
+							required="true" requiredMessage="Message id is required" />
+					</h:column>
+					<h:column>
+						<h:outputText id="attributeName" value="Attribute Name" />
+					</h:column>
+					<h:column>
+						<h:inputText id="attributeNameValue" value="#{updateAttributeBean.attributeName}"
+							required="true" requiredMessage="Attribute Name is required" />
+					</h:column>
+					<h:column>
+						<h:outputText id="attributeValue" value="Update Role" />
+					</h:column>
+					<h:column>
+						<h:inputText id="attributeValueValue" value="#{updateAttributeBean.attributeValue}"
+							required="true" requiredMessage="Attribute Value is required" />
+					</h:column>
+				</h:panelGrid>
+				<h:commandButton value="Update"
+					action="#{updateAttributeBean.update}" />
+			</h:form>
+		</rich:collapsiblePanel>
+	</ui:define>
+</ui:composition>
+</html>

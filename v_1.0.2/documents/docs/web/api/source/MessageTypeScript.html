@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='MessageTypeScript'>/**
+</span> * Manipulate the message document using MessageTypeScript.It provides the
+ * following methods like to loadScript, initialize, fillData, fillParticipants
+ * and complete.
+ * 
+ * @param messageObject
+ * @param messageType
+ * @param appController
+ * @param messageAndUIBinder
+ * @returns {MessageTypeScript}
+ */
+function MessageTypeScript(messageObject, messageType, appController,
+		messageAndUIBinder) {
+	var thisObject = this;
+
+<span id='MessageTypeScript-property-messageType'>	/**
+</span>	 * messageType holds the type of the message.
+	 */
+	this.messageType = messageType;
+	this.appController = appController;
+
+<span id='MessageTypeScript-property-messageScriptObject'>	/**
+</span>	 * messageScriptObject holds the instance of loaded messagetype script
+	 * object.
+	 */
+	this.messageScriptObject = null;
+
+	if (!messageAndUIBinder)
+		this.messageAndUIBinder = new MessageAndUIBinder('', messageObject,
+				messageType);
+	else
+		this.messageAndUIBinder = messageAndUIBinder;
+
+<span id='MessageTypeScript-method-loadScript'>	/**
+</span>	 * It instantiate messageScript object base on the message type using eval()
+	 * expression.
+	 * 
+	 * @param scriptString:
+	 *            Its a string value, holds the stringified scrpit value.
+	 * @returns {void}
+	 */
+	this.loadScript = function(scriptString) {
+		try {
+
+			var scriptToRun = scriptString
+					+ '; thisObject.messageScriptObject = new '
+					+ thisObject.messageType
+					+ '(thisObject.appController, thisObject.messageAndUIBinder /* No logger */);'
+			// thisObject.log(scriptToRun);
+			eval(scriptToRun);
+		} catch (error) {
+			thisObject.log(error);
+		}
+	};
+
+	this.run = function() {
+		try {
+			if (thisObject.messageScriptObject
+					&amp;&amp; thisObject.messageScriptObject.run) {
+				thisObject.messageScriptObject.run();
+			} else {
+				throw &quot;Method run() not found in &quot; + thisObject.messageType
+						+ &quot; script&quot;;
+			}
+		} catch (error) {
+			thisObject.log(&quot;Error in &quot; + thisObject.messageType + &quot;.run(): &quot;
+					+ error);
+		}
+	};
+
+<span id='MessageTypeScript-method-initialize'>	/**
+</span>	 * Trigger the initialize method implemented in the loaded message script.
+	 * 
+	 * @returns {void}
+	 */
+	this.initialize = function() {
+		try {
+			if (thisObject.messageScriptObject
+					&amp;&amp; thisObject.messageScriptObject.initialize) {
+				thisObject.messageScriptObject.initialize();
+			} else {
+				throw &quot;Method initialize() not found in &quot;
+						+ thisObject.messageType + &quot; script&quot;;
+			}
+		} catch (error) {
+			thisObject.log(&quot;Error in &quot; + thisObject.messageType
+					+ &quot;.initialize(): &quot; + error);
+		}
+	};
+
+<span id='MessageTypeScript-method-fillData'>	/**
+</span>	 * Trigger the fillData method implemented in the loaded message script.
+	 * 
+	 * @param key:
+	 *            Its a string value.
+	 * @param values:
+	 *            Its a string or array of string
+	 * @returns {void}
+	 */
+	this.fillData = function(key, values) {
+		try {
+			if (thisObject.messageScriptObject
+					&amp;&amp; thisObject.messageScriptObject.fillData) {
+				thisObject.messageScriptObject.fillData(key, values);
+			} else {
+				throw &quot;Method fillData() not found in &quot;
+						+ thisObject.messageType + &quot; script&quot;;
+			}
+		} catch (error) {
+			thisObject.log(&quot;Error in &quot; + thisObject.messageType
+					+ &quot;.fillData(): &quot; + error);
+		}
+	};
+
+<span id='MessageTypeScript-method-fillParticipants'>	/**
+</span>	 * Trigger the fillParticipants method implemented in the loaded message
+	 * script.
+	 * 
+	 * @returns {void}
+	 */
+	this.fillParticipants = function() {
+		try {
+			if (thisObject.messageScriptObject
+					&amp;&amp; thisObject.messageScriptObject.fillParticipants) {
+				thisObject.messageScriptObject.fillParticipants();
+			} else {
+				throw &quot;Method fillParticipants() not found in &quot;
+						+ thisObject.messageType + &quot; script&quot;;
+			}
+		} catch (error) {
+			thisObject.log(&quot;Error in &quot; + thisObject.messageType
+					+ &quot;.fillParticipants(): &quot; + error);
+		}
+	};
+
+<span id='MessageTypeScript-method-complete'>	/**
+</span>	 * Trigger the complete method implemented in the loaded message script.
+	 * 
+	 * 
+	 * @param instance :
+	 *            Its an object of uigenerator.
+	 * @param callback :
+	 *            Its a function which will be called after the completion of
+	 *            this method.
+	 * 
+	 * @returns {void}
+	 */
+	this.complete = function(instance, callBack) {
+		try {
+			if (thisObject.messageScriptObject
+					&amp;&amp; thisObject.messageScriptObject.complete) {
+				thisObject.messageScriptObject.complete(instance, callBack);
+			} else {
+				throw &quot;Method complete() not found in &quot;
+						+ thisObject.messageType + &quot; script&quot;;
+			}
+		} catch (error) {
+			thisObject.log(&quot;Error in &quot; + thisObject.messageType
+					+ &quot;.complete(): &quot; + error);
+		}
+	};
+
+	this.log = function(message) {
+		// alert(message);
+		console.log(message);
+	};
+};</pre>
+</body>
+</html>

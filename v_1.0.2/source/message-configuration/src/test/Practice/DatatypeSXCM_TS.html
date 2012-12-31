@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>	
+		<script type="text/javascript" src="jquery-1.6.4.js"></script>
+		<script type="text/javascript" src="jquery.xml.js"></script>
+		<script type="text/javascript" src="DataTypeAPI.js"></script>
+		<script type="text/javascript">
+			var SXCM_TSxml = null;
+			function SXCM_TStestGetValue(){
+				SXCM_TSxml = SXCM_TSgetValues('idsxcm','pfId');
+			}
+			function SXCM_TStestSetValue(){
+				 SXCM_TSsetValue('idsxcm', SXCM_TSxml); 
+			}
+		</script>
+	</head>
+	<body>
+		<form>
+  			<fieldset>
+  				value: <input type="text" id="idsxcm1"/>
+				operator: <input type="text" id="idsxcm2"/>
+				<br/>
+			
+				<input type="button"  value="getValue" onclick="SXCM_TStestGetValue();"/>
+				<input type="button"  value="clearValue" onclick="SXCM_TSclearValues('idsxcm');"/>
+				<input type="button"  value="setValue" onclick="SXCM_TStestSetValue();"/>
+			</fieldset>
+		</form>
+	</body>
+</html>

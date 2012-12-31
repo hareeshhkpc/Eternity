@@ -1,0 +1,552 @@
+<style>
+#programContent{
+	padding: 3px;	
+	padding-top:-5px;
+	border-bottom: none;
+}
+
+#mainDiv{
+	width: 100%;
+	padding: 1px; 
+	padding-top: 1px;
+	float: left;
+	border-color: #6E1766;
+	background-color: #FFFFFF;
+}
+
+#headerPage{
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom: none;
+	padding-top:3px;
+}
+
+#title{
+	width: 73%;
+	font-size: 20px;
+	color:#6E1766;
+}
+
+#restoration{
+	background: #787878;
+	color: #fff;
+	text-shadow: 0 -1px 1px #234403;
+	font-weight: normal;
+	padding: 10px;
+	width: 94%;	
+}
+
+#advanced{
+	background: #787878;
+	color: #fff;
+	text-shadow: 0 -1px 1px #234403;
+	font-weight: normal;
+	padding: 10px;
+	width: 94%;	
+}
+
+#patient{
+	width: 100%;
+	margin-top: 10px;
+}
+
+#button{
+	padding: 0px;
+	width: 2%;
+}
+
+#program{
+	width: 80%;
+	padding: 5px;
+}
+
+#period{
+	width: 18%;
+	font-weight: normal;
+}
+
+#field{
+	font-weight:bold;
+	width: 23%;
+}
+
+
+.textbox{
+	background-color:#cccccc;
+}
+
+#genetics{
+	background: #787878;
+	color: #fff;
+	text-shadow: 0 -1px 1px #234403;
+	font-weight: normal;
+	padding: 10px;
+	width: 94%;	
+}
+
+#table{
+	  
+    margin-left:10%; 
+    margin-right:10%;
+	cellspacing:1;
+ 	cellpadding:1;
+ 	width:80%;
+ 	border-color: #000000;
+ 	border-width: 2px;
+ 	border-style: solid;
+}
+
+#tr1{
+	text-align:center;
+	border-style: solid;
+	background:#56004E;
+	height: 60px;
+	color: #FFFFFC;
+	font-size: 22pt; 
+	font-family: sans-serif;
+}
+
+#tr2{
+	height: 60px; 
+	color: #190000; 
+	font-size: 18pt;
+}
+#td{
+	 border-width: medium; 
+	 border-collapse: collapse;
+	border-style: outset;
+}
+
+
+
+
+
+
+</style>
+
+<div data-theme="a" class="ui-body ui-corner-all" id="programHeader">
+
+	<div id="headerPage" data-theme="v" data-role="header"
+		class="ui-header ui-bar-v" role="banner">
+		<div class="ui-block-b" class="header">Mentor</div>
+	</div>
+	<div id="programContent" class="ui-body">
+				<div data-role="header" data-theme="v" id="headerPage">
+					<fieldset class="ui-grid-a">
+						<div class="subHeader ui-block-b">Products</div>
+					</fieldset>
+				</div>
+				<div class="subHeaderData" style="display: none">
+					<br />
+
+					<div class="ui-grid-a" data-theme="g">
+						<fieldset class="ui-grid-a">
+							<div id="genetics" class="ui-block-a ui-body-b" data-theme="g">
+								<label>Genetics And Aesthetics</label>
+							</div>
+							<div class="ui-block-b" id="button">
+								<a href="#" data-role="button" id="add" data-theme="c"
+									data-icon="plus" data-iconpos="notext"></a>
+							</div>
+						</fieldset>
+					</div>
+					<div id="gen" style="display: none">
+						<form>
+							<table id="table" border="1">
+								<tr id="tr1">
+									<td>Cosmeceutical</td>
+									<td>Dose</td>
+									<td>How Often</td>
+									<td>When to Use</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>Cleanse</td>
+									<td><input type="text" id="c1" />
+									</td>
+									<td><input type="text" id="c2" />
+									</td>
+									<td><input type="text" id="c3" />
+									</td>
+								</tr>
+
+								<tr id="tr2">
+
+									<td>Exfoliate</td>
+									<td><input type="text" id="e1" />
+									</td>
+									<td><input type="text" id="e2" />
+									</td>
+									<td><input type="text" id="e3" />
+									</td>
+								</tr>
+
+								<tr id="tr2">
+
+									<td>Hydrate</td>
+									<td><input type="text" id="hy1" />
+									</td>
+									<td><input type="text" id="hy2" />
+									</td>
+									<td><input type="text" id="hy3" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>Protect</td>
+									<td><input type="text" id="p1" />
+									</td>
+									<td><input type="text" id="p2" />
+									</td>
+									<td><input type="text" id="p3" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>Heal</td>
+									<td><input type="text" id="he1" />
+									</td>
+									<td><input type="text" id="he2" />
+									</td>
+									<td><input type="text" id="he3" />
+									</td>
+								</tr>
+
+							</table>
+							<div align="center">
+								<button type="button" data-inline="true" data-icon="delete">Cancel</button>
+								<button type="button" data-inline="true" data-theme="b"
+									data-icon="check" onclick="savePrescription()">Save</button>
+							</div>
+						</form>
+					</div>
+					<div class="ui-grid-a" data-theme="g">
+						<fieldset class="ui-grid-a">
+							<div id="restoration" class="ui-block-a ui-body-b" data-theme="g">
+								<label>Restoration Of Hormones</label>
+							</div>
+							<div class="ui-block-b" id="button">
+								<a href="#" data-role="button" id="add" data-theme="c"
+									data-icon="plus" data-iconpos="notext"></a>
+							</div>
+						</fieldset>
+					</div>
+					<div id="res" style="display: none">
+						<form>
+							<table id="table" border="1">
+								<tr id="tr1">
+									<td>Hormone</td>
+									<td>Dose</td>
+									<td>How Often</td>
+									<td>When to Use</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>Testosterone</td>
+									<td><input type="text" id="te1" />
+									</td>
+									<td><input type="text" id="te2" />
+									</td>
+									<td><input type="text" id="te3" />
+									</td>
+								</tr>
+
+								<tr id="tr2">
+
+									<td>Estrogen</td>
+									<td><input type="text" id="es1" />
+									</td>
+									<td><input type="text" id="es2" />
+									</td>
+									<td><input type="text" id="es3" />
+									</td>
+								</tr>
+
+								<tr id="tr2">
+
+									<td>Progesterone</td>
+									<td><input type="text" id="pro1" />
+									</td>
+									<td><input type="text" id="pro2" />
+									</td>
+									<td><input type="text" id="pro3" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>Thyroid</td>
+									<td><input type="text" id="thy1" />
+									</td>
+									<td><input type="text" id="thy2" />
+									</td>
+									<td><input type="text" id="thy3" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>DHEA</td>
+									<td><input type="text" id="dhe1" />
+									</td>
+									<td><input type="text" id="dhe2" />
+									</td>
+									<td><input type="text" id="dhe3" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>Melatonin</td>
+									<td><input type="text" id="mel1" />
+									</td>
+									<td><input type="text" id="mel2" />
+									</td>
+									<td><input type="text" id="mel3" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>Growth Hormone</td>
+									<td><input type="text" id="gh1" />
+									</td>
+									<td><input type="text" id="gh2" />
+									</td>
+									<td><input type="text" id="gh3" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>Cortef</td>
+									<td><input type="text" id="cor1" />
+									</td>
+									<td><input type="text" id="cor2" />
+									</td>
+									<td><input type="text" id="cor3" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>Pregnenolone</td>
+									<td><input type="text" id="pre1" />
+									</td>
+									<td><input type="text" id="pre2" />
+									</td>
+									<td><input type="text" id="pre3" />
+									</td>
+								</tr>
+
+							</table>
+							<div align="center">
+								<button type="button" data-inline="true" data-icon="delete">Cancel</button>
+								<button type="button" data-inline="true" data-theme="b"
+									data-icon="check" onclick="saveHormonePrescription()">Save</button>
+							</div>
+						</form>
+					</div>
+
+					<div class="ui-grid-a" data-theme="g">
+						<fieldset class="ui-grid-a">
+							<div id="advanced" class="ui-block-a ui-body-b" data-theme="g">
+								<label>Advanced Supplementation</label>
+							</div>
+							<div class="ui-block-b" id="button">
+								<a href="#" data-role="button" id="add" data-theme="c"
+									data-icon="plus" data-iconpos="notext"></a>
+							</div>
+						</fieldset>
+					</div>
+					<div id="adv" style="display: none">
+						<form>
+							<table id="table" border="1">
+								<tr id="tr1">
+									<td colspan="4" align="center">Core Nutraceuticals</td>
+								</tr>
+								<tr id="tr1">
+									<td>Supplement</td>
+									<td>Dose</td>
+									<td>How Often</td>
+									<td>When to Use</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>Telomere-Multi</td>
+									<td><input type="text" id="te1" />
+									</td>
+									<td><input type="text" id="te2" />
+									</td>
+									<td><input type="text" id="te3" />
+									</td>
+								</tr>
+
+								<tr id="tr2">
+
+									<td>Antioxidant</td>
+									<td><input type="text" id="es1" />
+									</td>
+									<td><input type="text" id="es2" />
+									</td>
+									<td><input type="text" id="es3" />
+									</td>
+								</tr>
+
+								<tr id="tr2">
+
+									<td>Omega 3 Fish oil</td>
+									<td><input type="text" id="pro1" />
+									</td>
+									<td><input type="text" id="pro2" />
+									</td>
+									<td><input type="text" id="pro3" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>Vit D3</td>
+									<td><input type="text" id="thy1" />
+									</td>
+									<td><input type="text" id="thy2" />
+									</td>
+									<td><input type="text" id="thy3" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td>Magnesium</td>
+									<td><input type="text" id="dhe1" />
+									</td>
+									<td><input type="text" id="dhe2" />
+									</td>
+									<td><input type="text" id="dhe3" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td><input type="text" id="mel1" /></td>
+									<td><input type="text" id="mel2" />
+									</td>
+									<td><input type="text" id="mel3" />
+									</td>
+									<td><input type="text" id="mel4" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td><input type="text" id="gh1" /></td>
+									<td><input type="text" id="gh2" />
+									</td>
+									<td><input type="text" id="gh3" />
+									</td>
+									<td><input type="text" id="gh4" />
+									</td>
+								</tr>
+								<tr id="tr1">
+									<td colspan="4" align="center">Targeted Nutraceuticals</td>
+								</tr>
+								<tr id="tr1">
+									<td>Supplement</td>
+									<td>Dose</td>
+									<td>How Often</td>
+									<td>When to Use</td>
+								</tr>
+								<tr id="tr2">
+
+									<td><input type="text" id="gh1" /></td>
+									<td><input type="text" id="gh2" />
+									</td>
+									<td><input type="text" id="gh3" />
+									</td>
+									<td><input type="text" id="gh4" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td><input type="text" id="gh1" /></td>
+									<td><input type="text" id="gh2" />
+									</td>
+									<td><input type="text" id="gh3" />
+									</td>
+									<td><input type="text" id="gh4" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td><input type="text" id="gh1" /></td>
+									<td><input type="text" id="gh2" />
+									</td>
+									<td><input type="text" id="gh3" />
+									</td>
+									<td><input type="text" id="gh4" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td><input type="text" id="gh1" /></td>
+									<td><input type="text" id="gh2" />
+									</td>
+									<td><input type="text" id="gh3" />
+									</td>
+									<td><input type="text" id="gh4" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td><input type="text" id="gh1" /></td>
+									<td><input type="text" id="gh2" />
+									</td>
+									<td><input type="text" id="gh3" />
+									</td>
+									<td><input type="text" id="gh4" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td><input type="text" id="gh1" /></td>
+									<td><input type="text" id="gh2" />
+									</td>
+									<td><input type="text" id="gh3" />
+									</td>
+									<td><input type="text" id="gh4" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td><input type="text" id="gh1" /></td>
+									<td><input type="text" id="gh2" />
+									</td>
+									<td><input type="text" id="gh3" />
+									</td>
+									<td><input type="text" id="gh4" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td><input type="text" id="gh1" /></td>
+									<td><input type="text" id="gh2" />
+									</td>
+									<td><input type="text" id="gh3" />
+									</td>
+									<td><input type="text" id="gh4" />
+									</td>
+								</tr>
+								<tr id="tr2">
+
+									<td><input type="text" id="gh1" /></td>
+									<td><input type="text" id="gh2" />
+									</td>
+									<td><input type="text" id="gh3" />
+									</td>
+									<td><input type="text" id="gh4" />
+									</td>
+								</tr>
+
+							</table>
+							<div align="center">
+								<button type="button" data-inline="true" data-icon="delete">Cancel</button>
+								<button type="button" data-inline="true" data-theme="b"
+									data-icon="check" onclick="saveAdvancePrescription()">Save</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+</div>

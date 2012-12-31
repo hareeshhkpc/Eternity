@@ -1,0 +1,140 @@
+<div id="settingsValidation" data-role="none" class="ui-align-text">
+	<div class="ui-form-fields">
+		<div isEditor="true" editorLabel="ID:" pathFields="" tagName="id"
+			dataType="II" editorType="II" style="display: none" idSuffix="1"
+			groupId="idFields"></div>
+		<div isEditor="true" editorLabel="ID:" pathFields="" tagName="id"
+			dataType="II" editorType="II" style="display: none" idSuffix="2"
+			groupId="idFields"></div>
+		<fieldset>
+			<form name="licenseeSettingsForm1" id="licenseeSettingsForm1">
+				<div class="ui-box-align" style="float: left; width: 50%;">
+					<div isEditor="true" editorLabel="License Type:"
+						pathFields="licenseType" tagName="code" dataType="CD"
+						editorType="CD" idSuffix="1"
+						configParams="[{name:'conceptClass',value:'licenseType'},{name:'lookupType',value:'static'},
+					{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'100%'},{name:'validate',value:'validate[required]'}]"></div>
+				</div>
+				<div class="ui-box-align" style="float: left; width: 50%;">
+					<div isEditor="true" editorLabel="Status" pathFields="status"
+						tagName="code" dataType="CE" editorType="CE" idSuffix="1"
+						configParams="[{name:'conceptClass',value:'status1'},{name:'lookupType',value:'static'},
+					{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'100%'},{name:'validate',value:'validate[required]'}]"></div>
+				</div>
+			</form>
+		</fieldset>
+		<fieldset>
+			<div class="ui-box-align" style="float: left; width: 50%;">
+				<div isEditor="true" editorLabel="Service Discount:"
+					pathFields="serviceDiscount" tagName="code" dataType="CD"
+					editorType="CDInplace" idSuffix="2"></div>
+			</div>
+
+			<div class="ui-box-align" style="float: left; width: 50%;">
+				<div isEditor="true" editorLabel="Product Discount:"
+					pathFields="productDiscount" tagName="code" dataType="CD"
+					editorType="CDInplace" idSuffix="3"></div>
+			</div>
+		</fieldset>
+		<fieldset>
+
+			<div class="ui-box-align" style="float: left; width: 50%;">
+				<div isEditor="true" editorLabel="Product Commission:"
+					pathFields="productCommission" tagName="code" dataType="CD"
+					editorType="CDInplace" idSuffix="4"></div>
+			</div>
+
+			<div class="ui-box-align" style="float: left; width: 50%;">
+				<div isEditor="true" editorLabel="License Expiry Date:"
+					pathFields="licenseExpiry" tagName="expiryDate" dataType="TS"
+					editorType="TS" idSuffix="1"
+					configParams="[{name:'width',value:'100%'},{name:'afterToday',value:true}]"></div>
+			</div>
+		</fieldset>
+		<!-- <div class="ui-box-align" style="margin-bottom: 5px;">
+			<div isEditor="true" editorLabel="Region:" pathFields=""
+				tagName="code" dataType="CE" editorType="CERegion"
+				configParams="[{name:'conceptClass',value:'country'},{name:'lookupType',value:'dynamic'},
+				           {name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'autoComplete'},{name:'searchDivWidth',value:'100%'} ]"
+				idSuffix="2" groupId="codeGroup"></div>
+		</div> -->
+
+		<!-- <div class="ui-profile-image"> -->
+		<label>Location Map</label>
+
+		<div style="margin-bottom: 6px">
+			<div isEditor="true" idSuffix="1" pathFields=""
+				configParams="[{name:'fileImage',value:'images/attachment.png'}]"
+				tagName="desc" groupId="fileAttachmentFields" dataType="ED"
+				editorType="EDFileAttachment"></div>
+		</div>
+
+		<div style="margin-bottom: 6px">
+			<div isEditor="true" idSuffix="2" pathFields=""
+				configParams="[{name:'fileImage',value:'images/attachment.png'}]"
+				tagName="desc" groupId="fileAttachmentFields" dataType="ED"
+				editorType="EDFileAttachment"></div>
+		</div>
+
+		<div style="margin-bottom: 6px">
+			<div isEditor="true" idSuffix="3" pathFields=""
+				configParams="[{name:'fileImage',value:'images/attachment.png'}]"
+				tagName="desc" groupId="fileAttachmentFields" dataType="ED"
+				editorType="EDFileAttachment"></div>
+		</div>
+
+		<!-- </div> -->
+		<!-- <div class="ui-profile-main-field"> -->
+		<form name="licenseeSettingsForm2" id="licenseeSettingsForm2">
+			<div style="margin-bottom: 6px">
+				<div isEditor="true" editorLabel="Currency :" pathFields="currency"
+					tagName="code" idSuffix="2" dataType="CE" editorType="CE"
+					configParams="[{name:'conceptClass',value:'currency'},{name:'lookupType',value:'static'},
+					{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'50%'}]"></div>
+			</div>
+
+
+			<!-- <div isEditor="true" editorLabel="Currency :" pathFields="currency"
+					tagName="code" idSuffix="2" dataType="CE" editorType="CESearch"
+					configParams="[{name:'conceptClass',value:'currency'},{name:'lookupType',value:'dynamic'},
+					           {name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'autoComplete'},{name:'width',value:'50%'}]"></div> -->
+
+			<fieldset>
+				<legend align="left">SMTP Settings:</legend>
+				<div style="margin-bottom: 6px">
+					<div isEditor="true" editorLabel="Email ID:" pathFields=""
+						tagName="telecom" dataType="TEL" editorType="TELInplace"
+						configParams="[{name:'validate',value:'validate[required,custom[email]]'},{name:'textBoxWidth',value:'100%'}]"
+						idSuffix="1"></div>
+				</div>
+				<div style="margin-bottom: 6px">
+					<div isEditor="true" editorLabel="Password:" pathFields=""
+						tagName="id" dataType="II" editorType="IIPassword"
+						configParams="[{name:'validate',value:'validate[required]'},{name:'textBoxWidth',value:'100%'}]"
+						groupId="idFields" idSuffix="3"></div>
+				</div>
+
+				<label id="PasswordExtensionLabel">Confirm Password:</label> <input
+					style="width: 100%" type="password" id="PasswordExtension" value=""
+					class="validate[required,equals[IIPasswordExtension],maxSize[16],minSize[6]]" />
+			</fieldset>
+			<!-- </div> -->
+			<fieldset style="padding-top: 6px;">
+				<label>Welcome Mail Content:</label>
+				<div id="messageContent" isEditor="true" emailType="TemplateWelcome" editorLabel="" pathFields="" tagName="text"
+					dataType="ED" containerType="tinyMCE" editorType="EDTextarea" idSuffix="4"
+					configParams="[{name:'width',value:'100%'},{name:'height',value:'135px'}]">
+				</div>
+			</fieldset>
+			
+			<fieldset style="padding-top: 10px;">
+				<label>Upcoming Appointments Mail Content:</label>
+				<div id="messageContent" isEditor="true" emailType="TemplateProductEmail" editorLabel="" pathFields="emailProductContent" tagName="text"
+					dataType="ED" containerType="tinyMCE" editorType="EDTextarea" idSuffix="5"
+					configParams="[{name:'width',value:'100%'},{name:'height',value:'135px'}]">
+				</div>
+			</fieldset>
+			
+		</form>
+	</div>
+</div>

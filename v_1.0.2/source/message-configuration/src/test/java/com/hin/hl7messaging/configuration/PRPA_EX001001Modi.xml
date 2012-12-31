@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?><POLB_IN224200 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ITSVersion="XML_1.0" e_id="id1" xsi:schemaLocation="urn:hl7-org:v3   ../schemas/POLB_IN224200.xsd">
+  <realmCode code="AUS"/>
+  <!--
+    - NOTE: The oid "2.16.840.1.113883.19" is a 'sample' OID.  It will need to be replaced
+    - by application-specific OIDs representing the application which actually created the
+    - identifier.
+    - 2.16.840.1.113883.19.1 = Application message identifiers
+    - 2.16.840.1.113883.19.2 = Application identifiers
+    - 2.16.840.1.113883.19.3 = Facility identifiers
+    - 2.16.840.1.113883.19.4 = Filler identifiers
+    - 2.16.840.1.113883.19.5 = Hospital-assigned patient identifier
+    - 2.16.840.1.113883.19.6 = Lab Application-assigned patient identifier
+    - 2.16.840.1.113883.19.7 = HIC-assigned patient identifier
+    - 2.16.840.1.113883.19.8 = HIC-assigned provider identifier
+    - 2.16.840.1.113883.19.9 = Hospital-assigned provider identifier
+    
+    - In addition, some code systems do not yet have assigned OIDs.  For the purposes of this
+    - example, the following have been used:
+    - 2.16.840.1.113883.6.100001 = Realm
+    - 2.16.840.1.113883.6.100002 = Local lab battery codes
+    - 2.16.840.1.113883.6.100003 = Specimen action codes (e.g. Received)
+    - 2.16.840.1.113883.6.100004 = Lab area type
+    - 2.16.840.1.113883.6.100005 = Local lab codes
+    
+    - This sample message was based on a V2 sample message from the Australian Pathology sample 
+    - set by Lloyd Mackenzie and Grahame Grieve Aug/Sept 2005 for the Australian and New Zealand
+    - HL7 Conference. This message validates against the schema using XMLSpy. 
+  -->
+  <id assigningAuthorityName="Kestral     Message Builder" e_id="id1634" extension="KEST_000401191439251" root="2.16.840.1.113883.19.1"/>
+  <creationTime e_id="id1635" value="20040119143926+1000"/>
+  <versionCode code="NE2006" e_id="id1637"/>
+  <interactionId assigningAuthorityName="HL7" e_id="id1638" extension="POLB_IN224200" root="2.16.840.1.113883.1.6"/>
+  <processingCode code="D" e_id="id1640"/>
+  <processingModeCode code="T" e_id="id1641"/>
+  <acceptAckCode code="AL" e_id="id1642"/>
+  <receiver e_id="id1645" typeCode="RCV">
+    <device classCode="DEV" determinerCode="INSTANCE" e_id="id59">
+      <id e_id="id38" extension="HIS_Application" root="2.16.840.1.113883.19.2"/>
+      <asLocatedEntity classCode="LOCE" e_id="id46">
+        <location classCode="PLC" determinerCode="INSTANCE" e_id="id50">
+          <id e_id="id55" extension="Kestville_Hospital" root="2.16.840.1.113883.19.3"/>
+        </location>
+      </asLocatedEntity>
+    </device>
+  </receiver>
+  <sender e_id="id1647" typeCode="SND">
+    <device classCode="DEV" determinerCode="INSTANCE" e_id="id63">
+      <id e_id="id38.1" extension="Lab_Application" root="2.16.840.1.113883.19.2"/>
+      <asLocatedEntity classCode="LOCE" e_id="id46.1">
+        <location classCode="PLC" determinerCode="INSTANCE" e_id="id50.1">
+          <id e_id="id55.1" extension="Kestville_Hospital" root="2.16.840.1.113883.19.3"/>
+        </location>
+      </asLocatedEntity>
+    </device>
+  </sender>
+  <controlActProcess classCode="CACT" e_id="id1649" moodCode="EVN">
+    <subject contextConductionInd="false" e_id="id29" typeCode="SUBJ">
+      <observationBattery classCode="BATTERY" e_id="id31" moodCode="EVN">
+        <code code="E" codeSystem="2.16.840.1.113883.6.100002" displayName="Elecs,Urea,Crea" e_id="id287">
+          <translation code="LOINC_code_for_E" codeSystem="2.16.840.1.113883.6.1"/>
+        </code>
+        <text e_id="id288" mediaType="text/x-hl7-ft">\H\SERUM/PLASMA\N\\.br\Sodium \H\ 130\N\ mmol/L ( 135-145
+          )\.br\Potassium \H\ 5.6\N\ mmol/L ( 3.5-5.5 )\.br\Chloride 100 mmol/L ( 95-110 )\.br\HCO3
+          24 mmol/L ( 22-30 )\.br\\.br\\.br\Comment: Creatinine and urea to follow this
+          afternoon.\.br\Request No: P800000\.br\ Date: 19/01/04\.br\ Time: 11:25 Units Ref
+          Range\.br\ -------- -------- -------- -------- -------- ------
+          ---------\.br\\H\SERUM/PLASMA\N\\.br\Sodium \H\ 130L\N\ mmol/L 135-145\.br\Potassium \H\
+          5.6H\N\ mmol/L 3.5-5.5\.br\Chloride 100 mmol/L 95-110\.br\HCO3 24 mmol/L
+          22-30\.br\Creatinine mmol/L 0.05-0.11\.br\Urea mmol/L 2.5-8.3\.br\\.br\\H\19/01/04
+          04P800000\N\\.br\\H\General Comments:\N\ Creatinine and urea to follow this afternoon.</text>
+        <statusCode code="active" e_id="id289"/>
+        <effectiveTime e_id="id290" value="20040119112500+1000"/>
+        <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" e_id="id292"/>
+        <subject e_id="id294" typeCode="SBJ">
+          <specimen e_id="id396">
+            <id e_id="id1315" nullFlavor="UNK"/>
+            <code e_id="id1316" nullFlavor="UNK"/>
+            <specimenNatural classCode="MAT" determinerCode="INSTANCE" e_id="id1320" nullFlavor="UNK">
+              <code e_id="id1239" nullFlavor="UNK"/>
+            </specimenNatural>
+            <subjectOf2 e_id="id1326" typeCode="SBJ">
+              <processStep classCode="TRNS" e_id="id1343" moodCode="EVN">
+                <code code="RCV" codeSystem="2.16.840.1.113883.6.100003" displayName="Specimen                   Received" e_id="id1306"/>
+                <effectiveTime e_id="id1309" value="20040119130000+1000"/>
+              </processStep>
+            </subjectOf2>
+            <productOf e_id="id1327" typeCode="PRD">
+              <process classCode="PROC" e_id="id1314" moodCode="EVN">
+                <code e_id="id1297" nullFlavor="UNK"/>
+                <performer e_id="id1303" typeCode="PRF">
+                  <assignedEntity classCode="ASSIGNED" e_id="id1270">
+                    <id e_id="id626" extension="Hosp" root="2.16.840.1.113883.19.3"/>
+                    <assignedOrganization classCode="ORG" determinerCode="INSTANCE" e_id="id632">
+                      <name e_id="id663">Hospital Collection</name>
+                    </assignedOrganization>
+                  </assignedEntity>
+                </performer>
+              </process>
+            </productOf>
+          </specimen>
+        </subject>
+        <recordTarget e_id="id295" typeCode="RCT">
+          <patientClinical classCode="PAT" e_id="id373">
+            <id assigningAuthorityName="Kestville               Hospital Patient Identifier" e_id="id403" extension="134680" root="2.16.840.1.113883.19.5"/>
+            <id assigningAuthorityName="Kestral               Application Patient Identifier" e_id="id403.1" extension="302533" root="2.16.840.1.113883.19.6"/>
+            <id assigningAuthorityName="HIC               Australia Patient Identifier" e_id="id403.2" extension="6187/59213/4" root="2.16.840.1.113883.19.7"/>
+            <addr e_id="id404">
+              <streetAddressLine>1 SMITH STREET</streetAddressLine>
+              <city>MELBOURNE</city>
+              <postalCode>3000</postalCode>
+            </addr>
+            <statusCode code="active" e_id="id406"/>
+            <patientPerson classCode="PSN" determinerCode="INSTANCE" e_id="id410">
+              <name e_id="id496">
+                <given>John</given>
+                <family>Citizen</family>
+              </name>
+              <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" e_id="id499"/>
+              <birthTime e_id="id500" value="19730701"/>
+            </patientPerson>
+          </patientClinical>
+        </recordTarget>
+        <performer e_id="id296" typeCode="PRF">
+          <assignedEntity classCode="ASSIGNED" e_id="id356">
+            <id e_id="id626.1" extension="Manager" root="2.16.840.1.113883.19.9"/>
+            <code code="CH" codeSystem="2.16.840.1.113883.6.100004" displayName="Chemistry" e_id="id627"/>
+            <assignedPerson e_id="id633">
+              <name e_id="id669">
+                <family>Manager</family>
+              </name>
+            </assignedPerson>
+          </assignedEntity>
+        </performer>
+        <inFulfillmentOf e_id="id301" typeCode="FLFS">
+          <fulfillerPromise classCode="OBS" e_id="id276" moodCode="PRMS">
+            <id e_id="id269" extension="04P800000-1049151" root="2.16.840.1.113883.19.4"/>
+            <statusCode code="active" e_id="id270"/>
+            <inFulfillmentOf e_id="id271" typeCode="FLFS">
+              <observationRequest e_id="id278">
+                <id e_id="id793" nullFlavor="UNK"/>
+                <code code="E" codeSystem="2.16.840.1.113883.6.100002" displayName="Elecs,Urea,Crea" e_id="id794">
+                  <translation code="LOINC_code_for_E" codeSystem="2.16.840.1.113883.6.1"/>
+                </code>
+                <effectiveTime e_id="id797" value="20040119143900+1000"/>
+                <priorityCode code="R" codeSystem="2.16.840.1.113883.5.7" displayName="routine" e_id="id798"/>
+                <confidentialityCode e_id="id799" nullFlavor="UNK"/>
+                <author e_id="id810" typeCode="AUT">
+                  <time e_id="id768" value="20040119113000+1000"/>
+                  <modeCode e_id="id769" nullFlavor="UNK"/>
+                  <signatureCode e_id="id770" nullFlavor="UNK"/>
+                  <assignedEntity classCode="ASSIGNED" e_id="id772">
+                    <id assigningAuthorityName="HIC Australia Provider Identifier" e_id="id626.2" extension="1234567A" root="2.16.840.1.113883.19.8"/>
+                    <assignedPerson classCode="PSN" determinerCode="INSTANCE" e_id="id633.1">
+                      <name e_id="id669.1" use="L">
+                        <given>Ned</given>
+                        <family qualifier="BR">Kelly</family>
+                      </name>
+                    </assignedPerson>
+                  </assignedEntity>
+                </author>
+                <dataEnterer e_id="id811" typeCode="ENT">
+                  <modeCode e_id="id788" nullFlavor="UNK"/>
+                  <assignedEntity classCode="ASSIGNED" e_id="id789">
+                    <!-- No id was specified in original message, so no meaning in bringing across the assigning authority -->
+                    <assignedPerson classCode="PSN" determinerCode="INSTANCE" e_id="id633.2">
+                      <name e_id="id669.2">
+                        <given>MANAGER</given>
+                        <family>MANAGER</family>
+                      </name>
+                    </assignedPerson>
+                  </assignedEntity>
+                </dataEnterer>
+                <pertinentInformation2 e_id="id816" typeCode="PERT">
+                  <observationGeneral classCode="OBS" e_id="id831" moodCode="EVN">
+                    <code e_id="id699" nullFlavor="NA"/>
+                    <text e_id="id700">? Kidney Failure</text>
+                    <statusCode code="complete" e_id="id701"/>
+                    <value e_id="id705" nullFlavor="NA" xsi:type="ST"/>
+                  </observationGeneral>
+                </pertinentInformation2>
+              </observationRequest>
+            </inFulfillmentOf>
+          </fulfillerPromise>
+        </inFulfillmentOf>
+        <component2 e_id="id305" typeCode="COMP">
+          <observationEvent classCode="OBS" e_id="id255" moodCode="EVN">
+            <code code="2823-1" codeSystem="2.16.840.1.113883.6.1" displayName="Potassium" e_id="id308">
+              <translation code="K" codeSystem="2.16.840.1.113883.6.100005" displayName="Potassium"/>
+            </code>
+            <statusCode code="active" e_id="id311"/>
+            <effectiveTime e_id="id312" value="20040119142756+1000"/>
+            <confidentialityCode e_id="id314" nullFlavor="UNK"/>
+            <value e_id="id316" unit="mmol/L" value="5.6" xsi:type="PQ"/>
+            <interpretationCode code="H" e_id="id317"/>
+            <subject e_id="id320" nullFlavor="NA" typeCode="SBJ" xsi:nil="true"/>
+            <performer e_id="id322" typeCode="PRF">
+              <assignedEntity classCode="ASSIGNED" e_id="id356.1">
+                <id e_id="id626.3" extension="Manager" root="2.16.840.1.113883.19.9"/>
+                <assignedPerson e_id="id633.3">
+                  <name e_id="id669.3">
+                    <family>Manager</family>
+                  </name>
+                </assignedPerson>
+              </assignedEntity>
+            </performer>
+            <referenceRange e_id="id330" typeCode="REFV">
+              <interpretationRange classCode="OBS" e_id="id374" moodCode="EVN.CRT">
+                <value e_id="id283" xsi:type="IVL_PQ">
+                  <low nullFlavor="NINF"/>
+                  <high unit="mmol/L" value="3.5"/>
+                </value>
+                <interpretationCode code="L" e_id="id284"/>
+              </interpretationRange>
+            </referenceRange>
+            <referenceRange e_id="id330.1" typeCode="REFV">
+              <interpretationRange classCode="OBS" e_id="id374.1" moodCode="EVN.CRT">
+                <value e_id="id283.1" xsi:type="IVL_PQ">
+                  <low unit="mmol/L" value="5.5"/>
+                  <high nullFlavor="PINF"/>
+                </value>
+                <interpretationCode code="H" e_id="id284.1"/>
+              </interpretationRange>
+            </referenceRange>
+          </observationEvent>
+        </component2>
+        <component2 e_id="id305.1" typeCode="COMP">
+          <observationEvent classCode="OBS" e_id="id255.1" moodCode="EVN">
+            <code code="2951-2" codeSystem="2.16.840.1.113883.6.1" displayName="Sodium" e_id="id308.1">
+              <translation code="Na" codeSystem="2.16.840.1.113883.6.100005" displayName="Sodium"/>
+            </code>
+            <statusCode code="active" e_id="id311.1"/>
+            <effectiveTime e_id="id312.1" value="20040119142756+1000"/>
+            <confidentialityCode e_id="id314.1" nullFlavor="UNK"/>
+            <value e_id="id316.1" unit="mmol/L" value="130" xsi:type="PQ"/>
+            <interpretationCode code="L" e_id="id317.1"/>
+            <subject e_id="id320.1" nullFlavor="NA" typeCode="SBJ" xsi:nil="true"/>
+            <performer e_id="id322.1" typeCode="PRF">
+              <assignedEntity classCode="ASSIGNED" e_id="id356.2">
+                <id e_id="id626.4" extension="Manager" root="2.16.840.1.113883.19.9"/>
+                <assignedPerson e_id="id633.4">
+                  <name e_id="id669.4">
+                    <family>Manager</family>
+                  </name>
+                </assignedPerson>
+              </assignedEntity>
+            </performer>
+            <referenceRange e_id="id330.2" typeCode="REFV">
+              <interpretationRange classCode="OBS" e_id="id374.2" moodCode="EVN.CRT">
+                <value e_id="id283.2" xsi:type="IVL_PQ">
+                  <low nullFlavor="NINF"/>
+                  <high unit="mmol/L" value="135"/>
+                </value>
+                <interpretationCode code="L" e_id="id284.2"/>
+              </interpretationRange>
+            </referenceRange>
+            <referenceRange e_id="id330.3" typeCode="REFV">
+              <interpretationRange classCode="OBS" e_id="id374.3" moodCode="EVN.CRT">
+                <value e_id="id283.3" xsi:type="IVL_PQ">
+                  <low unit="mmol/L" value="145"/>
+                  <high nullFlavor="PINF"/>
+                </value>
+                <interpretationCode code="H" e_id="id284.3"/>
+              </interpretationRange>
+            </referenceRange>
+          </observationEvent>
+        </component2>
+        <component2 e_id="id305.2" typeCode="COMP">
+          <observationEvent classCode="OBS" e_id="id255.2" moodCode="EVN">
+            <code code="2075-0" codeSystem="2.16.840.1.113883.6.1" displayName="Chloride" e_id="id308.2">
+              <translation code="Cl" codeSystem="2.16.840.1.113883.6.100005" displayName="Chloride"/>
+            </code>
+            <statusCode code="active" e_id="id311.2"/>
+            <effectiveTime e_id="id312.2" value="20040119112500+1000"/>
+            <confidentialityCode e_id="id314.2" nullFlavor="UNK"/>
+            <value e_id="id316.2" unit="mmol/L" value="100" xsi:type="PQ"/>
+            <subject e_id="id320.2" nullFlavor="NA" typeCode="SBJ" xsi:nil="true"/>
+            <performer e_id="id322.2" typeCode="PRF">
+              <assignedEntity classCode="ASSIGNED" e_id="id356.3">
+                <id e_id="id626.5" extension="Manager" root="2.16.840.1.113883.19.9"/>
+                <assignedPerson e_id="id633.5">
+                  <name e_id="id669.5">
+                    <family>Manager</family>
+                  </name>
+                </assignedPerson>
+              </assignedEntity>
+            </performer>
+            <referenceRange e_id="id330.4" typeCode="REFV">
+              <interpretationRange classCode="OBS" e_id="id374.4" moodCode="EVN.CRT">
+                <value e_id="id283.4" xsi:type="IVL_PQ">
+                  <low nullFlavor="NINF"/>
+                  <high unit="mmol/L" value="95"/>
+                </value>
+                <interpretationCode code="L" e_id="id284.4"/>
+              </interpretationRange>
+            </referenceRange>
+            <referenceRange e_id="id330.5" typeCode="REFV">
+              <interpretationRange classCode="OBS" e_id="id374.5" moodCode="EVN.CRT">
+                <value e_id="id283.5" xsi:type="IVL_PQ">
+                  <low unit="mmol/L" value="110"/>
+                  <high nullFlavor="PINF"/>
+                </value>
+                <interpretationCode code="H" e_id="id284.5"/>
+              </interpretationRange>
+            </referenceRange>
+          </observationEvent>
+        </component2>
+        <component2 e_id="id305.3" typeCode="COMP">
+          <observationEvent classCode="OBS" e_id="id255.3" moodCode="EVN">
+            <code code="1963-8" codeSystem="2.16.840.1.113883.6.1" displayName="Total CO2" e_id="id308.3">
+              <translation code="HC03" codeSystem="2.16.840.1.113883.6.100005" displayName="Total                 CO2"/>
+            </code>
+            <statusCode code="active" e_id="id311.3"/>
+            <effectiveTime e_id="id312.3" value="20040119112500+1000"/>
+            <confidentialityCode e_id="id314.3" nullFlavor="UNK"/>
+            <value e_id="id316.3" unit="mmol/L" value="24" xsi:type="PQ"/>
+            <subject e_id="id320.3" nullFlavor="NA" typeCode="SBJ" xsi:nil="true"/>
+            <performer e_id="id322.3" typeCode="PRF">
+              <assignedEntity classCode="ASSIGNED" e_id="id356.4">
+                <id e_id="id626.6" extension="Manager" root="2.16.840.1.113883.19.9"/>
+                <assignedPerson e_id="id633.6">
+                  <name e_id="id669.6">
+                    <family>Manager</family>
+                  </name>
+                </assignedPerson>
+              </assignedEntity>
+            </performer>
+            <referenceRange e_id="id330.6" typeCode="REFV">
+              <interpretationRange classCode="OBS" e_id="id374.6" moodCode="EVN.CRT">
+                <value e_id="id283.6" xsi:type="IVL_PQ">
+                  <low nullFlavor="NINF"/>
+                  <high unit="mmol/L" value="22"/>
+                </value>
+                <interpretationCode code="L" e_id="id284.6"/>
+              </interpretationRange>
+            </referenceRange>
+            <referenceRange e_id="id330.7" typeCode="REFV">
+              <interpretationRange classCode="OBS" e_id="id374.7" moodCode="EVN.CRT">
+                <value e_id="id283.7" xsi:type="IVL_PQ">
+                  <low unit="mmol/L" value="30"/>
+                  <high nullFlavor="PINF"/>
+                </value>
+                <interpretationCode code="H" e_id="id284.7"/>
+              </interpretationRange>
+            </referenceRange>
+          </observationEvent>
+        </component2>
+        <component2 e_id="id305.4" typeCode="COMP">
+          <observationEvent classCode="OBS" e_id="id255.4" moodCode="EVN">
+            <code code="8266-9" codeSystem="2.16.840.1.113883.6.1" displayName="Comment" e_id="id308.4">
+              <translation code="Com" codeSystem="2.16.840.1.113883.6.100005" displayName="Comment"/>
+            </code>
+            <statusCode code="active" e_id="id311.4"/>
+            <effectiveTime e_id="id312.4" value="20040119152222+1000"/>
+            <confidentialityCode e_id="id314.4" nullFlavor="UNK"/>
+            <value e_id="id316.4" xsi:type="ST">Creatinine and urea to follow this afternoon.</value>
+            <subject e_id="id320.4" nullFlavor="NA" typeCode="SBJ" xsi:nil="true"/>
+            <performer e_id="id322.4" typeCode="PRF">
+              <assignedEntity classCode="ASSIGNED" e_id="id356.5">
+                <id e_id="id626.7" extension="Manager" root="2.16.840.1.113883.19.9"/>
+                <assignedPerson e_id="id633.7">
+                  <name e_id="id669.7">
+                    <family>Manager</family>
+                  </name>
+                </assignedPerson>
+              </assignedEntity>
+            </performer>
+          </observationEvent>
+        </component2>
+      </observationBattery>
+    </subject>
+  </controlActProcess>
+</POLB_IN224200>

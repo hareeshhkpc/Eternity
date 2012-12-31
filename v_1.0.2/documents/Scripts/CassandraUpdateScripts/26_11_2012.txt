@@ -1,0 +1,6 @@
+use HIN_ETERNITY;
+
+assume COCT_MT150000HT04_ST keys as utf8;
+assume COCT_MT150000HT04_ST validator as utf8;
+
+set COCT_MT150000HT04_ST['HINORG']['VERSION']='1';

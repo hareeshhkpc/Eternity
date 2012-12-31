@@ -1,0 +1,73 @@
+
+
+.button1{
+background-color: #DAE1E3;
+border: 2px #59877F outset;
+margin: 3px 2px 3px 3px;
+padding: 1px 5px 1px 5px;
+color: #612D3A;
+text-decoration: none;
+font: bold 90% Arial, sans-serif;
+font-size: 11px;
+}
+
+.button1:visited{
+color: #FAFAFA;
+}
+
+.button1:hover{
+border-style: inset;
+background-color: #95A4A6;
+color: #ffffff;
+padding: 0px 4px 2px 6px; /*shift text 1px to the right and down*/
+}
+
+.button1:active{
+color: #DEE5FC;
+}
+
+
+
+.cssbuttonRed{
+background-color: #BF2C2C;
+border: 2px #59877F outset;
+padding: 1px 5px 1px 5px;
+color: #F5F0F0;
+text-decoration: none;
+font: bold 90% "Lucida Grande", "Trebuchet MS", Verdana, Helvetica, sans-serif;
+font-size: 11px;
+}
+
+.cssbuttonRed:visited{
+color: #FAFAFA;
+}
+
+.cssbuttonRed:hover{
+border-style: inset;
+background-color: #B36666;
+color: #BA253E;
+padding: 0px 4px 2px 6px; /*shift text 1px to the right and down*/
+}
+
+.cssbuttonRed:active{
+color: #DEE5FC;
+}
+
+
+.blueRedButton
+{
+border: 1px #F7FAFA outset;
+background-color: #1676BA;
+color: #FAFAFA;
+font-size: 12px;
+font: bold 95% Verdana, "Trebuchet MS", Helvetica, sans-serif;
+padding: 1px 2px 1px 2px;
+}
+.blueRedButton:hover
+{
+border-style: inset;
+background-color: #DB7D8A;
+color: #FAFAFA;
+}
+
+

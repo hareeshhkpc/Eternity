@@ -1,0 +1,107 @@
+<form name="signUpForm" id="signUpForm">
+	<div data-role="none" class="ui-align-text">
+		<div class="ui-form-fields" style="width: 100%">
+			<div class="ui-profile-form">
+				<fieldset>
+					<div class="ui-profile-image">
+						<div isEditor="true" editorLabel="" pathFields="identifiedPerson"
+							tagName="desc" dataType="ED" editorType="EDImage"></div>
+					</div>
+					<div class="ui-profile-main-field">
+						<fieldset>
+							<div class="ui-profile-inner-field">
+								<div class="ui-tele-field" style="width: 60%">
+									<div isEditor="true" editorLabel="Name(s):"
+										pathFields="identifiedPerson" tagName="name" dataType="PN"
+										editorType="PNComplete"
+										configParams="[{name:'prefixConceptClass',value:'prefix'},{name:'prefixLookupType',value:'static'},
+								{name:'prefixLookupSelectType',value:'single'},{name:'prefixLookupControl',value:'multiple'},
+								{name:'nameUseConceptClass',value:'nameUse'},{name:'nameUseLookupType',value:'static'},
+								{name:'nameUseLookupSelectType',value:'single'},{name:'nameUseLookupControl',value:'multiple'},{name:'validate',value:'validate[required]'}]">
+									</div>
+
+								</div>
+								<div class="ui-tele-add" style="width: 40%; margin-top: -5px;">
+									<div isEditor="true" editorLabel="Gender:"
+										pathFields="identifiedPerson"
+										tagName="administrativeGenderCode" dataType="CE"
+										editorType="CE"
+										configParams="[{name:'conceptClass',value:'gender'},{name:'lookupType',value:'static'},
+								{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'100%'},{name:'validate',value:'validate[required]'}]">
+									</div>
+								</div>
+							</div>
+							<br /> <br /> <br /> <br />
+							<fieldset>
+								<div isEditor="true" editorLabel="Telecoms:"
+									pathFields="identifiedPerson" tagName="telecom" dataType="TEL"
+									editorType="Grid"
+									configParams="[{name:'telecomUseConceptClass',value:'telecomUse'},{name:'telecomUseLookupType',value:'static'},
+                                      {name:'telecomUseLookupSelectType',value:'single'},{name:'telecomUseLookupControl',value:'multiple'},
+                                       {name:'textBoxWidth',value:'95%'},{name:'buttonWidth',value:'5%'},
+                                      {name:'positionTopAdd',value:'15px'},{name:'positionRightAdd',value:'6px'},
+					                  {name:'positionTopRemove',value:'2px'},{name:'positionRightRemove',value:'5px'}]"
+									gridEditorType="TEL"
+									configPathField="[{name:'identifiedPerson',value:'0',editable:'true'}]"
+									idSuffix="1"></div>
+							</fieldset>
+
+							<div style="margin-top: 12px; display: none">
+								<div isEditor="true" editorLabel="Message ID.:" pathFields=""
+									tagName="id" dataType="II" editorType="II"
+									configParams="[{name:'textBoxWidth',value:'95%'},
+					{name:'buttonWidth',value:'5%'}]"
+									groupId="idFields" idSuffix="1"></div>
+							</div>
+
+							<div style="margin-top: 12px; display: none">
+								<div isEditor="true" editorLabel="Subscriber ID.:" pathFields=""
+									tagName="id" dataType="II" editorType="II"
+									configParams="[{name:'textBoxWidth',value:'95%'},
+					{name:'buttonWidth',value:'5%'}]"
+									groupId="idFields" idSuffix="2"></div>
+							</div>
+						</fieldset>
+					</div>
+				</fieldset>
+				<div class="ui-profile-inner-form">
+					<div isEditor="true" editorLabel="Addres(es):"
+						pathFields="identifiedPerson" tagName="addr" dataType="AD"
+						editorType="Grid"
+						configParams="[{name:'cityConceptClass',value:'city'},{name:'cityLookupType',value:'dynamic'},
+					           {name:'cityLookupSelectType',value:'single'},{name:'cityLookupControl',value:'autoComplete'},
+					           {name:'stateConceptClass',value:'state'},{name:'stateLookupType',value:'dynamic'},
+					           {name:'stateLookupSelectType',value:'single'},{name:'stateLookupControl',value:'autoComplete'},
+					           {name:'countryConceptClass',value:'Nations'},{name:'countryLookupType',value:'dynamic'},
+					           {name:'countryLookupSelectType',value:'single'},{name:'countryLookupControl',value:'autoComplete'},{name:'textBoxWidth',value:'94%'},
+					           {name:'positionTopAdd',value:'16px'},{name:'positionRightAdd',value:'25px'},
+					           {name:'positionTopRemove',value:'2px'},{name:'positionRightRemove',value:'25px'}]"
+						gridEditorType="AD"
+						configPathField="[{name:'identifiedPerson',value:'0',editable:'true'}]"
+						idSuffix="1"></div>
+
+					<div style="margin-bottom: 6px">
+						<div isEditor="true" editorLabel="User Name:" pathFields=""
+							tagName="id" dataType="II" editorType="IIUserName"
+							configParams="[{name:'validate',value:'validate[required]'},{name:'textBoxWidth',value:'98%'}]"
+							groupId="idFields" idSuffix="3"></div>
+					</div>
+					<div style="margin-bottom: 6px">
+						<div isEditor="true" editorLabel="Password:" pathFields=""
+							tagName="id" dataType="II" editorType="IIPassword"
+							configParams="[{name:'validate',value:'validate[required]'},{name:'textBoxWidth',value:'98%'}]"
+							groupId="idFields" idSuffix="4"></div>
+					</div>
+
+					<label id="PasswordExtensionLabel">Confirm Password:</label> <input
+						type="password" id="PasswordExtension" value=""
+						class="validate[required,equals[IIPasswordExtension],maxSize[16],minSize[6]]"
+						style="width: 98%" />
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+</form>

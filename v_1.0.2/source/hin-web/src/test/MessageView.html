@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="MessageView.css" />
+<script type="text/javascript" src="jquery-1.6.2.js"></script>
+<script type="text/javascript">
+function toggleContainer(containerId){
+	$('#' + containerId).toggle();
+}
+</script>
+</head>
+<body>
+
+	<div class="objectContainer">
+		<div class="objectHeader" onclick="toggleContainer('object-body');">Observation Battery</div>
+		<div id="object-body" class="objectBody">
+		 	<div class="objectProperty">Code: Elecs,Urea,Crea</div>
+		 	<div class="objectProperty">Text: <div style="font-style: italic">\H\SERUM/PLASMA\N\\.br\Sodium \H\ 130\N\ mmol/L ( 135-145
+          )\.br\Potassium \H\ 5.6\N\ mmol/L ( 3.5-5.5 )\.br\Chloride 100 mmol/L ( 95-110 )\.br\HCO3
+          24 mmol/L ( 22-30 )\.br\\.br\\.br\Comment: Creatinine and urea to follow this
+          afternoon.\.br\Request No: P800000\.br\ Date: 19/01/04\.br\ Time: 11:25 Units Ref
+          Range\.br\ -------- -------- -------- -------- -------- ------
+          ---------\.br\\H\SERUM/PLASMA\N\\.br\Sodium \H\ 130L\N\ mmol/L 135-145\.br\Potassium \H\
+          5.6H\N\ mmol/L 3.5-5.5\.br\Chloride 100 mmol/L 95-110\.br\HCO3 24 mmol/L
+          22-30\.br\Creatinine mmol/L 0.05-0.11\.br\Urea mmol/L 2.5-8.3\.br\\.br\\H\19/01/04
+          04P800000\N\\.br\\H\General Comments:\N\ Creatinine and urea to follow this afternoon.</div></div>
+          <div class="objectProperty">Status Code: Active</div>
+		 	<div class="objectContainer">
+				<div class="objectHeader" onclick="toggleContainer('sub');">Encounter Event</div>
+				<div id="sub" class="objectBody">
+				 	<div class="objectProperty">Name</div>
+				 	<div class="objectProperty">Address</div>
+				 	
+				 	<div class="objectContainer">
+						<div class="objectHeader" onclick="toggleContainer('object-body1');">Encounter Event</div>
+						<div id="object-body1" class="objectBody">
+						 	<div class="objectProperty">Name</div>
+						 	<div class="objectProperty">Address</div>
+						 	<div class="objectContainer">
+								<div class="objectHeader" onclick="toggleContainer('sub1');">Encounter Event</div>
+								<div id="sub1" class="objectBody">
+								 	<div class="objectProperty">Name</div>
+								 	<div class="objectProperty">Address</div>
+								 </div>
+							</div>		 	
+						 </div>
+					</div>
+					<div class="objectContainer">
+						<div class="objectHeader" onclick="toggleContainer('object-body2');">Encounter Event</div>
+						<div id="object-body2" class="objectBody">
+						 	<div class="objectProperty">Name</div>
+						 	<div class="objectProperty">Address</div>
+						 	<div class="objectContainer">
+								<div class="objectHeader" onclick="toggleContainer('sub2');">Encounter Event</div>
+								<div id="sub2" class="objectBody">
+								 	<div class="objectProperty">Name</div>
+								 	<div class="objectProperty">Address</div>
+								 </div>
+							</div>		 	
+						 </div>
+					</div>
+				 	
+				 </div>
+			</div>		 	
+		 </div>
+	</div>
+
+</body>
+</html>

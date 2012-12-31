@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Message Api</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="css/hin.css" />
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.json-2.3.js"></script>
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+
+<script src="js/hl7adapter_new.js"></script>
+<script type="text/javascript" src="js/xml2json.js"></script>
+<script type="text/javascript" src="js/json2xml.js"></script>
+
+<script src="js/XmlUtil.js"></script> 
+<script src="js/DataTypeAPI.js"></script>
+<script src="js/MessageAndUIBinder.js"></script>
+<script src="js/jquery.easydate-0.2.4.js"></script>
+<script src="js/AppUtil.js"></script>
+
+<script>
+
+var msgBinder = null;
+$(document).ready(function(){
+	alert("using Message Api");
+	
+	$("#loadMessage").click(function(){
+		loadMessage('/message-skeleton/PRPA_MT201000HT03.xml');
+	});
+	
+	$("#loadConfig").click(function(){
+		loadConfiguration('/message-configuration/PRPA_MT201000HT03.xml');
+	});	
+	
+	
+	$('#saveMessage').click(function(){
+		 alert("Message xml: \n" +  XmlUtil.xmlToString(msgBinder.messageObject.getXML()));
+	});
+
+});
+function loadMessage(messageId){
+	getMessageDocument(messageId, 
+		function(messageObj){
+			//alert(messageObj)
+			msgBinder = new MessageAndUIBinder('MSG-10001', messageObj, 'PRPA_MT201000HT03');
+			msgBinder.loadDataOntoForm();
+		},
+		function(status){
+			alert("Failed to load message for ID : " + messageId + ", Status: " + status);
+		}
+	);
+}
+
+function loadConfiguration(messageConfigId){
+	//alert("in load");
+	getMessage(messageConfigId, 
+		function(configData){
+			
+			var doc = new ConfigDocument(configData)
+	        var result = 0;
+	        result = doc.getArtifactId();
+	        // alert("result :"+result);
+	         
+	        config = doc;
+	        
+	        alert('Configuration for ' + messageConfigId + " Loaded");
+	        
+	        msgBinder = new MessageAndUIBinder('MSG-10001', config.createMessage(), 'PRPA_MT201000HT03');
+	        msgBinder.bindFieldEvents();
+		},
+		function(status){
+			alert("Failed to load configuration for ID : " + messageConfigId + ", Status: " + status);
+		}
+	);
+}
+
+</script>
+</head>
+<body id='MSG-10001'>
+
+<label>DOB:</label>
+			    <input type="text" id="pDOB" value=""
+			    		pathFields="identifiedPerson"  
+			    		tagName="birthTime" fields="pDOB"  
+			    		dataType="TS" dataField="true" dateFormatFunction="AppUtil.getFormattedDate" />
+
+<input type="button" data-inline="true" id="loadConfig" value="Load Configuration"/>
+<input type="button" data-inline="true" id="loadMessage" value="Load Message"/>
+<input type="button" data-inline="true" id="saveMessage" value="Save Message"/>
+</body>
+</html>

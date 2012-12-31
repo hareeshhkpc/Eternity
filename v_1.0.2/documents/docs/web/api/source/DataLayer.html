@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='DataLayer'>/**
+</span> * DataLayer is a child component of Application Controller.It catches the
+ * events from other components and broadcasts the same events to all components
+ * except from which that event triggers and which broadcasts that event. If
+ * required it handles the events here itself.This layer will be decided to work
+ * as offline or online.
+ */
+
+function DataLayer(appController) {
+
+	var dataLayer = this;
+	this.className = &quot;DataLayer&quot;;
+
+	var appController = appController;
+	var ajaxMultipart = new AjaxMultipart();
+	var renderingEngine = appController.getComponent(&quot;RenderingEngine&quot;);
+<span id='DataLayer-method-eventHandler'>	/**
+</span>	 * Handles event from Datalayer
+	 * 
+	 * @param event
+	 */
+	this.eventHandler = eventHandler;
+	this.authenticate = authenticate;
+	this.getProcessDefinitions = getProcessDefinitions;
+	this.getProcessDefinitionInstance = getProcessDefinitionInstance;
+	this.getNewProcessDefinitionInstance = getNewProcessDefinitionInstance;
+	/* this.createProcessDefinition = createProcessDefinition; */
+	this.getProcessDefinitionByProcessName = getProcessDefinitionByProcessName;
+	this.processMessage = processMessage;
+	/* this.saveMessages = saveMessages; */
+	this.sendEmail = sendEmail;
+	this.emailTemplate = emailTemplate;
+	this.currencyConvert = currencyConvert;
+	/* this.saveProcess = saveProcess; */
+	this.getMessageForSearchResult = getMessageForSearchResult;
+
+	// this.signUp = signUp;
+	this.fetchPrograms = fetchPrograms;
+	this.changeEntityState = changeEntityState;
+	this.fetchCheckedinPatient = fetchCheckedinPatient;
+	this.getMessageInternal = getMessageInternal;
+	this.getMessageXml = getMessageXml;
+	this.getMsg = getMsg;
+	this.getMessageTask = getMessageTask;
+
+	this.messageMap = new HIN.HashMap();
+	this.processMap = new HIN.HashMap();
+
+<span id='DataLayer-property-processDefinitionJsonMap'>	/** processDefinitionJsonMap holds all process definitions in json format */
+</span>	this.processDefinitionJsonMap = new HIN.HashMap();
+	/* this.createProcessDefinitions = createProcessDefinitions; */
+	this.createProcessDefinitionClone = createProcessDefinitionClone;
+	/*
+	 * this.addProcess = addProcess; this.getProcess = getProcess;
+	 */
+<span id='DataLayer-property-userProcessMap'>	/** userProcessMap holds all process definitions against the user */
+</span>	this.userProcessMap = new HIN.HashMap();
+	this.getUserProcessMap = getUserProcessMap;
+	this.getUserProcesses = getUserProcesses;
+	this.lookupHandler = new LookupHandler();
+
+	this.search = search;
+	this.getMessages = getMessages;
+	this.fetchLuceneMessages = fetchLuceneMessages;
+	this.fetchConcept = fetchConcept;
+	this.fetchConceptByProperty = fetchConceptByProperty;
+	this.fetchConceptByName = fetchConceptByName;
+	this.fetchConceptByNames = fetchConceptByNames;
+	this.loadAllConceptServices = loadAllConceptServices;
+	this.fetchConceptByClassName = fetchConceptByClassName;
+	this.loadDynamicConceptLookUp = loadDynamicConceptLookUp;
+
+	this.loadConcepts = loadConcepts;
+	// this.fetchPrograms = fetchProgram;
+
+	/* this.createTasks = createTasks; */
+	this.createOrUpdateTask = createOrUpdateTask;
+	this.createOrUpdateTasks = createOrUpdateTasks;
+	this.convertToPdf = convertToPdf;
+	this.downloadClientReportPDF = downloadClientReportPDF;
+	this.downloadUploadedDocuments = downloadUploadedDocuments;
+	this.documentsTimeLine = documentsTimeLine;
+	this.documentsLegend = documentsLegend;
+
+	this.searchServices = searchServices;
+
+	this.generateId = generateId;
+
+	this.currentProcessDefinition = null;
+	this.clearProcesses = clearProcesses;
+
+	this.loadConfig = loadConfig;
+	this.loadData = loadData;
+
+	this.messageTypeJsStringMap = new HIN.HashMap();
+	this.messageFormMap = new HIN.HashMap();
+	this.messageFormScriptMap = new HIN.HashMap();
+	this.navigateBackToProcess = false;
+	this.getMessageObject = getMessageObject;
+	this.putMessageObject = putMessageObject;
+	this.deleteMessageObject = deleteMessageObject;
+
+	this.deleteMessage = deleteMessage;
+
+	this.getProcessDefinitionJson = getProcessDefinitionJson;
+	this.putProcessDefinitionJson = putProcessDefinitionJson;
+
+	this.getLicenseeMessage = getLicenseeMessage;
+	this.getOrganizationMessage = getOrganizationMessage;
+
+	this.factoryClass = new FactoryClass();
+	this.serviceLayer = new ServiceLayer(appController, dataLayer,
+			renderingEngine);
+	this.cacheManager = new CacheManager(appController, dataLayer);
+	this.loadChartData = loadChartData;
+	this.loadLookupData = loadLookupData;
+
+	this.getCurrencyValue = getCurrencyValue;
+<span id='DataLayer-property-cache'>	/**
+</span>	 * cache holds the true or false value , based on this it acts as offline or
+	 * online.
+	 */
+	this.cache = true;
+
+	this.getNewId = getNewId;
+	this.type = null;
+	this.syncMessage = syncMessage;
+	this.synCompleted = true;
+	this.validateUser = validateUser;
+
+	HL = new hl7adapter();
+
+	/* Function definitions */
+
+	function eventHandler(event) {
+		// alert(&quot;event handler in datalayer : &quot;+event.type);
+		if (event.type == AppConstants.Event.APPLICATION_INITIALIZED) {
+
+			// Create lookup handler for the SQLite
+			this.lookupHandler.createDatabase();
+			// this.getProcessDefinitions();
+			/* this.syncMessage(); */
+			/*
+			 * setTimeout(function() { dataLayer.syncMessage(); }, 5000);
+			 */
+
+		} else if (event.type == AppConstants.Event.LOGIN_PAGE_PROCESSED) {
+			authenticate(event.data);
+		} else if (event.type == AppConstants.Event.SEARCH_PAGE_PROCESSED) {
+			dataLayer
+					.search(event.data.searchVO, event.data.conditionMap, null);
+		} else if (event.type == AppConstants.Event.ARCHIVE_SEARCH_PATIENT_PAGE_PROCESSED) {
+			archiveSearchPatient(event.data.searchVO, event.data.conditionMap);
+		} else if (event.type == AppConstants.Event.ARCHIVE_SEARCH_RESULT_PAGE_PROCESSED) {
+			archiveSearchResult(event.data.searchVO);
+		} else if (event.type == AppConstants.Event.PROCESS_PAGE_DEFINITION_FECTH_DATA) {
+			getProcessDefinitionInstance(event.data.processId);
+		} else if (event.type == AppConstants.Event.PROCESS_PAGE_INSTANCE_FECTH_DATA) {
+			getProcessInstance(event.data.userId, event.data.processName);
+		} else if (event.type == AppConstants.Event.TEST_RESULTS_PAGE_FETCH_TESTS) {
+			fetchMessageTypesFromConcept();
+		} else if (event.type == AppConstants.Event.PATIENT_HOME_PAGE_FETCH_DATA) {
+			fetchUserProcessDefinition(event.type, event.data);
+		} else if (event.type == AppConstants.Event.STAFF_HOME_PAGE_FETCH_DATA) {
+			fetchUserProcessDefinition(event.type, event.data);
+		} else if (event.type == AppConstants.Event.LICENSEE_HOME_PAGE_FETCH_DATA) {
+			fetchUserProcessDefinition(event.type, event.data);
+		} else if (event.type == AppConstants.Event.TEST_RESULTS_PAGE_FETCH_MESSAGE_TYPES) {
+			fetchMessageDomains();
+		} else if (event.type == AppConstants.Event.STATISTICS_FETCH_YEAR_DATA_REQUEST) {
+			fetchStatisticsDataForYear(event.data.statisticsVO);
+		} else if (event.type == AppConstants.Event.STATISTICS_FETCH_MONTH_DATA_REQUEST) {
+			fetchStatisticsDataForMonth(event.data.statisticsVO);
+		} else if (event.type == AppConstants.Event.STATISTICS_FETCH_DATA) {
+			fetchProgramsForStatistics();
+		} else if (event.type == AppConstants.Event.STATISTICS_MESSAGE_FETCH_DATA) {
+			fetchStatisticsMessageTypes(event.data.className);
+		} else if (event.type == AppConstants.Event.ENTITY_STATE_CHANGE) {
+			changeEntityState(event.data);
+		} else if (event.type == AppConstants.Event.FETCH_CHECKEDIN_PATIENTS) {
+			fetchCheckedinPatient(event.data.searchVO, event.data.entityState,
+					event.data.conditionMap);
+		} else if (event.type == AppConstants.Event.STATISTICS_MESSAGE_FETCH_FACILITIES) {
+			fetchFacilities();
+		} else if (event.type == AppConstants.Event.DOCUMENTS_FETCH_MESSAGE_ID_REQUEST) {
+			fetchDocumentMessage(event.data.documentsVO);
+		}
+
+	}
+	;
+
+	function getNewId() {
+		var S4 = function() {
+			return (((1 + Math.random()) * 0x10000) | 0).toString(16)
+					.substring(1);
+		};
+		return (S4() + S4() + &quot;-&quot; + S4() + &quot;-&quot; + S4() + &quot;-&quot; + S4() + &quot;-&quot; + S4()
+				+ S4() + S4());
+	}
+	;
+
+	function getMessageXml(messageId) {
+		var message = dataLayer.getMessageObject(messageId);
+		if (message)
+			return message.message;
+		return null;
+	}
+	;
+
+	function getMsg(messageId) {
+		var message = dataLayer.getMessageObject(messageId);
+		if (message)
+			return message.msg;
+		return null;
+	}
+	;
+
+	function createProcessDefinitionClone(data) {
+		return dataLayer.factoryClass.createProcessDefinitionInstance(data);
+
+	}
+	;
+
+	function getUserProcessMap() {
+		return this.userProcessMap;
+	}
+	;
+	function clearProcesses() {
+		dataLayer.processMap.clearItems();
+		dataLayer.processQueueIndex = 0;
+	}
+	;
+
+<span id='DataLayer-method-getUserProcesses'>	/**
+</span>	 * Provides all process id's against the user
+	 * 
+	 * @param userId :
+	 *            Its a string value.
+	 * @returns {UserProcess []}
+	 */
+	function getUserProcesses(userId) {
+		if (this.userProcessMap.get(userId)) {
+			return this.userProcessMap.get(userId).value;
+		}
+		return null;
+	}
+
+	function getProcessDefinitionByProcessName(processName, callback) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.getProcessDefinitionByProcessName(processName,
+				callback);
+	}
+	;
+
+<span id='DataLayer-method-getProcessDefinitions'>	/**
+</span>	 * Provides the all process definition instances through callback method. *
+	 * 
+	 * @param callback :
+	 *            Its a function which will be called after the completion of
+	 *            this method.
+	 */
+	function getProcessDefinitions(callback) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.getProcessDefinitions(callback);
+	}
+	;
+
+	function fetchPrograms(callback) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchPrograms(callback);
+	}
+	;
+
+<span id='DataLayer-method-authenticate'>	/**
+</span>	 * Authenticate the user.
+	 * 
+	 * @param user:
+	 *            Its an object of user.
+	 * @returns {void}
+	 */
+	function authenticate(user) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.authenticate(user);
+		// dataLayer.cacheManager.cacheLookUpData();
+
+	}
+	;
+
+	function validateUser(userName, callback) {
+		dataLayer.serviceLayer.validateUser(userName, callback);
+	}
+
+	function search(searchVO, conditionMap, callback) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.search(searchVO, conditionMap, callback);
+	}
+	;
+
+	function archiveSearchPatient(searchVO, conditionMap) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.archiveSearchPatient(searchVO, conditionMap);
+
+	}
+	;
+
+	function archiveSearchResult(searchVO) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.archiveSearchResult(searchVO);
+	}
+	;
+
+	function downloadClientReportPDF(clientReportContent) {
+		var patientVO = appController.getComponent(&quot;Context&quot;).getPatientVO();
+		var patientId = patientVO.subscriberId;
+		dataLayer.serviceLayer.downloadClientReportPDF(clientReportContent,
+				patientId);
+	}
+	;
+
+	function downloadUploadedDocuments(messageId) {
+		dataLayer.serviceLayer.downloadUploadedDocuments(messageId);
+	}
+	;
+
+	function documentsTimeLine(startDate, patientId, callback) {
+		var data = dataLayer.serviceLayer.documentsTimeLine(startDate,
+				patientId, callback);
+	}
+	function documentsLegend(startDate, callback) {
+		var data = dataLayer.serviceLayer.documentsLegend(startDate, callback);
+	}
+	;
+
+<span id='DataLayer-method-getNewProcessDefinitionInstance'>	/**
+</span>	 * Provides the new process definition instance based on the process name.
+	 * 
+	 * @param processName :
+	 *            Its a string value , name of the process
+	 * @returns {ProcessDefinition}
+	 */
+	function getNewProcessDefinitionInstance(processName) {
+		if (dataLayer.processDefinitionJsonMap
+				&amp;&amp; dataLayer.getProcessDefinitionJson(processName)) {
+			var processDefinitionJson = dataLayer
+					.getProcessDefinitionJson(processName);
+			var processDefinition = dataLayer
+					.createProcessDefinitionClone(processDefinitionJson);
+			processDefinition.id = &quot;&quot;;
+			return processDefinition;
+		} else {
+			alert(processName + &quot; is not found&quot;);
+		}
+
+	}
+	;
+
+<span id='DataLayer-method-getProcessDefinitionInstance'>	/**
+</span>	 * Provides the process definition instance based on the process id through
+	 * callback. *
+	 * 
+	 * @param processId :
+	 *            Its a string value , id of the process
+	 * @param callback :
+	 *            Its a function which will be called after the completion of
+	 *            the method,it provides processdefintion object as parameter to
+	 *            call back.
+	 * @returns {void}
+	 */
+	function getProcessDefinitionInstance(processId, callback) {
+		if (!dataLayer.cache)
+			dataLayer.serviceLayer.getProcessDefinitionInstance(processId,
+					callback);
+		else
+			dataLayer.cacheManager.getProcessDefinitionInstance(processId,
+					callback);
+	}
+	;
+
+	function fetchMessageTypesFromConcept() {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchMessageTypesFromConcept();
+	}
+	;
+
+	/*
+	 * function addProcess(id, definition) { if (dataLayer.processMap.get(id)) {
+	 * var map = dataLayer.processMap.get(id); map.value = definition; } else {
+	 * dataLayer.processMap.put(id, definition) } } ;
+	 * 
+	 * function getProcess(id) { if (dataLayer.processMap.get(id)) { var map =
+	 * dataLayer.processMap.get(id); return map.value = definition; } } ;
+	 */
+
+	function fetchMessageDomains() {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchMessageDomains();
+	}
+	;
+
+	function fetchUserProcessDefinition(type, userId) {
+		if (type == AppConstants.Event.STAFF_HOME_PAGE_FETCH_DATA) {
+			dataLayer.type = AppConstants.SearchType.STAFF_PROFILE_SEARCH;
+		} else if (type == AppConstants.Event.PATIENT_HOME_PAGE_FETCH_DATA) {
+			dataLayer.type = AppConstants.SearchType.PATIENT_PROFILE_SEARCH;
+		} else if (type == AppConstants.Event.LICENSEE_HOME_PAGE_FETCH_DATA) {
+			dataLayer.type = AppConstants.SearchType.LICENSEE_SEARCH;
+		}
+
+		// alert(type + &quot; : &quot; + userId);
+
+		if (!dataLayer.cache)
+			dataLayer.serviceLayer.fetchUserProcessDefinition(userId,
+					loadedUserProcessDefinition);
+		else
+			dataLayer.cacheManager.fetchUserProcessDefinition(userId,
+					loadedUserProcessDefinition);
+
+	}
+	;
+	function loadedUserProcessDefinition(messageId, msg, message) {
+		if (dataLayer.cache) {
+			dataLayer.cacheManager.createProcessIndexInCache();
+		}
+		// alert(&quot;messageId :&quot;+messageId+&quot;, msg :&quot;+msg+&quot;, message :&quot;+message);
+		getRegistrationMessage(messageId, msg, message);
+	}
+	;
+	function getRegistrationMessage(messageId, msg, message) {
+		// alert(&quot;getRegistartionMessage : &quot; + messageId);
+		/*
+		 * appController.getComponent(&quot;Context&quot;).addInContext(&quot;registration&quot;,
+		 * msg.getXML());
+		 */
+		var type = dataLayer.type;
+		var searchVO = renderingEngine.getComponent(&quot;Context&quot;).getSearchVO();
+		if (searchVO) {
+			type = searchVO.type;
+		}
+		// alert(&quot;Type : &quot; + searchVO.type);
+
+		if (type == AppConstants.SearchType.LICENSEE_SEARCH) {
+			var selectedOrganizationVO = new HIN.OrganizationVO();
+			selectedOrganizationVO.setMessage(msg.getXML());
+			selectedOrganizationVO.setMsg(msg);
+			appController.getComponent(&quot;Context&quot;).setSelectedOrganizationVO(
+					selectedOrganizationVO);
+			appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading(
+					&quot;Filling Licensee Data&quot;);
+			renderingEngine.getEventQueue().postEvent(
+					AppConstants.Event.LICENSEE_HOME_PAGE_FILL_DATA, {},
+					renderingEngine, dataLayer);
+		} else if (type == AppConstants.SearchType.STAFF_PROFILE_SEARCH) {
+			var staffVO = appController.getComponent(&quot;Context&quot;).getStaffVo();
+			if (!staffVO)
+				staffVO = new HIN.StaffVO();
+			staffVO.setMessage(msg.getXML());
+			appController.getComponent(&quot;Context&quot;).setStaffVo(staffVO);
+			appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading(
+					&quot;Filling Staff Data&quot;);
+			renderingEngine.getEventQueue().postEvent(
+					AppConstants.Event.STAFF_HOME_PAGE_FILL_DATA, {},
+					renderingEngine, dataLayer);
+
+		} else if (type == AppConstants.SearchType.PATIENT_PROFILE_SEARCH
+				|| type == AppConstants.SearchType.CALENDAR_SEARCH) {
+			var patientVO = appController.getComponent(&quot;Context&quot;)
+					.getPatientVO();
+			if (!patientVO)
+				patientVO = new HIN.PatientVO();
+			patientVO.setMsg(msg);
+			patientVO.setMessage(msg.getXML());
+			appController.getComponent(&quot;Context&quot;).setPatientVO(patientVO);
+			appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading(
+					&quot;Filling Patient Data&quot;);
+
+			/*
+			 * renderingEngine.getEventQueue().postEvent(
+			 * AppConstants.Event.PATIENT_HOME_PAGE_FILL_DATA, {},
+			 * renderingEngine, dataLayer);
+			 */
+
+			/*
+			 * Fetching the program details(Program message) and putting to the
+			 * context**
+			 */
+			message.messageType = AppConstants.XPaths.Registrtion.MESSAGE_TYPE;
+			/*
+			 * var messageAndUIBinder = new MessageAndUIBinder(null,
+			 * patientVO.msg, message.messageType);
+			 */
+			// alert(patientVO.msg.getXML());
+			// alert(&quot;Message xml in M&amp;UIB: \n&quot;
+			// +XmlUtil.xmlToString(patientVO.msg.getXML()));
+			var programId = patientVO.programId;
+			var consultantId = patientVO.consultantId;
+			// alert(&quot;programId : &quot; + programId + &quot;consultantId :&quot; +
+			// consultantId);
+			if (programId &amp;&amp; programId.length &gt; 0) {
+				var message = dataLayer.factoryClass.createMessage();
+				message.messageId = programId;
+				message.messageType = AppConstants.XPaths.Program.MESSAGE_TYPE;
+				dataLayer.getMessageInternal(message, getProgramMessage, true);
+			} else if (consultantId &amp;&amp; consultantId.length &gt; 0) {
+				var message = dataLayer.factoryClass.createMessage();
+				message.messageId = consultantId;
+				// alert(&quot; if else datalayer&quot;);
+				message.messageType = AppConstants.XPaths.Registrtion.MESSAGE_TYPE;
+				dataLayer.getMessageInternal(message, getConsultantMessage,
+						true);
+			} else {
+				appController.getComponent(&quot;Context&quot;).setProgramVO(null);
+				appController.getComponent(&quot;Context&quot;).addInContext(&quot;program&quot;,
+						null);
+				appController.getComponent(&quot;Context&quot;).setPhysicianVO(null);
+				appController.getComponent(&quot;Context&quot;).addInContext(
+						&quot;consultant&quot;, null);
+				renderingEngine.getEventQueue().postEvent(
+						AppConstants.Event.PATIENT_HOME_PAGE_FILL_DATA, {},
+						renderingEngine, dataLayer);
+			}
+
+		}
+
+	}
+
+	function getOrganizationMessage(messageId, msg, message) {
+		appController.getComponent(&quot;Context&quot;).addInContext(&quot;organization&quot;,
+				msg.getXML());
+		var organizationVO = appController.getComponent(&quot;Context&quot;)
+				.getOrganizationVO();
+		if (!organizationVO) {
+			organizationVO = new HIN.OrganizationVO();
+			appController.getComponent(&quot;Context&quot;).setOrganizationVO(
+					organizationVO);
+		}
+		organizationVO.setMessage(msg.getXML());
+		organizationVO.setMsg(msg);
+
+		/*
+		 * dataLayer.serviceLayer .getProcessDefinitions(function() {
+		 */
+		if (organizationVO.licenseeId) {
+			var message = dataLayer.factoryClass.createMessage();
+			message.messageId = organizationVO.licenseeId;
+			dataLayer.getMessageInternal(message, dataLayer.getLicenseeMessage,
+					false);
+		} else {
+			if (dataLayer.cache) {
+				dataLayer.serviceLayer.syncConfigurations(function() {
+					appController
+							.fireEvent(AppConstants.Event.LOGIN_PAGE_RESPONSE);
+					// dataLayer.syncMessage();
+				});
+			} else {
+				appController.fireEvent(AppConstants.Event.LOGIN_PAGE_RESPONSE);
+				// dataLayer.syncMessage();
+			}
+		}
+		/* }); */
+	}
+
+	function getLicenseeMessage(messageId, msg, message) {
+		appController.getComponent(&quot;Context&quot;).addInContext(&quot;licensee&quot;,
+				msg.getXML());
+		var licenseeVO = appController.getComponent(&quot;Context&quot;).getLicenseeVO();
+
+		if (!licenseeVO) {
+			licenseeVO = new HIN.LicenseeVO();
+			appController.getComponent(&quot;Context&quot;).setLicenseeVO(licenseeVO);
+		}
+		licenseeVO.setMessage(msg.getXML());
+		licenseeVO.setMsg(msg);
+		var organizationVO = appController.getComponent(&quot;Context&quot;)
+				.getOrganizationVO();
+
+		var today = new Date();
+		var dd = today.getDate().toString();
+		var mm = (today.getMonth() + 1).toString();
+		var yyyy = today.getFullYear().toString();
+		var currentDay = yyyy + &quot;-&quot; + (mm[1] ? mm : &quot;0&quot; + mm[0]) + &quot;-&quot;
+				+ (dd[1] ? dd : &quot;0&quot; + dd[0]);
+
+		if (!(new Date(currentDay).valueOf() &gt;= new Date(licenseeVO.expiryDate)
+				.valueOf())
+				|| new Date(currentDay).valueOf() == new Date(
+						licenseeVO.expiryDate).valueOf()) {
+			dataLayer.fetchConceptByName(licenseeVO.currency, function(data) {
+				for (i in data.json) {
+					$.each(data.json[i].conceptAttributes, function(index,
+							conceptAttr) {
+						if (conceptAttr) {
+							if (conceptAttr.key == 'CurrencyCode') {
+								licenseeVO.currencyCode = conceptAttr.value;
+							}
+							if (conceptAttr.key == 'CurrencySymbol') {
+								licenseeVO.currencySymbol = conceptAttr.value;
+							}
+							if (conceptAttr.key == 'ExchangeRate') {
+								licenseeVO.exchangeRate = conceptAttr.value;
+							}
+						}
+					});
+				}
+				dataLayer.serviceLayer.syncConfigurations(function() {
+					appController
+							.fireEvent(AppConstants.Event.LOGIN_PAGE_RESPONSE);
+				});
+			}, null);
+		} else {
+			appController.fireEvent(AppConstants.Event.LOGIN_PAGE_INITIALIZED);
+		}
+
+	}
+
+	function getProgramMessage(messageId, msg, message) {
+		// alert(&quot;getProgramMessage : &quot; + XmlUtil.xmlToString(message.message));
+		appController.getComponent(&quot;Context&quot;).addInContext(&quot;program&quot;,
+				msg.getXML());
+		var programVo = appController.getComponent(&quot;Context&quot;).getProgramVO();
+		if (!programVo) {
+			programVo = new HIN.ProgramVO();
+			appController.getComponent(&quot;Context&quot;).setProgramVO(programVo);
+		}
+		programVo.setMsg(msg);
+		programVo.setMessage(message.message);
+
+		var patientVO = appController.getComponent(&quot;Context&quot;).getPatientVO();
+		var messageAndUIBinder = new MessageAndUIBinder(null, patientVO.msg,
+				AppConstants.XPaths.Registrtion.MESSAGE_TYPE);
+		var consultantId = messageAndUIBinder.getIdRootValue(&quot;CONSULTANT_ID&quot;);
+
+		if (consultantId &amp;&amp; consultantId.length &gt; 0) {
+			var message = dataLayer.factoryClass.createMessage();
+			message.messageId = consultantId;
+			message.messageType = AppConstants.XPaths.Registrtion.MESSAGE_TYPE;
+			dataLayer.getMessageInternal(message, getConsultantMessage, false);
+		} else {
+			renderingEngine.getEventQueue().postEvent(
+					AppConstants.Event.PATIENT_HOME_PAGE_FILL_DATA, {},
+					renderingEngine, dataLayer);
+		}
+	}
+	;
+
+	function getConsultantMessage(messageId, msg, message) {
+		// alert(&quot;getConsultantMessage : &quot; +
+		// XmlUtil.xmlToString(message.message));
+		appController.getComponent(&quot;Context&quot;).addInContext(&quot;consultant&quot;,
+				msg.getXML());
+		var physicianVo = appController.getComponent(&quot;Context&quot;)
+				.getPhysicianVO();
+		if (!physicianVo) {
+			physicianVo = new HIN.PhysicianVO();
+			appController.getComponent(&quot;Context&quot;).setPhysicianVO(physicianVo);
+		}
+		physicianVo.setMsg(msg);
+		physicianVo.setMessage(message.message);
+		renderingEngine.getEventQueue().postEvent(
+				AppConstants.Event.PATIENT_HOME_PAGE_FILL_DATA, {},
+				renderingEngine, dataLayer);
+	}
+	;
+
+	function getMessageTask(messageId, message, callback, UIcallback, force) {
+		if (!dataLayer.cache || force)
+			dataLayer.serviceLayer.getMessageTask(messageId, message, callback,
+					UIcallback);
+		else
+			dataLayer.cacheManager.getMessageTask(messageId, message, callback,
+					UIcallback);
+
+	}
+	;
+
+<span id='DataLayer-method-getMessageInternal'>	/**
+</span>	 * Get msg document object based on message type
+	 * 
+	 * @param message :
+	 *            Its an object of message.
+	 * @param UIcallback:
+	 *            Its a function which will be called after the completion of
+	 *            the method,it set msg object to message object.
+	 * @param cache :
+	 *            Its a boolean value,based on the value it will be decided to
+	 *            retrieve from online or offline.
+	 * @returns {void}
+	 */
+	function getMessageInternal(message, UIcallback, cache) {
+		// alert(message);// + &quot; : &quot; + UIcallback);
+		// var url = &quot;/rest/getMessage?messageId=&quot; + messageId;
+		var messageId = message.messageId;
+		var url = messageId;
+		var local = dataLayer.cache;
+		if (!cache) {
+			local = false;
+		}
+
+		// alert(&quot;Before Call: &quot; + url);
+		HL.getMessage(url, function(msgObject) {
+			// alert(&quot;Loaded : &quot; + msgObject);
+			// alert(&quot;data layer getMessageInternal : &quot; + messageId);
+			dataLayer.msg = msgObject;
+			message.msg = msgObject;
+			message.message = msgObject.getXML();
+			// if (!dataLayer.cache) {
+			dataLayer.putMessageObject(message);
+			// }
+			/*
+			 * if (cache) dataLayer.messageMap.put(messageId, dataLayer.msg);
+			 */
+			UIcallback(messageId, dataLayer.msg, message);
+		}, function(status) {
+			alert(&quot; DataLayer method [getMessageInternal] - Message Id: [&quot;
+					+ message.messageId + &quot;] , Message Type : [&quot;
+					+ message.messageType + &quot; ] :  Reason Message Not Found [&quot;
+					+ status + &quot;]&quot;);
+		}, local);
+
+	}
+	;
+
+	function getMessageObject(messageId) {
+		if (dataLayer.messageMap.get(messageId)) {
+			return dataLayer.messageMap.get(messageId).value;
+		} /*
+			 * else { HL.getDynamicContent(messageId, callback, failback,
+			 * useCache, convert) }
+			 */
+
+	}
+	;
+
+	function putMessageObject(message) {
+		// alert(message.messageId);
+		/* HL.getMessage.putWorkFlowMessage(message.msg,message); */
+
+		var map = dataLayer.messageMap.get(message.messageId);
+		if (!map) {
+			dataLayer.messageMap.put(message.messageId, message);
+			// alert(&quot; inserted &quot; + message);
+		} else {
+			map.value = message;
+		}
+	}
+	;
+
+	function deleteMessage(messageId) {
+		HL.deleteDoc(messageId, function(o) {
+			alert(&quot;deleted : [ &quot; + messageId + &quot; ] &quot; + o)
+		});
+	}
+	;
+
+	function deleteMessageObject(message) {
+		var map = dataLayer.messageMap.get(message.messageId);
+		if (map) {
+			dataLayer.messageMap.put(message.messageId, null);
+			// alert(&quot; deleted &quot; + message);
+		}
+	}
+
+	function getProcessDefinitionJson(processName) {
+		if (dataLayer.processDefinitionJsonMap.get(processName)) {
+			return dataLayer.processDefinitionJsonMap.get(processName).value;
+		}
+	}
+	;
+
+	function putProcessDefinitionJson(processName, processJson) {
+
+		var map = dataLayer.getProcessDefinitionJson(processName);
+		if (!map) {
+			dataLayer.processDefinitionJsonMap.put(processName, processJson);
+			// alert(&quot; inserted &quot; + message);
+		} else {
+			map.value = processJson;
+		}
+	}
+	;
+
+	function getMessageForSearchResult(messageId, messageType, patientId,
+			UIcallback) {
+		var json = $.toJSON({
+			id : messageId,
+			type : messageType
+		});
+		var url = &quot;/rest/archive/getArchivedMessage?json=&quot; + json;
+		HL.getMessageForUrl(url, messageId, function(msgObject) {
+			UIcallback(messageId, msgObject, patientId);
+		}, function(status) {
+			alert(&quot;Failed : &quot; + status);
+		}, false);
+	}
+	;
+
+<span id='DataLayer-method-getMessages'>	/**
+</span>	 * Get messages based on the participant id and query string
+	 * 
+	 * @param id :
+	 *            its a string value , hold the participant id
+	 * @param queryHashMap:
+	 *            its an object of hashmap which holds the queries
+	 * @param callback:
+	 *            Its a function which will be called after the completion of
+	 *            the method.
+	 * @param messageRequired:
+	 *            Its a boolean value , based it will be act as offline or
+	 *            online
+	 * 
+	 * @returns {void}
+	 */
+	function getMessages(id, queryHashMap, callback, messageRequired) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.getMessages(id, queryHashMap, callback,
+				messageRequired);
+	}
+	;
+
+	/*
+	 * function fetchMessages(query, callback) {
+	 * renderingEngine.showPageLoading(&quot;Requesting message&quot;); var id = query.id;
+	 * var conditionMap = query.conditionMap;
+	 * $.getJSON(&quot;/hin-web/rest/getMessageList&quot;, { patientId : id, conditionMap :
+	 * $.toJSON(conditionMap), messageRequired : query.messageRequired },
+	 * function(data) { renderingEngine.showPageLoading(&quot;Recived message&quot;);
+	 * callback(data); }); } ;
+	 */
+	// getMessageList
+	function fetchLuceneMessages(searchVO, conditionMap, callback) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchLuceneMessages(searchVO, conditionMap,
+				callback);
+	}
+	;
+
+	/* API Implementation */
+
+	this.messageTypeConfig = new HIN.HashMap();
+	this.msg;
+	this.config;
+	this.expression;
+
+	var id = 0;
+
+	function loadMessageConfiguration(messageRoot, message, callback,
+			UIcallback) {
+		// alert(&quot;in load&quot;);
+		// var messageConfig = '/message-configuration/' + messageRoot +
+		// '.xml';
+		var messageConfig = messageRoot;
+		/* var messageId = message.messageId; */
+		// alert(&quot;messageRoot :&quot; + messageRoot);
+		// alert(&quot;messageConfig : &quot; + messageConfig);
+		if (dataLayer.messageTypeConfig.get(messageRoot)) {
+			dataLayer.config = dataLayer.messageTypeConfig.get(messageRoot).value;
+		} else {
+			dataLayer.config = null;
+		}
+		if (!dataLayer.config) {
+			HL.getConfigDocument(messageConfig, function(configData) {
+				// alert(&quot;Loaded&quot;);
+				// dataLayer.config = new ConfigDocument(configData);
+				dataLayer.config = configData;
+				dataLayer.messageTypeConfig.put(messageRoot, dataLayer.config);
+				callback(message, UIcallback);
+			}, function(status) {
+				alert(&quot;loadMessageConfiguration Failed : &quot; + status);
+			}, true);
+		} else {
+			// alert(&quot;Configuration available&quot;);
+			callback(message, UIcallback);
+		}
+	}
+
+	function processMessage(message, changeExpr, UIcallback) {
+		var messageRoot = message.messageType;
+		var messageId = message.messageId;
+		dataLayer.expression = changeExpr;
+		/*
+		 * alert(&quot;messageId : &quot; + messageId + &quot; Map : &quot; +
+		 * dataLayer.messageMap.get(messageId));
+		 */
+		if (messageId != null &amp;&amp; messageId.length &gt; 0) {
+			if (!dataLayer.cache) {
+				if (dataLayer.getMessageObject(messageId) == null) {
+					// if (dataLayer.messageMap.get(messageId) == null ||
+					// !message.taskVO) {
+					// alert(&quot;processMessage : &quot; + messageId);
+					// dataLayer.msg =
+					// getMessageInternal(messageId, UIcallback)
+					getMessageTask(messageId, message,
+							dataLayer.getMessageInternal, UIcallback);
+
+				} else {
+
+					var messageObj = dataLayer.getMessageObject(messageId);
+					// alert(&quot;finished : &quot; + message.finished);
+					if (messageObj.finished) {
+						getMessageTask(messageId, message,
+								dataLayer.getMessageInternal, UIcallback);
+					} else {
+						message.msg = messageObj.msg;
+						message.message = messageObj.message;
+						message.taskVO = messageObj.taskVO;
+
+						// alert(&quot;Exist : &quot; + messageId);
+						dataLayer.msg = dataLayer.getMsg(messageId);// dataLayer.messageMap.get(messageId).value;
+						UIcallback(messageId, dataLayer.msg, message);
+					}
+				}
+			} else {
+				HL.getMessage(messageId, function(msg) {
+					if (msg) {
+						message.msg = msg;
+						message.message = msg.getXML();
+						dataLayer.putMessageObject(message);
+						dataLayer.cacheManager.getMessageTask(messageId,
+								message, dataLayer.getMessageInternal,
+								UIcallback);
+					}
+				}, function() {
+					alert(&quot;DataLayer :Error while getting message xml&quot;)
+				}, dataLayer.cache);
+			}
+		} else {
+			dataLayer.msg = null;
+			loadMessageConfiguration(messageRoot, message, createMessage,
+					UIcallback);
+		}
+		// alert(&quot;Exist : &quot; + dataLayer.msg);
+		/*
+		 * return loadMessageConfiguration(messageRoot, messageId,
+		 * createMessage, UIcallback);
+		 */
+
+	}
+	;
+
+	function createMessage(message, UIcallback) {
+
+		// alert(&quot;Config : &quot; + dataLayer.config);
+		if (!dataLayer.msg || dataLayer.msg == null) {
+			dataLayer.msg = dataLayer.config.createMessage();
+			generateId(UIcallback, dataLayer.msg, message);
+		}
+
+		// eval(dataLayer.expression);
+
+		// alert(&quot;Message xml : &quot; +
+		// XmlUtil.xmlToString(dataLayer.msg.getXML()));
+
+		// return id;
+	}
+	;
+
+	/*
+	 * function loadMessage(messageId, message) { //alert(messageId + &quot; :&quot; +
+	 * message); //alert(messageId + &quot; :&quot; + XmlUtil.stringToXml(message));
+	 * 
+	 * dataLayer.msg = XmlUtil.stringToXml(message); messageMap.put(messageId,
+	 * dataLayer.msg); //alert(messageId + &quot;,&quot; + dataLayer.msg) } ;
+	 */
+
+	function generateId(UIcallback, msg, message) {
+		// alert(XmlUtil.xmlToString(msg.getXML()));
+
+		var messageId = msg.getId();
+		var obj = msg.createObject(dataLayer.config.getArtifactId());
+		// alert(XmlUtil.xmlToString(msg.getXML()));
+
+		if (obj) {
+			// obj.setValue(&quot;id&quot;, xmlNode);
+
+			var valueObj = obj.getNewValue(&quot;id&quot;);
+			valueObj.setValue(&quot;root&quot;, 'HIN_MSG_ID');
+			valueObj.setValue(&quot;extension&quot;, messageId);
+
+			/*
+			 * var taskId = dataLayer.getNewId(); valueObj =
+			 * obj.getNewValue(&quot;id&quot;); valueObj.setValue(&quot;root&quot;, 'TASK_ID');
+			 * valueObj.setValue(&quot;extension&quot;, taskId);
+			 */
+
+		} else {
+			alert(&quot;In datalayer generateId root id updating is failed&quot;);
+		}
+		if (!message) {
+
+			message = dataLayer.factoryClass.createMessage();
+			message.messageType = dataLayer.config.getArtifactId();
+		}
+		/*
+		 * if (!message.taskVo) { var taskVo =
+		 * dataLayer.factoryClass.createTaskVo(); taskVo.taskId = taskId;
+		 * message.taskVo = taskVo; }
+		 */
+		message.messageId = messageId;
+		message.message = msg.getXML();
+		message.msg = msg;
+		dataLayer.putMessageObject(message);
+
+		UIcallback(messageId, msg, message);
+
+		/*
+		 * $.get(&quot;/hin-web/rest/idGeneration&quot;, {}, function(messageId) {
+		 * 
+		 * var obj = msg.createObject(dataLayer.config.getArtifactId()); //
+		 * alert(XmlUtil.xmlToString(msg.getXML()));
+		 * 
+		 * if (obj) { // obj.setValue(&quot;id&quot;, xmlNode);
+		 * 
+		 * var valueObj = obj.getNewValue(&quot;id&quot;); valueObj.setValue(&quot;root&quot;,
+		 * 'HIN_MSG_ID'); valueObj.setValue(&quot;extension&quot;, msg.getId()); } else {
+		 * alert(&quot;In datalayer generateId root id updating is failed&quot;); } if
+		 * (!message) {
+		 * 
+		 * message = dataLayer.factoryClass.createMessage(); message.messageType =
+		 * dataLayer.config.getArtifactId(); } message.messageId = messageId;
+		 * message.message = msg.getXML(); message.msg = msg;
+		 * dataLayer.putMessageObject(message);
+		 * 
+		 * UIcallback(messageId, msg, message); });
+		 */
+
+	}
+	;
+<span id='DataLayer-method-createOrUpdateTask'>	/**
+</span>	 * It persist the single message and process objects. *
+	 * 
+	 * @param taskVo :
+	 *            Its an object of taskVo.
+	 * @param message :
+	 *            Its an object of message.
+	 * @param processObjects :
+	 *            Its an array of process definition objects.
+	 * @return {void}
+	 */
+
+	function createOrUpdateTask(taskVo, message, processObjects) {
+		if (!dataLayer.cache)
+			dataLayer.serviceLayer.createOrUpdateTask(taskVo, message,
+					processObjects);
+		else {
+			appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading(
+					&quot;Loading..&quot;);
+			appController.getComponent(&quot;RenderingEngine&quot;).openModalDialog(
+					&quot;Loading&quot;);
+			dataLayer.cacheManager.createOrUpdateTask(taskVo, message,
+					processObjects);
+		}
+
+	}
+	;
+
+<span id='DataLayer-method-createOrUpdateTasks'>	/**
+</span>	 * It persist multiple messages and process objects.
+	 * 
+	 * @param parameters :
+	 *            Its an array of message and process definition objects.
+	 * @return {void}
+	 */
+	function createOrUpdateTasks(parameters) {
+		if (!dataLayer.cache)
+			dataLayer.serviceLayer.createOrUpdateTasks(parameters);
+		else {
+			appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading(
+					&quot;Loading..&quot;);
+			appController.getComponent(&quot;RenderingEngine&quot;).openModalDialog(
+					&quot;Loading&quot;);
+			dataLayer.cacheManager.createOrUpdateTasks(parameters);
+		}
+	}
+	;
+
+	function convertToPdf(patientId, messageId, invoiceNumber) {
+		dataLayer.serviceLayer
+				.convertToPdf(patientId, messageId, invoiceNumber);
+	}
+	;
+
+	/*
+	 * function createTasks(parameters) {
+	 * dataLayer.serviceLayer.createTasks(parameters); } ;
+	 */
+
+	function currencyConvert(amount, baseCurrency, toCurrency, exchangeRate,
+			callback) {
+		dataLayer.serviceLayer.currencyConvert(amount, baseCurrency,
+				toCurrency, exchangeRate, callback);
+	}
+	;
+
+	function sendEmail(email, message, fromEmail, fromPassword,
+			licenseeAttachment, callback) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.sendEmail(email, message, fromEmail,
+				fromPassword, licenseeAttachment, callback);
+	}
+	;
+
+	function emailTemplate(callback) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.emailTemplate(callback);
+	}
+	;
+
+	function fetchStatisticsDataForYear(statisticsVO) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchStatisticsDataForYear(statisticsVO);
+	}
+	;
+
+	function fetchStatisticsDataForMonth(statisticsVO) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchStatisticsDataForMonth(statisticsVO);
+	}
+	;
+
+	function fetchProgramsForStatistics() {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchProgramsForStatistics();
+	}
+	;
+
+	function fetchStatisticsMessageTypes(className) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchStatisticsMessageTypes(className);
+	}
+	;
+
+	function fetchCurrencyConverter(className) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchCurrencyConverter(className);
+	}
+	;
+
+	function changeEntityState(entityState, callback) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.changeEntityState(entityState, callback);
+	}
+	;
+
+	function fetchCheckedinPatient(searchVO, entityState, conditionMap,
+			callback) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchCheckedinPatient(searchVO, entityState,
+				conditionMap, callback);
+	}
+	;
+
+	function fetchConcept(conceptName, conceptClassName, callback, instance) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchConcept(conceptName, conceptClassName,
+				callback, instance);
+	}
+	function fetchConceptByProperty(searchCriteria, callback, instance) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchConceptByProperty(searchCriteria, callback,
+				instance);
+	}
+
+	function fetchConceptByName(name, callback, instance) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchConceptByName(name, callback, instance);
+	}
+
+	function fetchConceptByNames(names, callback, instance) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchConceptByNames(names, callback, instance);
+	}
+
+<span id='DataLayer-method-loadAllConceptServices'>	/**
+</span>	 * Load all concepts based on the class name.
+	 * 
+	 * @params conceptClassName: Its a string value name of the concept class
+	 * 
+	 * @params callback: Its a function which will be called after the complete.
+	 * @params instance: Its an object which can act any type of object which is
+	 *         return back to the call back method.
+	 * @returns {void}
+	 */
+	function loadAllConceptServices(conceptClassName, callback, instance) {
+
+		if (!dataLayer.cache) {
+			dataLayer.serviceLayer.loadAllConceptServices(conceptClassName,
+					callback, instance);
+		} else {
+			dataLayer.cacheManager.loadAllConceptServices(conceptClassName,
+					callback, instance);
+		}
+
+	}
+
+<span id='DataLayer-method-loadConcepts'>	/**
+</span>	 * Load all concepts based on the search criteria.
+	 * 
+	 * @params searchCriteria: Its an object of searchcriteria
+	 * 
+	 * @params callback: Its a function which will be called after the
+	 *         completion of the method.
+	 * @params instance: Its an object which can act any type of object which is
+	 *         return back to the call back method.
+	 * @returns {void}
+	 */
+	function loadConcepts(searchCriteria, callback, instance) {
+		dataLayer.serviceLayer.loadConcepts(searchCriteria, callback, instance);
+	}
+
+	function loadDynamicConceptLookUp(conceptClassName, enteredValue, callback,
+			instance) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.loadDynamicConceptLookUp(conceptClassName,
+				enteredValue, callback, instance);
+	}
+
+	function fetchConceptByClassName(searchCriteria, callback, instance) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchConceptByClassName(searchCriteria,
+				callback, instance);
+	}
+
+	function searchServices(serviceName, callback) {
+		if (!dataLayer.cache) {
+			dataLayer.serviceLayer.searchServices(serviceName, callback);
+		} else {
+			dataLayer.cacheManager.searchServices(serviceName, callback);
+		}
+	}
+	;
+
+	function fetchFacilities() {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchFacilities();
+	}
+
+	function fetchDocumentMessage(documentsVO) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.fetchDocumentMessage(documentsVO);
+	}
+
+	function loadChartData(json, callBack, series) {
+		// if (!dataLayer.cache)
+		dataLayer.serviceLayer.loadChartData(json, callBack, series);
+	}
+	;
+	function loadLookupData(className, callBack) {
+		if (!dataLayer.cache) {
+			dataLayer.serviceLayer.loadLookupData(className, callBack);
+		} else {
+			dataLayer.cacheManager.loadLookupData(className, callBack);
+		}
+	}
+	;
+
+<span id='DataLayer-method-loadConfig'>	/**
+</span>	 * Get config object based on message type
+	 * 
+	 * @param messageType:
+	 *            Its a string value hold the type of message.
+	 * @param callBackFunction:
+	 *            Its a function which will be called after the completion of
+	 *            the method and return the config object as parameter to the
+	 *            callback method.
+	 * 
+	 * @returns {void}
+	 */
+	function loadConfig(messageType, callBackFunction) {
+		// alert(&quot;loadConfig messageType :&quot; + messageType);
+		// var messageConfig = '/message-configuration/' + messageType +
+		// '.xml';
+		var messageConfig = messageType;
+		// alert(&quot;messageRoot :&quot; + messageRoot);
+		// alert(&quot;messageConfig : &quot; + messageConfig);
+		if (dataLayer.messageTypeConfig.get(messageType)) {
+			dataLayer.config = dataLayer.messageTypeConfig.get(messageType).value;
+		} else {
+			dataLayer.config = null;
+		}
+		if (!dataLayer.config) {
+
+			HL.getConfigDocument(messageConfig, function(configData) {
+				// dataLayer.config = new ConfigDocument(configData);
+				dataLayer.config = configData;
+				dataLayer.messageTypeConfig.put(messageType, dataLayer.config);
+				// dataLayer.msg = dataLayer.config.createMessage();
+				if (callBackFunction)
+					callBackFunction(dataLayer.config);
+
+			}, function(status) {
+				alert(&quot;Failed to load configuration. Status: &quot; + status);
+			}, dataLayer.cache);
+		} else {
+			// dataLayer.msg = dataLayer.config.createMessage();
+			if (callBackFunction)
+				callBackFunction(dataLayer.config);
+		}
+	}
+	;
+
+<span id='DataLayer-method-loadData'>	/**
+</span>	 * Load the data based on the key, prefix with 'JS_' (MessagScript), 'FS_'
+	 * (FormScript), 'FM_' (FormHtml) etc. based on the key it retrievs the data
+	 * from the cache or server.
+	 * 
+	 * @param key:
+	 *            Its a string value.
+	 * @param paramData:
+	 *            Its a json array.(Optional)
+	 * @param callBack:
+	 *            Its a function which will be called after the completion of
+	 *            the method , it returns a data through callback method.
+	 */
+	function loadData(key, paramData, callBack) {
+		// alert(&quot;Loading: &quot; + messageType);
+		if (dataLayer.cache) {
+			/*
+			 * appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading(
+			 * &quot;loading &quot; + key);
+			 * appController.getComponent(&quot;RenderingEngine&quot;).openModalDialog(
+			 * &quot;loading &quot; + key);
+			 */
+			HL.getStaticDocument(key, function(content) {
+				/*
+				 * appController.getComponent(&quot;RenderingEngine&quot;)
+				 * .hidePageLoading();
+				 * appController.getComponent(&quot;RenderingEngine&quot;)
+				 * .closeModalDialog();
+				 */
+				if (callBack)
+					callBack(content);
+
+			}, function(data) {
+				// alert(&quot;Static Document load Failure :&quot; + key);
+				/*
+				 * appController.getComponent(&quot;RenderingEngine&quot;)
+				 * .hidePageLoading();
+				 * appController.getComponent(&quot;RenderingEngine&quot;)
+				 * .closeModalDialog();
+				 */
+				if (callBack)
+					callBack(null);
+
+			}, true);
+		} else if (key.indexOf(&quot;JS_&quot;) &gt; -1) {
+			var messageType = key.substring(3, key.length);
+			// alert(&quot;MessageType : &quot; + messageType);
+			var map = this.messageTypeJsStringMap.get(messageType);
+			if (map) {
+				if (callBack)
+					callBack(map.value);
+			} else {
+				$.ajax({
+					type : &quot;GET&quot;,
+					url : &quot;/hin-web/message-scripts/&quot; + messageType + &quot;.js&quot;,
+					data : paramData,
+					dataType : &quot;html&quot;,
+					cache : false,
+					success : function(jsString) {
+						dataLayer.messageTypeJsStringMap.put(messageType,
+								jsString);
+						var map = dataLayer.messageTypeJsStringMap
+								.get(messageType);
+						if (callBack)
+							callBack(map.value);
+					},
+
+					error : function(request, error) {
+						/*
+						 * alert(&quot;Message Type : [&quot; + messageType + &quot;]&quot;);
+						 */
+						if (callBack)
+							callBack(null);
+						appController.getComponent(&quot;RenderingEngine&quot;)
+								.hidePageLoading();
+						appController.getComponent(&quot;RenderingEngine&quot;)
+								.closeModalDialog();
+					}
+
+				});
+			}
+		} else if (key.indexOf(&quot;FM_&quot;) &gt; -1) {
+			var messageForm = key.substring(3, key.length);
+			// alert(&quot;MessageForm : &quot; + messageForm);
+			var map = dataLayer.messageFormMap.get(messageForm);
+			if (map) {
+				if (callBack)
+					callBack(map.value);
+			} else {
+				var url = &quot;../message-forms/&quot; + messageForm + &quot;.html&quot;;
+				$.ajax({
+
+					type : &quot;GET&quot;,
+					url : url,
+					dataType : &quot;html&quot;,
+					cache : false,
+					success : function(data) {
+
+						dataLayer.messageFormMap.put(messageForm, data);
+						var map = dataLayer.messageFormMap.get(messageForm);
+						if (callBack)
+							callBack(map.value);
+					},
+
+					error : function(request, error) {
+						/*
+						 * alert(&quot;Message Form Not Found : &quot; + request + &quot;: &quot; +
+						 * error);
+						 */
+						if (callBack)
+							callBack(null);
+						appController.getComponent(&quot;RenderingEngine&quot;)
+								.hidePageLoading();
+						appController.getComponent(&quot;RenderingEngine&quot;)
+								.closeModalDialog();
+					}
+				});
+			}
+		} else if (key.indexOf(&quot;FS_&quot;) &gt; -1) {
+			var messageForm = key.substring(3, key.length);
+			// alert(&quot;MessageForm : &quot; + messageForm);
+			var map = dataLayer.messageFormScriptMap.get(messageForm);
+			if (map) {
+				if (callBack) {
+					callBack(map.value);
+				}
+			} else {
+				var url = &quot;../form-scripts/&quot; + messageForm + &quot;.js&quot;;
+				$.ajax({
+
+					type : &quot;GET&quot;,
+					url : url,
+					dataType : &quot;html&quot;,
+					cache : false,
+					success : function(data) {
+
+						dataLayer.messageFormScriptMap.put(messageForm, data);
+						var map = dataLayer.messageFormScriptMap
+								.get(messageForm);
+						if (callBack)
+							callBack(map.value);
+					},
+
+					error : function(request, error) {
+
+						// alert(&quot;Form JS Not Found : &quot; + messageForm + &quot;: &quot;
+						// +
+						// error);
+						if (callBack)
+							callBack(null);
+						appController.getComponent(&quot;RenderingEngine&quot;)
+								.hidePageLoading();
+						appController.getComponent(&quot;RenderingEngine&quot;)
+								.closeModalDialog();
+					}
+				});
+			}
+		}
+
+	}
+	;
+
+	this.loadAllStaticDatas = loadAllStaticDatas;
+	this.messageTypes = [ &quot;COCT_MT150000HT04&quot;, &quot;FIAB_MT020000HT02&quot;, &quot;LICENSEE&quot;,
+			&quot;POCD_MT000040UV_AWARENESS_QUESTIONNAIRE&quot;,
+			&quot;POCD_MT000040UV_ConsentForm&quot;,
+			&quot;POCD_MT000040UV_CULTURE_QUESTIONNAIRE&quot;,
+			&quot;POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE&quot;,
+			&quot;POCD_MT000040UV_HEALTH_HISTORY_QUESTIONNAIRE&quot;,
+			&quot;POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE&quot;,
+			&quot;POCD_MT000040UV_PhysicalExamination&quot;,
+			&quot;POCD_MT000040UV_PhysiciansComments&quot;, &quot;POCD_MT000040UV_Program&quot;,
+			&quot;POCD_MT000040UV_Welcome&quot;, &quot;POLB_MT004000HT01_ABI&quot;,
+			&quot;POLB_MT004000HT01_Bioclip&quot;, &quot;POLB_MT004000HT01_Biospace&quot;,
+			&quot;POLB_MT004000HT01_BloodTest&quot;, &quot;POLB_MT004000HT01_CAC&quot;,
+			&quot;POLB_MT004000HT01_CNS&quot;, &quot;POLB_MT004000HT01_Elastometer&quot;,
+			&quot;POLB_MT004000HT01_Heartmath&quot;, &quot;POLB_MT004000HT01_HormonePanel&quot;,
+			&quot;POLB_MT004000HT01_IMT&quot;, &quot;POLB_MT004000HT01_MCG&quot;,
+			&quot;POLB_MT004000HT01_SphygmoCor&quot;, &quot;POLB_MT004000HT01_Thyroflex&quot;,
+			&quot;POLB_MT004000HT01_ToxinePanel&quot;, &quot;POSA_MT920000HT03_Genetics&quot;,
+			&quot;POSA_MT920000HT03_Hormones&quot;, &quot;POSA_MT920000HT03_Supplements&quot;,
+			&quot;PRPA_MT201000HT03&quot;, &quot;PRPA_MT410001HT02&quot;, &quot;ROLE_EMPLOYEE&quot;,
+			&quot;ROLE_PATIENT&quot;, &quot;ROLE_PERMISSION&quot;, &quot;ROLE_PHYSICIAN&quot;, &quot;ROLE_USER&quot;,
+			&quot;POCD_MT000040UV_ResultsView&quot;, &quot;POCD_MT000040UV_ConsultationView&quot;,
+			&quot;POCD_MT000040UV_ClientReportView&quot;,
+			&quot;POLB_MT004000HT01_FitnessTest&quot;, &quot;POSA_MT920000HT03_HormonesRpt&quot;,
+			&quot;POCD_MT000040UV_PhComm_IN&quot;, &quot;POCD_MT000040UV_PhComm_EX&quot;,
+			&quot;POCD_MT000040UV_PhComm_GE&quot;, &quot;POCD_MT000040UV_PhComm_LI&quot;,
+			&quot;POCD_MT000040UV_PhComm_NU&quot;, &quot;POCD_MT000040UV_PhComm_TO&quot;,
+			&quot;POCD_MT000040UV_PhEx&quot;, &quot;POCD_MT000040UV_PhComm&quot; ];
+
+	this.forms = [ &quot;ABI_FORM&quot;, &quot;ACCOUNT_BALANCE_FORM&quot;, &quot;AESTHETICS_FORM&quot;,
+			&quot;APPOINTMENT_FEES_FORM&quot;, &quot;APPOINTMENT_FORM&quot;,
+			&quot;AWARENESS_QUESTIONNAIRE_FORM&quot;, &quot;BIOCLIP_FORM&quot;, &quot;BIOSPACE_FORM&quot;,
+			&quot;BLOOD_TEST_RESULT_FORM&quot;, &quot;CAC_FORM&quot;, &quot;CARDIOSCAN_FORM&quot;,
+			&quot;CARDIO_FORM&quot;, &quot;CLIENT_REPORT_FORM&quot;, &quot;CNS_FORM&quot;, &quot;CONSENT_FORM&quot;,
+			&quot;CONSULTATION_EXERCISE&quot;, &quot;CONSULTATION_GENETICS&quot;,
+			&quot;CONSULTATION_INFORMATION&quot;, &quot;CONSULTATION_LIFELONG&quot;,
+			&quot;CONSULTATION_NUTRITION&quot;, &quot;CONSULTATION_TOXIN&quot;,
+			&quot;CONTACT_PERSON_FORM&quot;, &quot;COST_FORM&quot;, &quot;CULTURE_FORM&quot;,
+			&quot;CULTURE_QUESTIONNAIRE_FORM&quot;, &quot;DEMOGRAPHICS_FORM&quot;, &quot;DISCOUNT&quot;,
+			&quot;ELASTOMETER_FORM&quot;, &quot;ENVIRONMENT_FORM&quot;,
+			&quot;ENVIRONMENT_QUESTIONNAIRE_FORM&quot;, &quot;EXERCISE_FORM&quot;, &quot;FEE_FORM&quot;,
+			&quot;GENETICS_FORM&quot;, &quot;HEALTH_HISTORY_QUESTIONNAIRE_FORM&quot;,
+			&quot;HEART_MATH_FORM&quot;, &quot;HORMONES_GRID_FORM&quot;, &quot;IMT_FORM&quot;,
+			&quot;INFLAMMATION_FORM&quot;, &quot;INVOICE_FORM&quot;, &quot;LABS_FORM&quot;, &quot;LEARNING_FORM&quot;,
+			&quot;LICENSEE_REGISTRATION_FORM&quot;, &quot;LIFE_STYLE_QUESTIONNAIRE_FORM&quot;,
+			&quot;MCG_FORM&quot;, &quot;MCG_FORM1&quot;, &quot;MEASUREMENTS_FORM&quot;, &quot;MEASURE_FORM&quot;,
+			&quot;NOT_EXISTING_FORM&quot;, &quot;NUTRITION_METABOLIC_FORM&quot;, &quot;ORGAN_FORM&quot;,
+			&quot;OVERVIEW_REPORT_FORM&quot;, &quot;OVERVIEW_RESULT_FORM&quot;,
+			&quot;PATIENT_APPOINTMENT_FORM&quot;, &quot;PAYMENT_FORM&quot;, &quot;PERMISSION_FORM&quot;,
+			&quot;PRODUCT_FORM&quot;, &quot;PROGRAMS_FORM&quot;, &quot;PROGRAM_FORM&quot;,
+			&quot;REGISTRATION_FORM&quot;, &quot;REGISTRATION_FORM_BASE&quot;, &quot;RENEW_FORM&quot;,
+			&quot;RESTORATION_FORM&quot;, &quot;REVIEW_FORM&quot;, &quot;ROLE_EMPLOYEE_FORM&quot;,
+			&quot;ROLE_PATIENT_FORM&quot;, &quot;ROLE_PHYSICIAN_FORM&quot;, &quot;ROLE_USER_FORM&quot;,
+			&quot;ROLE_USER_FORM1&quot;, &quot;SCHEDULE_FORM&quot;, &quot;SERVICE_FORM&quot;,
+			&quot;SETTINGS_FORM&quot;, &quot;SIGNUP_FORM&quot;, &quot;SPHYGMOCOR_FORM&quot;,
+			&quot;STAFF_REGISTRATION_FORM&quot;, &quot;SUBSTANCES_FORM&quot;,
+			&quot;SUPPLEMENTATION_FORM&quot;, &quot;SUPPLEMENTS_GRID_FORM&quot;, &quot;THYROFLEX_FORM&quot;,
+			&quot;TOXIN_FORM&quot;, &quot;USER_REGISTRATION_FORM&quot;, &quot;WELCOME_BOOKING_FORM&quot;,
+			&quot;CONSULTATION_NUTRITION&quot;, &quot;CONSULTATION_EXERCISE&quot;, &quot;RESULTS_FORM&quot;,
+			&quot;CONSULTATION_FORM&quot;, &quot;CONSULTATION_INFLAMMATION_FORM&quot;,
+			&quot;FITNESS_TEST&quot;, &quot;CLIENT_CHART_FORM&quot;, &quot;DISCOUNT_FORM&quot;,
+			&quot;WELCOME_BOOKING_FORM&quot;, &quot;HISTORY_FORM&quot;, &quot;LICENSEE_PRODUCT_FORM&quot;,
+			&quot;LICENSEE_RECEIVABLES_FORM&quot;, &quot;LICENSEE_PAYABLES_FORM&quot;,
+			&quot;LICENSEE_OTHERFEE_FORM&quot;, &quot;BALANCE_FORM&quot; ];
+
+	function loadAllStaticDatas(callback) {
+		if (!dataLayer.cache) {
+
+			for ( var messageTypesIndex = 0; messageTypesIndex &lt; this.messageTypes.length; messageTypesIndex++) {
+				dataLayer.loadData(
+						&quot;JS_&quot; + this.messageTypes[messageTypesIndex], {}, null);
+			}
+			for ( var formIndex = 0; formIndex &lt; this.forms.length; formIndex++) {
+				dataLayer.loadData(&quot;FM_&quot; + this.forms[formIndex], {}, null);
+			}
+
+			for ( var formIndex = 0; formIndex &lt; this.forms.length; formIndex++) {
+				dataLayer.loadData(&quot;FS_&quot; + this.forms[formIndex], {}, null);
+			}
+		}
+		/* if (!dataLayer.cache) { */
+		// dataLayer.serviceLayer.getProcessDefinitions(callback);
+		/*
+		 * }else{ //TODO }
+		 */
+
+	}
+
+	function getCurrencyValue(json, callBack) {
+		dataLayer.serviceLayer.getCurrencyValue(json, callBack);
+	}
+
+	function loadLookUpDataInToCache(callBack) {
+		dataLayer.serviceLayer.loadLookUpDataInToCache(callBack);
+	}
+	;
+	this.loadLookUpDataInToCache = loadLookUpDataInToCache;
+
+	this.getMembershipId = getMembershipId;
+	function getMembershipId(callBack) {
+		dataLayer.serviceLayer.getMembershipId(callBack);
+	}
+
+	this.getInvoiceId = getInvoiceId;
+	function getInvoiceId(callBack) {
+		dataLayer.serviceLayer.getInvoiceId(callBack);
+	}
+	this.getLicenseeInvoiceId = getLicenseeInvoiceId;
+	function getLicenseeInvoiceId(callBack) {
+		dataLayer.serviceLayer.getLicenseeInvoiceId(callBack);
+	}
+
+	this.getReceiptId = getReceiptId;
+	function getReceiptId(callBack) {
+		dataLayer.serviceLayer.getReceiptId(callBack);
+	}
+
+	function loadLoginInfoToCache(userLoginInfo) {
+		dataLayer.cacheManager.cacheLoginInfo(userLoginInfo);
+	}
+	this.loadLoginInfoToCache = loadLoginInfoToCache;
+
+	function getCachedLoginInfo(index, callBack) {
+		dataLayer.cacheManager.getCachedLoginInfo(index, callBack);
+	}
+	;
+	this.getCachedLoginInfo = getCachedLoginInfo;
+
+	function removeCachedLoginInfo(index) {
+		dataLayer.cacheManager.removeCachedLoginInfo(index);
+	}
+	;
+	this.removeCachedLoginInfo = removeCachedLoginInfo;
+
+	this.createMessageByType = createMessageByType;
+	function createMessageByType(messageType, callback) {
+		/* alert(&quot;createMessage : &quot; + messageType); */
+		dataLayer.loadConfig(messageType, function(configDoc) {
+			var msgApiObj = configDoc.createMessage();
+			dataLayer.config = configDoc;
+			dataLayer.generateId(function(messageId, msg) {
+				var messageObj = factoryClass.createMessage();
+				messageObj.messageId = messageId;
+				messageObj.msg = msg
+				messageObj.messageType = messageType;
+				messageObj.message = msg.getXML();
+				if (callback)
+					callback(messageObj);
+			}, msgApiObj);
+		});
+	}
+	;
+
+	function syncMessage(successCallback, failureCallback) {
+		if (dataLayer.synCompleted) {
+			dataLayer.synCompleted = false;
+			doSynchronize(successCallback, failureCallback);
+		}
+	}
+
+	function doSynchronize(successCallback, failureCallback) {
+		HL.syncMessage(function() {
+			appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading();
+			// alert(&quot;Server synchronization Completed.&quot;);
+			dataLayer.synCompleted = true;
+			if (successCallback)
+				successCallback();
+			/*
+			 * setTimeout(function() { dataLayer.syncMessage(successCallback,
+			 * failureCallback); }, 5000);
+			 */
+
+		}, function() {
+			// alert(&quot;Server synchronization Failed.&quot;);
+			dataLayer.synCompleted = true;
+			if (failureCallback)
+				failureCallback();
+			/*
+			 * setTimeout(function() { dataLayer.syncMessage(successCallback,
+			 * failureCallback); }, 5000);
+			 */
+		});
+	}
+	this.getLocalProcessDefinitionMessages = getLocalProcessDefinitionMessages;
+	function getLocalProcessDefinitionMessages() {
+		var localMessages = new Array();
+		var allProcessDefinition = HL.getProcessDefinition();
+		$.each(allProcessDefinition, function(index, data) {
+			var processDefinition = dataLayer.createProcessDefinitionClone(JSON
+					.parse(data.content));
+			if (processDefinition != null) {
+				$.each(processDefinition.steps, function(index, data) {
+					$.each(data.messageTypes, function(index, data) {
+						$.each(data.messages, function(index, data) {
+							// alert(&quot;&quot; + data);
+							localMessages.push(data);
+						});
+					});
+				});
+			}
+		});
+		return localMessages;
+	}
+	/* syncronize configuration messages from cache */
+	this.syncronizeConfigurations = syncronizeConfigurations;
+	function syncronizeConfigurations(callBack) {
+		appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading();
+		appController.getComponent(&quot;RenderingEngine&quot;).openModalDialog(
+				&quot;Synchronizing configurations&quot;);
+		HL.syncMeta(function() {
+			appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading();
+			appController.getComponent(&quot;RenderingEngine&quot;).closeModalDialog();
+			callBack();
+		}, function() {
+			appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading();
+			appController.getComponent(&quot;RenderingEngine&quot;).closeModalDialog();
+			callBack();
+		});
+	}
+
+	/* purge configuration messages from cache */
+	this.purgeConfigurations = purgeConfigurations;
+	function purgeConfigurations(callBack) {
+		appController.getComponent(&quot;RenderingEngine&quot;)
+				.openModalDialog(&quot;Loading&quot;);
+		clearConfigStore();
+		function clearConfigStore() {
+			setTimeout(function() {
+				HL.clearConfigStore(function() {
+					appController.getComponent(&quot;RenderingEngine&quot;)
+							.closeModalDialog();
+					callBack();
+				});
+			}, 10);
+		}
+	}
+
+	/* purge static storage messages from cache */
+	this.purgeStaticMessages = purgeStaticMessages;
+	function purgeStaticMessages(callBack) {
+		appController.getComponent(&quot;RenderingEngine&quot;)
+				.openModalDialog(&quot;Loading&quot;);
+		clearStaticStore();
+		function clearStaticStore() {
+			setTimeout(function() {
+				HL.clearStaticStore(function() {
+					appController.getComponent(&quot;RenderingEngine&quot;)
+							.closeModalDialog();
+					callBack();
+				});
+			}, 10);
+		}
+	}
+
+	this.getStaticMessageInternal = getStaticMessageInternal;
+	function getStaticMessageInternal(message, UIcallback, cache) {
+		// alert(message);// + &quot; : &quot; + UIcallback);
+		// var url = &quot;/rest/getMessage?messageId=&quot; + messageId;
+		var messageId = message.messageId;
+		var url = messageId;
+		var local = dataLayer.cache;
+		if (!cache) {
+			local = false;
+		}
+
+		// alert(&quot;Before Call: &quot; + url);
+		HL
+				.getStaticMessage(
+						url,
+						function(msgObject) {
+							// alert(&quot;Loaded : &quot; + msgObject);
+							// alert(&quot;data layer getMessageInternal : &quot; +
+							// messageId);
+							dataLayer.msg = msgObject;
+							message.msg = msgObject;
+							message.message = msgObject.getXML();
+							// if (!dataLayer.cache) {
+							dataLayer.putMessageObject(message);
+							// }
+							/*
+							 * if (cache) dataLayer.messageMap.put(messageId,
+							 * dataLayer.msg);
+							 */
+							UIcallback(messageId, dataLayer.msg, message);
+						},
+						function(status) {
+							alert(&quot; DataLayer method [getStaticMessageInternal] - Message Id: [&quot;
+									+ message.messageId
+									+ &quot;] , Message Type : [&quot;
+									+ message.messageType
+									+ &quot; ] :  Reason Message Not Found [&quot;
+									+ status + &quot;]&quot;);
+						}, local);
+
+	}
+	;
+	this.getLocalProcessDefinitionMessage = getLocalProcessDefinitionMessage;
+	function getLocalProcessDefinitionMessage() {
+		var processDefinitions = new Array();
+		var allProcessDefinition = HL.getProcessDefinition();
+		$.each(allProcessDefinition, function(index, data) {
+			var processDefinition = dataLayer.createProcessDefinitionClone(JSON
+					.parse(data.content));
+			processDefinitions.push(processDefinition);
+		});
+		return processDefinitions;
+	}
+}
+</pre>
+</body>
+</html>

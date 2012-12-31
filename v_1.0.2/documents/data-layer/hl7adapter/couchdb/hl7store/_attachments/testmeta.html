@@ -1,0 +1,23 @@
+<html>
+<head>
+<script src="script/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="script/hl7adapter.js" type="text/javascript"></script>
+<script src="script/hl7adapter.unit.js" type="text/javascript"></script>
+<script type="text/javascript">
+function runTest(){
+   document.write("<H3>Tests:<br></H3>") 
+   new testMeta().run()
+   new testMessage().run()
+   new testLoadAndValidate().run()
+   new testLoadAndSave().run()   
+   new testDocumentComms().run()
+
+}
+
+$(document).ready(runTest);
+</script>
+
+</head><body>
+</body>
+</html>
+

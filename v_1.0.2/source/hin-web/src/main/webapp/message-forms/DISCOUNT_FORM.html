@@ -1,0 +1,47 @@
+<fieldset id="disBlock" class="ui-grid-c ui-accounting-box"
+	amountParent="discount" style="width: 98.8%;">
+	<div class="ui-block-a ui-accounting-field"
+		style="border: 0px; width: 29%"></div>
+	<div class="ui-block-b ui-accounting-field"
+		style="border: 0px; width: 10%"></div>
+	<div class="ui-block-c ui-accounting-field ui-accounting-position"
+		style="margin-left: 2px; border-left: 1px dashed #686868; width: 41.3%">
+		<!-- <select name="selectDiscount" id="selectDiscount" data-theme="b" data-native-menu="false">
+	  	<option value="10">Discount</option>
+	  	<option value="15">Interest</option>
+	  </select> -->
+
+		<div isEditor="true" editorLabel=""  choice="true"
+			pathFields="component,financialTransactionChargeDetail" tagName="id"
+			dataType="II" editorType="IIinplaceCombo"
+			configParams="[{name:'conceptClass',value:'transaction'},{name:'lookupType',value:'static'},
+				{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'}]"
+			idSuffix="0"></div>
+
+	</div>
+	<div class="ui-block-d  ui-accounting-field ui-accounting-position"
+		style="width: 12.1%">
+
+		<!--  <input id="disAmt" type="text" /> -->
+		<div isEditor="true" editorType="MOInplace" chargeType="true"
+			pathFields="component,financialTransactionChargeDetail"
+			tagName="netAmt" dataType="MO"></div>
+
+	</div>
+</fieldset>
+<fieldset id="totalBlock" class="ui-grid-c ui-accounting-box"
+	style="width: 98.9%;">
+	<div class="ui-block-a ui-accounting-field"
+		style="border: 0px; width: 29%"></div>
+	<div class="ui-block-b ui-accounting-field"
+		style="border: 0px; width: 10%"></div>
+	<div class="ui-block-c ui-accounting-field ui-accounting-position"
+		style="border: 0px; width: 41.3%"></div>
+
+	<div class="ui-block-d ui-accounting-field ui-accounting-position"
+		style="border-left: 1px dashed #686868; margin-left: 2px; width: 12.1%">
+
+		<!-- <input id="disTotalAmt" type="text" /> -->
+
+	</div>
+</fieldset>

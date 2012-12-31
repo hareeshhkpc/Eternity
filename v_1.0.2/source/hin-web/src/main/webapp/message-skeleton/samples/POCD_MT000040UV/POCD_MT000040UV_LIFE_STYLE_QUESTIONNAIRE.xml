@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE" >
+
+    <POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE>
+
+        <id root="98501426-a7f8-4bb3-b192-d0e3b146d9d9" />
+
+        <recordTarget>
+
+            <patientRole>
+
+                <id root="86b7bc74-bd29-473b-a55a-75d8d9d610c6" />
+            </patientRole>
+        </recordTarget>
+
+        <author>
+
+            <assignedAuthor>
+
+                <id root="86b7bc74-bd29-473b-a55a-75d8d9d610c6" />
+            </assignedAuthor>
+        </author>
+
+        <component>
+
+            <structuredBody>
+
+                <component>
+
+                    <section>
+
+                        <entry>
+
+                            <observation>
+
+                                <code displayName="Family history of Heart Disease, Obesity, Diabetes" />
+
+                                <value>
+
+                                    <thumbnail>
+1
+                                    </thumbnail>
+                                </value>
+                            </observation>
+
+                            <observation>
+
+                                <code displayName="Female(older than 55) or Male (older than 45)" />
+
+                                <value>
+
+                                    <thumbnail>
+1
+                                    </thumbnail>
+                                </value>
+                            </observation>
+                        </entry>
+                    </section>
+                </component>
+            </structuredBody>
+        </component>
+    </POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE>
+
+</message><message config="POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE" >
+
+    <POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE>
+
+        <id root="3b162e56-a971-4185-a0e9-c5517841191c" />
+
+        <recordTarget>
+
+            <patientRole>
+
+                <id root="86b7bc74-bd29-473b-a55a-75d8d9d610c6" />
+            </patientRole>
+        </recordTarget>
+
+        <author>
+
+            <assignedAuthor>
+
+                <id root="86b7bc74-bd29-473b-a55a-75d8d9d610c6" />
+            </assignedAuthor>
+        </author>
+
+        <component>
+
+            <structuredBody>
+
+                <component>
+
+                    <section>
+
+                        <entry>
+
+                            <observation>
+
+                                <code displayName="I live away from a city full of noise and pollution" />
+
+                                <value>
+
+                                    <thumbnail>
+1
+                                    </thumbnail>
+                                </value>
+                            </observation>
+
+                            <observation>
+
+                                <code displayName="I don&apos;t live near power lines" />
+
+                                <value>
+
+                                    <thumbnail>
+1
+                                    </thumbnail>
+                                </value>
+                            </observation>
+                        </entry>
+                    </section>
+                </component>
+            </structuredBody>
+        </component>
+    </POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE>
+
+</message>

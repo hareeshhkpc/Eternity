@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<KeyspaceDef name="HIN_ETERNITY"
+	strategy_class="org.apache.cassandra.locator.NetworkTopologyStrategy">
+	<StrategyOptions>
+		<Option name="datacenter1" value="1" />
+	</StrategyOptions>
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1178" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="WORKFLOW_TASK">
+		<Column index_name="msgId" index_type="KEYS" name="MESSAGEID"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="msgType" index_type="KEYS" name="MESSAGETYPE"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="taskName" index_type="KEYS" name="TASKNAME"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="msgStatus" index_type="KEYS" name="TASKSTATUS"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="userId" index_type="KEYS" name="USERID"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+	</ColumnFamily>
+	<ColumnFamily column_type="Super" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1103" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="ROLE_DEFINITION" subcomparator_type="org.apache.cassandra.db.marshal.UTF8Type" />
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1158" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="POXX_MT111000HT02">
+		<Column index_name="MESSAGE_idx" name="MESSAGE"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+	</ColumnFamily>
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1154" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="MESSAGE_STORE">
+		<Column index_name="MESSAGE_idx" name="MESSAGE"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="MESSAGESTAUS_idx" name="MESSAGESTAUS"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="MESSAGETYPE_idx" name="MESSAGETYPE"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+	</ColumnFamily>
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1068" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="SUBSCRIBER_PROFILE">
+		<Column index_name="EMAIL_idx" index_type="KEYS" name="EMAIL"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="FULLNAME_idx" index_type="KEYS" name="FULLNAME"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="HTMLDOM_idx" index_type="KEYS" name="HTMLDOM"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="message" index_type="KEYS" name="MESSAGE"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="password" index_type="KEYS" name="PASSWORD"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="SECURITY_ANSWER_idx" index_type="KEYS"
+			name="SECURITY_ANSWER" validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="SECURITY_QUESTION_idx" index_type="KEYS"
+			name="SECURITY_QUESTION" validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="SUBSCRIBER_ACTIVE_idx" index_type="KEYS"
+			name="SUBSCRIBER_ACTIVE" validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="SUBSCRIBER_CREATED_BY_idx" index_type="KEYS"
+			name="SUBSCRIBER_CREATED_BY" validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="SUBSCRIBER_CREATION_TIME_idx" index_type="KEYS"
+			name="SUBSCRIBER_CREATION_TIME" validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="SUBSCRIBER_LAST_MODIFIED_TIME_idx"
+			index_type="KEYS" name="SUBSCRIBER_LAST_MODIFIED_TIME"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="SUBSCRIBER_MODIFIED_BY_idx" index_type="KEYS"
+			name="SUBSCRIBER_MODIFIED_BY" validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="SUBSCRIBER_TYPE_idx" index_type="KEYS"
+			name="SUBSCRIBER_TYPE" validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+		<Column index_name="username" index_type="KEYS" name="USERNAME"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+	</ColumnFamily>
+	<ColumnFamily column_type="Super" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1083" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="ROLE" subcomparator_type="org.apache.cassandra.db.marshal.UTF8Type" />
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1150" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="GENERATE_SUBSCRIBERID" />
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1149" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="WORKFLOW_DEFINITION">
+		<Column index_name="MESSAGEWORKFLOW_idx" name="MESSAGEWORKFLOW"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+	</ColumnFamily>
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1157" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="ENTITY_STATE">
+		<Column index_name="STATE_idx" name="STATE"
+			validation_class="org.apache.cassandra.db.marshal.UTF8Type" />
+	</ColumnFamily>
+	<ColumnFamily column_type="Standard" comment=""
+		comparator_type="org.apache.cassandra.db.marshal.UTF8Type"
+		default_validation_class="org.apache.cassandra.db.marshal.BytesType"
+		id="1105" key_alias="KEY" key_validation_class="org.apache.cassandra.db.marshal.UTF8Type"
+		name="ROLE_PERMISSION" />
+</KeyspaceDef>

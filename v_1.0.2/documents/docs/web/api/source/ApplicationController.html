@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='ApplicationController'>/**
+</span> * Application Controller is main component which controls the application. It
+ * has child components like Rendering Engine, Data Layer, Context and
+ * IMCommunication. It catches the events from all of its components and
+ * broadcasts the same events to all its components except the component from
+ * which that event triggers and which broadcasts that event. If required it
+ * handles the events here itself.
+ */
+
+function ApplicationController(mobile) {
+<span id='ApplicationController-property-className'>	/**
+</span>	 * className is used to refer the ApplicationController class name in other
+	 * components
+	 */
+	this.className = &quot;ApplicationController&quot;;
+
+<span id='ApplicationController-property-eventQueue'>	/** eventQueue is used to add the events in queue to handle */
+</span>	this.eventQueue = new EventQueue();
+
+<span id='ApplicationController-property-getEventQueue'>	/** It makes the event queue to be available in Application Controller */
+</span>	this.getEventQueue = getEventQueue;
+
+<span id='ApplicationController-method-broadcastEvent'>	/**
+</span>	 * Broadcasts the events to components
+	 * 
+	 * @param event
+	 *            its an object that contains event name, event source, data to
+	 *            be passed with event, where it has to be handled
+	 * @return void
+	 */
+	this.broadcastEvent = broadcastEvent;
+
+<span id='ApplicationController-method-eventHandler'>	/**
+</span>	 * Handles the events from other components
+	 * 
+	 * @param event :
+	 *            Its an object that contains event name, event source, data to
+	 *            be passed with event, where it has to be handled
+	 * @return void
+	 */
+	this.eventHandler = eventHandler;
+
+	this.getComponent = getComponent;
+
+<span id='ApplicationController-property-appController'>	/** appContoller is a private variable used to refer the current class object */
+</span>	var appController = this;
+
+<span id='ApplicationController-property-childComponents'>	/**
+</span>	 * Array of objects of child components Which holds the objects of
+	 * RenderingEngine, DataLayer, Context
+	 */
+	var childComponents = new Array();
+
+	/* Pushing objects of child components to components array */
+	childComponents.push(new RenderingEngine(appController));
+	childComponents.push(new DataLayer(appController));
+	childComponents.push(new Context(appController));
+	// childComponents.push(new IMCommunication(appController));
+
+	/*
+	 * Start the EventQueue to process the events. It processes the events added
+	 * to EventQueue for every 500ms
+	 * 
+	 * @see EventQueue
+	 */
+	this.eventQueue.start();
+
+	this.fireEvent = fireEvent;
+
+	/*
+	 * Post APPLICATION_INITIALIZED event to EventQueue to process. Here we are
+	 * calling postEvent method in EventQueue class using getEventQueue method
+	 * in application controller class
+	 */
+	appController.getEventQueue().postEvent(
+			AppConstants.Event.APPLICATION_INITIALIZED, {}, appController,
+			appController);
+
+	/* Function definitions */
+	function getComponent(componentClassName) {
+		for (componentIndex = 0; componentIndex &lt; childComponents.length; componentIndex++) {
+			if (componentClassName == childComponents[componentIndex].className) {
+				return childComponents[componentIndex];
+			}
+		}
+	}
+
+	function broadcastEvent(event) {
+		// alert(&quot;ApplicationController broadCast: &quot; + event.type + &quot; Event
+		// Source: &quot; + event.eventSource.className)
+		$
+				.each(
+						childComponents,
+						function(index, component) {
+							// alert(&quot;Current Class selected in APP broadCast: &quot;
+							// + component.className);
+							if (component.className != event.eventSource.className
+									&amp;&amp; (event.broadCaster == null || event.broadCaster.className != component.className)) {
+								clone = AppUtil.getEvenClone(event);
+								clone.broadCaster = appController;
+								component.eventHandler(clone);
+							} else {
+								// alert(&quot;ApplicationController broadCastNot
+								// firing on: &quot; + value.className);
+							}
+
+						})
+	}
+	;
+
+	function getEventQueue() {
+		return appController.eventQueue;
+	}
+	;
+
+	function eventHandler(event) {
+		// alert(&quot;event handler in app controller&quot;);
+
+		/*
+		 * if (event.type == AppConstants.Event.OPEN_CONTACT) { alert(&quot;App :
+		 * &quot;+AppConstants.Event.OPEN_CONTACT);
+		 * appController.getEventQueue().postEvent(AppConstants.Event.OPEN_CONTACT,
+		 * {contactData: event.data.contactData, loginData:
+		 * event.data.loginData}, appController, contacts); } else {
+		 */
+		broadcastEvent(event);
+		// }
+	}
+	;
+
+	function fireEvent(eventName) {
+
+		appController.getEventQueue().postEvent(eventName, {}, appController,
+				appController);
+	}
+	;
+
+}</pre>
+</body>
+</html>

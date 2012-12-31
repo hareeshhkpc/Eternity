@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans 
+   xmlns="http://www.springframework.org/schema/security" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:beans="http://www.springframework.org/schema/beans" 
+   xsi:schemaLocation="
+   http://www.springframework.org/schema/security 
+   http://www.springframework.org/schema/security/spring-security-3.1.xsd
+   http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   
+   <http pattern="/**/*" security="none" />
+   
+	<!-- <http pattern="/**/css/**" security="none" />
+	<http pattern="/**/images/**" security="none" />
+	<http pattern="/**/js/**" security="none" />
+	<http pattern="/**/html/**" security="none" />
+	<http pattern="/**/Login*" security="none" /> -->
+
+	<http entry-point-ref="restAuthenticationEntryPoint">
+		<!-- intercept-url pattern="/rest/**" access="ROLE_USER" /-->
+		
+		<custom-filter ref="hinAuthenticationFilter" position="FORM_LOGIN_FILTER"/>
+		
+		<logout />
+	</http>
+
+	<beans:bean id="hinAuthenticationFilter"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<beans:property name="authenticationManager" ref="hinAuthManager" />
+		<!-- <beans:property name="authenticationSuccessHandler" ref="mySuccessHandler" /> -->
+	</beans:bean>
+
+	<authentication-manager alias="hinAuthManager">
+		<authentication-provider ref='hinAuthenticationProvider' />
+	</authentication-manager>
+
+	<beans:bean id="hinAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="hinUserDetailsService" />
+	</beans:bean>
+	
+	<beans:bean id="hinUserDetailsService"	class="com.hin.hl7messaging.HINUserService">
+		
+	</beans:bean>
+
+</beans:beans>

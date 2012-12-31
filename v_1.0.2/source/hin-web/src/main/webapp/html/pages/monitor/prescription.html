@@ -1,0 +1,358 @@
+<!-- saved from url=(0022)http://internet.e-mail -->
+<html>
+<head>
+<title>Encounter Appointment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/grey.css" />
+<link rel="stylesheet" href="css/hin.css" />
+<link rel="stylesheet" type="text/css" href="../css/mobile.css" />
+<link rel="stylesheet" href="css/ageManagement.css" />
+<script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.0.1.min.js"></script>
+<script type="text/javascript" src="js/AgeManagement.js"></script>
+<script src="js/XmlUtil.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var ProgramProcessDefObj = 
+		{   			
+			defnId             : "ProgramProcess",
+		    script             : "program",
+	   		instanceId         : "ProgramProcessInstance",
+			steps	  		   : 	[ {
+										step       :"1",
+	 			   			      		shortDesc  :"Mentor",
+	 			   			      		longDesc   :"Prescription Ordering",
+	 			   			      		groupName  :"Mentor",
+	 									messageType:[
+	 			   			     		   { 
+	 				   			     			state       :"complete",
+	 			   			            	    type        :"Genetics And Aesthetics",
+	 			   			            	    id			:"Genetics"
+	 			   			               },
+	 			   			     		  
+	 			 			   			   { 
+	 			 				   			    state       :"complete",
+	 			 			   			        type        :"Restoration Of Hormones",
+	 			 			   			        id			:"Restoration"
+	 			 			   			   },
+	 			 			   			   
+	 			 			   			   { 
+	 			 				   			    state       :"complete",
+	 			 			   			        type        :"Advanced Supplementation",
+	 			 			   			        id			:"Advanced"
+	 			 			   			   }
+			
+	 			 			   			  ]
+	      		   			  		 } ]
+			}; 
+		
+		var processInstanceObj = 
+		{  
+			 defnId :"ProgramProcess",
+	 		 instanceId:"ProgramProcessInstance",
+	 		 participationId:"user1",
+	 		 messageType:[
+	 		              {
+	 		              name:"Genetics And Aesthetics",
+	 		              step:"1", 
+	 		              messages:[
+	 			 		              {
+	 			 		            	  message:"Cleanse",
+	 			 		            	  messageId:"Cleanse",
+	 			 		            	  currentState:"complete"	  
+	 			 		              },
+	 			 		              
+	 			 		              {
+	 			 		            	  message:"Exfoliate",
+	 			 		            	  messageId:"Exfoliate",
+	 			 		            	  currentState:"complete"	  
+	 			 		              },
+	 			 		              
+	 			 		              {
+	 			 		            	  message:"Hydrate",
+	 			 		            	  messageId:"Hydrate",
+	 			 		            	  currentState:"complete"	  
+	 			 		              },
+	 			 		              
+	 			 		              {
+	 			 		            	  message:"Protect",
+	 			 		            	  messageId:"Protect",
+	 			 		            	  currentState:"complete"	  
+	 			 		              },	 
+	 			 		            {
+	 			 		            	  message:"Heal",
+	 			 		            	  messageId:"Heal",
+	 			 		            	  currentState:"complete"	  
+	 			 		              }	 
+	 		                        ]
+
+	 		 			  },
+	 		 			  
+	 		 			  {
+	 		 			  name:"Restoration Of Hormones",
+	 		              step:"1", 
+	 		              messages:[
+	 			 		              {
+	 			 		            	  message:"Testosterone",
+	 			 		            	  messageId:"Testosterone",
+	 			 		            	  currentState:"complete"	  
+	 			 		              },
+	 			 		              
+	 			 		              {
+	 			 		            	  message:"Estrogen",
+	 			 		            	  messageId:"Estrogen",
+	 			 		            	  currentState:"complete"	  
+	 			 		              },
+	 			 		              
+	 			 		              {
+	 			 		            	  message:"Progesterone",
+	 			 		            	  messageId:"Progesterone",
+	 			 		            	  currentState:"complete"	  
+	 			 		              },
+	 			 		              
+	 			 		              {
+	 			 		            	  message:"Thyroid",
+	 			 		            	  messageId:"Thyroid",
+	 			 		            	  currentState:"complete"	  
+	 			 		              }	, 
+		 			 		            {
+		 			 		            	  message:"DHEA",
+		 			 		            	  messageId:"DHEA",
+		 			 		            	  currentState:"complete"	  
+		 			 		              },	 
+		 			 		          {
+	 			 		            	  message:"Melatonin",
+	 			 		            	  messageId:"Melatonin",
+	 			 		            	  currentState:"complete"	  
+	 			 		              }	, 
+		 			 		        {
+				 		            	  message:"Growth Hormone",
+				 		            	  messageId:"Growth_Hormone",
+				 		            	  currentState:"complete"	  
+				 		              }	, 
+		 			 		      {
+			 		            	  message:"Cortef",
+			 		            	  messageId:"Cortef",
+			 		            	  currentState:"complete"	  
+			 		              },	 
+		 			 		    {
+			 		            	  message:"Pregnenolone",
+			 		            	  messageId:"Pregnenolone",
+			 		            	  currentState:"complete"	  
+			 		              }	 
+	 		                        ]
+
+	 		 			  },
+	 		 			  
+	 		 			  {
+	 		 			  name:"Appointment",
+	 		              step:"1", 
+	 		              messages:[
+	 			 		              {
+	 			 		            	  message:"18 May 2012 10:30 AM",
+	 			 		            	  messageId:"Appointment1",
+	 			 		            	  currentState:"complete",
+	 			 		              }
+	 		                        ]
+
+	 		 			  },
+	 		 			  
+	 		 			 {
+	 		 			  name:"Fees",
+	 		              step:"1", 
+	 		              messages:[
+	 			 		              {
+	 			 		            	  message:"Age Management Program Premium",
+	 			 		            	  messageId:"Premium_age_management",
+	 			 		            	  currentState:"complete"	  
+	 			 		              }
+	 		                        ]
+
+	 		 			  }
+	 		 ]
+		}
+		
+		
+		
+		$(ProgramProcessDefObj.steps).each(function(i, val){
+			
+			$('#programContent').append('<div data-role="header" data-theme="v" class="appointment_headerPage"><fieldset class="ui-grid-a">'
+					+'<div class="heading" class="ui-block-b">Mentor</div><div id="period" class="ui-block-b">'
+					+'1 May 2012 - 5 May 2012</div></fieldset></div>'); 
+			 if(val.messageType.length > 0)
+	   		{
+				 $(val.messageType).each(function(j, msgType){
+					
+				 $('#programContent').append('<fieldset class="ui-grid-a"><div id="'+msgType.id+'" class="program ui-body-b"><label>'+msgType.type+'</label></div>'
+							+'<div class="button" id="add'+msgType.id+'"><img src="images/add.png"/></div></fieldset><div id="content'+msgType.id+'"'
+							+'class="'+msgType.id+' hiddenDivs"></div>'); 
+				 
+				 addDefaultMessages('content'+msgType.id+'',j, msgType.id);
+				 onclick_MsgType(msgType.id, 'content'+msgType.id+'');
+				
+				 addMessages('add'+msgType.id+'', 'content'+msgType.id+'', msgType.id);
+				 
+				});
+	   		} 
+		});	
+		
+			 
+		
+		function addDefaultMessages(msgTypeID, index, msgTypeWrapper){
+			$(processInstanceObj.messageType[index]).each(function(i, msgType){
+				$(msgType.messages).each(function(j, msg){
+					$('#'+msgTypeID+'').append('<div id="'+msg.messageId+'" class="ui-grid-a"><div class="messageType ui-body-b"><div class="type">'
+							+''+msg.message+'</div><div class="include">included</div></div><div class="button" id="delete'+msg.messageId+'"><img src="images/delete.png"/>'
+							+'</div></div><div id="'+msg.messageId+'field" class="hiddenDivs"></div>'); 
+					
+					$('#'+msg.messageId+'field').append('<div class="messageType" style="width:100%;"> <label for="name"> Dose:</label> <input type="text" size="10" class="textbox">'
+							+'How Often <input type="text" size="20" class="textbox">'
+							+'When To Take <input type="text" size="60" class="textbox"></div>');
+										
+				 onclick_Msg(msg.messageId,''+msg.messageId+'field');
+				 removeMessage('delete'+msg.messageId+'', msg.messageId, msgTypeWrapper);
+					
+					
+				});
+			});
+		}
+		
+	});/* document ready*/
+	
+	function onclick_MsgType(msgTypeID, msgTypeContent){
+		$('#'+msgTypeID+'').click(function() {		
+			$('#'+msgTypeContent+'').slideToggle('slow');
+		});
+	}
+	function onclick_Msg(msg,msgcon){
+		 $('#'+msg+'').click(function() {
+			$('#'+msgcon+'').slideToggle('slow');
+		}); 
+	}
+	
+	function addMessages(addMsgTypeID, msgTypeContent, msgTypeWrapper){
+		var msgTypeID = "newMsgType";
+		$('#'+addMsgTypeID+'').click(function() {	
+			$('#'+msgTypeContent+'').append('<div id="'+msgTypeID+'" class="ui-grid-a"><div class="messageType ui-body-b"><div id="label'+msgTypeID+'" class="type" contenteditable="true">'
+					+'Enter Message Type</div><div id="include'+msgTypeID+'" class="include">click here to include</div></div><div class="button" id="delete'+msgTypeID+'"><img src="images/delete.png"/>'
+					+'</div><div id="" class="hiddenDivs"></div></div>');
+			
+			$('#'+msgTypeContent+'').show();
+			
+			var adjustedHeight = $('.'+msgTypeWrapper+'').height();
+			adjustedHeight = adjustedHeight+40;
+			$('.'+msgTypeWrapper+'').css("height", adjustedHeight);
+			
+			removeMessage('delete'+msgTypeID+'', msgTypeID, msgTypeWrapper);		
+			
+			$('#label'+msgTypeID+'').click(function() {
+				$('#include'+msgTypeID+'').click(function() {
+					enterMessageType('label'+msgTypeID+'', 'include'+msgTypeID+'', 'delete'+msgTypeID+'', msgTypeID, msgTypeWrapper);
+				}); 
+				
+			});
+			
+		});
+	}
+	
+	
+	//Enter the new messageTYpe
+	function enterMessageType(label, include, removeButtonID, msgTypeID, msgTypeWrapper){
+			var msg = $('#'+label+'').html();
+			stringArray = msg.split(" ");
+			var messageID = stringArray[0];
+			alert(messageID);
+			var MsgTypeID = changeID(messageID, msgTypeID);
+			var RemoveMsgTypeID = changeID('delete'+messageID+'', removeButtonID);
+			var labelID = changeID('label'+messageID+'', label);
+			var includeID = changeID('include'+messageID+'', include);
+			$('#include'+messageID+'').html("included");
+			$('#label'+messageID+'').attr("contenteditable",false);
+			removeMessage(RemoveMsgTypeID, MsgTypeID, msgTypeWrapper);	
+			
+	}
+	
+	
+	function removeMessage(removeButtonID, MsgTypeID, msgTypeWrapper){
+		$('#'+removeButtonID+'').click(function() {	
+			$('#'+MsgTypeID+'').remove();
+			var adjustedHeight = $('.'+msgTypeWrapper+'').height();
+			adjustedHeight = adjustedHeight-40;
+			$('.'+msgTypeWrapper+'').css("height", adjustedHeight);
+		});
+	}
+	
+	function changeID(new_Id, old_Id){
+		var div_node = document.getElementById(old_Id);
+		div_node.id = new_Id;
+		return div_node.id;
+	}
+	
+	function scrollDown()
+	{
+		 window.scrollBy(0,1); // horizontal and vertical scroll increments
+		 scrolldelay = setTimeout('scrollDown()',0); //  0  time in milliseconds 
+	}
+
+	function stopScroll()
+	{
+		clearTimeout(scrolldelay);
+	}
+	
+	//This function is to srcoll to top of the page
+	$(document).scroll(function(){
+	    var scroll_pos = $(window).scrollTop()
+	    if(scroll_pos > 10){
+
+	        $('#scrollUp').click(function(){
+	        	 $("body").scrollTop(0);
+	        });
+	    }
+	  });
+	
+</script>
+
+</head>
+<body>
+	<div data-role="page">
+
+		<div data-role="header" data-id="navBar"
+			class="appointment_headerPage" data-position="fixed" data-theme="v">
+					</div>
+		<!-- /header -->
+
+		<div data-role="content">
+			<div id="mainDiv" class="mentor_MainDiv ui-body ui-corner-all"
+				data-theme="a">
+
+				<div data-role="header" data-theme="v"
+					class="appointment_headerPage">
+					<div class="heading ui-block-b">Choose a Program</div>
+				</div>
+
+				<div id="programContent" class="mentor_programContent ui-body"></div>
+				<!-- end of program content -->
+
+			</div>
+			<!-- main Div -->
+			
+			<p id="scrollUp" class="include">Top</p>
+		</div>
+		<!-- /content -->
+
+		<div data-role="footer" data-theme="g" class="appointment_footer" onmousedown="scrollDown()" onmouseup="stopScroll()"
+			data-position="fixed">
+			<!-- <h1><a href="" data-role="button" id="scrollUp" data-icon="arrow-u" data-iconpos="notext" ></a>
+				<a href="" data-role="button" data-icon="arrow-d" data-iconpos="notext" onmousedown="scrollDown()" onmouseup="stopScroll()"></a> 
+				</h1>  -->
+			<h1>V</h1>
+		</div>
+
+	</div>
+	<!-- /page -->
+
+</body>
+</html>

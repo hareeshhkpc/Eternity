@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Message Api</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="css/hin.css" />
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.json-2.3.js"></script>
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+
+<script src="js/hl7adapter.js"></script>
+<script src="js/XmlUtil.js"></script> 
+<script src="js/DataTypeAPI.js"></script>
+
+<script>
+var msg = null, config = null; dataTypeApi = new DataTypeAPI();
+$(document).ready(function(){
+	alert("using Message Api");
+	
+	$("#messageCreate").click(function(){
+		CreateMessage();
+	});
+	
+	$("#loadMessage").click(function(){
+		LoadMessage('/message-configuration/PRPA_IN203000HT04.xml');
+	});	
+	
+	
+	$('#saveMessage').click(function(){
+		 alert("Message xml aft specimen: " +  XmlUtil.xmlToString(msg.getXML()));
+	});
+	
+	$('input[dataField="true"]').bind('change', function(){
+		
+		var thisID = $(this).attr('id');
+		//alert(thisID);
+		var value =  $(this).val();
+		var type =  $(this).attr('dataType');
+		var tagName = $(this).attr('tagName');
+		var fields = $(this).attr('fields').split(',');
+		var parentDiv = $(this).closest('div[parentDiv="true"]');
+		var pathFields = $(this).attr('pathFields').split(',');
+		
+		//alert(value + ", " + type + ", " + tagName + ", " + fields + ", " + parentDiv)
+		
+		var instanceObject = [];
+		$.each(fields, function(key, fieldId){
+			//alert("id: " + fieldId)
+			instanceObject.push((fieldId === 'null') ? null : $(parentDiv).find('#' + fieldId).val());
+		});
+		
+		//alert("Instance: " + instanceObject);
+		
+		var node = null;
+		var methodName = ('get' + type + 'Xml');
+		if(methodName in dataTypeApi){
+			node = eval('dataTypeApi.' + methodName + '(tagName, instanceObject)');
+			//alert(node + ", type: " + typeof(node));
+		}
+	
+		if(!msg || msg === null){
+			 msg = config.createMessage();
+		}
+		
+		createMessageObjects(msg, 'PRPA_IN203000HT04', pathFields, tagName, XmlUtil.xmlToString(node));
+	});
+});
+
+function createMessageObjects(messageObject, messageRoot, objectArray, fieldName, fieldValue){
+	var obj = messageObject.findObject(messageRoot);
+	if(!obj || obj.length < 1){
+		obj  = msg.createObject(messageRoot);
+	} else {
+		obj = obj[0];
+	}
+	
+	var subObj = null;
+	
+	$.each(objectArray, function(key, value){
+		subObj = obj.findObject(objectArray[key]);
+		if(!subObj || subObj.length < 1){
+			subObj  = obj.createObject(objectArray[key]);
+		}
+		else {
+			subObj = subObj[0];
+		}
+		obj = subObj;
+	});
+	
+	obj.setValue(fieldName, fieldValue);
+	
+	return obj;
+}
+
+function LoadMessage(messageConfig){
+	//alert("in load");
+	getMessage(messageConfig, 
+			function(configData){
+				alert("Loaded");
+				
+				 var doc = new ConfigDocument(configData)
+		         var result = 0;
+		         result = doc.getArtifactId();
+		        // alert("result :"+result);
+		         
+		         config = doc;
+			},
+			function(status){
+				alert("Failed : "+status);
+			});
+}
+
+function  CreateMessage(){
+	  msg = config.createMessage();
+	// alert("Message: " + msg);
+	 
+	 var obj = msg.createObject('POXX_MT111000HT02');  
+	 obj.setValue("id", "123");
+	 obj.setValue("code", "Questionair");
+	 //alert("ID: " + obj);
+	 
+	 alert("Message xml: " + XmlUtil.xmlToString(msg.getXML()));
+	 
+
+	 var subject = obj.createObject('subject');
+	// subject.setValue("id", "id-sub");
+	 alert("Message xml aft sub: " + XmlUtil.xmlToString(msg.getXML()))
+	 
+	 var specimen = subject.createObject('specimen');
+	 specimen.setValue("code", "HIN-1000001");
+	// alert("ID specimen: " + specimen); 
+	 
+	 alert("Message xml aft specimen: " +  XmlUtil.xmlToString(msg.getXML()));
+
+}
+
+</script>
+</head>
+<body>
+
+<div parentDiv="true" msgID="MSG-10001">
+	ID Root:<input type="text" pathFields="subject,subsumedBy,subsumingPerson" tagName="id" fields="pIDRoot,pIDExtension,null" dataType="II" id="pIDRoot" dataField="true" />
+	ID Extension:<input type="text" pathFields="subject,subsumedBy,subsumingPerson" tagName="id" fields="pIDRoot,pIDExtension,null" dataType="II" id="pIDExtension" dataField="true" />
+	Name: <input type="text" pathFields="subject,subsumedBy,subsumingPerson" tagName="name" fields="pName" dataType="PN" id="pName" dataField="true" />
+	birthTime Time: <input type="text" pathFields="subject,subsumedBy,subsumingPerson" tagName="birthTime" fields="birthTime" dataType="TS" id="birthTime" dataField="true"  />
+	
+</div>
+
+<input type="button" data-inline="true" id="loadMessage" value="Load Message"/>
+<input type="button" data-inline="true" id="messageCreate" value="Create Message"/>
+<input type="button" data-inline="true" id="saveMessage" value="Save Message"/>
+</body>
+</html>

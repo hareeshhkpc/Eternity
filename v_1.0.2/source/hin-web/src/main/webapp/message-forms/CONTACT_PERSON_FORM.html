@@ -1,0 +1,58 @@
+
+<div data-role="none" class="ui-align-text">
+	<div class="ui-form-fields">
+		<div class="ui-box-align">
+			<div isEditor="true" editorLabel="Name(s):"
+				pathFields="identifiedPerson" tagName="name" dataType="PN"
+				editorType="PNComplete"
+				configParams="[{name:'prefixConceptClass',value:'prefix'},{name:'prefixLookupType',value:'static'},
+								{name:'prefixLookupSelectType',value:'single'},{name:'prefixLookupControl',value:'multiple'},
+								{name:'nameUseConceptClass',value:'nameUse'},{name:'nameUseLookupType',value:'static'},
+								{name:'nameUseLookupSelectType',value:'single'},{name:'nameUseLookupControl',value:'multiple'}]">
+			</div>
+		</div>
+
+		<div isEditor="true" editorLabel="ID:" pathFields="" tagName="id"
+			dataType="II" editorType="II" style="display: none"
+			groupId="idFields" idSuffix="1"></div>
+
+		<div isEditor="true" editorLabel="ID:" pathFields="" tagName="id"
+			dataType="II" editorType="II" style="display: none"
+			groupId="idFields" idSuffix="2"></div>
+
+		<div class="ui-box-align">
+			<div isEditor="true" editorLabel="Gender:"
+				pathFields="identifiedPerson" tagName="administrativeGenderCode"
+				dataType="CE" editorType="CE" idSuffix="1"
+				configParams="[{name:'conceptClass',value:'gender'},{name:'lookupType',value:'static'},
+					{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'}]"></div>
+		</div>
+
+		<div class="ui-box-align">
+			<div isEditor="true" editorLabel="Telecoms:"
+				pathFields="identifiedPerson" tagName="telecom" dataType="TEL"
+				editorType="Grid" style="width: 98%"
+				configParams="[{name:'telecomUseConceptClass',value:'telecomUse'},{name:'telecomUseLookupType',value:'static'},
+			                    {name:'telecomUseLookupSelectType',value:'single'},{name:'telecomUseLookupControl',value:'multiple'}]"
+				gridEditorType="TEL" idSuffix="1" groupId="registrationTel"></div>
+		</div>
+
+		<div style="margin-bottom: 6px; margin-top: -8px;">
+			<div isEditor="true" editorLabel="User Name:" pathFields=""
+				tagName="id" dataType="II" editorType="IIUserName"
+				configParams="[{name:'validate',value:'validate[required]'},{name:'textBoxWidth',value:'96.3%'}]"
+				groupId="idFields" idSuffix="3"></div>
+		</div>
+		<div style="margin-bottom: 6px">
+			<div isEditor="true" editorLabel="Password:" pathFields=""
+				tagName="id" dataType="II" editorType="IIPassword"
+				configParams="[{name:'validate',value:'validate[required],maxSize[16],minSize[6]'},{name:'textBoxWidth',value:'96.3%'}]"
+				groupId="idFields" idSuffix="4"></div>
+		</div>
+
+		<label id="PasswordExtensionLabel">Confirm Password:</label> <input
+			type="password" id="PasswordExtension" value=""
+			class="validate[required,equals[IIPasswordExtension],maxSize[16],minSize[6]]"
+			style="width: 96.3%" />
+	</div>
+</div>

@@ -1,0 +1,40 @@
+
+<div data-role="none" class="ui-align-text">
+	<div class="header_bg ui-header-corner-top ui-page-header-text">Patient
+		Consent Form</div>
+		
+		<div isEditor="true"
+		pathFields="component,structuredBody,component,section,entry,observation"
+		tagName="value" dataType="ED" editorType="EDFileAttachment" configParams="[{name:'displayId',value:'EDSpan'},{name:'documentType',value:'Administration'}]"></div>
+		
+	<!-- <div id="consentSingedPdf" style="width: 100%; display: none">&nbsp;</div> -->
+		
+		
+
+	<div id="printIcon" class="other print-icon-link" style="float:right;">
+		<!-- <img id="print" src="images/printer.png" onClick="PrintDiv();" /><br /> -->	
+		<div class="ui-consent-form-text">Print</div>	
+	</div>
+	
+	
+<!-- 	<div id="UploadIcon"
+		style="float:right;left:60px;position:relative;text-align:right;top:115px;">
+		<form target="hiddenFrameForDocAttach"
+			action="/hin-web/rest/FileUploadController" method="post"
+			id="docAttachmentForm" enctype="multipart/form-data">
+			target attribute is to hide the iframe
+			<img id="uploadIconId" alt="Upload" src="images/Upload.png"
+						 onclick="$('#fileId').trigger('click'); return false;"/> 
+					<input type="file" id="fileId"  name="fileUpload" style="display: none" />
+					<div style="display:none;"></div>
+			<div style="margin-left: 5px;">
+				<label>Upload Signed Form</label>
+			</div>
+		</form>
+	</div> -->
+
+	<div id="consentContent" isEditor="true"
+		pathFields="component,structuredBody,component,section[1]"
+		tagName="text" dataType="ED" editorType="EDSpan" style="float:left;width:80%;position:relative;top:10px;left:75px;"></div>
+
+</div>

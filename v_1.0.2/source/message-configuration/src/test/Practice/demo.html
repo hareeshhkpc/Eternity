@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="../sarissa/sarissa.js"></script>
+<title>Insert title here</title>
+<script type="text/javascript" src="sarissa.js"></script>
+<script type="text/javascript" src="jquery-1.6.4.js"></script>
+<script type="text/javascript" src="jquery.xml.js"></script>
+<script type="text/javascript">
+
+var xml = Sarissa.getDomDocument();
+xml.async = false;
+xml.load("Demo.xml");
+
+	var xml= $("<info> <name id=''>Swetha</name><addr value=''>Domlur</addr> </info>"); 
+			
+	function update()
+	{
+		alert("in the method");
+		//$(xml).find('name').append(" Murthy");
+		$(xml).find('name').text("Shilpa");
+		alert("hello");
+		alert($(xml).xml()); 
+	}
+	function appending()
+	{
+		var str=xml;
+		var v1="<city>"
+		/* alert("before appending"+$(xml).xml()); */
+		$(xml).find('name').append($('<city>BAng</city>'));
+		//$(str).find('name').appendTo('<dob>Oct</dob>');
+	/* 	alert("after appending"+$(xml).xml()); */
+	} 
+	
+	function replacing(){
+		alert("before appending"+$(xml).xml());	
+		var xmlNode='<age>56</age>';
+		$(xml).find('name').replaceWith(xmlNode);
+		alert("after appending"+$(xml).xml());
+		
+	}
+</script>
+</head>
+<body>
+
+<input type="button" onclick="update()" value="Update"> <br/><br/>
+<input type="button" onclick="appending()" value="Append">
+<input type="button" onclick="replacing()" value="Replace">
+</body>
+</html>

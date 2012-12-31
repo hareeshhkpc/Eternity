@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="../index.xhtml">
+
+	<ui:define name="content">
+		<h:outputScript name="jsf.js" library="javax.faces" target="body">
+		</h:outputScript>
+		<rich:collapsiblePanel switchType="client" style="width:100%;">
+			<h:form>
+				<a4j:jsFunction name="chooseConcept" execute="conceptAuto"
+					action="#{cassandraBrowserBean.patientSearch}"
+					render="showInfoView" />
+				<rich:toolbar height="26" itemSeparator="grid" style="width:100%">
+					<rich:toolbarGroup>
+						<h:panelGrid columns="2">
+							<img src="../../html/images/page_white_add.png" />
+							<h:column>Patient Search</h:column>
+						</h:panelGrid>
+					</rich:toolbarGroup>
+					<rich:toolbarGroup>
+						<h:panelGrid columns="2">
+							<h:outputText value="Select Role" />
+							<a4j:region>
+								<h:selectOneMenu value="#{cassandraBrowserBean.searchVO.role}">
+									<f:selectItems value="#{cassandraBrowserBean.roleList}" />
+									<a4j:ajax event="change" reRender="showInfoView" />
+								</h:selectOneMenu>
+							</a4j:region>
+						</h:panelGrid>
+					</rich:toolbarGroup>
+					<rich:toolbarGroup location="right">
+						<h:panelGrid columns="3">
+							<h:outputText value="Search:" />
+							<rich:autocomplete id="conceptAuto"
+								value="#{cassandraBrowserBean.patientName}" mode="ajax"
+								layout="table" var="var" fetchValue="#{var.name}"
+								onkeyup="chooseConcept()" onselectitem="chooseConcept()"
+								autoFill="false" selectFirst="false">
+								<rich:column>
+									<h:outputText value="#{var.name}" />
+								</rich:column>
+								<a4j:ajax event="change" />
+							</rich:autocomplete>
+						</h:panelGrid>
+					</rich:toolbarGroup>
+				</rich:toolbar>
+
+				<h:panelGrid columns="1" id="showInfoView"
+					style="width:100%;position:inherit;">
+					<rich:dataTable id="concepts"
+						value="#{cassandraBrowserBean.patientList}" var="concept"
+						rows="10" style="width:100%"
+						rendered="#{!cassandraBrowserBean.showListView}"
+						rowClasses="odd-row, even-row" rowClass="row" styleClass="stable">
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText value="#{concept.name}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Profile Id" />
+							</f:facet>
+							<h:outputText value="#{concept.subscriberId}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="OrganizationId" />
+							</f:facet>
+							<h:outputText value="#{concept.organizationId}" />
+						</rich:column>
+						<rich:column
+							style="max-width: 70px; min-width: 70px; overflow: hidden">
+							<f:facet name="header">
+								<h:outputText value="Role" />
+							</f:facet>
+							<h:outputText value="#{concept.role}" title="#{concept.role}" />
+
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="View By" />
+							</f:facet>
+							<h:commandButton value="XML" reRender="concepts,concepts2"
+								action="#{cassandraBrowserBean.loadCasandraXmlDet}">
+								<f:setPropertyActionListener
+									target="#{cassandraBrowserBean.messageId}"
+									value="#{concept.subscriberId}" />
+							</h:commandButton>
+							<h:commandButton value="TEXT" reRender="concepts,concepts2"
+								action="#{cassandraBrowserBean.loadCasandraVoDet}">
+								<f:setPropertyActionListener
+									target="#{cassandraBrowserBean.messageId}"
+									value="#{concept.subscriberId}" />
+							</h:commandButton>
+						</rich:column>
+
+						<br />
+						<f:facet name="footer">
+							<rich:dataScroller for="concepts" align="right"
+								renderIfSinglePage="false" fastStep="5" fastControls="auto"
+								render="id3 id4" />
+						</f:facet>
+					</rich:dataTable>
+					<h:panelGrid columns="1" style="width:100%"
+						rendered="#{cassandraBrowserBean.showListView}">
+						<rich:toolbar height="26" itemSeparator="grid">
+							<rich:toolbarGroup>
+								<h:panelGrid columns="1">
+									<h:outputText value="#{cassandraBrowserBean.messageHeader}" />
+								</h:panelGrid>
+							</rich:toolbarGroup>
+							<rich:toolbarGroup location="right">
+								<h:panelGrid columns="1">
+									<h:commandButton value="Back" reRender="showInfoView"
+										action="#{cassandraBrowserBean.showList}">
+									</h:commandButton>
+								</h:panelGrid>
+							</rich:toolbarGroup>
+						</rich:toolbar>
+						<h:panelGrid columns="1"
+							rendered="#{cassandraBrowserBean.showXmlView}">
+							<h:outputText value="#{cassandraBrowserBean.messageXml}" />
+						</h:panelGrid>
+						<h:panelGrid columns="1"
+							rendered="#{cassandraBrowserBean.showTextView}">
+							<h:panelGrid columns="2">
+								<rich:dataTable id="showTextViewId"
+									value="#{cassandraBrowserBean.indexFieldsVOList}" var="vo"
+									style="width:100%"
+									rowClasses="odd-row, even-row" rowClass="row"
+									styleClass="stable">
+									<rich:column>
+										<f:facet name="header">
+											<h:outputText value="Name" />
+										</f:facet>
+										<h:outputText value="#{vo.name}" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">
+											<h:outputText value="Value" />
+										</f:facet>
+										<h:panelGrid columns="1" >	
+											<rich:column rendered="#{!(vo.name eq 'image')}">
+												<h:outputText value="#{vo.value}"/>
+											</rich:column>
+											<rich:column rendered="#{vo.name eq 'image'}">
+												<img src="#{vo.value}" style="height:100px;widthe:50px;"/>
+											</rich:column>
+										</h:panelGrid>
+									</rich:column>
+								</rich:dataTable>
+							</h:panelGrid>
+						</h:panelGrid>
+					</h:panelGrid>
+				</h:panelGrid>
+			</h:form>
+		</rich:collapsiblePanel>
+		<rich:jQuery id="id3" selector=".stable tr.row" event="mouseover"
+			query="jQuery(this).addClass('active-row')" />
+		<rich:jQuery id="id4" selector=".stable tr.row" event="mouseout"
+			query="jQuery(this).removeClass('active-row')" />
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><PRPA_IN400000 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ITSVersion="XML_1.0" id="id1_1" xsi:schemaLocation="urn:hl7-org:v3 E:/HIN/source/message-configuration/src/main/resources/messageconfig/htb/schemas/PRPA_IN400000.xsd">
+	<id extension="3948345" id="id1_1_id2135_1" root="2.16.528.1.1007.3.2.700363.1190"/>
+	<creationTime id="id1_1_id2136_1" value="20120723140010"/>
+	<responseModeCode id="id1_1_id2138_1" nullFlavor="NI"/>
+	<versionCode code="NE2006" id="id1_1_id2139_1"/>
+	<interactionId extension="PRPA_IN400000" id="id1_1_id2140_1" root="2.16.840.1.113883.1.6"/>
+	<processingCode code="P" id="id1_1_id2142_1"/>
+	<processingModeCode code="T" id="id1_1_id2143_1"/>
+	<acceptAckCode code="ER" id="id1_1_id2144_1"/>
+	<receiver id="id1_1_id2146_1" typeCode="RCV">
+		<device classCode="DEV" determinerCode="INSTANCE" id="id1_1_id2146_1_id56_1">
+			<id extension="922" id="id1_1_id2146_1_id56_1_id38_1" root="2.16.840.1.113883.2.6.6"/>
+		</device>
+	</receiver>
+	<sender id="id1_1_id2148_1" typeCode="SND">
+		<device classCode="DEV" determinerCode="INSTANCE" id="id1_1_id2148_1_id60_1">
+			<id extension="1" id="id1_1_id2148_1_id60_1_id38_1" root="2.16.840.1.113883.2.6.6"/>
+		</device>
+	</sender>
+	<controlActProcess id="id1_1_id2151_1" moodCode="EVN">
+		<subject id="id1_1_id2151_1_id31_1">
+			<encounterEvent classCode="ENC" id="id1_1_id2151_1_id31_1_id32_1" moodCode="EVN">
+				<id extension="1" id="id1_1_id2151_1_id31_1_id32_1_id273_1" root="2.16.840.1.113883.2.6.6"/>
+				<code id="id1_1_id2151_1_id31_1_id32_1_id274_1" nullFlavor="NI"/>
+				<statusCode code="active" id="id1_1_id2151_1_id31_1_id32_1_id276_1"/>
+				<subject id="id1_1_id2151_1_id31_1_id32_1_id289_1" typeCode="SBJ">
+					<patient classCode="PAT" id="id1_1_id2151_1_id31_1_id32_1_id289_1_id356_1">
+						<id extension="04P800000-1049151" id="id1_1_id2151_1_id31_1_id32_1_id289_1_id356_1_id507_1" root="2.16.840.1.113883.19.4"/>
+						<patientPerson classCode="PSN" determinerCode="INSTANCE" id="id1_1_id2151_1_id31_1_id32_1_id289_1_id356_1_id514_1">
+							<name id="id1_1_id2151_1_id31_1_id32_1_id289_1_id356_1_id514_1_id616_1">
+								<prefix>Mr</prefix>
+								<given>John</given>
+								<family>Citizen</family>
+							</name>
+							<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" id="id1_1_id2151_1_id31_1_id32_1_id289_1_id356_1_id514_1_id620_1"/>
+							<birthTime id="id1_1_id2151_1_id31_1_id32_1_id289_1_id356_1_id514_1_id621_1" value="19730701"/>
+						</patientPerson>
+					</patient>
+				</subject>
+				<consultant id="id1_1_id2151_1_id31_1_id32_1_id296_1" typeCode="CON">
+					<employmentStaff classCode="ASSIGNED" id="id1_1_id2151_1_id31_1_id32_1_id296_1_id263_1">
+						<employeePerson classCode="PSN" determinerCode="INSTANCE" id="id1_1_id2151_1_id31_1_id32_1_id296_1_id263_1_id374_1">
+							<name id="id1_1_id2151_1_id31_1_id32_1_id296_1_id263_1_id374_1_id381_1">
+								<prefix>Dr</prefix>
+								<given>Kamalakhanth</given>
+								<family>Shenoy</family>
+							</name>
+						</employeePerson>
+					</employmentStaff>
+				</consultant>
+				<location id="id1_1_id2151_1_id31_1_id32_1_id298_1" typeCode="LOC">
+					<serviceDeliveryLocation classCode="SDLOC" id="id1_1_id2151_1_id31_1_id32_1_id298_1_id313_1">
+						<location classCode="PLC" determinerCode="INSTANCE" id="id1_1_id2151_1_id31_1_id32_1_id298_1_id313_1_id464_1">
+							<name id="id1_1_id2151_1_id31_1_id32_1_id298_1_id313_1_id464_1_id195_1">Neurology</name>
+						</location>
+					</serviceDeliveryLocation>
+				</location>
+			</encounterEvent>
+		</subject>
+	</controlActProcess>
+</PRPA_IN400000>

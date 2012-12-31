@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Eternity: Login</title>
+
+<!-- link rel="stylesheet" href="css/common.css" /-->
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+
+<!-- <link rel="stylesheet" href="css/hin.css" /> -->
+
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" type="text/css" />
+<link rel="stylesheet" href="js/jquery.mobile.datebox.min.css">
+<!-- <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" /> -->
+
+
+<link rel="stylesheet" href="js/jquery.ui.datepicker.mobile.css" />
+<link rel="stylesheet" href="js/jquery.mobile.datebox.min.css">
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.json-2.3.js"></script>
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+<script src="js/jquery.mobile.datebox.min.js"></script>
+<script src="js/jquery.easydate-0.2.4.js"></script>
+
+<script type="text/javascript" src="js/jsCharts/highcharts.js"></script>
+<!-- <script type="text/javascript" src="js/jsCharts/jquery.min.js"></script>
+<script type="text/javascript" src="js/jsCharts/jquery-1.6.4.js"></script>
+<script type="text/javascript" src="js/jsCharts/themes/grid.js"></script> -->
+
+<!-- <script type="text/javascript" src="js/jQuery.ui.datepicker.js"></script> -->
+<!-- <script src="js/jquery.mobile.datebox.min.js"></script> -->
+<script src="../mobile/js/jquery.mousewheel.min.js"></script>
+<script src="js/AjaxMultipart.js"></script>
+<script src="js/AppConstants.js"></script>
+<script src="js/ApplicationController.js"></script>
+<script src="js/AppUtil.js"></script>
+<script src="js/Callback.js"></script>
+<script src="js/CommonUtil.js"></script>
+<script src="js/Context.js"></script>
+<script src="js/DataLayer.js"></script>
+<script src="js/DataTypeAPI.js"></script>
+<script src="js/EventQueue.js"></script>
+<script src="js/HashMap.js"></script>
+<script src="js/IDGenerator.js"></script>
+<script src="js/hl7adapter_new.js"></script>
+<!-- <script src="js/hl7adapter.js"></script> -->
+<script src="js/LookupHandler.js"></script>
+<script src="js/MessageAndUIBinder.js"></script>
+<script src="js/MessageFieldHandler.js"></script>
+<script src="js/UpdatePathfield.js"></script>
+<script src="js/RenderingEngine.js"></script>
+<script src="js/XmlUtil.js"></script>
+
+
+
+<script src="js/custom/AppSchedule.js"></script>
+<script src="js/custom/Form.js"></script>
+<script src="js/custom/Home.js"></script>
+<script src="js/custom/Library.js"></script>
+<script src="js/custom/Login.js"></script>
+<script src="js/custom/Mentor.js"></script>
+<script src="js/custom/Monitor.js"></script>
+<script src="js/custom/Measure.js"></script>
+<script src="js/custom/Navigation.js"></script>
+<script src="js/custom/Patient.js"></script>
+<script src="js/custom/Process.js"></script>
+<script src="js/custom/Program.js"></script>
+<script src="js/custom/Review.js"></script>
+<script src="js/custom/Search.js"></script>
+<script src="js/custom/TestResult.js"></script>
+<script src="js/custom/Statistics.js"></script>
+<script src="js/custom/WorkFlow.js"></script>
+
+<script src="js/ui/AppointmentSchedule.js"></script>
+<!-- <script src="js/ui/Measure.js"></script> -->
+<script src="js/ui/Substances.js"></script>
+<script src="js/ui/UIGenerator.js"></script>
+
+<script src="js/vo/AppointmentVO.js"></script>
+<script src="js/vo/ChartVO.js"></script>
+<script src="js/vo/FormVO.js"></script>
+<script src="js/vo/Message.js"></script>
+<script src="js/vo/MessageVO.js"></script>
+<script src="js/vo/ProcessVO.js"></script>
+<script src="js/vo/ProcessDefinition.js"></script>
+<script src="js/vo/SearchVO.js"></script>
+<script src="js/vo/Step.js"></script>
+<script src="js/vo/MessageType.js"></script>
+<script src="js/vo/MessageTypeName.js"></script>
+<script src="js/vo/UserProcess.js"></script>
+<script src="js/vo/UserVO.js"></script>
+<script src="js/vo/TaskVO.js"></script>
+<script src="js/vo/StatisticsVO.js"></script>
+<script src="js/jquery.base64.min.js"></script>
+<script src='js/calendar/src/_loader.js'></script>
+
+<script type="text/javascript">
+
+function callMe(){
+	alert("I am called");
+};
+
+var msgBinder = lookupHandler = null;
+
+function showXml(){
+	 alert("Message xml: \n" +  XmlUtil.xmlToString(msgBinder.messageObject.getXML()));
+}
+
+function onLoadComplete(iframeAppApi){
+	
+	lookupHandler = iframeAppApi.lookupHandler;
+	
+	loadConfiguration('/message-configuration/PRPA_MT201000HT03.xml'); 
+	
+	//MFH('{"hello":"World"}').showConfig();
+	
+	
+	$("#loadMessage").click(function(){
+		loadMessage('/message-skeleton/samples/PRPA_MT201000HT03/Message.xml');
+	});
+
+	$('#saveMessage').click(function(){
+		 alert("Message xml: \n" +  XmlUtil.xmlToString(msgBinder.messageObject.getXML()));
+	});
+	
+	function loadMessage(messageId){
+		getMessageDocument(messageId, 
+			function(messageObj){
+				msgBinder = new MessageAndUIBinder('MSG-10001', messageObj, 'PRPA_MT201000HT03');			
+				msgBinder.loadDataOntoForm(lookupHandler);
+			},
+			function(status){
+				alert("Failed to load message for ID : " + messageId + ", Status: " + status);
+			}
+		);
+	};
+	
+	function loadConfiguration(messageConfigId){
+		var lookupHandler = new LookupHandler();
+		getMessage(messageConfigId, 
+			function(configData){
+				
+				var doc = new ConfigDocument(configData)
+		        var result = 0;
+		        result = doc.getArtifactId();
+		        config = doc;
+		        
+		        //alert('Configuration for ' + messageConfigId + " Loaded");
+		        
+		        msgBinder = new MessageAndUIBinder('MSG-10001', config.createMessage(), 'PRPA_MT201000HT03');
+		        msgBinder.loadDataOntoForm(lookupHandler);
+			},
+			function(status){
+				alert("Failed to load configuration for ID : " + messageConfigId + ", Status: " + status);
+			}
+		);
+	};
+};
+
+</script>
+
+</head>
+<body>
+
+<div parentDiv="true" id="MSG-10001">
+	<div class="ui-form-fields">
+		 <div data-role="none" class="ui-align-text">	 
+		 	<div isEditor="true" editorLabel="" pathFields="identifiedPerson" tagName="desc" dataType="ED" editorType="EDImage"></div>
+			
+			<div isEditor="true" editorLabel="ID:" pathFields="identifiedPerson" tagName="id" dataType="II" editorType="II"></div>
+					
+			<div isEditor="true" editorLabel="Birth Time:" pathFields="identifiedPerson" tagName="birthTime" dataType="TS" editorType="TS"></div>	
+					
+ 			<div isEditor="true" editorLabel="Telephone:" pathFields="identifiedPerson" tagName="telecom" dataType="TEL" editorType="TEL"></div>	
+ 				
+			<div isEditor="true" editorLabel="Effective Time:" pathFields="identifiedPerson,asIdentifications" tagName="effectiveTime" dataType="IVL_TS" editorType="IVL_TS"></div>
+					
+		</div>
+	</div>
+</div>	
+<br/>
+<input type="button" data-inline="true" id="loadMessage" value="Load Message"/>
+<input type="button" data-inline="true" id="saveMessage" value="Save Message"/>	
+<input type="button" data-inline="true" id="loadForm" value="Load Form" onclick="onLoadComplete({lookupHandler: new LookupHandler()})"/>	
+</body>
+</html>

@@ -1,0 +1,250 @@
+[default@unknown] help create column family
+...     ;
+create column family <name>;
+create column family <name> with <att1>=<value1>;
+create column family <name> with <att1>=<value1> and <att2>=<value2>...;
+
+Create a column family in the current keyspace with the specified
+attributes.
+
+Required Parameters:
+- name: Name of the new column family. Names may only contain letters,
+  numbers and underscores.
+
+column family Attributes (all are optional):
+- column_metadata: Defines the validation and indexes for known columns in
+  this column family.
+
+  Columns not listed in the column_metadata section will use the
+  default_validator to validate their values.
+
+  Column Required parameters:
+    - name: Binds a validator (and optionally an indexer) to columns
+      with this name in any row of the enclosing column family.
+
+    - validator: Validator to use for values for this column.
+
+      Supported values are:
+        - AsciiType
+        - BytesType
+        - CounterColumnType (distributed counter column)
+        - IntegerType (a generic variable-length integer type)
+        - LexicalUUIDType
+        - LongType
+        - UTF8Type
+
+      It is also valid to specify the fully-qualified class name to a class
+      that extends org.apache.Cassandra.db.marshal.AbstractType.
+
+  Column Optional parameters:
+    - index_name: Name for the index. Both an index name and
+      type must be specified.
+
+    - index_type: The type of index to be created.
+
+      Suported values are:
+        - 0: for a KEYS based index
+
+- column_type: Type of columns this column family holds, valid values are
+  Standard and Super. Default is Standard.
+
+- comment: Human readable column family description.
+
+- comparator: Validator to use to validate and compare column names in
+  this column family. For Standard column families it applies to columns, for
+  Super column families applied to  super columns. Also see the subcomparator
+  attribute. Default is BytesType, which is a straight forward lexical
+  comparison of the bytes in each column.
+
+  Supported values are:
+    - AsciiType
+    - BytesType
+    - CounterColumnType (distributed counter column)
+    - IntegerType (a generic variable-length integer type)
+    - LexicalUUIDType
+    - LongType
+    - UTF8Type
+
+  It is also valid to specify the fully-qualified class name to a class that
+  extends org.apache.Cassandra.db.marshal.AbstractType.
+
+- default_validation_class: Validator to use for values in columns which are
+  not listed in the column_metadata. Default is BytesType which applies
+  no validation.
+
+  Supported values are:
+    - AsciiType
+    - BytesType
+    - CounterColumnType (distributed counter column)
+    - IntegerType (a generic variable-length integer type)
+    - LexicalUUIDType
+    - LongType
+    - UTF8Type
+
+  It is also valid to specify the fully-qualified class name to a class that
+  extends org.apache.Cassandra.db.marshal.AbstractType.
+
+- key_validation_class: Validator to use for keys.
+  Default is BytesType which applies no validation.
+
+  Supported values are:
+    - AsciiType
+    - BytesType
+    - IntegerType (a generic variable-length integer type)
+    - LexicalUUIDType
+    - LongType
+    - UTF8Type
+
+  It is also valid to specify the fully-qualified class name to a class that
+  extends org.apache.Cassandra.db.marshal.AbstractType.
+
+- gc_grace: Time to wait in seconds before garbage collecting tombstone
+  deletion markers. Default value is 864000 or 10 days.
+
+  Set this to a large enough value that you are confident that the deletion
+  markers will be propagated to all replicas by the time this many seconds
+  has elapsed, even in the face of hardware failures.
+
+  See http://wiki.apache.org/Cassandra/DistributedDeletes
+
+- keys_cached: Maximum number of keys to cache in memory. Valid values are
+  either a double between 0 and 1 (inclusive on both ends) denoting what
+  fraction should be cached. Or an absolute number of rows to cache.
+  Default value is 200000.
+
+  Each key cache hit saves 1 seek and each row cache hit saves 2 seeks at the
+  minimum, sometimes more. The key cache is fairly tiny for the amount of
+  time it saves, so it's worthwhile to use it at large numbers all the way
+  up to 1.0 (all keys cached). The row cache saves even more time, but must
+  store the whole values of its rows, so it is extremely space-intensive.
+  It's best to only use the row cache if you have hot rows or static rows.
+
+- keys_cache_save_period: Duration in seconds after which Cassandra should
+  safe the keys cache. Caches are saved to saved_caches_directory as
+  specified in conf/Cassandra.yaml. Default is 14400 or 4 hours.
+
+  Saved caches greatly improve cold-start speeds, and is relatively cheap in
+  terms of I/O for the key cache. Row cache saving is much more expensive and
+  has limited use.
+
+- memtable_flush_after: Maximum number of minutes to leave a dirty
+  memtable unflushed. This value needs to be large enough that it won't cause
+  a flush storm of all your memtables flushing at once because none have
+  hit the size or count thresholds yet. For production a larger value such
+  as 1440 is recommended. Default is 60.
+
+  NOTE: While any affected column families have unflushed data from a commit
+  log segment, that segment cannot be deleted.
+
+- memtable_operations: Number of operations in millions before the memtable
+  is flushed. Default is memtable_throughput / 64 * 0.3
+
+- memtable_throughput: Maximum size in MB to let a memtable get to before
+  it is flushed. Default is to use 1/16 the JVM heap size.
+
+- read_repair_chance: Probability (0.0-1.0) with which to perform read
+  repairs for any read operation. Default is 1.0 to enable read repair.
+
+  Note that disabling read repair entirely means that the dynamic snitch
+  will not have any latency information from all the replicas to recognize
+  when one is performing worse than usual.
+
+- rows_cached: Maximum number of rows whose entire contents we
+  cache in memory. Valid values are either a double between 0 and 1 (
+  inclusive on both ends) denoting what fraction should be cached. Or an
+  absolute number of rows to cache. Default value is 0, to disable row
+  caching.
+
+  Each key cache hit saves 1 seek and each row cache hit saves 2 seeks at the
+  minimum, sometimes more. The key cache is fairly tiny for the amount of
+  time it saves, so it's worthwhile to use it at large numbers all the way
+  up to 1.0 (all keys cached). The row cache saves even more time, but must
+  store the whole values of its rows, so it is extremely space-intensive.
+  It's best to only use the row cache if you have hot rows or static rows.
+
+- row_cache_save_period: Duration in seconds after which Cassandra should
+  safe the row cache. Caches are saved to saved_caches_directory as specified
+  in conf/Cassandra.yaml. Default is 0 to disable saving the row cache.
+
+  Saved caches greatly improve cold-start speeds, and is relatively cheap in
+  terms of I/O for the key cache. Row cache saving is much more expensive and
+  has limited use.
+
+- subcomparator:  Validator to use to validate and compare sub column names
+  in this column family. Only applied to Super column families. Default is
+  BytesType, which is a straight forward lexical comparison of the bytes in
+  each column.
+
+  Supported values are:
+    - AsciiType
+    - BytesType
+    - CounterColumnType (distributed counter column)
+    - IntegerType (a generic variable-length integer type)
+    - LexicalUUIDType
+    - LongType
+    - UTF8Type
+
+  It is also valid to specify the fully-qualified class name to a class that
+  extends org.apache.Cassandra.db.marshal.AbstractType.
+
+- max_compaction_threshold: The maximum number of SSTables allowed before a
+minor compaction is forced. Default is 32, setting to 0 disables minor
+compactions.
+
+Decreasing this will cause minor compactions to start more frequently and
+be less intensive. The min_compaction_threshold and max_compaction_threshold
+boundaries are the number of tables Cassandra attempts to merge together at
+once.
+
+- min_compaction_threshold: The minimum number of SSTables needed
+to start a minor compaction. Default is 4, setting to 0 disables minor
+compactions.
+
+Increasing this will cause minor compactions to start less frequently and
+be more intensive. The min_compaction_threshold and max_compaction_threshold
+boundaries are the number of tables Cassandra attempts to merge together at
+once.
+
+- replicate_on_write: Replicate every counter update from the leader to the
+follower replicas. Accepts the values true and false.
+
+- row_cache_provider: The provider for the row cache to use for this
+column family. Defaults to ConcurrentLinkedHashCacheProvider.  .
+
+Supported values are:
+    - ConcurrentLinkedHashCacheProvider
+    - SerializingCacheProvider
+
+It is also valid to specify the fully-qualified class name to a class
+that implements org.apache.cassandra.cache.IRowCacheProvider.
+
+ConcurrentLinkedHashCacheProvider provides the same features as the versions
+prior to Cassandra v0.8. Row data is cached using the Java JVM heap.
+
+SerializingCacheProvider serialises the contents of the row and
+stores the data off the JVM Heap. This may reduce the GC pressure.
+NOTE: Thsi provider requires JNA.jar to be in the class path to
+enable native methods.
+
+Examples:
+create column family Super4
+    with column_type = 'Super'
+    and comparator = 'AsciiType'
+    and rows_cached = 10000;
+create column family Standard3
+    with comparator = 'LongType'
+    and rows_cached = 10000;
+create column family Standard4
+    with comparator = AsciiType
+    and column_metadata =
+    [{
+        column_name : Test,
+        validation_class : IntegerType,
+        index_type : 0,
+        index_name : IdxName},
+    {
+        column_name : 'other name',
+        validation_class : LongType
+    }];
+
+[default@unknown]

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+		<rich:messages infoClass="infoClass" errorClass="errorClass" />
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+
+		<rich:panel header="#{msg['conceptLocale.title']}">
+			<!--  h:graphicImage value="#{resource['images:eternity.png']}"
+						style="float:right;height:60px"/-->
+
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputText value="#{msg['conceptLocale.name']}: " />
+					<h:inputText id="name"
+						value="#{conceptLocaleBean.conceptLocale.name}" />
+					<h:outputText value="#{msg['conceptLocale.code']}: " />
+					<h:inputText id="code"
+						value="#{conceptLocaleBean.conceptLocale.code}" />
+					<h:outputText value="#{msg['conceptLocale.description']}: " />
+					<h:inputText id="description"
+						value="#{conceptLocaleBean.conceptLocale.description}" />
+				</h:panelGrid>
+
+				<h:column>
+					<h:outputText value="Status" />
+				</h:column>
+
+				<h:selectOneMenu id="statusId"
+					value="#{conceptLocaleBean.conceptLocale.status}">
+					<f:selectItems value="#{conceptLocaleBean.statuses}" />
+				</h:selectOneMenu>
+				<br />
+				<br />
+
+				<h:commandButton value="#{msg['conceptLocale.save']} "
+					action="#{conceptLocaleBean.saveLocale}" />
+				<h:commandButton value="#{msg['conceptClass.back']} "
+					action="addconceptlocale" />
+
+			</h:form>
+		</rich:panel>
+
+	</ui:define>
+
+</ui:composition>
+</html>

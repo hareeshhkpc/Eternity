@@ -1,0 +1,454 @@
+	create column family WORKFLOW_DEFINITION 
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: MESSAGEWORKFLOW, validation_class: UTF8Type}
+	];
+	create column family MESSAGE_STORE with comparator = 'UTF8Type' and key_validation_class = 'UTF8Type' and default_validation_class = 'UTF8Type' and column_metadata = [{column_name: MESSAGE, validation_class: UTF8Type},{column_name: MESSAGETYPE, validation_class: UTF8Type},{column_name: MESSAGESTAUS, validation_class: UTF8Type}];
+		
+	create column family MESSAGE_PARTICIPANT 
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+				{column_name:USERID , validation_class: UTF8Type, index_type: KEYS, index_name: partUserId },
+				{column_name:MESSAGEID , validation_class: UTF8Type, index_type: KEYS, index_name: partMsgId }
+		];
+	create column family WORKFLOW_TASK
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		
+		{column_name:USERID , validation_class: UTF8Type, index_type: KEYS, index_name: userId },
+		{column_name:MESSAGEID , validation_class: UTF8Type, index_type: KEYS, index_name: msgId },
+		{column_name: MESSAGETYPE, validation_class: UTF8Type, index_type: KEYS, index_name: msgType },
+		{column_name: TASKNAME, validation_class: UTF8Type, index_type: KEYS, index_name: taskName },
+		{column_name: TASKSTATUS, validation_class: UTF8Type, index_type: KEYS, index_name: msgStatus }
+		];
+		
+   create column family USER_TASK
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		
+		{column_name: TASKID, validation_class: UTF8Type}
+		];
+	
+	
+	
+	create column family FIAB_MT020000HT02_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: code , validation_class: UTF8Type, index_type: KEYS, index_name: code },
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:accountsId },
+		{column_name: effectiveTime, validation_class: UTF8Type, index_type: KEYS, index_name: time },
+		{column_name: statusCode, validation_class: UTF8Type, index_type: KEYS, index_name: statusCode },
+		{column_name: activityTime, validation_class: UTF8Type, index_type: KEYS, index_name: activityTime },
+		{column_name: amt, validation_class: UTF8Type, index_type: KEYS, index_name: amt },
+		{column_name: ACTRELATIONSHIP, validation_class: UTF8Type, index_type: KEYS, index_name: ACTRELATIONSHIP },
+		];
+		
+	create column family POCD_MT000040HT01_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name:id , validation_class: UTF8Type, index_type: KEYS, index_name: clinicalDocumentId },
+		];
+	
+	create column family POSA_MT920000HT03_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name:id , validation_class: UTF8Type, index_type: KEYS, index_name: SubstanceAdministrationOrderId },
+		];		
+	
+	create column family POXX_MT111000HT02_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name:messageid , validation_class: UTF8Type, index_type: KEYS, index_name: messageid },
+		{column_name:testname , validation_class: UTF8Type, index_type: KEYS, index_name: testname },
+		{column_name: patientid, validation_class: UTF8Type, index_type: KEYS, index_name: patientid },
+		{column_name: testdate, validation_class: UTF8Type, index_type: KEYS, index_name: testdate },
+		];
+	
+	
+	create column family PRPA_IN203000HT04_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name:id , validation_class: UTF8Type, index_type: KEYS, index_name: IdentifiedEntityId },
+		{column_name:firstName , validation_class: UTF8Type, index_type: KEYS, index_name: IdentifiedEntityfirstName },
+		{column_name: image, validation_class: UTF8Type, index_type: KEYS, index_name: IdentifiedEntityImage },
+		];
+		
+	create column family PRPA_MT201000HT03_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name:firstName , validation_class: UTF8Type, index_type: KEYS, index_name: firstName },
+		{column_name:id , validation_class: UTF8Type, index_type: KEYS, index_name: id },
+		{column_name: image, validation_class: UTF8Type, index_type: KEYS, index_name: image },
+		{column_name: organizationId, validation_class: UTF8Type, index_type: KEYS, index_name: organizationId },
+		];
+
+
+    create column family PRPA_MT410001HT02_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{ column_name: effectiveTimeFrom , validation_class: LongType, index_type: KEYS, index_name: fromTime },
+		{ column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name: appId },
+		{ column_name: effectiveTimeTo, validation_class: LongType, index_type: KEYS, index_name: toTime },
+		{ column_name: responsibleParty, validation_class: UTF8Type, index_type: KEYS, index_name: PRPA_MT410001HT02_responsibleParty },
+		{ column_name: consultant, validation_class: UTF8Type, index_type: KEYS, index_name: PRPA_MT410001HT02_consultant }
+		];
+		
+	
+    create column family COCT_MT150000HT04_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:OrganizationId },
+		];	
+	
+	create column family FIAB_MT020000HT02_FEES_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:FinancialTransactionId },
+		];
+	
+	create column family FIAB_MT020000HT02_PRODUCT_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:FinancialTransactionProductId },
+		];
+		
+	create column family FIAB_MT020000HT02_SERVICE_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:FinancialTransactionServiceId },
+		];
+
+  
+    create column family POCD_MT000040UV_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POCD_MT000040UV_Id },
+		];
+  
+    create column family POCD_MT000040UV_AWARENESS_QUESTIONNAIRE_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POCD_MT000040UV_AWARENESS_QUESTIONNAIRE_Id },
+		];
+		
+    create column family POCD_MT000040UV_ConsentForm_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POCD_MT000040UV_ConsentForm_Id },
+		];
+		
+    create column family POCD_MT000040UV_CULTURE_QUESTIONNAIRE_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POCD_MT000040UV_CULTURE_QUESTIONNAIRE_Id },
+		];
+	
+	create column family POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE_Id },
+		];
+
+	create column family POCD_MT000040UV_HEALTH_HISTORY_QUESTIONNAIR_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POCD_MT000040UV_HEALTH_HISTORY_QUESTIONNAIR_Id },
+		];
+		
+    create column family POCD_MT000040UV_HEALTH_HISTORY_QUESTIONNAIRE_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POCD_MT000040UV_HEALTH_HISTORY_QUESTIONNAIRE_Id },
+		];
+		
+	create column family POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE_Id }
+		];
+
+    create column family POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE_Id },
+		];
+
+	create column family POCD_MT000040UV_Welcome_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POCD_MT000040UV_Welcome_Id },
+		];
+		
+	create column family POLB_MT004000HT01_ABI_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POLB_MT004000HT01_ABI_Id },
+		];
+		
+	create column family POLB_MT004000HT01_Bioclip_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POLB_MT004000HT01_Bioclip_Id },
+		];
+	
+	create column family POLB_MT004000HT01_Biospace_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POLB_MT004000HT01_Biospace_Id },
+		];
+		
+    create column family POLB_MT004000HT01_CAC_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POLB_MT004000HT01_CAC_Id },
+		];
+		
+	create column family POLB_MT004000HT01_Cardioscan_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POLB_MT004000HT01_Cardioscan_Id },
+		];
+
+	create column family POLB_MT004000HT01_Elastometer_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POLB_MT004000HT01_Elastometer_Id },
+		];
+	
+    
+	create column family POLB_MT004000HT01_IMT_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POLB_MT004000HT01_IMT_Id },
+		];
+
+  	create column family POLB_MT004000HT01_Labs_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POLB_MT004000HT01_Labs_Id },
+		];
+		
+    create column family POLB_MT004000HT01_MCG_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POLB_MT004000HT01_MCG_Id },
+		];
+		
+	create column family POLB_MT004000HT01_SphygmoCor_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POLB_MT004000HT01_SphygmoCor_Id },
+		];
+		
+	create column family POLB_MT004000HT01_Thyroflex_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POLB_MT004000HT01_Thyroflex_Id },
+		];
+	
+	create column family POXX_MT111000HT02_ABI_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POXX_MT111000HT02_ABI_Id },
+		];
+
+    create column family POXX_MT111000HT02_BIOCLIP_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POXX_MT111000HT02_BIOCLIP_Id },
+		];
+	
+    create column family POXX_MT111000HT02_BIOSPACE_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POXX_MT111000HT02_BIOSPACE_Id },
+		];
+		
+	create column family POXX_MT111000HT02_CAC_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POXX_MT111000HT02_CAC_Id },
+		];
+		
+	create column family POXX_MT111000HT02_IMT_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POXX_MT111000HT02_IMT_Id },
+		];
+	
+	create column family POXX_MT111000HT02_Labs_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POXX_MT111000HT02_Labs_Id },
+		];
+		
+	create column family POXX_MT111000HT02_THYROFLEX_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POXX_MT111000HT02_THYROFLEX_Id },
+		];
+	create column family POSA_MT920000HT03_Genetics_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POSA_MT920000HT03_Genetics_Id },
+		];
+	
+	create column family POSA_MT920000HT03_Hormones_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POSA_MT920000HT03_Hormones_Id },
+		];
+	create column family POSA_MT920000HT03_Supplements_INDEX
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POSA_MT920000HT03_Supplements_Id },
+		];
+		
+	create column family POXX_MT111000HT02_BIOCLIP_INDEX with comparator = 'UTF8Type' and key_validation_class = 'UTF8Type' and default_validation_class = 'UTF8Type' and column_metadata = [{column_name: id, validation_class: UTF8Type, index_type: KEYS, index_name:POXX_MT111000HT02_BIOCLIP_Id }];
+	
+	create column family MESSAGECODEDETAILS with comparator = 'UTF8Type' and key_validation_class = 'UTF8Type' and default_validation_class = 'UTF8Type' and column_metadata = [{column_name: PREFIX, validation_class: UTF8Type},{column_name: SUFFIX, validation_class: UTF8Type },{column_name:CURRENTNUM, validation_class: UTF8Type }];
+	
+	create column family ROLE_PHYSICIAN_INDEX with comparator = 'UTF8Type' and key_validation_class = 'UTF8Type' and default_validation_class = 'UTF8Type' and column_metadata = [{column_name: messageId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_PHYSICIAN_messageId },{column_name: subscriberId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_PHYSICIAN_subscriberId },{column_name: documentId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_PHYSICIAN_documentId },{column_name: assignedOrgId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_PHYSICIAN_assignedOrgId },{column_name: roleName, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_PHYSICIAN_roleName }];
+	
+	create column family ROLE_EMPLOYEE_INDEX with comparator = 'UTF8Type' and key_validation_class = 'UTF8Type' and default_validation_class = 'UTF8Type' and column_metadata = [{column_name: messageId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_EMPLOYEE_messageId },{column_name: subscriberId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_EMPLOYEE_subscriberId },{column_name: documentId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_EMPLOYEE_documentId },{column_name: assignedOrgId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_EMPLOYEE_assignedOrgId },{column_name: roleName, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_EMPLOYEE_roleName }];
+	
+	create column family ROLE_PATIENT_INDEX with comparator = 'UTF8Type' and key_validation_class = 'UTF8Type' and default_validation_class = 'UTF8Type' and column_metadata = [{column_name: messageId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_PATIENT_messageId },{column_name: subscriberId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_PATIENT_subscriberId },{column_name: documentId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_PATIENT_documentId },{column_name: assignedOrgId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_PATIENT_assignedOrgId },{column_name: roleName, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_PATIENT_roleName }];
+	
+	create column family ROLE_USER_INDEX with comparator = 'UTF8Type' and key_validation_class = 'UTF8Type' and default_validation_class = 'UTF8Type' and column_metadata = [{column_name: messageId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_USER_messageId },{column_name: subscriberId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_USER_subscriberId },{column_name: documentId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_USER_documentId },{column_name: assignedOrgId, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_USER_assignedOrgId },{column_name: roleName, validation_class: UTF8Type, index_type: KEYS, index_name:ROLE_USER_roleName }];
+	
+	create column family PERMISSION with comparator = 'UTF8Type' and key_validation_class = 'UTF8Type' and default_validation_class = 'UTF8Type' and column_metadata = [{column_name: PERMISSIONID, validation_class: UTF8Type}];
+	
+	create column family MESSAGE_ID_TYPE with comparator = 'UTF8Type' and key_validation_class = 'UTF8Type' and default_validation_class = 'UTF8Type' and column_metadata = [{column_name: MESSAGE_TYPE, validation_class: UTF8Type}];
+	
+	
+	
+	create column family CHAT_SEND_MESSAGES
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name:SENDERID , validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_SEND_MESSAGES_senderId },
+		{column_name:RECEIVERID , validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_SEND_MESSAGES_receiverId },
+		{column_name: CONTENT, validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_SEND_MESSAGES_content },
+		{column_name: READSTATUS, validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_SEND_MESSAGES_readstaus },
+		{column_name: SENDTIME, validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_SEND_MESSAGES_sendtime},
+		{column_name: READTIME, validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_SEND_MESSAGES_readtime },
+		{column_name: INSTANCEID, validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_SEND_MESSAGES_instanceId }
+		];
+		create column family CHAT_RECEIVED_MESSAGES
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name:SENDERID , validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_RECEIVED_MESSAGES_senderId },
+		{column_name:RECEIVERID , validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_RECEIVED_MESSAGES_receiverId },
+		{column_name: CONTENT, validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_RECEIVED_MESSAGES_content },
+		{column_name: READSTATUS, validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_RECEIVED_MESSAGES_readstaus },
+		{column_name: SENDTIME, validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_RECEIVED_MESSAGES_sendtime},
+		{column_name: READTIME, validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_RECEIVED_MESSAGES_readtime },
+		{column_name: INSTANCEID, validation_class: UTF8Type, index_type: KEYS, index_name: CHAT_RECEIVED_MESSAGES_instanceId }
+		];
+		
+	create column family ORGANIZATION_LIST
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name:CLUSTERNAME , validation_class: UTF8Type, index_type: KEYS, index_name: ORGANIZATION_LIST_CLUSTERNAME },
+		{column_name:HOST , validation_class: UTF8Type, index_type: KEYS, index_name: ORGANIZATION_LIST_HOST },
+		{column_name: PORT, validation_class: UTF8Type, index_type: KEYS, index_name: ORGANIZATION_LIST_PORT },
+		{column_name: ISTHRIFT, validation_class: UTF8Type, index_type: KEYS, index_name: ORGANIZATION_LIST_ISTHRIFT },
+		{column_name: KEYSPACENAME, validation_class: UTF8Type, index_type: KEYS, index_name: ORGANIZATION_LIST_KEYSPACENAME}
+		];

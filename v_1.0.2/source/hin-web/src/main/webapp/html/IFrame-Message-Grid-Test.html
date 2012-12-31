@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Message Reg Api</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="css/hin.css" />
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.json-2.3.js"></script>
+
+
+<script>
+	//reset type=date inputs to text	
+	$(document).bind("mobileinit", function() {
+		$.mobile.page.prototype.options.degradeInputs.date = true;
+	});
+</script>
+
+
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+
+<script src="js/AjaxMultipart.js"></script>
+<script src="js/AppConstants.js"></script>
+<script src="js/ApplicationController.js"></script>
+<script src="js/AppUtil.js"></script>
+<script src="js/Callback.js"></script>
+<script src="js/CommonUtil.js"></script>
+<script src="js/Context.js"></script>
+<script src="js/DataLayer.js"></script>
+<script src="js/DataTypeAPI.js"></script>
+<script src="js/EventQueue.js"></script>
+<script src="js/HashMap.js"></script>
+<script src="js/IDGenerator.js"></script>
+<script src="js/hl7adapter_new.js"></script>
+<!-- <script src="js/hl7adapter.js"></script> -->
+<script src="js/LookupHandler.js"></script>
+<script src="js/MessageAndUIBinder.js"></script>
+<script src="js/RenderingEngine.js"></script>
+<script src="js/XmlUtil.js"></script>
+
+<script src="js/vo/AppointmentVO.js"></script>
+<script src="js/custom/AppSchedule.js"></script>
+<script src="js/custom/Form.js"></script>
+<script src="js/custom/Home.js"></script>
+<script src="js/custom/Library.js"></script>
+<script src="js/custom/Login.js"></script>
+<script src="js/custom/Mentor.js"></script>
+<script src="js/custom/Monitor.js"></script>
+<script src="js/custom/Measure.js"></script>
+<script src="js/custom/Navigation.js"></script>
+<script src="js/custom/Patient.js"></script>
+<script src="js/custom/Process.js"></script>
+<script src="js/custom/Program.js"></script>
+<script src="js/custom/Review.js"></script>
+<script src="js/custom/Search.js"></script>
+<script src="js/custom/TestResult.js"></script>
+<script src="js/custom/WorkFlow.js"></script>
+<script src="js/custom/Statistics.js"></script>
+
+<script src="js/hl7adapter_new.js"></script>
+<script type="text/javascript" src="js/xml2json.js"></script>
+<script type="text/javascript" src="js/json2xml.js"></script>
+
+
+<link rel="stylesheet" href="js/jquery.ui.datepicker.mobile.css" />
+<script src="js/jQuery.ui.datepicker.js"></script>
+<script src="js/jquery.ui.datepicker.mobile.js"></script>
+
+<script src="js/jquery.easydate-0.2.4.js"></script>
+
+<script>
+
+function IFramePageApi(iFrameURL, parentContainerID, iFrameHTML, isObject){
+	var thisObject = this;
+	this.iFrameURL = iFrameURL;
+	this.isObject = isObject;
+	
+	if(!iFrameURL){
+		throw "Required parameter 'iFrameURL' missing.";
+	}
+	
+	if(!parentContainerID){
+		throw "Required parameter 'parentContainerID' missing.";
+	}
+	
+	this.parentContainer = $('#' + parentContainerID);
+	
+	IFramePageApi.html = '<div id="testFrame" style="height: 150px; width: 50%">'
+		+ '<iframe id="testIFrame" name="testIFrame" scrolling="auto" ' 
+		+ 'height="100%" width="100%" src="" frameborder="0"></iframe>'
+		+ '</div>';
+		
+	IFramePageApi.objectHtml = '<div id="testFrame" style="height: 150px; width: 50%">' 
+		+ '<object id="testIFrame" height="100%" width="100%" type="text/html" data=""></object></div>';
+		
+	//this.iFrameDOM = $((iFrameHTML) ? iFrameHTML : IFramePageApi.html);
+	this.iFrameDOM = $((isObject === true) ? ((iFrameHTML) ? iFrameHTML : IFramePageApi.objectHtml) : ((iFrameHTML) ? iFrameHTML : IFramePageApi.html));
+	this.callBackAfterFrameLoad = null;
+	this.paramsToIFrame = null;
+	this.frameObject = null;
+	
+	this.loadIFrame = function(paramsToIFrame, callBackAfterFrameLoad){
+		thisObject.callBackAfterFrameLoad = callBackAfterFrameLoad;			
+		thisObject.paramsToIFrame = paramsToIFrame;
+		thisObject.parentContainer.append(thisObject.iFrameDOM);
+		
+		/* //alert("Buttons: " + $(html).find('#xmlBtn').length);
+		thisObject.iFrameDOM.find('#xmlBtn').unbind('click', showXml);
+		thisObject.iFrameDOM.find('#xmlBtn').bind('click', showXml);
+		
+		thisObject.iFrameDOM.find('#removeBtn').unbind('click', removeXml);
+		thisObject.iFrameDOM.find('#removeBtn').bind('click', removeXml);
+		
+		function showXml(){
+			var childWin = thisObject.frameObject.contentWindow;
+			childWin.showXml();
+		};
+		
+		function removeXml(){
+			thisObject.iFrameDOM.remove();
+			thisObject.iFrameDOM = null;
+		}; */
+		
+		if(!thisObject.isObject){
+			thisObject.iFrameDOM.find('iframe').unbind('load', afterFrameLoad);
+			thisObject.iFrameDOM.find('iframe').bind('load', afterFrameLoad);
+		}
+		else {
+			thisObject.iFrameDOM.find('object').unbind('load', afterFrameLoad);
+			thisObject.iFrameDOM.find('object').bind('load', afterFrameLoad);
+		}
+		
+		function afterFrameLoad(){		
+			alert("IFrame loaded.")
+			var childWin = this.contentWindow;
+			alert("childWin: " + childWin)
+			thisObject.frameObject = this;
+			
+			if(!childWin.onLoadComplete){
+				throw "Required interface method 'onLoadComplete' is missing in the page loaded in iframe.";
+			}
+			childWin.onLoadComplete(thisObject.paramsToIFrame);
+			alert("Calling childWin.onLoadComplete")
+			if(thisObject.callBackAfterFrameLoad){
+				alert("After calling childWin.onLoadComplete");
+				thisObject.callBackAfterFrameLoad.apply(thisObject);
+			}
+		}
+		
+		thisObject.parentContainer.trigger("create");
+			
+		if(!thisObject.isObject){
+			thisObject.iFrameDOM.find('iframe').attr('src', thisObject.iFrameURL);
+		}
+		else {
+			thisObject.iFrameDOM.find('object').attr('data', thisObject.iFrameURL);
+		}
+		return thisObject;
+	};
+	
+	this.removeIFrame = function(callBackAfterFrameRemove){
+		thisObject.iFrameDOM.remove();
+		thisObject.iFrameDOM = null;
+		if(callBackAfterFrameRemove){
+			callBackAfterFrameRemove.apply(thisObject);
+		}
+	};
+		
+	return thisObject;
+};
+
+$(document).ready(function(){
+	
+	//alert("Load Configuration");
+	var api = null;
+	var lookupHandler = new LookupHandler();
+	
+	$("#contentBtn").click(function(){
+		var html = '<div id="testFrame" style="height: 500px; width: 100%">'
+			+ '<iframe id="testIFrame" name="testIFrame" scrolling="no" ' 
+			+ 'height="100%" width="100%" src="" frameborder="0"></iframe>'
+			+ '</div>';
+			
+		//html = '<object id="object" height="90%" width="100%" type="text/html" data="http://en.wikipedia.org/"></object>';
+		
+		if(api === null){
+			api = new IFramePageApi($('#contentText').val(), 'mainContent', html, false);
+			api.loadIFrame({lookupHandler: lookupHandler}, afterFrameLoad);
+		}
+	});
+	
+	function afterFrameLoad(){
+		//alert("Load complete now...");
+
+		var childWin = this.frameObject.contentWindow;
+		//alert(childWin);
+		//alert(this.iFrameURL);
+		
+		//this.iFrameDOM
+	};
+	
+	$("#removeBtn").click(function(){
+		api.removeIFrame(function(){
+			alert("IFrame removed.");
+			api = null;
+		});
+	});
+	
+	$("#showBtn").click(function(){
+		var childWin = api.frameObject.contentWindow;
+		childWin.showXml();
+	});
+
+});
+</script>
+</head>
+<body>
+<div>
+	Input: <input type="text" id="contentText" value="IFrame-Message-Grid-Child-Test.html"/>
+	<input type="button" id="contentBtn" value="Add Frame">
+	<input type="button" id="removeBtn" value="Remove Frame">
+	<input type="button" id="showBtn" value="Show XML">
+	
+	<div id="mainContent">
+		
+	</div>
+</div>
+	
+</body>
+</html>

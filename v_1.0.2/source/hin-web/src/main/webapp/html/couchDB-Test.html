@@ -1,0 +1,160 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="cache-control" content="no-cache" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>CouchDB Test Cases</title>
+
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" type="text/css" />
+
+<script src="js/jquery-1.7.1.js"></script>
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+<script src="js/CouchLookups.js"></script>
+<script>
+
+$(document).ready(function(){
+	$("#byConceptClassName").prev('span').find('span.ui-btn-text').text("Retrieve concepts of Concept Class Name : "+conceptClassName);
+	$("#byStringMatch").prev('span').find('span.ui-btn-text').text("Retrieve concepts by matching string : "+matchString);
+	$("#createDocument").prev('span').find('span.ui-btn-text').text("Create Document for "+doc.conceptName+" : Document ID. = "+docid);
+	$("#deleteDocument").prev('span').find('span.ui-btn-text').text("Delete Document of "+doc.conceptName+" : Document ID. = "+docid);	
+});
+	var couchLookups = new CouchLookups();
+	var conceptClassName = "state";
+	var matchString = "cou";
+	var docid = "12345";
+	var doc = {
+			   "shortName": "Germany",
+			   "conceptClasses": [
+			       {
+			           "conceptAttributes": [
+			           ],
+			           "name": "Nations",
+			           "description": "Nations",
+			           "id": "5081002d01f6847ced5e364c",
+			           "status": "ACTIVE"
+			       }
+			   ],
+			   "conceptAttributes": [
+			   ],
+			   "synonyms": [
+			   ],
+			   "locales": [
+			   ],
+			   "name": "Germany",
+			   "sources": [
+			   ],
+			   "description": "Germany",
+			   "id": "5081003001f6847ced5e368e",
+			   "status": "ACTIVE"
+			};
+	
+	function getConceptByConceptClassName() {
+		couchLookups.getConceptByConceptClassName(conceptClassName, display);
+		
+		function display(rows){
+			$("#conceptByConceptClassName").html("");
+			if(rows.length == 0){
+				$("#conceptByConceptClassName").html("No matching Concept Class found");
+			}
+			else{
+				for ( var i in rows) {
+					//alert("key: " + rows[i].key + " , value: " + rows[i].value);
+					$("#conceptByConceptClassName").append("<div>name : "+rows[i].value.name+"</div>");
+					$("#conceptByConceptClassName").append("<div>shortName : "+rows[i].value.shortName+"</div>");
+					$("#conceptByConceptClassName").append("<div>description : "+rows[i].value.description+"</div>");
+					$("#conceptByConceptClassName").append("<div>shortName : "+rows[i].value.shortName+"</div>");
+					$("#conceptByConceptClassName").append("<div>status : "+rows[i].value.status+"</div>");
+					$("#conceptByConceptClassName").append("<br>");
+				}
+			}
+		}
+	}
+
+	function getConceptsByMatchString() {
+		couchLookups.getConceptsByMatchString(matchString, display);
+		function display(rows){
+			$("#conceptsByMatchString").html("");
+			if(rows.length == 0){
+				$("#conceptsByMatchString").html("No matching Concept Class found");
+			}
+			else{
+				for ( var i in rows) {
+					//alert("key: " + rows[i].key + " , value: " + rows[i].value);
+					$("#conceptsByMatchString").append("<div>name : "+rows[i].value.name+"</div>");
+					$("#conceptsByMatchString").append("<div>shortName : "+rows[i].value.shortName+"</div>");
+					$("#conceptsByMatchString").append("<div>description : "+rows[i].value.description+"</div>");
+					$("#conceptsByMatchString").append("<div>shortName : "+rows[i].value.shortName+"</div>");
+					$("#conceptsByMatchString").append("<div>status : "+rows[i].value.status+"</div>");
+					$("#conceptsByMatchString").append("<br>");
+				}
+			}
+		}
+	}
+	
+	function createDocument(){
+		couchLookups.createDocument(doc, docid, display);
+		
+		function display(response){
+			$("#createDocumentDisplay").html("");
+			$("#createDocumentDisplay").html(response);
+			$("#createDocumentDisplay").append("<br>");
+				$("#createDocumentDisplay").append("<div>name : "+doc.name+"</div>");
+				$("#createDocumentDisplay").append("<div>shortName : "+doc.shortName+"</div>");
+				$("#createDocumentDisplay").append("<div>description : "+doc.description+"</div>");
+				$("#createDocumentDisplay").append("<div>shortName : "+doc.shortName+"</div>");
+				$("#createDocumentDisplay").append("<div>status : "+doc.status+"</div>");
+				$("#createDocumentDisplay").append("<br>");
+			
+		}
+	}
+	
+	function deleteDocument(){
+		couchLookups.deleteDocument(docid, display);
+		
+		function display(response){
+			$("#deleteDocumentDisplay").html("");
+			$("#deleteDocumentDisplay").html(response);
+		}
+	}
+</script>
+
+
+</head>
+<body>
+	<div id="main" data-role="page"
+		data-theme="d">
+		<div data-role="header" data-theme="v" data-backBtn="true"
+			style="text-align: center">CouchDB Lookups Test</div>
+		<br>
+		<label id="labelCreateDocument" style="font-weight: bold; margin-bottom:4px;">1. Create Document:</label>
+		<div style="width: 500px">
+		<button id="createDocument" onclick="createDocument()">Create Document</button>
+		</div>
+		<div id="createDocumentDisplay"></div>
+		
+		<br><br>
+		<label id="labelDeleteDocument" style="font-weight: bold; margin-bottom:4px;">2. Delete Document:</label>
+		<div style="width: 500px">
+		<button id="deleteDocument" onclick="deleteDocument()">Delete Document</button>
+		</div>
+		<div id="deleteDocumentDisplay"></div>
+		
+		<br><br>
+		<label id="labelByConceptClassName" style="font-weight: bold; margin-bottom:4px;">3. Retrieve concepts by Concept Class Name:</label>
+		<div style="width: 500px">
+			<button id="byConceptClassName" onclick="getConceptByConceptClassName()">Retrieve concepts</button>
+		</div>
+		<div id="conceptByConceptClassName"></div>
+		<br><br>
+		<label id="labelByStringMatch" style="font-weight: bold; margin-bottom:4px;">4. Retrieve concepts by matching string with concept class name:</label>
+		<div style="width: 500px">
+		<button id="byStringMatch" onclick="getConceptsByMatchString()">Retrieve concepts by matched string</button>
+		</div>
+		<div id="conceptsByMatchString"></div>
+		
+	</div>
+</body>
+</html>

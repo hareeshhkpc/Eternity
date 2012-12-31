@@ -1,0 +1,51 @@
+<HL7MessageConfiguration>
+  <MetaInfo artifactID="COCT_MT150000HT04" createdDate="2012-09-01 13:51:24.546 UTC" entryPoint="COCT_MT150000HT04.Organization" description="Organization Registration Message"/>
+  <IndexConfiguration indexName="RegistrtionIndex">
+    <Field name="subscriberId" indexed="true" xpath="//COCT_MT150000HT04/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="false"/>
+    <Field name="messageId" indexed="true" xpath="//COCT_MT150000HT04/id[root=&apos;HIN_MSG_ID&apos;]/extension" analyzed="false"/>
+    <Field name="namePrefix" indexed="true" xpath="//COCT_MT150000HT04/name/prefix" analyzed="true"/>
+    <Field name="nameSuffix" indexed="true" xpath="//COCT_MT150000HT04/name/suffix" analyzed="true"/>
+    <Field name="subscriberType" indexed="true" xpath="name(//COCT_MT150000HT04[1])" analyzed="false"/>
+    <Field name="telecom" indexed="true" xpath="//COCT_MT150000HT04/telecom/value" analyzed="false"/>
+    <Field name="messageTitle" indexed="true" xpath="//COCT_MT150000HT04/id[root=&apos;MSG_TITLE&apos;]/extension" analyzed="true"/>
+    <Field name="licenseeId" indexed="true" xpath="//COCT_MT150000HT04/id[root=&apos;LICENSEE_ID&apos;]/extension" analyzed="false"/>
+  </IndexConfiguration>
+  <ArchiveConfiguration columnFamilyName="COCT_MT150000HT04">
+    <Field name="subscriberId" indexed="true" xpath="//COCT_MT150000HT04/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="messageId" indexed="true" xpath="//COCT_MT150000HT04/id[root=&apos;HIN_MSG_ID&apos;]/extension" type="ROWKEY"/>
+    <Field name="namePrefix" indexed="true" xpath="//COCT_MT150000HT04/name/prefix" type="COLUMN"/>
+    <Field name="nameSuffix" indexed="true" xpath="//COCT_MT150000HT04/name/suffix" type="COLUMN"/>
+    <Field name="subscriberType" indexed="true" xpath="name(//COCT_MT150000HT04[1])" type="COLUMN"/>
+    <Field name="telecom" indexed="true" xpath="//COCT_MT150000HT04/telecom/value" type="COLUMN"/>
+    <Field name="messageTitle" indexed="true" xpath="//COCT_MT150000HT04/id[root=&apos;MSG_TITLE&apos;]/extension" type="COLUMN"/>
+    <Field name="licenseeId" indexed="true" xpath="//COCT_MT150000HT04/id[root=&apos;LICENSEE_ID&apos;]/extension" analyzed="false"/>
+  </ArchiveConfiguration>
+  <WorkFlowDefinition id="id">
+    <name>Workflow Configuration For: COCT_MT150000HT04</name>
+    <start g="20,20,48,48">
+      <transition name="true" to="Save"/>
+    </start>
+    <task name="Save">
+      <transition name="Save" to="Save"/>
+    </task>
+  </WorkFlowDefinition>
+  <Class rimType="ENTITY" tagName="COCT_MT150000HT04" type="COCT_MT150000HT04.Organization">
+    <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+    <Field tagName="name" type="ON" inputControl="ON" label="Name" displayOrder="1" minOccurs="0" maxOccurs="-1"/>
+    <Field tagName="desc" type="ED" inputControl="ED" label="Desc" displayOrder="2" minOccurs="0" maxOccurs="1"/>
+    <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="3" minOccurs="0" maxOccurs="-1"/>
+    <Field tagName="addr" type="AD" inputControl="AD" label="Addr" displayOrder="4" minOccurs="0" maxOccurs="-1"/>
+    <Field tagName="code" type="CE" inputControl="CE" label="Code" displayOrder="5" minOccurs="0" maxOccurs="-1"/>
+    <Class rimType="ROLE" tagName="contactParty" type="COCT_MT150000HT04.ContactParty" label="Contact Party" displayOrder="5" minOccurs="0" maxOccurs="-1">
+      <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+      <Class rimType="ENTITY" tagName="contactPerson" type="COCT_MT150000HT04.Person" label="Contact Person" displayOrder="1" minOccurs="1" maxOccurs="1">
+        <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="1" minOccurs="0" maxOccurs="-1"/>
+        <Class rimType="ROLE" tagName="asPersonDomain" type="COCT_MT150000HT04.PersonDomain" label="As Person Domain" displayOrder="2" minOccurs="0" maxOccurs="1">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+          <Field tagName="code" type="CE" inputControl="CE" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+        </Class>
+      </Class>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

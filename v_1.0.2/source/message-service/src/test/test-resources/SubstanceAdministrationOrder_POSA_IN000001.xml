@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><POSA_IN000001 ITSVersion="XML_1.0" id="id1_1">
+	
+	<id extension="" id="id1_1_id2081_1" root=""/>
+	<creationTime id="id1_1_id2082_1" value=""/>
+	<responseModeCode id="id1_1_id2084_1" nullFlavor=""/>
+	<versionCode code="" id="id1_1_id2085_1"/>
+	<interactionId extension="" id="id1_1_id2086_1" root=""/>
+	<processingCode code="" id="id1_1_id2088_1"/>
+	<processingModeCode code="" id="id1_1_id2089_1"/>
+	<acceptAckCode code="" id="id1_1_id2090_1"/>
+	<receiver id="id1_1_id2092_1" typeCode="">
+		<device classCode="" determinerCode="" id="id1_1_id2092_1_id56_1">
+			<id extension="" id="id1_1_id2092_1_id56_1_id38_1" root=""/>
+		</device>
+	</receiver>
+	<sender id="id1_1_id2094_1" typeCode="">
+		<device classCode="" determinerCode="" id="id1_1_id2094_1_id60_1">
+			<id extension="" id="id1_1_id2094_1_id60_1_id38_1" root=""/>
+		</device>
+	</sender>
+	<controlActProcess id="id1_1_id2097_1" moodCode="">
+		<subject id="id1_1_id2097_1_id31_1">
+			<substanceAdministrationOrder classCode="" id="id1_1_id2097_1_id31_1_id32_1" moodCode="">
+				<id extension="" id="id1_1_id2097_1_id31_1_id32_1_id269_1" root=""/>
+				<code id="id1_1_id2097_1_id31_1_id32_1_id270_1" nullFlavor=""/>
+				<statusCode code="" id="id1_1_id2097_1_id31_1_id32_1_id272_1"/>
+				<effectiveTime id="id1_1_id2097_1_id31_1_id32_1_id273_1" value=""/>
+				<priorityCode code="" id="id1_1_id2097_1_id31_1_id32_1_id274_1"/>
+				
+				
+				<subject id="id1_1_id2097_1_id31_1_id32_1_id285_1" typeCode="">				
+					<patient classCode="" id="id1_1_id2097_1_id31_1_id32_1_id285_1_id268_1">
+						<id extension="" id="id1_1_id2097_1_id31_1_id32_1_id285_1_id268_1_id304_1" root=""/>
+						<patientPerson classCode="" determinerCode="" id="id1_1_id2097_1_id31_1_id32_1_id285_1_id268_1_id311_1">
+							<name id="id1_1_id2097_1_id31_1_id32_1_id285_1_id268_1_id311_1_id413_1">
+								<prefix/>
+								<given/>
+								<family/>
+							</name>
+							<administrativeGenderCode code="" codeSystem="" id="id1_1_id2097_1_id31_1_id32_1_id285_1_id268_1_id311_1_id417_1"/>
+							<birthTime id="id1_1_id2097_1_id31_1_id32_1_id285_1_id268_1_id311_1_id418_1" value=""/>
+						</patientPerson>
+					</patient>
+				</subject>
+				<consumable id="id1_1_id2097_1_id31_1_id32_1_id286_1" typeCode="">
+					<materialMedProduct classCode="" id="id1_1_id2097_1_id31_1_id32_1_id286_1_id245_1">
+						<manufacturedMaterialKind classCode="" determinerCode="" id="id1_1_id2097_1_id31_1_id32_1_id286_1_id245_1_id620_1">
+							<code id="id1_1_id2097_1_id31_1_id32_1_id286_1_id245_1_id620_1_id611_1" nullFlavor=""/>
+							<quantity id="id1_1_id2097_1_id31_1_id32_1_id286_1_id245_1_id620_1_id612_1" value="">
+								<name/>
+								<name/>
+								<name/>
+							</quantity>
+						</manufacturedMaterialKind>
+					</materialMedProduct>
+				</consumable>
+				<author id="id1_1_id2097_1_id31_1_id32_1_id287_1" typeCode="">
+					<employmentStaff classCode="" id="id1_1_id2097_1_id31_1_id32_1_id287_1_id238_1">
+						<id extension="" id="id1_1_id2097_1_id31_1_id32_1_id287_1_id238_1_id621_1" root=""/>
+						<employeePerson classCode="" determinerCode="" id="id1_1_id2097_1_id31_1_id32_1_id287_1_id238_1_id627_1">
+							<id extension="" id="id1_1_id2097_1_id31_1_id32_1_id287_1_id238_1_id627_1_id633_1" root=""/>
+							<name id="id1_1_id2097_1_id31_1_id32_1_id287_1_id238_1_id627_1_id634_1">
+								<prefix/>
+								<given/>
+								<family/>
+							</name>							
+							</employeePerson>						
+					</employmentStaff>
+				</author>
+						
+				<componentOf id="id1_1_id2097_1_id31_1_id32_1_id295_1" typeCode="">
+					<encounterEvent classCode="" id="id1_1_id2097_1_id31_1_id32_1_id295_1_id242_1" moodCode="">
+						<id extension="" id="id1_1_id2097_1_id31_1_id32_1_id295_1_id242_1_id1161_1" root=""/>
+					</encounterEvent>			
+				</componentOf>
+			</substanceAdministrationOrder>
+		</subject>
+	</controlActProcess>
+</POSA_IN000001>

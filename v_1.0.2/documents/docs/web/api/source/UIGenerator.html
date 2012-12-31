@@ -1,0 +1,3232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">var HIN;
+if (!HIN)
+	HIN = {};
+
+<span id='HIN-UIGenerator'>/**
+</span> * UIGenerator
+ * 
+ * Main UI controller which generate and holds the ui components.It makes events
+ * to be processed by corresponding components.
+ */
+HIN.UIGenerator = function(instanceId, appController, uiSelectedStep,
+		uiPlaceholder, uiMessageType, callback, page) {
+<span id='HIN-UIGenerator-property-instanceId'>	/** instanceId holds the unique id for each UI instance. */
+</span>	this.instanceId = instanceId;
+	this.appController = appController;
+	this.dataLayer = this.appController.getComponent(&quot;DataLayer&quot;);
+
+<span id='HIN-UIGenerator-property-uiSelectedStep'>	/** uiSelectedStep holds current selected step. */
+</span>	this.uiSelectedStep = uiSelectedStep;
+	this.uiPlaceholder = uiPlaceholder;
+
+<span id='HIN-UIGenerator-property-uiProcessDefinition'>	/** uiProcessDefinition holds current selected process definition. */
+</span>	this.uiProcessDefinition = null;
+	this.uiMessages = [];
+	this.formScripts = [];
+
+<span id='HIN-UIGenerator-property-uiCurrentMessage'>	/** uiCurrentMessage holds current selected message object. */
+</span>	this.uiCurrentMessage = null;
+	this.uiGroupHeaderMap = new HIN.HashMap();
+	/*
+	 * this.uiMaxId = 0; this.uiMaxMessageIndex = 0;
+	 */
+	this.uiMessageIndex = 0;
+	this.callback = callback;
+	this.addNew = false;
+	this.sortType = &quot;messageType&quot;;
+	this.sortBy = null;
+	ui = this;
+	this.mainHeader = &quot;block&quot;;
+	this.addIcon = &quot;block&quot;;
+	this.subHeader = &quot;block&quot;;
+	this.removeIcon = &quot;block&quot;;
+
+	this.tableHeaders = null;
+<span id='HIN-UIGenerator-property-tableFormat'>	/**
+</span>	 * tableFormat holds true or false value , if false UI act as collapsible
+	 * otherwise table format.
+	 */
+	this.tableFormat = false;
+	this.headerRendered = false;
+
+	this.uiMessageTypes = [];
+	this.uiMessageType = uiMessageType;
+	this.messagTypeSelectionArray = [];// this.uiMessageType.selectionArray;
+	// alert(&quot; UI Generator : &quot; + this.messagTypeSelectionArray);
+
+<span id='HIN-UIGenerator-property-singleForm'>	/**
+</span>	 * singleForm holds true or false value , if true it will show as single
+	 * form. eg.Registration page , it should n't have any options like
+	 * add,remove,collapse etc.
+	 */
+	this.singleForm = false;
+
+<span id='HIN-UIGenerator-property-formRender'>	/**
+</span>	 * formRender holds true or false value , if true UI will be render.
+	 */
+
+	this.formRender = true;
+	this.addInitialHandler = null;
+	this.addCompleteHandler = null;
+	this.removeCompleteHandler = null;
+
+	this.messageIndex = 0;
+
+	this.lookup = true;
+	this.taskHandler = null;
+	this.refreshHandler = null;
+	this.singleHandler = null;
+	this.clearHandler = null;
+	this.cancelHandler = null;
+
+	this.formCreationHandler = null;
+
+	this.selectedMessage = null;
+	this.selectedTask = null;
+
+	this.category = null;
+	this.lookupSelectionHandler = null;
+	this.lookupSelectionValidateHandler = null;
+	this.conceptLookup = null;
+	this.lastOpenedFormId = null;
+	this.createMessageTypeHandler = null;
+	this.page = page;
+
+	this.singleButton = false;
+
+	this.formExpandable = true;
+	this.innerPage = false;
+	this.conceptServiceLookups = null;
+	this.packageFinance = [];
+
+	this.customRenderer = false;
+
+	this.customRendererForm = null;
+
+	this.openedForm = null;
+	this.actions = true;
+	this.conceptVO = null;
+	this.packagePage = false;
+
+	this.finish = true;
+
+	this.refresh = true;
+
+	this.finishTitleOnly = false;
+
+	this.customTitleRenderer = false;
+
+	this.customTitle = &quot;&quot;;
+};
+
+HIN.UIGenerator.prototype.getPage = function() {
+	this.page = appController.getComponent(&quot;RenderingEngine&quot;)
+			.getChildComponent(&quot;Form&quot;).getPage();
+};
+
+<span id='HIN-UIGenerator-method-showMainHeader'>/**
+</span> * showMainHeader method will show main header from UI.
+ * 
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.showMainHeader = function() {
+	this.mainHeader = &quot;block&quot;;
+};
+
+<span id='HIN-UIGenerator-method-showAddIcon'>/**
+</span> * showAddIcon method will show add icon from UI.
+ * 
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.showAddIcon = function() {
+	this.addIcon = &quot;block&quot;;
+};
+<span id='HIN-UIGenerator-method-showSubHeader'>/**
+</span> * showSubHeader method will show sub header from UI.
+ * 
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.showSubHeader = function() {
+	this.subHeader = &quot;block&quot;;
+};
+<span id='HIN-UIGenerator-method-showRemoveIcon'>/**
+</span> * showRemoveIcon method will show remove icon from UI.
+ * 
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.showRemoveIcon = function() {
+	this.removeIcon = &quot;block&quot;;
+};
+<span id='HIN-UIGenerator-method-hideMainHeader'>/**
+</span> * hideMainHeader method will hide main header from UI.
+ * 
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.hideMainHeader = function() {
+	this.mainHeader = &quot;none&quot;;
+};
+<span id='HIN-UIGenerator-method-hideAddIcon'>/**
+</span> * hideAddIcon method will hide add icon from UI.
+ * 
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.hideAddIcon = function() {
+	this.addIcon = &quot;none&quot;;
+};
+<span id='HIN-UIGenerator-method-hideSubHeader'>/**
+</span> * hideSubHeader method will hide sub header from UI.
+ * 
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.hideSubHeader = function() {
+	this.subHeader = &quot;none&quot;;
+};
+<span id='HIN-UIGenerator-method-hideRemoveIcon'>/**
+</span> * hideRemoveIcon method will hide remove icon from UI.
+ * 
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.hideRemoveIcon = function() {
+	this.removeIcon = &quot;none&quot;;
+};
+
+HIN.UIGenerator.prototype.addMessageType = function(messageType) {
+	this.uiMessageTypes.push(messageType);
+};
+
+HIN.UIGenerator.prototype.getMessageType = function(type) {
+
+	for ( var index = 0; index &lt; this.uiMessageTypes.length; index++) {
+		/*
+		 * alert(this.uiMessageTypes.length + &quot; = &quot; +
+		 * this.uiMessageTypes[index].type + &quot; : &quot; + type);
+		 */
+		if (this.uiMessageTypes[index].type == type) {
+			return this.uiMessageTypes[index];
+		}
+	}
+};
+
+<span id='HIN-UIGenerator-method-loadUIForms'>/**
+</span> * loadUIForms method will load each message related UI form as per the process
+ * definition.
+ * 
+ * @returns {void}
+ */
+
+HIN.UIGenerator.prototype.loadUIForms = function() {
+	// alert(&quot;loadUIForms : &quot; + !this.addNew + &quot; - &quot; + this.uiMessages.length);
+	// alert(&quot;this.uiMessageIndex : &quot; + this.uiMessageIndex);
+	if (!this.addNew) {
+		if (this.uiMessageIndex &lt; this.uiMessages.length) {
+			// appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading();
+			/* alert(&quot;uiMessageType : &quot; + this.uiMessageType); */
+			var message = this.uiMessages[this.uiMessageIndex];
+
+			if (message.status == AppConstants.Status.ACTIVE
+					&amp;&amp; message.renderUI) {
+				/* this.uiMessageType = message.messageType; */
+				/*
+				 * this.createUIForm(this.uiMessageIndex, message.messageType,
+				 * message.groupName, message.messageForm, message);
+				 */
+				var object = new Object();
+				object.uiMessageIndex = this.uiMessageIndex;
+				object.messageType = null;
+				object.messageForm = null;
+				object.selectedTypeName = null;
+				this.createUIForm(object, null, null);
+
+				/*
+				 * this.createUIForm(this.uiMessageIndex, null, null, null,
+				 * null, null);
+				 */
+			} else {
+				this.uiMessageIndex++;
+				this.loadUIForms();
+			}
+		} else {
+			appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading();
+			/*
+			 * this.page = appController.getComponent(&quot;RenderingEngine&quot;)
+			 * .getChildComponent(&quot;Form&quot;).getPage();
+			 */
+			var page = appController.getComponent(&quot;RenderingEngine&quot;)
+					.getChildComponent(&quot;Form&quot;).getPage();
+			this.callback(page);
+		}
+	} else {
+		/* alert(&quot;new&quot;); */
+	}
+
+};
+
+HIN.UIGenerator.prototype.loadNewUIForms = function() {
+	// alert(this.uiMessageIndex + &quot; : &quot; + this.uiMessages.length);
+	if (this.uiMessageIndex &lt; this.uiMessages.length) {
+		// appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading();
+		var message = this.uiMessages[this.uiMessageIndex];
+		/*
+		 * this.createUIForm(this.uiMessageIndex, message.messageType,
+		 * message.groupName, message.messageForm, message);
+		 */
+		var object = new Object();
+		object.uiMessageIndex = this.uiMessageIndex;
+		object.messageType = null;
+		object.messageForm = null;
+		object.selectedTypeName = null;
+		this.createUIForm(object, null, null);
+		// this.createUIForm(this.uiMessageIndex, null, null, null, null, null);
+	} else {
+		// appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading();
+		var page = appController.getComponent(&quot;RenderingEngine&quot;)
+				.getChildComponent(&quot;Form&quot;).getPage();
+		this.callback(page);
+	}
+};
+
+HIN.UIGenerator.prototype.loadNewUIForm = function(messageType, messageForm,
+		selectedTypeName) {
+	this.addNew = true;
+
+	var object = new Object();
+	object.uiMessageIndex = -1;
+	object.messageType = messageType;
+	object.messageForm = messageForm;
+	object.selectedTypeName = selectedTypeName;
+	this.createUIForm(object, this.addCompleteHandler, null);
+
+	/*
+	 * this.createUIForm(-1, messageType, messageForm, selectedTypeName,
+	 * this.addCompleteHandler);
+	 */
+};
+
+<span id='HIN-UIGenerator-method-loadUIForm'>/**
+</span> * Based on the formRender value the loadUIForm method will render html data to
+ * the dom and query the msg document using datalayer API to display it.
+ * 
+ * @param message :
+ *            Its an object of message.
+ * @param formRender :
+ *            Its a boolean value.
+ * @param data :
+ *            Its a html content.
+ * @param addCompleteHandler :
+ *            Its a function which will be called based on the life cycle.
+ * @param callbackHandler :
+ *            Its a function which will be called based on the life cycle.
+ * @returns {void}
+ * 
+ * 
+ */
+HIN.UIGenerator.prototype.loadUIForm = function(message, formRender, data,
+		addCompleteHandler, callbackHandler) {
+	// alert('#inner-uiform-' + message.id + &quot; , &quot; + data)
+	// alert(&quot;loadUIForm : &quot; + formRender);
+	// alert(&quot;Render : &quot; + formRender);
+	if (formRender) {
+
+		function uiChange(thisObj) {
+			setTimeout(
+					function() {
+						var instanceId = message.instanceId;
+						var page = appController
+								.getComponent(&quot;RenderingEngine&quot;)
+								.getChildComponent(&quot;Form&quot;).getPage();
+						/*
+						 * alert(page + &quot; : &quot; + page.uiInstances + &quot; : &quot; +
+						 * instanceId);
+						 */
+						var instance = page.uiInstances.get(instanceId).value;
+
+						$('#inner-uiform-' + message.id).append(data);
+
+						/*
+						 * $('#uiform-sub-head' + message.instanceId).append( '&lt;div&gt;&lt;h1&gt;Discount&lt;/h1&gt;&lt;/div&gt;')
+						 */;
+
+						if (instance.tableFormat) {
+							$('#inner-uiform-' + message.id).find(
+									'.ui-delete-icon').attr('id', message.id);
+							$('#inner-uiform-' + message.id).find(
+									'.ui-delete-icon').attr('instanceId',
+									instanceId);
+						}
+
+						$('#inner-uiform-' + message.id).trigger('create');
+
+						if (instance.formExpandable) {
+							if (instance.tableFormat) {
+								$('#inner-main-head' + instance.instanceId)
+										.unbind('click', instance.headerClicked);
+								$('#inner-main-head' + instance.instanceId)
+										.bind('click', instance.headerClicked);
+							}
+
+							$('#inner-uiform-head-' + message.id)
+									.click(
+											function() {
+
+												var instanceId = $(this).attr(
+														&quot;instanceId&quot;);
+												var page = appController
+														.getComponent(
+																&quot;RenderingEngine&quot;)
+														.getChildComponent(
+																&quot;Form&quot;)
+														.getPage();
+												var instance = page.uiInstances
+														.get(instanceId).value;
+
+												// alert(instance.customRenderer);
+												if (instance.customRenderer == true) {
+													/*
+													 * instance.openedForm =
+													 * '#inner-uiform-head-' +
+													 * message.id;
+													 */
+													instance.openedForm = '#inner-sub-uiform-head'
+															+ message.id;
+												} else
+													instance.openedForm = null;
+
+												instance
+														.openMessageForm(message);
+
+											});
+						}
+
+						// alert(&quot;Form render uiMessageType : &quot; +
+						// instance.uiMessageType);
+						if (instance.uiMessageType.headerView == false) {
+							$('#uiform-sub-head' + message.instanceId).hide();
+							$('#inner-sub-uiform-head' + message.id).hide();
+						} else {
+							$('#uiform-sub-head' + message.instanceId).show();
+							$('#inner-sub-uiform-head' + message.id).show();
+						}
+
+						if (message.formView == false) {
+							$('#inner-sub-uiform-head' + message.id).hide();
+						} else {
+							$('#inner-sub-uiform-head' + message.id).show();
+						}
+
+						instance.dataLayer.processMessage(message, &quot;&quot;,
+								function(messageId, msg, messageObj) {
+									var instance = page.uiInstances
+											.get(message.instanceId).value;
+									// alert(messageId + &quot; : &quot; + instance);
+									instance.uiCurrentMessage = message;
+									if (instance)
+										instance.uiMessageCreated(messageId,
+												msg, message,
+												instance.addCompleteHandler,
+												callbackHandler);
+								});
+					}, 10);
+
+		}
+
+		uiChange(this);
+		/* $(this).css(&quot;background-color&quot;, &quot;#FF0000&quot;); */
+		appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading(
+				&quot;Form Rendering&quot;);
+		appController.getComponent(&quot;RenderingEngine&quot;).openModalDialog(
+				&quot;Form Rendering&quot;);
+
+	} else {
+
+		if (!data) {
+			data = &quot;&lt;h6&gt;&lt;/h6&gt;&quot;
+		}
+		$('#inner-uiform-' + message.id).append(data);
+
+		if (this.tableFormat) {
+			$('#inner-uiform-' + message.id).find('.ui-delete-icon').attr('id',
+					message.id);
+			$('#inner-uiform-' + message.id).find('.ui-delete-icon').attr(
+					'instanceId', this.instanceId);
+		}
+
+		if (this.formExpandable) {
+			$('#inner-uiform-head-' + message.id).unbind('click',
+					this.processMessage);
+			$('#inner-uiform-head-' + message.id).bind('click',
+					this.processMessage);
+		}
+		// alert(&quot;Not uiMessageType : &quot; + this.uiMessageType);
+		if (this.uiMessageType.headerView == false) {
+			$('#uiform-sub-head' + message.instanceId).hide();
+			$('#inner-sub-uiform-head' + message.id).hide();
+		} else {
+			$('#uiform-sub-head' + message.instanceId).show();
+			$('#inner-sub-uiform-head' + message.id).show();
+		}
+		if (message.formView == false) {
+			$('#inner-sub-uiform-head' + message.id).hide();
+		} else {
+			$('#inner-sub-uiform-head' + message.id).show();
+		}
+
+		/*
+		 * $('#uiform-sub-head' + message.instanceId).append( '&lt;div&gt;&lt;h1&gt;Discount&lt;/h1&gt;&lt;/div&gt;');
+		 */
+		/*
+		 * $('&lt;div&gt;&lt;h1&gt;Discount&lt;/h1&gt;&lt;/div&gt;').insertBefore( '#footer-' +
+		 * message.instanceId);
+		 */
+		/*
+		 * $('&lt;div&gt;&lt;h1&gt;Hi&lt;/h1&gt;&lt;/div&gt;').insertAfter( $('#uiform-sub-head' +
+		 * message.instanceId + ':first-child'));
+		 */
+		/*
+		 * if (message.messageType == &quot;POCD_MT000040UV_ClientReportView&quot;) {
+		 * alert(message + &quot; : &quot; + message.formView) if (message.formView ==
+		 * false) { $('#inner-sub-uiform-head' + message.id).hide(); } }
+		 */
+		// $('#main').trigger('create');
+		appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading();
+
+		this.uiMessageIndex++;
+
+		/*
+		 * if (this.addNew) { this.updateProcess(); }
+		 */
+		if (addCompleteHandler) {
+			addCompleteHandler(this.addNew, this.uiMessageType, message, this);
+		}
+		if (this.lookupSelectionHandler &amp;&amp; !message.dependendMessageProcessed) {
+			message.dependendMessageProcessed = true;
+			this.lookupSelectionHandler(this, this.conceptLookup, message);
+		}
+		if (callbackHandler)
+			callbackHandler(message);
+		this.loadUIForms();
+	}
+};
+
+HIN.UIGenerator.prototype.headerClicked = function(e) {
+
+	if (e.target.nodeName == &quot;IMG&quot;)
+		return;
+
+	var id = this.id;
+	// $(this).slideToggle('slow');
+
+	var typeName = $(this).attr(&quot;typeName&quot;);
+	var title = $(this).attr(&quot;title&quot;);
+	// var title = $(this).find(&quot;.ui-add-button-show&quot;).html();
+	if (!title)
+		title = typeName;
+	// alert(typeName);
+	var instanceId = id.substr(15, id.length);// &quot;inner-main-head&quot;
+	// alert(&quot;headerClicked &quot; + instanceId);
+
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+	var instance = page.uiInstances.get(instanceId).value;
+
+	/*
+	 * $('#uiform-sub-head' + instanceId).find('.table').children().slideToggle(
+	 * 'slow');
+	 */
+
+	if (instance.singleButton == true) {
+		return;
+	}
+
+	// alert(instance.uiCurrentMessage);
+	// instance.uiSelectedStep.getMessageTypeByTypeName();
+	if (instance.actions == true) {
+		instance.renderSingleTaskUI(title, typeName, instanceId);
+	} else {
+		$('#' + instance.uiSelectedStep.stepName + '_pageActions').html(&quot;&quot;);
+	}
+
+	// }
+};
+
+HIN.UIGenerator.prototype.renderSingleTaskUI = function(title, typeName,
+		instanceId) {
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+	var instance = page.uiInstances.get(instanceId).value;
+	var taskActionsUI = &quot;&quot;;
+
+	if (instance.finishTitleOnly == true) {
+		title = &quot;&quot;;
+	}
+	// var title = typeName;
+
+	// if (instance.singleButton == true) {
+	// title = &quot;Single&quot;;
+
+	var buttonUI = '';
+	if (instance.finish) {
+		buttonUI = '&lt;div class=&quot;ui-process-button singleOutcome&quot; typeName=&quot;'
+				+ typeName
+				+ '&quot; instanceId=&quot;'
+				+ instanceId
+				+ '&quot; value=&quot;&quot; style=&quot;width:auto;&quot; &gt;'
+				+ title
+				+ ' Finish '
+
+				/* + '[' + message.id + ']' */
+
+				+ '&lt;img src=&quot;images/finish.png&quot; style=&quot;padding-left:30px;&quot; /&gt;&lt;/div&gt;';
+	}
+
+	if (instance.cancelHandler) {
+		buttonUI += '&lt;div class=&quot;ui-process-button cancel&quot; instanceId=&quot;'
+				+ instanceId
+				+ '&quot; value=&quot;&quot; style=&quot;width:120px;display:none&quot; &gt;Cancel '
+				+ ' &lt;img src=&quot;images/refresh.png&quot;/&gt;&lt;/div&gt;';
+	}
+	taskActionsUI += buttonUI;
+
+	$('#' + instance.uiSelectedStep.stepName + '_pageActions').html(&quot;&quot;);
+	$('#' + instance.uiSelectedStep.stepName + '_pageActions').html(
+			taskActionsUI);
+
+	$('#' + instance.uiSelectedStep.stepName + '_pageActions').find(
+			'.singleOutcome').unbind(&quot;click&quot;, instance.singleOutComeHandler);
+	$('#' + instance.uiSelectedStep.stepName + '_pageActions').find(
+			'.singleOutcome').bind(&quot;click&quot;, instance.singleOutComeHandler);
+
+	$('#' + instance.uiSelectedStep.stepName + '_pageActions').find('.cancel')
+			.unbind(&quot;click&quot;, instance.cancelHandler);
+	$('#' + instance.uiSelectedStep.stepName + '_pageActions').find('.cancel')
+			.bind(&quot;click&quot;, instance.cancelHandler);
+};
+
+HIN.UIGenerator.prototype.singleOutComeHandler = function() {
+	$(this).css('background', '#b2479f');
+	var instanceId = $(this).attr(&quot;instanceId&quot;);
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+	var instance = page.uiInstances.get(instanceId).value;
+	if (instance) {
+		var typeName = $(this).attr(&quot;typeName&quot;);
+
+		if (instance.singleHandler) {
+			instance.singleHandler(typeName, instance);
+		} else {
+			alert(&quot;Page should implement singleHandler method&quot;);
+		}
+	}
+};
+<span id='HIN-UIGenerator-method-openMessageForm'>/**
+</span> * openMessageForm method will toggle the form and it renders the taskbar based
+ * on the selected form.
+ * 
+ * @param message :
+ *            Its an object of message.
+ * @returns {void}
+ */
+
+HIN.UIGenerator.prototype.openMessageForm = function(message) {
+	var instanceId = message.instanceId
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+	/*
+	 * appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading( &quot;Form
+	 * Loading...&quot;);
+	 * appController.getComponent(&quot;RenderingEngine&quot;).openModalDialog( &quot;Form
+	 * Loading&quot;);
+	 */
+	var instance = page.uiInstances.get(instanceId).value;
+	// alert(message.id);
+	if (!instance.singleForm &amp;&amp; !instance.tableFormat) {
+		$('#inner-uiform-' + message.id).slideToggle('slow');
+	}
+
+	if (instance.innerPage &amp;&amp; !instance.packagePage) {
+		/*
+		 * appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading();
+		 * appController.getComponent(&quot;RenderingEngine&quot;).closeModalDialog();
+		 */
+		return;
+	}
+
+	if (instance.packagePage == true) {
+		instance.renderTaskUI(message);
+	} else if (instance.singleButton) {
+		instance.renderTaskUI(message);
+	} else {
+
+		if (!instance.innerPage &amp;&amp; !instance.tableFormat
+		// &amp;&amp; !instance.customRenderer
+		&amp;&amp; page.lastOpenedFormId &amp;&amp; page.lastOpenedFormId != message.id) {
+			$('#inner-uiform-' + page.lastOpenedFormId).hide();
+			instance.renderTaskUI(null);
+		}
+
+		// alert(message + &quot; rendered : &quot; + message.rendered);
+		if (!instance.tableFormat
+		// &amp;&amp; !instance.customRenderer
+		) {
+			if (page.lastOpenedFormId == message.id) {
+				instance.renderTaskUI(null);
+				page.lastOpenedFormId = null;
+			} else {
+				instance.renderTaskUI(message);
+				page.lastOpenedFormId = message.id;
+			}
+		} else {
+			// instance.renderTaskUI(message);
+			if (instance.actions == true) {
+				instance.renderSingleTaskUI(message.title,
+						message.messageTypeName, instanceId);
+			}
+		}
+	}
+
+	/*
+	 * appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading();
+	 * appController.getComponent(&quot;RenderingEngine&quot;).closeModalDialog();
+	 */
+};
+
+<span id='HIN-UIGenerator-method-processMessage'>/**
+</span> * processMessage method will trigger by clicking on the collapsible header and
+ * it executes based on the message is already rendered or not.
+ * 
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.processMessage = function() {
+
+	/*
+	 * appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading( &quot;Form
+	 * Rendering &quot;);
+	 * appController.getComponent(&quot;RenderingEngine&quot;).openModalDialog( &quot;Form
+	 * Rendering &quot;);
+	 */
+
+	var id = this.id;
+	id = id.substring(id.lastIndexOf(&quot;-&quot;) + 1, id.length);
+
+	// alert(id);
+	function uiChange(thisObj) {
+		setTimeout(function() {
+
+			// callback();
+			var instanceId = $(thisObj).attr(&quot;instanceId&quot;);
+			var messageId = $(thisObj).attr(&quot;messageId&quot;);
+			// alert(instanceId + &quot; ; &quot; + messageId);
+			var page = appController.getComponent(&quot;RenderingEngine&quot;)
+					.getChildComponent(&quot;Form&quot;).getPage();
+			var instance = page.uiInstances.get(instanceId).value;
+			instance.formRender = true;
+
+			var message = instance.getMessage(id);
+
+			// alert(instance.customRenderer);
+			if (instance.customRenderer == true) {
+				// instance.openedForm = '#inner-uiform-head-' + message.id;
+				instance.openedForm = '#inner-sub-uiform-head' + message.id;
+			} else
+				instance.openedForm = null;
+
+			if (!message.rendered) {
+
+				instance.loadUIMessageForm(message, instance.formRender,
+						instance.loadUIFormHandler, null);
+
+				// instance.renderTaskUI(null);
+			}/*
+				 * else {
+				 * appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading(
+				 * &quot;Form Rendering&quot;);
+				 * appController.getComponent(&quot;RenderingEngine&quot;).closeModalDialog(
+				 * &quot;Form Rendering&quot;); instance.openMessageForm(message); }
+				 */
+		}, 10);
+
+	}
+
+	var instanceId = $(this).attr(&quot;instanceId&quot;);
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+	var instance = page.uiInstances.get(instanceId).value;
+
+	var message = instance.getMessage(id);
+	if (message.rendered) {
+		instance.openMessageForm(message);
+	} else {
+
+		uiChange(this);
+		/* $(this).css(&quot;background-color&quot;, &quot;#FF0000&quot;); */
+		appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading(
+				&quot;Form Rendering&quot;);
+		appController.getComponent(&quot;RenderingEngine&quot;).openModalDialog(
+				&quot;Form Rendering&quot;);
+	}
+
+};
+
+// HIN.UIGenerator.prototype.startUIRender = function(this)
+<span id='HIN-UIGenerator-method-uiMessageCreated'>/**
+</span> * After the message document is created this method will be triggered and this
+ * method internally call the uiMessageCreationCompleteHandler method which have
+ * a callback event which will call the loadUIForms method.
+ * 
+ * @param messageId:
+ *            Its a string holds the message id
+ * @param msg :
+ *            Its an object of xml document.
+ * @param uiCurrentMessage :
+ *            Its an object of message.
+ * @param addCompleteHandler :
+ *            Its a function which will be called based on the life cycle.
+ * @param callbackHandler :
+ *            Its a function which will be called based on the life cycle.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.uiMessageCreated = function(messageId, msg,
+		uiCurrentMessage, addCompleteHandler, callbackHandler) {
+	// this.uiCurrentMessage = uiCurrentMessage;
+
+	this.uiMessageCreationCompleteHandler(uiCurrentMessage, addCompleteHandler,
+			this, callbackHandler, function(instance) {
+				instance.uiMessageIndex++;
+				// this.loadUIForms(uiCurrentMessage);
+				instance.loadUIForms();
+
+			});
+	/*
+	 * this.uiMessageIndex++; // this.loadUIForms(uiCurrentMessage);
+	 * this.loadUIForms();
+	 */
+};
+<span id='HIN-UIGenerator-method-uiMessageCreationCompleteHandler'>/**
+</span> * Handles the messagScript loading,formScript loading and data loading to the
+ * from.
+ * 
+ * @param uiCurrentMessage :
+ *            Its an object of message.
+ * @param addCompleteHandler :
+ *            Its a function which will be called based on the life cycle.
+ * @param instance :
+ *            Its an object of uigenerator.
+ * @param callbackHandler :
+ *            Its a function which will be called based on the life cycle.
+ * @param callback :
+ *            Its a function which will be called after the completion of
+ *            uiMessageCreationCompleteHandler.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.uiMessageCreationCompleteHandler = function(
+		uiCurrentMessage, addCompleteHandler, instance, callbackHandler,
+		callback) {
+
+	/*
+	 * alert(&quot;Message Created &quot; + uiCurrentMessage); alert(&quot;Msg Created &quot; +
+	 * uiCurrentMessage.msg); alert(&quot;message Created &quot; +
+	 * uiCurrentMessage.message);
+	 */
+
+	/*
+	 * uiCurrentMessage.messageId = messageId; if (msg) { uiCurrentMessage.msg =
+	 * msg; uiCurrentMessage.message = msg.getXML(); }
+	 */
+
+	// this.uiCurrentMessage = uiCurrentMessage;
+	if (instance.formRender &amp;&amp; !uiCurrentMessage.rendered) {
+
+		// alert(&quot;Ok&quot;);
+		/*
+		 * uiCurrentMessage.messageAndUIBinder = new MessageAndUIBinder(
+		 * 'inner-uiform-' + uiCurrentMessage.id, uiCurrentMessage.msg,
+		 * uiCurrentMessage.messageType);
+		 */
+
+		/*
+		 * var renderingEngine = appController.getComponent(&quot;RenderingEngine&quot;);
+		 * renderingEngine.showPageLoading(&quot;Script Loading...&quot;);
+		 * renderingEngine.openModalDialog(&quot;Script Loading&quot;);
+		 */
+
+		instance
+				.loadAndExecuteMessagScript(
+						uiCurrentMessage,
+						instance,
+						function(messageTypeScript) {
+							var properties = new Object();
+							properties.readOnly = uiCurrentMessage.readOnly;
+							var finished = uiCurrentMessage.finished;
+							// properties.readOnly = finished;
+
+							instance
+									.loadDataOntoForm(
+											instance,
+											uiCurrentMessage,
+											properties,
+											messageTypeScript,
+											function() {
+												instance
+														.loadAndExecuteFormScript(
+																instance,
+																uiCurrentMessage,
+																function() {
+																	instance
+																			.openMessageForm(uiCurrentMessage);
+
+																	if (callbackHandler)
+																		callbackHandler(uiCurrentMessage);
+
+																	/*
+																	 * if
+																	 * (instance.addNew) {
+																	 * instance
+																	 * .updateProcess(); }
+																	 */
+
+																	if (addCompleteHandler) {
+																		addCompleteHandler(
+																				instance.addNew,
+																				instance.uiMessageType,
+																				uiCurrentMessage,
+																				instance);
+																	}
+
+																	if (instance.lookupSelectionHandler
+																			&amp;&amp; !uiCurrentMessage.dependendMessageProcessed) {
+																		uiCurrentMessage.dependendMessageProcessed = true;
+																		instance
+																				.lookupSelectionHandler(
+																						instance,
+																						instance.conceptLookup,
+																						uiCurrentMessage);
+																	} else {
+																		if (instance.addNew) {
+																			// alert(&quot;No
+																			// lookup&quot;);
+																			instance
+																					.updateProcess();
+																		}
+																	}
+
+																	uiCurrentMessage.rendered = true;
+
+																	$('#main')
+																			.trigger(
+																					'create');
+
+																	if (!instance.innerPage
+																			&amp;&amp; !instance.tableFormat)
+																		instance
+																				.renderTaskUI(uiCurrentMessage);
+																	appController
+																			.getComponent(
+																					&quot;RenderingEngine&quot;)
+																			.hidePageLoading();
+																	appController
+																			.getComponent(
+																					&quot;RenderingEngine&quot;)
+																			.closeModalDialog();
+
+																	if (callback) {
+																		callback(instance);
+																	}
+
+																});
+											});
+						});
+
+	}
+
+	// instance.appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading();
+	// alert(&quot;addCompleteHandler : &quot;+addCompleteHandler);
+
+	/*
+	 * instance.openMessageForm(uiCurrentMessage);
+	 * 
+	 * if (addCompleteHandler) { addCompleteHandler(instance.addNew,
+	 * instance.uiMessageType, uiCurrentMessage, instance); }
+	 * 
+	 * if (instance.lookupSelectionHandler &amp;&amp;
+	 * !uiCurrentMessage.dependendMessageProcessed) {
+	 * uiCurrentMessage.dependendMessageProcessed = true;
+	 * instance.lookupSelectionHandler(instance, instance.conceptLookup,
+	 * uiCurrentMessage); }
+	 * 
+	 * uiCurrentMessage.rendered = true; $('#main').trigger('create');
+	 * 
+	 * if (callback) callback();
+	 */
+
+};
+<span id='HIN-UIGenerator-method-loadAndExecuteMessagScript'>/**
+</span> * Using dataLayer API load the script based on the message type and executes
+ * using MessagScript API
+ * 
+ * @param uiCurrentMessage :
+ *            Its an object of message.
+ * @param instance :
+ *            Its an object of uigenerator.
+ * @param callback :
+ *            Its a function which will be called after the completion of this
+ *            method.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.loadAndExecuteMessagScript = function(
+		uiCurrentMessage, instance, callback) {
+	var renderingEngine = appController.getComponent(&quot;RenderingEngine&quot;);
+	/*
+	 * renderingEngine.showPageLoading(&quot;Script Loading...&quot;);
+	 * renderingEngine.openModalDialog(&quot;Script Loading&quot;);
+	 */
+
+	var messageTypeScript = renderingEngine
+			.getMessageScript(uiCurrentMessage.messageType);
+
+	if (!messageTypeScript) {
+		messageTypeScript = new MessageTypeScript(uiCurrentMessage.msg,
+				uiCurrentMessage.messageType, instance.appController,
+				uiCurrentMessage.messageAndUIBinder);
+		instance.dataLayer
+				.loadData(
+						&quot;JS_&quot; + uiCurrentMessage.messageType,
+						{},
+						function(jsString) {
+							// alert(&quot;Script loaded : &quot; + jsString);
+
+							try {
+								if (jsString) {
+									messageTypeScript.loadScript(jsString);
+									if (!uiCurrentMessage
+											.isInitializeScriptExecuted()) {
+										uiCurrentMessage
+												.setInitializeScriptExecuted(true);
+										messageTypeScript.initialize();
+
+										// added to avoid calling fill data more
+										// than once
+										/*
+										 * var title =
+										 * instance.uiCurrentMessage.title; if
+										 * (!title) title = instance.getTitle();
+										 * if (title != null)
+										 * messageTypeScript.fillData(
+										 * &quot;messageTitle&quot;, title);
+										 */
+
+									}
+									if (!uiCurrentMessage.taskVO)
+										messageTypeScript.fillParticipants();
+
+									var title = instance.uiCurrentMessage.title;
+									if (!title)
+										title = instance.getTitle();
+
+									// title = instance.uiMessageType.typeName;
+									if (title != null)
+										messageTypeScript.fillData(
+												&quot;messageTitle&quot;, title);
+
+								}
+								/*
+								 * renderingEngine.hidePageLoading();
+								 * renderingEngine.closeModalDialog();
+								 */
+								if (callback) {
+									callback(messageTypeScript);
+								}
+
+							} catch (e) {
+								alert(&quot;Message Script for type &quot;
+										+ uiCurrentMessage.messageType
+										+ &quot; is not found : &quot; + e);
+								renderingEngine.hidePageLoading();
+								renderingEngine.closeModalDialog();
+							}
+						});
+	} else {
+
+		messageTypeScript.messageAndUIBinder = uiCurrentMessage.messageAndUIBinder;
+
+		if (!uiCurrentMessage.isInitializeScriptExecuted()) {
+			uiCurrentMessage.setInitializeScriptExecuted(true);
+			messageTypeScript.initialize();
+		}
+		if (!uiCurrentMessage.taskVO)
+			messageTypeScript.fillParticipants();
+	}
+};
+<span id='HIN-UIGenerator-method-loadDataOntoForm'>/**
+</span> * Using MessageAndUIBinder API load message in to the form.
+ * 
+ * @param instance :
+ *            Its an object of uigenerator.
+ * @param uiCurrentMessage :
+ *            Its an object of message.
+ * @param properties :
+ *            its an object that contains readOnly,finished etc.
+ * @param messageTypeScript :
+ *            Its an object of messageTypeScript.
+ * @param callback :
+ *            Its a function which will be called after the completion of this
+ *            method.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.loadDataOntoForm = function(instance,
+		uiCurrentMessage, properties, messageTypeScript, callback) {
+	var renderingEngine = appController.getComponent(&quot;RenderingEngine&quot;);
+	/*
+	 * renderingEngine.showPageLoading(&quot;Form Rendering...&quot;);
+	 * renderingEngine.openModalDialog(&quot;Form Rendering&quot;);
+	 */
+	try {
+		/*
+		 * var properties = new Object(); properties.readOnly = false;
+		 */
+		var finished = uiCurrentMessage.finished;
+		var uiInstance = instance;
+		// properties.readOnly = finished;
+		// alert(finished);
+
+		uiCurrentMessage.messageAndUIBinder = new MessageAndUIBinder(
+				'inner-uiform-' + uiCurrentMessage.id, uiCurrentMessage.msg,
+				uiCurrentMessage.messageType);
+
+		var processName = instance.uiProcessDefinition.processName;
+		var isMemberShipId = true;
+		var isPatientTransfer = false;
+		if (processName == &quot;DemographicsAndBackground&quot;
+				&amp;&amp; uiCurrentMessage.messageType == AppConstants.XPaths.Registrtion.MESSAGE_TYPE) {
+			var idValue = XmlUtil
+					.getXPathResult(
+							uiCurrentMessage.messageAndUIBinder.messageObject
+									.getXML(),
+							AppConstants.XPaths.PRPA_MT201000HT03.AS_IDENTIFICATIONS_ID,
+							XPathResult.STRING_TYPE);
+			idValue = (idValue &amp;&amp; idValue.stringValue) ? idValue.stringValue
+					: &quot;&quot;;
+			if (!idValue || idValue.length == 0) {
+				isMemberShipId = false;
+			}
+			var checkinstate = renderingEngine.getComponent(&quot;Context&quot;)
+					.getCheckinState();
+			if (checkinstate == &quot;transfer&quot;) {
+				isMemberShipId = false;
+				isPatientTransfer = true;
+			}
+		}
+
+		if (isMemberShipId == false) {
+			appController.getComponent(&quot;DataLayer&quot;).getMembershipId(
+					function(id) {
+						idValue = id;
+						// alert(uiInstance);
+						uiInstance.fillMembershipId(uiCurrentMessage, idValue);
+						if (isPatientTransfer) {
+							var orgId = appController.getComponent(&quot;Context&quot;)
+									.getUserVo().assigningOrganizationID;
+							uiInstance.fillOrganizationId(uiCurrentMessage,
+									orgId);
+						}
+						var lookupHandler = uiInstance.dataLayer.lookupHandler;
+						uiCurrentMessage.messageAndUIBinder.loadDataOntoForm(
+								lookupHandler, properties, function() {
+									// alert(&quot;rendered&quot;);
+									/*
+									 * renderingEngine.hidePageLoading();
+									 * renderingEngine.closeModalDialog();
+									 */
+									if (callback)
+										callback();
+								});
+					});
+
+		} else {
+			var lookupHandler = instance.dataLayer.lookupHandler;
+			uiCurrentMessage.messageAndUIBinder.loadDataOntoForm(lookupHandler,
+					properties, function() {
+						/*
+						 * renderingEngine.hidePageLoading();
+						 * renderingEngine.closeModalDialog();
+						 */
+						// alert(&quot;rendered&quot;);
+						if (callback)
+							callback();
+					});
+		}
+	} catch (e) {
+		renderingEngine.hidePageLoading();
+		renderingEngine.closeModalDialog();
+		alert(&quot;MessageAndUIBinder loadDataOntoForm &quot; + e);
+		instance.appController.getComponent(&quot;RenderingEngine&quot;)
+				.hidePageLoading();
+	}
+};
+<span id='HIN-UIGenerator-method-loadAndExecuteFormScript'>/**
+</span> * Using dataLayer API load the script based on the message form and executes
+ * using FormScript API
+ * 
+ * @param instance :
+ *            Its an object of uigenerator.
+ * @param uiCurrentMessage :
+ *            Its an object of message.
+ * @param callback :
+ *            Its a function which will be called after the completion of this
+ *            method.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.loadAndExecuteFormScript = function(instance,
+		uiCurrentMessage, callback) {
+	var renderingEngine = appController.getComponent(&quot;RenderingEngine&quot;);
+	/*
+	 * renderingEngine.showPageLoading(&quot;Form Script Loading...&quot;);
+	 * renderingEngine.openModalDialog(&quot;Form Script Loading&quot;);
+	 */
+	try {
+
+		var formScript = instance.getFormScript(uiCurrentMessage.id);
+
+		// alert(&quot;messageForm: &quot;
+		// + messageForm);
+		if (!formScript) {
+
+			formScript = new FormScript(uiCurrentMessage,
+					instance.appController, instance);
+			instance.addFormScript(formScript);
+			instance.dataLayer.loadData(&quot;FS_&quot; + uiCurrentMessage.messageForm,
+					{}, function(jsString) {
+						// alert(&quot;Form
+						// Script
+						// loaded
+						// : &quot;
+						// +
+						// jsString);
+
+						try {
+							if (jsString) {
+								formScript.loadScript(jsString);
+								formScript.initialize();
+								formScript.onLoad();
+							}
+							renderingEngine
+									.fireEvent(AppConstants.Event.RESIZE);
+							/*
+							 * renderingEngine.hidePageLoading();
+							 * renderingEngine.closeModalDialog();
+							 */
+							if (callback) {
+								callback(formScript);
+							}
+						} catch (e) {
+							renderingEngine.hidePageLoading();
+							renderingEngine.closeModalDialog();
+							alert(&quot;Form Script&quot; + uiCurrentMessage.messageForm
+									+ &quot; is not found : &quot; + e);
+
+						}
+					});
+		} else if (formScript) {
+
+			// alert(XmlUtil.xmlToString(msg.getXML()));
+
+			formScript.message = uiCurrentMessage;
+			formScript.uiGenerator = instance;
+			formScript.initialize();
+			formScript.onLoad();
+
+			renderingEngine.fireEvent(AppConstants.Event.RESIZE);
+			/*
+			 * renderingEngine.hidePageLoading();
+			 * renderingEngine.closeModalDialog();
+			 */
+			if (callback) {
+				callback(formScript);
+			}
+		}
+
+	} catch (e) {
+		renderingEngine.hidePageLoading();
+		renderingEngine.closeModalDialog();
+		alert(&quot;Form Script&quot; + messageForm + &quot; is not found : &quot; + e);
+
+	}
+};
+
+HIN.UIGenerator.prototype.loadUIFormHandler = function(message, formRender,
+		data, addCompleteHandler) {
+	$('#inner-uiform-' + message.id).html(data);
+
+	var dataLayer = appController.getComponent(&quot;DataLayer&quot;);
+	dataLayer.processMessage(message, &quot;&quot;, function(messageId, msg, messageObj) {
+		var page = appController.getComponent(&quot;RenderingEngine&quot;)
+				.getChildComponent(&quot;Form&quot;).getPage();
+		var instance = page.uiInstances.get(message.instanceId).value;
+		instance.formRender = true;
+		instance.uiCurrentMessage = message;
+		if (instance)
+			instance.uiMessageCreationCompleteHandler(message,
+					instance.addCompleteHandler, instance);
+	});
+
+};
+<span id='HIN-UIGenerator-method-createMessageTypeUIGroupHeader'>/**
+</span> * Creates the header UI for the each message type name
+ * 
+ * @param instanceId :
+ *            Its a integer value
+ * @param addTitle :
+ *            Its a string value
+ * @param title :
+ *            Its a string value
+ * @param messageType :
+ *            Its an object of messageType.
+ * @param display :
+ *            Its a string value , 'none' or 'block'
+ * @returns {void}
+ */
+
+HIN.UIGenerator.prototype.createMessageTypeUIGroupHeader = function(instanceId,
+		addTitle, title, messageType, display) {
+	var id = instanceId;
+	var type = messageType.type;
+	var typeName = messageType.typeName;
+
+	var groupHeader = '&lt;div id=&quot;uiform-sub-head' + id
+			+ '&quot; style=&quot;width: 100%;&quot;&gt;';
+	groupHeader += '&lt;div class=&quot;ui-inner-display-box&quot; id=&quot;inner-main-head' + id
+			+ '&quot;  typeName=&quot;' + typeName + '&quot; title=&quot;' + title + '&quot; &gt;';
+
+	var headerStyle = &quot;ui-add-button-show&quot;;
+	if (this.addIcon == &quot;none&quot;) {
+		headerStyle = &quot;ui-add-button-hidden&quot;;
+	}
+
+	groupHeader += '&lt;div class=&quot;ui-sub-header-bg ui-page-header-text '
+			+ headerStyle + '&quot; style=&quot;display:' + display + ';&quot;&gt;';
+
+	groupHeader += addTitle + ' &lt;/div&gt; ';
+	// groupHeader += title + ' &lt;/div&gt;';
+	groupHeader += '&lt;div class=&quot;ui-add-icon ' + type + '&quot;   style=&quot;display:'
+			+ this.addIcon + ';z-index:10000&quot;  id=&quot;' + id + '&quot;  instanceId=&quot;'
+			+ instanceId + '&quot;  &gt;'; // Verify this
+	// will support
+	// all browsers
+
+	groupHeader += '&lt;img src=&quot;images/add.png&quot; /&gt;';
+	groupHeader += '&lt;/div&gt;';
+	groupHeader += '&lt;/div&gt;';
+	groupHeader += '&lt;/div&gt;';
+	return groupHeader;
+};
+
+<span id='HIN-UIGenerator-method-createUIGroupChildHeader'>/**
+</span> * Create the specified header UI to the component.
+ * 
+ * @param message :
+ *            Its an object of message.
+ * @param display :
+ *            Its a string value , 'none' or 'block'
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.createUIGroupChildHeader = function(message, display) {
+
+	var id = message.id;
+	var formName = message.messageForm;
+	var header = message.title;
+	var messageType = message.messageType;
+	var typeName = message.groupName;
+
+	var headerStyle = &quot;ui-add-button-show&quot;;
+
+	// alert(message.finished);
+	/*
+	 * if (this.singleForm == false) { if (message.finished == true) {
+	 * this.hideRemoveIcon(); } else { this.showRemoveIcon(); } }
+	 */
+
+	/*
+	 * if (this.removeIcon == &quot;none&quot; &amp;&amp; this.addIcon == &quot;none&quot;) { headerStyle =
+	 * &quot;ui-add-button-hidden&quot;; }
+	 */
+
+	var pacakge = message.partOfPackage;
+	if (pacakge == true) {
+		// header += &quot;(P)&quot;;
+	}
+
+	var groupChildHeader = '&lt;div id=&quot;inner-sub-uiform-head' + id
+			+ '&quot; class=&quot;ui-inner-display-box&quot;&gt;';
+	groupChildHeader += '&lt;div id=&quot;inner-uiform-head-' + id
+			+ '&quot; class=&quot;ui-sub-head-inner-bg ui-sub-header-text ' + headerStyle
+			+ '&quot; style=&quot;display:' + display + '&quot; instanceId=&quot;'
+			+ this.instanceId + '&quot; messageObjId=&quot;' + message.id + '&quot;&gt;';
+	groupChildHeader += header;
+	/*
+	 * groupChildHeader += &quot;message.finished : &quot; + message.finished + &quot;
+	 * message.addNew : &quot; + message.addNew;
+	 */
+	groupChildHeader += '&lt;/div&gt;';
+	/* alert(&quot; message.deletable : &quot; + message.deletable); */
+	if ((message.finished == false &amp;&amp; message.addNew == true)
+			|| message.deletable == true) {
+		if (this.singleForm == false) {
+			groupChildHeader += '&lt;div class=&quot;ui-delete-icon&quot;   style=&quot;display:'
+					+ this.removeIcon + '&quot;    id=&quot;' + id + '&quot;  instanceId=&quot;'
+					+ this.instanceId + '&quot;  &gt;';
+			groupChildHeader += '&lt;img src=&quot;images/delete.png&quot;  /&gt;';
+			groupChildHeader += '&lt;/div&gt;';
+		}
+	} else if (message.finished == true) {
+		if (this.singleForm == false) {
+			groupChildHeader += '&lt;div class=&quot;ui-complete-icon&quot;   style=&quot;display:block&quot;    id=&quot;'
+					+ id + '&quot;  instanceId=&quot;' + this.instanceId + '&quot;  &gt;';
+			groupChildHeader += '&lt;img src=&quot;images/tick_black.png&quot;  /&gt;';
+			groupChildHeader += '&lt;/div&gt;';
+		}
+	} else {
+		if (this.singleForm == false) {
+			groupChildHeader += '&lt;div class=&quot;ui-delete-icon&quot;   style=&quot;display:block&quot;    id=&quot;'
+					+ id + '&quot;  instanceId=&quot;' + this.instanceId + '&quot;  &gt;';
+			groupChildHeader += '&lt;img src=&quot;&quot; style=&quot;display:none&quot;  /&gt;';
+			groupChildHeader += '&lt;/div&gt;';
+		}
+	}
+	var formDisplay = &quot;none&quot;;
+	if (display == &quot;none&quot;) {
+		formDisplay = &quot;block&quot;;
+	}
+	groupChildHeader += '&lt;div id=&quot;inner-uiform-'
+			+ id
+			+ '&quot;class=&quot;ui-inner-border&quot; style=&quot;float:left;padding:1px;width:99%;display:'
+			+ formDisplay + '&quot;&gt;';
+	groupChildHeader += '&lt;/div&gt;';
+	groupChildHeader += '&lt;/div&gt;';
+
+	/* alert(&quot;createUIGroupChildHeader : &quot; + groupChildHeader); */
+	return groupChildHeader;
+};
+
+<span id='HIN-UIGenerator-method-createUITableGroupChildHeader'>/**
+</span> * Create the specified header UI to the component.
+ * 
+ * @param message :
+ *            Its an object of message.
+ * @param display :
+ *            Its a string value , 'none' or 'block'
+ * @returns {void}
+ */
+
+HIN.UIGenerator.prototype.createUITableGroupChildHeader = function(message,
+		display) {
+
+	var id = message.id;
+	var formName = message.messageForm;
+	var messageType = message.messageType;
+
+	var groupChildHeader = '';
+
+	var formDisplay = &quot;block&quot;;
+	if (display == &quot;none&quot;) {
+		formDisplay = &quot;block&quot;;
+	}
+
+	var uiForm = &quot;&quot;;
+	var form = &quot;&quot;;
+	form += '&lt;div id=&quot;inner-sub-uiform-head' + id
+			+ '&quot; class=&quot;ui-inner-display-box table&quot;&gt;';
+
+	form += '&lt;div id=&quot;inner-uiform-' + id
+			+ '&quot; style=&quot;float:left;width:100%;display:' + formDisplay + '&quot;&gt;';
+	form += '&lt;/div&gt;';
+	form += '&lt;/div&gt;';
+
+	if (!this.headerRendered) {
+		groupChildHeader += '&lt;div class=&quot;ui-inner-display-box&quot;&gt;';
+		groupChildHeader += this.tableHeaders;
+		groupChildHeader += '&lt;/div&gt;';
+		uiForm += groupChildHeader;
+	}
+
+	if (message.insertBeforeFooter) {
+		// groupChildHeader += form;
+		// $('#footer-' + message.instanceId).css(&quot;background-color&quot;,
+		// &quot;#FF0000&quot;);
+		$(form).insertBefore('#footer-' + message.instanceId);
+	} else {
+		uiForm += form;
+	}
+
+	return uiForm;
+};
+
+HIN.UIGenerator.prototype.createCustomUIGroupChildHeader = function(message,
+		display) {
+
+	var id = message.id;
+	var formName = message.messageForm;
+	var header = message.title;
+	var messageType = message.messageType;
+	var typeName = message.groupName;
+
+	var headerStyle = &quot;ui-add-button-show&quot;;
+
+	// alert(message.finished);
+	/*
+	 * if (message.finished == true) this.hideRemoveIcon(); else
+	 * this.showRemoveIcon();
+	 */
+
+	if (this.removeIcon == &quot;none&quot; &amp;&amp; this.addIcon == &quot;none&quot;) {
+		headerStyle = &quot;ui-add-button-hidden&quot;;
+	}
+	var groupChildHeader = &quot;&quot;;
+	/*
+	 * var groupChildHeader = '&lt;div id=&quot;inner-sub-uiform-head' + id + '&quot;
+	 * class=&quot;ui-inner-display-box&quot;&gt;'; groupChildHeader += '&lt;div
+	 * id=&quot;inner-uiform-head-' + id + '&quot; class=&quot;ui-sub-head-inner-bg
+	 * ui-sub-header-text ' + headerStyle + '&quot; style=&quot;display:' + display + '&quot;
+	 * instanceId=&quot;' + this.instanceId + '&quot; messageObjId=&quot;' + message.id + '&quot;&gt;';
+	 * groupChildHeader += header; groupChildHeader += '&lt;/div&gt;';
+	 * groupChildHeader += '&lt;div class=&quot;ui-delete-icon&quot; style=&quot;display:' +
+	 * this.removeIcon + '&quot; id=&quot;' + id + '&quot; instanceId=&quot;' + this.instanceId + '&quot;
+	 * &gt;'; groupChildHeader += '&lt;img src=&quot;images/delete.png&quot; /&gt;';
+	 * groupChildHeader += '&lt;/div&gt;';
+	 */
+	var formDisplay = &quot;none&quot;;
+	if (display == &quot;none&quot;) {
+		formDisplay = &quot;block&quot;;
+	}
+	groupChildHeader += '&lt;div id=&quot;inner-uiform-'
+			+ id
+			+ '&quot;class=&quot;ui-inner-border&quot; style=&quot;float:left;padding:1px;width:99%;display:'
+			+ formDisplay + '&quot;&gt;';
+	groupChildHeader += '&lt;/div&gt;';
+	groupChildHeader += '&lt;/div&gt;';
+
+	/* alert(&quot;createUIGroupChildHeader : &quot; + groupChildHeader); */
+	return groupChildHeader;
+};
+
+<span id='HIN-UIGenerator-method-createUIForm'>/**
+</span> * Initiate to create the UI, based on the attributes like messageType,
+ * messageForm, selectedTypeName etc and it will trigger the generateUI method
+ * to render the form against the current message.
+ * 
+ * @param object:
+ *            its an object that contains message index , messageType,
+ *            messageForm, messageTypeName, category etc.
+ * @param addCompleteHandler :
+ *            Its a function which will be called based on the life cycle.
+ * @param callbackHandler :
+ *            Its a function which will be called based on the life cycle.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.createUIForm = function(/*
+													 * uiMessageIndex,
+													 * messageType, messageForm,
+													 * selectedTypeName,
+													 */object, addCompleteHandler, callbackHandler) {
+	// alert(&quot;createUIForm callbackHandler &quot; + callbackHandler);
+
+	var uiMessageIndex = object.uiMessageIndex;
+	var messageType = object.messageType;
+	var messageForm = object.messageForm;
+	var selectedTypeName = object.selectedTypeName;
+	var partOfPackage = object.partOfPackage;
+	var category = object.category;
+
+	var message = null;
+	if (uiMessageIndex != -1) {
+		message = this.uiMessages[uiMessageIndex];
+		message.messageTypeCompeletionTempStatus = this.uiMessageType.state;
+		/*
+		 * alert(message.messageProcessCompeletionStatus + &quot; == &quot; +
+		 * message.messageTypeCompeletionTempStatus)
+		 */
+		if (message.messageProcessCompeletionStatus == message.messageTypeCompeletionTempStatus) {
+			message.finished = true;
+		} else {
+			message.finished = false;
+		}
+		this.generateUI(message, addCompleteHandler, callbackHandler);
+	}/* else { */
+
+	/*
+	 * else if (!messageType) {
+	 * 
+	 * message = this.creatMessage(); if (partOfPackage &amp;&amp; partOfPackage ==
+	 * true) message.partOfPackage = partOfPackage;
+	 * 
+	 * this.uiMessageType.addMessage(message); this.uiMessages.push(message);
+	 * this.generateUI(message, addCompleteHandler, callbackHandler); } else {
+	 */
+	else {
+		message = this.creatMessage();
+		message.addNew = true;
+		if (partOfPackage &amp;&amp; partOfPackage == true)
+			message.partOfPackage = partOfPackage;
+		if (selectedTypeName)
+			message.title = selectedTypeName;
+		var messageTypeObj = null;
+		if (messageType) {
+			messageTypeObj = this.getMessageType(messageType)
+
+			if (messageTypeObj) {
+				this.uiMessageType = messageTypeObj;
+				messageTypeObj.addMessage(message);
+				this.addMessage(message);
+				message.messageTypeCompeletionTempStatus = this.uiMessageType.state;
+				// alert(messageTypeObj.state);
+
+				this.uiSelectedStep.addMessageGroup(messageTypeObj, 1);
+				this.generateUI(message, addCompleteHandler, callbackHandler);
+			} else {
+				/* alert(&quot;CreateUIForm TODO&quot;); */
+
+				messageTypeObj = factoryClass.createMessageType(messageType,
+						this.uiMessageType.typeName, messageForm,
+						selectedTypeName)
+				messageTypeObj.category = category;
+				// alert(messageTypeObj.state);
+				this.uiMessageType = messageTypeObj;
+				message.messageTypeCompeletionTempStatus = this.uiMessageType.state;
+				messageTypeObj.addMessage(message);
+				this.addMessageType(messageTypeObj)
+				this.addMessage(message);
+				this.uiSelectedStep.addMessageType(messageTypeObj);
+				this.uiSelectedStep.addMessageGroup(messageTypeObj, 1);
+				this.generateUI(message, addCompleteHandler, callbackHandler);
+
+				/*
+				 * if (this.createMessageTypeHandler) { var page =
+				 * appController.getComponent(&quot;RenderingEngine&quot;)
+				 * .getChildComponent(&quot;Form&quot;).getPage();
+				 * this.createMessageTypeHandler(page, messageTypeObj, message,
+				 * addCompleteHandler); } else { alert(&quot;Implement
+				 * createMessageTypeHandler in step page&quot;); }
+				 */
+			}
+		}
+	}
+
+	// $('#main').trigger('create');
+
+};
+
+HIN.UIGenerator.prototype.creatMessage = function() {
+	/*
+	 * var id = idGenerator.getId(); message = new HIN.Message();
+	 * message.instanceId = this.instanceId; // message.messageType =
+	 * messageType;
+	 * 
+	 * message.messageId = &quot;&quot;; message.message = &quot;&quot;; message.messageStatus =
+	 * &quot;Pending&quot;; // message.messageForm = messageForm; // message.title =
+	 * selectedTypeName; message.title = this.uiMessageType.title; message.id =
+	 * id; message.messageIndex = message.id; message.empty = false;
+	 */
+	var message = factoryClass.createMessage();
+	message.instanceId = this.instanceId;
+	message.title = this.uiMessageType.title;
+	/* alert(&quot;creatMessage :&quot; + message.instanceId); */
+	return message;
+};
+<span id='HIN-UIGenerator-method-generateUI'>/**
+</span> * Generate the UI to be displayed as per the design.
+ * 
+ * @param message :
+ *            Its an object of message.
+ * @param addCompleteHandler :
+ *            Its a function which will be called based on the life cycle.
+ * @param callbackHandler :
+ *            Its a function which will be called based on the life cycle.
+ * @returns {void}
+ * 
+ */
+
+HIN.UIGenerator.prototype.generateUI = function(message, addCompleteHandler,
+		callbackHandler) {
+	// alert(&quot;generateUI : &quot; + message);
+	var messageStr = '&lt;fieldset class=&quot;ui-grid-b&quot;&gt;&lt;div class=&quot;ui-block-a&quot;&gt;'
+			+ message.messageForm + '&lt;/div&gt;';
+	messageStr += '&lt;div class=&quot;ui-block-b&quot; style=&quot;text-align:center;&quot;&gt;-&lt;/div&gt;&lt;div class=&quot;ui-block-c&quot; style=&quot;text-align:right;&quot;&gt;-&lt;/div&gt;&lt;/fieldset&gt;'
+	// alert(&quot;map&quot; + this.instanceId);
+	var title = this.getTitle();
+	if (!this.tableFormat)
+		title = this.getAddTitle();
+
+	if (!this.tableFormat)
+		$('#uiform-sub-head' + this.instanceId).find(
+				'#inner-main-head' + this.instanceId).find(&quot;.ui-sub-header-bg&quot;)
+				.html(title);
+
+	if (!this.tableFormat) {
+		// alert(&quot;openedForm: &quot; + this.openedForm);
+		if (this.openedForm) {
+			$(this.openedForm).append(
+					this
+							.createCustomUIGroupChildHeader(message,
+									this.subHeader));
+		} else {
+			$('#uiform-sub-head' + this.instanceId).append(
+					this.createUIGroupChildHeader(message, this.subHeader));
+		}
+
+	} else {
+		var uiForm = this
+				.createUITableGroupChildHeader(message, this.subHeader);
+		if (uiForm &amp;&amp; uiForm.length &gt; 0) {
+			if (this.headerRendered == false) {
+			}
+
+			$('#uiform-sub-head' + this.instanceId).append(uiForm);
+		}
+
+		/*
+		 * $(this.createUITableGroupChildHeader(message, this.subHeader)+&quot;&lt;div&gt;&lt;h1&gt;&quot;+message.messageId+&quot;&lt;/h1&gt;&lt;/div&gt;&quot;)
+		 * .insertBefore('#footer-' + message.instanceId);
+		 */
+
+		this.headerRendered = true;
+	}
+
+	// alert(this.formRender);
+	// alert(message);
+	if (this.formRender)
+		this.loadUIMessageForm(message, this.formRender, this.loadUIForm,
+				addCompleteHandler, callbackHandler);
+	else
+		this.loadUIForm(message, this.formRender, null, addCompleteHandler,
+				callbackHandler);
+};
+
+HIN.UIGenerator.prototype.createNewUIForm = function() {
+
+	var instanceId = $(this).attr(&quot;instanceId&quot;);
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+	var instance = page.uiInstances.get(instanceId).value;
+
+	if (instance.customRenderer == true) {
+		instance.uiMessageType.formHtml = instance.customRendererForm;
+		/*
+		 * var formScript = null; for ( var index = 0; index &lt;
+		 * instance.formScripts.length; index++) { formScript =
+		 * instance.formScripts[index]; } alert(formScript.message);
+		 * formScript.reRender(); return;
+		 */
+	}
+
+	if (instance.addInitialHandler)
+		instance.addInitialHandler(instance);
+
+	if (instance) {
+		/* var message = instance.getMessage(this.id); */
+		instance.addNew = true;
+		instance.showRemoveIcon();
+		// alert(&quot;createNewUIForm : &quot; +
+		// instance.messagTypeSelectionArray.length)
+		if (!instance.lookup) {
+
+			var object = new Object();
+			object.uiMessageIndex = -1;
+			object.messageType = instance.uiMessageType.type;
+			object.messageForm = null;
+			object.selectedTypeName = null;
+			instance.createUIForm(object, instance.addCompleteHandler, null);
+
+			/*
+			 * instance.createUIForm(-1, null, null, null,
+			 * instance.addCompleteHandler, null);
+			 */
+		} else {
+			instance.createSelectionForm(null, instance.addCompleteHandler);
+
+		}
+	}
+
+};
+
+/*
+ * HIN.UIGenerator.prototype.createNewAddUIForm = function() {
+ * 
+ * var instanceId = $(this).attr(&quot;instanceId&quot;); var instance =
+ * page.uiInstances.get(instanceId).value; if (instance) { instance.addNew =
+ * true; var message = instance.getMessage(this.id);
+ * 
+ * instance.hideMainHeader(); instance.hideAddIcon(); //
+ * alert(&quot;createNewAddUIForm : &quot; + // instance.messagTypeSelectionArray.length);
+ * if (!instance.lookup) {
+ * 
+ * 
+ * instance.createUIForm(-1, message.messageType, message.groupName,
+ * message.messageForm, message);
+ * 
+ * instance.createUIForm(-1, null, null, null, null,
+ * instance.addCompleteHandler); } else { instance.createSelectionForm(message,
+ * instance.addCompleteHandler); } } };
+ */
+<span id='HIN-UIGenerator-method-createSelectionForm'>/**
+</span> * Trigger by clicking on the add icon from the UI and it provides an
+ * autocomplete popup based on the category against a messageType.eg category
+ * like 'Service','Drug','Role' nothing but concept class.
+ * 
+ * @param message :
+ *            Its an object of message.
+ * @param addCompleteHandler :
+ *            Its an function or event handler
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.createSelectionForm = function(message,
+		addCompleteHandler) {
+	if (this.lookup) {
+		this.category = this.uiMessageType.category;
+
+		// alert(this.category + &quot; : &quot; + this.uiMessageType);
+
+		/*
+		 * if (this.category == null || this.category.length &lt;= 0) this.category =
+		 * &quot;Role&quot;;
+		 */
+
+		if (!this.category)
+			this.category = &quot;Service&quot;;
+		var page = appController.getComponent(&quot;RenderingEngine&quot;)
+				.getChildComponent(&quot;Form&quot;).getPage();
+		var instance = page.uiInstances.get(this.instanceId).value;
+		/*
+		 * instance.dataLayer.loadAllConceptServices(instance.category,
+		 * instance.loadlookups, instance);
+		 */
+		/* this.loadlookups(); */
+
+		var searchCriteria = null;
+
+		if (this.category == &quot;Service&quot;) {
+			var conceptClassNames = [ &quot;Package&quot;, &quot;Service&quot; ];
+			// var conceptClassNames = [ &quot;Service&quot; ];
+			// conceptClassNames.push();
+			searchCriteria = {
+				&quot;property&quot; : &quot;conceptClasses.name&quot;,
+				&quot;values&quot; : conceptClassNames
+			};
+			instance.dataLayer.loadConcepts(searchCriteria,
+					instance.loadlookups, instance);
+		} else {
+
+			instance.dataLayer.loadAllConceptServices(instance.category,
+					instance.loadlookups, instance);
+		}
+
+		/* this.loadlookups(); */
+
+	}
+};
+<span id='HIN-UIGenerator-method-loadlookups'>/**
+</span> * Provides the autocomplete component based on the lookup category.
+ * 
+ * @param conceptServiceLookup :
+ *            Its an object of conceptServiceLookup.
+ * @param instance :
+ *            Its an object of uigenerator.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.loadlookups = function(conceptServiceLookup, instance) {
+	var lookups = conceptServiceLookup.getAllServices();
+	// alert(&quot;lookups : &quot; + lookups);
+	instance.packageFinance = null;
+	$('#selectionList').remove();
+
+	var selection = '&lt;div id=&quot;selectionList&quot; class=&quot;ui-select-list-main&quot;&gt;';
+	selection += '&lt;div class=&quot;ui-select-list-text&quot;&gt;&lt;label for=&quot;auto'
+			+ instance.instanceId + '&quot;&gt; Add ' + instance.category
+			+ ' &lt;/label&gt;&lt;/div&gt;';
+	selection += '&lt;div class=&quot;ui-select-list-box&quot;&gt;&lt;input type=&quot;text&quot;  id=&quot;auto'
+			+ instance.instanceId
+			+ '&quot; instanceId=&quot;'
+			+ instance.instanceId
+			+ '&quot;&gt;&lt;/input&gt;&lt;ul id=&quot;ui_'
+			+ instance.instanceId
+			+ '&quot; data-role=&quot;listview&quot; data-theme=&quot;a&quot; style=&quot;width: 100%;&quot;&gt;&lt;/ul&gt;&lt;/div&gt;';
+
+	selection += '&lt;div class=&quot;ui-select-list-button&quot;&gt;&lt;button type=&quot;cancel&quot; onclick=&quot;$(\'#selectionList\').remove();&quot; id=&quot;cancel'
+			+ instance.instanceId + '&quot; &gt;Cancel&lt;/button&gt;&lt;/div&gt;';
+	selection += '&lt;/div&gt;';
+
+	$(selection).insertAfter(
+			$('#inner-main-head' + instance.instanceId + &quot;:first-child&quot;));
+
+	if (lookups) {
+		var instanceId = instance.instanceId;
+		$('#auto' + instance.instanceId)
+				.autocomplete(
+						{
+							target : $(&quot;#ui_&quot; + instance.instanceId),
+							source : lookups,
+							callback : function(e) {
+								var $a = $(e.currentTarget);
+								/*
+								 * var code = (e.keyCode ? e.keyCode : e.which);
+								 * if (code == 1) {
+								 */
+								var $name = $(e.currentTarget);
+								/* var selectedTypeName = $name.text(); */
+								var concepLookup = $name.attr('data-value');
+								var selectedTypeName = $name.attr('data-value');
+								// alert(selectedTypeName);
+								var conceptVO = conceptServiceLookup
+										.getConcept(selectedTypeName);
+								// alert(conceptVO.name);
+								$('#auto' + instanceId).val($a.text());
+								/*
+								 * if (selectedTypeName &amp;&amp;
+								 * selectedTypeName.length &gt; 2) {
+								 */
+								$('#auto' + instanceId).autocomplete('clear');
+
+								var page = appController.getComponent(
+										&quot;RenderingEngine&quot;).getChildComponent(
+										&quot;Form&quot;).getPage();
+								var instance = page.uiInstances.get(instanceId).value;
+
+								var category = conceptVO.category;
+								// alert(category)
+
+								if (category &amp;&amp; category == &quot;Package&quot;) {
+
+									if (page.processDefinition
+											&amp;&amp; !page.processDefinition
+													.isCleared()) {
+										$('#auto' + instanceId).autocomplete(
+												'clear');
+										appController
+												.getComponent(&quot;RenderingEngine&quot;)
+												.openPromptModalDialog(
+														&quot;Add package after reset the report&quot;,
+														function(result) {
+															// alert(result);
+														});
+
+										return;
+									}
+
+									instance.formRender = false;
+									// instance.conceptVO = conceptVO;
+
+									page
+											.lookupPackageSelectionHandler(
+													instance,
+													conceptVO,
+													null,
+													function(messageObjects) {
+
+														/*
+														 * alert(&quot;Package done &quot; +
+														 * messageObjects);
+														 */
+
+														var searchCriteria = {
+															&quot;property&quot; : &quot;conceptClasses.name&quot;,
+															&quot;value&quot; : selectedTypeName,
+															&quot;category&quot; : &quot;Service&quot;
+														};
+														instance.packageFinance = messageObjects;
+
+														if (instance.packageFinance
+																&amp;&amp; instance.packageFinance.length &gt; 0) {
+															var packageId = idGenerator
+																	.getId();
+															var messageObjects = instance.packageFinance;
+															for ( var index = 0; index &lt; messageObjects.length; index++) {
+																messageObjects[index].packageId = packageId;
+															}
+														}
+
+														instance.dataLayer
+																.fetchConceptByClassName(
+																		searchCriteria,
+																		instance.loadAlllookups,
+																		instance);
+													});
+
+								} else {
+									instance.formRender = true;
+									instance.conceptVO = conceptVO;
+									instance.lookupCallBack(conceptVO,
+											instance, function(message) {
+												/* alert(message.messageType); */
+											})
+								}
+
+							},
+							minLength : 1
+						});
+	}
+	$('#uiform-sub-head' + instance.instanceId).trigger('create');
+	// $('#main').trigger('create');
+};
+<span id='HIN-UIGenerator-method-loadAlllookups'>/**
+</span> * Trigger once choose the data from the autocomplete component and based on the
+ * selection it may returns more than one concept and it iterates the concepts
+ * which internally trigger the lookupCallBack method.
+ * 
+ * @param conceptServiceLookup :
+ *            Its an array of conceptServiceLookup objects.
+ * @param instance :
+ *            Its an object of uigenerator.
+ * @returns {void}
+ */
+
+HIN.UIGenerator.prototype.loadAlllookups = function(conceptServiceLookups,
+		instance) {
+	if (conceptServiceLookups) {
+		instance.conceptServiceLookups = conceptServiceLookups;
+	}
+
+	if (instance.conceptServiceLookups) {
+		var conceptLookup = instance.conceptServiceLookups.shift();
+		if (conceptLookup) {
+			/*
+			 * alert(conceptLookup.getName() + &quot; : &quot; +
+			 * conceptLookup.getAttribute(&quot;MessageType&quot;) +
+			 * conceptLookup.getMessageTypeClassName());
+			 */
+			var conceptVO = conceptLookup.getConcept(conceptLookup.getName());
+			conceptVO.partOfPackage = true;
+			// alert(conceptLookup.getName() + &quot; : &quot; + conceptVO.getName());
+			instance.lookupCallBack(conceptVO, instance)
+			// instance.lookupCallBack(conceptLookup, instance);
+			// instance.loadAlllookups(null, instance);
+		} else {
+			/*
+			 * if (instance.addNew) { instance.updateProcess(); //
+			 * alert(&quot;package compeleted&quot;); }
+			 */
+		}
+	} else {
+
+		if (instance.addNew) {
+			instance.updateProcess();
+			// alert(&quot;service compeleted&quot;);
+		}
+	}
+
+};
+<span id='HIN-UIGenerator-method-lookupCallBack'>/**
+</span> * Trigger once choose the data from the autocomplete component and based on the
+ * concept API it identfies the attributes like message type,message form
+ * etc.Then trigger createUIForm method to render the UI.
+ * 
+ * @param conceptVO :
+ *            Its an object of conceptVO.
+ * @param instance :
+ *            Its an object of uigenerator.
+ * @param callback :
+ *            Its a function which will be called after the createUIForm
+ *            completion.
+ */
+HIN.UIGenerator.prototype.lookupCallBack = function(conceptVO, instance,
+		callback) {
+	if (conceptVO) {
+		var messageType = conceptVO.getAttribute(&quot;MessageType&quot;);
+		var messageForm = conceptVO.getAttribute(&quot;MessageForm&quot;);
+		var selectedTypeName = conceptVO.getDescription();// conceptVO.getName();
+		if (messageType &amp;&amp; messageForm) {
+
+			instance.conceptLookup = conceptVO;
+			if (instance.lookupSelectionValidateHandler) {
+				instance.lookupSelectionValidateHandler(instance,
+						instance.conceptLookup);
+			} else if (instance &amp;&amp; messageType &amp;&amp; messageForm
+					&amp;&amp; selectedTypeName) {
+				// alert(messageType);
+
+				var object = new Object();
+				object.uiMessageIndex = -1;
+				object.messageType = messageType;
+				object.messageForm = messageForm;
+				object.selectedTypeName = selectedTypeName;
+				object.category = conceptVO.category;
+				if (conceptVO.partOfPackage == true) {
+					object.partOfPackage = true;
+				} else {
+					object.partOfPackage = false;
+				}
+
+				instance
+						.createUIForm(
+								object,
+								instance.addCompleteHandler,
+								function(uiCurrentMessage) {
+									if (callback) {
+										callback(uiCurrentMessage);
+									}
+
+									// alert(&quot;Done &quot; + instance.packageFinance);
+									if (instance.packageFinance
+											&amp;&amp; instance.packageFinance.length &gt; 0) {
+										var messageObjects = instance.packageFinance;
+										for ( var index = 0; index &lt; messageObjects.length; index++) {
+											// alert(messageObjects[index]);
+											// alert(uiCurrentMessage);
+											uiCurrentMessage.packageId = messageObjects[index].packageId;
+											uiCurrentMessage
+													.addDependendMessage(messageObjects[index]);
+										}
+										if (instance.addNew) {
+											instance.updateProcess();
+											// alert(&quot;package compeleted&quot;);
+										}
+									}
+									// instance.packageFinance = null;
+
+								});
+			}
+		} else {
+			instance.conceptLookup = null;
+			instance.loadAlllookups(null, instance);
+		}
+		$('#selectionList').remove();
+	} else {
+		instance.conceptLookup = null;
+	}
+};
+
+HIN.UIGenerator.prototype.hideUIForm = function(instance, id) {
+	$('#inner-sub-uiform-head' + id).hide();
+};
+
+HIN.UIGenerator.prototype.showUIForm = function(instance, id) {
+	$('#inner-sub-uiform-head' + id).show();
+};
+
+HIN.UIGenerator.prototype.hideSection = function(instance, messageType) {
+
+	$(
+			'#inner-form-' + messageType.typeName + 'Placeholder-'
+					+ instance.instanceId).hide();
+};
+
+HIN.UIGenerator.prototype.showSection = function(instance, messageType) {
+
+	$(
+			'#inner-form-' + messageType.typeName + 'Placeholder-'
+					+ instance.instanceId).show();
+};
+
+var deletedMessage = null;
+var deletedMessageInstance = null;
+
+<span id='HIN-UIGenerator-method-removeUIForm'>/**
+</span> * Trigger by clicking on the delete icon from the UI and it propogates the
+ * event to the step page.
+ * 
+ * @returns {void}
+ */
+
+HIN.UIGenerator.prototype.removeUIForm = function() {
+
+	var instanceId = $(this).attr(&quot;instanceId&quot;);
+	var messageId = this.id;
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+	var map = page.uiInstances.get(instanceId);
+
+	deletedMessageInstance = null;
+	deletedMessage = null;
+	var title = &quot;&quot;;
+	if (map)
+		deletedMessageInstance = map.value;
+	if (deletedMessageInstance) {
+		deletedMessage = deletedMessageInstance.getMessage(messageId);
+		if (deletedMessage.title)
+			title = &quot;'&quot; + deletedMessage.title + &quot;'&quot;;
+	}
+
+	appController
+			.getComponent(&quot;RenderingEngine&quot;)
+			.openPromptOkCancelModalDialog(
+					&quot;Do you want to delete &quot; + title + &quot; ?&quot;,
+					function(result) {
+						if (result == true) {
+
+							if (deletedMessageInstance &amp;&amp; deletedMessage) {
+								// deletedMessageInstance.uiSelectedStep.removeMessage(message.messageId)
+								if (deletedMessageInstance.singleButton == false
+										&amp;&amp; deletedMessageInstance.tableFormat == false)
+									deletedMessageInstance.renderTaskUI(null);
+
+								$('#inner-sub-uiform-head' + deletedMessage.id)
+										.remove();
+								var dependendMessages = deletedMessage.dependendMessages;
+								if (dependendMessages) {
+									for ( var index = 0; index &lt; dependendMessages.length; index++) {
+										$(
+												'#inner-sub-uiform-head'
+														+ dependendMessages[index].id)
+												.remove();
+									}
+								}
+
+								// message =
+								// deletedMessageInstance.getMessage(id);
+								// deletedMessageInstance.deleteMessage(message.id);
+								deletedMessage.markAsObsolete();
+								var messageType = deletedMessageInstance.uiSelectedStep
+										.getMessageTypeByType(deletedMessage.messageType);
+
+								if (deletedMessageInstance.uiProcessDefinition.processName == &quot;StaffRegistration&quot;
+										&amp;&amp; (messageType.type == &quot;ROLE_PHYSICIAN&quot; || messageType.type == &quot;ROLE_EMPLOYEE&quot;)) {
+									permissionMessageIndex = 0;
+
+									if (!deletedMessage.messageAndUIBinder
+											&amp;&amp; deletedMessage.msg) {
+										deletedMessage.messageAndUIBinder = new MessageAndUIBinder(
+												null, deletedMessage.msg,
+												deletedMessage.messageType);
+									}
+									if (deletedMessage.messageAndUIBinder) {
+										deletedMessageInstance
+												.deleteRolePermission(
+														messageType,
+														deletedMessage,
+														deletedMessageInstance);
+									} else {
+
+										var dataLayer = appController
+												.getComponent(&quot;DataLayer&quot;);
+										dataLayer
+												.getMessageInternal(
+														deletedMessage,
+														function(messageId,
+																msg,
+																deletedMessage) {
+															deletedMessage.messageAndUIBinder = new MessageAndUIBinder(
+																	null,
+																	deletedMessage.msg,
+																	deletedMessage.messageType);
+															deletedMessageInstance
+																	.deleteRolePermission(
+																			messageType,
+																			deletedMessage,
+																			deletedMessageInstance);
+
+														});
+
+									}
+
+								} else {
+
+									if (messageType) {
+										messageType
+												.removeMessage(deletedMessage);
+										deletedMessageInstance.uiSelectedStep
+												.updateMessageGroupByType(
+														messageType, 1);
+									}
+
+									if (deletedMessage.rendered) {
+										var cacheManager = appController
+												.getComponent(&quot;DataLayer&quot;).cacheManager;
+										cacheManager.renderProcessUpdate = false;
+										cacheManager.syncToCouch = true;
+										var processObjects = [];
+										var dataLayer = appController
+												.getComponent(&quot;DataLayer&quot;);
+										dataLayer.createOrUpdateTask(
+												deletedMessage.taskVO,
+												deletedMessage, processObjects);
+									}
+
+									deletedMessageInstance.updateProcess();
+
+									if (deletedMessageInstance.removeCompleteHandler) {
+										deletedMessageInstance
+												.removeCompleteHandler(
+														deletedMessageInstance.uiMessageType,
+														deletedMessage,
+														deletedMessageInstance);
+									}
+								}
+							}
+						}
+					});
+
+};
+
+HIN.UIGenerator.prototype.deleteRolePermission = function(messageType,
+		deletedMessage, deletedMessageInstance) {
+
+	var roleId = deletedMessage.messageAndUIBinder.getIdRootValue(&quot;HIN_MSG_ID&quot;);
+	// alert(&quot;roleId : &quot; + roleId);
+	var step3 = deletedMessageInstance.uiProcessDefinition.getStep(&quot;Step3&quot;);
+	var permissionMessageType = step3.getMessageTypeByType(&quot;ROLE_PERMISSION&quot;);
+	var permissionMessages = permissionMessageType.getMessages();
+	deletedMessageInstance
+			.getPermission(
+					deletedMessageInstance,
+					roleId,
+					permissionMessages,
+					function(permissionMessage) {
+						if (permissionMessage) {
+							permissionMessageType
+									.removeMessage(permissionMessage);
+							step3.updateMessageGroupByType(
+									permissionMessageType, 1);
+						}
+
+						if (messageType) {
+							messageType.removeMessage(deletedMessage);
+							deletedMessageInstance.uiSelectedStep
+									.updateMessageGroupByType(messageType, 1);
+						}
+
+						// if (deletedMessage.rendered) {
+						var cacheManager = appController
+								.getComponent(&quot;DataLayer&quot;).cacheManager;
+						cacheManager.renderProcessUpdate = false;
+						cacheManager.syncToCouch = true;
+						var processObjects = [];
+						var dataLayer = appController.getComponent(&quot;DataLayer&quot;);
+						dataLayer.createOrUpdateTask(deletedMessage.taskVO,
+								deletedMessage, processObjects);
+						// }
+
+						deletedMessageInstance.updateProcess();
+
+						if (deletedMessageInstance.removeCompleteHandler) {
+							deletedMessageInstance.removeCompleteHandler(
+									deletedMessageInstance.uiMessageType,
+									deletedMessage, deletedMessageInstance);
+						}
+
+					});
+
+};
+
+<span id='HIN-UIGenerator-method-renderTaskUI'>/**
+</span> * Render the taskbar UI and this method will decide, which task actions need to
+ * be shown in taskbar UI.
+ * 
+ * @param message :
+ *            Its an object of message.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.renderTaskUI = function(message) {
+
+	if (message &amp;&amp; (!this.innerPage || this.packagePage)
+			&amp;&amp; this.actions == true) {
+		/*
+		 * if (message.readOnly) { $('#' + this.uiSelectedStep.stepName +
+		 * '_pageActions').html(&quot;&quot;); return; }
+		 */
+
+		var taskActionsUI = &quot;&quot;;
+		var taskVO = message.taskVO;
+		var title = &quot;&quot;;
+		if (message.title)
+			title = message.title;
+		if (!title)
+			title = this.uiMessageType.typeName;
+
+		if (this.singleButton == true || this.finishTitleOnly == true)
+			title = &quot;&quot;;
+
+		if (taskVO) {
+			for ( var index = 0; index &lt; taskVO.taskOutComes.length; index++) {
+				var label = taskVO.taskOutComes[index];
+				var buttonUI = '&lt;div style=&quot;float:left&quot;&gt;';
+				buttonUI += '&lt;input class=&quot;taskOutcome&quot; instanceId=&quot;'
+						+ message.instanceId + '&quot; id=&quot;' + message.id
+						+ '&quot; type=&quot;button&quot; value=&quot;' + label + '&quot;&gt;';
+				buttonUI += '&lt;/div&gt;';
+
+				var buttonUI = '';
+				if (this.finish) {
+					buttonUI = '&lt;div class=&quot;ui-process-button taskOutcome&quot; instanceId=&quot;'
+							+ message.instanceId
+							+ '&quot; id=&quot;'
+							+ message.id
+							+ '&quot; value=&quot;'
+							+ label
+							+ '&quot;  style=&quot;width:auto;&quot; &gt;'
+							+ title
+							+ ' Finish '
+
+							/* + '[' + message.id + ']' */
+
+							+ ' &lt;img src=&quot;images/finish.png&quot; style=&quot;padding-left:30px;&quot; /&gt;&lt;/div&gt;';
+				}
+				if (this.refresh) {
+					buttonUI += '&lt;div class=&quot;ui-process-button taskSync&quot; instanceId=&quot;'
+							+ message.instanceId
+							+ '&quot; id=&quot;'
+							+ message.id
+							+ '&quot;value=&quot;'
+							+ label
+							+ '&quot; style=&quot;width:120px&quot; &gt;Refresh '
+							+ ' &lt;img src=&quot;images/refresh.png&quot;/&gt;&lt;/div&gt;';
+				}
+				if (this.clearHandler) {
+					buttonUI += '&lt;div class=&quot;ui-process-button clear&quot; instanceId=&quot;'
+							+ message.instanceId
+							+ '&quot; id=&quot;'
+							+ message.id
+							+ '&quot;value=&quot;'
+							+ label
+							+ '&quot; style=&quot;width:120px&quot; &gt;Reset '
+							+ ' &lt;img src=&quot;images/clear.png&quot;/&gt;&lt;/div&gt;';
+				}
+				if (this.cancelHandler) {
+					buttonUI += '&lt;div class=&quot;ui-process-button cancel&quot; instanceId=&quot;'
+							+ message.instanceId
+							+ '&quot; id=&quot;'
+							+ message.id
+							+ '&quot;value=&quot;'
+							+ label
+							+ '&quot; style=&quot;width:120px&quot; &gt;Cancel '
+							+ ' &lt;img src=&quot;images/cancel.png&quot;/&gt;&lt;/div&gt;';
+				}
+
+				taskActionsUI += buttonUI;
+			}
+		} else {
+			var buttonUI = '';
+			if (this.finish) {
+				buttonUI = '&lt;div class=&quot;ui-process-button taskOutcome&quot; instanceId=&quot;'
+						+ message.instanceId
+						+ '&quot; id=&quot;'
+						+ message.id
+						+ '&quot; value=&quot;&quot; style=&quot;width:auto;&quot; &gt;'
+						+ title
+						+ ' Finish '
+
+						/* + '[' + message.id + ']' */
+
+						+ '&lt;img src=&quot;images/finish.png&quot; style=&quot;padding-left:30px;&quot; /&gt;&lt;/div&gt;';
+			}
+
+			if (this.clearHandler) {
+				buttonUI += '&lt;div class=&quot;ui-process-button clear&quot; instanceId=&quot;'
+						+ message.instanceId + '&quot; id=&quot;' + message.id
+						+ '&quot;value=&quot;' + label + '&quot; style=&quot;width:120px&quot; &gt;Reset '
+						+ ' &lt;img src=&quot;images/refresh.png&quot;/&gt;&lt;/div&gt;';
+			}
+
+			if (this.cancelHandler) {
+				buttonUI += '&lt;div class=&quot;ui-process-button cancel&quot; instanceId=&quot;'
+						+ message.instanceId
+						+ '&quot; id=&quot;'
+						+ message.id
+						+ '&quot;value=&quot;'
+						+ label
+						+ '&quot; style=&quot;width:120px&quot; &gt;Cancel '
+						+ ' &lt;img src=&quot;images/refresh.png&quot;/&gt;&lt;/div&gt;';
+			}
+
+			taskActionsUI += buttonUI;
+		}
+
+		/*
+		 * var assignablePeopleMap = taskVO.assignablePeople; if
+		 * (taskVO.assignablePeople) { var comboUI = '&lt;div
+		 * style=&quot;float:left&quot;&gt;'; comboUI += '&lt;select class=&quot;taskAssignee&quot; id=&quot;' +
+		 * message.id + '&quot; instanceId=&quot;' + message.instanceId + '&quot; id=&quot;' +
+		 * message.id + '&quot; data-native-menu=&quot;false&quot;&gt;'; comboUI += '&lt;option
+		 * value=&quot;-1&quot;&gt;-Select-&lt;/option&gt;'; for ( var index = 0; index &lt;
+		 * taskVO.assignablePeople.length(); index++) { var map =
+		 * taskVO.assignablePeople.getItemAt(index); var value = map.key; var
+		 * label = map.value; comboUI += '&lt;option value=&quot;' + value + '&quot;&gt;' +
+		 * label + '&lt;/option&gt;'; } comboUI += &quot;&lt;/select&gt;&quot;; comboUI += '&lt;/div&gt;';
+		 * taskActionsUI += comboUI; }
+		 */
+
+		$('#' + this.uiSelectedStep.stepName + '_pageActions').html(&quot;&quot;);
+		$('#' + this.uiSelectedStep.stepName + '_pageActions').html(
+				taskActionsUI);
+
+		$('#' + this.uiSelectedStep.stepName + '_pageActions').find(
+				'.taskOutcome').unbind(&quot;click&quot;, this.taskOutcomeHandler);
+		$('#' + this.uiSelectedStep.stepName + '_pageActions').find(
+				'.taskOutcome').bind(&quot;click&quot;, this.taskOutcomeHandler);
+
+		$('#' + this.uiSelectedStep.stepName + '_pageActions')
+				.find('.taskSync').unbind(&quot;click&quot;, this.taskSyncHandler);
+		$('#' + this.uiSelectedStep.stepName + '_pageActions')
+				.find('.taskSync').bind(&quot;click&quot;, this.taskSyncHandler);
+
+		$('#' + this.uiSelectedStep.stepName + '_pageActions').find('.clear')
+				.unbind(&quot;click&quot;, this.clearHandler);
+		$('#' + this.uiSelectedStep.stepName + '_pageActions').find('.clear')
+				.bind(&quot;click&quot;, this.clearHandler);
+
+		$('#' + this.uiSelectedStep.stepName + '_pageActions').find('.cancel')
+				.unbind(&quot;click&quot;, this.cancelHandler);
+		$('#' + this.uiSelectedStep.stepName + '_pageActions').find('.cancel')
+				.bind(&quot;click&quot;, this.cancelHandler);
+
+		$('#uiform-sub-head' + message.id).trigger('create');
+	} else {
+		$('#' + this.uiSelectedStep.stepName + '_pageActions').html(&quot;&quot;);
+	}
+
+	$(&quot;.ui-process-button&quot;).hover(function() {
+		$(this).css('background', '#8d007f');
+	}, function() {
+		$(this).css('background', '#6B1E64');
+	});
+
+};
+
+<span id='HIN-UIGenerator-method-taskOutcomeHandler'>/**
+</span> * Trigger by clicking on the finish button from the taskbar and it propogates
+ * the event to the step page.
+ * 
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.taskOutcomeHandler = function() {
+	// $(this).hide();// Hide Finish Button
+	/* $(this).addClass('ui-process-button-pressed'); */
+	$(this).css('background', '#b2479f');
+	var instanceId = $(this).attr(&quot;instanceId&quot;);
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+	var instance = page.uiInstances.get(instanceId).value;
+	if (instance) {
+		page.currentUIInstance = instance;
+		var id = $(this).attr(&quot;id&quot;);
+		var message = instance.getMessage(id);
+		if (message) {
+
+			var taskVO = message.taskVO;
+			if (taskVO) {
+				taskVO.outCome = $(this).attr(&quot;value&quot;);
+
+			}
+
+			// alert(message);
+			instance.selectedMessage = message;
+			instance.selectedTask = taskVO;
+
+			// alert(instance.selectedMessage + &quot;,&quot; +
+			// instance.selectedTask);
+			// alert(&quot;instance.taskHandler : &quot; + instance.taskHandler);
+
+			if (instance.taskHandler) {
+				instance.taskHandler(message, taskVO, instance);
+			} else {
+				instance.complete(instance, instance.saveTask);
+				/*
+				 * appController.getComponent(&quot;DataLayer&quot;).createOrUpdateTask(taskVO,
+				 * message.messageId);
+				 */
+			}
+
+		} else {
+			alert(&quot;Message No Found.&quot;);
+		}
+	}
+};
+<span id='HIN-UIGenerator-method-saveTask'>/**
+</span> * Trigger if taskhandler method which is not implemented in step page *
+ * 
+ * @param instance :
+ *            Its an object of uigenerator.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.saveTask = function(instance) {
+	if (instance.selectedMessage) {
+		instance.complete();
+
+		if (instance.selectedMessage.partOfPackage == true
+				&amp;&amp; instance.selectedMessage.packageId != null) {
+			instance.uiSelectedStep
+					.removeDependendMessages(instance.selectedMessage);
+		}
+		var lastOne = instance.uiSelectedStep
+				.isFinished(instance.selectedMessage);
+		// alert(lastOne);
+
+		var cacheManager = appController.getComponent(&quot;DataLayer&quot;).cacheManager;
+		if (instance.singleForm == true || instance.singleButton == true
+				|| lastOne == true)
+			cacheManager.renderProcessUpdate = true;
+		else
+			cacheManager.renderProcessUpdate = false;
+		cacheManager.syncToCouch = true;
+
+		instance.dataLayer.createOrUpdateTask(instance.selectedTask,
+				instance.selectedMessage);
+	} else {
+		alert(&quot;selectedMessage is not available&quot;);
+	}
+};
+
+<span id='HIN-UIGenerator-method-processTask'>/**
+</span> * ProcessTask method should be call from the taskhandler method which is
+ * implemented in step page,it saves the currently opened message and process
+ * definitions as per business logic. This method have the capability to decide
+ * whether page can be redirected to the process page or not. *
+ * 
+ * @param processObjects :
+ *            Its an array of processdefinition objects.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.processTask = function(processObjects) {
+	if (this.selectedMessage) {
+		this.complete();
+
+		if (this.selectedMessage.partOfPackage == true
+				&amp;&amp; this.selectedMessage.packageId != null) {
+			this.uiSelectedStep.removeDependendMessages(this.selectedMessage);
+		}
+		var lastOne = this.uiSelectedStep.isFinished(this.selectedMessage);
+		// alert(lastOne);
+
+		var cacheManager = appController.getComponent(&quot;DataLayer&quot;).cacheManager;
+		if (this.singleForm == true || this.singleButton == true
+				|| lastOne == true)
+			cacheManager.renderProcessUpdate = true;
+		else
+			cacheManager.renderProcessUpdate = false;
+		cacheManager.syncToCouch = true;
+
+		var dataLayer = appController.getComponent(&quot;DataLayer&quot;);
+		dataLayer.createOrUpdateTask(this.selectedTask, this.selectedMessage,
+				processObjects);
+	} else {
+		alert(&quot;selectedMessage is not available&quot;);
+	}
+};
+
+HIN.UIGenerator.prototype.taskAssigneeHandler = function() {
+
+	var instanceId = $(this).attr(&quot;instanceId&quot;);
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+	var instance = page.uiInstances.get(instanceId).value;
+	if (instance) {
+		var id = $(this).attr(&quot;id&quot;);
+		var message = instance.getMessage(id);
+		/*
+		 * var id = $(this).id; fix this issue alert(id);
+		 */
+		var assignee = $('#inner-uiform-' + message.id).find(
+				'#' + message.id + ' option:selected').val(); // insteadof
+		// message.id use id
+		var taskVO = message.taskVO;
+		if (taskVO) {
+			taskVO.assignee = assignee;
+		}
+	}
+
+};
+<span id='HIN-UIGenerator-method-taskSyncHandler'>/**
+</span> * Trigger by clicking on the refresh button from the taskbar and it propogates
+ * the event to the step page.
+ * 
+ * @returns {void}
+ */
+
+HIN.UIGenerator.prototype.taskSyncHandler = function() {
+	var instanceId = $(this).attr(&quot;instanceId&quot;);
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+
+	var instance = page.uiInstances.get(instanceId).value;
+	if (instance.refreshHandler) {
+		instance.refreshHandler(instance);
+		return;
+	}
+
+	if (instance) {
+		var id = $(this).attr(&quot;id&quot;);
+		var message = instance.getMessage(id);
+		if (message) {
+			var taskVO = message.taskVO;
+			if (taskVO) {
+				// alert(&quot;Refresh Task : &quot; + taskVO.taskId);
+				var dataLayer = appController.getComponent(&quot;DataLayer&quot;);
+
+				dataLayer
+						.getMessageTask(
+								message.messageId,
+								message,
+								dataLayer.getMessageInternal,
+								function(messageId, msg, message) {
+									message.msg = msg;
+									message.message = msg.getXML()
+									// alert(message);
+									/*
+									 * alert(&quot;Message xml1 : &quot; +
+									 * XmlUtil.xmlToString(message.msg
+									 * .getXML()));
+									 */
+
+									var properties = new Object();
+									properties.readOnly = message.readOnly;
+									var finished = message.finished;
+									// properties.readOnly = finished;
+
+									if (message.messageAndUIBinder) {
+										message.messageAndUIBinder.messageObject = msg;
+										var lookupHandler = this.appController
+												.getComponent(&quot;DataLayer&quot;).lookupHandler;
+										message.messageAndUIBinder
+												.loadDataOntoForm(
+														lookupHandler,
+														properties,
+														function() {
+
+															var renderingEngine = appController
+																	.getComponent(&quot;RenderingEngine&quot;);
+															var formScript = instance
+																	.getFormScript(message.id);
+															// alert(&quot;message.messageForm:
+															// &quot;+
+															// message.messageForm);
+															if (!formScript
+																	&amp;&amp; message.messageForm) {
+																formScript = new FormScript(
+																		message,
+																		this.appController,
+																		this);
+																instance
+																		.addFormScript(formScript);
+																instance.dataLayer
+																		.loadData(
+																				&quot;FS_&quot;
+																						+ message.messageForm,
+																				{},
+																				function(
+																						jsString) {
+
+																					try {
+																						formScript
+																								.loadScript(jsString);
+																						formScript
+																								.initialize();
+																						formScript
+																								.onLoad();
+																					} catch (e) {
+																						alert(&quot;FormScript &quot;
+																								+ messageForm
+																								+ &quot; is not found : &quot;
+																								+ e);
+																					}
+																				});
+
+															} else {
+																formScript
+																		.initialize();
+																formScript
+																		.onLoad();
+															}
+														});
+
+									}
+								}, true);
+
+			}
+		}
+	}
+
+};
+
+<span id='HIN-UIGenerator-method-clearHandler'>/**
+</span> * Trigger by clicking on the reset button from the taskbar and it propogates
+ * the event to the step page.
+ * 
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.clearHandler = function() {
+	var instanceId = $(this).attr(&quot;instanceId&quot;);
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+
+	var instance = page.uiInstances.get(instanceId).value;
+	if (instance.clearHandler) {
+		instance.clearHandler(instance);
+		return;
+	}
+};
+<span id='HIN-UIGenerator-method-cancelHandler'>/**
+</span> * Trigger by clicking on the cancel button from the taskbar and it propogates
+ * the event to the step page.
+ * 
+ * @returns {void}
+ */
+
+HIN.UIGenerator.prototype.cancelHandler = function() {
+	var instanceId = $(this).attr(&quot;instanceId&quot;);
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+
+	var instance = page.uiInstances.get(instanceId).value;
+	if (instance.cancelHandler) {
+		instance.cancelHandler(instance);
+		return;
+	}
+};
+
+<span id='HIN-UIGenerator-method-finishCompleteHandler'>/**
+</span> * Trigger by clicking on the finish button from the taskbar and it propogates
+ * the event to the step page.
+ * 
+ * @param page :
+ *            Its an object of page.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.finishCompleteHandler = function(page) {
+	// alert(&quot;UI Finished : &quot; + page.currentUIInstance);
+	if (page.currentUIInstance &amp;&amp; !page.currentUIInstance.tableFormat) {
+		var selectedMessage = page.currentUIInstance.selectedMessage
+		page.currentUIInstance.openMessageForm(selectedMessage);
+		// page.currentUIInstance.selectedMessage = null;
+		if (page.currentUIInstance.singleForm == false) {
+			$('#inner-sub-uiform-head' + selectedMessage.id).find(
+					'#' + selectedMessage.id).removeClass('ui-delete-icon');
+			$('#inner-sub-uiform-head' + selectedMessage.id).find(
+					'#' + selectedMessage.id).addClass('ui-complete-icon');
+			$('#inner-sub-uiform-head' + selectedMessage.id).find(
+					'#' + selectedMessage.id).find('img').attr('src',
+					'images/tick_black.png')
+			$('#inner-sub-uiform-head' + selectedMessage.id).find(
+					'#' + selectedMessage.id).find('img').css('display',
+					'block')
+		}
+		page.currentUIInstance = null;
+		var cacheManager = appController.getComponent(&quot;DataLayer&quot;).cacheManager;
+		cacheManager.renderProcessUpdate = true;
+		cacheManager.syncToCouch = true;
+	}
+};
+
+<span id='HIN-UIGenerator-method-complete'>/**
+</span> * Trigger the complete method inside the message script API, based on the
+ * currently loaded message.
+ * 
+ * @param instance :
+ *            Its an object of uigenerator.
+ * @param callback :
+ *            Its a function which will be called after the complete.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.complete = function(instance, callBack) {
+
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+	var messageType = this.uiCurrentMessage.messageType;
+	var curMessage = this.uiCurrentMessage;
+	page.complete(curMessage);
+	if (callBack)
+		callBack(instance);
+
+};
+
+<span id='HIN-UIGenerator-method-loadUIMessageForm'>/**
+</span> * Get the html content using datalayer API based on message form. *
+ * 
+ * @param message :
+ *            Its an object of message.
+ * @param formRender :
+ *            Its a boolean value.
+ * @param func:
+ *            Its a function which will be called after the loadUIMessageForm.
+ * @param addCompleteHandler :
+ *            Its a function which will be called based on the life cycle.
+ * @param callbackHandler :
+ *            Its a function which will be called based on the life cycle.
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.loadUIMessageForm = function(message, formRender,
+		func, addCompleteHandler, callbackHandler) {
+	// alert(message.messageForm + &quot; : &quot; + formRender);
+
+	var messageForm = message.messageForm;
+	if (message.transactionType == &quot;DISCOUNT&quot;) {
+		message.messageForm = &quot;DISCOUNT_FORM&quot;;
+		messageForm = message.messageForm;
+		// message.formView = false;
+	}
+	if (message.transactionType == &quot;LICENSEEDISCOUNT&quot;) {
+		message.messageForm = &quot;LICENSEE_DISCOUNT_FORM&quot;;
+		messageForm = message.messageForm;
+	}
+
+	if (message.formView == false) {
+		$('#inner-uiform-' + message.id).hide();
+	}
+	var dataLayer = appController.getComponent(&quot;DataLayer&quot;);
+
+	if (formRender) {
+
+		dataLayer.loadData(&quot;FM_&quot; + messageForm, {},
+				function(htmlString) {
+					// alert(&quot;loadUIMessageForm callback : &quot; + callbackHandler);
+					try {
+						if (func)
+							func(message, formRender, htmlString,
+									addCompleteHandler, callbackHandler);
+						appController.getComponent(&quot;RenderingEngine&quot;)
+								.fireEvent(AppConstants.Event.RESIZE);
+					} catch (e) {
+						alert(&quot;Form &quot; + messageForm + &quot; is not found : &quot; + e);
+						if (func)
+							func(message, formRender, htmlString,
+									addCompleteHandler, callbackHandler);
+						appController.getComponent(&quot;RenderingEngine&quot;)
+								.fireEvent(AppConstants.Event.RESIZE);
+						appController.getComponent(&quot;RenderingEngine&quot;)
+								.hidePageLoading();
+						appController.getComponent(&quot;RenderingEngine&quot;)
+								.closeModalDialog();
+					}
+
+				});
+
+		/*
+		 * var map = dataLayer.messageFormMap.get(message.messageForm); if (map) {
+		 * if (func) func(message, formRender, map.value, addCompleteHandler);
+		 * appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading(); }
+		 * else { var url = &quot;../message-forms/&quot; + message.messageForm + &quot;.html&quot;; $
+		 * .ajax({
+		 * 
+		 * type : &quot;GET&quot;, url : url, dataType : &quot;html&quot;, cache : false, success :
+		 * function(data) {
+		 * 
+		 * dataLayer.messageFormMap.put(message.messageForm, data); var map =
+		 * dataLayer.messageFormMap .get(message.messageForm); if (func)
+		 * func(message, formRender, map.value, addCompleteHandler);
+		 * 
+		 * 
+		 * if (func) func(message, formRender, data, addCompleteHandler);
+		 * 
+		 * appController.getComponent(&quot;RenderingEngine&quot;)
+		 * .fireEvent(AppConstants.Event.RESIZE);
+		 * appController.getComponent(&quot;RenderingEngine&quot;) .hidePageLoading(); },
+		 * 
+		 * error : function(request, error) {
+		 * 
+		 * alert(&quot;Message Form Not Found : &quot; + request + &quot;: &quot; + error);
+		 * 
+		 * appController.getComponent(&quot;RenderingEngine&quot;) .hidePageLoading(); }
+		 * }); }
+		 */
+	} else {
+		alert(&quot;Form Render On Demand&quot;);
+	}
+};
+
+HIN.UIGenerator.prototype.addMessage = function(message) {
+	var messageObject = this.getMessage(message.id)
+	/*
+	 * alert(message.id + &quot; : &quot; + message.messageId + &quot; : &quot; +
+	 * message.instanceId);
+	 */
+	if (!messageObject) {
+		message.instanceId = this.instanceId;
+		message.rendered = false;
+		this.uiMessages.push(message);
+	} else {
+		messageObject.instanceId = this.instanceId;
+		/* alert(&quot;Exist : &quot; + messageObject.instanceId); */
+	}
+};
+HIN.UIGenerator.prototype.getMessage = function(id) {
+	// alert(this.uiMessages.length + &quot; : &quot; + id);
+	for ( var index = 0; index &lt; this.uiMessages.length; index++) {
+		// alert(this.uiMessages[index].id + &quot; : &quot; + id);
+		if (this.uiMessages[index].id == id) {
+			return this.uiMessages[index];
+		}
+	}
+};
+
+HIN.UIGenerator.prototype.getMessages = function() {
+	return this.uiMessages;
+};
+
+HIN.UIGenerator.prototype.deleteMessage = function(id) {
+	var deleteIndex = -1;
+	for ( var index = 0; index &lt; this.uiMessages.length; index++) {
+		if (this.uiMessages[index].id == id) {
+			deleteIndex = index;
+			break;
+		}
+	}
+	if (deleteIndex != -1) {
+		this.uiMessages.splice(deleteIndex);
+	}
+};
+
+HIN.UIGenerator.prototype.addFormScript = function(formScript) {
+	this.formScripts.push(formScript);
+};
+
+HIN.UIGenerator.prototype.getFormScript = function(id) {
+	// alert(this.formScripts.length + &quot; : &quot; + id);
+	for ( var index = 0; index &lt; this.formScripts.length; index++) {
+		// alert(this.uiMessages[index].id + &quot; : &quot; + id);
+		if (this.formScripts[index].message.id == id) {
+			return this.formScripts[index];
+		}
+	}
+};
+
+HIN.UIGenerator.prototype.deleteFormScript = function(id) {
+	var deleteIndex = -1;
+	for ( var index = 0; index &lt; this.formScripts.length; index++) {
+		if (this.formScripts[index].id == id) {
+			deleteIndex = index;
+			break;
+		}
+	}
+	if (deleteIndex != -1) {
+		this.formScripts.splice(deleteIndex);
+	}
+};
+
+<span id='HIN-UIGenerator-method-load'>/**
+</span> * Trigger from the page component and initiates to generate UI and event
+ * handlers.
+ * 
+ * @returns {void}
+ */
+HIN.UIGenerator.prototype.load = function() {
+	// this.sortType = sortType;
+	this.uiProcessDefinition = appController.getComponent(&quot;RenderingEngine&quot;)
+			.getChildComponent(&quot;Process&quot;).getProcessDefinition();
+	this.uiSelectedStep = appController.getComponent(&quot;RenderingEngine&quot;)
+			.getChildComponent(&quot;Form&quot;).selectedStep;
+	var addTitle = this.getAddTitle();// getTitle();
+	var title = this.getTitle();
+
+	var groupHeader = this.createMessageTypeUIGroupHeader(this.instanceId,
+			addTitle, title, this.uiMessageType, this.mainHeader);
+
+	$('#' + this.uiPlaceholder).append(groupHeader);
+	$('#' + this.uiPlaceholder)
+			.append(
+					'&lt;div id=&quot;footer-'
+							+ this.instanceId
+							+ '&quot; style=&quot;float:right;width:100%;border:0px solid #000000;padding:0px&quot;&gt;&lt;/div&gt;');
+
+	$('.' + this.uiMessageType.type).unbind(&quot;click&quot;, this.createNewUIForm);
+	$('.' + this.uiMessageType.type).bind(&quot;click&quot;, this.createNewUIForm);
+
+	$('.ui-delete-icon').die(&quot;click&quot;, this.removeUIForm);
+	$('.ui-delete-icon').live(&quot;click&quot;, this.removeUIForm);
+
+	if (this.uiMessageType.headerView == false) {
+		$('#uiform-sub-head' + this.instanceId).hide();
+	} else {
+		$('#uiform-sub-head' + this.instanceId).show();
+	}
+
+	if (this.singleForm &amp;&amp; (!this.uiMessages || this.uiMessages.length == 0)) {
+		var message = factoryClass.createMessage();
+		message.instanceId = this.instanceId;
+		this.uiMessages.push(message);
+		this.uiMessageType.addMessage(message);
+	}
+	this.loadUIForms();
+
+};
+
+<span id='HIN-UIGenerator-method-getTitle'>/**
+</span> * Provides the title from the message type.
+ * 
+ * @returns {String}
+ */
+HIN.UIGenerator.prototype.getTitle = function() {
+
+	var title = this.uiMessageType.title;
+
+	if (this.uiMessages.length == 1) {
+		title = this.uiMessageType.typeName;
+		if (this.uiProcessDefinition.processName == &quot;Accounts&quot;
+				|| this.uiProcessDefinition.processName == &quot;LicenseeAccounts&quot;)
+			title = this.uiMessageType.title;
+	}
+
+	// alert(&quot;Title: &quot; + title)
+
+	if (!title)
+		title = this.uiMessageType.typeName;
+	if (!title)
+		title = this.uiMessageType.type;
+	if (title)
+		title = title.replace(/_/g, &quot; &quot;);
+
+	// this.uiMessages = this.uiMessageType.getMessages();
+
+	// alert(&quot;Title: &quot; + title)
+
+	/*
+	 * if (this.uiMessages.length == 0) { var vowelRegex = /^[AEIOU]/; if
+	 * (title.match(vowelRegex) != null) { title = &quot;an &quot; + title; } else { title =
+	 * &quot;a &quot; + title; } title = &quot;&lt; Add &quot; + title + &quot; &gt;&quot;; }
+	 */
+
+	return title;
+};
+
+<span id='HIN-UIGenerator-method-getAddTitle'>/**
+</span> * Provides the title from the message type and it appends the prefix like 'Add
+ * a ' or 'Add an '.
+ * 
+ * @returns {String}
+ */
+HIN.UIGenerator.prototype.getAddTitle = function() {
+
+	var title = this.uiMessageType.typeName;
+	if (this.uiProcessDefinition.processName == &quot;Accounts&quot;
+			|| this.uiProcessDefinition.processName == &quot;LicenseeAccounts&quot;)
+		title = this.uiMessageType.title;
+
+	if (this.customTitleRenderer == true) {
+		title = this.customTitle;
+	}
+
+	if (title)
+		title = title.replace(/_/g, &quot; &quot;);
+
+	// this.uiMessages = this.uiMessageType.getMessages();
+
+	// alert(&quot;Title: &quot; + title)
+
+	if (this.addIcon == &quot;block&quot;) {// this.uiMessages.length == 0) {
+		var vowelRegex = /^[AEIOU]/;
+		if (title.match(vowelRegex) != null) {
+			title = &quot;an &quot; + title;
+		} else {
+			title = &quot;a &quot; + title;
+		}
+		title = &quot;&lt; Add  &quot; + title + &quot; &gt;&quot;;
+	}
+
+	return title;
+};
+
+<span id='HIN-UIGenerator-method-updateProcess'>/**
+</span> * Changes in the message object will be updated the process definition and
+ * persist.
+ * 
+ * @returns {void}
+ */
+
+HIN.UIGenerator.prototype.updateProcess = function() {
+
+	// alert(&quot;updateProcess&quot;);
+	// return;
+	var page = appController.getComponent(&quot;RenderingEngine&quot;).getChildComponent(
+			&quot;Form&quot;).getPage();
+	if (page.processDefinition.processName == &quot;Appointments&quot;
+			|| page.processDefinition.processName == &quot;Accounts&quot;
+			|| page.processDefinition.processName == &quot;LicenseeAccounts&quot;) {
+		return;
+	} else {
+		// alert(&quot;updateProcess : &quot; + page.processDefinition.processName);
+		var processObjects = [ page.processDefinition ];
+		var processManagerCache = appController.getComponent(&quot;DataLayer&quot;).cacheManager.processManagerCache;
+		processManagerCache.renderProcessUpdate = false;
+		processManagerCache.syncToCouch = false;
+		processManagerCache.saveProcess(processObjects);
+	}
+}
+
+HIN.UIGenerator.prototype.fillMembershipId = function(message, membershipId) {
+	var fields = &quot;identifiedPerson,asIdentifications&quot;;
+	var type = &quot;II&quot;;
+	var tagName = &quot;id&quot;;
+	var pathFields = fields.split(',');
+
+	if (membershipId) {
+		instanceObject = [ 'Eternity_Membership_ID', membershipId, null ];
+		message.messageAndUIBinder.writeValueToMessage(tagName, pathFields,
+				type, instanceObject);
+	}
+}
+HIN.UIGenerator.prototype.fillOrganizationId = function(message, orgId) {
+	var fields = &quot;assigningOrganization&quot;;
+	var type = &quot;II&quot;;
+	var tagName = &quot;id&quot;;
+	var pathFields = fields.split(',');
+
+	if (orgId) {
+		instanceObject = [ 'SUBSCRIBER_ID', orgId, null ];
+		message.messageAndUIBinder.writeValueToMessage(tagName, pathFields,
+				type, instanceObject);
+	}
+}
+var permissionMessageIndex = 0;
+HIN.UIGenerator.prototype.getPermission = function(instance, roleId,
+		permissionMessages, callback) {
+
+	if (permissionMessageIndex &lt; permissionMessages.length) {
+		var permissionMessage = permissionMessages[permissionMessageIndex];
+		if (!permissionMessage.messageAndUIBinder &amp;&amp; permissionMessage.msg) {
+			/*
+			 * alert(permissionMessage.message);
+			 * alert(XmlUtil.xmlToString(permissionMessage.message));
+			 */
+			permissionMessage.messageAndUIBinder = new MessageAndUIBinder(null,
+					permissionMessage.msg, permissionMessage.messageType);
+		}
+		if (permissionMessage.messageAndUIBinder) {
+			var parentRoleId = permissionMessage.messageAndUIBinder
+					.getIdRootValue(&quot;ROLE_NAME&quot;);
+			if (roleId == parentRoleId) {
+
+				if (callback)
+					callback(permissionMessage);
+			}
+			permissionMessageIndex++;
+			instance.getPermission(instance, roleId, permissionMessages,
+					callback);
+		} else {
+			var dataLayer = appController.getComponent(&quot;DataLayer&quot;);
+			dataLayer.getMessageInternal(permissionMessage, function(messageId,
+					msg, permissionMessage) {
+
+				permissionMessage.messageAndUIBinder = new MessageAndUIBinder(
+						null, permissionMessage.msg,
+						permissionMessage.messageType);
+				var parentRoleId = permissionMessage.messageAndUIBinder
+						.getIdRootValue(&quot;ROLE_NAME&quot;);
+				if (roleId == parentRoleId) {
+
+					if (callback)
+						callback(permissionMessage);
+				}
+				permissionMessageIndex++;
+				instance.getPermission(instance, roleId, permissionMessages,
+						callback);
+			}, true);
+
+		}
+
+	} else {
+		if (callback)
+			callback(null);
+	}
+};
+</pre>
+</body>
+</html>

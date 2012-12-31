@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Eternity</title>
+	<link rel="stylesheet"  href="js/jquery.mobile-1.0.1.min.css" />
+	<link rel="stylesheet" href="css/hin.css" />
+	<link rel="stylesheet" href="css/violet.css" />
+	<script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.0.1.min.js"></script>
+	
+	
+	<script src="js/AjaxMultipart.js"></script>
+	<script src="js/AppConstants.js"></script>
+	<script src="js/ApplicationController.js"></script>
+	<script src="js/AppUtil.js"></script>
+	<script src="js/Context.js"></script>
+	<script src="js/DataLayer.js"></script>
+	<script src="js/EventQueue.js"></script>
+	<script src="js/RenderingEngine.js"></script>
+
+	<script src="../search/js/Search.js"></script>
+	<script type="text/javascript">
+	var applicationController = null;
+	$(document).ready(function() {
+		initializeMainScreen();
+
+	});
+	
+	function initializeMainScreen() {
+		applicationController = new ApplicationController();
+	};
+	</script>
+</head>
+<body>
+<div id="template" data-role="page" class="ui-corner-all ui-shadow-inset" data-theme="d">
+
+	<div data-role="header" data-theme="v" id="divHeader" data-backBtn="true">
+			Header
+			<!-- a href="#"  data-theme="v" >
+			<img src="images/eternity/user.png" style="width:16px"/>
+			<b>Glen Carroll</b>
+			</a>
+			<h1 aria-level="1" role="heading" tabindex="0" class="ui-title" >
+				Ms Melissa Blair - Reception at Dubai Clinic
+			<span style="position:absolute;right:5px">
+				<img src="images/eternity/user.png" style="width:32px"/>
+				<a href="#" class="nav-header">Logout</a>
+			</span>
+			</h1-->
+
+	</div>
+	<div data-role="none" data-theme="v">
+		<span class="form-header">Form Name</span>
+		<span  style="float:right">Links</span>
+	</div>
+	<div data-role="content" >
+		<!--p id="jqm-version">1.0.1 Final Release</p-->
+
+
+		<div class="content-primary ui-corner-all ui-shadow-inset"  id="form">
+				Form
+		</div>
+
+		<div class="content-secondary ui-corner-all ui-shadow-inset" data-theme="d" id="right">
+				Right
+		</div>
+
+
+
+	</div>
+
+	<div data-role="footer" class="footer-docs" data-theme="c">
+			<p>&copy; 2012 The Eternity Project</p>
+	</div>
+
+</div>
+</body>
+</html>

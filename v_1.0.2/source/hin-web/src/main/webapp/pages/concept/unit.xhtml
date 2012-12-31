@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<rich:messages infoClass="infoClass" errorClass="errorClass" />
+		<h:form>
+	
+			<rich:panel header="#{msg['unit.title']}">
+				<h:panelGrid columns="2">
+					<h:outputText value="#{msg['unit.name']}: " />
+					<h:inputText id="name" value="#{unitBean.unit.name}" />
+					
+					<h:outputText value="#{msg['unit.abbreviation']}: " />
+					<h:inputText id="abbreviation" value="#{unitBean.unit.abbreviation}" />
+
+					<h:outputText value="#{msg['unit.description']}: " />
+					<h:inputText id="description" value="#{unitBean.unit.description}" />
+
+					<h:outputText value="#{msg['unit.symbol']}: " />
+					<h:inputText id="symbol" value="#{unitBean.unit.symbol}" />
+				</h:panelGrid>
+				<h:commandButton value="#{msg['unit.save']} " id="saveUnit" 
+					action="#{unitBean.saveUnit}" />
+					&npsb;&npsb;&npsb;
+					<!-- <h:commandButton value="#{msg['unit.update']}"  rendered="#{!empty unitBean.unit.id}"
+					action="#{unitBean.updateUnit}" /> -->
+					&npsb;&npsb;&npsb;
+					<h:commandButton value="Back" action="viewunits"  immediate="true"/>
+			</rich:panel>
+			<br />
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>
+
+
+

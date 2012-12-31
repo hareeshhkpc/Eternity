@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html>
+	<head>
+		<title>Login</title>
+		<script language="JavaScript" src="../../js/jquery-1.6.4.min.js"></script>
+		<script type="text/javascript" src="../../js/utils/Library.js"></script>
+		<script type="text/javascript">
+			  $(document).ready(function(){
+				  $(".login").hide();
+				  submitUser();	  
+			  });
+		</script>
+	</head>
+	<body>
+		<div class="login">
+			<form id="libraryForm" name="libraryForm" action="/hin-library-alfresco-1.0-SNAPSHOT/page/dologin" method="post">
+				<input name="username"  value="aaa"/> 
+				<input name="password"  value="aaa"/> 
+			</form>
+		</div>
+	</body>
+</html>

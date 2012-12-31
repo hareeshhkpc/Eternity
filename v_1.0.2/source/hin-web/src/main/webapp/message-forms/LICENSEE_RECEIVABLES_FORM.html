@@ -1,0 +1,35 @@
+<fieldset class="ui-grid-c ui-accounting-box" amountParent="licenseeReceivable"
+	id="licenseeReceivableForm" style="width: 100%">
+	<!-- table header starts here 
+	<div class="ui-block-b ui-accounting-fieldhead" style="width: 29%">Date</div>
+	<div class="ui-block-c ui-accounting-fieldhead ui-accounting-position"
+		style="width: 10%">Age</div>
+	<div class="ui-block-d ui-accounting-fieldhead ui-accounting-position"
+		style="width: 41.3%">Comments</div>
+	<div class="ui-block-e ui-accounting-fieldhead ui-accounting-position"
+		style="width: 12.1%">Amount</div>
+	 Table header ends here -->
+	<div class="ui-block-a ui-accounting-field" style="width: 29%">
+		<div isEditor="true" editorLabel="" pathFields=""
+			tagName="effectiveTime" dataType="TS" editorType="TS"></div>
+	</div>
+	<div class="ui-block-b ui-accounting-field ui-accounting-position"
+		style="width: 10%">
+		<input type="text" id="invoiceAge" value="" />
+	</div>
+	<div class="ui-block-c ui-accounting-field ui-accounting-position"
+		style="width: 41.3%">
+		<div isEditor="true" editorType="ST" pathFields="" editorLabel=""
+			tagName="derivationExpr" dataType="ST"
+			configParams="[{name:'editable',value:false}]"></div>
+	</div>
+	<div
+		class="ui-block-d ui-accounting-field ui-accounting-align ui-accounting-position"
+		style="width: 12.1%">
+		<div isEditor="true" editorType="MOInplace" pathFields=""
+			tagName="amt" dataType="MO"></div>
+	</div>
+	<div class="ui-block-e ui-delete-icon">
+		<img src="images/delete.png" onclick="" />
+	</div> 
+</fieldset>

@@ -1,0 +1,49 @@
+MSH|^~\&|CGATE|BIOPHYSICAL|CGTWY01|ST|20120604174523||ORU^R01||D|2.3
+EVN|R01|20120604174523
+PID|1|B10252|B10252||LastName^FirstName^-||19660929|M||||||||||||||||||||||
+PV1|1||^^^Eternity Medicine - Dubai&201||||105^Unknown^||||||||||||10019409||||||||||||||||||||^^^Eternity Medicine - Dubai&201|||||20120416093000||||||
+ORC|RE||10019409|||||||250^Kulesza^Nicole|||^^^Eternity Medicine - Dubai&201||20120604174523|||||
+ZCF|CGate client ID|BIOPHYSICAL|||||||||||||||Message ID|||OBR|1||10019409|512^InternationalCardiometabolic [i]|R||20120416093000|||141^Draw^Physician|G|||201204180903||105^Unknown||||||201204191203|||F||^^^^^R|||||||1^Clark&Mark||||||||||CardioI|||||||||||
+OBX|1|ST|1898^International Cardiometabolic||||||||F|||20120416093000|12OBR|2||10019409|92^VAP Cholesterol Test|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204231504|||F||^^^^^R|||||||8^Adams&Sian|||||||||||||||||||||8
+OBX|1|NM|178^Total LDL||130|mg/dL|<130|H|||F|||20120416093000|17
+OBX|2|NM|162^LDL Real (LDL-R)||109|mg/dL|<100|H|||F|||20120416093000|17
+OBX|3|NM|160^Lipoprotein (a)||4.0|mg/dL|<10||||F|||20120416093000|17
+OBX|4|NM|163^IDL Cholesterol||17|mg/dL|<20||||F|||20120416093000|17
+OBX|5|NM|159^Total HDL||52|mg/dL|>=40||||F|||20120416093000|17
+OBX|6|NM|164^HDL2||11|mg/dL|>10||||F|||20120416093000|17
+OBX|7|NM|165^HDL3||41|mg/dL|>30||||F|||20120416093000|17
+OBX|8|NM|166^Total VLDL||22|mg/dL|<30||||F|||20120416093000|17
+OBX|9|NM|167^VLDL1+2||8.7|mg/dL|<20||||F|||20120416093000|17
+OBX|10|NM|168^VLDL3||13|mg/dL|<10|H|||F|||20120416093000|17
+OBX|11|NM|158^Total Cholesterol||204|mg/dL|<200|H|||F|||20120416093000|17
+OBX|12|NM|161^Triglycerides||131|mg/dL|<150||||F|||20120416093000|17
+OBX|13|NM|169^Non-HDL Cholesterol||152|mg/dL|<160||||F|||20120416093000|17
+OBX|14|NM|170^Remnant Lipoproteins (IDL + VLDL3)||30|mg/dL|<30|H|||F|||20120416093000|17
+OBX|15|ST|171^LDL Density (Pattern)||A/B||A|A|||F|||20120416093000|17
+OBX|16|NM|172^Apo B100 (Apo B100)||103|mg/dL|<109||||F|||20120416093000|17
+OBX|17|NM|157^Apolipoprotein A1 (Apo A1)||153|mg/dL|>118||||F|||20120416093000|17
+OBX|18|NM|173^Apo B100/Apo A1 Ratio||0.67||<0.92||||F|||20120416093000|17
+OBX|19|NM|174^LDL4||9.9|mg/dL|||||F|||20120416093000|17
+OBX|20|NM|175^LDL3||59.0|mg/dL|||||F|||20120416093000|17
+OBX|21|NM|176^LDL2||24.1|mg/dL|||||F|||20120416093000|17
+OBX|22|NM|177^LDL1||15.9|mg/dL|||||F|||20120416093000|17OBR|3||10019409|HCY^Homocysteine|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204181418|||F||^^^^^R|||||||2^Reyes&Denise||||||||||83090|||||||||||8
+OBX|1|NM|4288^Homocysteine||12.7|umoL/L|5.0-12.0|H|||F|||20120416093000|12OBR|4||10019409|INS^Insulin|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204181418|||F||^^^^^R|||||||2^Reyes&Denise||||||||||83525|||||||||||8
+OBX|1|NM|27601^Insulin||8.3|uIU/mL|<29.1||||F|||20120416093000|12OBR|5||10019409|444^C-Peptide|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204181418|||F||^^^^^R|||||||2^Reyes&Denise||||||||||84681|||||||||||8
+OBX|1|NM|1650^C-Peptide||3.7|ng/mL|0.6-4.7||||F|||20120416093000|12OBR|6||10019409|500^Proinsulin, Total|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204191444|||F||^^^^^R|||||||3^Jacobson&James|||||||||||||||||||||8
+OBX|1|NM|1563^Proinsulin, Total||26.6|pmol/L|<22.0|H|||F|||20120416093000|12OBR|7||10019409|553^Proinsulin/Insulin Ratio|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204191451|||F||^^^^^R|||||||3^Jacobson&James|||||||||||||||||||||8
+OBX|1|NM|1967^Proinsulin/Insulin Ratio||0.46|Ratio|<0.25|H|||F|||20120416093000|12OBR|8||10019409|502^Adiponectin|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204201701|||F||^^^^^R|||||||1^Clark&Mark|||||||||||||||||||||8
+OBX|1|NM|1529^Adiponectin*||4.9|ug/mL|>1.4||||F|||20120416093000|12OBR|9||10019409|503^Leptin|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204201224|||F||^^^^^R|||||||8^Adams&Sian||||||||||83520|||||||||||8
+OBX|1|NM|1535^Leptin*||1.0|ng/mL|<6.9||||F|||20120416093000|12OBR|10||10019409|504^Resistin|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204200951|||F||^^^^^R|||||||8^Adams&Sian|||||||||||||||||||||8
+OBX|1|NM|1545^Resistin*||22.3|ng/mL|1.3-25.0||||F|||20120416093000|12OBR|11||10019409|TES^Testosterone, Total|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204181418|||F||^^^^^R|||||||2^Reyes&Denise||||||||||84403|||||||||||8
+OBX|1|NM|13^Testosterone, Total||953|ng/dL|262-1593||||F|||20120416093000|12OBR|12||10019409|SBG^Sex Hormone Binding Globulin|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204181418|||F||^^^^^R|||||||2^Reyes&Denise||||||||||84270|||||||||||8
+OBX|1|NM|4933^Sex Hormone Binding Globulin||25|nmoL/L|13-71||||F|||20120416093000|12OBR|13||10019409|hsC^C-Reactive Protein|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204181418|||F||^^^^^R|||||||2^Reyes&Denise||||||||||86141|||||||||||8
+OBX|1|NM|50830^High Sensitivity CRP||1.5|mg/L|<1.0|H|||F|||20120416093000|12
+NTE|1||                     hsCRP LEVEL          RELATIVE RISK FOR CARDIOVASCULAR  DISEASE\X0D0A\                      <1.0  MG/L              LOW\X0D0A\                    1.0-3.0 MG/L            AVERAGE \X0D0A\                      >3.0  MG/L              HIGH\X0D0A\          (from Pearson, T.A. et al.  Circulation 2003; 107:499)\X0D0A\OBR|14||10019409|505^IL-6|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204201303|||F||^^^^^R|||||||8^Adams&Sian|||||||||||||||||||||8
+OBX|1|NM|1533^Interleukin-6*||0.9|pg/mL|<5.0||||F|||20120416093000|12OBR|15||10019409|468^IL-8|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204201305|||F||^^^^^R|||||||8^Adams&Sian|||||||||||||||||||||8
+OBX|1|NM|1538^Interleukin-8*||3.6|pg/mL|<11.1||||F|||20120416093000|12OBR|16||10019409|506^Tumor Necrosis Alpha|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204201241|||F||^^^^^R|||||||8^Adams&Sian||||||||||83520|||||||||||8
+OBX|1|NM|1564^Tumor Necrosis Factor Alpha*||1.8|pg/mL|<9.2||||F|||20120416093000|12OBR|17||10019409|507^Plasminogen Activator Inhibitor Type 1|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204201046|||F||^^^^^R|||||||8^Adams&Sian||||||||||85415|||||||||||8
+OBX|1|NM|1540^Plasminogen Activator Inhibitor Type 1*||26.8|ng/mL|<61.6||||F|||20120416093000|12OBR|18||10019409|458^Pre-D Risk Assessment|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204231500|||F||^^^^^R|||||||6^Seiders&Monika|||||||||||||||||||||8
+OBX|1|ST|1756^Pre-D Risk Assessment||N/A||Low||||F|||20120416093000|12
+NTE|1||\X0D0A\Based on your laboratory findings and certain assumptions, the result shown above is an indication of your risk for developing a pre-diabetic condition.OBR|19||10019409|96^Glucose|R||20120416093000|||141^Draw^Physician||||201204180903||105^Unknown||||||201204201153|||F||^^^^^R|||||||1^Clark&Mark||||||||||82947|||||||||||8
+NTE|1||CPL Accession: KL771996
+OBX|1|NM|2217^Glucose||62|MG/DL|65-100|L|||F|||20120416093000|2

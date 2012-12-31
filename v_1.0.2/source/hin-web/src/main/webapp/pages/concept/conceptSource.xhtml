@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<h:form id="conceptSource">
+			<rich:panel header="#{msg['conceptSource.title']}">
+				<h:panelGrid columns="2">
+					<h:outputText value="#{msg['conceptSource.name']}: " />
+					<h:inputText id="name"
+						value="#{conceptSourceBean.conceptSource.name}" />
+					<h:outputText value="#{msg['conceptSource.description']}: " />
+					<h:inputText id="description"
+						value="#{conceptSourceBean.conceptSource.description}" />
+					<h:outputText value="Status" />
+					<h:selectOneMenu id="statusId"
+						value="#{conceptSourceBean.conceptSource.status}">
+						<f:selectItems value="#{conceptSourceBean.statuses}" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+				<br />
+				<h:commandButton value="#{msg['conceptSource.save']} "
+					action="#{conceptSourceBean.saveConcept}" />
+				<h:commandButton value="#{msg['conceptSource.back']} "
+					action="viewconceptsource" />
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
+
+
+

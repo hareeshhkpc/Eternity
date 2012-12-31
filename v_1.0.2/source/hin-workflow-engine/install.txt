@@ -1,0 +1,3 @@
+mvn install:install-file -DgroupId=org.jbpm.jbpm4 -DartifactId=jbpm -Dversion=4.4 -Dpackaging=jar -Dfile=lib\jbpm-4.4.jar
+mvn install:install-file -DgroupId=jbpm -DartifactId=jbpm-identity -Dversion=3.2.3 -Dpackaging=jar -Dfile=lib\jbpm-identity-3.2.3.jar
+mvn install:install-file -DgroupId=de.odysseus.juel -DartifactId=juel-modified -Dversion=2.1.0 -Dpackaging=jar -Dfile=lib\juel-impl-2.2.3.jar

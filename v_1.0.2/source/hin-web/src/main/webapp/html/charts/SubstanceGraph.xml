@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1000px" height="140" id="svgId"  
+  >
+   
+  <g stroke="gray" stroke-width="2">
+ 
+		<g id="gId" transform="translate(20,20)">
+	   	<path
+         id="yCol1"
+         style="fill:none;stroke:green;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         d="m 50,15 0,100"
+         inkscape:connector-curvature="0" />
+		 <path
+         id="yCol2"
+         style="fill:none;stroke:green;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         d="m 180,15 0,100"
+         inkscape:connector-curvature="0" />
+		  <path
+         id="yCol3"
+         style="fill:none;stroke:green;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         d="m 310,15 0,100"
+         inkscape:connector-curvature="0" />
+		 <path
+         id="yCol4"
+         style="fill:none;stroke:green;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         d="m 440,15 0,100"
+         inkscape:connector-curvature="0" />		 
+		 <path
+         id="ymin"
+         style="fill:none;stroke:green;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         d="m 20,100 550,0"
+         inkscape:connector-curvature="0" />
+		 <path
+         id="yminId"
+         style="fill:none;stroke:green;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         d="m 50,60 130,0"
+         inkscape:connector-curvature="0" />
+		 <path
+         id="yminId1"
+         style="fill:none;stroke:green;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         d="m 180,30 130,0"
+         inkscape:connector-curvature="0" />
+		 <path
+         id="yminId2"
+         style="fill:none;stroke:green;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none"
+         d="m 310,30 130,0"
+         inkscape:connector-curvature="0" />
+		 <text id="text5806">
+        <tspan
+           id="label1"
+           sodipodi:role="line"
+           y="55"
+           x="90"
+           style="font-size:12px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#56004e;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">100 MG</tspan>
+      </text>
+	  <text id="text5806">
+        <tspan
+           id="label2"
+           sodipodi:role="line"
+           y="25"
+           x="220"
+           style="font-size:12px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#56004e;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">200 MG/day</tspan>
+      </text>
+	  <text id="text5806">
+        <tspan
+           id="label3"
+           sodipodi:role="line"
+           y="25"
+           x="350"
+           style="font-size:12px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#56004e;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">Today</tspan>
+      </text>
+	  <text id="text5806">
+        <tspan
+           id="label4"
+           sodipodi:role="line"
+           y="25"
+           x="450"
+           style="font-size:12px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#56004e;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">Supply Runs Out</tspan>
+      </text>
+	  <text id="text5806">
+        <tspan
+           id="month1"
+           sodipodi:role="line"
+           y="115"
+           x="85"
+           style="font-size:12px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#56004e;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">Jan 2012</tspan>
+      </text>
+	  <text id="text5806">
+        <tspan
+           id="month2"
+           sodipodi:role="line"
+           y="115"
+           x="200"
+           style="font-size:12px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#56004e;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">Mar 2012</tspan>
+      </text>
+	  <text id="text5806">
+        <tspan
+           id="month3"
+           sodipodi:role="line"
+           y="115"
+           x="330"
+           style="font-size:12px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#56004e;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">Jun 2012</tspan>
+      </text>
+	  <text id="text5806">
+        <tspan
+           id="month4"
+           sodipodi:role="line"
+           y="115"
+           x="460"
+           style="font-size:12px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill:#56004e;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">Aug 2012</tspan>
+      </text>
+		<rect id="rect1" x="50" y="20" width="130" height="10" style="fill:#E6E6FF;stroke:green;stroke-width:1.75; stroke-opacity:0.9"/>
+		<rect id="rect2" x="180" y="20" width="130" height="10" style="fill:#E6E6FF;stroke:green;stroke-width:1.75; stroke-opacity:0.9"/>
+		<rect id="rect3" x="310" y="20" width="130" height="10" style="fill:#DDCBDB;stroke:green;stroke-width:0.1; stroke-opacity:0.9"/>
+		 </g>
+ </g>
+</svg>

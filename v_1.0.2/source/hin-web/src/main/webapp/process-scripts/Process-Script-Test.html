@@ -1,0 +1,525 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Process Script Test</title>
+
+<!-- link rel="stylesheet" href="css/common.css" /-->
+<link rel="stylesheet" href="../html/js/jquery.mobile-1.0.1.min.css" />
+
+<!-- <link rel="stylesheet" href="css/hin.css" /> -->
+
+<link rel="stylesheet" href="../html/css/violet.css" />
+<link rel="stylesheet" href="../html/css/mobile.css" type="text/css" />
+<link rel="stylesheet" href="../html/css/fluid.css" type="text/css" />
+<link rel="stylesheet" href="../html/css/invoice.css" type="text/css" />
+<link rel="stylesheet" href="../html/js/jquery.mobile.datebox.min.css" />
+<link rel="stylesheet" href="../html/css/healthhistoryquestionnaire.css" />
+
+<script src="../html/js/custom/Documents.js"></script>
+<script src="../html/js/vo/OrganizationVO.js"></script>
+<script src="../html/js/vo/LicenseeVO.js"></script>
+
+
+<link href="../html/css/jquery.mCustomScrollbar.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- <link rel="stylesheet" href="../html/css/screen.css" type="text/css" media="screen" /> -->
+
+
+<link rel="stylesheet" href="../html/js/jquery.ui.datepicker.mobile.css" />
+<link rel="stylesheet" href="../html/js/jquery.mobile.datebox.min.css">
+<script src="../html/js/jquery-1.6.4.min.js"></script>
+<script src="../html/js/jquery.json-2.3.js"></script>
+<script src="../html/js/jquery.mobile-1.0.1.min.js"></script>
+<script src="../html/js/jquery.mobile.datebox.min.js"></script>
+<script src="../html/js/jquery.easydate-0.2.4.js"></script>
+<script src="../html/js/jquery.mobile.simpledialog.js"></script>
+<link rel="stylesheet" href="../html/css/jquery.mobile.simpledialog.css">
+
+<script type="text/javascript" src="../html/js/jsCharts/highcharts.js"></script>
+<!-- <script type="text/javascript" src="../html/js/jsCharts/reviewHighchart.js"></script> -->
+<!--  <script type="text/javascript" src="../html/js/jsCharts/jquery.min.js"></script>
+<script type="text/javascript" src="../html/js/jsCharts/jquery-1.6.4.js"></script>
+<script type="text/javascript" src="../html/js/jsCharts/themes/grid.js"></script> -->
+
+<!-- <script type="text/javascript" src="../html/js/jQuery.ui.datepicker.js"></script> -->
+<!-- <script src="../html/js/jquery.mobile.datebox.min.js"></script> -->
+<script src="../mobile/js/jquery.mousewheel.min.js"></script>
+<script src="../html/js/AjaxMultipart.js"></script>
+<script src="../html/js/AppConstants.js"></script>
+<script src="../html/js/ApplicationController.js"></script>
+<script src="../html/js/AppUtil.js"></script>
+<script src="../html/js/Callback.js"></script>
+<script src="../html/js/CommonUtil.js"></script>
+<script src="../html/js/Context.js"></script>
+<script src="../html/js/DataLayer.js"></script>
+<script src="../html/js/DataTypeAPI.js"></script>
+<script src="../html/js/EventQueue.js"></script>
+<script src="../html/js/HashMap.js"></script>
+<script src="../html/js/FactoryClass.js"></script>
+<script src="../html/js/IDGenerator.js"></script>
+<script src="../html/js/hl7adapter_new.js"></script>
+<!-- <script src="../html/js/hl7adapter.js"></script> -->
+<script src="../html/js/LookupHandler.js"></script>
+<script src="../html/js/MessageAndUIBinder.js"></script>
+<script src="../html/js/RenderingEngine.js"></script>
+<script src="../html/js/ServiceLayer.js"></script>
+<script src="../html/js/WorkFlowManager.js"></script>
+<script src="../html/js/UpdatePathfield.js"></script>
+<script src="../html/js/XmlUtil.js"></script>
+<script src="../html/js/WorkFlowManagerCache.js"></script>
+<script src="../html/js/CacheManager.js"></script>
+<script src="../html/js/ProcessManagerCache.js"></script>
+
+
+<script src="../html/js/custom/AppSchedule.js"></script>
+<script src="../html/js/custom/AppCalendar.js"></script>
+<script src="../html/js/custom/Form.js"></script>
+<script src="../html/js/custom/Home.js"></script>
+<script src="../html/js/custom/Library.js"></script>
+<script src="../html/js/custom/Login.js"></script>
+<script src="../html/js/custom/SignUp.js"></script>
+<!-- <script src="../html/js/custom/Mentor.js"></script>
+<script src="../html/js/custom/Monitor.js"></script>
+<script src="../html/js/custom/Measure.js"></script> -->
+
+<script src="../html/js/custom/Navigation.js"></script>
+<script src="../html/js/custom/Patient.js"></script>
+<script src="../html/js/custom/Process.js"></script>
+<script src="../html/js/custom/Program.js"></script>
+<script src="../html/js/custom/Licensee.js"></script>
+<script src="../html/js/custom/Resize.js"></script>
+<script src="../html/js/custom/Staff.js"></script>
+<script src="../html/js/custom/Search.js"></script>
+<script src="../html/js/custom/Settings.js"></script>
+<script src="../html/js/custom/User.js"></script>
+<script src="../html/js/vo/ConceptLookup.js"></script>
+<script src="../html/js/vo/ConceptVO.js"></script>
+<script src="../html/js/vo/CurrencyVO.js"></script>
+
+<script src="../html/js/vo/LicenseeVO.js"></script>
+<script src="../html/js/custom/Review.js"></script>
+
+<script src="../html/js/custom/TestResult.js"></script>
+<script src="../html/js/custom/Statistics.js"></script>
+<script src="../html/js/custom/Archive.js"></script>
+<!-- <script src="../html/js/custom/WorkFlow.js"></script> -->
+<script src="../html/js/ui/AppointmentSchedule.js"></script>
+<script src="../html/js/ui/CalendarData.js"></script>
+
+<!-- <script src="../html/js/ui/Measure.js"></script>
+<script src="../html/js/ui/Substances.js"></script> -->
+<script src="../html/js/ui/UIGenerator.js"></script>
+<script src="../html/js/ui/Page.js"></script>
+<script src="../html/js/ui/MonitorPage.js"></script>
+
+<script src="../html/js/vo/AppointmentVO.js"></script>
+<script src="../html/js/vo/ChartVO.js"></script>
+<script src="../html/js/vo/FormVO.js"></script>
+<script src="../html/js/vo/Message.js"></script>
+<script src="../html/js/vo/MessageVO.js"></script>
+<script src="../html/js/vo/OrganizationVO.js"></script>
+<script src="../html/js/vo/ProcessVO.js"></script>
+<script src="../html/js/vo/ProcessDefinition.js"></script>
+<script src="../html/js/vo/SearchVO.js"></script>
+<script src="../html/js/vo/Step.js"></script>
+<script src="../html/js/vo/MessageType.js"></script>
+<!-- <script src="../html/js/vo/MessageTypeName.js"></script> -->
+<script src="../html/js/vo/Query.js"></script>
+<script src="../html/js/vo/UserProcess.js"></script>
+<script src="../html/js/vo/UserVO.js"></script>
+<script src="../html/js/vo/TaskVO.js"></script>
+<script src="../html/js/vo/StatisticsVO.js"></script>
+<script src="../html/js/vo/StepGroup.js"></script>
+<script src="../html/js/vo/UserVO.js"></script>
+<script src="../html/js/jquery.base64.min.js"></script>
+<script src='../html/js/calendar/src/_loader.js?debug'></script>
+
+
+<link rel="stylesheet" href="../html/css/jquery.scroller-1.0.2.min.css" />
+<link rel="stylesheet" href="../html/css/validationEngine.jquery.css"
+	type="text/css" />
+
+<script src="../html/js/jquery.mobile.message.min.js"></script>
+<script src="../html/js/languages/jquery.validationEngine-en.js"></script>
+<script src="../html/js/jquery.validationEngine.js"></script>
+
+<script type="text/javascript" src="../html/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript"
+	src="../html/js/jquery.mCustomScrollbar.js"></script>
+
+<!-- Notification Allert -->
+<script type="text/javascript" src="../html/js/humane.js"></script>
+<link rel="stylesheet" type="text/css" href="../html/css/jackedup.css"
+	media="screen" />
+
+<script src="../html/js/jqm.autoComplete-1.4.js"></script>
+
+<script src='ProcessScript.js'></script>
+<script src='../message-scripts/MessageTypeScript.js'></script>
+
+
+<script type="text/javascript" src="../html/js/editor/EditorXmlApi.js"></script>
+<script type="text/javascript"
+	src="../html/js/editor/EditorSMOValueApi.js"></script>
+<script type="text/javascript" src="../html/js/editor/EditorUIApi.js"></script>
+
+<script type="text/javascript"
+	src="../html/js/message_api/script/xml2json.js"></script>
+<script type="text/javascript"
+	src="../html/js/message_api/script/json2xml.js"></script>
+<script type="text/javascript"
+	src="../html/js/message_api/script/lawnchair/Lawnchair.js"></script>
+<script type="text/javascript"
+	src="../html/js/message_api/script/lawnchair/adapters/webkit-sqlite.js"></script>
+<script type="text/javascript"
+	src="../html/js/message_api/script/lawnchair/adapters/dom.js"></script>
+<script type="text/javascript" src="../html/js/MessageQueue.js"></script>
+<script type="text/javascript"
+	src="../html/js/message_api/script/hl7adapter.js"></script>
+<script type="text/javascript"
+	src="../html/js/message_api/script/hl7adapter.unit.js"></script>
+
+<script type="text/javascript" src="../html/js/LookUpCache.js"></script>
+
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+
+						var process = null;
+
+						var appController = null;
+						var idGenerator = null;
+						var factoryClass = null;
+						appController = new ApplicationController();
+						idGenerator = new IDGenerator();
+						factoryClass = new FactoryClass();
+
+						//localStorage.clear();
+
+						appController.getComponent("DataLayer")
+								.loadAllStaticDatas();
+
+						var processName = 'DemographicsAndBackground';
+						var scriptName = 'DemographicScript';
+						var stepName = "Step5";
+						/* var processName='SignUp';
+						var scriptName = 'SignUpScript'; 
+						var stepName="Step1";  */
+
+						/* var processName= 'PatientRegistration';
+						var scriptName = 'PatientRegistrationScript'; 
+						var stepName="Step1";  */
+
+						/* var processName= 'StaffRegistration';
+						var scriptName = 'StaffRegistrationScript'; 
+						var stepName="Step2"; */
+
+						/*  var processName= 'LicenseeRegistration';
+						var scriptName = 'LicenseeRegistrationScript'; 
+						var stepName="Step1"; */
+						/* alert($("#loadProcess").attr("value") + ", "
+								+ processName); */
+
+						$("#loadProcess").attr("value", processName);
+						$("#loadProcess").trigger('create');
+						$("#loadProcess")
+								.click(
+										function() {
+
+											var dataLayer = appController
+													.getComponent("DataLayer");
+											dataLayer
+													.getProcessDefinitionByProcessName(
+															processName,
+															function(procDef) {
+																process = new ProcessScript(
+																		processName,
+																		procDef,
+																		appController,
+																		idGenerator);
+																loadData(
+																		'/process-scripts/'
+																				+ scriptName
+																				+ '.js',
+																		{},
+																		function(
+																				data) {
+																			alert(data);
+
+																			process
+																					.loadScript(data);
+																			process.parameter.programCode = "AgeManagementProgram";
+																			process
+																					.initialize();
+																			alert("initialized : "
+																					+ process.parameter.programCode);
+																			process
+																					.stepOpen(
+																							stepName,
+																							function(
+																									processDefinition) {
+																								alert(stepName
+																										+ " is open");
+																								var displayResultHtml = ""
+																								var step = processDefinition
+																										.getStep(stepName);
+
+																								var messageTypes = step
+																										.getMessageTypes();
+																								var prop = 'msgTypeOrder'
+																								var asc = 'asc';
+																								var sortedMessageTypes = messageTypes;/* .sort(
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															function(a, b) {
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																if (asc)
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	return (a[prop] > b[prop]);
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																else
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	return (b[prop] > a[prop]);
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																															}); */
+																								alert(sortedMessageTypes.length);
+																								for ( var messageTypeIndex = 0; messageTypeIndex < sortedMessageTypes.length; messageTypeIndex++) {
+																									var messageType = sortedMessageTypes[messageTypeIndex]
+																									displayResultHtml += '<div class="ui-inner-display-box"><div style="display: block;" class="ui-sub-header-bg ui-page-header-text">'
+																											+ messageType.title
+																											+ ','
+																											+ messageType.typeName
+																											+ '</div>'
+																									//displayResultHtml+='<div>'+messageType.type+'</div>';
+																									var messages = messageType
+																											.getMessages();
+																									for ( var index = 0; index < messages.length; index++) {
+																										var message = messages[index];
+																										//alert(messages[index]);
+																										var xml = XmlUtil
+																												.xmlToString(message.message);
+																										//alert(xml);
+																										displayResultHtml += '<div style="display: block;" class="ui-sub-head-inner-bg ui-sub-header-text">'
+																												+ message.title
+																												+ ' | '
+																												+ message.messageForm
+																												+ " | "
+																												+ message.messageId
+																												+ "| Rendered - "
+																												+ message.renderUI
+																												+ "| FormView - "
+																												+ message.formView
+																												+ " | Part of package "
+																												+ message.partOfPackage
+																												+ "| FinanceType - "
+																												+ message.financeType
+																												+ "| AddNew - "
+																												+ message.addNew;
+																										displayResultHtml += "<br/>";
+																										displayResultHtml += jQuery(
+																												'<div />')
+																												.text(
+																														xml)
+																												.html();
+																										displayResultHtml += '</div>'
+																										//displayResultHtml+='<div>'+message.messageId+'</div>';
+																									}
+																								}
+
+																								step = processDefinition
+																										.getStep("Step3");
+																								if (step) {
+																									messageTypes = step
+																											.getMessageTypes();
+																									prop = 'msgTypeOrder'
+																									asc = 'asc';
+																									sortedMessageTypes = messageTypes;/* .sort(
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						function(a, b) {
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							if (asc)
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								return (a[prop] > b[prop]);
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							else
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								return (b[prop] > a[prop]);
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						}); */
+																									for ( var messageTypeIndex = 0; messageTypeIndex < sortedMessageTypes.length; messageTypeIndex++) {
+																										var messageType = sortedMessageTypes[messageTypeIndex]
+																										displayResultHtml += '<div class="ui-inner-display-box"><div style="display: block;" class="ui-sub-header-bg ui-page-header-text">'
+																												+ messageType.title
+																												+ ','
+																												+ messageType.typeName
+																												+ '</div>'
+																										//displayResultHtml+='<div>'+messageType.type+'</div>';
+																										var messages = messageType
+																												.getMessages();
+																										for ( var index = 0; index < messages.length; index++) {
+																											var message = messages[index];
+																											//alert(messages[index]);
+																											var xml = XmlUtil
+																													.xmlToString(message.message);
+																											//alert(xml);
+																											displayResultHtml += '<div style="display: block;" class="ui-sub-head-inner-bg ui-sub-header-text">'
+																													+ message.title
+																													+ ' | '
+																													+ message.messageForm
+																													+ ' | '
+																													+ message.messageId
+																													+ ' | '
+																													+ message.newTask
+																											displayResultHtml += "<br/>";
+																											displayResultHtml += jQuery(
+																													'<div />')
+																													.text(
+																															xml)
+																													.html();
+																											displayResultHtml += '</div>'
+																											//displayResultHtml+='<div>'+message.messageId+'</div>';
+																										}
+																									}
+
+																								}
+																								$(
+																										'#result')
+																										.html(
+																												displayResultHtml);
+																							});
+																		});
+
+																//process = new DemographicsAndBackground(procDef, appController);
+															});
+
+										});
+
+						$('#onInit').click(function() {
+							process.initialize();
+						});
+
+						$('#onCreate')
+								.click(
+										function() {
+											process
+													.stepOpen(
+															'Step5',
+															function(
+																	processDefinition) {
+																alert("Step 5 is open");
+																var displayResultHtml = ""
+																var step = processDefinition
+																		.getStep('Step5');
+																var messageTypes = step
+																		.getMessageTypes();
+																for ( var messageTypeIndex = 0; messageTypeIndex < messageTypes.length; messageTypeIndex++) {
+																	var messageType = messageTypes[messageTypeIndex]
+																	displayResultHtml += '<div class="ui-inner-display-box"><div style="display: block;" class="ui-sub-header-bg ui-page-header-text">'
+																			+ messageType.title
+																			+ '</div>'
+																	//displayResultHtml+='<div>'+messageType.type+'</div>';
+																	var messages = messageType
+																			.getMessages();
+																	for ( var index = 0; index < messages.length; index++) {
+																		var message = messages[index];
+																		//alert(messages[index]);
+																		displayResultHtml += '<div style="display: block;" class="ui-sub-head-inner-bg ui-sub-header-text">'
+																				+ message.title
+																				+ ' | '
+																				+ message.messageForm
+																				+ " | "
+																				+ message.messageId
+																				+ '</div>';
+																		//displayResultHtml+='<div>'+message.messageId+'</div>';
+																	}
+																}
+																$('#result')
+																		.html(
+																				displayResultHtml);
+															});
+										});
+
+						function loadData(resourceUrl, paramData, callBack) {
+							//alert("Loading: " + resourceUrl);
+							$.ajax({
+								type : "GET",
+								url : "/hin-web" + resourceUrl,
+								data : paramData,
+								dataType : "html",
+								cache : false,
+								success : function(jsString) {
+									if (callBack)
+										callBack(jsString);
+								},
+
+								error : function(request, error) {
+									alert(error);
+								}
+							});
+						}
+
+					});
+</script>
+
+</head>
+<body>
+
+	<div id="main" data-role="page" class="ui-corner-all ui-shadow-inset"
+		data-theme="d">
+		<div data-role="header" data-theme="v" data-backBtn="true"
+			class="header_bg" id="header" style="display: none">
+			<fieldset class="ui-header-text ui-grid-b">
+				<div class="ui-header-left-text ui-block-a" id="leftHeader"></div>
+				<div class="ui-header-left-text ui-block-b" id="mainHeader"></div>
+				<div class="ui-header-right-text ui-block-c" id="logout"
+					style="width: 27%;">Logout</div>
+
+				<div class="loading">
+					<img src="images/loading.gif" />
+					<div id="loadingMsg"
+						style="font-weight: normal; padding-right: 5px; border: 0px solid #6E1766; position: fixed; top: 20px; right: 0;"></div>
+				</div>
+
+
+				<div class="ui-header-right-text ui-block-c" id="loginPage"
+					style="width: 28%; display: none;">Login</div>
+			</fieldset>
+		</div>
+		<div data-role="none" data-theme="v" id="navigationHeader">
+			<fieldset class="ui-form-header ui-grid-a">
+				<div class="ui-block-a">
+					<div class="form-header-name" id="formName"></div>
+				</div>
+				<div class="ui-block-b" id="navigation"></div>
+			</fieldset>
+		</div>
+		<!-- <div id="msg" style="padding: 2%; align: center; text-align: center"
+		data-theme="a"></div> -->
+
+		<div id="template">
+			<input type="text" data-inline="true" id="processName"
+				value="DemographicsAndBackground" /> <input type="text"
+				data-inline="true" id="programName" value="AgeManagementProgram" />
+			<input type="button" data-inline="true" id="loadProcess"
+				value="Load Process Script" />
+			<!-- <input type="button" data-inline="true"
+				id="onInit" value="On Init" /> <input type="button"
+				data-inline="true" id="onCreate" value="Open Step Enroll" /> -->
+
+			<div id="result"></div>
+			<!-- div id="programHeader" class="ui-body ui-corner-all" data-theme="a">
+
+			<div data-role="header" data-theme="v" id="headerPage">
+				<div id="program" class="ui-block-b">Mentor</div>
+			</div>
+
+
+		</div-->
+
+
+		</div>
+
+
+		<!-- <div data-role="footer" class="footer-docs" data-theme="c">
+			<p>&copy; 2012 The Eternity Project</p>
+		</div> -->
+	</div>
+	<!-- <div data-role="page" class="ui-corner-all ui-shadow-inset"
+		data-theme="d" id="template">
+		
+	</div> -->
+</body>
+
+</html>

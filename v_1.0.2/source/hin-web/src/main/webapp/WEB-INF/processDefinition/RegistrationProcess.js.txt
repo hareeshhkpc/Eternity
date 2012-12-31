@@ -1,0 +1,35 @@
+{"processName":"PatientRegistration",
+ "steps":[
+			  {"stepName":"1",
+			   "groupName":"Registration",
+			   "shortDescription":"Registration",
+			   "longDescription":"Record Basic Information",
+			   "messageTypes":[{
+						"state":"Registration1",
+						"messageType":"any"},
+						{"state":"Registration2","messageType":"any"}
+						]
+				},
+				{
+				 "stepName":"2",
+				 "groupName":"Appointment",
+				 "shortDescription":"Appointment",
+				 "longDescription":"Appointment Scheduling",
+				 "messageTypes":[{
+							"state":"Appointment1",
+							"messageType":"any"},
+							{"state":"Appointment2",
+							"messageType":"any"}
+							]
+				},
+				{
+				"stepName":"3",
+				"groupName":"Consent",
+				"shortDescription":"Consent",
+				"longDescription":"Welcome and Booking Confirmation",
+				"messageTypes":[{
+							"state":"Consent1",
+							"messageType":"any"},
+							{"state":"Consent2","messageType":"any"}]
+							}],
+			"id":"id","status":"ACTIVE"}

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///E:/HIN/source/hin-web/src/main/webapp/UserProfile/html/MyProfile.xsl"?>
+<PRPA_IN101001UV01 ITSVersion="XML_1.0"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<id extension="3948375" root="2.16.528.1.1007.3.2.700363.2288.2"/>
+	<creationTime value="20050719140010"/>
+	<versionCode code="NE2006"/>
+	<!-- Interaction is a notification of a person registration -->
+	<interactionId extension="PRPA_IN101001UV01" root="2.16.840.1.113883.1.6"/>
+	<processingCode code="P"/>
+	<processingModeCode code="T"/>
+	<acceptAckCode code="ER"/>
+	<receiver>
+		<device>
+			<id extension="922" root="2.16.840.1.113883.2.6.6"/>
+		</device>
+	</receiver>
+	<sender>
+		<device>
+			<id extension="1" root="2.16.840.1.113883.2.6.6"/>
+		</device>
+	</sender>
+	<controlActProcess moodCode="EVN">
+		<effectiveTime value="20050719140008"/>
+		<authorOrPerformer typeCode="AUT">
+			<assignedPerson>
+				<id extension="000338475" root="2.16.528.1.1007.3.2"/>
+			</assignedPerson>
+		</authorOrPerformer>
+		<subject>
+			<registrationEvent moodCode="EVN">
+				<id nullFlavor="UNK"/>
+				<statusCode code="active"/>
+				<effectiveTime nullFlavor="UNK"/>
+				<subject1>
+					<identifiedPerson>
+						<!-- Primary ID as used/known by this registry -->
+						<id assigningAuthorityName="BSN" extension="000197245" root="2.16.840.1.113883.8.6.6"/>
+						<addr use="H">
+							<streetName>Vogelweg</streetName>
+							<houseNumber>8</houseNumber>
+							<postalCode>1200 BR</postalCode>
+							<city>Nijkerk</city>
+						</addr>
+						<telecom use="H" value="tel:040 3542557"/>
+						<telecom use="H" value="fax:040 3542558"/>
+						<telecom use="WP" value="tel:040 5557865"/>
+						<statusCode code="active"/>
+						<identifiedPerson>
+							<name use="L">
+								<given>Shilpa</given>
+								<family>G</family>
+								<family qualifier="BR">Rao</family>
+							</name>
+							<desc>
+								<thumbnail mediaType="image/png" representation="B64">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</thumbnail>
+							</desc>
+							<administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+							<birthTime value="19750103"/>
+							<maritalStatusCode code="M" codeSystem="2.16.840.1.113883.5.2"/>
+							<!-- Secundary IDs of same person in other Roles -->
+							<asOtherIDs>
+								<id assigningAuthorityName="St.Josef Ziekenhuis" extension="4532" root="2.16.528.1.1007.3.2.400566"/>
+							</asOtherIDs>
+							<asOtherIDs>
+								<id assigningAuthorityName="Ac. Ziekenhuis Leiden" extension="3242346" root="2.16.528.1.1007.3.2.450998"/>
+							</asOtherIDs>
+							<personalRelationship>
+								<id extension="1" root="2.16.840.1.113883.5.6.6"/>
+								<code code="EMER" codeSystem="2.16.840.1.113883.5.4"/>
+								<relationshipHolder>
+									<id extension="1" root="2.16.840.1.113883.2.4.6.3"/>
+									<name use="L">
+										<given>Anmisha</given>
+										<family qualifier="BR">Rao</family>
+									</name>
+									
+								</relationshipHolder>
+							</personalRelationship>
+
+							<personalRelationship>
+								<id extension="1" root="2.16.840.1.113883.5.6.6.2"/>
+								<code code="EMER" codeSystem="2.16.840.1.113883.5.4"/>
+								<relationshipHolder>
+									<id extension="1" root="2.16.840.1.113883.8.4.5"/>
+									<name use="L">
+										<given>Shweta</given>
+										<family>G</family>
+										<family qualifier="BR">Rao</family>
+									</name>
+									
+								</relationshipHolder>
+							</personalRelationship>
+
+							<personalRelationship>
+								<id extension="1" root="2.16.840.1.113883.5"/>
+								<code code="EMER" codeSystem="2.16.840.1.113883.5.4"/>
+								<relationshipHolder>
+									<id extension="1" root="2.16.840.1.113883.8.4.5.2"/>
+									<name use="L">
+										<given>Krishna</given>
+										<family>L</family>
+										<family qualifier="BR">R</family>
+									</name>
+								</relationshipHolder>
+							</personalRelationship>
+
+							<personalRelationship>
+								<id extension="1" root="2.16.840.1.113883.5.0.2"/>
+								<code code="EMER" codeSystem="2.16.840.1.113883.5.4"/>
+								<relationshipHolder>
+									<id extension="1" root="2.16.840.1.113883.8.4.5.3"/>
+									<name use="L">
+										<given>Thanveer</given>
+										<family qualifier="BR">Aqthar</family>
+									</name>
+								</relationshipHolder>
+							</personalRelationship>
+
+							<personalRelationship>
+								<id extension="1" root="2.16.840.1.113883.5"/>
+								<code code="EMER" codeSystem="2.16.840.1.113883.5.4"/>
+								<relationshipHolder>
+									<id extension="1" root="2.16.840.1.113883.8.4.5.4"/>
+									<name use="L">
+										<given>Sunanda</given>
+										<family qualifier="BR">H</family>
+									</name>
+								</relationshipHolder>
+							</personalRelationship>
+
+						</identifiedPerson>
+						<assigningOrganization>
+							<!-- Scoper, the registering organisation -->
+							<id extension="1" root="2.16.840.1.113883.2.4.6.5"/>
+							<contactParty nullFlavor="UNK"/>
+						</assigningOrganization>
+					</identifiedPerson>
+				</subject1>
+				<custodian>
+					<assignedEntity>
+						<!-- The custodian for the registered data, here the same as the scoper -->
+						<id extension="1" root="2.16.840.1.113883.2.4.6.5"/>
+					</assignedEntity>
+				</custodian>
+			</registrationEvent>
+		</subject>
+	</controlActProcess>
+</PRPA_IN101001UV01>

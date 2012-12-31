@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='RenderingEngine'>/**
+</span> * Rendering Engine is a child component of Application Controller. It renders
+ * events to all of its Components. It has child components like appController,
+ * Login, AppList, Contacts, Header, DefaultServices, MyOrg, Settings, Support,
+ * ProfilePicture and MessageDocumentView. It catches the events from other
+ * components and broadcasts the same events to all components except from which
+ * that event triggers and which broadcasts that event. If required it handles
+ * the events here itself.
+ */
+
+function RenderingEngine(appController) {
+<span id='RenderingEngine-property-className'>	/**
+</span>	 * className is used to refer the RenderingEngine class name in other
+	 * components
+	 */
+	this.className = &quot;RenderingEngine&quot;;
+
+<span id='RenderingEngine-method-eventQueue'>	/**
+</span>	 * eventQueue is used to add the events in queue to handle
+	 * 
+	 * @returns {void}
+	 */
+	this.eventQueue = new EventQueue();
+
+<span id='RenderingEngine-method-getEventQueue'>	/**
+</span>	 * It gets the EventQueue from Application Controller.
+	 * 
+	 * @returns eventQueue : Object of EventQueue class
+	 */
+	this.getEventQueue = getEventQueue;
+
+<span id='RenderingEngine-property-broadcastEvent'>	/**
+</span>	 * Broadcasts the events to all of its components except event source and
+	 * broadcaster
+	 */
+	this.broadcastEvent = broadcastEvent;
+
+<span id='RenderingEngine-method-eventHandler'>	/**
+</span>	 * Handles the events from components
+	 * 
+	 * @param event
+	 * @returns {void}
+	 */
+	this.eventHandler = eventHandler;
+
+	this.getComponent = getComponent;
+
+	this.getChildComponent = getChildComponent;
+<span id='RenderingEngine-property-appController'>	/**
+</span>	 * appController is a private variable used to refer the Application
+	 * Controller
+	 */
+	var appController = appController;
+
+<span id='RenderingEngine-property-renderingEngine'>	/** renderingEngine is used to refer the RenderingEngine class object */
+</span>	var renderingEngine = this;
+
+<span id='RenderingEngine-property-childComponents'>	/** Components has objects of child components */
+</span>	var childComponents = new Array();
+
+	childComponents.push(appController);
+
+	childComponents.push(new AppCalendar(renderingEngine));
+	childComponents.push(new AppSchedule(renderingEngine));
+	childComponents.push(new Archive(renderingEngine));
+
+	childComponents.push(new Form(renderingEngine));
+
+	childComponents.push(new Home(renderingEngine));
+
+	childComponents.push(new Licensee(renderingEngine));
+	childComponents.push(new Login(renderingEngine));
+
+	childComponents.push(new Navigation(renderingEngine));
+	childComponents.push(new NavigationLine(renderingEngine));
+
+	childComponents.push(new Patient(renderingEngine));
+	childComponents.push(new Process(renderingEngine));
+	childComponents.push(new Program(renderingEngine));
+
+	childComponents.push(new Resize(renderingEngine));
+
+	childComponents.push(new Search(renderingEngine));
+	childComponents.push(new SignUp(renderingEngine));
+	childComponents.push(new Staff(renderingEngine));
+	childComponents.push(new Statistics(renderingEngine));
+	childComponents.push(new Settings(renderingEngine));
+	childComponents.push(new Messages(renderingEngine));
+	childComponents.push(new IMCommunication(renderingEngine));
+
+	childComponents.push(new Documents(renderingEngine));
+	childComponents.push(new Products(renderingEngine));
+	childComponents.push(new TestResult(renderingEngine));
+
+	childComponents.push(new User(renderingEngine));
+	/*
+	 * Start the EventQueue to process the events. It processes the events added
+	 * to EventQueue for every 500ms
+	 * 
+	 * @see EventQueue
+	 */
+	this.eventQueue.start();
+
+	this.fireEvent = fireEvent;
+	this.setHeaderInfo = setHeaderInfo;
+	this.setLeftHeaderInfo = setLeftHeaderInfo;
+	this.setFormName = setFormName;
+	this.clearHeaderInfo = clearHeaderInfo;
+	this.registerClickEvent = registerClickEvent;
+	this.loadPage = loadPage;
+	this.loadPages = loadPages;
+	this.showPageLoading = showPageLoading;
+	this.hidePageLoading = hidePageLoading;
+
+	this.messageScripts = new HIN.HashMap();
+	this.putMessageScript = putMessageScript;
+	this.getMessageScript = getMessageScript;
+
+	this.formScripts = new HIN.HashMap();
+	this.putFormScript = putFormScript;
+	this.getFormScript = getFormScript;
+
+	this.openModalDialog = openModalDialog;
+	this.closeModalDialog = closeModalDialog;
+	this.openPromptModalDialog = openPromptModalDialog;
+	this.openPromptOkCancelModalDialog = openPromptOkCancelModalDialog;
+
+	this.showBusy = showBusy;
+	this.showIdle = showIdle;
+	this.showFailure = showFailure;
+	this.iconChange = iconChange;
+
+	/* Function definitions */
+
+	function getEventQueue() {
+		return renderingEngine.eventQueue;
+	}
+
+	/* Function definitions */
+<span id='RenderingEngine-method-getComponent'>	/**
+</span>	 * Provides the Appcontroller's child components based on the
+	 * componentClassName *
+	 * 
+	 * @param componentClassName:
+	 *            its a string value holds the class name under
+	 *            ApplicationController.
+	 * @returns {Object}
+	 */
+	function getComponent(componentClassName) {
+		return appController.getComponent(componentClassName);
+	}
+	;
+
+<span id='RenderingEngine-method-getChildComponent'>	/**
+</span>	 * Provides the RenderingEnginge's child components based on the
+	 * componentClassName
+	 * 
+	 * @param componentClassName:
+	 *            its a string value holds the class name under RenderingEngine.
+	 * @returns {Component}
+	 */
+	function getChildComponent(componentClassName) {
+		for (componentIndex = 0; componentIndex &lt; childComponents.length; componentIndex++) {
+			if (componentClassName == childComponents[componentIndex].className) {
+				return childComponents[componentIndex];
+			}
+		}
+	}
+	;
+
+	function setProgress(id) {
+		$('#' + id).html('&lt;div class=&quot;loading&quot;&gt;&lt;/div&gt;');
+	}
+	;
+
+	function appendProgress(id) {
+		$('#' + id).append('&lt;div class=&quot;loading&quot;&gt;&lt;/div&gt;');
+	}
+	;
+
+	function setErrorStyle(id) {
+		$('#' + id).css(&quot;background-color&quot;, &quot;#FF0000&quot;);
+		$('#' + id).css(&quot;color&quot;, &quot;#FFFFFF&quot;);
+	}
+	;
+
+	function removeErrorStyle(id) {
+		$('#' + id).css(&quot;style&quot;, &quot;&quot;);
+	}
+	;
+
+<span id='RenderingEngine-method-showBusy'>	/**
+</span>	 * It shows busy icon on the menu bar
+	 * 
+	 * @returns {void}
+	 */
+	function showBusy() {
+		$('.idle').hide();
+		$('.failure').hide();
+		$('.busy').show();
+	}
+	;
+<span id='RenderingEngine-method-showIdle'>	/**
+</span>	 * It shows idle icon on the menu bar
+	 * 
+	 * @returns {void}
+	 */
+	function showIdle() {
+		$('.busy').hide();
+		$('.failure').hide();
+		$('.idle').show();
+	}
+	;
+
+<span id='RenderingEngine-method-showFailure'>	/**
+</span>	 * It shows failure icon on the menu bar
+	 * 
+	 * @returns {void}
+	 */
+	function showFailure() {
+		$('.idle').hide();
+		$('.busy').hide();
+		$('.failure').show();
+	}
+	;
+
+	function showPageLoading(msg) {
+
+		if (msg == undefined || msg == null) {
+			msg = 'Loading....';
+		}
+		document.body.style.cursor = &quot;wait&quot;;
+		// $('#loadingMsg').html(msg);
+		/*
+		 * $.mobile.loadingMessage = (msg) ? msg : &quot;Loading...&quot;;
+		 * $.mobile.showPageLoadingMsg();
+		 */
+	}
+	;
+
+	function hidePageLoading() {
+		document.body.style.cursor = &quot;default&quot;;
+		/* $.mobile.hidePageLoadingMsg(); */
+	}
+	;
+
+	function broadcastEvent(event) {
+		/*
+		 * alert(&quot;RenderingEngine broadCast: &quot; + event.type + &quot; Event Source: &quot; +
+		 * event.eventSource.className);
+		 */
+		$
+				.each(
+						childComponents,
+						function(index, value) {
+							// alert(&quot;Current Class selected in RENDER
+							// broadCast: &quot; + value.className);
+							if (value.className != event.eventSource.className
+									&amp;&amp; (event.broadCaster == null || event.broadCaster.className != value.className)) {
+								clone = AppUtil.getEvenClone(event);
+								clone.broadCaster = renderingEngine;
+								value.eventHandler(clone);
+							} else {
+								// alert(&quot;RenderingEngine broadCast Not firing
+								// on: &quot; + value.className);
+							}
+						});
+	}
+	;
+
+	function eventHandler(event) {
+		// alert(&quot;event handler in renderengine : &quot; + event.type);
+
+		if (event.type == AppConstants.Event.APPLICATION_INITIALIZED) {
+			appController.getComponent(&quot;DataLayer&quot;).getCachedLoginInfo(
+					&quot;loginInfo&quot;, isLoginInfoExist);
+		} else if (event.type == AppConstants.Event.APP_SCHEDULE_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/appschedule&quot;, renderingEngine
+					.getChildComponent(&quot;AppSchedule&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.CALENDAR_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/appcalendar&quot;, renderingEngine
+					.getChildComponent(&quot;AppCalendar&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.FORM_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/form&quot;, renderingEngine
+					.getChildComponent(&quot;Form&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.HOME_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/home&quot;, renderingEngine
+					.getChildComponent(&quot;Home&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.LOGIN_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/login&quot;, renderingEngine
+					.getChildComponent(&quot;Login&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.PATIENT_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/patient&quot;, renderingEngine
+					.getChildComponent(&quot;Patient&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.USER_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/user&quot;, renderingEngine
+					.getChildComponent(&quot;User&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.STAFF_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/staff&quot;, renderingEngine
+					.getChildComponent(&quot;Staff&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.LICENSEE_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/licensee&quot;, renderingEngine
+					.getChildComponent(&quot;Licensee&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.PROGRAM_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/program&quot;, renderingEngine
+					.getChildComponent(&quot;Program&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.REVIEW_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/review&quot;, renderingEngine
+					.getChildComponent(&quot;Review&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.TEST_RESULTS_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/testresult&quot;, renderingEngine
+					.getChildComponent(&quot;TestResult&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.STATISTICS_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/statistics&quot;, renderingEngine
+					.getChildComponent(&quot;Statistics&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.SIGNUP_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/signup&quot;, renderingEngine
+					.getChildComponent(&quot;SignUp&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.SETTINGS_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/settings&quot;, renderingEngine
+					.getChildComponent(&quot;Settings&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.DOCUMENT_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/documents&quot;, renderingEngine
+					.getChildComponent(&quot;Documents&quot;).loadUI, event);
+		} else if (event.type == AppConstants.Event.PRODUCTS_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/products&quot;, renderingEngine
+					.getChildComponent(&quot;Products&quot;).loadUI);
+		} else if (event.type == AppConstants.Event.MESSAGES_PAGE_INITIALIZED) {
+			loadTemplatePage(&quot;pages/messages&quot;, renderingEngine
+					.getChildComponent(&quot;Messages&quot;).loadUI, event);
+		} else {
+			broadcastEvent(event);
+		}
+	}
+	;
+<span id='RenderingEngine-method-registerClickEvent'>	/**
+</span>	 * It register the event to id property and to further manipulate those
+	 * registered behaviors.
+	 * 
+	 * @param id:
+	 *            Its a string value,html element classname or id.
+	 * @param func:
+	 *            Its a function to be binded with the click event.
+	 * 
+	 * @returns {void}
+	 */
+
+	function registerClickEvent(id, func) {
+		if (id.indexOf(&quot;.&quot;) &gt; -1) {
+			$(id).unbind(&quot;click&quot;, func);
+			$(id).bind(&quot;click&quot;, func);
+		} else {
+			$('#' + id).unbind(&quot;click&quot;, func);
+			$('#' + id).bind(&quot;click&quot;, func);
+		}
+	}
+	;
+
+	function login() {
+		appController.fireEvent(AppConstants.Event.LOGIN_PAGE_PROCESSED);
+	}
+	;
+
+<span id='RenderingEngine-method-loadTemplatePage'>	/**
+</span>	 * It loads the template.html from the templatePath using ajax method.
+	 * 
+	 * @param templatePath:
+	 *            Its a string,hold the location of the template path
+	 * @param func :
+	 *            Its a function which will be called after the completion of
+	 *            the method.
+	 * @param event:
+	 *            It is string value, which will be triggered as next event.
+	 * 
+	 * @returns {void}
+	 */
+	function loadTemplatePage(templatePath, func, event) {
+		var templateUrl = templatePath + &quot;/template.html&quot;;
+		showPageLoading();
+		$.ajax({
+			type : &quot;GET&quot;,
+			url : templateUrl,
+			dataType : &quot;html&quot;,
+			cache : false,
+			success : function(data) {
+				$('#template').html(data);
+				$('#main').trigger('create');
+				if (func)
+					func(event);
+
+				// alert('loadTemplatePage');
+				/*
+				 * renderingEngine.getChildComponent(&quot;Resize&quot;).setCurrentHeight(
+				 * 512);
+				 */
+				appController.getComponent(&quot;RenderingEngine&quot;).fireEvent(
+						AppConstants.Event.RESIZE);
+
+				hidePageLoading();
+			},
+
+			error : function(request, error) {
+				alert(request + &quot;: &quot; + error);
+				hidePageLoading();
+			}
+		});
+	}
+	;
+<span id='RenderingEngine-method-loadPage'>	/**
+</span>	 * It loads the html from the pageUrl using ajax method. The html data
+	 * should be placed where the place holder is mentioned.Event and callback
+	 * will be triggered after html page is loaded.
+	 * 
+	 * @param pageUrl:
+	 *            Its a string,hold the location of the page
+	 * @param placeHolderId:
+	 *            Its a string value,the html data will be appended to this
+	 *            place holder.
+	 * @param event:
+	 *            It is string value, which will be triggered as next event.
+	 * @param callback :
+	 *            Its a function which will be called after the completion of
+	 *            the method.
+	 * @returns {void}
+	 */
+	function loadPage(pageUrl, placeHolderId, event, callback) {
+		showPageLoading();
+		$.ajax({
+
+			type : &quot;GET&quot;,
+			url : pageUrl,
+			dataType : &quot;html&quot;,
+			cache : false,
+			success : function(data) {
+				$('#' + placeHolderId).html(data);
+				$('#main').trigger('create');
+				if (event)
+					renderingEngine.getEventQueue().postEvent(event, {},
+							renderingEngine, renderingEngine);
+				if (callback)
+					callback();
+				// alert('loadPage');
+				/*
+				 * renderingEngine.getChildComponent(&quot;Resize&quot;).setCurrentHeight(
+				 * 512);
+				 */
+				hidePageLoading();
+			},
+
+			error : function(request, error) {
+				alert(request + &quot;: &quot; + error);
+				hidePageLoading();
+			}
+		});
+
+	}
+	;
+
+	function loadPages(pageUrl, placeHolderId, event) {
+		showPageLoading();
+		$.ajax({
+
+			type : &quot;GET&quot;,
+			url : pageUrl,
+			dataType : &quot;html&quot;,
+			cache : false,
+			success : function(data) {
+				$('#' + placeHolderId).append(data);
+				$('#main').trigger('create');
+				hidePageLoading();
+				if (event)
+					renderingEngine.getEventQueue().postEvent(event, {},
+							renderingEngine, renderingEngine);
+			},
+
+			error : function(request, error) {
+				// alert(request + &quot;: &quot; + error);
+
+				/*
+				 * $('#' + placeHolderId).append('&lt;h4&gt;In progress ...&lt;/h4&gt;');
+				 * $('#main').trigger('create');
+				 */
+
+				if (event)
+					renderingEngine.getEventQueue().postEvent(event, {},
+							renderingEngine, renderingEngine);
+				hidePageLoading();
+			}
+		});
+	}
+	;
+
+	function loadUI() {
+		alert(&quot;implement in corresponding js&quot;);
+		/*
+		 * loadPage(&quot;pages/login/login.html&quot;, &quot;form&quot;,
+		 * AppConstants.Event.LOGIN_PAGE_BIND_EVENTS);
+		 */
+		// loadPage(&quot;pages/registration/Profile.html&quot;, &quot;form&quot;)
+		// loadPage(&quot;pages/login/right.html&quot;, &quot;right&quot;)
+	}
+	;
+
+	function fireEvent(eventName) {
+		appController.fireEvent(eventName);
+	}
+	;
+
+	function iconChange() {
+		$(&quot;.demographics-icon&quot;).hover(
+				function() {
+					$('.demographics-icon').removeClass('patient').addClass(
+							'patient-hover');
+				},
+				function() {
+					$('.demographics-icon').removeClass('patient-hover')
+							.addClass('patient');
+				}).click(function() {
+			$(&quot;.demographics-icon&quot;).removeClass(this);
+			$(&quot;.demographics-icon&quot;).addClass('patient-press');
+		});
+
+		$(&quot;.licensee-icon&quot;).hover(
+				function() {
+					$('.licensee-icon').removeClass('patient').addClass(
+							'patient-hover');
+				},
+				function() {
+					$('.licensee-icon').removeClass('patient-hover').addClass(
+							'patient');
+				}).click(function() {
+			$(&quot;.licensee-icon&quot;).removeClass(this);
+			$(&quot;.licensee-icon&quot;).addClass('patient-press');
+		});
+
+		$(&quot;.profile-icon&quot;).hover(
+				function() {
+					$('.profile-icon').removeClass('patient').addClass(
+							'patient-hover');
+				},
+				function() {
+					$('.profile-icon').removeClass('patient-hover').addClass(
+							'patient');
+				}).click(function() {
+			$(&quot;.profile-icon&quot;).removeClass(this);
+			$(&quot;.profile-icon&quot;).addClass('patient-press');
+		});
+
+		$(&quot;.calendar-icon&quot;).hover(
+				function() {
+					$('.calendar-icon').removeClass('calendar').addClass(
+							'calendar-hover');
+				},
+				function() {
+					$('.calendar-icon').removeClass('calendar-hover').addClass(
+							'calendar');
+				}).click(function() {
+			$(&quot;.calendar-icon&quot;).removeClass(this);
+			$(&quot;.calendar-icon&quot;).addClass('calendar-press');
+		});
+		;
+
+		$(&quot;.account-icon&quot;).hover(
+				function() {
+					$('.account-icon').removeClass('accounting').addClass(
+							'accounting-hover');
+				},
+				function() {
+					$('.account-icon').removeClass('accounting-hover')
+							.addClass('accounting');
+				}).click(function() {
+			$(&quot;.account-icon&quot;).removeClass(this);
+			$(&quot;.account-icon&quot;).addClass('accounting-press');
+		});
+
+		$(&quot;.program-icon&quot;).hover(
+				function() {
+					$('.program-icon').removeClass('programs').addClass(
+							'programs-hover');
+				},
+				function() {
+					$('.program-icon').removeClass('programs-hover').addClass(
+							'programs');
+				}).click(function() {
+			$(&quot;.program-icon&quot;).removeClass(this);
+			$(&quot;.program-icon&quot;).addClass('programs-press');
+		});
+
+		$(&quot;.progress-icon&quot;).hover(
+				function() {
+					$('.progress-icon').removeClass('progress').addClass(
+							'progress-hover');
+				},
+				function() {
+					$('.progress-icon').removeClass('progress-hover').addClass(
+							'progress');
+				}).click(function() {
+			$(&quot;.progress-icon&quot;).removeClass(this);
+			$(&quot;.progress-icon&quot;).addClass('progress-press');
+		});
+
+		$(&quot;.document-icon&quot;).hover(
+				function() {
+					$('.document-icon').removeClass('document').addClass(
+							'document-hover');
+				},
+				function() {
+					$('.document-icon').removeClass('document-hover').addClass(
+							'document');
+				}).click(function() {
+			$(&quot;.document-icon&quot;).removeClass(this);
+			$(&quot;.document-icon&quot;).addClass('document-press');
+		});
+
+		$(&quot;.admin-icon&quot;).hover(function() {
+			$('.admin-icon').removeClass('admin').addClass('admin-hover');
+		}, function() {
+			$('.admin-icon').removeClass('admin-hover').addClass('admin');
+		}).click(function() {
+			$(&quot;.admin-icon&quot;).removeClass(this);
+			$(&quot;.admin-icon&quot;).addClass('admin-press');
+		});
+
+		$(&quot;.archive-icon&quot;).hover(
+				function() {
+					$('.archive-icon').removeClass('archive').addClass(
+							'archive-hover');
+				},
+				function() {
+					$('.archive-icon').removeClass('archive-hover').addClass(
+							'archive');
+				}).click(function() {
+			$(&quot;.archive-icon&quot;).removeClass(this);
+			$(&quot;.archive-icon&quot;).addClass('archive-press');
+		});
+
+		$(&quot;.library-icon&quot;).hover(
+				function() {
+					$('.library-icon').removeClass('library').addClass(
+							'library-hover');
+				},
+				function() {
+					$('.library-icon').removeClass('library-hover').addClass(
+							'library');
+				}).click(function() {
+			$(&quot;.library-icon&quot;).removeClass(this);
+			$(&quot;.library-icon&quot;).addClass('library-press');
+		});
+	}
+	;
+	function setHeaderInfo(leftHeaderDesc, mainHeaderDesc) {
+		$('#header').css(&quot;display&quot;, &quot;block&quot;);
+		$('#navigationHeader').css(&quot;display&quot;, &quot;none&quot;);
+		$('#leftHeader').html(leftHeaderDesc);
+		$('#mainHeader').html(mainHeaderDesc);
+	}
+	;
+
+	function setLeftHeaderInfo(leftHeaderDesc) {
+		$('#header').css(&quot;display&quot;, &quot;block&quot;);
+		$('#navigationHeader').css(&quot;display&quot;, &quot;block&quot;);
+		$('#leftHeader').html(leftHeaderDesc);
+	}
+	;
+
+	function setFormName(name) {
+
+	}
+	;
+
+	function clearHeaderInfo() {
+		$('#header').css(&quot;display&quot;, &quot;none&quot;);
+		$('#leftHeader').html(&quot;&quot;);
+		$('#mainHeader').html(&quot;&quot;);
+		$('#navigationHeader').css(&quot;display&quot;, &quot;none&quot;);
+	}
+	;
+
+	function putMessageScript(messageType, messageTypeScript) {
+		this.messageScripts.put(messageType, messageTypeScript);
+	}
+	;
+	function getMessageScript(messageType) {
+		var map = this.messageScripts.get(messageType);
+		if (map &amp;&amp; map.value) {
+			return map.value;
+		}
+		return null;
+	}
+	;
+
+	function putFormScript(messageForm, formScript) {
+		this.formScripts.put(messageForm, formScript);
+	}
+	;
+
+	function getFormScript(messageForm) {
+		var map = this.formScripts.get(messageForm);
+		if (map &amp;&amp; map.value) {
+			return map.value;
+		}
+		return null;
+	}
+	;
+
+	this.opened = false;
+
+<span id='RenderingEngine-method-openModalDialog'>	/**
+</span>	 * Modal dialog will block to access the UI and provide the proper
+	 * information to the end user.
+	 * 
+	 * @param message:
+	 *            Its a string which hold the message to be displayed.
+	 * @returns {void}
+	 */
+	function openModalDialog(message) {
+		if (this.opened == true) {
+			this.closeModalDialog();
+		}
+		this.opened = true;
+		var fullHTML = &quot;&quot;;
+		if (!message) {
+			message = &quot;&quot;;
+		}
+
+		fullHTML += &quot;&lt;div class='ui-body ui-body-v'&gt;&quot;;
+		fullHTML += &quot;&lt;h3&gt;Please Wait ...&lt;/h3&gt;&quot;;
+		fullHTML += &quot;&lt;p&gt;&quot; + message + &quot;&lt;strong&gt;&lt;/strong&gt; &lt;em&gt;&lt;/em&gt;&lt;/p&gt;&quot;;
+		fullHTML += &quot;&lt;div data-role='collapsible' data-collapsed='true' data-theme='v'&gt;&quot;;
+		/*
+		 * fullHTML += &quot;&lt;h3&gt;More&lt;/h3&gt;&quot;; fullHTML += &quot;&lt;p&gt;&lt;/p&gt;&quot;;
+		 */
+		fullHTML += &quot;&lt;/div&gt;&quot;;
+		fullHTML += &quot;&lt;/div&gt;&quot;;
+
+		/*
+		 * fullHTML = &quot;&lt;ul data-role='listview'&gt;&lt;li&gt;Please Wait ... &quot; +
+		 * message + &quot; ...&lt;/li&gt;&lt;/ul&gt;&quot;;
+		 */
+
+		$('#main').simpledialog({
+			'mode' : 'blank',
+			'prompt' : false,
+			'forceInput' : true,
+			'cleanOnClose' : true,
+			'useModal' : true,
+			'fullHTML' : fullHTML
+		});
+	}
+	;
+<span id='RenderingEngine-method-closeModalDialog'>	/**
+</span>	 * Close the opened modal dialog
+	 * 
+	 * @returns {void}
+	 */
+	function closeModalDialog() {
+		try {
+			if (this.opened == true)
+				$('#main').simpledialog('close');
+			this.opened = false;
+		} catch (e) {
+
+		}
+	}
+	;
+
+<span id='RenderingEngine-method-openPromptOkCancelModalDialog'>	/**
+</span>	 * Prompt the end user, options like 'ok' or 'cancel' and based on the input
+	 * it will be provided the result as a callback method to the end user.
+	 * 
+	 * @param message:
+	 *            Its a string , holds the message to be displayed.
+	 * @param callback :
+	 *            Its a function which will be called after the completion of
+	 *            the method and the result should be passed as parameter.
+	 * 
+	 * @returns {void}
+	 */
+	function openPromptOkCancelModalDialog(message, callback) {
+
+		var fullHTML = &quot;&quot;;
+		if (!message) {
+			message = &quot;&quot;;
+		}
+
+		$('#okCancelDialog').simpledialog({
+			'mode' : 'bool',
+			'prompt' : message,
+			'useModal' : true,
+			'buttons' : {
+				'OK' : {
+					click : function() {
+						$('#dialogoutput').text('OK');
+						if (callback)
+							callback(true);
+					}
+				},
+				'Cancel' : {
+					click : function() {
+						$('#dialogoutput').text('Cancel');
+						if (callback)
+							callback(false);
+					},
+					icon : &quot;delete&quot;,
+					theme : &quot;c&quot;
+				}
+			}
+		});
+	}
+	;
+
+	function openPromptModalDialog(message, callback) {
+
+		var fullHTML = &quot;&quot;;
+		if (!message) {
+			message = &quot;&quot;;
+		}
+
+		$('#okDialog').simpledialog({
+			'mode' : 'bool',
+			'prompt' : message,
+			'useModal' : true,
+			'buttons' : {
+				'OK' : {
+					click : function() {
+						$('#dialogoutput').text('OK');
+						if (callback)
+							callback(true);
+					}
+				}
+			}
+		});
+	}
+	;
+
+	function isLoginInfoExist(loginInfo) {
+		if (loginInfo) {
+			appController.getComponent(&quot;DataLayer&quot;).getProcessDefinitions();
+			var user = new HIN.UserVO();
+			user.userName = loginInfo.username;
+			user.password = loginInfo.password;
+			appController.getEventQueue().postEvent(
+					AppConstants.Event.LOGIN_PAGE_PROCESSED, user,
+					renderingEngine, login);
+		} else {
+			appController.fireEvent(AppConstants.Event.LOGIN_PAGE_INITIALIZED);
+		}
+	}
+	;
+	this.isLoginInfoExist = isLoginInfoExist;
+
+	function slideLeft() {
+		renderingEngine.slideDelay = 200;
+		var left = &quot;67%&quot;;
+		var right = &quot;30%&quot;;
+		$('.right-side-content').css('display', 'block')
+		$('.inner-right').css('width', '70%')
+		$(&quot;.left-side-content&quot;).animate({
+			width : left
+		}, renderingEngine.slideDelay);
+
+		$(&quot;.right-side-content&quot;).animate({
+			width : right
+		}, renderingEngine.slideDelay);
+
+		$('.left-side-content').css('height', renderingEngine.outerHeight);
+		$('#form').html('');
+	}
+	this.slideLeft = slideLeft;
+	function getUIDimensions() {
+		var right = $('.right-side-content').css('width');
+		if (right) {
+			var innerHeight = $('.ui-left-top').css('height');
+			var outerHeight = $('.left-side-content').css('height');
+			var left = $('.left-side-content').css('width');
+
+			renderingEngine.right = right.substring(0, right.length - 2);
+			renderingEngine.left = left.substring(0, left.length - 2);
+			renderingEngine.innerHeight = innerHeight;
+			renderingEngine.outerHeight = outerHeight;
+			var parentWidth = $('.left-side-content').offsetParent().width();
+			var percent = 100 * renderingEngine.left / parentWidth;
+			renderingEngine.left = percent + &quot;%&quot;;
+
+			parentWidth = $('.right-side-content').offsetParent().width();
+			percent = 100 * renderingEngine.right / parentWidth;
+			renderingEngine.right = percent + &quot;%&quot;;
+		}
+	}
+	;
+	this.getUIDimensions = getUIDimensions;
+	function slideRight() {
+		getUIDimensions();
+
+		var width = &quot;98%&quot;;
+		$('.right-side-content').css('display', 'none')
+		// $('.left-side-content').css('width', width + &quot;px&quot;);
+		$('.inner-right').css('width', '94.5%')
+		$(&quot;.left-side-content&quot;).animate({
+			width : width
+		}, renderingEngine.slideDelay);
+		$(&quot;.right-side-content&quot;).animate({
+			width : 0,
+		}, renderingEngine.slideDelay);
+		// $('.left-side-content').css('height', 'auto');
+		// $('.ui-left-top').css('height', 'auto');
+
+		$('.home-icon-link').css('display', 'none');
+		$('#left-side').removeClass('left-side-bg');
+	}
+	;
+	this.slideRight = slideRight;
+	function loadDocument() {
+		showPageLoading();
+		$.ajax({
+			type : &quot;GET&quot;,
+			url : &quot;pages/documents/documents.html&quot;,
+			dataType : &quot;html&quot;,
+			cache : false,
+			success : function(data) {
+				$('#' + &quot;form&quot;).html(data);
+				$('#main').trigger('create');
+				slideRight();
+				renderingEngine.getChildComponent(&quot;Documents&quot;).loadUI();
+				hidePageLoading();
+			},
+
+			error : function(request, error) {
+				alert(request + &quot;: &quot; + error);
+				hidePageLoading();
+			}
+		});
+	}
+	;
+	this.loadDocument = loadDocument;
+
+}</pre>
+</body>
+</html>

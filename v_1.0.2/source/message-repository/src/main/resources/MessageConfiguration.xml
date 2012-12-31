@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message>
+	<message-type name="PROFILE_MESSAGE" columnFamilyType="STANDARD" artifactID="PRPA_IN101001UV01">
+		<index-fields>
+			<field xpath="//identifiedPerson/id/@root" name="ROWKEY" />
+			<field name="USERNAME" />
+			<field name="MESSAGE" />
+		</index-fields>
+		<client-fields>
+			<field name="ProfileImage" xpath="//identifiedPerson/desc/thumbnail" />
+			<field name="ProfileContacts" xpath="//identifiedPerson/personalRelationship/" />
+		</client-fields>
+		<deidentified-fields>
+			<field name="streetName" xpath="//identifiedPerson/addr/streetName" value="DEFAULT" />
+			<field name="city" xpath="//identifiedPerson/addr/city" value="DEFAULT" />
+		</deidentified-fields>
+	</message-type>
+	<message-type name="MESSAGE_INBOX" columnFamilyType="SUPER" artifactID="">
+		<index-fields>
+			<field xpath="" name="ROWKEY" />
+			<field name="ENTITY" />
+			<field name="ACT" />
+		</index-fields>
+	</message-type>
+	
+</message>

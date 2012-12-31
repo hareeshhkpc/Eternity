@@ -1,0 +1,990 @@
+<message config="POLB_MT004000HT01_BloodTest" >
+
+    <POLB_MT004000HT01_BloodTest>
+
+        <specimen>
+
+            <specimen>
+
+                <sourcePerson>
+
+                    <name>
+
+                        <prefix>
+-
+                        </prefix>
+
+                        <family>LastName</family>
+                        <given>FirstName</given>
+                    </name>
+
+                    <id
+                        assigningAuthorityName="Eternity Medicine - Dubai"
+                        extension="201"
+                        root="19660929" />
+                </sourcePerson>
+            </specimen>
+        </specimen>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="1898"
+                    displayName="International Cardiometabolic" />
+
+                <value />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="178"
+                    displayName="Total LDL" />
+
+                <value value="130" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode code="H" />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="162"
+                    displayName="LDL Real (LDL-R)" />
+
+                <value value="109" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode code="H" />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="160"
+                    displayName="Lipoprotein (a)" />
+
+                <value value="4.0" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="163"
+                    displayName="IDL Cholesterol" />
+
+                <value value="17" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="159"
+                    displayName="Total HDL" />
+
+                <value value="52" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="164"
+                    displayName="HDL2" />
+
+                <value value="11" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="165"
+                    displayName="HDL3" />
+
+                <value value="41" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="166"
+                    displayName="Total VLDL" />
+
+                <value value="22" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="167"
+                    displayName="VLDL1+2" />
+
+                <value value="8.7" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="168"
+                    displayName="VLDL3" />
+
+                <value value="13" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode code="H" />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="158"
+                    displayName="Total Cholesterol" />
+
+                <value value="204" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode code="H" />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="161"
+                    displayName="Triglycerides" />
+
+                <value value="131" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="169"
+                    displayName="Non-HDL Cholesterol" />
+
+                <value value="152" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="170"
+                    displayName="Remnant Lipoproteins (IDL + VLDL3)" />
+
+                <value value="30" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode code="H" />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="171"
+                    displayName="LDL Density (Pattern)" />
+
+                <value value="A/B" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode code="A" />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="172"
+                    displayName="Apo B100 (Apo B100)" />
+
+                <value value="103" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="157"
+                    displayName="Apolipoprotein A1 (Apo A1)" />
+
+                <value value="153" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="173"
+                    displayName="Apo B100/Apo A1 Ratio" />
+
+                <value value="0.67" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="174"
+                    displayName="LDL4" />
+
+                <value value="9.9" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="175"
+                    displayName="LDL3" />
+
+                <value value="59.0" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="176"
+                    displayName="LDL2" />
+
+                <value value="24.1" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="177"
+                    displayName="LDL1" />
+
+                <value value="15.9" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="4288"
+                    displayName="Homocysteine" />
+
+                <value value="12.7" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode code="H" />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="27601"
+                    displayName="Insulin" />
+
+                <value value="8.3" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="1650"
+                    displayName="C-Peptide" />
+
+                <value value="3.7" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="1563"
+                    displayName="Proinsulin, Total" />
+
+                <value value="26.6" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode code="H" />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="1967"
+                    displayName="Proinsulin/Insulin Ratio" />
+
+                <value value="0.46" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode code="H" />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="1529"
+                    displayName="Adiponectin*" />
+
+                <value value="4.9" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="1535"
+                    displayName="Leptin*" />
+
+                <value value="1.0" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="1545"
+                    displayName="Resistin*" />
+
+                <value value="22.3" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="13"
+                    displayName="Testosterone, Total" />
+
+                <value value="953" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="4933"
+                    displayName="Sex Hormone Binding Globulin" />
+
+                <value value="25" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="50830"
+                    displayName="High Sensitivity CRP" />
+
+                <value value="1.5" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode code="H" />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="1533"
+                    displayName="Interleukin-6*" />
+
+                <value value="0.9" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="1538"
+                    displayName="Interleukin-8*" />
+
+                <value value="3.6" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="1564"
+                    displayName="Tumor Necrosis Factor Alpha*" />
+
+                <value value="1.8" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="1540"
+                    displayName="Plasminogen Activator Inhibitor Type 1*" />
+
+                <value value="26.8" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="1756"
+                    displayName="Pre-D Risk Assessment" />
+
+                <value value="N/A" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+
+        <component2>
+
+            <observationEvent>
+
+                <code
+                    code="2217"
+                    displayName="Glucose" />
+
+                <value value="62" />
+
+                <interpretationCode code="F" />
+
+                <referenceRange>
+
+                    <interpretationRange>
+
+                        <value />
+
+                        <interpretationCode code="L" />
+                    </interpretationRange>
+                </referenceRange>
+            </observationEvent>
+        </component2>
+    </POLB_MT004000HT01_BloodTest>
+
+</message>

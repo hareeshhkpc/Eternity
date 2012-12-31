@@ -1,0 +1,426 @@
+.questionnaireTitle{
+	/* width:99.3%; */ 
+	width:96.1%;
+	padding:5px;
+	border: 1px solid #FFFFFF;
+}
+
+.hiddenDivs{
+	display:none;
+}
+
+
+/*lifestyle Questionnaire*/
+.ui-page-content {
+	width: 97%;
+}
+
+
+.ui-questionnaire-title {
+	text-align: center;
+	font-weight: bold;
+}
+
+/*common title css  */
+.ui-question-title {
+	font-weight: bold;
+}
+
+.ui-index {
+	width: 3%;
+	height: 37px;
+	border: 1px solid;
+	border-top: 0px;
+	float: left;
+}
+
+.ui-text-align{
+	margin-left: 5px;
+	position:relative;
+	top:10px;
+}
+.ui-heading-style{
+	margin-left: 5px;	
+}
+.ui-note {	
+	font-weight: bold;
+	float: left;
+	text-decoration: underline;
+}
+
+.ui-note-text {	
+	float: left;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.ui-space-total {
+	/* font-weight: bold;
+	text-align: right;
+	width: 79.5%;
+	height: 37px;
+	float: left; */
+	float: left;
+    font-weight: bold;
+    height: 25px;
+    position: relative;
+    right: 10px;
+    text-align: right;
+    top: 10px;
+    width: 74%;
+}
+
+.ui-body-d{
+	border:0px solid #ccc;	
+}
+.ui-total-count {
+	/* width: 9.95%;
+	height:37px;
+	font-weight: bold;
+	float: left;
+	text-align: center; */
+	float: left;
+    height: 39px;
+    position: relative;
+    text-align: center;
+    top: 5px;
+    width: 13%;
+}
+
+
+/* .ui-option{
+	width: 18%;
+	height:37px;
+	border: 1px solid;
+	border-left: 0px;
+	border-top: 0px;
+	float: left;
+} */
+
+
+/*history  */
+.ui-question {
+	width: 76.5%;
+	height:37px;
+	border: 1px solid;
+	border-left: 0px;
+	border-top: 0px;
+	float: left;
+}
+
+
+/*nutrition  */
+
+.group-container{
+	width: 100%;
+	height: 113px;
+}
+
+.group-rotate{
+	-moz-transform: rotate(270deg);
+	height: 50px;
+	width: 112;
+	position:relative; 
+	text-align:center;
+	margin-top:31;
+	margin-left: -33px;
+	float:left;  
+	border: 1px solid #000000;
+}
+
+.nutrition-label{
+	width: 95.8%;
+	float: left;
+	margin-left: -33px;
+}
+.rotate-block {
+	writing-mode: tb-rl;
+	-webkit-transform: rotate(270deg);
+	-moz-transform: rotate(270deg);
+	-o-transform: rotate(270deg);
+	white-space: nowrap;
+	width: 207px;
+	height: 50px;
+	border: 1px solid;
+	border-right: 0px;
+	margin: 78px -79px;
+	position:relative;
+	left:-65px;
+	text-align: center;
+	float: left;
+}
+
+.nutrition-questionnaire-block{
+	width:95%; 
+	float:left; 
+	margin-top: 1px;
+	position:relative;
+	left:-4px;
+}
+
+
+/*hormone-screen Women  */
+.ui-category-women {
+	width: 15%;
+	margin-top:-1px;
+	border: 1px solid;
+	border-top:0px;
+	border-right:0px;
+	float: left;
+	height:450px;
+	font-weight: bold;
+}
+
+
+.ui-hormone-questionnaire-content {
+	width: 84.8%; 
+	float: left;
+}
+
+
+/*Hormone Screen Male  */
+
+
+
+/*Stress screen  */
+.ui-stress-category {
+	width: 33.1%;
+	float: left;
+	font-weight: bold;
+}
+
+.ui-stress-screen {
+	float: left;
+	width: 100%;
+}
+
+.block-large-left {
+	width: 99.4%;
+	border-top: 0px;
+	padding-top: 10px;
+	float: left;
+	height: 20px;
+}
+
+.block-large {
+	width: 28.1%;
+	border: 1px solid;
+	border-top: 0px;
+	border-left: 0px;
+	padding-top: 10px;
+	float: left;
+}
+
+.block-small {
+	width: 5%;
+	border: 1px solid;
+	border-top: 0px;
+	border-left: 0px;
+	padding-top: 10px;
+	float: left;
+}
+
+.ui-stress-question1 {
+	width: 16%;
+	border: 1px solid;
+	border-top: 0;
+	float: left;
+	height: 34.7px;
+}
+
+.ui-stress-question {
+	width: 16%;
+	border: 1px solid;
+	border-left: 0px;
+	border-top: 0;
+	float: left;
+	height: 34.7px;
+}
+
+.ui-stress-rate {
+	/* width: 17.1%; 
+	border: 1px solid;*/
+	border-left: 0px;
+	border-top: 0;	
+	height:34.7px;
+	text-align:center;
+	font-weight: bold;
+}
+
+.ui-stress-align {
+	float:left;
+	width:48%;
+}
+
+.stress-total-count{
+	width: 8.5%;
+	border: 1px solid;
+	border-left: 0px;
+	border-top: 0;
+	float: left;
+	height:34.7px;
+	text-align:center;
+	font-weight: bold;
+}
+
+.ui-stress-total1 {
+	width: 16%;
+	text-align: right;
+	border: 1px solid;
+	border-top: 0;
+	float: left;
+	height: 34.7px;
+	font-weight: bold;
+}
+
+.ui-stress-total {
+	width: 16%;
+	text-align: right;
+	border: 1px solid;
+	border-left: 0px;
+	border-top: 0;
+	float: left;
+	height: 34.7px;
+	font-weight: bold;
+}
+
+
+/*Sleep Screen  */
+.ui-sleepscreen-title {
+	width: 69.5%;
+	float: left;
+	font-weight: bold;
+}
+
+.ui-option-block {
+	width: 12.6%;
+	float: left;
+	font-weight: bold;
+	text-align: center;
+}
+
+.ui-count-block {
+	width: 4.6%;
+	float: left;
+	font-weight: bold;
+	text-align: center;
+}
+
+.ui-sleep-total{
+	font-weight: bold;
+	text-align: right;
+	width: 75%;
+	height:37px;
+	float: left;
+}
+
+.ui-total-count-sleep {
+	width: 4.35%;
+	height:37px;
+	font-weight: bold;
+	float: left;
+	text-align: center;
+}
+
+.ui-sleep-screen {
+	/* float: left;
+	width: 95%; */
+}
+
+.ui-sleep-screen-rate{
+	/* float: left;
+	width: 5%; */
+}
+
+.ui-sleepScreen-question {
+	width: 71.85%;
+	height:37px;
+	float: left;
+	border: 1px solid;
+	border-top: 0px;
+	border-left: 0px;
+}
+
+.ui-option-input {
+	width: 4.5%;
+	height:44px;
+	font-weight: bold;
+	float: left;
+	border: 1px solid;
+	border-left: 0px;
+	border-top: 0px;
+	text-align: center;
+}
+
+/*Culture questionnaire form*/
+
+.ui-total-bar {
+	width: 83.3%;
+	border: 1px solid;
+	font-weight: bold;
+	text-align: right;
+	float: left;
+	border-top: 0px;
+}
+
+.ui-total-fields{
+	width: 8%;
+	border: 1px solid;
+	border-left: 0px;
+	border-top: 0px;
+	float: left;
+}
+
+/* New Styles */
+
+.ui-questionnare-list{
+	position: relative; 
+	/* height: 280px; */
+	height: auto;
+	width: 100%;
+}
+.ui-rotate-slide{
+	position: absolute; 
+	height: 100%; 				
+	border: 1px solid; 
+	color: rgb(0, 0, 0);
+	width: 50px; 
+}
+.ui-rotate-text{
+	font-weight: bold; 
+	display: block; 
+	text-align: center; 				
+	position: relative; 
+	top: 50%; 
+	margin-top: -10px; 
+	left: 50%; 
+	margin-left: -250px; 
+	transform: rotate(-90deg);
+	width: 500px; 
+}
+.ui-questionnare-form{
+	border: 0px solid; 
+	margin-left: 51px;
+	width: 95.5%; 
+}
+.ui-questionnare-form-row{
+	border: 0px solid; 				
+	width: 100%; 
+}
+.ui-questionnare-form-list{
+	/* float:left; */
+	padding: 5px; 
+	border: 0px solid; 
+	border-top:0px;
+}
+
+/**** New****/
+
+.ui-table-questionnare{
+	border-collapse:collapse;
+	width:100%;	
+}
+.ui-table-questionnare th,td{
+	border: 1px solid;
+	border-top:0px;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<a4j:jsFunction name="chooseConceptClass" execute="conceptClassAuto"
+				action="#{conceptClassBean.getConceptClassForAutoComplete}"
+				render="conceptClassList" />
+			<rich:toolbar height="26" itemSeparator="grid" width="700">
+				<rich:toolbarGroup>
+					<h:commandLink action="#{conceptClassBean.addConceptClass}">
+						<h:panelGrid columns="2">
+							<img src="../../html/images/page_white_add.png" />
+							<h:column>Concept Class</h:column>
+						</h:panelGrid>
+					</h:commandLink>
+				</rich:toolbarGroup>
+				<rich:toolbarGroup location="right">
+					<h:outputText value="Search:" />
+					<rich:autocomplete id="conceptClassAuto"
+						value="#{conceptClassBean.selectedConceptClass}" mode="ajax"
+						layout="table" var="var" fetchValue="#{var.name}"
+						autocompleteMethod="#{conceptClassBean.conceptClassAutoCompleteList}"
+						onkeyup="chooseConceptClass()" onselectitem="chooseConceptClass()"
+						autoFill="false" selectFirst="false">
+						<rich:column>
+							<h:outputText value="#{var.name}" />
+						</rich:column>
+						<a4j:ajax event="change" />
+					</rich:autocomplete>
+				</rich:toolbarGroup>
+			</rich:toolbar>
+			<br />
+			<rich:dataTable id="conceptClassList"
+				value="#{conceptClassBean.conceptClassList}" var="conceptClassTable"
+				rows="10" rowClasses="odd-row, even-row" rowClass="row"
+				styleClass="stable" style="width:700px">
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<h:outputText value="#{conceptClassTable.name}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Description" />
+					</f:facet>
+					<h:outputText value="#{conceptClassTable.description}" />
+				</rich:column>
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Edit" />
+					</f:facet>
+					<center>
+						<h:commandButton action="#{conceptClassBean.editConceptClass}"
+							image="../../html/images/iconedit.gif" value="Edit " alt="Edit"
+							title="Edit">
+							<f:setPropertyActionListener
+								target="#{conceptClassBean.conceptClassId}"
+								value="#{conceptClassTable.id}" />
+						</h:commandButton>
+						<h:outputText value=" / " />
+						<h:commandButton action="#{conceptClassBean.viewConceptClass}"
+							image="../../html/images/page_white_view.png" value="View "
+							alt="View" title="View">
+							<f:setPropertyActionListener
+								target="#{conceptClassBean.conceptClassId}"
+								value="#{conceptClassTable.id}" />
+						</h:commandButton>
+					</center>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Remove" />
+					</f:facet>
+					<center>
+						<h:commandButton id="removeConcept"
+							image="../../html/images/icondelete.gif" alt="delete"
+							title="delete" action="#{conceptClassBean.deleteConceptClass}"
+							value="Delete "
+							onclick="return confirm('Are you sure that you want to delete this Concept #{conceptClassTable.name}');">
+							<f:setPropertyActionListener
+								target="#{conceptClassBean.conceptClassId}"
+								value="#{conceptClassTable.id}" />
+						</h:commandButton>
+					</center>
+				</rich:column>
+				<br />
+				<f:facet name="footer">
+					<rich:dataScroller for="conceptClassList" align="right"
+						renderIfSinglePage="false" fastStep="5" fastControls="auto"
+						render="id3 id4" />
+				</f:facet>
+			</rich:dataTable>
+			<br />
+		</h:form>
+		<rich:jQuery id="id3" selector=".stable tr.row" event="mouseover"
+			query="jQuery(this).addClass('active-row')" />
+		<rich:jQuery id="id4" selector=".stable tr.row" event="mouseout"
+			query="jQuery(this).removeClass('active-row')" />
+	</ui:define>
+</ui:composition>
+</html>

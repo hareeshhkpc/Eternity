@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>LookUp Handler</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="css/hin.css" />
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+
+
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.json-2.3.js"></script>
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+
+<script src="js/hl7adapter_new.js"></script>
+<script type="text/javascript" src="js/xml2json.js"></script>
+<script type="text/javascript" src="js/json2xml.js"></script>
+
+<script src="js/XmlUtil.js"></script> 
+<script src="js/MessageAndUIBinder.js"></script>
+<script src="../mobile/viewedit/js/Profile.js"></script>
+<script src="../mobile/viewedit/js/UpdateUI.js"></script>
+<script src="../mobile/viewedit/js/DataTypeAPI.js"></script> 
+<script src="js/LookupHandler.js"></script>
+
+
+
+
+<script>
+
+$(document).ready(function(){
+	var lookupHandler =new LookupHandler();
+	var lookups =[];
+	lookupHandler.createDatabase(function(){
+		
+		$("[lookupType = multiple]").each(function(key, value){
+			lookups.push($(this).attr('conceptClass')+",multiple");
+		});
+		
+		$("[lookupType = autoComplete]").each(function(key, value){
+			lookups.push($(this).attr('conceptClass')+",autoComplete");
+		});
+		
+		$("[lookupType = checkBox]").each(function(key, value){
+			lookups.push($(this).attr('conceptClass')+",checkBox");
+		});
+		
+		$("[lookupType = radio]").each(function(key, value){
+			lookups.push($(this).attr('conceptClass')+",radio");
+		});		
+		
+		var htmlDom = $("#mainContent").html();
+		lookupHandler.lookUp($("#mainContent"),lookups);
+	});
+});
+
+</script>
+</head>
+<body>
+<br><br>
+<div id="mainContent">
+	<div class="ui-tele-add" style="width: 40%; margin-top: -5px;">
+		<label>Prefix</label> 
+		<select id="select-prefix" name="select-choice-1" conceptClass="prefix" lookupType="multiple" request="client">
+			<option value="">Select</option>
+		</select>
+	</div> 
+	
+	<div class="ui-tele-add" style="width: 40%; margin-top: -5px;">
+		<label>Gender</label> 
+		<select id="select-sex" name="select-choice-1" conceptClass="sex" lookupType="multiple" request="client">
+			<option value="">Select</option>
+		</select>
+	</div>
+
+     <br><br>
+	<div class="ui-tele-add" style="width: 80%; margin-top: -5px;">
+		<label>State</label>
+		<input data-inline="true" dataSource="" lookupType="autoComplete" request="client" value="" id="select-state" type="text" data-type="search"
+			   conceptClass="state"  placeholder="Search state..." class="searchAD">	   
+	     <ul id="select-stateList" data-theme="b" data-role="listview"></ul>
+	</div>		
+	
+     <br><br>
+	<div class="ui-tele-add" style="width: 80%; margin-top: -5px;">
+		<label>City</label>
+		<input data-inline="true" dataSource="" lookupType="autoComplete" request="client" value="" id="select-city" type="text" data-type="search"
+			   conceptClass="city"  placeholder="Search city..." class="searchAD">	   
+	     <ul id="select-cityList" data-theme="b" data-role="listview"></ul>
+	</div>	
+	
+	 <br><br>
+	<div class="ui-tele-add" style="width: 80%; margin-top: -5px;">
+		<label>Illness</label>
+		<div id="select-illness" lookupType="checkBox" request="client" conceptClass="illness">
+		</div>
+	</div>
+				
+	 <br><br>
+	<div class="ui-tele-add" style="width: 80%; margin-top: -5px;">
+		<label>Race</label>
+		<div id="select-race" lookupType="radio" request="client" conceptClass="race">
+		</div>
+	</div>					
+</div>
+		
+</body>
+</html>

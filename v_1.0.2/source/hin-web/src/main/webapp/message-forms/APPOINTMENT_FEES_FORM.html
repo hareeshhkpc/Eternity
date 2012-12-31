@@ -1,0 +1,48 @@
+<script src="js/jqm.autoComplete-1.4.js"></script>
+
+<fieldset class="ui-grid-c ui-accounting-box">
+	<div class="ui-block-a ui-accounting-field" style="width: 16%">
+
+		<!-- <input class="ui-input-text ui-body-d ui-corner-all ui-shadow-inset" style="border: 0px;" type="text"
+						       id="datetext" value="" pathFields=""  
+					    	   tagName="effectiveTime" fields="datetext"  
+					    	   dataType="TS" dataField="true" dateFormatFunction="AppUtil.getFormattedDate" /> -->
+					    	   
+			<input type="text" value="" pathFields="" tagName="effectiveTime" fields="datetext" dataType="TS"
+			   dataField="true" date="true" data-role="datebox" data-options='{"mode": "calbox", "calUsePickers": true, "calNoHeader": true}' />
+
+	</div>
+	<div class="ui-block-b ui-accounting-field ui-accounting-position"
+		style="width: 32%">
+ 
+		<input class="ui-input-text ui-body-d ui-corner-all ui-shadow-inset"
+			style="border: 0px;" type="text" id="service" value="" pathFields=""
+			tagName="code" fields="service" dataType="CE" dataField="true" />
+	<!-- <div isEditor="true" editorLabel="" pathFields="" tagName="service" editorType ="ServiceLookup" dataType="IVL_TS"></div> -->
+
+	</div>
+	<div class="ui-block-c ui-accounting-field ui-accounting-position"
+		style="width: 32.3%">
+
+		<input class="ui-input-text ui-body-d ui-corner-all ui-shadow-inset" style="border: 0px;" type="text"
+								id="consultant" value="" pathFields=""  
+					    	   tagName="effectiveTime" fields=""  
+					    	   dataType="TS" dataField="false" />
+		<!-- <div isEditor="true" editorLabel="" pathFields="" tagName="consultant" editorType ="PhysicianLookup" dataType="IVL_TS"></div> -->
+
+	</div>
+	<div
+		class="ui-block-d ui-accounting-field ui-accounting-align ui-accounting-position"
+		style="width: 12.1%">
+
+		<input class="ui-input-text ui-body-d ui-corner-all ui-shadow-inset"
+			style="border: 0px;" type="text" id="amount" value="" pathFields=""
+			tagName="amt" fields="amount" dataType="TS" dataField="true" />
+
+	</div>
+	<div class="ui-block-e ui-delete-icon">
+		<img src="images/delete.png" onclick="" />
+	</div>
+</fieldset>
+<div id="actions"></div>
+

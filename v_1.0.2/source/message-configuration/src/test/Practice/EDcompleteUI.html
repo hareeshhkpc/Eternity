@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script type="text/javascript" src="jquery-1.6.4.js"></script>
+<script type="text/javascript" src="jquery.xml.js"></script>
+<script type="text/javascript" src="DataTypeAPI.js"></script>
+<script type="text/javascript" src="XmlUtil.js"></script>
+<script type="text/javascript">
+	var xml = null;
+	function EDtestGetValue() {
+		xml = getEDvaluesFromUI('ided', 'profileId');
+	}
+	function EDtestSetValue() {
+		EDsetValue('ided', xml);
+	}
+	function EDtestDisplayForTel() {
+		$("#DivForTEL").toggle();
+	}
+	function EDtestDisplayForThumb() {
+		$("#DivForThumb").toggle();
+	}
+	function TELtestDisplay() {
+		$("#DivForSXCM_TS").toggle();
+	}
+	function TELtestDisplay2() {
+		$("#DivForSXCM_TS2").toggle();
+	}
+
+	function showTypeEditor(editorId, idPrefix, xml) {
+		var html = $("#" + editorId).html();****imp
+		
+	}
+</script>
+</head>
+
+<body>
+	<form>
+		<div> </div>
+	</form>
+	<div id="TypeUI" style="display: none;">
+		<div id="DivForED">
+			<fieldset>
+				Text Content : <input type="text" id="ided_text" /> <br />
+
+				reference: <a href="#" onclick="EDtestDisplayForTel();">TEL</a> <br />
+
+
+				thumbnail: <a href="#" onclick="EDtestDisplayForThumb();">thumbnail</a>
+				<br /> mediaType: <input type="text" id="ided_attr_1" /> <br />
+				language: <input type="text" id="ided_attr_2" /> <br />
+				compression: <input type="text" id="ided_attr_3" /> <br />
+				integrityCheck: <input type="text" id="ided_attr_4" /> <br />
+				integrityCheckAlgorithm:<input type="text" id="ided_attr_5" /> <br />
+				representation: <input type="text" id="ided_attr_6" /> <br /> <input
+					type="button" value="getValue" onclick="EDtestGetValue();" /> <input
+					type="button" value="clearValue" onclick="EDclearValues('ided');" />
+				<input type="button" value="setValue" onclick="EDtestSetValue();" />
+			</fieldset>
+		</div>
+		<div id="DivForTEL" style="display: none;">
+			<fieldset>
+				value: <input type="text" id="idtel_attr_1" /> <br /> use: <input
+					type="text" id="idtel_attr_2" /> <br /> useablePeriod: <a
+					href="#" onclick="TELtestDisplay();">SXCM_TS</a> <br />
+
+			</fieldset>
+		</div>
+		<div id="DivForSXCM_TS" style="display: none;">
+			<fieldset>
+				value: <input type="text" id="idsxcm_ref_attr_1" /> operator: <input
+					type="text" id="idsxcm_ref_attr_2" />
+			</fieldset>
+		</div>
+		<div id="DivForThumb" style="display: none;">
+			<fieldset>
+				reference: <a href="#" onclick="DivForTEL();">TEL</a> <br />
+			</fieldset>
+		</div>
+	</div>
+
+</body>
+</html>

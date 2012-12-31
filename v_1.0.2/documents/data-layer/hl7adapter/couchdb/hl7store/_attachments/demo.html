@@ -1,0 +1,36 @@
+<html>
+<head>
+<script src="script/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="script/hl7adapter.js" type="text/javascript"></script>
+<script type="text/javascript">
+/**
+ * Request data from the server, add it to the graph and set a timeout to request again
+ */
+
+var s;
+function log(data){
+   document.write(data.toString());
+   s = data;
+}
+
+function test(){
+   var doc = document.implementation.createDocument(null, "message", null);
+   message = doc.childNodes[0];
+   message.setAttribute('artifactID','12345')
+   message.appendChild(doc.createElement('r'))
+   putMessage("newkey", doc, log, log)
+}
+
+
+function testGet(){
+    getMessage("PRPA_IN203000HT04",log,log)
+}
+
+
+$(document).ready(testGet);
+</script>
+
+</head><body>
+</body>
+</html>
+

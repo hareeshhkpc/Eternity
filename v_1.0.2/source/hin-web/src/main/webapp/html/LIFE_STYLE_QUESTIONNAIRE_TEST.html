@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>LifeStyle Questionnaire Test</title>
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+
+<!-- <link rel="stylesheet" href="css/hin.css" /> -->
+
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" type="text/css" />
+<link rel="stylesheet" href="js/jquery.mobile.datebox.min.css" />
+<link rel="stylesheet" href="css/healthhistoryquestionnaire.css" />
+<link rel="stylesheet" href="../html/css/lifestyleQuestionnaie.css" />
+
+
+<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" /> -->
+
+
+<link rel="stylesheet" href="js/jquery.ui.datepicker.mobile.css" />
+<link rel="stylesheet" href="js/jquery.mobile.datebox.min.css">
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.json-2.3.js"></script>
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+<script src="js/jquery.mobile.datebox.min.js"></script>
+<script src="js/jquery.easydate-0.2.4.js"></script>
+
+<script type="text/javascript" src="js/jsCharts/highcharts.js"></script>
+<!-- <script type="text/javascript" src="js/jsCharts/reviewHighchart.js"></script> -->
+<!--  <script type="text/javascript" src="js/jsCharts/jquery.min.js"></script>
+<script type="text/javascript" src="js/jsCharts/jquery-1.6.4.js"></script>
+<script type="text/javascript" src="js/jsCharts/themes/grid.js"></script> -->
+
+<!-- <script type="text/javascript" src="js/jQuery.ui.datepicker.js"></script> -->
+<!-- <script src="js/jquery.mobile.datebox.min.js"></script> -->
+<script src="../mobile/js/jquery.mousewheel.min.js"></script>
+<script src="js/AjaxMultipart.js"></script>
+<script src="js/AppConstants.js"></script>
+<script src="js/ApplicationController.js"></script>
+<script src="js/AppUtil.js"></script>
+<script src="js/Callback.js"></script>
+<script src="js/CommonUtil.js"></script>
+<script src="js/Context.js"></script>
+<script src="js/DataLayer.js"></script>
+<script src="js/DataTypeAPI.js"></script>
+<script src="js/EventQueue.js"></script>
+<script src="js/HashMap.js"></script>
+<script src="js/IDGenerator.js"></script>
+<script src="js/hl7adapter_new.js"></script>
+<!-- <script src="js/hl7adapter.js"></script> -->
+<script src="js/LookupHandler.js"></script>
+<script src="js/MessageAndUIBinder.js"></script>
+<script src="js/RenderingEngine.js"></script>
+<script src="js/UpdatePathfield.js"></script>
+<script src="js/XmlUtil.js"></script>
+
+
+
+<script src="js/custom/AppSchedule.js"></script>
+<script src="js/custom/Form.js"></script>
+<script src="js/custom/Home.js"></script>
+<script src="js/custom/Library.js"></script>
+<script src="js/custom/Login.js"></script>
+
+<!-- <script src="js/custom/Mentor.js"></script>
+<script src="js/custom/Monitor.js"></script>
+<script src="js/custom/Measure.js"></script> -->
+
+<script src="js/custom/Navigation.js"></script>
+<script src="js/custom/Patient.js"></script>
+<script src="js/custom/Process.js"></script>
+<script src="js/custom/Program.js"></script>
+
+<script src="js/custom/Search.js"></script>
+<script src="js/custom/User.js"></script>
+<script src="js/vo/ConceptLookup.js"></script>
+
+<script src="js/custom/Review.js"></script>
+
+<script src="js/custom/TestResult.js"></script>
+<script src="js/custom/Statistics.js"></script>
+<script src="js/custom/Archive.js"></script>
+<!-- <script src="js/custom/WorkFlow.js"></script> -->
+<script src="js/ui/AppointmentSchedule.js"></script>
+<script src="js/ui/CalendarData.js"></script>
+
+<!-- <script src="js/ui/Measure.js"></script>
+<script src="js/ui/Substances.js"></script> -->
+<script src="js/ui/UIGenerator.js"></script>
+
+<script src="js/vo/AppointmentVO.js"></script>
+<script src="js/vo/ChartVO.js"></script>
+<script src="js/vo/FormVO.js"></script>
+<script src="js/vo/Message.js"></script>
+<script src="js/vo/MessageVO.js"></script>
+<script src="js/vo/ProcessVO.js"></script>
+<script src="js/vo/ProcessDefinition.js"></script>
+<script src="js/vo/SearchVO.js"></script>
+<script src="js/vo/Step.js"></script>
+<script src="js/vo/MessageType.js"></script>
+<!-- <script src="js/vo/MessageTypeName.js"></script> -->
+<script src="js/vo/Query.js"></script>
+<script src="js/vo/UserProcess.js"></script>
+<script src="js/vo/UserVO.js"></script>
+<script src="js/vo/TaskVO.js"></script>
+<script src="js/vo/StatisticsVO.js"></script>
+<script src="js/vo/StepGroup.js"></script>
+<script src="js/jquery.base64.min.js"></script>
+<script src='js/calendar/src/_loader.js?debug'></script>
+
+
+<link rel="stylesheet" href="css/jquery.scroller-1.0.2.min.css" />
+<link rel="stylesheet" href="css/validationEngine.jquery.css"
+	type="text/css" />
+
+<script src="js/jquery.mobile.message.min.js"></script>
+<script src="js/languages/jquery.validationEngine-en.js"></script>
+<script src="js/jquery.validationEngine.js"></script>
+
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
+
+<!-- Notification Allert -->
+<script type="text/javascript" src="js/humane.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jackedup.css"
+	media="screen" />
+
+<script src="js/jqm.autoComplete-1.4.js"></script>
+
+<script type="text/javascript">
+	var msgBinder = null;
+	var appController = null;
+	var idGenerator = null;
+	$(document).ready(function(){
+		loadForm("/hin-web/message-forms/LIFE_STYLE_QUESTIONNAIRE_FORM.html");
+
+						appController = new ApplicationController();
+						idGenerator = new IDGenerator();
+
+						$('#MSG-10001').trigger('create');
+
+						$("#loadMessage").click(function() {
+							loadMessage('/message-skeleton/samples/POCD_MT000040UV/POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE.xml');
+						});
+
+						$('#saveMessage').click(function() {
+							alert("Message xml: \n"+ XmlUtil.xmlToString(msgBinder.messageObject.getXML()));
+						});
+
+						$("#loadConfig").click(function() {
+							loadConfiguration('/message-configuration/POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE.xml');
+						});
+
+					});
+
+	function loadMessage(messageId) {
+		getMessageDocument(messageId, function(messageObj) {
+			msgBinder = new MessageAndUIBinder('MSG-10001', messageObj,'POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE');
+			var lookupHandler = appController.getComponent("DataLayer").lookupHandler;
+			msgBinder.loadDataOntoForm(lookupHandler);
+		}, function(status) {
+			alert("Failed to load message for ID : " + messageId + ", Status: "
+					+ status);
+		});
+	}
+
+	function loadForm(formUrl, callbackOnComplete) {
+		$.ajax({
+			url : formUrl,
+			dataType : 'html',
+			cache : false,
+			success : function(data) {
+				$('#MSG-10001').append(data);
+				if (callbackOnComplete) {
+					callbackOnComplete();
+				}
+
+				$('#MSG-10001').trigger('create');
+			},
+			error : function(e) {
+				alert(e);
+			}
+		});
+
+	}
+
+	function loadConfiguration(messageConfigId) {
+		getMessage(
+				messageConfigId,
+				function(configData) {
+
+					var doc = new ConfigDocument(configData)
+					var result = 0;
+					result = doc.getArtifactId();
+
+					config = doc;
+
+					alert('Configuration for ' + messageConfigId + " Loaded");
+
+					generateUi();
+					
+					msgBinder = new MessageAndUIBinder('MSG-10001', config.createMessage(),'POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE');
+					//msgBinder.bindFieldEvents();
+					var lookupHandler = appController.getComponent("DataLayer").lookupHandler;
+					msgBinder.loadDataOntoForm(lookupHandler);
+				}, function(status) {
+					alert("Failed to load configuration for ID : "
+							+ messageConfigId + ", Status: " + status);
+				});
+	}
+	
+	function getHistoryQuestionnaire() {
+		var history = [];
+		history.push("Family history of Heart Disease, Obesity, Diabetes");
+		history.push("Female(older than 55) or Male (older than 45)");
+		history
+				.push("History of High Blood Sugar, Blood Pressure, Blood Fats or Uric Acid");
+		history.push("History of Smoking");
+		history
+				.push("History of Excessive alcohol (more than 3 drinks/day (male) or 5 drinks/day (female))");
+		history
+				.push("History of Chronic infections, intestinal problems or gum disease");
+		history.push("My general health is poor");
+		history.push("History of Blood clots");
+		history.push("Lack of Exercise");
+		history.push("Poor Sex Drive");
+		history.push("No or poor Significant other relationship");
+		history.push("Lack of Job Satisfaction");
+		history.push("Lack of Family or Social Support");
+		history.push("Lack of Happiness");
+		history.push("I have no spiritual practice in my life");
+		history.push("Nutrition Screen* (Score 3)");
+		history.push("Hormone Screen* (Score 3)");
+		history.push("Inflammation Screen* (Score 2)");
+		history.push("Stress Screen* (Score 1)");
+		history.push("Sleep Screen* (Score 1)");
+		return history;
+	}
+	
+	function generateUi(){
+		var questions = getHistoryQuestionnaire();
+		/* var history = new HIN.lifestyleFormGenerator();
+		history.generateUI(questions); */
+
+		$.each(questions,function(index,question){
+			var questionHtmlFragment = $("#historyQuestionnaire_child").clone();
+			var pathFields = $(questionHtmlFragment).find("#labelDiv").attr('pathFields');
+			$(questionHtmlFragment).find("#serialNo").html((index+1));
+			$(questionHtmlFragment).find("#labelDiv").attr('editorLabel',question);
+			$(questionHtmlFragment).find("#labelDiv").attr('pathFields',pathFields+"["+(index+1)+"]");
+			$(questionHtmlFragment).find("#labelDiv").attr('idSuffix',(index+1));
+			$(questionHtmlFragment).find("#booleanDiv").attr('idSuffix',(index+1));
+			$(questionHtmlFragment).find("#booleanDiv").attr('pathFields',pathFields+"["+(index+1)+"]");
+			
+			$("#historyScreenToggle_child").append(questionHtmlFragment);
+		});
+		 
+		
+		//alert(questChild.length);
+		//$(questChild)[0].html('');
+	}
+</script>
+
+</head>
+<body>
+
+	<div parentDiv="true" id="MSG-10001">
+		<!-- form is loaded here -->
+
+		<!-- <div id="historyScreenToggle" class="ui-body-b questionnaireTitle"
+			data-theme='b'>
+			<div class="text-align">History</div>
+		</div>
+		<div id="historyScreenToggle_child"
+			class="ui-body-d ui-page-content hiddenDivs" data-role="content">
+
+
+			<div class="ui-body-d ui-blank-div"></div>
+
+			<div id="" class="ui-body-b ui-questionnaire-title " data-theme='b'>
+				<div class="text-align">I- UR- LIFESTYLE</div>
+			</div>
+			<div class="ui-body-d ui-blank-div"></div>
+
+			<div id="history" class="ui-body-b ui-question-title" data-theme='b'>
+				<div class="text-align">HISTORY</div>
+			</div>
+		
+			<div id="historyQuestionnaire_child">
+				<div class="ui-index">
+					<div class="text-align" id="serialNo">1</div>
+				</div>
+				FIRST
+				<div class="ui-question">
+					<div class="text-align" isEditor="true" id="labelDiv"
+						editorLabel=""
+						pathFields="component,structuredBody,component,section,entry,observation" tagName="code" dataType="CD"
+						editorType="CDLabel"  idSuffix="1"></div>
+				</div>
+				<div class="ui-option" isEditor="true" editorLabel="" id="booleanDiv"
+					pathFields="component,structuredBody,component,section,entry,observation" idSuffix="1" tagName="value" dataType="ED"
+					editorType="EDBoolean"></div>
+			</div>	
+
+		
+				
+
+		</div> -->
+
+
+	</div>
+	<!-- end of history screen content -->
+
+
+
+	<br />
+	<input type="button" data-inline="true" id="loadConfig"
+		value="Load Configuration" />
+	<input type="button" data-inline="true" id="loadMessage"
+		value="Load Message" />
+	<input type="button" data-inline="true" id="saveMessage"
+		value="Save Message" />
+</body>
+</html>

@@ -1,0 +1,434 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="cache-control" content="no-cache" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Eternity: Login</title>
+<!-- link rel="stylesheet" href="css/common.css" /-->
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+
+<!-- <link rel="stylesheet" href="css/hin.css" /> -->
+
+<link rel="stylesheet" href="css/chat.css" type="text/css" />
+<link rel="stylesheet" href="css/violet.css" type="text/css" />
+<link rel="stylesheet" href="css/mobile.css" type="text/css" />
+<!-- <link rel="stylesheet" href="css/print.css" type="text/css" media="print" /> -->
+<!-- <link rel="stylesheet" href="css/fluid.css" type="text/css" /> -->
+<link rel="stylesheet" href="css/invoice.css" type="text/css" />
+<link rel="stylesheet" href="js/jquery.mobile.datebox.min.css" />
+<link rel="stylesheet" href="css/healthhistoryquestionnaire.css" />
+<link rel="shortcut icon" href="images/favicon.ico" />
+
+<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet"
+	type="text/css" />
+<!-- <link href="css/website.css" rel="stylesheet" type="text/css" /> -->
+
+<!-- <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" /> -->
+
+<!--<link rel="stylesheet" type="text/css" href="css/easyui.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="css/icon.css" type="text/css"/>
+<script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+	
+
+-->
+<link rel="stylesheet" href="js/jquery.ui.datepicker.mobile.css" />
+<link rel="stylesheet" href="js/jquery.mobile.datebox.min.css">
+<script src="js/jquery-1.7.1.js"></script>
+<script src="js/jquery.json-2.3.js"></script>
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+<script type="text/javascript" src="res/js/jWebSocket.js"></script>
+
+<script src="js/jquery.mobile.datebox.min.js"></script>
+
+<script src="js/jqm-datebox.core.min.js"></script>
+<script src="js/jqm-datebox.mode.slidebox.js"></script>
+<!-- <script src="js/jqm-datebox.mode.flipbox.min.js"></script> -->
+<script src="js/jqm-datebox.mode.calbox.js"></script>
+
+<script src="js/jquery.easydate-0.2.4.js"></script>
+<script src="js/jquery.mobile.simpledialog.js"></script>
+<link rel="stylesheet" href="css/jquery.mobile.simpledialog.css">
+<script type="text/javascript" src="js/jsCharts/highcharts.js"></script>
+<script src="js/jquery.xcolor.min.js"></script>
+
+<script src="js/jquery.mousewheel.min.js"></script>
+<script src="js/AjaxMultipart.js"></script>
+<script src="js/AppConstants.js"></script>
+<script src="js/ApplicationController.js"></script>
+<script src="js/AppUtil.js"></script>
+<script src="js/Callback.js"></script>
+<script src="js/CommonUtil.js"></script>
+<script src="js/Context.js"></script>
+<script src="js/DataLayer.js"></script>
+<script src="js/DataTypeAPI.js"></script>
+<script src="js/EventQueue.js"></script>
+<script src="js/HashMap.js"></script>
+<script src="js/FactoryClass.js"></script>
+<script src="js/IDGenerator.js"></script>
+<script src="js/IFrameAPI.js"></script>
+<script src="js/LookupHandler.js"></script>
+<script src="js/MessageAndUIBinder.js"></script>
+<script src="js/MessageLoader.js"></script>
+<script src="js/RenderingEngine.js"></script>
+<script src="js/ServiceLayer.js"></script>
+<script src="js/UpdatePathfield.js"></script>
+<script src="js/XmlUtil.js"></script>
+<script src="js/WorkFlowManagerCache.js"></script>
+<script src="js/CacheManager.js"></script>
+<script src="js/ProcessManagerCache.js"></script>
+<script src="js/ui/ReportPage.js"></script>
+<script src="js/ui/ReceiptPage.js"></script>
+
+<!--  Begin Queue Objects -->
+<script src="js/custom/AppCalendar.js"></script>
+<script src="js/custom/AppSchedule.js"></script>
+<script src="js/custom/Archive.js"></script>
+
+<script src="js/custom/Form.js"></script>
+
+<script src="js/custom/Home.js"></script>
+<script src="js/custom/Products.js"></script>
+<script src="js/custom/Licensee.js"></script>
+<script src="js/custom/Login.js"></script>
+
+<script src="js/custom/Navigation.js"></script>
+<script src="js/custom/NavigationLine.js"></script>
+<script src="js/custom/Patient.js"></script>
+<script src="js/custom/Process.js"></script>
+<script src="js/custom/Program.js"></script>
+
+<script src="js/custom/Resize.js"></script>
+
+<script src="js/custom/Search.js"></script>
+<script src="js/custom/Settings.js"></script>
+<script src="js/custom/SignUp.js"></script>
+<script src="js/custom/Staff.js"></script>
+<script src="js/custom/Statistics.js"></script>
+
+<script src="js/custom/TestResult.js"></script>
+<script src="js/custom/Documents.js"></script>
+
+<script src="js/custom/User.js"></script>
+<script src="js/custom/Messages.js"></script>
+
+<!--  End Queue Objects -->
+
+<!--  Begin Page Objects -->
+<script src="js/ui/AccountsPage.js"></script>
+<script src="js/ui/AppointmentSchedule.js"></script>
+<script src="js/ui/AppointmentSchedulePage.js"></script>
+<script src="js/ui/AutoCompleteSearch.js"></script>
+
+<script src="js/ui/BalancePage.js"></script>
+<script src="js/ui/BillingPage.js"></script>
+
+<script src="js/ui/CalendarData.js"></script>
+<script src="js/ui/CollectionPage.js"></script>
+<script src="js/ui/ConsentPage.js"></script>
+<script src="js/ui/ContactPersonPage.js"></script>
+
+<script src="js/ui/EnrollmentPage.js"></script>
+
+<script src="js/ui/HistoryPage.js"></script>
+
+<script src="js/ui/InvoicePage.js"></script>
+<script src="js/ui/IMCommunication.js"></script>
+
+<script src="js/ui/LicenseeRegistrationPage.js"></script>
+<script src="js/ui/LicenseeBooksPage.js"></script>
+<script src="js/ui/LicenseeCommissionPage.js"></script>
+<script src="js/ui/LicenseeNewProductPage.js"></script>
+<script src="js/ui/LicenseeNewServicePage.js"></script>
+<script src="js/ui/LicenseePaymentPage.js"></script>
+
+<script src="js/ui/MeasurePage.js"></script>
+<script src="js/ui/MonitorMeasurePage.js"></script>
+<script src="js/ui/MonitorPage.js"></script>
+
+<script src="js/ui/Page.js"></script>
+<script src="js/ui/PatientDemographicsPage.js"></script>
+<script src="js/ui/PatientRegistrationPage.js"></script>
+<script src="js/ui/PermissionPage.js"></script>
+<script src="js/ui/PhysicalExaminationPage.js"></script>
+<script src="js/ui/ProfilePage.js"></script>
+<script src="js/ui/ProgramsPage.js"></script>
+
+<script src="js/ui/QuestionnairePage.js"></script>
+
+<script src="js/ui/ResultsPage.js"></script>
+<script src="js/ui/ReviewPage.js"></script>
+<script src="js/ui/RolesPage.js"></script>
+
+<script src="js/ui/SettingsPage.js"></script>
+<script src="js/ui/SignUpPage.js"></script>
+<script src="js/ui/StaffRegistrationPage.js"></script>
+<script src="js/ui/StepPage.js"></script>
+<script src="js/ui/SubstancesPage.js"></script>
+<script src="js/ui/ColorPicker.js"></script>
+<script src="js/ui/UIGenerator.js"></script>
+<script src="js/ui/UserRegistrationPage.js"></script>
+
+<script src="js/ui/WelcomePage.js"></script>
+<!--  End Page Objects -->
+
+<!--  Begin Value Objects -->
+<script src="js/vo/AppointmentVO.js"></script>
+
+<script src="js/vo/ChartData.js"></script>
+<script src="js/vo/ChartVO.js"></script>
+<script src="js/vo/ConceptLookup.js"></script>
+<script src="js/vo/ConceptVO.js"></script>
+<script src="js/vo/CurrencyVO.js"></script>
+<script src="js/vo/ChatContent.js"></script>
+
+<script src="js/vo/DocumentsVO.js"></script>
+<script src="js/vo/LicenseeVO.js"></script>
+
+<script src="js/vo/Message.js"></script>
+<script src="js/vo/MessageType.js"></script>
+<script src="js/vo/MessageVO.js"></script>
+
+<script src="js/vo/OrganizationVO.js"></script>
+
+<script src="js/vo/PatientVO.js"></script>
+<script src="js/vo/ProcessDefinition.js"></script>
+<script src="js/vo/ProcessVO.js"></script>
+<script src="js/vo/ProfileVO.js"></script>
+<script src="js/vo/ProgramVO.js"></script>
+<script src="js/vo/PhysicianVO.js"></script>
+<script src="js/vo/ProductVO.js"></script>
+
+<!-- <script src="js/vo/ClientReportVO.js"></script>
+<script src="js/vo/consultationVO.js"></script> -->
+
+
+<script src="js/vo/Query.js"></script>
+
+<script src="js/vo/SearchVO.js"></script>
+<script src="js/vo/StaffVO.js"></script>
+<script src="js/vo/StatisticsVO.js"></script>
+<script src="js/vo/Step.js"></script>
+<script src="js/vo/StepGroup.js"></script>
+
+<script src="js/vo/TaskVO.js"></script>
+
+<script src="js/vo/UserProcess.js"></script>
+<script src="js/vo/UserVO.js"></script>
+<script src="js/vo/ObservationVO.js"></script>
+<script src="js/vo/EntityState.js"></script>
+<script src="../client-report/ConsultationIntegral.js"></script>
+
+<script src="../tinyMCE/jscripts/tiny_mce/tiny_mce.js"></script>
+<!--  End Value Objects -->
+
+<script src="js/jquery.base64.min.js"></script>
+<script src='js/calendar/src/_loader.js?debug'></script>
+
+<script src="../process-scripts/ProcessEntry.js"></script>
+<script src="../process-scripts/ProcessScript.js"></script>
+<script src='../message-scripts/MessageTypeScript.js'></script>
+<script src='../form-scripts/FormScript.js'></script>
+
+
+<link rel="stylesheet" href="css/jquery.scroller-1.0.2.min.css" />
+<link rel="stylesheet" href="css/validationEngine.jquery.css"
+	type="text/css" />
+
+<script src="js/jquery.mobile.message.min.js"></script>
+<script src="js/languages/jquery.validationEngine-en.js"></script>
+<script src="js/jquery.validationEngine.js"></script>
+
+<!-- Get Google CDN's jQuery and jQuery UI with fallback to local
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script>!window.jQuery && document.write(unescape('%3Cscript src="jquery/jquery-1.7.2.min.js"%3E%3C/script%3E'))</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<script>!window.jQuery.ui && document.write(unescape('%3Cscript src="jquery/jquery-ui-1.8.21.custom.min.js"%3E%3C/script%3E'))</script> -->
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
+<!-- <script type="text/javascript" src="js/jquery.tinyscrollbar.min.js"></script> -->
+
+<!-- Notification Allert -->
+<script type="text/javascript" src="js/humane.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jackedup.css"
+	media="screen" />
+
+<script src="js/jqm.autoComplete-1.4.js"></script>
+<script src="js/jquery.cuteTime.js" type="text/javascript"></script>
+<script src="js/utils/QuestionnaireFormGenerator.js"></script>
+<script src="js/utils/ClientReport_Data.js"></script>
+
+<script src="js/ui/PatientInfo.js"></script>
+<script src="../client-report/indicator.js"></script>
+<script src="../client-report/ReportModel.js"></script>
+<script src="../client-report/ChartModel.js"></script>
+
+
+
+<!-- link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.8.20/themes/base/jquery-ui.css"
+	type="text/css" media="all" />
+<link rel="stylesheet"
+	href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css"
+	type="text/css" media="all" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
+	type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.8.20/jquery-ui.min.js"
+	type="text/javascript"></script-->
+
+<!-- link rel="stylesheet" href="registration/View.css" /> 
+<script src="pages/registration/DataTypeAPI.js"></script>
+<script src="pages/registration/Profile.js"></script>
+<script src="pages/registration/UpdateUI.js"></script-->
+
+<script type="text/javascript" src="js/editor/EditorXmlApi.js"></script>
+<script type="text/javascript" src="js/editor/EditorSMOValueApi.js"></script>
+<script type="text/javascript" src="js/editor/EditorUIApi.js"></script>
+
+<script type="text/javascript" src="js/message_api/script/xml2json.js"></script>
+<script type="text/javascript" src="js/message_api/script/json2xml.js"></script>
+<script type="text/javascript"
+	src="js/message_api/script/lawnchair/Lawnchair.js"></script>
+<script type="text/javascript"
+	src="js/message_api/script/lawnchair/adapters/webkit-sqlite.js"></script>
+<script type="text/javascript"
+	src="js/message_api/script/lawnchair/adapters/dom.js"></script>
+<script type="text/javascript" src="js/MessageQueue.js"></script>
+<script type="text/javascript" src="js/message_api/script/hl7adapter.js"></script>
+<script type="text/javascript"
+	src="js/message_api/script/hl7adapter.unit.js"></script>
+<script type="text/javascript" src="js/ui/UITable.js"></script>
+<script type="text/javascript" src="js/LookUpCache.js"></script>
+<script><!--
+	var appController = null;
+	var idGenerator = null;
+	/* var page = null; */
+	var factoryClass = null;
+	$(document).ready(
+			function() {
+				var version = localStorage.getItem('Version');
+
+				if (!version || version < 1) {
+					localStorage.clear();
+					localStorage.setItem('Version', '1');
+				}
+
+				appController = new ApplicationController();
+				idGenerator = new IDGenerator();
+				factoryClass = new FactoryClass();
+
+				$(window).load(
+						function() { // On load
+							appController.getComponent("RenderingEngine")
+									.fireEvent(AppConstants.Event.RESIZE);
+						});
+
+			});
+
+	$(document).ready(function(){		
+		$("#loadMessage").click(function(){
+			loadMessage();
+		});
+
+	});
+	function loadMessage(){	
+		var s="",table=null;	
+		var data = appController.getComponent("DataLayer").getLocalProcessDefinitionMessages();
+		if(data){			
+			s = $("<div id='process-definition' class='ui-align-text fc-view-block block-timeslot' style='width: 95%;'></div>");
+			s.append(createHeaderEliment());
+			$.each(data,function(index,message){
+				var element = createLiDiv(index,message);
+				s.append(element);
+			});
+			var element = $.find(".processDefination");
+			table = $(s).appendTo(element);
+		}
+	}
+	function createLiDiv(index,message){
+		var element = "";
+		if(message){
+			element = $(createEliment(index,message));
+			element.find('.process-def-'+index).click(function(){
+				var dataLayer = appController.getComponent("DataLayer");
+				if(dataLayer){
+					var parentContainerID = "form_"+index;	
+					//alert(""+element.find("#"+parentContainerID).html());
+					if(element.find("#"+parentContainerID).html()==''){
+						element.find("#"+parentContainerID).css("padding-top","40");
+						//alert("message-1 :"+message);
+						dataLayer.processMessage(message, "", function(messageId, msg, messageObj) {
+							var messageForm = message.messageForm;
+							//alert("messageForm: "+messageForm);
+							
+							dataLayer.loadData("FM_" + messageForm, {},
+									function(htmlString) {
+								//alert("htmlString: "+htmlString);
+								element.find("#"+parentContainerID).append(htmlString);
+								var messageAndUIBinder = new MessageAndUIBinder(parentContainerID,
+										msg, message.messageType);
+								if (messageAndUIBinder) {
+									var lookupHandler = appController.getComponent("DataLayer").lookupHandler;
+									messageAndUIBinder.loadDataOntoForm(lookupHandler,"", function(){
+										//alert(""+element.find('#colorValue').val());
+										element.find('#colorValue').css('background-color',element.find('#colorValue').val());
+									});
+								}
+							});
+						});
+					}else{
+						if(element.find("#"+parentContainerID).css('display') != 'none'){
+							element.find("#"+parentContainerID).hide();
+						}else{
+							element.find("#"+parentContainerID).show();
+						}					
+					}	
+				}				
+			});
+			element.bind("mouseover", function(e){ 
+		        $(this).css("background-color", "#B39AB4");
+			});
+			element.bind("mouseout", function(e){ 
+		        $(this).css("background-color", "");
+			});
+		}
+		return element;
+	}
+	function createEliment(index,message){
+		var s = '<div class="ui-inner-display-box">'+
+		'<div class="process-def-'+index+' ui-sub-head-inner-bg ui-sub-header-text ui-add-button-hidden" data-role="collapsible">'+
+			'<div style="width:25%;float: left;">&nbsp;'+message.title+'</div>'+
+			'<div style="width:30%;float: left;">&nbsp;'+message.messageType+'</div>'+
+			'<div style="width:25%;float: left;">&nbsp;'+message.messageForm+'</div>'+
+			'<div style="width:10%;float: left;">&nbsp;'+message.messageStatus+'</div>'+
+			'<div style="width:10%;float: left;">&nbsp;'+message.finished+'</div>'+
+		'</div>'+
+		'<div id="form_'+index+'" class="process-formdiv"></div>';
+		s +='</div>';
+		return s;
+	}
+	function createHeaderEliment(){
+		var s = '<div class="ui-inner-display-box">'+
+		'<div class="ui-sub-header-text ui-add-button-hidden">'+
+			'<div style="width:25%;float: left;font-weight:bold;">&nbsp;Title</div>'+
+			'<div style="width:30%;float: left;font-weight:bold;">&nbsp;messageType</div>'+
+			'<div style="width:25%;float: left;font-weight:bold;">&nbsp;messageForm</div>'+
+			'<div style="width:10%;float: left;font-weight:bold;">&nbsp;messageStatus</div>'+
+			'<div style="width:10%;float: left;font-weight:bold;">&nbsp;finished</div>';
+		s +='</div></div>';
+		return s;
+	}
+</script>
+
+
+</head>
+<body>
+<input type="button" data-inline="true" id="loadMessage"
+	value="Load Message" />
+<br />
+<div class="processDefination"></div>
+
+</body>
+</html>

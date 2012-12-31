@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">var HIN;
+if (!HIN)
+	HIN = {};
+<span id='HIN-PatientVO'>/**
+</span> * PatientVO is nothing but a value object which hold the patient relevant
+ * information
+ */
+HIN.PatientVO = function() {
+<span id='HIN-PatientVO-property-subscriberId'>	/**
+</span>	 * subscriberId holds unique id.
+	 */
+	this.subscriberId = null;
+	this.roles = null;
+<span id='HIN-PatientVO-property-name'>	/**
+</span>	 * name holds name of the patient
+	 */
+	this.name = &quot;&quot;;
+	this.nameType = &quot;&quot;;
+<span id='HIN-PatientVO-property-givenName'>	/**
+</span>	 * givenName holds given name of the patient
+	 */
+	this.givenName = &quot;&quot;;
+<span id='HIN-PatientVO-property-prefixName'>	/**
+</span>	 * prefixName holds prefix name of the patient
+	 */
+	this.prefixName = &quot;&quot;;
+<span id='HIN-PatientVO-property-familyName'>	/**
+</span>	 * familyName holds family name of the patient
+	 */
+	this.familyName = &quot;&quot;;
+<span id='HIN-PatientVO-property-suffixName'>	/**
+</span>	 * suffixName holds suffix name of the patient
+	 */
+	this.suffixName = &quot;&quot;;
+<span id='HIN-PatientVO-property-message'>	/**
+</span>	 * message holds stringified xml
+	 */
+	this.message = null;
+	this.image = null;
+	this.gender = null;
+	this.consultant = null;
+<span id='HIN-PatientVO-property-msg'>	/**
+</span>	 * msg holds message xml document
+	 */
+	this.msg = null;
+<span id='HIN-PatientVO-property-dob'>	/**
+</span>	 * dob holds date of birth of the patient
+	 */
+	this.dob = null;
+	this.programId = null;
+	this.consultantId = null;
+	this.assigningOrganizationID = null;
+<span id='HIN-PatientVO-property-emailAddress'>	/**
+</span>	 * emailAddress holds email addresses of the patient
+	 */
+	this.emailAddress = [];
+	this.isEmailAvailable = false;
+<span id='HIN-PatientVO-property-membershipId'>	/**
+</span>	 * membershipId holds membershipId of the patient
+	 */
+	this.membershipId = null;
+};
+
+<span id='HIN-PatientVO-method-setMsg'>/**
+</span> * set message document object
+ * 
+ * @param msg :
+ *            Its an object of msg document.
+ * @returns {void}
+ */
+HIN.PatientVO.prototype.setMsg = function(msg) {
+	this.msg = msg;
+};
+
+<span id='HIN-PatientVO-method-setMessage'>/**
+</span> * set stringify message document object
+ * 
+ * @param message :
+ *            Its a string value of msg document.
+ * @returns {void}
+ */
+HIN.PatientVO.prototype.setMessage = function(message) {
+	if (message) {
+		this.message = message;
+		// alert(XmlUtil.xmlToString(message));
+		/*
+		 * set subscriberId
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Patient.SUBSCRIBER_ID,
+				XPathResult.STRING_TYPE);
+		this.subscriberId = (value &amp;&amp; value.stringValue) ? value.stringValue
+				: &quot;&quot;;
+		/*
+		 * set assigningOrganizationID
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Patient.ASSIGNING_ORGANIZATION_ID,
+				XPathResult.STRING_TYPE);
+		this.assigningOrganizationID = (value &amp;&amp; value.stringValue) ? value.stringValue
+				: &quot;&quot;;
+		/*
+		 * set consultantId
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Patient.CONSULTANT_ID,
+				XPathResult.STRING_TYPE);
+		this.consultantId = (value &amp;&amp; value.stringValue) ? value.stringValue
+				: &quot;&quot;;
+		/*
+		 * set programId
+		 */
+		var value = XmlUtil
+				.getXPathResult(message,
+						AppConstants.XPaths.Patient.PROGRAM_ID,
+						XPathResult.STRING_TYPE);
+		this.programId = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		/*
+		 * set nameType
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Patient.NAME_TYPE, XPathResult.STRING_TYPE);
+		this.nameType = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+
+		/*
+		 * set prefixName
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Patient.PREFIX_NAME,
+				XPathResult.STRING_TYPE);
+		this.prefixName = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		this.name = (this.prefixName) ? this.prefixName : &quot;&quot;;
+		/*
+		 * set givenName
+		 */
+		var value = XmlUtil
+				.getXPathResult(message,
+						AppConstants.XPaths.Patient.GIVEN_NAME,
+						XPathResult.STRING_TYPE);
+		this.givenName = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		this.name = (this.givenName) ? this.name + &quot; &quot; + this.givenName
+				: this.name;
+		/*
+		 * set familyName
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Patient.FAMILY_NAME,
+				XPathResult.STRING_TYPE);
+		this.familyName = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		this.name = (this.familyName) ? this.name + &quot; &quot; + this.familyName
+				: this.name;
+		/*
+		 * set sufixName
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Patient.SUFFIX_NAME,
+				XPathResult.STRING_TYPE);
+		this.suffixName = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		this.name = (this.suffixName) ? this.name + &quot; &quot; + this.suffixName
+				: this.name;
+		/*
+		 * set gender
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Patient.GENDER, XPathResult.STRING_TYPE);
+		this.gender = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		/*
+		 * set dob
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Patient.DOB, XPathResult.STRING_TYPE);
+		this.dob = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		/*
+		 * set image
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Patient.IMAGE, XPathResult.STRING_TYPE);
+		this.image = (value &amp;&amp; value.stringValue) ? value.stringValue : &quot;&quot;;
+		/*
+		 * set membershipId
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Patient.MEMBERSHIP_ID,
+				XPathResult.STRING_TYPE);
+		this.membershipId = (value &amp;&amp; value.stringValue) ? value.stringValue
+				: &quot;&quot;;
+		/*
+		 * set email
+		 */
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Patient.EMAIL_ID,
+				XPathResult.ORDERED_NODE_ITERATOR_TYPE);
+		var res = null;
+		if (value) {
+			while (res = value.iterateNext()) {
+				this.emailAddress.push(res.textContent);
+				this.isEmailAvailable = true;
+			}
+		}
+
+	}
+};
+
+HIN.PatientVO.prototype.toString = function() {
+	return &quot;[&quot; + this.subscriberId + &quot; , &quot; + this.name + &quot; , &quot; + this.roles
+			+ &quot; , &quot; + this.image + &quot; , &quot; + this.message + &quot; , &quot; + this.gender
+			+ &quot; , &quot; + this.consultant + &quot;,&quot; + this.dob + &quot; , &quot; + this.name
+			+ &quot; , &quot; + this.programId + &quot; , &quot; + this.consultantId + &quot; , &quot;
+			+ this.assigningOrganizationID + &quot; , &quot; + this.isEmailAvailable
+	&quot;]&quot;;
+};</pre>
+</body>
+</html>

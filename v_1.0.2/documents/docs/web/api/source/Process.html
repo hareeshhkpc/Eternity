@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Process'>/**
+</span> * Process is a child component of Rendering Engine which displays the process
+ * page to user as per the process definition and sends same information to
+ * rendering engine for further processing.
+ */
+
+function Process(renderingEngine) {
+
+<span id='Process-method-eventHandler'>	/**
+</span>	 * Handles the events from components
+	 * 
+	 * @param event
+	 * @returns {void}
+	 */
+	this.eventHandler = eventHandler;
+	this.className = &quot;Process&quot;;
+
+	this.loadUI = loadUI;
+	this.loadProcess = loadProcess;
+	this.updateProcess = updateProcess;
+
+	var renderingEngine = renderingEngine;
+	var process = this;
+
+<span id='Process-property-processDefinition'>	/** processDefinition holds the current selected process definition. */
+</span>	this.processDefinition = null;
+<span id='Process-property-steps'>	/** steps holds the steps of current selected process definition. */
+</span>	this.steps = [];
+<span id='Process-property-processDivisions'>	/** processDivisions holds the divisions based on the steps */
+</span>	this.processDivisions = [];
+	this.processDivisionSelected = null;
+<span id='Process-property-right'>	/** right holds the ui right position value */
+</span>	this.right = 0;
+<span id='Process-property-left'>	/** left holds the ui left position value */
+</span>	this.left = 0;
+<span id='Process-property-innerHeight'>	/** innerHeight holds the ui innerHeight value */
+</span>	this.innerHeight = &quot;auto&quot;;
+<span id='Process-property-outerHeight'>	/** outerHeight holds the ui outerHeight value */
+</span>	this.outerHeight = &quot;auto&quot;;
+
+<span id='Process-property-iframe'>	/**
+</span>	 * iframe holds true or false value, based on that UI will be decided to
+	 * render using iframe or not .
+	 */
+	this.iframe = false;
+
+	this.getProcessDefinition = getProcessDefinition;
+	this.setProcessDefinition = setProcessDefinition;
+
+	this.getProcessName = getProcessName;
+	this.setProcessName = setProcessName;
+	/* this.definition = new HIN.ProcessDefinition(); */
+	this.processName = null;
+	this.type = null;
+	this.processId = null;
+
+	this.getProcessId = getProcessId;
+	this.setProcessId = setProcessId;
+
+<span id='Process-property-collapsed'>	/** collapsed holds true or false value, based on that UI will be rendered. */
+</span>	this.collapsed = false;
+	this.slideDelay = 0;
+	this.prevSelectedNavigationId = null;
+	this.prevSelectedGroupName = null;
+
+	// this.stepsMap = new HIN.HashMap();
+	this.groupNameMap = new HIN.HashMap();
+	/* Function definitions */
+	this.loadProcess = loadProcess;
+	this.lastSelectedEvent = null;
+
+	this.toggleStepPage = toggleStepPage;
+	this.slideBackToProcessForm = slideBackToProcessForm;
+	this.slideInitializeForm = slideInitializeForm;
+	this.initializeForm = initializeForm;
+	this.backToProcessForm = backToProcessForm;
+	this.slideRight = slideRight;
+	this.slideLeft = slideLeft;
+	this.updateContext = updateContext;
+	this.mCustomScrollbars = mCustomScrollbars;
+	this.updateProcessView = updateProcessView;
+
+	function eventHandler(event) {
+		// alert(&quot;inside workflow event handler: &quot; + event.type);
+		if (event.type == AppConstants.Event.PROCESS_PAGE_LOAD_EVENT) {
+			this.processName = event.data.processName;
+			this.type = event.data.type;
+			this.processId = event.data.processId;
+			$('#left-side').removeClass('patient-home-bg');
+			$('#left-side').removeClass('licensee-home-bg');
+			$('#left-side').addClass('left-side-bg');
+			renderingEngine.iconChange();
+			// alert(this.processName);
+			if (this.processName == &quot;PatientRegistration&quot;) {
+				renderingEngine.getComponent(&quot;Context&quot;).setRegistrationType(
+						AppConstants.RegistrationType.PATIENT_REGISTRATION);
+				renderingEngine.getComponent(&quot;Context&quot;).setPatient(null);
+				renderingEngine.getComponent(&quot;Context&quot;).setStaff(null);
+				renderingEngine.getComponent(&quot;Context&quot;).setOrganization(null);
+			} else if (this.processName == &quot;StaffRegistration&quot;) {
+				renderingEngine.getComponent(&quot;Context&quot;).setRegistrationType(
+						AppConstants.RegistrationType.STAFF_REGISTRATION);
+				renderingEngine.getComponent(&quot;Context&quot;).setPatient(null);
+				renderingEngine.getComponent(&quot;Context&quot;).setStaff(null);
+				renderingEngine.getComponent(&quot;Context&quot;).setOrganization(null);
+			} else if (this.processName == &quot;LicenseeRegistration&quot;) {
+				/*
+				 * alert(&quot;process.js PROCESS_PAGE_LOAD_EVENT&quot; +
+				 * event.data.processName);
+				 */
+				renderingEngine.getComponent(&quot;Context&quot;).setRegistrationType(
+						AppConstants.RegistrationType.LICENSEE_REGISTRATION);
+				renderingEngine.getComponent(&quot;Context&quot;).setPatient(null);
+				renderingEngine.getComponent(&quot;Context&quot;).setStaff(null);
+			} else if (this.processName == &quot;SignUp&quot;) {
+				/*
+				 * alert(&quot;process.js PROCESS_PAGE_LOAD_EVENT&quot; +
+				 * event.data.processName);
+				 */
+				renderingEngine.getComponent(&quot;Context&quot;).setRegistrationType(
+						AppConstants.RegistrationType.SIGN_UP);
+				renderingEngine.getComponent(&quot;Context&quot;).setPatient(null);
+				renderingEngine.getComponent(&quot;Context&quot;).setStaff(null);
+				renderingEngine.getComponent(&quot;Context&quot;).setOrganization(null);
+			}
+			loadUI();
+		} else if (event.type == AppConstants.Event.PROCESS_PAGE_BIND_EVENT) {
+			process.updateContext();
+			$('#terminateProcess').unbind(&quot;click&quot;, terminateProcessHandler);
+			$('#terminateProcess').bind(&quot;click&quot;, terminateProcessHandler);
+
+			$('#main').trigger('create');
+		} else if (event.type == AppConstants.Event.PROCESS_PAGE_DEFINITION_FILL_DATA) {
+			this.processDefinition = event.data.processDefinition;
+			this.loadProcess();
+
+		} else if (event.type == AppConstants.Event.PROCESS_PAGE_RENDER) {
+			// alert(event.type);
+			this.loadProcess();
+		} else if (event.type == AppConstants.Event.PROCESS_PAGE_RESPONSE) {
+
+		} else if (event.type == AppConstants.Event.PROCESS_PAGE_ERROR) {
+
+		}
+	}
+	;
+
+	function updateContext() {
+		var patientId; // =
+		// renderingEngine.getComponent(&quot;Context&quot;).getPatient();
+		var patientVO = renderingEngine.getComponent(&quot;Context&quot;).getPatientVO();
+		if (patientVO)
+			patientId = patientVO.subscriberId;
+		var staffId;// = renderingEngine.getComponent(&quot;Context&quot;).getStaff();
+		var staffVO = renderingEngine.getComponent(&quot;Context&quot;).getStaffVo();
+		if (staffVO)
+			staffId = staffVO.subscriberId;
+
+		var organizationId;// renderingEngine.getComponent(&quot;Context&quot;).getOrganization();
+
+		var selectedOrganizationVO = appController.getComponent(&quot;Context&quot;)
+				.getSelectedOrganizationVO();
+		if (selectedOrganizationVO != null) {
+			organizationId = selectedOrganizationVO.subscriberId;
+		}
+
+		// alert(patientId + &quot; : &quot; + staffId + &quot; : &quot; + organizationId);
+
+		if (patientId) {
+			$('#patientHomeIcon').show();
+			$('#patientHomeIcon').unbind(&quot;click&quot;, loadPatientHomeIcon);
+			$('#patientHomeIcon').bind(&quot;click&quot;, loadPatientHomeIcon);
+			$('#staffHomeIcon').hide();
+			$('#licenseeHomeIcon').hide();
+			$(&quot;#patientHomeIcon&quot;).hover(
+					function() {
+						$('#patientHomeIcon').removeClass('home-icon-link')
+								.addClass('home-icon-link-hover');
+					},
+					function() {
+						$('#patientHomeIcon').removeClass(
+								'home-icon-link-hover').addClass(
+								'home-icon-link');
+					});
+
+		} else if (staffId) {
+			$('#staffHomeIcon').show();
+			$('#staffHomeIcon').unbind(&quot;click&quot;, loadStaffHomeIcon);
+			$('#staffHomeIcon').bind(&quot;click&quot;, loadStaffHomeIcon);
+			$('#patientHomeIcon').hide();
+			$('#licenseeHomeIcon').hide();
+			$(&quot;#staffHomeIcon&quot;).hover(
+					function() {
+						$('#staffHomeIcon').removeClass('home-icon-link')
+								.addClass('home-icon-link-hover');
+					},
+					function() {
+						$('#staffHomeIcon').removeClass('home-icon-link-hover')
+								.addClass('home-icon-link');
+					});
+
+		} else if (organizationId) {
+			$('#licenseeHomeIcon').show();
+			$('#licenseeHomeIcon').unbind(&quot;click&quot;, loadLicenseeHomeIcon);
+			$('#licenseeHomeIcon').bind(&quot;click&quot;, loadLicenseeHomeIcon);
+			$('#patientHomeIcon').hide();
+			$('#staffHomeIcon').hide();
+			$(&quot;#licenseeHomeIcon&quot;).hover(
+					function() {
+						$('#licenseeHomeIcon').removeClass('home-icon-link')
+								.addClass('home-icon-link-hover');
+					},
+					function() {
+						$('#licenseeHomeIcon').removeClass(
+								'home-icon-link-hover').addClass(
+								'home-icon-link');
+					});
+
+		} else {
+			// alert(&quot;empty&quot;);
+		}
+
+	}
+	;
+
+<span id='Process-method-loadUI'>	/**
+</span>	 * Load the html page and bind the ui events.
+	 * 
+	 * @returns {void}
+	 */
+	function loadUI() {
+
+		renderingEngine.loadPage(&quot;pages/process/process.html&quot;, &quot;form&quot;,
+				AppConstants.Event.PROCESS_PAGE_BIND_EVENT);
+
+		// $('.left-side-content').css('height', '525px');
+		appController.getComponent(&quot;RenderingEngine&quot;).fireEvent(
+				AppConstants.Event.RESIZE);
+	}
+	;
+	function loadPatientHomeIcon() {
+		renderingEngine
+				.fireEvent(AppConstants.Event.PATIENT_HOME_PAGE_LOAD_EVENT);
+		// alert(&quot;home clicked&quot;);
+		/*
+		 * var processNavHeight = $(&quot;.ui-left-top&quot;).css('height');
+		 * processNavHeight = parseInt(processNavHeight);
+		 */
+		// alert(&quot;Inside Process:&quot; + processNavHeight);
+		/*
+		 * renderingEngine.getChildComponent(&quot;Resize&quot;).setCurrentHeight(
+		 * processNavHeight);
+		 */
+		/*
+		 * appController.getComponent(&quot;RenderingEngine&quot;).fireEvent(
+		 * AppConstants.Event.RESIZE);
+		 */
+	}
+	;
+	function loadStaffHomeIcon() {
+		renderingEngine
+				.fireEvent(AppConstants.Event.STAFF_HOME_PAGE_LOAD_EVENT);
+		/*
+		 * appController.getComponent(&quot;RenderingEngine&quot;).fireEvent(
+		 * AppConstants.Event.RESIZE);
+		 */
+	}
+	;
+	function loadLicenseeHomeIcon() {
+		renderingEngine
+				.fireEvent(AppConstants.Event.LICENSEE_HOME_PAGE_LOAD_EVENT);
+		/*
+		 * appController.getComponent(&quot;RenderingEngine&quot;).fireEvent(
+		 * AppConstants.Event.RESIZE);
+		 */
+	}
+	;
+
+<span id='Process-method-loadProcess'>	/**
+</span>	 * Load the process.
+	 * 
+	 * @returns {void}
+	 */
+	function loadProcess() {
+
+		process.updateContext();
+		process.collapsed = false;
+		if (process.processDefinition) {
+			var navigationName = &quot;&quot;;
+			if (process.processDefinition.description) {
+				navigationName = process.processDefinition.description;
+			} else {
+				navigationName = process.processName;
+			}
+			loadFormNavigationLine(navigationName);
+			renderingEngine.getChildComponent(&quot;Form&quot;).setIframe(process.iframe);
+			process.processDivisions.splice(0, process.processDivisions.length);
+			process.steps.splice(0, process.steps.length);
+			process.prevSelectedNavigationId = null;
+			process.processDivisionSelected = null;
+			process.updateProcessView();
+		} else {
+			alert(&quot;Process definition is not available&quot;);
+		}
+
+	}
+	;
+<span id='Process-method-updateProcessView'>	/**
+</span>	 * Generate or update the process UI
+	 * 
+	 * @returns {void}
+	 */
+	function updateProcessView() {
+
+		// if(process.processDefinition.processName===&quot;Accounts&quot; ||
+		// process.processDefinition.processName===&quot;Appointments&quot;)
+		process.processDefinition.updateStatus();
+
+		var steps = process.processDefinition.steps;
+
+		var stepGroup = null;
+
+		process.groupNameMap.clearItems();
+		for ( var index = 0; index &lt; steps.length; index++) {
+			var groupName = steps[index].groupName;
+			if ((process.processDefinition.processName === &quot;Profile&quot;)
+					&amp;&amp; (groupName === &quot;Roles&quot; || groupName === &quot;Permission&quot;)) {
+				continue;
+			}
+			if (steps[index].stepName.indexOf(&quot;Hidden_&quot;) &gt; -1) {
+				continue;
+			}
+
+			var map = process.groupNameMap.get(groupName);
+			if (!map) {
+				stepGroup = new HIN.StepGroup();
+				stepGroup.groupName = steps[index].groupName;
+				stepGroup.addStep(steps[index]);
+
+				process.groupNameMap.put(groupName, stepGroup);
+			} else {
+				map.value.addStep(steps[index]);
+			}
+		}
+
+		var processLeftNavigationHtml = &quot;&quot;;
+		var processNavigationHtml = &quot;&quot;;
+		var groupHeight = 0;
+		var groupStatusClass = &quot;current&quot;;
+		var groupNamesArray = [];
+		var stepsNameArray = [];
+		var selectClass = &quot;&quot;;
+		var navSelectedClass = &quot;&quot;;
+		for ( var mapIndex = 0; mapIndex &lt; process.groupNameMap.length(); mapIndex++) {
+			var map = process.groupNameMap.getItemAt(mapIndex);
+			var groupName = map.key;
+			var stepGroup = map.value;
+			var subStepsArray = [];
+			groupStatusClass = stepGroup.getState();
+			/* alert(groupStatusClass); */
+			var groupActualHeight = 88 * parseInt(stepGroup.steps.length);
+			groupHeight = 0;
+			if (groupActualHeight &lt; 88) {
+				groupActualHeight = 88;
+			}
+			for ( var index = 0; index &lt; stepGroup.steps.length; index++) {
+				var step = stepGroup.steps[index];
+				var height = 24;// 83;
+				var actualHeight = 0;
+				var messageTypesLength = step.getMessageTypes().length;// 1;
+				var perRow = 2;
+				var col = 2;
+				subStepsArray.push({
+					stepName : step.stepName,
+					stepStatus : step.state
+				});
+				if (messageTypesLength &gt; (perRow * col)) {
+					perRow = perRow + (messageTypesLength % (perRow * col));
+					// alert(perRow);
+				}
+
+				var statusClass = step.state;
+				for ( var i = 0; i &lt; messageTypesLength; i++) {
+					if (i &lt; perRow)
+						actualHeight = actualHeight + height;
+				}
+
+				if (actualHeight &lt; 88) {
+					actualHeight = 88;
+				}
+
+				groupHeight += actualHeight;
+
+				/* Process UI Right */
+				process.processDivisions.push(step.stepName);
+				stepsNameArray.push({
+					stepName : step.stepName,
+					groupName : step.groupName,
+					stepStatus : statusClass,
+					groupStatus : groupStatusClass
+				})
+
+				var descriptionAlignClass = &quot;&quot;;
+				if (messageTypesLength == 1) {
+					descriptionAlignClass = &quot;align-center&quot;;
+				}
+
+				/*
+				 * var style = &quot;height:auto&quot;; alert(&quot;step.messageGroups.length() : &quot; +
+				 * step.messageGroups.length());
+				 */
+				if (step.messageGroups.length() &lt; 7 || !step.stepStatusInfo) {
+					style = &quot;height:88px&quot;
+				}
+
+				processNavigationHtml += '&lt;div class=&quot;ui-box ui-box-align shadow '
+						+ statusClass
+						+ ' process &quot; style=&quot;'
+						+ style
+						+ '&quot;  id=&quot;'
+						+ step.stepName
+						+ '&quot;   groupName=&quot;'
+						+ step.groupName
+						+ '&quot;    &gt;&lt;div class=&quot;ui-box-spacing '
+						+ descriptionAlignClass
+						+ ' &quot;&gt;&lt;span class=&quot;ui-box-head&quot;&gt;'
+						+ step.longDescription
+						+ '&lt;/span&gt;&lt;fieldset class=&quot;ui-grid-a ui-box-spacing&quot;&gt;';
+				// &lt;div class=&quot;ui-box ui-box-align current&quot;&gt; &lt;div
+				// class=&quot;ui-box-spacing&quot;&gt;
+				var initial = true;
+				var style = [];
+				style.push(&quot;a&quot;);
+				style.push(&quot;b&quot;);
+				// style.push(&quot;c&quot;);
+				var styleIndex = 0;
+				if (messageTypesLength &gt; 1) {
+					var splitFloatValue = step.messageGroups.length() / 2;
+					var split = parseInt(splitFloatValue);
+
+					if (split &lt; splitFloatValue) {
+						split = split + 1;
+					}
+
+					if (step.messageGroups.length() &lt; 3)
+						split = -1;
+
+					for (i = 0; i &lt; step.messageGroups.length(); i++) {
+
+						if (split == i) {
+							// split = 0;
+							styleIndex++
+							// if (i % perRow == 0 &amp;&amp; !initial) {
+							processNavigationHtml += '&lt;/ul&gt;&lt;/div&gt;';
+						}
+
+						if (i == 0 || split == i) {
+							// if (i % perRow == 0 || i == 0) {
+							processNavigationHtml += '&lt;div class=&quot;ui-block-'
+									+ style[styleIndex]
+									+ '&quot;&gt;&lt;ul class=&quot;ui-workflow&quot;&gt;';
+						}
+
+						var map = step.messageGroups.getItemAt(i);
+						// alert(map.key + &quot; : &quot; + map.value);
+						if (step.stepStatusInfo) {
+							if (map) {
+								var label = map.key;
+								// label = label.replace(/\s+/g, '`');
+								processNavigationHtml += '&lt;li&gt;' + label;
+
+								var object = map.value;
+
+								if (object.count &gt; 1)
+									processNavigationHtml += ' [ '
+											+ object.count + ' ]';
+								/*
+								 * processNavigationHtml += ' Finish : ' +
+								 * object.messageType.finished;
+								 */
+
+								if (object.messageType.finished == true) {
+									processNavigationHtml += '&lt;div class=&quot;ui-tick-grey&quot;&gt;&lt;img src=&quot;images/tick_grey.png&quot; /&gt;&lt;/div&gt;';
+								}
+
+								processNavigationHtml += '&lt;/li&gt;';
+							}
+						}
+
+						if (i - 1 == step.messageGroups.length()) {
+							processNavigationHtml += '&lt;/ul&gt;&lt;/div&gt;';
+						}
+
+						if (styleIndex == 2) {
+							styleIndex = 0;
+						}
+						initial = false;
+					}
+				}
+
+				processNavigationHtml += '&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;inner-right-form ui-header-corner-top shadow&quot; id=&quot;child_'
+						+ step.stepName
+						+ '&quot;  style=&quot;display:none;height:auto;padding-bottom:4px;&quot;&gt;&lt;div class=&quot;header_bg ui-header-corner-top ui-page-header-text&quot; &gt;'
+						+ step.longDescription
+						+ ' &lt;div id=&quot;'
+						+ step.stepName
+						+ '_pageActions&quot; style=&quot;float:right;width:70%;&quot;&gt;'
+						/*
+						 * + '&lt;div class=&quot;ui-process-button&quot;&gt;TEST1&lt;/div&gt;' + '&lt;div
+						 * class=&quot;ui-process-button&quot;&gt;TEST2&lt;/div&gt;'
+						 */
+						+ '&lt;/div&gt;&lt;/div&gt;';
+				var rightSideActionMenu = false;
+				if (process.processDefinition.processName === &quot;Accounts&quot;) {
+					if (step.stepName == &quot;Step1&quot; || step.stepName == &quot;Step3&quot;)
+						rightSideActionMenu = true;
+				}
+				if (process.processDefinition.processName === &quot;LicenseeAccounts&quot;) {
+					if (step.stepName == &quot;Step1&quot; || step.stepName == &quot;Step2&quot;)
+						rightSideActionMenu = true;
+				}
+				if (process.iframe)
+					processNavigationHtml += '&lt;div style=&quot;height:auto;border:1px solid #FF0000&quot; id=&quot;child_'
+							+ step.stepName
+							+ '_form&quot;&gt;'
+							+ step.stepName
+							+ '&lt;/div&gt;';
+				else {
+
+					processNavigationHtml += '&lt;div id=&quot;mcs_container_left&quot;&gt;&lt;div class=&quot;customScrollBox&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;div class=&quot;content&quot;&gt;';
+					if (rightSideActionMenu == true) {
+						processNavigationHtml += '&lt;div id=&quot;divPrimary'
+								+ step.stepName
+								+ '&quot; class=&quot;ui-left-side-forms&quot; style=&quot;width:92%&quot;&gt;';
+					} else {
+						processNavigationHtml += '&lt;div id=&quot;divPrimary'
+								+ step.stepName
+								+ '&quot; class=&quot;ui-left-side-forms&quot; style=&quot;width:99%&quot;&gt;';
+					}
+
+					processNavigationHtml += '&lt;div class=&quot;ui-inner-display-box ui-header-corner-top&quot; style=&quot;height:auto;display:none&quot; id=&quot;child_top_'
+							+ step.stepName
+							+ '_form&quot;&gt;&lt;/div&gt;'
+							+ '&lt;div class=&quot;ui-inner-display-box ui-header-corner-top&quot; style=&quot;height:auto&quot; id=&quot;child_'
+							+ step.stepName + '_form&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;';
+
+					if (rightSideActionMenu == true) {
+						processNavigationHtml += '&lt;div id=&quot;divSecondary'
+								+ step.stepName
+								+ '&quot; class=&quot;ui-right-side-icons&quot; &gt;'
+								+ '&lt;div id=&quot;imgInvoice'
+								+ step.stepName
+								+ '&quot; class=&quot;other invoice invoice-icon&quot; style=&quot;display:none&quot;&gt;&lt;/div&gt;&lt;div id=&quot;imgInvoiceText'
+								+ step.stepName
+								+ '&quot; class=&quot;ui-invoice-icon-text&quot; style=&quot;display:none&quot;&gt;Add to Invoice&lt;/div&gt;'
+								+ '&lt;div id=&quot;imgGenerateInvoice'
+								+ step.stepName
+								+ '&quot; class=&quot;other generate-invoice&quot; style=&quot;display:none;&quot;&gt;&lt;/div&gt;&lt;div  id=&quot;imgGenerateInvoiceText'
+								+ step.stepName
+								+ '&quot; class=&quot;ui-invoice-icon-text&quot;  style=&quot;display:none;&quot;&gt;Generate Invoice&lt;/div&gt;'
+								+ '&lt;div id=&quot;imgReceipt'
+								+ step.stepName
+								+ '&quot; class=&quot;other generate-receipt&quot; style=&quot;display:none;&quot;&gt;&lt;/div&gt;&lt;div  id=&quot;imgReceiptText'
+								+ step.stepName
+								+ '&quot; class=&quot;ui-invoice-icon-text&quot;  style=&quot;display:none;&quot;&gt;Generate Receipt&lt;/div&gt;'
+								+ '&lt;/div&gt;';
+					}
+
+					processNavigationHtml += '&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;dragger_container&quot; style=&quot;display: none&quot;&gt;&lt;div class=&quot;dragger&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;';
+					processNavigationHtml += '&lt;/div&gt;';
+				}
+
+			}
+			groupNamesArray.push({
+				groupName : groupName,
+				steps : subStepsArray,
+				groupStatus : groupStatusClass
+			});
+			/*
+			 * if (parseInt(stepGroup.steps.length) !== 1) { groupHeight =
+			 * groupHeight + 10 (parseInt(stepGroup.steps.length) - 1);
+			 * groupHeight = groupHeight + 1 ((parseInt(stepGroup.steps.length) *
+			 * 2) - 2); }
+			 */
+			var marginTop = &quot;&quot;;
+			marginTop = (groupHeight / 2) - 41.5;
+			var displayGroupName = groupName.replace(/_/g, &quot; &quot;);
+			if (mapIndex == (process.groupNameMap.length() - 1)) {
+				processLeftNavigationHtml += '&lt;div class=&quot;ui-nav shadow nav-'
+						+ groupStatusClass
+						+ '  leftprocess&quot; style=&quot;height:'
+						+ groupHeight
+						+ 'px&quot;   id=&quot;processnav-'
+						+ groupName
+						+ '&quot; &gt;&lt;div  class=&quot;rotate-text processnav&quot; style=&quot;text-align:center;margin-top:'
+						+ marginTop + '&quot; &gt;' + displayGroupName
+						+ ' &lt;div id=&quot;arrow-' + groupName
+						+ '&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;';
+
+			} else {
+				processLeftNavigationHtml += '&lt;div class=&quot;ui-nav ui-box-align shadow nav-'
+						+ groupStatusClass
+						+ '  leftprocess&quot; style=&quot;height:'
+						+ groupHeight
+						+ 'px&quot;   id=&quot;processnav-'
+						+ groupName
+						+ '&quot; &gt;&lt;div  class=&quot;rotate-text processnav&quot; style=&quot;text-align:center;margin-top:'
+						+ marginTop
+						+ '&quot; &gt;'
+						+ displayGroupName
+						+ ' &lt;div class=&quot;arrow-selection&quot; id=&quot;arrow-'
+						+ groupName + '&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;';
+			}
+		}
+		//
+		// alert(processLeftNavigationHtml);
+		$(&quot;#processLeftNavigation&quot;).html(processLeftNavigationHtml);
+
+		/*
+		 * $(&quot;#processLeftNavigation&quot;).find() groupActualHeight
+		 */
+		$(&quot;#processNavigation&quot;).html(processNavigationHtml);
+		mCustomScrollbars();
+
+		/*
+		 * var processNavHeight = $(&quot;.ui-left-top&quot;).css('height');
+		 * processNavHeight = parseInt(processNavHeight);
+		 */
+		// alert(&quot;Inside Process:&quot; + processNavHeight);
+		/*
+		 * renderingEngine.getChildComponent(&quot;Resize&quot;).setCurrentHeight(
+		 * processNavHeight);
+		 */
+		appController.getComponent(&quot;RenderingEngine&quot;).fireEvent(
+				AppConstants.Event.RESIZE);
+
+		var grpName = null;
+		var height = 0;
+		var spacing = 0;
+		$.each(stepsNameArray, function(key, value) {
+			var stepName = value.stepName;
+			var groupName = value.groupName;
+			groupName = groupName.replace(/\s+/g, '_');
+			if (grpName != groupName) {
+				height = 0;
+				spacing = 0;
+			} else {
+				spacing += 7;
+			}
+			var stepheight = $(&quot;#processNavigation&quot;).find(&quot;#&quot; + stepName).css(
+					&quot;height&quot;);
+			height += parseInt(stepheight);
+			height += spacing;
+
+			$(&quot;#processLeftNavigation&quot;).find(&quot;#processnav-&quot; + groupName).css(
+					&quot;height&quot;, height);
+
+			var fontLength = (height / 2) - 41.5;
+
+			$(&quot;#processLeftNavigation&quot;).find(&quot;#processnav-&quot; + groupName).find(
+					&quot;.rotate-text&quot;).css(&quot;margin-top&quot;, fontLength);
+			grpName = groupName;
+			// alert(height);
+
+		});
+
+		$.each(stepsNameArray,
+				function(key, value) {
+					var stepName = value.stepName;
+					var groupName = value.groupName;
+					$(&quot;#&quot; + stepName)
+							.hover(
+									function() {
+										selectClass = $(&quot;#&quot; + stepName).attr(
+												'class');
+										navSelectedClass = $(
+												&quot;#processnav-&quot; + groupName)
+												.attr('class');
+										$(this).addClass('hover').removeClass(
+												value.stepStatus);
+										$(&quot;#processnav-&quot; + groupName).addClass(
+												'hover').removeClass(
+												&quot;nav-&quot; + value.groupStatus);
+									},
+									function() {
+
+										$(this).addClass(selectClass)
+												.removeClass('hover');
+										$(&quot;#processnav-&quot; + groupName).addClass(
+												navSelectedClass).removeClass(
+												'hover');
+									});
+
+				});
+
+		$.each(groupNamesArray, function(key, groupValue) {
+			var selectClasses = [];
+			$(&quot;#processnav-&quot; + groupValue.groupName).hover(
+					function() {
+						navSelectedClass = $(
+								&quot;#processnav-&quot; + groupValue.groupName).attr(
+								'class');
+						$(&quot;#processnav-&quot; + groupValue.groupName).addClass(
+								'hover').removeClass(
+								&quot;nav-&quot; + groupValue.groupStatus);
+						$.each(groupValue.steps, function(index, step) {
+							selectClasses.push({
+								selectClass : $(&quot;#&quot; + step.stepName).attr(
+										'class'),
+								stepName : step.stepName
+							});
+							$(&quot;#&quot; + step.stepName).addClass('hover')
+									.removeClass(step.stepStatus);
+						});
+					},
+					function() {
+						$(this).addClass(navSelectedClass).removeClass('hover')
+						$.each(selectClasses, function(index, value) {
+							$(&quot;#&quot; + value.stepName).addClass(value.selectClass)
+									.removeClass('hover')
+						});
+					});
+		});
+
+		/*
+		 * var processNavigationHeight = $(&quot;#processNavigation&quot;).css(&quot;height&quot;);
+		 * processNavigationHeight = processNavigationHeight.substring(0,
+		 * processNavigationHeight.length - 2); var finalHeight =
+		 * parseInt(processNavigationHeight); var ultHeight = $(window).height() -
+		 * 50; // alert(&quot;finalHeight : &quot; + finalHeight); if (finalHeight &gt;= 460) {
+		 * 
+		 * $('.left-side-content').css('height', finalHeight + 30);
+		 * $('.ui-left-top').css('height', finalHeight);
+		 * $('.right-side-content').css('height', finalHeight + 30);
+		 * 
+		 * $('#mcs_container').css('height', finalHeight - 50);
+		 * $(&quot;.dragger_container&quot;).css('height', finalHeight - 50);
+		 * renderingEngine.getChildComponent(&quot;Search&quot;).mCustomScrollbars(); }
+		 * else { // $('.left-side-content').css('height', '525px');
+		 * $('.ui-left-top').css('height', '450px');
+		 * 
+		 * $('#mcs_container').css('height', '394px');
+		 * $(&quot;.dragger_container&quot;).css('height', '390px');
+		 * renderingEngine.getChildComponent(&quot;Search&quot;).mCustomScrollbars(); }
+		 */
+
+		renderingEngine.registerClickEvent('.process', toggleStepPage);// slideInitializeForm);
+		renderingEngine.registerClickEvent('.leftprocess', toggleStepPage);// initializeForm);
+		/*
+		 * renderingEngine.registerClickEvent('formNavigationLine',
+		 * slideBackToProcessForm);
+		 */
+
+	}
+
+<span id='Process-method-toggleStepPage'>	/**
+</span>	 * Toggle the ui by clicking on the left side navigation menu.
+	 * 
+	 * @param event:
+	 *            Its an event, hold the click event.
+	 * @returns {void}
+	 */
+	function toggleStepPage(event) {
+
+		var id = this.id;
+		// alert(id);
+
+		if (id.indexOf(&quot;processnav-&quot;) &gt; -1) {
+			if (process.processDefinition.description) {
+				navigationName = process.processDefinition.description;
+			} else {
+				navigationName = process.processName;
+			}
+			loadFormNavigationLine(navigationName);
+			process.updateProcessView();
+		}
+
+		for ( var mapIndex = 0; mapIndex &lt; process.groupNameMap.length(); mapIndex++) {
+			var map = process.groupNameMap.getItemAt(mapIndex);
+			var groupName = map.key;
+			$('#processLeftNavigation').find('#arrow-' + groupName)
+					.removeClass(&quot;rotate-image ui-selection-arrow&quot;);
+		}
+
+		var groupName = null;
+		if (id.indexOf(&quot;processnav-&quot;) &gt; -1) {
+			groupName = id.substring(id.indexOf(&quot;processnav-&quot;) + 11, id.length);
+			var map = process.groupNameMap.get(groupName);
+			var stepGroup = map.value;
+			var steps = stepGroup.steps;
+			if (steps.length &gt; 0) {
+				if (!process.prevSelectedNavigationId
+						|| groupName != process.prevSelectedGroupName)
+					id = steps[0].stepName;
+				else
+					id = process.prevSelectedNavigationId;
+			}
+			process.prevSelectedGroupName = groupName;
+		}
+		// alert(id + &quot; : &quot; + process.prevSelectedNavigationId + &quot; : &quot; +
+		// groupName);
+
+		if (!groupName) {
+			groupName = $(this).attr(&quot;groupName&quot;);
+			process.prevSelectedGroupName = groupName;
+		}
+
+		$('#processLeftNavigation').find('#arrow-' + groupName).addClass(
+				&quot;rotate-image ui-selection-arrow&quot;);
+
+		if (id == process.prevSelectedNavigationId) {
+			for ( var mapIndex = 0; mapIndex &lt; process.groupNameMap.length(); mapIndex++) {
+				var map = process.groupNameMap.getItemAt(mapIndex);
+				var groupName = map.key;
+				$('#processLeftNavigation').find('#arrow-' + groupName)
+						.removeClass(&quot;rotate-image ui-selection-arrow&quot;);
+			}
+			process.slideBackToProcessForm(event, null);
+			// $(this).find('#arrow-'+groupName).addClass(&quot;rotate-image
+			// ui-selection-arrow&quot;);
+		} else {
+			// alert(&quot;Close&quot;);
+			process.slideInitializeForm(event, id);
+			// process.collapsed = true;
+		}
+
+		// initializeForm();
+		// mCustomScrollbars();
+	}
+	;
+
+	function slideInitializeForm(event, id) {
+		process.slideDelay = 200;
+		if (!id)
+			id = this.id;
+		if (id)
+			process.initializeForm(event, id);
+	}
+	;
+
+	function slideBackToProcessForm(event, callback) {
+		var navigationName = &quot;&quot;;
+		if (process.processDefinition.description) {
+			navigationName = process.processDefinition.description;
+		} else {
+			navigationName = process.processName;
+		}
+		loadFormNavigationLine(navigationName);
+		process.updateContext();
+		process.updateProcessView();
+		process.slideDelay = 200;
+		process.backToProcessForm(event, callback);
+	}
+	;
+	function initializeForm(event, targetId) {
+
+		var id = targetId;
+		if (!id)
+			id = this.id;
+
+		if (id.indexOf(&quot;processnav-&quot;) &gt; -1) {
+			id = id.substring(id.indexOf(&quot;-&quot;) + 1, id.length).trim();
+		}
+
+		if (id == process.prevSelectedNavigationId) {// Click the same
+			// navigation
+			// link more than once
+			// return;
+			// alert(&quot;Same&quot;);
+			return;
+		}
+
+		if (process.processDivisionSelected) {
+			// alert(process.processDivisionSelected);
+			$('#child_' + process.processDivisionSelected).css('display',
+					'none');
+		}
+
+		if (!process.collapsed)
+			process.slideRight();
+
+		var selectedStep = null;
+		for ( var index = 0; index &lt; process.processDefinition.steps.length; index++) {
+			var step = process.processDefinition.steps[index];
+
+			if (id == step.stepName) {
+				selectedStep = step;
+				break;
+			}
+		}
+
+		if (!selectedStep) {
+			selectedStep = process.processDefinition.steps[0]
+		}
+		var stepNameDescription = selectedStep.longDescription;
+		if (stepNameDescription)
+			loadStepNavigationLine(stepNameDescription);
+		renderingEngine.getEventQueue().postEvent(
+				AppConstants.Event.FORM_PAGE_LOAD_EVENT, selectedStep,
+				renderingEngine, process);
+		process.slideDelay = 0;
+
+		process.prevSelectedNavigationId = id;
+		process.collapsed = true;
+
+		for ( var index = 0; index &lt; process.processDivisions.length; index++) {
+			$('#' + process.processDivisions[index]).css('display', 'none');
+		}
+
+		$('#child_' + id + '_form').html(&quot;&quot;);
+
+		// alert(id);
+		process.processDivisionSelected = id;
+		$('#child_' + id).css('display', 'block');
+
+		renderingEngine.getChildComponent(&quot;Form&quot;).setPlaceHolder(
+				'child_' + id + '_form');
+	}
+	;
+
+	function slideRight() {
+		getUIDimensions();
+
+		var width = &quot;98%&quot;;
+		$('.right-side-content').css('display', 'none')
+		// $('.left-side-content').css('width', width + &quot;px&quot;);
+		/* $('.inner-right').css('width', '94.5%'); */
+		$('.inner-right').removeClass('inner-right').addClass(
+				'slide-inner-right');
+		$(&quot;.left-side-content&quot;).animate({
+			width : width
+		}, process.slideDelay);
+
+		$(&quot;.right-side-content&quot;).animate({
+			width : 0,
+		}, process.slideDelay);
+		// $('.left-side-content').css('height', 'auto');
+		// $('.ui-left-top').css('height', 'auto');
+
+		$('.home-icon-link').css('display', 'none');
+		$('#left-side').removeClass('left-side-bg');
+	}
+
+	function backToProcessForm(event, callback) {
+		// alert(&quot;backToProcessForm&quot;);
+
+		/*
+		 * if (!process.collapsed) return;
+		 */
+		process.prevSelectedNavigationId = null;
+		// alert(&quot;back&quot;);
+		if (process.collapsed)
+			process.slideLeft();
+
+		$('#left-side').addClass('left-side-bg');
+
+		for ( var index = 0; index &lt; process.processDivisions.length; index++) {
+			$('#' + process.processDivisions[index]).css('display', 'block');
+		}
+
+		// $('#child_' + process.processDivisionSelected).html(&quot;&quot;);
+
+		$('#child_' + process.processDivisionSelected).css('display', 'none');
+
+		process.slideDelay = 0;
+		process.collapsed = false
+		// alert(&quot;callback : &quot; + callback);
+		if (callback) {
+			callback();
+		}
+	}
+	;
+
+	function slideLeft() {
+		// alert(&quot;slideLeft&quot;);
+		// $('.right-side-content').css('width', process.right + &quot;px&quot;)
+		$('.right-side-content').css('display', 'block')
+		// $('.left-side-content').css('width', process.left + &quot;px&quot;)
+		/* $('.inner-right').css('width', '70%'); */
+		$('.slide-inner-right').removeClass('slide-inner-right').addClass(
+				'inner-right');
+
+		$(&quot;.left-side-content&quot;).animate({
+			width : process.left
+		}, process.slideDelay);
+
+		$(&quot;.right-side-content&quot;).animate({
+			width : process.right,
+		}, process.slideDelay);
+
+		// $('.left-side-content').css('height', process.outerHeight);
+		/* $('.ui-left-top').css('height', process.innerHeight); */
+		// $('.home-icon-link').css('display', 'block');
+		process.updateContext();
+	}
+
+	function getUIDimensions() {
+		var right = $('.right-side-content').css('width');
+		var innerHeight = $('.ui-left-top').css('height');
+		// var outerHeight = $('.left-side-content').css('height');
+		var left = $('.left-side-content').css('width');
+		process.right = right.substring(0, right.length - 2);
+		process.left = left.substring(0, left.length - 2);
+		process.innerHeight = innerHeight;
+		// process.outerHeight = outerHeight;
+		// alert(process.innerHeight);
+		// alert(process.left + &quot;, &quot; + process.right);
+		var parentWidth = $('.left-side-content').offsetParent().width();
+		var percent = 100 * process.left / parentWidth;
+		process.left = percent + &quot;%&quot;;
+
+		parentWidth = $('.right-side-content').offsetParent().width();
+		percent = 100 * process.right / parentWidth;
+		process.right = percent + &quot;%&quot;;
+	}
+	;
+
+<span id='Process-method-updateProcess'>	/**
+</span>	 * Which update process view whenever modify the selected the process
+	 * definition
+	 * 
+	 * @returns {void}
+	 */
+	function updateProcess() {
+
+		// backToProcessForm();
+		process.slideBackToProcessForm(null, process.loadProcess);// process.lastSelectedEvent);//
+		// (loadProcess);
+		// this.loadProcess();
+	}
+	;
+
+	function terminateProcessHandler(event) {
+		// slideBackToProcessForm(null, null);
+		renderingEngine.getChildComponent(&quot;Process&quot;).slideBackToProcessForm(
+				null, null);
+		// process.slideBackToProcessForm(null, null);
+		// renderingEngine.fireEvent(AppConstants.Event.PROCESS_PAGE_RENDER);
+	}
+	;
+
+<span id='Process-method-getProcessDefinition'>	/**
+</span>	 * Return selected process definition.
+	 * 
+	 * @returns {ProcessDefinition}
+	 */
+	function getProcessDefinition() {
+		return this.processDefinition;
+	}
+	;
+<span id='Process-method-setProcessDefinition'>	/**
+</span>	 * Set the selected process definition.
+	 * 
+	 * @param processDefinition:
+	 *            Its a processDefinition object.
+	 * @returns {void}
+	 * 
+	 */
+	function setProcessDefinition(processDefinition) {
+		this.processDefinition = processDefinition;
+	}
+	;
+
+	function getProcessName() {
+		return this.processName;
+	}
+	;
+	function setProcessName(processName) {
+		this.processName = processName;
+	}
+	;
+	function getProcessId() {
+		return this.processId;
+	}
+	;
+	function setProcessId(processId) {
+		this.processId = processId;
+	}
+	;
+
+<span id='Process-method-mCustomScrollbars'>	/**
+</span>	 * Custom scrollbar for extra results.
+	 * 
+	 * @returns {void}
+	 */
+	function mCustomScrollbars() {
+		$(&quot;#mcs_container_left&quot;).mCustomScrollbar(&quot;vertical&quot;, 0, &quot;easeOutCirc&quot;,
+				0, &quot;auto&quot;, &quot;yes&quot;, &quot;yes&quot;, 0);
+	}
+	;
+
+	function loadFormNavigationLine(navigationLineName) {
+		var navigationLine = renderingEngine
+				.getChildComponent(&quot;NavigationLine&quot;);
+		var navigationLineId = navigationLine
+				.setNavigationLine(navigationLineName);
+		$('#' + navigationLineId).unbind(&quot;click&quot;, slideBackToProcessForm);
+		$('#' + navigationLineId).bind(&quot;click&quot;, slideBackToProcessForm);
+	}
+
+	function loadStepNavigationLine(navigationLineName) {
+		var navigationLine = renderingEngine
+				.getChildComponent(&quot;NavigationLine&quot;);
+		var navigationLineId = navigationLine
+				.setNavigationLine(navigationLineName);
+	}
+	;
+}
+</pre>
+</body>
+</html>

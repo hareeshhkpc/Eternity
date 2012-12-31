@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<message config="POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE">
+	<POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE>
+		<component>
+			<structuredBody>
+				<component>
+					<section>
+						<entry>
+							<observation>
+								<code
+									displayName="I live away from a city full of noise and pollutionI live away from a city full of noise and pollution" />
+								<value nullFlavor="NI" />
+							</observation>
+							<observation>
+								<code displayName="I don't live near power lines" />
+								<value>
+									<thumbnail>0</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I have plenty of fresh air and sunshine" />
+								<value>
+									<thumbnail>1</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I drink and bathe in pure water" />
+								<value>
+									<thumbnail>0</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I eat mostly organic fruits and vegetables" />
+								<value>
+									<thumbnail>1</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I avoid chemicals like insecticides and cleaners" />
+								<value>
+									<thumbnail>0</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I do not use aluminum cookware" />
+								<value>
+									<thumbnail>1</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I avoid smoking and recreational drugs" />
+								<value>
+									<thumbnail>0</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I minimize taking any over the counter drugs" />
+								<value>
+									<thumbnail>1</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I use alcohol moderately" />
+								<value>
+									<thumbnail>0</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I use natural soaps, underarm deodorants and toothpastes" />
+								<value>
+									<thumbnail>1</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I recycle and conserve water, electricity, etc..." />
+								<value>
+									<thumbnail>0</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I take no pharmaceutical drugs" />
+								<value>
+									<thumbnail>1</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I honor other life forms-animals, birds, etc..." />
+								<value>
+									<thumbnail>0</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I use biodegradable products" />
+								<value>
+									<thumbnail>1</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I avoid electro-magnetic radiation" />
+								<value>
+									<thumbnail>0</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I avoid eating packaged foods" />
+								<value>
+									<thumbnail>1</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I live in an environmentally conscious city" />
+								<value>
+									<thumbnail>0</thumbnail>
+								</value>
+							</observation>
+							<observation>
+								<code displayName="I do not drink sodas" />
+								<value>
+									<thumbnail>1</thumbnail>
+								</value>
+							</observation>
+						</entry>
+					</section>
+				</component>
+			</structuredBody>
+		</component>
+	</POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE>
+</message>

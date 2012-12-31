@@ -1,0 +1,704 @@
+<script type="text/javascript" src="js/xmlViewer/xo.cgi"></script>
+<script type="text/javascript">
+	var imgArrowDown = "<img src='js/xmlViewer/images/arrow-down.gif' border=0>";
+	var imgArrowUp = "<img src='js/xmlViewer/images/arrow-up.gif' border=0 >";
+	var imgArrowRight = "<img src='js/xmlViewer/images/arrow-right.gif' border=0 >";
+	var imgArrowDownRight = "<img src='js/xmlViewer/images/arrow-downright.gif' border=0 >";
+	var imgArrowLeft = "<img src='js/xmlViewer/images/arrow-left.gif' border=0 >";
+	var imgSequence = "<img src='js/xmlViewer/images/sequence.png' border=0 >";
+	var imgChoice = "<img src='js/xmlViewer/images/choice.png' border=0 >";
+	var imgSequenceSrc = "js/xmlViewer/images/sequence.png";
+	var imgChoiceSrc = "js/xmlViewer/images/choice.png";
+	var imgRtTriangle = "<img src='js/xmlViewer/images/arrow-right.gif' border=0>";
+	var imgFloppy = "<img src='js/xmlViewer/images/floppy.gif' border=0>";
+	var imgPlus = "<img src='js/xmlViewer/images/plus.png' border=0>";
+	var imgCross = "<img src='js/xmlViewer/images/cross.gif' border=0>";
+	var imgFind = "<img src='js/xmlViewer/images/find.png' border=0 height=17>";
+	var imgReload = "<img src='js/xmlViewer/images/reload.gif' border=0 height=16>";
+	var bgVerticalBar = "background-image: url(http://abcp.org/images/verticalBar.ico);background-repeat:repeat-y;";
+	var bgVerticalBarIE = "background-image: url(http://abcp.org/images/verticalBar.ico);background-repeat:repeat-y;";
+	var imgPlusGif = "<img src='js/xmlViewer/images/plus.gif' border=0 height=11>";
+	var imgMinusGif = "<img src='js/xmlViewer/images/minus.gif' border=0 height=11>";
+	var g_mainScript = null;// "http://view.xmlgrid.net/cgi-bin/xv/xo.cgi"
+</script>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				//showStoreValue();
+				//$(".right-side-content").hide();
+				var width = "98%";
+				$('.right-side-content').css('display', 'none')
+				$('.inner-right').css('width', '94.5%')
+				$(".left-side-content").animate({
+					width : width
+				}, 200);
+				$(".right-side-content").animate({
+					width : 0,
+				}, 200);
+
+				$('.home-icon-link').css('display', 'none');
+				$('#left-side').removeClass('left-side-bg');
+				//$("#showCache").unbind("click", showCache);
+				//$("#showCache").bind("click", showCache);
+				$("#showCache").unbind("click", showLocalMessageWise);
+				$("#showCache").bind("click", showLocalMessageWise);
+				$("#showContext").unbind("click", showContext);
+				$("#showContext").bind("click", showContext);
+				$("#showMetaData").unbind("click", showMetaData);
+				$("#showMetaData").bind("click", showMetaData);
+				$("#showStaticData").unbind("click", showStaticMessageWise);
+				$("#showStaticData").bind("click", showStaticMessageWise);
+				$("#syncronize").unbind("click", syncronizeConfigurations);
+				$("#syncronize").bind("click", syncronizeConfigurations);
+				$("#purge").unbind("click", purgeConfigurations);
+				$("#purge").bind("click", purgeConfigurations);
+				$(".syncronizeLocalMessage").unbind("click", syncronizeLocalMessage);
+				$(".syncronizeLocalMessage").bind("click", syncronizeLocalMessage);
+				$(".purgeStaticMessages").unbind("click", purgeStaticMessages);
+				$(".purgeStaticMessages").bind("click", purgeStaticMessages);
+
+				$('ul.tabs').each(
+						function() {
+							// For each set of tabs, we want to keep track of
+							// which tab is active and it's associated content
+							var $active, $content, $links = $(this).find('a');
+
+							// If the location.hash matches one of the links, use that as the active tab.
+							// If no match is found, use the first link as the initial active tab.
+							$active = $($links.filter('[href="' + location.hash
+									+ '"]')[0]
+									|| $links[0]);
+							$active.addClass('active');
+							$content = $($active.attr('href'));
+
+							// Hide the remaining content
+							$links.not($active).each(function() {
+								$($(this).attr('href')).hide();
+							});
+
+							// Bind the click event handler
+							$(this).on('click', 'a', function(e) {
+								// Make the old tab inactive.
+								$active.removeClass('active');
+								$content.hide();
+
+								// Update the variables with the new link and content
+								$active = $(this);
+								$content = $($(this).attr('href'));
+
+								// Make the tab active.
+								$active.addClass('active');
+								$content.show();
+
+								// Prevent the anchor's default click action
+								e.preventDefault();
+							});
+						});
+				//showCache();
+				showLocalMessageWise();
+			});
+
+	function showContext() {
+		var contextMessageList = "", contextMessage = "";
+
+		var organizationVO = appController.getComponent("Context")
+				.getOrganizationVO();
+		var attributes = new Array();
+		if (organizationVO) {
+			attributes.push([ "Subscriber Id: ", organizationVO.subscriberId ]);
+			attributes.push([ "Name: ", organizationVO.name ]);
+			attributes.push([ "Licensee Id: ", organizationVO.licenseeId ]);
+			attributes.push([ "Region Name: ", organizationVO.regionName ]);
+			attributes.push([ "Address: ", organizationVO.addr ]);
+			attributes.push([ "Telecom: ", organizationVO.telecom ]);
+		}
+		var orgMessage = renderContextMessage("ORGANIZATION", attributes,
+				organizationVO);
+
+		var licenseeVO = appController.getComponent("Context").getLicenseeVO();
+		attributes = new Array();
+		if (licenseeVO) {
+			attributes.push([ "Licensee Email: ", licenseeVO.licenseeEmail ]);
+			attributes.push([ "Currency Code: ", licenseeVO.currencyCode ]);
+			attributes.push([ "Currency Symbol: ", licenseeVO.currencySymbol ]);
+			attributes.push([ "Exchange Rate: ", licenseeVO.exchangeRate ]);
+		}
+		var licenseeMessage = renderContextMessage("LICENSEE", attributes,
+				licenseeVO);
+
+		var userVO = appController.getComponent("Context").getUserVo();
+		attributes = new Array();
+		if (userVO) {
+			attributes.push([ "Subscriber Id: ", userVO.subscriberId ]);
+			attributes.push([ "Name: ", userVO.name ]);
+			attributes.push([ "Gender: ", userVO.gender ]);
+			attributes.push([ "User Name: ", userVO.userName ]);
+			attributes.push([ "Assigning Organization ID: ",
+					userVO.assigningOrganizationID ]);
+			attributes.push([ "Roles: ", userVO.roles ]);
+		}
+		var userMessage = renderContextMessage("USER", attributes, userVO);
+
+		var patientVO = appController.getComponent("Context").getPatientVO();
+		attributes = new Array();
+		if (patientVO) {
+			attributes.push([ "Subscriber Id: ", patientVO.subscriberId ]);
+			attributes.push([ "Name: ", patientVO.name ]);
+			attributes.push([ "Gender: ", patientVO.gender ]);
+			attributes.push([ "Date Of Birth: ", patientVO.dob ]);
+			attributes.push([ "Consultant: ", patientVO.consultant ]);
+			attributes.push([ "Consultant ID: ", patientVO.consultantId ]);
+			attributes.push([ "Telecom: ", patientVO.emailAddress ]);
+		}
+		var patientMessage = renderContextMessage("PATIENT", attributes,
+				patientVO);
+
+		var physicianVO = appController.getComponent("Context")
+				.getPhysicianVO();
+		attributes = new Array();
+		if (physicianVO) {
+			attributes.push([ "Physician Id: ", physicianVO.physicianId ]);
+			attributes.push([ "Name: ", physicianVO.name ]);
+		}
+		var physicianMessage = renderContextMessage("PHYSICIAN", attributes,
+				physicianVO);
+
+		contextMessageList = orgMessage + licenseeMessage + userMessage
+				+ patientMessage + physicianMessage;
+
+		$('#cache-message-list').empty();
+		$('#context-message-list').html(contextMessageList);
+		$('#context-message-list').trigger('create');
+	}
+
+	function renderContextMessage(header, attributes, contextVo) {
+		var contextMessageList = '<div data-role="collapsible" data-theme="a" data-content-theme="c" data-collapsed="false">';
+		contextMessageList += '<h3>' + header + '</h3><p>';
+		$
+				.each(
+						attributes,
+						function(index, value) {
+							if (!value[1])
+								value[1] = "none";
+							contextMessageList += '<div class="ui-grid-a"><div class="ui-block-a">'
+									+ value[0]
+									+ '</div><div class="ui-block-b">'
+									+ value[1] + '</div></div>';
+						});
+		contextMessageList += '</p></div>';
+
+		return contextMessageList;
+
+	}
+
+	/****** Start Local Message Storage *****/
+
+	function showCache() {
+		var localMessageDetails = '<div data-role="collapsible" data-theme="a" data-content-theme="c" data-collapsed="false">';
+		localMessageDetails += '<h3>Local Storage Messages</h3><div class="ui-process-button taskOutcome" style="margin-top:-39px;position:relative;" > Sync Message <img src="images/sync.png"/></div><p>';
+		var localStorageMessage = new Array();
+		localStorageMessage = HL.getLocalStorageMessage();
+
+		localMessageDetails += ('<fieldset class="ui-grid-b" style="color:#ffffff;background:#7f7f7f;border:1px solid #f2f2f2;font-weight:bold;"><div class="ui-block-a" style="padding:10px;text-align:center;width:24%;">Message Id</div>'
+				+ '<div class="ui-block-b" style="padding:10px;text-align:center;border-left:1px solid #f2f2f2;border-right:1px solid #f2f2f2;width:60%;">Message</div>'
+				+ '<div class="ui-block-c" style="padding:10px;text-align:center;width:10%;">Status</div></fieldset>');
+
+		$
+				.each(
+						localStorageMessage,
+						function(key, value) {
+
+							value[3] = value[3].replace(/\</g, "&lt;");
+							value[3] = value[3].replace(/\>/g, "&gt;");
+
+							localMessageDetails += ('<fieldset class="ui-grid-b" style="background:#d9d9d9;border:1px solid #f2f2f2;border-top:0px;">'
+									+ '<div class="ui-block-a" style="padding:10px;width:24%;">'
+									+ value[1]
+									+ '</div>'
+									+ '<div class="ui-block-b" style="border-left:1px solid #f2f2f2;border-right:1px solid #f2f2f2;padding:10px;width:60%;">'
+									+ value[3]
+									+ '</div>'
+									+ '<div class="ui-block-c" style="padding:10px;width:10%;">'
+									+ value[5] + '</div></fieldset>');
+						});
+
+		$('#context-message-list').empty();
+		$('#cache-message-list').html(localMessageDetails);
+		$('#cache-message-list').trigger('create');
+	}
+	function showStaticMessageWise(){
+		var mesages=HL.getStaticStorageMessages();
+		var s="",table=null,localMessageDetails="";	
+		var processDefinitions = appController.getComponent("DataLayer").getStaticProcessDefinitionMessage();
+		var element = $("#context-static-list");
+		element.html('');
+		var staticFlag = true;
+		if(processDefinitions){
+			$.each(processDefinitions, function(index, definition) {
+				if(definition!=null)
+					processForm(definition,element,staticFlag);
+			});
+			//$('#context-message-list').empty();
+			element.trigger('create');
+		}		
+	}
+
+	function showLocalMessageWise(){
+		var s="",table=null,localMessageDetails="";	
+		var processDefinitions = appController.getComponent("DataLayer").getLocalProcessDefinitionMessage();
+		var element = $("#cache-message-list");
+		element.html('');
+		var staticFlag = false;
+		if(processDefinitions){
+			$.each(processDefinitions, function(index, definition) {
+				if(definition!=null)
+					processForm(definition,element,staticFlag);
+			});
+			//$('#context-message-list').empty();
+			element.trigger('create');
+		}		
+	}
+	function processForm(definition,element,staticFlag){
+		//var element = $("#cache-message-list");
+		var localMessageDetails =  $('<div data-role="collapsible" data-theme="a" data-content-theme="c" data-collapsed="false">' +
+		'<h3>&nbsp;'+definition.processName+'&nbsp;</h3><div id="step"/>');
+		$.each(definition.steps, function(index, step) {
+			stepForm(step,localMessageDetails,staticFlag);
+		});
+		table = localMessageDetails.appendTo(element);
+	}
+	function stepForm(step,element,staticFlag){
+		var localMessageDetails =  $('<div data-role="collapsible" data-theme="a" data-content-theme="c" data-collapsed="false">' +
+		'<h3>&nbsp;'+step.longDescription+'&nbsp;</h3><div id="messageType"/>');
+		var s = $(createHeaderEliment());
+		$.each(step.messageTypes, function(index, messageType) {
+			if(messageType.messages.length != 0){
+				messageTypeForm(s,messageType,localMessageDetails,staticFlag);
+				var element2 = element.find("#step");
+				table = localMessageDetails.appendTo(element2);
+			}
+		});
+		
+	}
+	function messageTypeForm(s,messageType,element,staticFlag){
+		var localMessageDetails =  $('<div data-role="collapsible" data-theme="a" data-content-theme="c" data-collapsed="false">' +
+		'<h3>&nbsp;'+messageType.title+'&nbsp;</h3><div id="processDefinition"/>');
+		
+		$.each(messageType.messages, function(index, message) {
+			var element = "";
+			if(staticFlag){
+				element = staticMessagesDiv(index,message,s);
+			}else{
+				element = localMessagesDiv(index,message,s);
+			}			
+			s.append(element);
+		});
+		//localMessageDetails.find('#processDefinition').append(s);
+		var element = element.find("#messageType");
+		table = s.appendTo(element);
+	}
+	function showStaticProcessDefinitionDetails(){
+		var s="",table=null,localMessageDetails="";	
+		var data = appController.getComponent("DataLayer").getLocalProcessDefinitionMessages();
+		if(data){
+			var element = $("#context-static-list");
+			element.html('');			
+			var localMessageDetails =  $('<div data-role="collapsible" data-theme="a" data-content-theme="c" data-collapsed="false">' +
+			'<h3>&nbsp; Static Messages &nbsp;</h3><div id="staticMessage"/>');
+			s = $(createHeaderEliment());
+			$.each(data,function(index,message){
+				var element = staticMessagesDiv(index,message);
+				s.append(element);
+			});
+			localMessageDetails.find('#staticMessage').append(s);
+			table = localMessageDetails.appendTo(element);
+			$('#context-message-list').empty();
+			element.trigger('create');
+		}	
+	}
+	function localMessagesDiv(index,message,s){
+		var element = "";
+		if(message){
+			element = $(createEliment(index,message));
+			element.find('.process-def-'+index).click(function(){
+				var dataLayer = appController.getComponent("DataLayer");
+				if(dataLayer){
+					var parentContainerID = "form_"+message.messageId+'_user_'+index;	
+					
+				/*	s.find('.ui-inner-display-box').each(function(key, uiField){
+						$(uiField).find('.process-definition-form').css('display','none');
+					});
+				*/	
+					if(element.find("#"+parentContainerID).html()==''){
+						element.find("#"+parentContainerID).addClass("process-definition-form");
+						//dataLayer.processMessage(message, "", function(messageId, msg, messageObj) {
+						dataLayer.getMessageInternal(message,function(messageId, msg, messageObj) {
+						//	dataLayer.getStaticMessageInternal(message,function(messageId, msg, messageObj) {
+							dataLayer.loadData("FM_" +  message.messageForm, {},
+									function(htmlString) {
+								element.find("#"+parentContainerID).append(htmlString);
+								var messageAndUIBinder = new MessageAndUIBinder(parentContainerID,
+										msg, message.messageType);
+								if (messageAndUIBinder) {
+									var properties = new Object();
+									properties.readOnly = true;
+									var lookupHandler = appController.getComponent("DataLayer").lookupHandler;
+									messageAndUIBinder.loadDataOntoForm(lookupHandler,properties, function(){
+										element.find('#colorValue').css('background-color',element.find('#colorValue').val());
+										element.find('#colorValue').css('color',element.find('#colorValue').val());
+									});
+								}
+							});
+						},true);
+					}else{
+						if(element.find("#"+parentContainerID).css('display') != 'none'){
+							element.find("#"+parentContainerID).hide();
+						}else{
+							element.find("#"+parentContainerID).show();
+						}					
+					}	
+				}				
+			});
+			element.find('.process-def-'+index).bind("mouseover", function(e){ 
+		        $(this).css("background-color", "#B39AB4");
+			}).bind("mouseout", function(e){ 
+		        $(this).css("background-color", "");
+			});
+		}
+		return element;
+	}
+	function staticMessagesDiv(index,message,s){
+		var element = "";
+		index = index+200;
+		if(message){
+			element = $(createEliment(index,message));
+			element.find('.process-def-'+index).click(function(){
+				var dataLayer = appController.getComponent("DataLayer");
+				if(dataLayer){
+					var parentContainerID = "form_"+message.messageId+'_user_'+index;	
+					
+				/*	s.find('.ui-inner-display-box').each(function(key, uiField){
+						$(uiField).find('.process-definition-form').css('display','none');
+					});
+				*/	
+					if(element.find("#"+parentContainerID).html()==''){
+						element.find("#"+parentContainerID).addClass("process-definition-form");
+						//dataLayer.processMessage(message, "", function(messageId, msg, messageObj) {
+						//dataLayer.getMessageInternal(message,function(messageId, msg, messageObj) {							
+							dataLayer.getStaticMessageInternal(message,function(messageId, msg, messageObj) {
+							dataLayer.loadData("FM_" +  message.messageForm, {},
+									function(htmlString) {								
+								element.find("#"+parentContainerID).append(htmlString);
+								var messageAndUIBinder = new MessageAndUIBinder(parentContainerID,
+										msg, message.messageType);
+								if (messageAndUIBinder) {
+									var properties = new Object();
+									properties.readOnly = true;
+									var lookupHandler = appController.getComponent("DataLayer").lookupHandler;
+									messageAndUIBinder.loadDataOntoForm(lookupHandler,properties, function(){
+										element.find('#colorValue').css('background-color',element.find('#colorValue').val());
+										element.find('#colorValue').css('color',element.find('#colorValue').val());
+									});
+								}
+							});
+						},true);
+					}else{
+						if(element.find("#"+parentContainerID).css('display') != 'none'){
+							element.find("#"+parentContainerID).hide();
+						}else{
+							element.find("#"+parentContainerID).show();
+						}					
+					}	
+				}				
+			});
+			element.find('.process-def-'+index).bind("mouseover", function(e){ 
+		        $(this).css("background-color", "#B39AB4");
+			}).bind("mouseout", function(e){ 
+		        $(this).css("background-color", "");
+			});
+		}
+		return element;
+	}
+	function createEliment(index,message){
+		var s = '<div class="ui-inner-display-box">'+
+		'<div class="process-def-'+index+' ui-sub-head-inner-bg ui-sub-header-text ui-add-button-hidden">'+
+			'<div style="width:25%;float: left;">&nbsp;'+message.title+'</div>'+
+			'<div style="width:30%;float: left;">&nbsp;'+message.messageType+'</div>'+
+			'<div style="width:25%;float: left;">&nbsp;'+message.messageForm+'</div>'+
+			'<div style="width:10%;float: left;">&nbsp;'+message.messageStatus+'</div>'+
+			'<div style="width:10%;float: left;">&nbsp;'+ ((message.finished) ? '<img src="images/tick_black.png" title="Finished"></img>' : '&nbsp;') +'</div>'+
+		'</div>'+
+		'<p><div id="form_'+message.messageId+'_user_'+index+'"></div></p>';
+		s +='</div>';
+		return s;
+	}
+	function createHeaderEliment(){
+		var s = '<div class="ui-inner-display-box">'+
+		'<div class="ui-sub-head-inner-bg ui-sub-header-text" style="color:#FFFFFF;background-color:#696969;width: 98%;">'+
+			'<div style="width:25%;float:left;font-weight:bold;">&nbsp;Title</div>'+
+			'<div style="width:30%;float:left;font-weight:bold;">&nbsp;Message Type</div>'+
+			'<div style="width:25%;float:left;font-weight:bold;">&nbsp;Message Form</div>'+
+			'<div style="width:10%;float:left;font-weight:bold;">&nbsp;Message Status</div>'+
+			'<div style="width:9%;float:left;font-weight:bold;padding:1px;">&nbsp;Updated Status</div>';
+		s +='</div></div>';
+		return s;
+	}
+	
+	/****** End Local Message Storage *****/
+
+	//method to show configuration file in xml viewer
+	function showMetaData() {
+		var staticMessages = HL.getStaticMessages();
+		var metaDiv = "";
+		for ( var index = 0; index < staticMessages.length; index++) {
+			metaDiv += '<div data-role="collapsible" data-theme="a" id="id'+index+'" data-content-theme="c" data-collapsed="true">';
+			metaDiv += '<h3>' + staticMessages[index].key + '</h3>';
+			metaDiv += '<div id="header">';
+			metaDiv += '<div id="pageHeadLink" class="pageHeadLink"';
+				metaDiv +='style="border: 0px solid #FF0000"></div>';
+			metaDiv += '<div id="page">';
+			metaDiv += '<div id="section1" class="cmdBar"></div>';
+			metaDiv += '<div id="gridbox'+index+'">';
+			metaDiv += '<div id="textObjectId'+index+'"';
+						metaDiv +=	'style="border: 1px solid blue; width: 398px; height: 150px; overflow: auto"';
+							metaDiv +=	'contenteditable="true"></div>';
+			metaDiv += '</div>';
+			metaDiv += '</div>';
+			metaDiv += '<pre style="display: none;" id="topLinkData"></pre>';
+			metaDiv += '</div>';
+			metaDiv += '</div>';
+		}
+
+		$('#meta-data-list').html(metaDiv);
+		$('#meta-data-list').trigger('create');
+		$.each(staticMessages, function(key, value) {
+			$('#id' + key).bind(
+					'expand',
+					function() {
+						var gridboxId = "gridbox" + key;
+						start();
+						function start() {
+							ptMainPage();
+							createInputBox();
+							$('#' + gridboxId).find("#textObjectId" + key)
+									.text(value.value);
+							//method in xo.cgi file to view xml
+							doInputBox();
+						}
+						;
+						function createInputBox() {
+							hGridId = "gridbox" + key;
+							ptInputBox(hGridId, key);
+						}
+					}).bind('collapse', function() {
+
+			});
+		});
+	}
+	function syncronizeConfigurations() {
+		appController.getComponent("DataLayer").syncronizeConfigurations(
+				function() {
+					showMetaData();
+				});
+	}
+
+	function purgeConfigurations() {
+		appController.getComponent("DataLayer").purgeConfigurations(function() {
+			showMetaData();
+		});
+	}
+
+	function purgeStaticMessages() {
+		appController.getComponent("DataLayer").purgeStaticMessages(function() {	
+			//showStaticMessageWise();	
+			showStaticMessageWise();	
+		});
+	}
+	function syncronizeLocalMessage(){
+		showLocalMessageWise();
+	}
+
+	/* function showCache() {
+		//alert("click");
+
+		var cache_fm_list = "";
+		var cache_js_list = "";
+		var cache_fs_list = "";
+		var cache_message_list = "";
+		var messageIds = [];
+		for (dataObj in localStorage) {
+		
+	/* if (dataObj.indexOf('configstore.FM') > -1) {
+
+				var myObj = localStorage[dataObj];
+				var fm = dataObj.substr(dataObj.indexOf(".") + 1,
+						dataObj.length);
+				cache_fm_list += '<li>' + fm + '</li>';
+				
+			} else if (dataObj.indexOf('configstore.JS') > -1) {
+
+				var myObj = localStorage[dataObj];
+				var js = dataObj.substr(dataObj.indexOf(".") + 1,
+						dataObj.length);
+				cache_js_list += '<li>' + js + '</li>';
+				
+
+			} else if (dataObj.indexOf('configstore.FS') > -1) {
+
+				var myObj = localStorage[dataObj];
+				var fs = dataObj.substr(dataObj.indexOf(".") + 1,
+						dataObj.length);
+
+				cache_fs_list += '<li>' + fs + '</li>';
+				
+			} else if (dataObj.indexOf('__changes') > -1) {//messagestore_
+				var myObj = localStorage[dataObj];
+				//cache_message_list += '<li> Changes : ' + dataObj + '</li>';
+
+				var obj = myObj.split('"');
+
+				for ( var index = 0; index < obj.length; index++) {
+					if (index % 2 != 0) {
+						messageIds.push(obj[index]);*/
+	/* cache_message_list += '<li> Message Id ' + obj[index]
+			+ '</li>'; */
+	/*	}
+	}
+	}
+
+	}
+
+	for (dataObj in localStorage) {
+	if (dataObj.indexOf('messagestore_') > -1) {
+	//alert(messageIds.length);
+	for ( var index = 0; index < messageIds.length; index++) {
+		var arr = dataObj.split(".");
+		var messageId = "0";
+		if (arr.length == 2) {
+			messageId = arr[1];
+		}
+		//alert(messageId + " == " + messageIds[index])
+		if (messageId == messageIds[index]) {
+			var myObj = localStorage[dataObj];
+			var jsonObj = JSON.parse(myObj);
+			var content = jsonObj.content;
+			if (messageId.indexOf("Process_") > -1) {*/
+
+	//var processDefinition = jsonObj.content;
+	//alert(processDefinition.processName);
+	//content = jsonObj.content;//processDefinition.processName;
+	/* content = factoryClass
+									.createProcessDefinitionInstance(jsonObj.content); */
+	/*cache_message_list += '<li> Message : ' + messageId
+			+ "<br/><pre>" + content + '</pre></li>';
+	} else {
+
+	var xml = XmlUtil.stringToXml(content);
+	var messageNode = XmlUtil.findByName(xml,
+			"message", true);
+	var msg_title = "";
+	if (messageNode) {
+		var configid = messageNode
+				.getAttribute('config');
+
+		var node = XmlUtil.findByName(messageNode,
+				configid, true);
+
+		if (node) {*/
+	/**
+	 * set subscriberId.
+	 */
+	/*var dataXPath = "message/" + configid
+			+ "/id[root='MSG_TITLE']/extension";
+	try {
+		var value = XmlUtil.getXPathResult(xml,
+				dataXPath,
+				XPathResult.STRING_TYPE);
+
+		value = (value && value.stringValue) ? value.stringValue
+				: "";
+		msg_title = value;
+	} catch (e) {
+		alert("Element does not exist : " + e);
+	}
+	}*/
+
+	/* 	alert("Message xml : "
+				+ XmlUtil.xmlToString(xml)); */
+
+	/*	cache_message_list += '<li data-role="list-divider">'
+				+ messageId + '</li>'
+		cache_message_list += '<li><a href="#"> ';
+		cache_message_list += '<b>' + configid + '</b>';
+		cache_message_list += '<i> ' + msg_title
+				+ '</i>'
+		cache_message_list += '</a> </li>';
+	}
+	}
+
+	break;
+	}
+	}
+
+	}
+	}*/
+	/* $('#cache-fm-list').html(cache_fm_list);
+	$("#cache-fm-list").listview('refresh');
+	$('#cache-js-list').html(cache_js_list);
+	$('#cache-js-list').listview('refresh');
+	$('#cache-fs-list').html(cache_fs_list);
+	$('#cache-fs-list').listview('refresh'); */
+
+	/*$('#cache-message-list').html(cache_message_list);
+	$('#cache-message-list').listview('refresh');
+
+	} */
+</script>
+<div class="ui-inner-display-box ui-header-corner-top" id="settingsPage">
+<div class="messages-area"><!-- <fieldset class = "ui-grid-a">	
+			<div style="font-weight: bold" class="ui-block-a" id="showCache">
+				Local Storage Messages
+			</div>	
+			
+			<div style="font-weight: bold" class="ui-block-b" id="showContext">
+				Context Variables
+			</div>
+		</fieldset> -->
+
+<ul class='tabs' style="margin: 0; padding: 0;">
+	<li><a href='#tab1' id="showCache">Local Storage Messages</a></li>
+	<li><a href='#tab2' id="showContext">Context Variables</a></li>
+	<li><a href='#tab3' id="showMetaData">Configurations</a></li>
+	<li><a href='#tab4' id="showStaticData">Static Messages</a></li>
+</ul>
+
+<div id='tab1' class="data-area">
+<div class="ui-process-button syncronizeLocalMessage"
+	style="position: inherit;">Sync Message <img
+	src="images/sync.png" /></div>
+<ul data-role="listview" id="cache-message-list"
+	style="padding-top: 16px;">
+</ul>
+</div>
+<div id='tab2' class="data-area">
+<ul data-role="listview" id="context-message-list">
+</ul>
+</div>
+<div id='tab3' class="data-area">
+<div data-role="controlgroup" data-type="horizontal">
+<div id="syncronize" data-role="button">Sync</div>
+<div id="purge" data-role="button">Purge</div>
+</div>
+<ul data-role="listview" id="meta-data-list">
+</ul>
+</div>
+<div id='tab4' class="data-area">
+<div class="ui-process-button purgeStaticMessages"
+	style="position: inherit;">Purge <img src="images/sync.png" /></div>
+<ul data-role="listview" id="context-static-list"
+	style="padding-top: 16px;">
+</ul>
+</div>
+
+</div>
+</div>

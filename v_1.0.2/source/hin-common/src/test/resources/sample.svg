@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns:svg="http://www.w3.org/2000/svg"
+xmlns="http://www.w3.org/2000/svg"
+version="1.1"
+width="436pt"
+height="327pt"
+viewBox="0 0 4360 3270"
+id="svg2">
+<path
+onclick="alert('mouse is clicked')" onmouseover="alert('mouse is over')"
+style="stroke:black; stroke-width:0.5; fill:#AA5555; "
+d="M 2250 1590 L 1979 2333 A 791 791 0 0 0 2935 1986 z"
+id="path24" />
+</svg>

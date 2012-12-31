@@ -1,0 +1,35 @@
+<form name="patientRegistrationForm" id="patientRegistrationForm">
+<div data-role="none" class="ui-align-text">
+	<div class="ui-form-fields">
+		<div class="ui-box-align">
+			<div isEditor="true" editorLabel="Name(s) *:"
+				pathFields="identifiedPerson" tagName="name" dataType="PN"
+				editorType="PNComplete"
+				configParams="[{name:'prefixConceptClass',value:'prefix'},{name:'prefixLookupType',value:'static'},
+					{name:'prefixLookupSelectType',value:'single'},{name:'prefixLookupControl',value:'multiple'},
+					{name:'nameUseConceptClass',value:'nameUse'},{name:'nameUseLookupType',value:'static'},
+					{name:'nameUseLookupSelectType',value:'single'},{name:'nameUseLookupControl',value:'multiple'},
+					{name:'nameTypeRequired',value:'no'},{name:'validate',value:'validate[required]'}]"></div>
+		</div>
+		<div class="ui-box-align">
+			<div isEditor="true" editorLabel="Gender *:"
+				pathFields="identifiedPerson" tagName="administrativeGenderCode"
+				dataType="CE" editorType="CE"
+				configParams="[{name:'conceptClass',value:'gender'},{name:'lookupType',value:'static'},
+				{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'50%'},{name:'validate',value:'validate[required]'}]"></div>
+		</div>
+		<div isEditor="true" editorLabel="ID:" pathFields="identifiedPerson"
+			tagName="id" dataType="II" editorType="II" style="display: none"></div>
+		<div class="ui-box-align">
+			<div isEditor="true" editorLabel="Contact Information *:"
+				pathFields="identifiedPerson" tagName="telecom" dataType="TEL"
+				editorType="Grid" style="width: 98%"
+				configParams="[{name:'telecomUseConceptClass',value:'telecomUse'},{name:'telecomUseLookupType',value:'static'},
+			                    {name:'telecomUseLookupSelectType',value:'single'},{name:'telecomUseLookupControl',value:'multiple'},{name:'validate',value:'validate[required,funcCall[customValidation]]'}]"
+				gridEditorType="TEL"
+				configPathField="[{name:'identifiedPerson',value:'0',editable:'true'}]"
+				idSuffix="1" groupId="registrationTel"></div>
+		</div>
+	</div>
+</div>
+</form>

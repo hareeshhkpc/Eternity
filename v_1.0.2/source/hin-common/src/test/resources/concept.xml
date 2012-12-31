@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lookups>
+	<lookup class="gender" name="M" description="Male"/>
+	<lookup class="gender" name="F" description="Female"/>
+	<lookup class="gender" name="U" description="Unknown"/>
+</lookups>

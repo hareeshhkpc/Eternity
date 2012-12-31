@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:util="http://java.sun.com/jsf/composite/util"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition>
+	<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+
+	<h:form id="messageType">
+		<rich:collapsiblePanel header="Message Type" expanded="true"
+			switchType="client">
+
+			<h:panelGrid columns="2">
+				<h:outputText value=" State" />
+				<h:inputText id="State"
+					value="#{processInstanceBean.messageType.state}" />
+				<h:outputText value="Type" />
+				<h:inputText id="type" required="true"
+					requiredMessage="Type is required"
+					value="#{processInstanceBean.messageType.type}" />
+				<h:outputText value=" TypeName" />
+				<h:inputText id="typeName"
+					value="#{processInstanceBean.messageType.typeName}" />
+				<h:outputText value="Form Html" />
+				<h:inputText id="formName"
+					value="#{processInstanceBean.messageType.formHtml}" />
+				<h:outputText value="Title" />
+				<h:inputText id="title"
+					value="#{processInstanceBean.messageType.title}" />
+				<h:outputText value="Order" />
+				<h:inputText id="msgTypeOrder"
+					value="#{processInstanceBean.messageType.msgTypeOrder}">
+					<f:validateLongRange minimum="1" maximum="50" />
+					<rich:validator />
+				</h:inputText>
+				<h:outputText value="Category" />
+				<h:selectOneMenu value="#{processInstanceBean.conceptClassId}"
+					id="conceptClassId">
+					<f:selectItems value="#{processInstanceBean.conceptClassList}" />
+				</h:selectOneMenu>
+				<h:outputText value="Transaction Type" />
+				<h:inputText id="transactionType" value="#{processInstanceBean.messageType.transactionType}" />
+				<!-- <h:inputText id="category"
+					value="#{processInstanceBean.messageType.category}" /> -->
+				<h:outputText value="Query String" />
+				<h:inputTextarea cols="100" rows="3" id="queryString"
+					value="#{processInstanceBean.messageType.queryString}" />
+				<h:outputText value="Status" />
+				<h:selectOneMenu id="statusId"
+					value="#{processInstanceBean.messageType.status}">
+					<f:selectItems value="#{processInstanceBean.statuses}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+			<br />
+			<h:commandButton value="Save MessageType "
+				action="#{processInstanceBean.addToMsgTypeList}" />
+
+
+			<a4j:region rendered="#{!processInstanceBean.newMessage}">
+				<rich:collapsiblePanel header="Messages" expanded="true"
+					switchType="client">
+					<rich:dataTable id="messageTypeId" style="width:700px"
+						value="#{processInstanceBean.messageType.messages}" var="message"
+						rows="10">
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Message Id" />
+							</f:facet>
+							<h:outputText value="#{message.messageId}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Message Type" />
+							</f:facet>
+							<h:outputText value="#{message.messageType}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Message Form" />
+							</f:facet>
+							<h:outputText value="#{message.messageForm}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="State" />
+							</f:facet>
+							<h:outputText value="#{message.messageStatus}" />
+						</rich:column>
+
+					</rich:dataTable>
+				</rich:collapsiblePanel>
+			</a4j:region>
+
+		</rich:collapsiblePanel>
+	</h:form>
+</ui:composition>
+</html>

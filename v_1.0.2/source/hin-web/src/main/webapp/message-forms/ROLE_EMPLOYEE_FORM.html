@@ -1,0 +1,39 @@
+<div data-role="none" class="ui-align-text">
+	<div class="ui-form-fields">
+		<div isEditor="true" editorLabel="Employee Name:"
+			pathFields="employeePerson" tagName="name" dataType="PN"
+			editorType="PNComplete"
+			configParams="[{name:'prefixConceptClass',value:'prefix'},{name:'prefixLookupType',value:'static'},
+				{name:'prefixLookupSelectType',value:'single'},{name:'prefixLookupControl',value:'multiple'},
+				{name:'nameUseConceptClass',value:'nameUse'},{name:'nameUseLookupType',value:'static'},
+				{name:'nameUseLookupSelectType',value:'single'},{name:'nameUseLookupControl',value:'multiple'}]"></div>
+
+		<div isEditor="true" editorLabel="Message ID.:" pathFields=""
+			tagName="id" dataType="II" editorType="II" groupId="idFields"
+			idSuffix="1" style="display: none"></div>
+
+		<div isEditor="true" editorLabel="Subscriber ID.:" pathFields=""
+			tagName="id" dataType="II" editorType="II" groupId="idFields"
+			style="display: none" idSuffix="2"></div>
+			
+		<div isEditor="true" editorLabel="Employee ID.:" pathFields=""
+			tagName="id" dataType="II" editorType="IIUserName" groupId="idFields"
+			idSuffix="3"></div>
+
+		<div isEditor="true" editorLabel="Role Name" pathFields=""
+			tagName="id" dataType="II" editorType="II" groupId="idFields"
+			idSuffix="4" style="display: none"></div>
+
+		<div isEditor="true" editorLabel="Job Title:" pathFields=""
+			tagName="jobTitle" dataType="ST" editorType="ST"></div>
+
+		<div isEditor="true" editorLabel="Organization Name:"
+			pathFields="providerOrganization" tagName="name" dataType="ON"
+			editorType="ON" style="display: none"
+			configParams="[{name:'orgNameTypeConceptClass',value:'orgNameType'},{name:'orgNameTypeLookupType',value:'static'},
+				{name:'orgNameTypeLookupSelectType',value:'single'},{name:'orgNameTypeLookupControl',value:'multiple'}]"></div>
+
+		<div isEditor="true" editorLabel="Status:" pathFields=""
+			tagName="statusCode" dataType="CS" editorType="CSInplace"></div>
+	</div>
+</div>

@@ -1,0 +1,194 @@
+<form name="demographicsForm" id="demographicsForm">
+	<div data-role="none" class="ui-align-text">
+		<div class="ui-form-fields" style="width: 100%">
+			<div class="ui-profile-form">
+				<fieldset>
+					<div class="ui-profile-image">
+						<div isEditor="true" editorLabel="" pathFields="identifiedPerson"
+							tagName="desc" dataType="ED" editorType="EDImage" idSuffix="1"></div>
+					</div>
+					<div class="ui-profile-main-field">
+						<fieldset>
+							<div class="ui-profile-inner-field">
+								<div class="ui-tele-name">
+									<div isEditor="true" editorLabel="Name(s) *:"
+										pathFields="identifiedPerson" tagName="name" dataType="PN"
+										editorType="Grid" gridEditorType="PNComplete" idSuffix="1"
+										groupId="nameGroup"
+										configParams="[{name:'prefixConceptClass',value:'prefix'},{name:'prefixLookupType',value:'static'},
+								{name:'prefixLookupSelectType',value:'single'},{name:'prefixLookupControl',value:'multiple'},
+								{name:'nameUseConceptClass',value:'nameUse'},{name:'nameUseLookupType',value:'static'},
+								{name:'nameUseLookupSelectType',value:'single'},{name:'nameUseLookupControl',value:'multiple'},{name:'validate',value:'validate[required]'}]">
+									</div>
+
+								</div>
+								<div class="ui-tele-gender">
+									<div isEditor="true" editorLabel="Gender:"
+										pathFields="identifiedPerson"
+										tagName="administrativeGenderCode" dataType="CE"
+										editorType="CE"
+										configParams="[{name:'conceptClass',value:'gender'},{name:'lookupType',value:'static'},
+								{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'100%'}]"
+										idSuffix="1"></div>
+								</div>
+							</div>
+							<fieldset style="padding-top: 4px">
+								<div isEditor="true" editorLabel="Contact Information *:"
+									pathFields="identifiedPerson" tagName="telecom" dataType="TEL"
+									editorType="Grid"
+									configParams="[{name:'telecomUseConceptClass',value:'telecomUse'},{name:'telecomUseLookupType',value:'static'},
+                                      {name:'telecomUseLookupSelectType',value:'single'},{name:'telecomUseLookupControl',value:'multiple'},{name:'validate',value:'validate[required,funcCall[customValidation]]'}]"
+									gridEditorType="TEL" idSuffix="1" groupId="demographicsTel"></div>
+							</fieldset>
+
+							<div style="margin-top: 12px; display: none">
+								<div isEditor="true" editorLabel="Message ID.:" pathFields=""
+									tagName="id" dataType="II" editorType="II" groupId="idFields"
+									idSuffix="1"></div>
+							</div>
+
+							<div style="margin-top: 12px; display: none">
+								<div isEditor="true" editorLabel="Subscriber ID.:" pathFields=""
+									tagName="id" dataType="II" editorType="II" groupId="idFields"
+									idSuffix="2"></div>
+							</div>
+
+							<div style="margin-top: 8px">
+								<div id="identificationEditor" isEditor="true" editorLabel="Identification(s):"
+									pathFields="identifiedPerson,asIdentifications" tagName="id"
+									dataType="II" editorType="Grid" gridEditorType="IICombo"
+									idSuffix="3" groupId="asIdentificationsId"
+									instanceId="identification"
+									configParams="[{name:'conceptClass',value:'identification'},{name:'lookupType',value:'static'},
+									{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},
+									{name:'eventData',value:{fieldId:'IIComboRoot',eventName:'identificationListener',comboText:'Eternity Membership ID'}}]"></div>
+							</div>
+						</fieldset>
+					</div>
+				</fieldset>
+
+				<div class="ui-profile-addr">
+					<div isEditor="true" editorLabel="Addres(es):"
+						pathFields="identifiedPerson" tagName="addr" dataType="AD"
+						editorType="Grid"
+						configParams="[{name:'cityConceptClass',value:'city'},{name:'cityLookupType',value:'dynamic'},
+					           {name:'cityLookupSelectType',value:'single'},{name:'cityLookupControl',value:'autoComplete'},
+					           {name:'stateConceptClass',value:'state'},{name:'stateLookupType',value:'dynamic'},
+					           {name:'stateLookupSelectType',value:'single'},{name:'stateLookupControl',value:'autoComplete'},
+					           {name:'countryConceptClass',value:'Nations'},{name:'countryLookupType',value:'dynamic'},
+					           {name:'countryLookupSelectType',value:'single'},{name:'countryLookupControl',value:'autoComplete'}]"
+						gridEditorType="AD" idSuffix="1" groupId="demographicsAdd"></div>
+				</div>
+				<div class="ui-profile-inner-form">
+					<fieldset class="ui-profile-field">
+						<div class="ui-tele-field">
+							<div isEditor="true" editorLabel="Birth Time *:"
+								pathFields="identifiedPerson" tagName="birthTime" dataType="TS"
+								editorType="TS"
+								configParams="[{name:'width',value:'100%'},{name:'validate',value:'validate[required]'},{name:'beforeToday',value:true}]"></div>
+						</div>
+
+						<div class="ui-tele-field">
+
+							<!-- <div isEditor="true" editorLabel="Nationality:"
+								pathFields="identifiedPerson" tagName="raceCode" dataType="CE"
+								editorType="CE"
+								configParams="[{name:'conceptClass',value:'Nations'},{name:'lookupType',value:'static'},
+					{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'100%'}]"
+								idSuffix="2"></div> -->
+								
+								
+								<div isEditor="true" style="width:93%"
+									idSuffix="2" pathFields="identifiedPerson" tagName="raceCode"  
+									 dataType="CE" editorType="CESearch"  editorLabel="Nationality:"
+								configParams="[{name:'conceptClass',value:'Nations'},{name:'lookupType',value:'dynamic'},
+					           {name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'autoComplete'}]">
+		                         </div>
+						</div>
+
+						<!-- <div class="ui-tele-field">
+
+							<div isEditor="true" editorLabel="Religious Affiliation:"
+								pathFields="identifiedPerson" tagName="religiousAffiliationCode"
+								dataType="CE" editorType="CE"
+								configParams="[{name:'conceptClass',value:'religion'},{name:'lookupType',value:'static'},
+					{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'100%'}]"
+								idSuffix="3"></div>
+						</div> -->
+
+					</fieldset>
+					<fieldset class="ui-profile-field">
+						<div class="ui-tele-field">
+
+							<div isEditor="true" editorLabel="Marital Status:"
+								pathFields="identifiedPerson" tagName="maritalStatusCode"
+								dataType="CE" editorType="CE"
+								configParams="[{name:'conceptClass',value:'maritalStatus'},{name:'lookupType',value:'static'},
+					{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'100%'}]"
+								idSuffix="4"></div>
+						</div>
+
+						<div class="ui-tele-field">
+
+							<div isEditor="true" editorLabel="Disability:"
+								pathFields="identifiedPerson" tagName="disabilityCode"
+								dataType="CE" editorType="CE"
+								configParams="[{name:'conceptClass',value:'disability'},{name:'lookupType',value:'static'},
+					{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'100%'}]"
+								idSuffix="5"></div>
+						</div>
+
+						<!-- <div class="ui-tele-field">
+
+							<div isEditor="true" editorLabel="Ethnic Group:"
+								pathFields="identifiedPerson" tagName="ethnicGroupCode"
+								dataType="CE" editorType="CE"
+								configParams="[{name:'conceptClass',value:'ethnicGroup'},{name:'lookupType',value:'static'},
+					{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'100%'}]"
+								idSuffix="6"></div>
+						</div> -->
+
+					</fieldset>
+					<div style="margin-top: 5px">
+						<div isEditor="true" editorLabel="Other family members seen here:"
+							pathFields="identifiedPerson,contactParty,contactPerson"
+							tagName="desc" dataType="ED" editorType="EDTextarea" idSuffix="2"
+							configParams="[{name:'height',value:'35px'}]"></div>
+					</div>
+					<div style="margin-top: 5px">
+						<div isEditor="true" editorLabel="Occupation:"
+							pathFields="identifiedPerson,asEmployment" tagName="jobTitleName"
+							dataType="ST" editorType="ST" idSuffix="1"></div>
+					</div>
+					<div style="margin-top: 5px">
+						<div isEditor="true" editorLabel="Employer:"
+							pathFields="identifiedPerson,asEmployment,employerOrganization"
+							tagName="name" dataType="ON" editorType="ONInplace" idSuffix="1"></div>
+					</div>
+					<fieldset class="ui-profile-field">
+						<div class="ui-tele-field" style="margin-top: 8px">
+							<div isEditor="true"
+								editorLabel="How did you hear about Eternity?"
+								pathFields="assigningOrganization" tagName="code" dataType="CE"
+								editorType="CE" idSuffix="7"
+								configParams="[{name:'conceptClass',value:'media'},{name:'lookupType',value:'static'},
+					{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'100%'}]"></div>
+						</div>
+					</fieldset>
+					<fieldset class="ui-profile-field">
+						<div class="ui-tele-field" style="margin-top: 8px">
+							<div isEditor="true" editorLabel="Comments:"
+								pathFields="assigningOrganization" tagName="desc" dataType="ED"
+								editorType="EDTextarea" idSuffix="3"
+								configParams="[{name:'width',value:'99%'}]"></div>
+						</div>
+					</fieldset>
+				</div>
+
+
+			</div>
+
+		</div>
+
+	</div>
+</form>

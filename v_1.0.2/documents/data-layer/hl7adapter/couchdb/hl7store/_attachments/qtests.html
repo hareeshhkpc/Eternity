@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>QUnit Test Suite</title>
+	<link rel="stylesheet" href="script/qunit/qunit.css">
+<script src="script/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="script/xml2json.js"></script>
+<script type="text/javascript" src="script/json2xml.js"></script>
+<script src="script/lawnchair/Lawnchair.js" type="text/javascript"></script>
+<script src="script/lawnchair/adapters/webkit-sqlite.js"></script>
+<script src="script/lawnchair/adapters/dom.js"></script>
+<script src="script/hl7adapter.js" type="text/javascript"></script>
+<script src="script/hl7adapter.unit.js" type="text/javascript"></script>
+	<script src="script/qunit/qunit.js"></script>
+
+    <script type="text/javascript">
+        module("API tests");
+        asyncTest("Meta data functions",24, new testMeta().run);
+        asyncTest("Message functions",20, new testMessage().run);
+        asyncTest("Message value",4, new testSmoValue().run);
+        asyncTest("Loading and validation",2, new testLoadAndValidate().run);
+        asyncTest("Loading and saving",6, new testLoadAndSave().run);
+        asyncTest("Sync Meta data",2, new testSyncMeta().run);
+        asyncTest("Sync Message data",6, new testSyncMessages().run);
+        asyncTest("Testing autosave",4, new testAutoSave().run);
+        asyncTest("Deleting",4, new testDeleteDocument().run);
+        asyncTest("Mandatory Tags",5, new testMandatoryTags().run);
+        asyncTest("Validation",9, new testValidation().run);
+        asyncTest("Static Content",3, new testStatic().run);
+        asyncTest("Dynamic Content",8, new testDynamic().run);
+
+
+
+    </script>
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="qunit-fixture">test markup</div>
+</body>
+</html>

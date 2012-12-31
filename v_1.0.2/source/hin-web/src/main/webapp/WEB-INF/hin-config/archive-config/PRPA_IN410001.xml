@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repository-config>
+	<column-family name="PRPA_IN410001" type="STANDARD">
+		 <row-key name="ROWKEY" xpath="//id[1]/@root" variable="" type="SINGLE" /> 
+		 <column name="MESSAGE" xpath="" variable="MESSAGE" />			
+	</column-family>
+	<indexes>
+		<index name="INDEX1"  type="STANDARD"> <!-- column family name is artifactID_INDEX1 -->
+			<row-key name="ROWKEY" type="COMPOSITE" separator="_"><!-- COMPOSITE -->
+				<key xpath="" variable="ORGANIZATION_ID" />
+				<key xpath="//id[1]/@root" variable="" />
+				<key xpath="" variable="PROFILE_ID" />
+			</row-key>				
+			<column name="MESSAGE" xpath="" variable="MESSAGE" />			
+		</index>
+		<index name="INDEX2"  type="STANDARD">
+			<row-key name="ROWKEY" xpath="//id[1]/@root" variable="" type="SINGLE" separator=""/><!-- SINGLE -->
+			<column name="MESSAGE" xpath="" variable="MESSAGE" />			
+		</index>
+		<index name="BYPROFILEID"  type="SUPER">
+			<row-key name="ROWKEY" xpath="//id[1]/@root" variable="" type="SINGLE" separator="_"/><!-- SINGLE -->
+			<column name="MESSAGE_TYPE" xpath="" variable="MESSAGE" />			
+		</index>
+		
+	</indexes>
+</repository-config>

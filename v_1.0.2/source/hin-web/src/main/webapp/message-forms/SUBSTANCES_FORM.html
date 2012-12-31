@@ -1,0 +1,80 @@
+ <script>
+	$(document).ready(function() {
+		var doseStrength = "1";
+		var howStr = "1"
+		createChart(100, 100);
+		$("#pNdose").keyup(function() {
+			doseStrength = $("#pNdose").val();
+			value = (100 - (doseStrength * 0.085));
+			createChart(value, 100);
+		});
+		$("#pNhowOften").keyup(function() {
+			howStr = $("#pNhowOften").val();
+			value1 = (100 - (doseStrength * 0.085 * howStr));
+			createChart(value, value1);
+		});
+
+		function createChart(dose, strength) {
+			var xmlNode = XmlUtil.loadXml("charts/SubstanceGraph.xml");
+			var pathNode = "m 50," + dose + " 130,0";
+			var pathNode1 = "m 180," + strength + " 130,0";
+			var pathNode2 = "m 310," + strength + " 130,0";
+
+			var subNode = XmlUtil.find(xmlNode, "id", "yminId");
+			XmlUtil.attr(subNode, "d", pathNode);
+
+			var subNode1 = XmlUtil.find(xmlNode, "id", "yminId1");
+			XmlUtil.attr(subNode1, "d", pathNode1);
+
+			var subNode2 = XmlUtil.find(xmlNode, "id", "yminId2");
+			XmlUtil.attr(subNode2, "d", pathNode2);
+
+			var rectNode1 = XmlUtil.find(xmlNode, "id", "rect1");
+			XmlUtil.attr(rectNode1, "y", dose);
+			XmlUtil.attr(rectNode1, "height", 100 - dose);
+
+			var rectNode2 = XmlUtil.find(xmlNode, "id", "rect2");
+			XmlUtil.attr(rectNode2, "y", strength);
+			XmlUtil.attr(rectNode2, "height", 100 - strength);
+
+			var rectNode3 = XmlUtil.find(xmlNode, "id", "rect3");
+			XmlUtil.attr(rectNode3, "y", strength);
+			XmlUtil.attr(rectNode3, "height", 100 - strength);
+
+			var scaleNode2 = XmlUtil.find(xmlNode, "id", "label1");
+			XmlUtil.attr(scaleNode2, "y", dose - 5);
+			XmlUtil.text(scaleNode2, doseStrength + ' MG');
+
+			var scaleNode1 = XmlUtil.find(xmlNode, "id", "label2");
+			XmlUtil.attr(scaleNode1, "y", strength - 5);
+
+			var scaleNode3 = XmlUtil.find(xmlNode, "id", "label3");
+			XmlUtil.attr(scaleNode3, "y", strength - 5);
+			XmlUtil.text(scaleNode1, howStr * doseStrength + ' MG');
+			$('#substanceGraph').html(XmlUtil.xmlToString(xmlNode));
+		}
+		;
+	});
+</script>
+
+<div parentDiv="true" id="substance">
+	<div class="ui-mentor-dose-label">Dose</div>
+	<div isEditor="true" class="ui-mentor-dose-textbox" type="text" id="pNdose" value="" pathFields="" tagName="code" fields="" dataType="CE"dataField="true" editorType="CEInplace">
+	</div>
+
+
+	<div class="ui-mentor-how-label">How Often</div>
+	<div isEditor="true" class="ui-mentor-dose-textbox" type="text" id="pNhowOften" value="" pathFields="" tagName="doseQuantity" fields="" dataType="CE" dataField="true" editorType="CEInplace">
+	</div>
+
+	<div class="ui-mentor-when-label">When To Take</div>
+	<div isEditor="true" class="ui-mentor-dose-textbox" type="text" id="pNwhenToTake" value="" pathFields="" tagName="priorityCode" fields="" dataType="CE" dataField="true" editorType="CEInplace">
+		<!-- <input type="text" id="pNdose" value="" pathFields="" tagName="code" fields="pNdose" dataType="CE" dataField="true" /> -->
+	</div>
+
+	<!-- <div style=width:100%>
+	<div class="ui-graph" id="substanceGraph">
+	</div>
+	 <div><img src="images/supply.png"></div> -->
+
+</div>

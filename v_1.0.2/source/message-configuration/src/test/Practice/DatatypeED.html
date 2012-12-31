@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="jquery-1.6.4.js"></script>
+		<script type="text/javascript" src="jquery.xml.js"></script>
+		<script type="text/javascript" src="DataTypeAPI.js"></script>
+		<script type="text/javascript">
+			var xml = null;
+			function EDtestGetValue(){
+				xml = EDgetValues('ided','pfId');
+			}
+			function EDtestSetValue(){
+				EDsetValue('ided', xml);
+			}
+			function EDtestDisplayForTel(){
+				$("#DivForTEL").load("DatatypeTEL.html");
+			}
+			function EDtestDisplayForThumb(){
+				$("#DivForThumb").load("DatatypeThumbnail.html");
+			}
+			
+			function EDcloseDiv(datatype){
+				 if(datatype == 'TEL'){
+				$("#DivForTEL").hide();
+				$("#tel").hide();
+				}
+				if(datatype == 'Thumbnail'){
+					$("#DivForThumb").hide();
+					$("#thumb").hide();			
+				} 
+			}
+		</script>
+	</head>
+	<body>
+		<form>
+			<fieldset>
+				representation: <input type="text" id="ided1"/> <br/>
+				
+				reference: <a href="#" onclick="EDtestDisplayForTel();">TEL</a> <br/>
+				<div id="DivForTEL"></div>
+				<input type="button"  value="closeDivTEL" onclick="EDcloseDiv('TEL');" id="tel"/>
+				
+				thumbnail: <a href="#" onclick="EDtestDisplayForThumb();">thumbnail</a> <br/>
+				<div id="DivForThumb"></div>
+				<input type="button"  value="closeDivThumbnail" onclick="EDcloseDiv('Thumbnail');" id="thumb"/>	
+			 				
+				mediaType:  <input type="text" id="ided2"/>  <br/>
+				language:   <input type="text" id="ided3"/>  <br/>
+				compression:<input type="text" id="ided4"/>  <br/>
+				integrityCheck:	<input type="text" id="ided5"/>  <br/>
+				integrityCheckAlgorithm:	<input type="text" id="ided6"/> <br/>
+
+				<input type="button"  value="getValue" onclick="EDtestGetValue();"/>
+				<input type="button"  value="clearValue" onclick="EDclearValues('ided');"/>
+				<input type="button"  value="setValue" onclick="EDtestSetValue();"/> 
+			</fieldset>
+	 		</form>	
+	</body>
+</html>

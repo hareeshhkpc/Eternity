@@ -1,0 +1,33 @@
+<message config="PRPA_IN203000HT04">
+	<PRPA_IN203000HT04>
+		<subject>
+			<subsumedBy>
+				<subsumingPerson>
+					<!-- <id root="44444" extension="3333333" />
+					<name>aaaaaaaa</name>
+					<birthTime value="55555555" /> -->
+					<name>
+						<prefix>mr</prefix>
+						<family>bbbb</family>
+						<given>ccc</given>
+						<suffix>ddd</suffix>
+					</name>
+					<statusCode code="eee"/>
+					<telecom use="fff"/>
+					 <addr>
+					 	<country>ggg</country>
+					 	<state>hhh</state>
+					 	<city>iii</city>
+					 	<houseNumber>jjj</houseNumber>
+					 	<streetName>kkk</streetName>
+					 	<postalCode>lll</postalCode>
+					 </addr>
+					 <birthTime value="mmm"/>
+					 <maritalStatusCode code="single"/>
+					 <administrativeGenderCode code="male"/>
+					 <religiousAffiliationCode code="hindu"/>
+				</subsumingPerson>
+			</subsumedBy>
+		</subject>
+	</PRPA_IN203000HT04>
+</message>

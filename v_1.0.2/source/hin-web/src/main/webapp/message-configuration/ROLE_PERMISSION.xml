@@ -1,0 +1,109 @@
+<HL7MessageConfiguration configType="MESSAGE">
+  <MetaInfo artifactID="ROLE_PERMISSION" createdDate="2012-07-16 07:55:02.889 UTC" entryPoint="COCT_MT410002HT03.EmploymentStaff" description="Role permission message" configType="META_INFO"/>
+  <IndexConfiguration indexName="ROLE_PERMISSION_Index">
+    <Field name="messageId" indexed="true" xpath="//ROLE_PERMISSION/id[root='HIN_MSG_ID']/extension" analyzed="false" dataType="STRING"/>
+    <Field name="documentId" indexed="true" xpath="//ROLE_PERMISSION/id[root='HIN_DOC_ID']/extension" dataType="STRING"/>
+    <Field name="subscriberId" indexed="true" xpath="//ROLE_PERMISSION/id[root='SUBSCRIBER_ID']/extension" analyzed="false" dataType="STRING"/>
+    <Field name="roleName" indexed="true" xpath="//ROLE_PERMISSION/id[root='ROLE_NAME']/extension" dataType="STRING"/>
+    <Field name="providerOrganization" indexed="true" xpath="//ROLE_PERMISSION/providerOrganization/id[root='SUBSCRIBER_ID']/extension" dataType="STRING"/>
+    <Field name="programId" indexed="true" xpath="//ROLE_PERMISSION/id[root=&apos;PROGRAM_ID&apos;]/extension" analyzed="false"/>    
+    <Field name="messageTitle" indexed="true" xpath="//ROLE_PERMISSION/id[root=&apos;MSG_TITLE&apos;]/extension" analyzed="true"/>
+    <Field name="organizationId" indexed="true" xpath="//ROLE_PERMISSION/id[root=&apos;ORGANIZATION_ID&apos;]/extension" analyzed="false"/>
+  </IndexConfiguration>
+  <ArchiveConfiguration columnFamilyName="ROLE_PERMISSION">
+    <Field name="messageId" indexed="true" xpath="//ROLE_PERMISSION/id[root='HIN_MSG_ID']/extension" type="ROWKEY"/>
+    <Field name="documentId" indexed="true" xpath="//ROLE_PERMISSION/id[root='HIN_DOC_ID']/extension" type="COLUMN"/>
+    <Field name="subscriberId" indexed="true" xpath="//ROLE_PERMISSION/id[root='SUBSCRIBER_ID']/extension" type="COLUMN" analyzed="false" />
+    <Field name="assignedOrgId" indexed="true" xpath="//ROLE_PERMISSION/providerOrganization/id[root='SUBSCRIBER_ID']/extension" type="COLUMN"/>
+    <Field name="roleName" indexed="true" xpath="//ROLE_PERMISSION/id[root='ROLE_NAME']/extension" type="COLUMN"/>
+    <Field name="providerOrganization" indexed="true" xpath="//ROLE_PERMISSION/providerOrganization/id[root='SUBSCRIBER_ID']/extension" type="COLUMN" analyzed="false" />
+    <Field name="programId" indexed="true" xpath="//ROLE_PERMISSION/id[root=&apos;PROGRAM_ID&apos;]/extension" type="COLUMN"/>
+	<Field name="messageTitle" indexed="true" xpath="//ROLE_PERMISSION/id[root=&apos;MSG_TITLE&apos;]/extension" type="COLUMN"/>
+  </ArchiveConfiguration>
+  <WorkFlowDefinition id="id">
+    <name>Workflow Configuration For: ROLE_PERMISSION</name>
+    <start g="20,20,48,48">
+      <transition name="true" to="Save"/>
+    </start>
+    <task name="Save">
+      <transition name="Save" to="Save"/>
+    </task>
+  </WorkFlowDefinition>
+  <Class rimType="ROLE" configType="CLASS" tagName="ROLE_PERMISSION" type="COCT_MT410002HT03.EmploymentStaff">
+  	<Field tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD">
+    	<ControlParameters>
+    		<Param name="root.value" value="SUBSCRIBER_ID"/>
+    		<Param name="root.visible" value="false"/>
+    		<Param name="extension.visible" value="false"/>
+    		<Param name="assigningAuthorityName.value" value="HIN"/>
+    		<Param name="assigningAuthorityName.visible" value="false"/>
+    	</ControlParameters>
+    </Field>
+<!--
+	<Field tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD">
+    	<ControlParameters>
+    		<Param name="visible" value="false"/>
+    		<Param name="root.value" value="ROLE_NAME"/>
+    		<Param name="extension.value" value="USER"/>
+    		<Param name="assigningAuthorityName.value" value="HIN"/>
+    	</ControlParameters>
+    </Field>
+    <Field tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD">
+    	<ControlParameters>
+    		<Param name="visible" value="false"/>
+    		<Param name="root.value" value="HIN_MSG_ID"/>
+    		<Param name="root.visible" value="false"/>
+    		<Param name="assigningAuthorityName.value" value="HIN"/>
+    		<Param name="assigningAuthorityName.visible" value="false"/>
+    	</ControlParameters>
+    </Field>
+     <Field tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1" configType="FIELD">
+    	<ControlParameters>
+    		<Param name="root.label" value="Document No"/>
+    		<Param name="root.value" value="HIN_DOC_ID"/>
+    		<Param name="root.readOnly" value="true"/>
+    		<Param name="extension.label" value="No"/>
+    		<Param name="assigningAuthorityName.label" value="Assigned By"/>
+    		<Param name="assigningAuthorityName.value" value="HIN"/>
+    		<Param name="assigningAuthorityName.readOnly" value="true"/>
+    	</ControlParameters>
+    </Field> -->
+    
+    <Class rimType="ENTITY" configType="CLASS" tagName="permission" minOccurs="0" maxOccurs="-1">
+    	<Field tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD">
+      	<ControlParameters>
+      		<Param name="visible" value="false"/>
+    		<Param name="root.value" value="CALENDAR"/>
+    		<Param name="extension.value" value="1"/>
+    		<Param name="assigningAuthorityName.value" value="HIN"/>
+    	</ControlParameters>
+      </Field>
+    </Class>
+   <!--  <Class rimType="ENTITY" configType="CLASS" tagName="permission" minOccurs="0" maxOccurs="-1">
+    	<Field tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD">
+      	<ControlParameters>
+    		<Param name="visible" value="false"/>
+    		<Param name="root.value" value="ARCHIVE"/>
+    		<Param name="extension.value" value="0"/>
+    		<Param name="assigningAuthorityName.value" value="HIN"/>
+    	</ControlParameters>
+      </Field>
+    </Class> -->
+    
+    <Field tagName="statusCode" type="CS" label="Status Code" displayOrder="3" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+    <Field tagName="effectiveTime" type="IVL_TS" label="Effective Time" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+    <Class rimType="ENTITY" configType="CLASS" tagName="providerOrganization" type="COCT_MT150000HT04.Organization" label="Provider Organization" displayOrder="8" minOccurs="0" maxOccurs="1">
+    	<Field tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD">
+      	<ControlParameters>
+    		<Param name="root.value" value="SUBSCRIBER_ID"/>
+    		<Param name="root.visible" value="false"/>
+    		<Param name="extension.visible" value="false"/>
+    		<Param name="assigningAuthorityName.visiblel" value="false"/>
+    		<Param name="assigningAuthorityName.value" value="HIN"/>
+    	</ControlParameters>
+      </Field>
+      <Field tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1" configType="FIELD"/>
+      <Field tagName="name" type="ON" label="Name" displayOrder="0" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

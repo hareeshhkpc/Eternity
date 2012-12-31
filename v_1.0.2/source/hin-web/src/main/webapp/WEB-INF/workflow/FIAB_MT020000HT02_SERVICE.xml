@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WorkFlowDefinition id="1" version="1.0">
+    <name>New Patient Registration</name>
+  <start g="20,20,48,48">
+    <transition name="true" to="Save" />
+  </start>
+    <task name="Save" >
+       		 <privacy>
+					<Role></Role>
+        			<Location></Location>
+                    <OrgStructure></OrgStructure>
+   			 </privacy>
+   			 <Timer></Timer>
+      		 <transition name="Save" to="Save" />
+  	</task>			
+  	<task name="Forward" >
+       		 <privacy>
+        			<Location></Location>
+       			    <Role></Role>
+                    <OrgStructure></OrgStructure>
+   			 </privacy>
+   			 <Timer></Timer>
+  	</task>	
+  	<task name="Complete" >
+       		 <privacy>
+        			<Location></Location>
+       			    <Role></Role>
+                    <OrgStructure></OrgStructure>
+   			 </privacy>
+   			 <Timer></Timer>
+  	</task>	
+ </WorkFlowDefinition>  

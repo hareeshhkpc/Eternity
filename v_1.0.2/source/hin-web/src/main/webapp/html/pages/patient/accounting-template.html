@@ -1,0 +1,240 @@
+<!-- <script type="text/javascript">
+	$(document).ready(function() {
+		$('#sub-head').hide();
+		$('#sub-head1').hide();
+		$('#sub-head2').hide();
+		$('#test1').hide();
+		$('#inner-sub-head').hide();
+		$('#inner-sub-head1').hide();
+		$('#inner-sub-head2').hide();
+		$('#inner-sub-head3').hide();
+		$('#inner-form').hide();
+		$('#main-head').click(function() {
+			$('#sub-head').slideToggle('slow');
+		});
+		$('#main-head1').click(function() {
+			$('#sub-head1').slideToggle('slow');
+		});
+		$('#inner-main-head').click(function() {
+			$('#inner-sub-head').slideToggle('slow');
+		});
+		$('#inner-main-head1').click(function() {
+			$('#inner-sub-head1').slideToggle('slow');
+		});
+		$('#inner-main-head2').click(function() {
+			$('#inner-sub-head2').slideToggle('slow');
+		});
+		$('#inner-main-head3').click(function() {
+			$('#inner-sub-head3').slideToggle('slow');
+		});
+		
+		$('#main-head2').click(function() {
+			$('#sub-head2').slideToggle('slow');
+		});
+		$('#inner-form-head').click(function() {
+			$('#inner-form').slideToggle('slow');
+		});
+		
+	});	
+</script> -->
+<div data-role="header" data-theme="v" data-backBtn="true"
+	class="header_bg">
+	<fieldset class="ui-header-text ui-grid-b">
+		<div class="ui-header-left-text ui-block-a">Glen Carroll</div>
+		<div class="ui-header-left-text ui-block-b">Ms Melissa Blair - Reception at Dubai Clinic</div>
+		<div class="ui-header-right-text ui-block-c" style="width: 28%;">Logout</div>
+	</fieldset>
+</div>
+<div data-role="none" data-theme="v">
+	<fieldset class="ui-form-header ui-grid-a">
+		<div class="ui-block-a">
+			<div class="form-header-name">Form Name</div>
+		</div>
+		<div class="ui-block-b" id="navigation"></div>
+	</fieldset>
+</div>
+
+<div data-role="content">
+
+	<div class="left-side-bg left-side-content ui-round-corner"
+		style="width: 1325px;">
+	
+		<div id="form">
+			<div class="ui-left-top">
+				<div class="inner-left" id="processLeftNavigation">
+					<div class="ui-nav nav-current">
+						<div class="rotate-text processnav">Registration</div>
+					</div>
+				</div>
+				<div class="inner-right" id="processNavigation" style="width: 85%;">
+					<div id="Registration" class="ui-box current process "
+						style="display: none;">
+						<div class="ui-box-spacing">Record Basic Information</div>
+						<div class="ui-box-spacing ">PRPA_IN203000HT04 [ 1 ]</div>
+					</div>
+					
+					
+					<div class="inner-right-form ui-header-corner-top">
+						<div class="header_bg ui-header-corner-top ui-page-header-text">
+							Record Basic Information
+						</div>		
+							<div class="ui-inner-display-box ui-header-corner-top">
+																
+								<div id="sub-head1" style="position:relative;left:5px;width:100%;">
+									<!-- <div id="inner-main-head" class="ui-inner-display-box ui-inner-box-border">							
+										<div class="ui-sub-header-bg ui-page-header-text ui-inner-box-border">
+										Services									
+										</div>				
+									</div> -->
+									<div class="ui-sub-header-bg ui-page-header-text ui-inner-box-border">
+										Services									
+									</div>
+										
+									
+									 <fieldset class="ui-grid-c ui-accounting-box">
+										<div class="ui-block-a ui-accounting-fieldhead" style="width:13.9%">Date</div>
+										<div class="ui-block-b ui-accounting-fieldhead ui-accounting-position" style="width:32%">Service</div>
+										<div class="ui-block-c ui-accounting-fieldhead ui-accounting-position" style="width:32.3%">Consultant</div>
+										<div class="ui-block-d ui-accounting-fieldhead ui-accounting-position" style="width:14.2%">Amount</div>
+										<div class="ui-block-e ui-add-icon"><img src="images/add.png" /></div>	
+									</fieldset> 
+									<fieldset class="ui-grid-c ui-accounting-box">
+										<div class="ui-block-a ui-accounting-field" style="width:13.9%">4 May 2012</div>
+										<div class="ui-block-b ui-accounting-field ui-accounting-position" style="width:32%">Biospace Diagnostic Test</div>
+										<div class="ui-block-c ui-accounting-field ui-accounting-position" style="width:32.3%">Dr Graham Simpson</div>
+										<div class="ui-block-d ui-accounting-field ui-accounting-align ui-accounting-position" style="width:14.2%">1100.00</div>
+										<div class="ui-block-e ui-add-icon"><img src="images/delete.png" /></div>
+									</fieldset>
+									<fieldset class="ui-grid-c ui-accounting-box">
+										<div class="ui-block-a ui-accounting-fieldrow" style="width:13.9%">4 May 2012</div>
+										<div class="ui-block-b ui-accounting-fieldrow ui-accounting-position" style="width:32%">Biospace Diagnostic Test</div>
+										<div class="ui-block-c ui-accounting-fieldrow ui-accounting-position" style="width:32.3%">Dr Graham Simpson</div>
+										<div class="ui-block-d ui-accounting-field ui-accounting-align ui-accounting-position" style="width:14.2%">2000.00</div>
+										<div class="ui-block-e ui-add-icon"><img src="images/delete.png" /></div>
+									</fieldset>
+									<fieldset class="ui-grid-c ui-accounting-box">
+										<div class="ui-block-a ui-accounting-fieldrow" style="width:13.9%">4 May 2012</div>
+										<div class="ui-block-b ui-accounting-fieldrow ui-accounting-position" style="width:32%">Biospace Diagnostic Test</div>
+										<div class="ui-block-c ui-accounting-fieldrow ui-accounting-position" style="width:32.3%">Dr Graham Simpson</div>
+										<div class="ui-block-d ui-accounting-field ui-accounting-align ui-accounting-position" style="width:14.2%">400.00</div>
+										<div class="ui-block-e ui-add-icon"><img src="images/delete.png" /></div>
+									</fieldset>
+									<fieldset class="ui-grid-b ui-accounting-box ui-accounting-total">
+										<div class="ui-block-a" style="padding:5px;width:13.9%"></div>
+										<div class="ui-block-b" style="padding:5px;width:32%"></div>
+										<div class="ui-block-c ui-accounting-align" style="padding:5px;width:32.5%">Total</div>
+										<div class="ui-block-d ui-accounting-total-field" style="width:14.2%">400.00</div>
+									</fieldset>
+								</div>
+									
+								<!-- <table summary="This table includes examples of as many table elements as possible">
+										<caption>An example table</caption>
+										<colgroup>
+											<col class="colA">
+											<col class="colB">
+											<col class="colC">
+			                                <col class="colD">
+										</colgroup>
+										<thead>
+											<tr>
+												<th class="table-head" colspan="3">Table heading</th>
+											</tr>
+											<tr>
+												<th>Column 1</th>
+												<th>Column 2</th>
+												<th class="currency">Column 3</th>
+												<th>Column 4</th>
+											</tr>
+										</thead>
+										<tfoot>
+											<tr>
+												<th>Subtotal</th>
+												<td></td>
+												<th class="currency">$500.00</th>										
+											</tr>
+											<tr class="total">
+												<th>Total</th>
+												<td></td>
+												<th class="currency">$500.00</th>
+											</tr>
+										</tfoot>
+										<tbody>
+											<tr class="odd">
+												<th>Lorem ipsum</th>
+												<td>Dolor sit</td>
+												<td class="currency">$125.00</td>
+											</tr>
+											<tr>
+												<th>Dolor sit</th>
+												<td>Nostrud exerci</td>
+												<td class="currency">$75.00</td>
+											</tr>
+											<tr class="odd">
+												<th>Nostrud exerci</th>
+												<td>Lorem ipsum</td>
+												<td class="currency">$200.00</td>
+											</tr>
+											<tr>
+												<th>Lorem ipsum</th>
+												<td>Dolor sit</td>
+												<td class="currency">$64.00</td>
+											</tr>
+											<tr class="odd">
+												<th>Dolor sit</th>
+												<td>Nostrud exerci</td>
+												<td class="currency">$36.00</td>
+											</tr>
+										</tbody>
+									</table> -->
+								
+							</div>
+					</div>
+				</div>
+				<div class="inner-right-corner home-icon-link"></div>
+			</div>
+	
+			<div class="ui-left-bottom">
+				<div class="ui-end-btn">
+					<input type="button" value="Terminate Process"
+							class="ui-btn-hidden" aria-disabled="false">					
+				</div>
+			</div>
+		</div>
+		<div style="display: none" id="formActions">
+			<div data-theme="d"
+				class="ui-btn ui-btn-up-d ui-btn-corner-all ui-shadow"
+				aria-disabled="false">
+				<span class="ui-btn-inner ui-btn-corner-all"><span
+					class="ui-btn-text">Save</span>
+				</span><input type="button" value="Save" id="savePatient"
+					class="ui-btn-hidden" aria-disabled="false">
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

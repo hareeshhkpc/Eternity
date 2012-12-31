@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newPatientRegistration>
+<WorkFlowDefinition version="1.0">
+<WorkFlowName></WorkFlowName>
+<WorkFlowId></WorkFlowId>
+<Group>
+    <name>Measure</name>
+	<Timer></Timer>
+	 <Privacy>
+        <Location></Location>
+        <Role></Role>
+        <OrgStructure></OrgStructure>
+    </Privacy>
+				<Step id="1" name="Registrartion" >
+				    <Name>History</Name>
+				    <Description>
+							Record Basic Information
+				    </Description>
+				    <MessageType>
+				        <Message></Message>
+				         <transition name="true" to="2"/>
+     					 <transition name="false" to="3"/>
+				    </MessageType>
+				    <State></State>
+				</Step>
+				<Step id="2" name="Appointment Scheduling"  >
+				    <Name>Examination</Name>
+				    <Description>
+						      Schedule Appointment
+				    </Description>
+				    <MessageType>
+				        <Message></Message>
+				        <transition name="true" to="1"/>
+     					<transition name="false" to="3"/>
+				    </MessageType>
+				    <State></State>
+				</Step>
+</Group>
+<Group>
+    <Name>Mentor</Name>
+    <Privacy>
+        <Location></Location>
+        <Role></Role>
+        <OrgStructure></OrgStructure>
+    </Privacy>
+   	<Step id="3" name="Welcome and BookingConfirmation" >
+	    <Description>
+		        Welcome and BookingConfirmation
+	    </Description>
+	 	<Timer> 
+	    </Timer>
+	    <MessageType>
+				 <Message></Message>
+	    </MessageType>
+	    <State></State>
+	</Step>
+</Group>
+  </newPatientRegistration>  

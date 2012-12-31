@@ -1,0 +1,58 @@
+<HL7MessageConfiguration>
+  <MetaInfo artifactID="LICENSEE" createdDate="2012-07-25 18:32:31.921 UTC" entryPoint="COCT_MT150000HT04.Organization" description="Organization Registration Message"/>
+  <IndexConfiguration indexName="LICENSEE">
+    <Field name="subscriberId" indexed="true" xpath="//LICENSEE/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="false"/>
+    <Field name="messageId" indexed="true" xpath="//LICENSEE/id[root=&apos;HIN_MSG_ID&apos;]/extension" analyzed="false"/>
+    <Field name="licenseType" indexed="true" xpath="//LICENSEE/licenseType/code/displayName" analyzed="true"/>
+    <Field name="licenseExpiry" indexed="true" xpath="//LICENSEE/licenseExpiry/expiryDate/value" analyzed="true"/>
+    <Field name="status" indexed="true" xpath="//LICENSEE/licenseType/code/displayName" analyzed="false"/>
+    <Field name="messageTitle" indexed="true" xpath="//LICENSEE/id[root=&apos;MSG_TITLE&apos;]/extension" analyzed="true"/>
+  </IndexConfiguration>
+  <ArchiveConfiguration columnFamilyName="LICENSEE">
+  	<Field name="subscriberId" indexed="true" xpath="//LICENSEE/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="ROWKEY"/>
+    <Field name="messageId" indexed="true" xpath="//LICENSEE/id[root=&apos;HIN_MSG_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="licenseType" indexed="true" xpath="//LICENSEE/licenseType/code/displayName" type="COLUMN"/>
+    <Field name="licenseExpiry" indexed="true" xpath="//LICENSEE/licenseExpiry/expiryDate/value" type="COLUMN"/>
+    <Field name="status" indexed="true" xpath="//LICENSEE/licenseType/code/displayName" type="COLUMN"/>
+	<Field name="messageTitle" indexed="true" xpath="//LICENSEE/id[root=&apos;MSG_TITLE&apos;]/extension" type="COLUMN"/>
+  </ArchiveConfiguration>
+  <WorkFlowDefinition id="id">
+    <name>Workflow Configuration For: LICENSEE</name>
+    <start g="20,20,48,48">
+      <transition name="true" to="Save"/>
+    </start>
+    <task name="Save">
+      <transition name="Save" to="Save"/>
+    </task>
+  </WorkFlowDefinition>
+  <Class rimType="ROLE" tagName="LICENSEE" type="COCT_MT150000HT04.Organization">
+  	<Field tagName="id" type="II" inputControl="II" label="ID" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+  	<Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="1" minOccurs="1" maxOccurs="-1"/>
+  	<Field tagName="desc" type="ED" inputControl="ED" label="Desc" displayOrder="2" minOccurs="1" maxOccurs="-1"/>
+  	<Field tagName="code" type="CE" inputControl="CE" label="Code" displayOrder="3" minOccurs="1" maxOccurs="-1"/>
+    <Class rimType="ROLE" tagName="licenseType" type="COCT_MT150000HT04.ContactParty" label="Contact Party" displayOrder="5" minOccurs="0" maxOccurs="-1">
+      <Field tagName="code" type="CD" inputControl="CD" label="licenseType" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+    </Class>
+    <Class rimType="ROLE" tagName="emailProductContent" type="COCT_MT150000HT04.ContactParty" label="Contact Party" displayOrder="5" minOccurs="0" maxOccurs="-1">
+    	<Field tagName="desc" type="ED" inputControl="ED" label="Desc" displayOrder="2" minOccurs="1" maxOccurs="-1"/>
+    </Class>
+    <Class rimType="ROLE" tagName="serviceDiscount" type="COCT_MT150000HT04.ContactParty" label="Contact Party" displayOrder="5" minOccurs="0" maxOccurs="-1">
+      <Field tagName="code" type="CD" inputControl="CD" label="serviceDiscount" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+    </Class>
+    <Class rimType="ROLE" tagName="productDiscount" type="COCT_MT150000HT04.ContactParty" label="Contact Party" displayOrder="5" minOccurs="0" maxOccurs="-1">
+      <Field tagName="code" type="CD" inputControl="CD" label="productDiscount" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+    </Class>
+    <Class rimType="ROLE" tagName="productCommission" type="COCT_MT150000HT04.ContactParty" label="Contact Party" displayOrder="5" minOccurs="0" maxOccurs="-1">
+      <Field tagName="code" type="CD" inputControl="CD" label="productCommission" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+    </Class>
+    <Class rimType="ROLE" tagName="licenseExpiry" type="COCT_MT150000HT04.ContactParty" label="Contact Party" displayOrder="5" minOccurs="0" maxOccurs="-1">
+      <Field tagName="expiryDate" type="TS" inputControl="TS" label="licenseExpiry" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+    </Class>
+    <Class rimType="ROLE" tagName="status" type="COCT_MT150000HT04.ContactParty" label="Contact Party" displayOrder="5" minOccurs="0" maxOccurs="-1">
+      <Field tagName="code" type="CE" inputControl="CE" label="status" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+    </Class>
+    <Class rimType="ROLE" tagName="currency" type="COCT_MT150000HT04.ContactParty" label="Contact Party" displayOrder="5" minOccurs="0" maxOccurs="-1">
+      <Field tagName="code" type="CE" inputControl="CE" label="currency" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

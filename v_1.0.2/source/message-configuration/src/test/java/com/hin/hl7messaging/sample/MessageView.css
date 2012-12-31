@@ -1,0 +1,63 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	font-family: sans-serif;
+	font-size: small;
+}
+
+.objectContainer {
+	border-style: solid;
+	border-width: thin;
+	border-color: purple;
+}
+
+.objectHeader {
+	background-color: lavender;
+	color: black;
+	font-weight: bold;
+	height: 15px;
+	width: 100%;
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	border-bottom-color: purple;
+}
+
+.objectBody {
+	padding: 3px;
+	
+}
+
+
+.objectProperty {
+	padding-top: 3px;
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-bottom-width: thin;
+	border-right-width: thin;
+	border-left-width: thin;
+	/* border-bottom-color: red; */
+	
+}
+
+.objectHeader1 {
+	background-color: lavender;
+	color: black;
+	font-weight: bold;
+	height: 20px;
+	width: 100%;
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	border-bottom-color: black;
+}
+
+label{
+	
+	font-weight: bold;
+	font-size: 13;
+	text-decoration:underline;
+	
+}
+
+
+

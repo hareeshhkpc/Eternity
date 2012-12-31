@@ -1,0 +1,78 @@
+<HL7MessageConfiguration configType="MESSAGE">
+  <MetaInfo artifactID="POCD_MT000040HT01">
+    <selected>false</selected>
+    <configType>META_INFO</configType>
+  </MetaInfo>
+  <Class tagName="POCD_MT000040HT01" type="POCD_MT000040HT01.ClinicalDocument" minOccurs="1" maxOccurs="1">
+    <Class tagName="component" type="POCD_MT000040HT01.Component1" minOccurs="1" maxOccurs="1">
+      <Class tagName="structuredBody" type="POCD_MT000040HT01.StructuredBody" minOccurs="1" maxOccurs="1">
+      	<Class tagName="component" type="POCD_MT000040HT01.Component2" minOccurs="1" maxOccurs="unbounded">
+      	
+      		<!-- Section in Questionnaire -->
+      		<Class label="PERSONAL HEALTH HISTORY" tagName="section" type="POCD_MT000040HT01.Section" minOccurs="1" maxOccurs="unbounded">
+      			<Class tagName="entry" type="POCD_MT000040HT01.Entry" minOccurs="0" maxOccurs="unbounded">      				
+      				<!-- Question in Questionnair -->
+      				<Class tagName="observation" type="POCD_MT000040HT01.Observation" minOccurs="1" maxOccurs="1">
+      				
+      					<!-- Question -->
+      					<Field label="Childhood illness" tagName="code" type="CD" minOccurs="1" maxOccurs="1"/>
+      					<!-- Options -->
+      					<Field tagName="value" type="CE" minOccurs="0" maxOccurs="1">
+      						<translation code="Measles">
+      							<originalText>selected</originalText>
+      						</translation>
+      						<translation code="Mumps" />
+      						<translation code="Rubella">
+      							<originalText>selected</originalText>
+      						</translation>
+      					</Field>
+      				</Class>
+      			</Class>
+      			<Class tagName="entry" type="POCD_MT000040HT01.Entry" minOccurs="0" maxOccurs="unbounded">      				
+      				<!-- Question in Questionnair -->
+      				<Class tagName="observation" type="POCD_MT000040HT01.Observation" minOccurs="1" maxOccurs="1">
+      				
+      					<!-- Question -->
+      					<Field tagName="code" type="CD" minOccurs="1" maxOccurs="1">
+      						
+      					</Field>
+      					<!-- Options -->
+      					<Field tagName="value" type="ANY" minOccurs="0" maxOccurs="1">
+      					</Field>
+      				</Class>
+      			</Class>
+      		</Class>
+      		<!-- Section in Questionnaire -->
+      		<Class tagName="section" type="POCD_MT000040HT01.Section" minOccurs="1" maxOccurs="unbounded">
+      			<Class tagName="entry" type="POCD_MT000040HT01.Entry" minOccurs="0" maxOccurs="unbounded">      				
+      				<!-- Question in Questionnair -->
+      				<Class tagName="observation" type="POCD_MT000040HT01.Observation" minOccurs="1" maxOccurs="1">
+      				
+      					<!-- Question -->
+      					<Field tagName="code" type="CD" minOccurs="1" maxOccurs="1">
+      						
+      					</Field>
+      					<!-- Options -->
+      					<Field tagName="value" type="ANY" minOccurs="0" maxOccurs="1">
+      					</Field>
+      				</Class>
+      			</Class>
+      			<Class tagName="entry" type="POCD_MT000040HT01.Entry" minOccurs="0" maxOccurs="unbounded">      				
+      				<!-- Question in Questionnair -->
+      				<Class tagName="observation" type="POCD_MT000040HT01.Observation" minOccurs="1" maxOccurs="1">
+      				
+      					<!-- Question -->
+      					<Field tagName="code" type="CD" minOccurs="1" maxOccurs="1">
+      						
+      					</Field>
+      					<!-- Options -->
+      					<Field tagName="value" type="ANY" minOccurs="0" maxOccurs="1">
+      					</Field>
+      				</Class>
+      			</Class>
+      		</Class>
+      	</Class>        
+      </Class>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

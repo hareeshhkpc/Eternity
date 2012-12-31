@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>.:: Healthcare Information Network ::.</title>
+
+<link rel="shortcut icon" type="image/ico" href="../images/favicon.ico" />
+
+<script type="text/javascript" src="../../common/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../common/js/jquery.json-2.3.js"></script>
+
+<script type="text/javascript" src="../js/ConfigAction.js"></script>
+<script type="text/javascript" src="../js/ConfigUtil.js"></script>
+<script type="text/javascript" src="../js/ConfigManager.js"></script>
+<script type="text/javascript" src="../js/ConfigView.js"></script>
+
+<style type="text/css">
+body { /*background-color: #e4f1fe;*/
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.configitem, .configheader, .propertyView {
+	/* height: 27px; */
+	background-color: #c7e4aa;
+	font-family: arial;
+	font-size: 16px;
+	font-weight: bold;
+	border: 1px solid #000000;
+	width: 500px;
+	margin: 5px;
+	padding: 5px;
+
+	-moz-border-radius: 6px;
+  	-webkit-border-radius: 61px;
+  	-ms-border-radius: 6px;
+  	-o-border-radius: 6px;
+  	border-radius: 6px;
+  	vertical-align: text-top;
+}
+.configheader {
+	background-color: olive;
+}
+.debugConsole {
+	float: right; 
+	background-color: silver;
+	border-radius: 11px; 
+	border: 1px solid #000000; 
+	width: 600px; 
+	font-family: courier;
+	padding: 5px;
+}
+.propertyView {
+	background-color: #dddddd;
+	font-family: arial;
+	font-size: 12px;
+	font-weight: normal;
+	border: 1px solid #000000;
+}
+.autoSizeText {
+	width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.roundedInputm {
+	border-radius: 6px; 
+	-moz-border-radius: 6px; 
+	-webkit-border-radius: 6px;
+}
+</style>
+
+<script type="text/javascript">
+	var configManager = null;
+	
+	/*	Make sure that the page is loaded fully	*/
+	$(document).ready(function() {
+		/*	Initialize the application controller	*/
+		initialize();
+
+	});
+	function initialize() {
+		var view = new ConfigView();
+		view.init();
+	};
+	
+</script>
+</head>
+<body style="background-image: url('images/background.PNG');background-repeat: repeat;">
+	<div id="debugdivContainer" class="debugConsole" style="display: none;">
+		<div style="color: red; font-weight: bold; font-size: 20px">Debug Console</div>
+		<hr />
+		<div id="debugdiv" style="overflow: scroll; height: 500px;">
+			
+		</div>
+	</div>
+	
+	<div id="config-header" style="height: 40px">
+		<div id="message-type-header" class="configheader" style="display: block">
+			<div id="current-selection" style="float: left; color: white;">Selected Item</div>
+			<a id="previous-class" style="float: right;" title="Go to previus view"><img src="images/back-icon.png" width="20" alt="Hl7 Item Icon"/></a>
+			<span style="float: right;"> &nbsp;&nbsp;&nbsp;</span>
+			<a id="message-type" style="float: right;" title="Show All Message Types"><img src="images/Network-Panel-Settings-icon.png" width="20" alt="Hl7 Item Icon" /></a> &nbsp;&nbsp;&nbsp;
+			<a id="entry-point" style="float: right;" title="Show Entry Point"><img src="images/Letter-C-lg-icon.png" width="20" alt="Hl7 Item Icon" /></a> 			
+		</div>
+	</div>
+	
+	<div id="config-div" style="display: none;">		
+		
+	</div>
+	<div id="editor-div" style="display: none;">		
+		
+	</div>
+	
+	<div id="dummy-config-field-view" class="configitem" style="display: none;">
+		<img src="images/wand-icon.png" width="20" alt="Hl7 Item Icon" />
+		<label id="configClassViewLabel" data="" style="float: none;">Class</label>
+		<input type="checkbox" id="dummycheck" name="configClassView" style="float: left;"/>
+	</div>
+	
+	<div id="dummyConfigClassView" class="configitem" style="display: none;">
+		<img id="dummyConfigClassViewFieldIcon" src="images/Tips-icon.png" width="20" alt="Hl7 Item Icon" />
+		<img id="dummyConfigClassViewClassIcon" src="images/Letter-C-lg-icon.png" width="20" alt="Hl7 Item Icon" />
+		<label for="dummyConfigClassViewCheck" id="dummyConfigClassViewLabel" data="" style="float: none;">Class</label>
+		<img id="dummyConfigMessageClassTick" src="images/tick.png" alt="Tick Mark" width="20" style="float: right;"/>
+		<!-- <input type="checkbox" id="dummyConfigClassViewCheck" name="dummyConfigClassViewCheck" style="float: right;"/> -->
+	</div>
+	<div id="dummyConfigMessageEntryPoint" class="configitem" style="display: none;">		
+		<img src="images/Letter-C-lg-icon.png" width="20" alt="Hl7 Item Icon" />
+		<label for="dummyConfigMessageEntryPointRadio" id="dummyConfigMessageEntryPointLabel" data="" style="float: none;">Organization</label>
+		<img id="dummyConfigMessageEntryPointTick" src="images/tick.png" alt="Tick Mark" width="20" style="float: right;"/>
+		<!-- <input type="radio" id="dummyConfigMessageEntryPointRadio" name="dummyConfigMessageEntryPointRadio" style="float: right;"/> -->
+	</div>
+	<div id="dummyConfigMessage" class="configitem" style="display: none;">		
+		<img src="images/Network-Panel-Settings-icon.png" width="20" alt="Hl7 Item Icon" />
+		<label for="dummyConfigMessageRadio" id="dummyConfigMessageLabel" data="" style="float: none;">Organization</label>
+		<div style="float: right; width: 30px">
+			&nbsp;<img id="dummyConfigMessageTick" title="Select this message type" src="images/tick.png" alt="Tick Mark" width="20"/>
+		</div>
+		<div style="float: right; width: 30px">
+			&nbsp;<img id="dummyConfigMessageEdit" title="Edit message type details" src="images/edit.png" alt="Edit Mark" width="20"/>
+		</div>
+		
+		<!-- <div id="dummyPropertyView" class="propertyView" style="display: none;"></div> -->
+	</div>
+	
+	
+	<!-- Editors -->
+	<div id=dummyMetaEditor class="propertyView" style="display: none;">
+		<div style="text-align: center;font-weight: bold;">Deatils about the message type:</div>
+		<br />
+			<div>Artifact ID: </div>
+			<div><input class="autoSizeText roundedInputm" id="artifactId" type="text" /></div>
+			<br />
+			<div>Name: </div>
+			<div><input class="autoSizeText roundedInputm" id="customName" type="text" /></div>
+			<br />
+			<div>Description: </div>
+			<div><textarea class="autoSizeText roundedInputm" id="description" rows="5"></textarea></div>
+			<br />
+			<div>Version: </div>
+			<div><input class="autoSizeText roundedInputm" id="version" type="text" /></div>
+			<br />
+			<div>Publisher: </div>
+			<div><input class="autoSizeText roundedInputm" id="publisher" type="text" /></div>
+			<br />
+			<div style="text-align: center;">
+				<button value="Save" id="saveButton">Save</button>
+				<button value="Close" id="closeButton">Close</button>
+			</div>
+		</fieldset>
+	</div>
+</body>
+</html>

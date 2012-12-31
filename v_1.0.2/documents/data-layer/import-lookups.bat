@@ -1,0 +1,1 @@
+E:\hin-eternity\deployments\mongo\mongodb-win32-i386-2.0.4\bin\mongorestore.exe --db hindblookup mongoDBDump\hindblookup --host 172.25.250.96 --port 27017

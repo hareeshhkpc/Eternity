@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POCD_MT000040HT01">
+	<POCD_MT000040HT01>
+		<id root="questionnair-1" />
+		<code />
+		<title />
+		<effectiveTime />
+		<confidentialityCode />
+		<recordTarget>
+			<patientRole>
+				<id />
+			</patientRole>
+		</recordTarget>
+		<author>
+			<time />
+			<assignedAuthor>
+				<id />
+			</assignedAuthor>
+		</author>
+		<custodian>
+			<assignedCustodian>
+				<representedCustodianOrganization>
+					<id />
+				</representedCustodianOrganization>
+			</assignedCustodian>
+		</custodian>
+		<component>
+			<structuredBody>
+				<component>
+					<section>
+						<entry>
+							<observation>
+								<code code="question-1" displayValue="Childhood Illness" />
+								<value>
+									<item code="measles">
+										<originalText>Measles</originalText>
+									</item>									
+									<item code="mumps">
+										<originalText>Mumps</originalText>
+									</item>
+									<item code="rubella">
+										<originalText>Rubella</originalText>
+									</item>
+									<item code="rheumatic">
+										<originalText>Rheumatic</originalText>
+									</item>
+									<item code="chickenpox">
+										<originalText>Chickenpox</originalText>
+									</item>
+									
+									<item code="polio">
+										<originalText>Polio</originalText>
+									</item>
+								</value>
+							</observation>
+						</entry>
+ 
+						<entry>
+							<observation>
+								<code code="question-2" displayValue="Childhood Illness" />
+								<value>
+									<item code="Very healthy">
+										<originalText>5</originalText>
+									</item>
+								</value>
+							</observation>
+						</entry>
+
+						<entry>
+							<observation>
+								<code code="question-3"
+									displayValue="How often did you consult a medical professional in the past year?" />
+								<value>
+									<item
+										code="How often did you consult a medical professional in the past year?">
+										<originalText>3</originalText>
+									</item>
+								</value>
+							</observation>
+						</entry>
+
+						<entry>
+							<observation>
+								<code code="question-4" displayValue="Date of last exam?" />
+								<value>
+									<item code="Date of last exam?">
+										<originalText>2012-04-15</originalText>
+									</item>
+								</value>
+							</observation>
+						</entry>
+
+						<entry>
+							<observation>
+								<code code="question-5"
+									displayValue="List any medical problems that other doctors have diagnosed?" />
+								<value>
+									<item
+										code="List any medical problems that other doctors have diagnosed?">
+										<originalText>Text area test</originalText>
+									</item>
+								</value>
+							</observation>
+						</entry>
+					</section>
+					<section>
+						<entry>
+							<observation>
+								<code code="question-1" displayValue="Surgeries"/>
+									<value>
+										<item code="Year">
+											<originalText>88888</originalText>
+										</item>
+										
+										<item code="Reason">
+											<originalText>Heart Attack</originalText>
+										</item>
+										
+										<item code="Hospital">
+											<originalText>NH</originalText>
+										</item>
+									</value>
+							</observation>
+						</entry>				
+					</section>
+					
+					<section>
+						<entry>
+							<observation>
+								<code code="question-1" displayValue="Other hospitalizations"/>
+									<value>
+										<item code="Year">
+											<originalText>2020</originalText>
+										</item>
+										
+										<item code="Reason">
+											<originalText>Sinusites</originalText>
+										</item>
+										
+										<item code="Hospital">
+											<originalText>Mallya</originalText>
+										</item>
+									</value>
+							</observation>
+						</entry>				
+					</section>
+					<section>
+						<entry>
+							<observation>
+								<code code="question-1" displayValue="Medications:"/>
+									<value>
+										<item code="Name of the drug">
+											<originalText>Paracetemol</originalText>
+										</item>
+										
+										<item code="Strength">
+											<originalText>500mg</originalText>
+										</item>
+										
+										<item code="Frequency Taken">
+											<originalText>Daily</originalText>
+										</item>
+									</value>
+							</observation>
+						</entry>					
+					</section>
+					<section>
+						<entry>
+							<observation>
+								<code code="question-1" displayValue="Allergies:"/>
+									<value>
+										<item code="Name of the drug">
+											<originalText>Paracetemol</originalText>
+										</item>
+										
+										<item code="Reaction You Had">
+											<originalText>Rashes</originalText>
+										</item>
+								
+									</value>
+							</observation>
+						</entry>					
+					</section>
+					<section>
+						<entry>
+							<observation>
+								<code code="question-1"
+									displayValue="Check if there is a history of the following health problems in your family and relatives:" />
+									<value>
+										<item code="Heart disease">
+											<originalText>Heart disease</originalText>
+										</item>
+										<item code="Cancer">
+											<originalText>Cancer</originalText>
+										</item>
+										<item code="Diabetes">
+											<originalText>Diabetes</originalText>
+										</item>
+										<item code="High blood sugar">
+											<originalText></originalText>
+										</item>
+										<item code="Stroke">
+											<originalText>Stroke</originalText>
+										</item>
+										<item code="Obesity">
+											<originalText>Obesity</originalText>
+										</item>
+										<item code="Metabolic Syndrome">
+											<originalText>Metabolic Syndrome</originalText>
+										</item>
+										<item code="High cholesterol">
+											<originalText>High cholesterol</originalText>
+										</item>
+										<item code="Other">
+											<originalText>Other</originalText>
+										</item>
+										<item code="None">
+											<originalText>None</originalText>
+										</item>
+									</value>
+							</observation>
+						</entry>
+					</section>
+
+
+					<section>
+						<entry>
+							<observation>
+								<code code="question-1" displayValue="Other Problems" />
+								<value>
+									<item code="Skin">
+										<originalText>Skin</originalText>
+									</item>
+									<item code="Chest/Heart">
+										<originalText>Chest/Heart</originalText>
+									</item>
+									<item code="Recent changes in:">
+										<originalText>Recent changes in:</originalText>
+									</item>
+									<item code="Head/Neck">
+										<originalText>Head/Neck</originalText>
+									</item>
+									<item code="Back">
+										<originalText>Back</originalText>
+									</item>
+									<item code="Weight">
+										<originalText>Weight</originalText>
+									</item>
+									<item code="Ears">
+										<originalText>Ears</originalText>
+									</item>
+									<item code="Intestinal">
+										<originalText>Intestinal</originalText>
+									</item>
+									<item code="Energy level">
+										<originalText>Energy level</originalText>
+									</item>
+									<item code="Nose">
+										<originalText>Nose</originalText>
+									</item>
+									<item code="Bladder">
+										<originalText>Bladder</originalText>
+									</item>
+									<item code="Ability to sleep">
+										<originalText>Ability to sleep</originalText>
+									</item>
+									<item code="Throat">
+										<originalText>Throat</originalText>
+									</item>
+									<item code="Bowel">
+										<originalText>Bowel</originalText>
+									</item>
+									<item code="Other pain/discomfort:">
+										<originalText>Other pain/discomfort:</originalText>
+									</item>
+									<item code="Lungs">
+										<originalText>Lungs</originalText>
+									</item>
+									<item code="Circulation">
+										<originalText>Circulation</originalText>
+									</item>
+									<item code="Mood">
+										<originalText>Mood</originalText>
+									</item>
+								</value>
+							</observation>
+						</entry>
+					</section>
+					
+					<!-- section name:HEALTH HABITS -->
+					<section>
+						<!-- entry 1:Exercise -->
+						<entry>
+							<observation>
+								<code code="question-1" displayValue="Exercise:"/>
+									<value>
+										<item code="Do you exercise?">
+											<originalText>yes</originalText>
+										</item>
+										
+										<item code="How often?">
+											<originalText>no</originalText>
+										</item>
+								
+									</value>
+							</observation>
+							<observation>
+								<code code="question-2" displayValue="Exercise:"/>
+									<value>
+										<item code="">
+											<originalText>yes</originalText>
+										</item>
+										
+										<item code="">
+											<originalText>no</originalText>
+										</item>
+								
+									</value>
+							</observation>
+						</entry>					
+					</section>
+					
+				</component>
+			</structuredBody>
+		</component>
+	</POCD_MT000040HT01>
+</message>

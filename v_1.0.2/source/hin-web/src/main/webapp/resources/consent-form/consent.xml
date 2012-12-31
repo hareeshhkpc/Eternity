@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="CONSENT_NEW.xsl"?>
+   
+   <Consent>
+   <client>
+   	<label>CLIENT NAME : </label>
+    <value>Glen Carroll </value>
+   </client>
+   <dob>
+   	<label>DATE OF BIRTH : </label>
+   	<value> 18 April 2012</value>
+  </dob>
+   <clientNo>
+   	<label>CLIENT NO : </label>
+   	<value>123456</value>
+    </clientNo>
+  </Consent>

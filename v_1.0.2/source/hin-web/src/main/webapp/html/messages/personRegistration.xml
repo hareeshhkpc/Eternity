@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="PRPA_IN203000HT04">
+	<PRPA_IN203000HT04 id="xid2">
+		<registrationEvent id="xid3">
+			<id id="xid4" root="" extension="" assigningAuthorityName="" />
+			<code id="xid5" code="" codeSystemName="">
+				<originalText />
+			</code>
+			<subject id="xid6">
+				<subsumedBy id="xid7">
+					<id id="xid8" root="" extension="" assigningAuthorityName="" />
+					<statusCode id="xid9" code="" />
+					<subsumingPerson id="xid10">
+						<id id="xid11" root="" extension="" assigningAuthorityName="" />
+						<name id="xid12">
+							<prefix />
+							<delimiter />
+							<family />
+							<given />
+							<suffix />
+							<!-- <low /> <high /> -->
+						</name>
+						<desc id="xid13" mediaType="" language="">
+							<reference />
+							<thumbnail />
+						</desc>
+						<statusCode id="xid14" code="" />
+						<telecom id="xid15" use="">
+							<useablePeriod />
+						</telecom>
+						<administrativeGenderCode id="xid16"
+							code="" codeSystemName="">
+							<originalText />
+						</administrativeGenderCode>
+						<birthTime id="xid17" value="" />
+						<deceasedInd id="xid18" />
+						<deceasedTime id="xid19" value="" />
+						<multipleBirthInd id="xid20" />
+						<multipleBirthOrderNumber id="xid21"
+							value="" />
+						<organDonorInd id="xid22" />
+						<addr id="xid23">
+							<delimiter />
+							<country />
+							<state />
+							<county />
+							<city />
+							<postalCode />
+							<streetAddressLine />
+							<houseNumber />
+							<houseNumberNumeric />
+							<direction />
+							<streetName />
+							<streetNameBase />
+							<streetNameType />
+							<additionalLocator />
+							<unitID />
+							<unitType />
+							<careOf />
+							<censusTract />
+							<deliveryAddressLine />
+							<deliveryInstallationType />
+							<deliveryInstallationArea />
+							<deliveryInstallationQualifier />
+							<deliveryMode />
+							<deliveryModeIdentifier />
+							<buildingNumberSuffix />
+							<postBox />
+							<precinct />
+						</addr>
+						<maritalStatusCode id="xid24" code=""
+							codeSystemName="">
+							<originalText />
+						</maritalStatusCode>
+						<educationLevelCode id="xid25" code=""
+							codeSystemName="">
+							<originalText />
+						</educationLevelCode>
+						<disabilityCode id="xid26" code="" codeSystemName="">
+							<originalText />
+						</disabilityCode>
+						<livingArrangementCode id="xid27" code=""
+							codeSystemName="">
+							<originalText />
+						</livingArrangementCode>
+						<religiousAffiliationCode id="xid28"
+							code="" codeSystemName="">
+							<originalText />
+						</religiousAffiliationCode>
+						<raceCode id="xid29" code="" codeSystemName="">
+							<originalText />
+						</raceCode>
+						<ethnicGroupCode id="xid30" code=""
+							codeSystemName="">
+							<originalText />
+						</ethnicGroupCode>
+					</subsumingPerson>
+					<subsumedPerson id="xid10">
+						<id id="xid11" root="" extension="" assigningAuthorityName="" />
+						<name id="xid12">
+							<prefix />
+							<delimiter />
+							<family />
+							<given />
+							<suffix />
+							<!-- <low /> <high /> -->
+						</name>
+						<desc id="xid13" mediaType="" language="">
+							<reference />
+							<thumbnail />
+						</desc>
+						<statusCode id="xid14" code="" />
+						<telecom id="xid15" use="">
+							<useablePeriod />
+						</telecom>
+						<administrativeGenderCode id="xid16"
+							code="" codeSystemName="">
+							<originalText />
+						</administrativeGenderCode>
+						<birthTime id="xid17" value="" />
+						<deceasedInd id="xid18" />
+						<deceasedTime id="xid19" value="" />
+						<multipleBirthInd id="xid20" />
+						<multipleBirthOrderNumber id="xid21"
+							value="" />
+						<organDonorInd id="xid22" />
+						<addr id="xid23">
+							<delimiter />
+							<country />
+							<state />
+							<county />
+							<city />
+							<postalCode />
+							<streetAddressLine />
+							<houseNumber />
+							<houseNumberNumeric />
+							<direction />
+							<streetName />
+							<streetNameBase />
+							<streetNameType />
+							<additionalLocator />
+							<unitID />
+							<unitType />
+							<careOf />
+							<censusTract />
+							<deliveryAddressLine />
+							<deliveryInstallationType />
+							<deliveryInstallationArea />
+							<deliveryInstallationQualifier />
+							<deliveryMode />
+							<deliveryModeIdentifier />
+							<buildingNumberSuffix />
+							<postBox />
+							<precinct />
+						</addr>
+						<maritalStatusCode id="xid24" code=""
+							codeSystemName="">
+							<originalText />
+						</maritalStatusCode>
+						<disabilityCode id="xid25" code="" codeSystemName="">
+							<originalText />
+						</disabilityCode>
+						<livingArrangementCode id="xid26" code=""
+							codeSystemName="">
+							<originalText />
+						</livingArrangementCode>
+						<religiousAffiliationCode id="xid27"
+							code="" codeSystemName="">
+							<originalText />
+						</religiousAffiliationCode>
+						<raceCode id="xid28" code="" codeSystemName="">
+							<originalText />
+						</raceCode>
+						<ethnicGroupCode id="xid29" code=""
+							codeSystemName="">
+							<originalText />
+						</ethnicGroupCode>
+					</subsumedPerson>
+				</subsumedBy>
+			</subject>
+		</registrationEvent>
+	</PRPA_IN203000HT04>
+</message>

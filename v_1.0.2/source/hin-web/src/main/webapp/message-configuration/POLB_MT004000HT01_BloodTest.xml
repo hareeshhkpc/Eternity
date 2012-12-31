@@ -1,0 +1,111 @@
+<HL7MessageConfiguration>
+  <MetaInfo artifactID="POLB_MT004000HT01_BloodTest" createdDate="2012-09-01 13:51:29.421 UTC" entryPoint="POLB_MT004000HT01.ObservationBattery" description="Result Event Message for BloodTest"/>
+  <IndexConfiguration indexName="POLB_MT004000HT01_BloodTest_Index">
+    <Field name="messageId" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;HIN_MSG_ID&apos;]/extension" analyzed="false"/>
+    <Field name="documentId" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;HIN_DOC_ID&apos;]/extension"/>
+    <Field name="sourcePersonId" indexed="true" xpath="message/POLB_MT004000HT01_BloodTest/specimen/specimen/sourcePerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension"/>
+    <Field name="sourcePersonName" indexed="true" xpath="message/POLB_MT004000HT01_BloodTest/specimen/specimen/sourcePerson/name/given"/>
+    <Field name="subscriberId" indexed="true" xpath="message/POLB_MT004000HT01_BloodTest/recordTarget/patient/patientPerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="false"/>
+    <Field name="subscriberName" indexed="true" xpath="message/POLB_MT004000HT01_BloodTest/recordTarget/patient/patientPerson/name/given"/>
+    <Field name="subscriberTelecom" indexed="true" xpath="message/POLB_MT004000HT01_BloodTest/recordTarget/patient/patientPerson/telecom/value"/>
+    <Field name="programId" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;PROGRAM_ID&apos;]/extension" analyzed="false"/>
+    <Field name="messageTitle" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;MSG_TITLE&apos;]/extension" analyzed="true"/>
+    <Field name="messageStatus" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;MSG_STATUS&apos;]/extension" analyzed="true"/>
+    <Field name="financeStatus" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;FINANCE_STATUS&apos;]/extension" analyzed="true"/>
+    <Field name="_observationTest_bloodTest_Testosterone" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/component2/observationEvent[code/code='Blood_Total_Testosterone']/value/value" analyzed="true"/>
+    <Field name="_observationTest_bloodTest_Cholesterol" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/component2/observationEvent[code/code='Blood_Total_LDL']/value/value" analyzed="true"/>
+    <Field name="_observationTest_bloodTest_Glycosylated Haemoglobin" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/component2/observationEvent[code/code='Blood_Glycosylated Haemoglobin']/value/value" analyzed="true"/>    
+    <Field name="_observationTest_bloodTest_Vitamin_B12" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/component2/observationEvent[code/code='Blood_Vitamin_B12']/value/value" analyzed="true"/>
+    <Field name="_observationTest_bloodTest_Magnesium" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/component2/observationEvent[code/code='Blood_Magnesium']/value/value" analyzed="true"/>
+    <Field name="_observationTest_bloodTest_Dehydroepiandrosterone-Sulfate" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/component2/observationEvent[code/code='Blood_Dehydroepiandrosterone-Sulfate']/value/value" analyzed="true"/>
+    <Field name="_observationTest_bloodTest_Estrogen" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/component2/observationEvent[code/code='Blood_Estrogen']/value/value" analyzed="true"/>
+    <Field name="_observationTest_bloodTest_VitD3" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/component2/observationEvent[code/code='Blood_VitD3']/value/value" analyzed="true"/>
+    <Field name="_observationTest_bloodTest_PAI-1" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/component2/observationEvent[code/code='Blood_PAI-1']/value/value" analyzed="true"/>
+    <Field name="_observationTest_bloodTest_Progesterone" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/component2/observationEvent[code/code='Blood_Progesterone']/value/value" analyzed="true"/>
+    <Field name="_observationTest_bloodTest_CRP" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/component2/observationEvent[code/code='Blood_High-Sensitivity_C_Reactive_Protein']/value/value" analyzed="true"/>
+    <Field name="_observationTest_Blood_Estradiol_(E2)" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/component2/observationEvent[code/code='Blood_Estradiol_(E2)']/value/value" analyzed="true"/>
+    <Field name="organizationId" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;ORGANIZATION_ID&apos;]/extension" analyzed="false"/>
+    <Field name="packageId" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;PACKAGE_ID&apos;]/extension" analyzed="false"/>
+	
+  </IndexConfiguration>
+  <ArchiveConfiguration columnFamilyName="POLB_MT004000HT01_BloodTest">
+    <Field name="messageId" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;HIN_MSG_ID&apos;]/extension" type="ROWKEY"/>
+    <Field name="documentId" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;HIN_DOC_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="sourcePersonId" indexed="true" xpath="message/POLB_MT004000HT01_BloodTest/specimen/specimen/sourcePerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="sourcePersonName" indexed="true" xpath="message/POLB_MT004000HT01_BloodTest/specimen/specimen/sourcePerson/name" type="COLUMN"/>
+    <Field name="sourcePersonTelecom" indexed="true" xpath="message/POLB_MT004000HT01_BloodTest/specimen/specimen/sourcePerson/name/given" type="COLUMN"/>
+    <Field name="subscriberId" indexed="true" xpath="message/POLB_MT004000HT01_BloodTest/recordTarget/patient/patientPerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="subscriberName" indexed="true" xpath="message/POLB_MT004000HT01_BloodTest/recordTarget/patient/patientPerson/name/given" type="COLUMN"/>
+    <Field name="subscriberTelecom" indexed="true" xpath="message/POLB_MT004000HT01_BloodTest/recordTarget/patient/patientPerson/telecom/value" type="COLUMN"/>
+    <Field name="programId" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;PROGRAM_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="messageTitle" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;MSG_TITLE&apos;]/extension" type="COLUMN"/>
+    <Field name="messageStatus" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;MSG_STATUS&apos;]/extension" type="COLUMN"/>
+    <Field name="financeStatus" indexed="true" xpath="//POLB_MT004000HT01_BloodTest/id[root=&apos;FINANCE_STATUS&apos;]/extension" type="COLUMN"/>
+  </ArchiveConfiguration>
+  <WorkFlowDefinition id="id">
+    <name>Workflow Configuration For: POLB_MT004000HT01_BloodTest</name>
+    <start g="20,20,48,48">
+      <transition name="true" to="Save"/>
+    </start>
+    <task name="Save">
+      <transition name="Save" to="Save"/>
+    </task>
+  </WorkFlowDefinition>
+  <Class rimType="ACT" tagName="POLB_MT004000HT01_BloodTest" type="POLB_MT004000HT01.ObservationBattery">
+    <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+    <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="text" type="ED" inputControl="ED" label="Text" displayOrder="2" minOccurs="0" maxOccurs="1"/>
+    <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="3" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="effectiveTime" type="SXCM_TS" inputControl="SXCM_TS" label="Effective Time" displayOrder="4" minOccurs="1" maxOccurs="-1"/>
+    <Field tagName="confidentialityCode" type="CE" inputControl="CE" label="Confidentiality Code" displayOrder="5" minOccurs="0" maxOccurs="-1"/>
+    <Class rimType="PARTICIPATION" tagName="specimen" type="POLB_MT004000HT01.Specimen" label="Specimen" displayOrder="6" minOccurs="0" maxOccurs="-1">
+      <Field tagName="sequenceNumber" type="INT" inputControl="INT" label="Sequence Number" displayOrder="0" minOccurs="0" maxOccurs="1"/>
+      <Class rimType="ROLE" tagName="specimen" type="COCT_MT080000HT04.Specimen" label="Specimen" displayOrder="1" minOccurs="1" maxOccurs="1">
+        <Field tagName="code" type="CE" inputControl="CE" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+        <Class rimType="ENTITY" tagName="specimenMaterial" type="COCT_MT080000HT04.Material" label="Specimen Material" displayOrder="1" minOccurs="0" maxOccurs="1">
+          <Field tagName="code" type="CE" inputControl="CE" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+        </Class>
+        <Class rimType="ENTITY" tagName="sourcePerson" type="COCT_MT030000HT01.Person" label="Source Person" displayOrder="2" minOccurs="0" maxOccurs="1">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+          <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="1" minOccurs="0" maxOccurs="-1"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class rimType="PARTICIPATION" tagName="recordTarget" type="POLB_MT004000HT01.RecordTarget" label="Record Target" displayOrder="7" minOccurs="0" maxOccurs="-1">
+      <Class rimType="ROLE" tagName="patient" type="COCT_MT050000HT04.Patient" label="Patient" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+        <Class rimType="ENTITY" tagName="patientPerson" type="COCT_MT030000HT01.Person" label="Patient Person" displayOrder="1" minOccurs="1" maxOccurs="1">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+          <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="1" minOccurs="0" maxOccurs="-1"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class rimType="PARTICIPATION" tagName="performer" type="POLB_MT004000HT01.Performer" label="Performer" displayOrder="8" minOccurs="0" maxOccurs="-1">
+      <Class rimType="ROLE" tagName="assignedPerson" type="COCT_MT090100HT02.AssignedPerson" label="Assigned Person" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+      </Class>
+    </Class>
+    <Class rimType="ACTRELATIONSHIP" tagName="component2" type="POLB_MT004000HT01.Component3" label="Component2" displayOrder="9" minOccurs="0" maxOccurs="-1">
+      <Field tagName="sequenceNumber" type="INT" inputControl="INT" label="Sequence Number" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+      <Class rimType="ACT" tagName="observationEvent" type="POLB_MT004000HT01.ObservationEvent" label="Observation Event" displayOrder="1" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="text" type="ED" inputControl="ED" label="Text" displayOrder="2" minOccurs="0" maxOccurs="1"/>
+        <Field tagName="effectiveTime" type="IVL_TS" inputControl="IVL_TS" label="Effective Time" displayOrder="3" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="confidentialityCode" type="CE" inputControl="CE" label="Confidentiality Code" displayOrder="4" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="value" type="PQ" inputControl="PQ" label="Value" displayOrder="5" minOccurs="0" maxOccurs="1"/>
+        <Field tagName="interpretationCode" type="CE" inputControl="CE" label="Interpretation Code" displayOrder="6" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="methodCode" type="CE" inputControl="CE" label="Method Code" displayOrder="7" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="targetSiteCode" type="CD" inputControl="CD" label="Target Site Code" displayOrder="8" minOccurs="0" maxOccurs="-1"/>
+        <Class rimType="ACTRELATIONSHIP" tagName="referenceRange" type="POLB_MT004000HT01.ReferenceRange" label="Reference Range" displayOrder="9" minOccurs="0" maxOccurs="-1">
+          <Class rimType="ACT" tagName="interpretationRange" type="POLB_MT004000HT01.InterpretationRange" label="Interpretation Range" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Field tagName="text" type="ST" inputControl="ST" label="Text" displayOrder="0" minOccurs="0" maxOccurs="1"/>
+            <Field tagName="value" type="IVL_PQ" inputControl="IVL_PQ" label="Value" displayOrder="1" minOccurs="0" maxOccurs="1"/>
+            <Field tagName="interpretationCode" type="CE" inputControl="CE" label="Interpretation Code" displayOrder="2" minOccurs="1" maxOccurs="1"/>
+            <Field tagName="methodCode" type="CE" inputControl="CE" label="Method Code" displayOrder="3" minOccurs="0" maxOccurs="-1"/>
+          </Class>
+        </Class>
+      </Class>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

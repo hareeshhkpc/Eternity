@@ -1,0 +1,340 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#sub-head').hide();
+		$('#sub-head1').hide();
+		$('#sub-head2').hide();
+		$('#test1').hide();
+		$('#inner-sub-head').hide();
+		$('#inner-sub-head1').hide();
+		$('#inner-sub-head2').hide();
+		$('#inner-sub-head3').hide();
+		$('#inner-form').hide();
+		$('#main-head').click(function() {
+			$('#sub-head').slideToggle('slow');
+		});
+		$('#main-head1').click(function() {
+			$('#sub-head1').slideToggle('slow');
+		});
+		$('#inner-main-head').click(function() {
+			$('#inner-sub-head').slideToggle('slow');
+		});
+		$('#inner-main-head1').click(function() {
+			$('#inner-sub-head1').slideToggle('slow');
+		});
+		$('#inner-main-head2').click(function() {
+			$('#inner-sub-head2').slideToggle('slow');
+		});
+		$('#inner-main-head3').click(function() {
+			$('#inner-sub-head3').slideToggle('slow');
+		});
+		
+		$('#main-head2').click(function() {
+			$('#sub-head2').slideToggle('slow');
+		});
+		$('#inner-form-head').click(function() {
+			$('#inner-form').slideToggle('slow');
+		});
+		
+	});	
+</script>
+<div data-role="header" data-theme="v" data-backBtn="true"
+	class="header_bg">
+	<fieldset class="ui-header-text ui-grid-b">
+		<div class="ui-header-left-text ui-block-a">Glen Carroll</div>
+		<div class="ui-header-left-text ui-block-b">Ms Melissa Blair - Reception at Dubai Clinic</div>
+		<div class="ui-header-right-text ui-block-c" style="width: 28%;">Logout</div>
+	</fieldset>
+</div>
+<div data-role="none" data-theme="v">
+	<fieldset class="ui-form-header ui-grid-a">
+		<div class="ui-block-a">
+			<div class="form-header-name">Form Name</div>
+		</div>
+		<div class="ui-block-b" id="navigation"></div>
+	</fieldset>
+</div>
+
+<div data-role="content">
+
+	<div class="left-side-bg left-side-content ui-round-corner"
+		style="width: 1325px;">
+	
+		<div id="form">
+			<div class="ui-left-top">
+				<div class="inner-left" id="processLeftNavigation">
+					<div class="ui-nav nav-current">
+						<div class="rotate-text processnav">Registration</div>
+					</div>
+				</div>
+				<div class="inner-right" id="processNavigation" style="width: 85%;">
+					<div id="Registration" class="ui-box current process "
+						style="display: none;">
+						<div class="ui-box-spacing">Record Basic Information</div>
+						<div class="ui-box-spacing ">PRPA_IN203000HT04 [ 1 ]</div>
+					</div>
+					
+					
+					<div class="inner-right-form ui-header-corner-top ui-info-bg">
+						<div class="header_bg ui-header-corner-top ui-page-header-text">
+							Record Basic Information
+						</div>
+					
+					
+					
+					
+					<!--  <div style="display: block;" id="child_Registration"
+						class="ui-box unread">
+						<div class="header_bg ui-header-corner-top ui-page-header-text">Record
+							Basic Information</div> -->
+							
+							<div class="ui-inner-display-box ui-header-corner-top">
+								<div id="main-head1" class="ui-header-display-bg ui-header-corner-top ui-page-header-text">
+								Age Management Program
+								</div>
+								
+								<div id="sub-head1" style="width:100%;">
+									<div id="inner-main-head" class="ui-inner-display-box">							
+										<div class="ui-sub-header-bg ui-page-header-text">
+										Questionnaires									
+										</div>	
+										<div class="ui-add-icon">
+										 <img src="images/add.png" />
+										</div>							
+									</div>
+									<div id="inner-sub-head" class="ui-inner-display-box">		
+										<div id="inner-form-head" class="ui-sub-head-inner-bg ui-sub-header-text">
+										Lifestyle Questionnaire									
+										</div>	
+										<div class="ui-delete-icon">
+										 <img src="images/delete.png" />
+										</div>
+										
+										
+										<div id="inner-form" style="float:left;border:1px solid;padding:6px;width:95%;">
+											dfsdfsf										
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							
+							
+						<!-- <div id="child_Registration_form1" class="ui-form-fields">
+							<div class="ui-inner-display-box ui-header-corner-top">
+								<div
+									class="ui-header-display-bg ui-header-corner-top ui-page-header-text"
+									id="main-head1">PRPA_IN203000HT04</div>
+								<div id="sub-head1" style="display: none;">
+									<div class="ui-inner-display-box">
+										<div class="ui-sub-header-bg ui-sub-header-text">Results
+											1</div>
+									</div>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+				<div class="inner-right-corner home-icon-link"></div>
+			</div>
+	
+			<div class="ui-left-bottom">
+				<div class="ui-end-btn">
+					<div data-theme="d"
+						class="ui-btn ui-btn-up-d ui-btn-corner-all ui-shadow"
+						aria-disabled="false">
+						<span class="ui-btn-inner ui-btn-corner-all"><span
+							class="ui-btn-text">Terminate Process</span>
+						</span><input type="button" value="Terminate Process"
+							class="ui-btn-hidden" aria-disabled="false">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="display: none" id="formActions">
+			<div data-theme="d"
+				class="ui-btn ui-btn-up-d ui-btn-corner-all ui-shadow"
+				aria-disabled="false">
+				<span class="ui-btn-inner ui-btn-corner-all"><span
+					class="ui-btn-text">Save</span>
+				</span><input type="button" value="Save" id="savePatient"
+					class="ui-btn-hidden" aria-disabled="false">
+			</div>
+		</div>
+	
+	
+	</div>
+
+
+
+
+	<!-- <div class="left-side-content ui-round-corner" style="width:98%;">
+
+		<div id="form">
+			<div class="inner-left">
+				<div class="ui-nav nav-current">
+					<div class="rotate-text registration">Registration</div>
+				</div>
+				<div class="ui-nav nav-unread ui-nav-position">
+					<div class="rotate-text">Appointment</div>
+				</div>
+				<div class="ui-nav nav-unread" style="display:none;">
+					<div class="rotate-text">Consent</div>
+				</div>
+			</div>
+			<div class="inner-right-form ui-header-corner-top ui-info-bg">
+				<div class="header_bg ui-header-corner-top ui-page-header-text">
+					Record Basic Information
+				</div>
+				
+				<div class="ui-inner-display-box ui-header-corner-top">
+					<div id="main-head1" class="ui-header-display-bg ui-header-corner-top ui-page-header-text">
+					Age Management Program
+					</div>
+					
+					<div id="sub-head1" style="width:100%;">
+						<div id="inner-main-head" class="ui-inner-display-box">							
+							<div class="ui-sub-header-bg ui-page-header-text">
+							Questionnaires									
+							</div>	
+							<div class="ui-add-icon">
+							 <img src="images/add.png" />
+							</div>							
+						</div>
+						<div id="inner-sub-head" class="ui-inner-display-box">		
+							<div class="ui-sub-head-inner-bg ui-sub-header-text">
+							Lifestyle Questionnaire									
+							</div>	
+							<div class="ui-delete-icon">
+							 <img src="images/delete.png" />
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="ui-inner-display-box ui-header-corner-top">
+					<div id="main-head" class="ui-header-display-bg ui-header-corner-top ui-page-header-text">
+					Products
+					</div>
+					<div id="sub-head" style="width:100%;">
+						<div class="ui-inner-display-box">
+							<div id="inner-main-head1" class="ui-sub-header-bg ui-page-header-text">
+							Genetics and Aesthetics				
+							</div>	
+							<div class="ui-add-icon">
+							 <img src="images/add.png" />
+							</div>										
+						</div>
+						<div id="inner-sub-head1" class="ui-inner-display-box">		
+							<div class="ui-sub-head-inner-bg ui-sub-header-text">
+							Lifestyle Questionnaire									
+							</div>	
+							<div class="ui-delete-icon">
+							 <img src="images/delete.png" />
+							</div>
+						</div>
+						<div id="inner-main-head2" class="ui-inner-display-box">
+							<div class="ui-sub-header-bg ui-page-header-text">
+							Restoration of Hormones				
+							</div>	
+							<div class="ui-add-icon">
+							 <img src="images/add.png" />
+							</div>											
+						</div>
+						<div id="inner-sub-head2" class="ui-inner-display-box">		
+							<div class="ui-sub-head-inner-bg ui-sub-header-text">
+							Lifestyle Questionnaire									
+							</div>	
+							<div class="ui-delete-icon">
+							 <img src="images/delete.png" />
+							</div>
+							<div id="inner-sub-head2" class="ui-inner-display-box">		
+							<div class="ui-sub-head-inner-bg ui-sub-header-text">
+							Lifestyle Questionnaire									
+							</div>	
+							<div class="ui-delete-icon">
+							 <img src="images/delete.png" />
+							</div>
+						</div>
+						<div id="inner-sub-head2" class="ui-inner-display-box">		
+							<div class="ui-sub-head-inner-bg ui-sub-header-text">
+							Lifestyle Questionnaire									
+							</div>	
+							<div class="ui-delete-icon">
+							 <img src="images/delete.png" />
+							</div>
+						</div>
+						</div>
+						
+						<div id="inner-main-head3" class="ui-inner-display-box">
+							<div class="ui-sub-header-bg ui-page-header-text">
+							Advanced Supplementation				
+							</div>	
+							<div class="ui-add-icon">
+							 <img src="images/add.png" />
+							</div>												
+						</div>
+						<div id="inner-sub-head3" class="ui-inner-display-box">		
+							<div class="ui-sub-head-inner-bg ui-sub-header-text">
+							Lifestyle Questionnaire									
+							</div>	
+							<div class="ui-delete-icon">
+							 <img src="images/delete.png" />
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class="ui-inner-display-box ui-header-corner-top">
+					<div id="main-head2" class="ui-header-display-bg ui-header-corner-top ui-page-header-text">
+					Client Report
+					</div>
+					
+					<div id="sub-head2" style="width:100%;">
+						<div class="ui-inner-display-box">
+							<div class="ui-sub-header-bg ui-sub-header-text">
+							Client Report				
+							</div>
+							<div class="ui-add-icon">
+							 <img src="images/add.png" />
+							</div>					
+						</div>
+					</div>
+				</div>	
+				
+			</div>
+		</div>
+		
+		<div id="formActions" style="display: none">
+			<input type="button" id="savePatient" value="Save" />
+		</div>		
+
+	</div> -->
+	
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<h:form>
+			<!-- <t:saveState value="#{conceptClassBean.conceptClass}"/> -->
+			<rich:panel header="#{msg['conceptClass.title']}" style="width:650px">
+				<h:panelGrid columns="2">
+					<h:outputText value="#{msg['conceptClass.name']}: " />
+					<h:inputText id="name"
+						value="#{conceptClassBean.conceptClass.name}"
+						disabled="#{conceptClassBean.show}" required="true"
+						requiredMessage="Concept Class Name is required" />
+					<h:outputText value="#{msg['conceptClass.description']}: " />
+					<h:inputText id="decription"
+						value="#{conceptClassBean.conceptClass.description}"
+						disabled="#{conceptClassBean.show}" />
+					<!-- <h:inputText id="id" value="#{conceptClassBean.conceptClass.conceptClassId}"/> -->
+					<h:outputText value="Status" />
+					<h:selectOneMenu id="statusId"
+						value="#{conceptClassBean.conceptClass.status}"
+						disabled="#{conceptClassBean.show}">
+						<f:selectItems value="#{conceptClassBean.statuses}" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+				<rich:collapsiblePanel header="Concept Attribute" expanded="false"
+					switchType="client">
+					<a4j:outputPanel id="dataTypePanelAttribute" layout="block">
+						<a4j:outputPanel
+							rendered="#{conceptClassBean.conceptAttributeShow}">
+							<ui:include src="conceptClassAttribute.xhtml" />
+						</a4j:outputPanel>
+					</a4j:outputPanel>
+					<a4j:outputPanel id="updateAttribute" layout="block">
+						<a4j:outputPanel
+							rendered="#{conceptClassBean.updateConceptAttributeShow}">
+							<ui:include src="conceptClassAttribute.xhtml" />
+						</a4j:outputPanel>
+					</a4j:outputPanel>
+					<h:commandButton
+						action="#{conceptClassBean.setConceptAttributeShow}" value="New" />
+					<h:commandButton action="#{conceptClassBean.addConceptAttribute}"
+						value="Add" rendered="#{conceptClassBean.conceptAttributeShow}">
+					</h:commandButton>
+					<h:commandButton action="#{conceptClassBean.addConceptAttribute}"
+						value="Update"
+						rendered="#{conceptClassBean.updateConceptAttributeShow}">
+					</h:commandButton>
+					<rich:dataTable id="conceptAttributeTableId"
+						value="#{conceptClassBean.conceptClass.conceptAttributes}"
+						var="conceptAttributeObj" rows="10" style="width:600px">
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Key" />
+							</f:facet>
+							<h:outputText value="#{conceptAttributeObj.key}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="value" />
+							</f:facet>
+							<h:outputText value="#{conceptAttributeObj.value}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Action" />
+							</f:facet>
+							<center>
+								<h:commandButton id="editlink"
+									image="../../html/images/iconedit.gif"
+									action="#{conceptClassBean.viewConceptAttribute}" value="Edit "
+									alt="Edit" title="Edit">
+									<f:setPropertyActionListener
+										target="#{conceptClassBean.conceptAttrKey}"
+										value="#{conceptAttributeObj.key}" />
+								</h:commandButton>
+							</center>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Action" />
+							</f:facet>
+							<center>
+								<h:commandButton id="removeConcept"
+									image="../../html/images/icondelete.gif" alt="delete"
+									title="delete"
+									action="#{conceptClassBean.removeConceptAttribute}"
+									value="Delete ">
+									<f:setPropertyActionListener
+										target="#{conceptClassBean.conceptAttributeId}"
+										value="#{conceptAttributeObj.key}" />
+								</h:commandButton>
+							</center>
+						</rich:column>
+
+						<f:facet name="footer">
+							<rich:dataScroller for="conceptAttributeTableId" align="right"
+								renderIfSinglePage="false" fastStep="5" fastControls="auto" />
+						</f:facet>
+					</rich:dataTable>
+				</rich:collapsiblePanel>
+				<h:panelGrid>
+					<rich:panel header="Concept" rendered="#{conceptClassBean.show}">
+						<rich:dataTable id="conceptList"
+							value="#{conceptClassBean.conceptList}" var="concept" rows="10"
+							style="width:700px">
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Name" />
+								</f:facet>
+								<h:outputText value="#{concept.name}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Description" />
+								</f:facet>
+								<h:outputText value="#{concept.description}" />
+							</rich:column>
+
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="View" />
+								</f:facet>
+								<center>
+									<h:commandButton action="#{conceptBean.viewConcept}"
+										image="../../html/images/iconedit.gif" value="Edit "
+										alt="Edit " title="Edit Concept">
+										<f:setPropertyActionListener target="#{conceptBean.conceptId}"
+											value="#{concept.id}" />
+									</h:commandButton>
+								</center>
+							</rich:column>
+							<br />
+
+							<f:facet name="footer">
+								<rich:dataScroller for="conceptList" align="right"
+									renderIfSinglePage="false" fastStep="5" fastControls="auto" />
+							</f:facet>
+						</rich:dataTable>
+					</rich:panel>
+				</h:panelGrid>
+				<h:commandButton value="#{msg['conceptClass.save']} "
+					action="#{conceptClassBean.saveConceptClass}"
+					disabled="#{conceptClassBean.show}" />
+				<h:commandButton value="#{msg['conceptClass.back']} "
+					action="conceptClasses" />
+			</rich:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
+
+
+

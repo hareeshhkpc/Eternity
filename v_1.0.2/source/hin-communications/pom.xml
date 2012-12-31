@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  	<groupId>com.hin.hl7messaging</groupId>
+  	<artifactId>hin-communications</artifactId>
+  	<packaging>war</packaging>
+  	<name>hin-communications</name>
+	<version>1.0-SNAPSHOT</version>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <repositories>
+	<repository>
+		<id>googlecode</id>
+		<name>jWebSocket Repository</name>
+		<url>http://jwebsocket.googlecode.com/svn/repo</url>
+	</repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+	
+	<dependency>
+	   <groupId>javolution</groupId>
+	   <artifactId>javolution</artifactId>
+	   <version>5.5.1</version>
+	   <scope>compile</scope>
+	</dependency>
+
+	
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.8</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.8</version>
+			<scope>compile</scope>
+		</dependency>
+	
+    <!--  define all the dependencies here -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>2.5</version>
+	</dependency>
+	<dependency>
+		<groupId>com.google.code.gson</groupId>
+		<artifactId>gson</artifactId>
+		<version>1.7.1</version>
+		<scope>compile</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.jwebsocket</groupId>
+		<artifactId>jWebSocketServer</artifactId>
+		<version>0.10</version>
+		<!--<version>0.11</version>
+      	<version>1.0</version>-->
+      	 <scope>compile</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.jwebsocket</groupId>
+		<artifactId>jWebSocketCommon</artifactId>
+		<version>0.10</version>
+		<!--<version>0.11</version>
+      	<version>1.0</version>-->
+      	<scope>compile</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.jwebsocket</groupId>
+		<artifactId>jWebSocketServerAPI</artifactId>
+		<version>0.10</version>
+		<!--<version>0.11</version>
+        <version>1.0</version>-->
+        <scope>compile</scope>
+</dependency>
+  </dependencies>
+</project>

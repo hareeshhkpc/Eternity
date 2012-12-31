@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config-generation
+	configFilePath="src/main/webapp/message-configuration/POSA_MT920000HT03_SupplementsRpt.xml"
+	rootClass="POSA_MT920000HT03.SubstanceAdministrationOrder" description="Substance Administration Order Message for SupplementsRpt"
+	artifactId="POSA_MT920000HT03_SupplementsRpt"
+	artifactIDAsRootTag="true">
+
+	<schema-set type="MESSAGE"
+		path="src/main/webapp/WEB-INF/htb/schemas/POSA_MT920000HT03.xsd" />
+	<schema-set type="CORESCHEMA" path="src/main/webapp/WEB-INF/htb/coreschemas" />
+	<schema-set type="SCHEMAS" path="src/main/webapp/WEB-INF/htb/schemas" />
+
+
+	<!-- traverseChildWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- repeatCount="numeric(default 1)" -->
+	<!-- traverseMessageObjectChild="true(default)" -->
+	<!-- traverseHL7DataTypeChild="false(default)" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- traveseChildList="comma(,) seperated list" -->
+
+	<tree-node xpath="/" />
+	<tree-node xpath="/text/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/effectiveTime/" considerChildrenWhen="OPTIONAL" />
+	
+	<tree-node xpath="/pertinentInformation2/" considerChildrenWhen="ALWAYS" traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/pertinentInformation2/observationEventGeneral/" considerChildrenWhen="MANDATORY" traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/pertinentInformation2/observationEventGeneral/id/" considerChildrenWhen="ALWAYS" />
+
+	<tree-node xpath="/subject/" considerChildrenWhen="ALWAYS" traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/subject/patient/" considerChildrenWhen="MANDATORY" traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/subject/patient/id/" considerChildrenWhen="MANDATORY" traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/subject/patient/patientPerson/" considerChildrenWhen="MANDATORY" traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/subject/patient/patientPerson/id/" considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/subject/patient/patientPerson/name/" considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/subject/patient/patientPerson/telecom/" considerChildrenWhen="OPTIONAL" /> 
+	
+	<tree-node xpath="/author/employmentStaff/id/"
+		considerChildrenWhen="OPTIONAL" traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/author/employmentStaff/employeePerson/"
+		considerChildrenWhen="OPTIONAL" traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/author/employmentStaff/employeePerson/id/"
+		considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/author/employmentStaff/employeePerson/" considerChildrenWhen="OPTIONAL" traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/author/employmentStaff/employeePerson/id/" considerChildrenWhen="OPTIONAL" traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/author/employmentStaff/employeePerson/telecom/" considerChildrenWhen="OPTIONAL" traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/author/assignedEntity/" repeatCount="0" />
+
+</config-generation>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Login'>/**
+</span> * Login is a child component of Rendering Engine which displays the login page
+ * to user to login and captures the user login information and sends same
+ * information to rendering engine for further processing.
+ */
+
+function Login(renderingEngine) {
+<span id='Login-method-eventHandler'>	/**
+</span>	 * Handles the events from components
+	 * 
+	 * @param event
+	 * @returns {void}
+	 */
+	this.eventHandler = eventHandler;
+	this.className = &quot;Login&quot;;
+
+	this.loadUI = loadUI;
+
+	var renderingEngine = renderingEngine;
+	var login = this;
+
+	/* Function definitions */
+
+	function eventHandler(event) {
+		// alert(&quot;inside login event handler: &quot; + event.type);
+		if (event.type == AppConstants.Event.LOGIN_PAGE_BIND_EVENTS) {
+			/*
+			 * $(&quot;#loginForm&quot;).validationEngine('attach', { bindMethod : &quot;live&quot;
+			 * });
+			 */
+			var winHeight = $(window).height();
+			// alert(winHeight);
+			$('.loginscreen').css('height', winHeight);
+			$('.ui-login-position').css('margin-top', winHeight - 550);
+
+			$('#username').focus();
+			$(&quot;#password&quot;).keyup(function(event) {
+				if (event.keyCode == 13) {
+					$(&quot;#login&quot;).click();
+				}
+			});
+
+			$(&quot;#login&quot;).hover(function() {
+				$('#login').css('background', '#8d007f');
+			}, function() {
+				$('#login').css('background', '#6B1E64');
+			});
+
+			$(&quot;#login&quot;).click(function() {
+				$('#login').css('background', '#b2479f');
+				if ($('#loginForm').validationEngine('validate')) {
+					authenticate();
+				}
+			});
+
+			$(&quot;#signup&quot;).hover(function() {
+				$('#signup').css('background', '#8d007f');
+			}, function() {
+				$('#signup').css('background', '#6B1E64');
+			});
+			// $(&quot;#signup&quot;).die(&quot;click&quot;);
+			$(&quot;#signup&quot;)
+					.live(
+							&quot;click&quot;,
+							function() {
+								$('#signup').css('background', '#b2479f');
+								renderingEngine
+										.fireEvent(AppConstants.Event.SIGNUP_PAGE_INITIALIZED);
+							});
+		} else if (event.type == AppConstants.Event.LOGIN_PAGE_RESPONSE) {
+			// alert(&quot;inside login event handler: &quot; + event.type);
+			/*
+			 * renderingEngine.getEventQueue().postEvent(
+			 * AppConstants.Event.HOME_PAGE_FETCH_DATA, {}, renderingEngine,
+			 * login);
+			 */
+			document.title = &quot;Eternity Medicine Institute&quot;;
+			renderingEngine.fireEvent(AppConstants.Event.HOME_PAGE_INITIALIZED);
+		} else if (event.type == AppConstants.Event.LOGIN_PAGE_ERROR) {
+			$('#username').val('');
+			$('#password').val('');
+			$('#username').focus();
+
+			$(&quot;#msg&quot;).message(&quot;show&quot;);
+			$(&quot;#msg&quot;).message({
+				type : &quot;error&quot;,
+				message : &quot;Invalid UserName or Password.  &quot;
+			});
+			// notificationmsg.error(&quot;Invalid UserName or Password.&quot;);
+			// $('#errormsg').css(&quot;display&quot;,&quot;block&quot;);
+			/*
+			 * renderingEngine.getEventQueue().postEvent(
+			 * AppConstants.Event.LOGIN_PAGE_INITIALIZED, {}, renderingEngine,
+			 * login);
+			 */
+
+		}
+	}
+	;
+
+<span id='Login-method-authenticate'>	/**
+</span>	 * Get the data from UI and post the event to event queue.
+	 * 
+	 * @returns {void}
+	 */
+	function authenticate() {
+		var username = $('#username').val();
+		var password = $('#password').val();
+		/*
+		 * var usn = username.toLowerCase(); username =
+		 * capitaliseFirstLetter(usn);
+		 */
+		var user = new HIN.UserVO();
+		user.userName = username;
+		user.password = password;
+		renderingEngine.getEventQueue().postEvent(
+				AppConstants.Event.LOGIN_PAGE_PROCESSED, user, renderingEngine,
+				login);
+	}
+	;
+
+<span id='Login-method-loadUI'>	/**
+</span>	 * Load the html page and bind the ui events.
+	 * 
+	 * @returns {void}
+	 */
+	function loadUI() {
+
+		appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading(
+				&quot;Synchronizing configurations...&quot;);
+		appController.getComponent(&quot;RenderingEngine&quot;).openModalDialog(
+				&quot;Synchronizing configurations&quot;);
+
+		HL.syncMeta(function() {
+			appController.getComponent(&quot;DataLayer&quot;).getProcessDefinitions(
+					loadLogin);
+
+		}, function() {
+
+			appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading();
+			appController.getComponent(&quot;RenderingEngine&quot;).closeModalDialog();
+
+		});
+		// appController.getComponent(&quot;DataLayer&quot;).loadAllStaticDatas(loadLogin);
+
+		// loadLogin();
+	}
+	;
+
+	function loadLogin() {
+		appController.getComponent(&quot;RenderingEngine&quot;).hidePageLoading();
+		appController.getComponent(&quot;RenderingEngine&quot;).closeModalDialog();
+		renderingEngine.loadPage(&quot;pages/login/login.html&quot;, &quot;form&quot;,
+				AppConstants.Event.LOGIN_PAGE_BIND_EVENTS);
+
+		appController.getComponent(&quot;RenderingEngine&quot;).fireEvent(
+				AppConstants.Event.RESIZE);
+	}
+	;
+
+	/*
+	 * function capitaliseFirstLetter(string) { return
+	 * string.charAt(0).toUpperCase() + string.slice(1); }
+	 */
+}
+</pre>
+</body>
+</html>

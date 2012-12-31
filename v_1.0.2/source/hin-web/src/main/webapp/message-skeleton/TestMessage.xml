@@ -1,0 +1,36 @@
+<message config="PRPA_MT201000HT03">
+	<PRPA_MT201000HT03>
+		<id root="5a245ed6-16e1-4a04-b153-872ac32bffbd" />
+		<effectiveTime>
+			<low value="1340361174000"/>
+			<high value="1340361174000"/>
+		</effectiveTime>
+		<identifiedPerson>
+			<name>
+				<prefix>ms</prefix>
+				<family>Rao</family>
+				<given>Ghilpa</given>
+			</name>
+			<administrativeGenderCode code="F"
+				displayName="F" />
+			<telecom use="789" />
+			<raceCode code="DRV" displayName="DRV" />
+			<religiousAffiliationCode code="HD"
+				displayName="HD" />
+			<maritalStatusCode code="S" displayName="S" />
+			<ethnicGroupCode code="ID" displayName="ID" />
+			<birthTime value="2011-06-11" />
+			<addr>
+				<houseNumber>Surat,GJ</houseNumber>
+			</addr>
+			<asIdentifications>
+				<id root="123" />
+			</asIdentifications>
+			<id root="5a245ed6-16e1-4a04-b153-872ac32bffbd" />
+			<disabilityCode code="HI" displayName="HI" />
+		</identifiedPerson>
+		<assigningOrganization>
+			<id root="5a245ed6-16e1-4a04-b153-872ac32bffbd" />
+		</assigningOrganization>
+	</PRPA_MT201000HT03>
+</message>

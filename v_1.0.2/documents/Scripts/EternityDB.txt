@@ -1,0 +1,51 @@
+use HIN_ETERNITY;
+
+
+create column family SUBSCRIBER_PROFILE
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: MESSAGE, validation_class: UTF8Type, index_type: KEYS, index_name: message},
+		{column_name: USERNAME, validation_class: UTF8Type, index_type: KEYS, index_name: username},
+		{column_name: PASSWORD, validation_class: UTF8Type, index_type: KEYS, index_name: password},
+		{column_name: HTMLDOM, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SUBSCRIBER_TYPE, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SECURITY_QUESTION, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SECURITY_ANSWER, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: EMAIL, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: FULLNAME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SUBSCRIBER_ACTIVE, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SUBSCRIBER_CREATION_TIME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SUBSCRIBER_CREATED_BY, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SUBSCRIBER_LAST_MODIFIED_TIME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SUBSCRIBER_MODIFIED_BY, validation_class: UTF8Type, index_type: KEYS}
+	];
+
+
+create column family ROLE
+	with column_type = 'Super' 
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type' 
+	and comparator = 'UTF8Type' 
+	and subcomparator = 'UTF8Type' ;
+	
+
+create column family ROLE_DEFINITION
+	with column_type = 'Super' 
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type' 
+	and comparator = 'UTF8Type' 
+	and subcomparator = 'UTF8Type';
+	
+create column family ROLE_PERMISSION
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type';
+	
+create column family GENERATE_SUBSCRIBERID
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type';
+
+	

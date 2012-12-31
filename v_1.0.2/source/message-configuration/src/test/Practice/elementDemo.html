@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="jquery-1.6.4.js"></script>
+		<script type="text/javascript" src="jquery.xml.js"></script>
+		<script type="text/javascript" src="DataTypeAPI.js"></script>
+		<script type="text/javascript" src="XmlUtil.js"></script>
+		<script type="text/javascript">
+			var xml = null;
+			function ELEtestGetValue(){
+				xml = ELEgetValues('idele','info');
+			}
+			function ELEtestSetValue(){
+				ELEsetValue('idele', xml);
+			}
+		</script>
+	</head>
+	<body>
+		<form>
+  			<fieldset>
+				use: <input type="text" id="idele1"/>
+				newEle: <input type="text" id="idele2"/>
+				<br/>
+
+				<input type="button"  value="getValue" onclick="ELEtestGetValue();"/>
+				<input type="button"  value="clearValue" onclick="ELEclearValues('idele');"/>
+				<input type="button"  value="setValue" onclick="ELEtestSetValue();"/>
+			</fieldset>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+
+<!--  Few fields are mandatory to display doctor, appointment Date and Time, Add customized mail content below.  -->
+<table  id="stage" style="width:100%;font-family:Calibri;margin:0 auto;">
+		<tr>
+		<td style=""></td>
+		<td style="width:40%;">   <img src="http://94.200.191.2/letter/Images/misc-eternitylogosmall.png" style="margin:0 auto;">  </td>
+		<td></td>
+		</tr>
+		<tr>
+		<td></td>
+		<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td style="width:20%">
+				  <img src="http://94.200.191.2/letter/Images/Artwork-dna.png"/>
+			</td>
+
+
+			<td colspan="2" style="font-size:18px;padding:10px;line-height:28px;text-align:justify">
+			Dear ${PATIENT_NAME}, <!--this field is mandatory -->
+				<br />
+					<br />
+			
+			Eternity Medicine Institute would like to remind you of your upcoming appointment:
+			<br />
+				<br />
+			
+			<span style="color:#56004e;font-weight:bold">Date:</span>  <!--this field is mandatory -->   ${APPOINTMETN_DATE}
+			<br />
+			<span style="color:#56004e;font-weight:bold">Time:</span>  <!--this field is mandatory -->  ${APPOINTMETN_TIME}
+			<br />
+			<span style="color:#56004e;font-weight:bold">Doctor:</span> <!--this field is mandatory -->  ${DOCTOR_NAME}
+			<br />
+				<br />
+			We look forward to seeing you soon, for your convenience please find attached our location map.
+			<br />
+			<br />
+
+			<span style="color:#56004e;font-weight:bold">If this is your first appointment with Eternity Medicine Institute, please come to the	appointment 12 hours  fasting</span>; only drinking water. Refreshments will be provided upon completion of your blood draw.
+			<br />
+			<br />
+
+			Also, Eternity Medicine Institute is a program based medical center and does not accept insurance. If you would like to claim your doctor consultation or blood tests, we kindly ask that you bring your claim form with you to your appointment.  Our doctors will be happy to fill the medical visit information for you.
+				<br />
+			<br />
+
+
+			For additional information or if you have any questions please don't hesitate to contact us:
+				<br />
+			<br />
+
+			  <img src="http://94.200.191.2/letter/Images/misc-contactinfo.png" />
+
+					<br />
+			  <br />
+			  Yours in Health,
+			  <br />
+			  <br />
+
+		Eternity Medicine Institute, Dubai
+
+			</td>
+		</tr>
+	</table>
+

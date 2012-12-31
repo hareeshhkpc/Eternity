@@ -1,0 +1,994 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../html/js/jquery.mobile-1.0.1.min.css" />
+<!-- <link rel="stylesheet" href="../html/css/hin.css" /> -->
+<link rel="stylesheet" href="../html/css/violet.css" />
+<link rel="stylesheet" href="../html/css/mobile.css" />
+
+<script src="../html/js/jquery-1.6.4.min.js"></script>
+<script src="../html/js/jquery.json-2.3.js"></script>
+<script src="../html/js/jquery.mobile-1.0.1.min.js"></script>
+<script src="../html/js/jqm.autoComplete-1.4.js"></script>
+</head>
+<body>
+	<div data-role="page" class="ui-align-text">
+		<div class="ui-form-fields">
+
+			<div style="float: left;" id="EDImageEditor" uiRole="editor">
+				<img id="EDthumbnailBox" alt="Patient Image" src="images/user.png"
+					width="100px" onclick="$('#EDthumbnail').trigger('click')"> <input
+					type="file" id="EDthumbnail" dataType="ED" editorType="EDImage"
+					dataField="true" style="display: none" />
+			</div>
+
+			<div style="float:left;width: 97%" id="EDFileAttachmentEditor"
+				 uiRole="editor">
+				 <div class="FileAttachment-editor-border" style="margin-bottom:10px;">
+				<fieldset>
+					<div style="float: left; width: 10%">
+						<form action="/hin-web/rest/FileUploadController" method="post"
+							id="docAttachmentForm" enctype="multipart/form-data">
+							<div style="float: left">
+								<img id="EDthumbnailBox" alt="File Image" width="64px" style="padding-top:5px;"
+									src="images/pdf.png"
+									onclick="$('#EDFileAttachmentThumbnail').trigger('click');">
+							</div>
+
+							<input type="file" name="fileUpload"
+								id="EDFileAttachmentThumbnail" style="display: none" /> <input
+								type="text" id="patientId" name="patient" value=""
+								style="display: none" />
+								<input
+								type="text" id="formName" name="formName" value=""
+								style="display: none" />
+								<input
+								type="text" id="documentType" name="documentType" value=""
+								style="display: none" />
+						</form>
+					</div>
+ 						<input type="hidden" id="EDReference" dataField="true" />
+ 						<input type="hidden" id="EDMediaType" dataField="true" />
+ 						<input type="hidden" id="EDMediaTypeType"/>
+					<fieldset style="float: left; width: 90%">
+						<div id="loadingFile"
+							style="float: left; display: none">
+							<img src="images/loading.gif">
+							<div>Loading...</div>
+						</div>
+						<div id="displayError">
+						</div>
+						<div style="float: left;display: none"
+							id="EDfileAttach">
+							<fieldset style="margin-top: 5px;">
+								<label style="float: left; font-size:15px; width: 80px; font-weight:normal;">Name:</label>
+								<label style="float: left; font-size:15px; font-weight:normal;" id="EDLanguage" dataField="true" type="label" editorType="EDFileAttachment"></label>
+							</fieldset>
+							<fieldset style="margin-top: 10px;">
+								<label style="float: left; font-size:15px;font-weight:normal; width: 80px;">Size:</label>
+								<label style="float: left; font-weight:normal;; font-size:15px;" id="EDMediaTypeSize""></label>
+							</fieldset>
+						</div>
+						<div style="float: right;">
+							<input type="button" value="Open" id="openButton"
+								disabled="disabled" /> <input id="downloadButton"
+								disabled="disabled" type="button" value="Download" />
+							<form action="/hin-web/rest/downloadFileAttachment" method="post"
+								id="docDownloadForm" enctype="multipart/form-data" style="display: none">
+								<input type="text" id="messageId" name="message" value=""/>
+							</form>
+						</div>
+					</fieldset>
+				</fieldset>
+				</div>
+				<div id="displayFile" displayId="" style="width: 100%; display: none">&nbsp;</div>
+			</div>
+
+			<div id="PNCompleteEditor" uiRole="editor">
+				<!-- <div id="PNCompleteEditor" uiRole="editor" style="width:70%;float:left;"> -->
+				<label id="PNCompleteEditorLabel">Name:</label> <input
+					readonly="readonly" id="PNDisplayValue" type="text" dataType="PN"
+					editorType="PNComplete" hasToggle="true" />
+
+				<div data-role="none"
+					class="ui-align-text ui-form-border ui-subEditor" id="SubEditor">
+					<label id="PNCompleteNameTypeLabel">Name Type:</label>
+					<div id="comboDiv">
+						<select type="multiple" id="PNCompleteNameTypeCombo"
+							name="select-choice-1" dataField="true" data-native-menu="false"></select>
+					</div>
+
+					<label id="PNCompletePrefixLabel">Title:</label>
+					<div id="comboDiv">
+						<select type="multiple" id="PNCompletePrefixCombo"
+							name="select-choice-1" dataField="true" data-native-menu="false"></select>
+					</div>
+
+					<label id="PNCompleteGivenLabel">Given Name:</label> <input
+						type="text" id="PNgiven" value="" dataField="true" /> <label
+						id="PNCompleteFamilyLabel">Family Name:</label> <input type="text"
+						id="PNfamily" value="" dataField="true" /> <label
+						id="PNCompleteSuffixLabel">Suffix:</label> <input type="text"
+						id="PNsuffix" value="" dataField="true" />
+				</div>
+			</div>
+
+			<div id="PNCompleteName" uiRole="editor">
+				<!-- <label id="PNCompleteEditorLabel">Name:</label> -->
+
+				<input readonly="readonly" id="PNDisplayValue" type="text"
+					dataType="PN" editorType="PNCompleteNameDisplay" hasToggle="false" />
+
+				<div data-role="none"
+					class="ui-align-text ui-form-border ui-subEditor" id="SubEditor"
+					style="display: none">
+					<label>Name Type:</label>
+					<div id="comboDiv">
+						<select type="multiple" id="select-nameUse" name="select-choice-1"
+							dataField="true" data-native-menu="false"></select>
+					</div>
+
+					<label>Title:</label>
+					<div id="comboDiv">
+						<select type="multiple" id="select-prefix" name="select-choice-1"
+							dataField="true" data-native-menu="false"></select>
+					</div>
+
+					<label>Given Name:</label> <input type="text" id="PNgiven" value=""
+						dataField="true" /> <label>Family Name:</label> <input
+						type="text" id="PNfamily" value="" dataField="true" /> <label>Suffix:</label>
+					<input type="text" id="PNsuffix" value="" dataField="true" />
+				</div>
+			</div>
+
+
+			<!-- <div id="IIEditor" uiRole="editor" style="width:70%;float:left;"> -->
+			<div id="IIEditor" uiRole="editor">
+				<label id="IIEditorLabel">ID:</label> <input id="IIDisplayValue"
+					type="text" dataType="II" editorType="II" hasToggle="true" />
+				<div data-role="none"
+					class="ui-align-text ui-form-border ui-subEditor" id="SubEditor">
+					<label id="IIrootLabel">Root:</label> <input readonly="readonly"
+						type="text" id="IIroot" value="" dataField="true" /> <label
+						id="IIextensionLabel">Extension:</label> <input type="text"
+						id="IIextension" value="" dataField="true" /> <label
+						id="IIassigningAuthorityNameLabel">Assigning Authority
+						Name:</label> <input type="text" id="IIassigningAuthorityName" value=""
+						dataField="true" />
+				</div>
+			</div>
+
+			<div id="IIComboEditor" uiRole="editor">
+				<label id="IIComboEditorLabel">ID:</label> <input
+					readonly="readonly" id="IIComboDisplayValue" type="text"
+					dataType="II" editorType="IICombo" hasToggle="true" />
+				<div data-role="none"
+					class="ui-align-text ui-form-border ui-subEditor" id="SubEditor">
+					<label id="IIComboRootLabel">Identification Type:</label> <select
+						type="multiple" id="IIComboRoot" dataField="true"
+						name="select-choice-1" data-native-menu="false"></select> <label
+						id="IIComboExtensionLabel">Identification Number:</label> <input
+						type="text" id="IIComboExtension" value="" dataField="true" /> <input
+						type="hidden" id="IIComboAssigningAuthorityName" value=""
+						dataField="true" />
+				</div>
+			</div>
+
+			<div id="IIUserNameEditor" uiRole="editor">
+				<label id="IIUserNameEditorLabel">ID:</label> <input
+					id="IIUserNameDisplayValue" type="hidden" dataType="II"
+					editorType="IIUserName" hasToggle="true" />
+				<div data-role="none" class="ui-align-text">
+					<input type="hidden" id="IIUserNameRoot" value="" dataField="true" />
+					<input type="text" id="IIUserNameExtension" value=""
+						dataField="true" data-prompt-position="topRight" /> <input
+						type="hidden" id="IIUserNameAssigningAuthorityName" value=""
+						dataField="true" />
+				</div>
+			</div>
+
+			<div id="IIPasswordEditor" uiRole="editor">
+				<label id="IIPasswordEditorLabel">ID:</label> <input
+					id="IIPasswordDisplayValue" type="hidden" dataType="II"
+					editorType="IIPassword" hasToggle="true" />
+				<div data-role="none" class="ui-align-text">
+					<input type="hidden" id="IIPasswordRoot" value="" dataField="true" />
+					<input type="password" id="IIPasswordExtension" value=""
+						dataField="true" data-prompt-position="topRight" /> <input
+						type="hidden" id="IIPasswordAssigningAuthorityName" value=""
+						dataField="true" />
+				</div>
+			</div>
+
+
+			<div id="CSEditor" uiRole="editor">
+				<label id="CSEditorLabel">Status:</label> <input id="CSDisplayValue"
+					type="text" dataType="CS" editorType="CS" hasToggle="true" />
+				<div data-role="none"
+					class="ui-align-text ui-form-border ui-subEditor" id="SubEditor">
+					<label>Status:</label> <input type="text" id="CSstatusCode"
+						value="" dataField="true" />
+				</div>
+			</div>
+			<div id="TSEditor" uiRole="editor">
+				<label id="TSEditorLabel">Birth Time:</label> <input
+					id="TSDisplayValue" type="hidden" dataType="TS" editorType="TS"
+					hasToggle="true" />
+				<div data-role="none" class="ui-align-text">
+					<!-- <label>Birth Time:</label> -->
+					<!-- <input type="text" readonly="readonly" id="TSbirthTime" value="" dataField="true" date="true" data-role="datebox" data-options='{"mode": "flipbox"}'/> -->
+
+
+					<input type="text"
+						data-options='{"mode":"calbox", "calUsePickers": true, "calNoHeader": true, "dateFormat": "YYYY-MM-DD"}'
+						data-role="datebox" id="TSbirthTime" value="" dataField="true"
+						class="ui-input-text ui-body-d ui-shadow-inset ui-corner-all ui-icon-datebox"
+						readonly="readonly">
+				</div>
+			</div>
+
+			<div id="TELEditor" uiRole="editor">
+				<label id="TELEditorLabel">Telecoms:</label> <input
+					readonly="readonly" id="TELDisplayValue" type="text" dataType="TEL"
+					editorType="TEL" hasToggle="true" />
+				<div data-role="none"
+					class="ui-align-text ui-form-border ui-subEditor" id="SubEditor">
+					<label>Contact Type:</label> <select type="multiple"
+						id="select-telecomUse" dataField="true" name="select-choice-1"
+						data-native-menu="false"></select> <label>Contact:</label> <input
+						type="text" id="TELvalue" value="" dataField="true" />
+				</div>
+			</div>
+
+			<div id="TELInplaceEditor" uiRole="editor">
+				<label id="TELInplaceEditorLabel">Telecoms:</label> <input
+					type="text" id="TELInplaceValue" value="" dataField="true" /> <input
+					type="hidden" id="TELInplaceUse" value="" dataField="true" />
+			</div>
+
+			<div id="ADEditor" uiRole="editor">
+				<label id="ADEditorLabel">Address:</label> <input
+					readonly="readonly" id="ADDisplayValue" type="text" dataType="AD"
+					editorType="AD" hasToggle="true" />
+				<div data-role="none"
+					class="ui-align-text ui-form-border ui-subEditor" id="SubEditor">
+					<label id="ADhouseNumberLabel">House Number:</label> <input type="text" id="ADhouseNumber"
+						value="" dataField="true" /> <label id="ADstreetNameLabel">Street Name:</label> <input
+						type="text" id="ADstreetName" value="" dataField="true" /> <label >City
+						:</label>
+					<div id="searchDiv" style="width: 97%;">
+						<!-- <input type="text" id="select-city" value="" dataField="true" /> -->
+						<input data-inline="true" value="" id="select-city" type="text"
+							data-type="search" dataField="true" placeholder="Search city...">
+						<ul id="select-cityList" data-theme="v" data-role="listview"
+							class="ui-search-lookup"></ul>
+					</div>
+
+					<label>State:</label>
+					<div id="searchDiv" style="width: 97%;">
+						<!-- <input type="text" id="select-state" value="" dataField="true" />	 -->
+						<input data-inline="true" value="" id="select-state" type="text"
+							data-type="search" dataField="true" placeholder="Search state...">
+						<ul id="select-stateList" data-theme="b" data-role="listview"
+							class="ui-search-lookup"></ul>
+					</div>
+
+					<label>Country:</label>
+					<div id="searchDiv" style="width: 97%;">
+						<!-- <input type="text" id="select-country" value="" dataField="true" />	 -->
+						<input data-inline="true" value="" id="select-country" type="text"
+							data-type="search" dataField="true"
+							placeholder="Search country...">
+						<ul id="select-countryList" data-theme="b" data-role="listview"
+							class="ui-search-lookup"></ul>
+					</div>
+
+					<label>Postal Code:</label> <input type="text" id="ADpostalCode"
+						value="" dataField="true" />
+
+				</div>
+			</div>
+
+		<div id="CEEditor" style="width: 50%" uiRole="editor">
+				<label id="CELabel">Gender:</label> 
+				<input type="hidden" id="CEOriginalText" dataField="true" value="">
+				<input type="hidden" id="CEDisplayName" dataField="true" value="">
+				<div id="comboDiv" hasToggle="true">
+					<select id="select-choice" name="select-choice-1" dataField="true"
+						data-native-menu="false" type="multiple">
+					</select>
+				</div>
+			</div>
+			
+			<div id="CERegionEditor" uiRole="editor">
+				<label id="CERegionEditorLabel">Country:</label>
+				<input type="hidden" id="CERegionCode" dataField="true" value="">
+				<input type="hidden" id="CERegionDisplayName" dataField="true" value="">
+				<div id="searchDiv" style="width: 97%;">
+						<input data-inline="true" value="" id="select-country" type="text"
+							data-type="search" dataField="true"
+							placeholder="Search country...">
+						<ul id="select-countryList" data-theme="b" data-role="listview"
+							class="ui-search-lookup"></ul>
+				</div>
+			</div>
+
+		</div>
+
+
+		<hr />
+		<div id="CVListCheckBoxEditor" uiRole="editor">
+			<div id="comboDiv" data-role="fieldcontain">
+				<label for="CVListCheckBox"></label> <select id="CVListCheckBox"
+					name="CVListCheckBox" dataField="true" data-native-menu="false"
+					multiple="multiple" type="multiple">
+				</select>
+
+			</div>
+		</div>
+
+		<hr />
+		<hr />
+
+		<!----Do not add uiRole="editor"---->
+
+		<div id="GridEditor">
+			<div id="editorWrapper" uiRole="gridContent"
+				style="padding-bottom: 5px">
+				<label id="gridLabel"> </label>
+				<fieldset class="ui-grid-b">
+					<div class="ui-block-a" id="editor" style="width: 96%;">
+						<!--  <input readonly="readonly" style="width: 100%" id="IVL_TSDisplayValue" type="text" dataType="IVL_TS" editorType="IVL_TS"  hasToggle="true"/> -->
+					</div>
+					<div class="ui-block-b" id="button"
+						style="width: 2%; vertical-align: top;">
+						<div id="addButton" style="display: block;">
+							<img src="images/add.png" />
+						</div>
+						<div id="removeButton" style="display: block;">
+							<img src="images/delete.png" />
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		<hr />
+		<div id="IVL_TSEditor" uiRole="editor">
+			<label id="IVL_TSEditorLabel">Effective Time:</label> <input
+				readonly="readonly" id="IVL_TSDisplayValue" type="text"
+				dataType="IVL_TS" editorType="IVL_TS" hasToggle="true" />
+			<div data-role="none"
+				class="ui-align-text ui-form-border ui-subEditor" id="SubEditor">
+				<label>Start Date:</label> <input type="text"
+					data-options='{"mode":"calbox", "calUsePickers": true, "calNoHeader": true, "dateFormat": "YYYY-MM-DD"}'
+					data-role="datebox" id="IVL_TSlow" value="" dataField="true"
+					class="ui-input-text ui-body-d ui-shadow-inset ui-corner-all ui-icon-datebox"
+					readonly="readonly"> <br> <br> <label>End
+					Date:</label> <input type="text"
+					data-options='{"mode":"calbox", "calUsePickers": true, "calNoHeader": true, "dateFormat": "YYYY-MM-DD"}'
+					data-role="datebox" id="IVL_TShigh" value="" dataField="true"
+					class="ui-input-text ui-body-d ui-shadow-inset ui-corner-all ui-icon-datebox"
+					readonly="readonly">
+			</div>
+		</div>
+
+		<div id="CVListEditor" uiRole="editor">
+			<label id="CVListEditorLabel">Race Code:</label> <input
+				id="CVListDisplayValue" type="hidden" dataField="true" />
+			<!-- <select type="multiple" id="select-choice" name="select-choice-1"  dataField="true"  data-native-menu="false" >
+					</select>  -->
+			<div id="comboDiv">
+				<select id="select-choice" name="select-choice-1" dataField="true"
+					data-native-menu="false" type="multiple">
+				</select>
+			</div>
+		</div>
+
+		<div id="CDLabelEditor" uiRole="editor">
+			<label id="CDLabelEditorLabel" type="label">Just a label</label> <input
+				id="CDLabelEditorLabelHidden" type="hidden" dataField="true"
+				dataType="CD" editorType="CDLabel" />
+		</div>
+
+		<div id="PQInplaceEditor" uiRole="editor">
+			<input id="PQInplaceDisplayValue" type="text"
+				labelField="CDLabelEditorLabelHidden" dataField="true" dataType="PQ"
+				hasToggle="true" editorType="PQInplace" />
+		</div>
+
+		<div id="MOInplaceEditor" uiRole="editor">
+			<input id="MOInplaceDisplayValue" type="text"
+				labelField="CDLabelEditorLabelHidden" dataField="true" dataType="MO"
+				editorType="MOInplace" />
+		</div>
+
+		<div id="PQInplaceComboEditor" uiRole="editor">
+			<input id="PQInplaceComboDisplayValue" type="hidden" />
+			<div id="comboDiv">
+				<select type="multiple" id="select-choice" name="select-choice-1"
+					dataField="true" data-native-menu="false"
+					labelField="CDLabelEditorLabelHidden">
+				</select>
+			</div>
+		</div>
+
+		<div id="CalendarEditor" uiRole="editor">
+			<input id="calendarData" type="text" dataType="IVL_TS"
+				editorType="Calendar" hasToggle="true" /> <input id="cFrom"
+				type="hidden" dataField="true" /> <input id="cTo" type="hidden"
+				dataField="true" />
+		</div>
+
+		<div id="CDInplaceEditor" uiRole="editor">
+		<label id="CDInplaceEditorLabel"></label>
+			<input id="commentsValue" type="text" dataField="true" dataType="CD"
+				editorType="CDInplace" />
+		</div>
+
+		<div id="CEInplaceEditor" uiRole="editor">
+			<input id="reasonValue" type="text" dataField="true" dataType="CE"
+				editorType="CEInplace" />
+		</div>
+
+		<!-- <div id="PQBooleanEditor" uiRole="editor">
+			<div class="ui-grid-a" data-role="controlgroup"
+				style="margin-bottom: 25px;" hasToggle="true">
+				<div class="ui-block-a">
+					<div style="float: left">
+						<label>Yes</label>
+					</div>
+					<div style="float: left; margin-top: 4px; margin-left: -15px">
+						<input type="radio" name="radioEditor" id="radioEditor1" value="1"
+							dataField="true" labelField="CDLabelEditorLabelHidden" />
+					</div>
+				</div>
+				<div class="ui-block-b">
+					<div style="float: left">
+						<label>No</label>
+					</div>
+					<div style="float: left; margin-top: 4px; margin-left: -15px">
+						<input type="radio" name="radioEditor" id="radioEditor2" value="0"
+							dataField="true" labelField="CDLabelEditorLabelHidden" />
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+		<div id="PQBooleanEditor" uiRole="editor">
+			<div class="ui-grid-a" data-role="none" style="margin-bottom: 25px;">
+				<div class="ui-block-a" data-role="none">
+					<div style="float: left">
+						<label id="label1" for="radioEditor1">Yes</label>
+					</div>
+					<div style="float: left; margin-top: 4px; margin-left: -15px">
+						<input type="radio" name="radioEditor1" id="radioEditor1" value="1"
+							dataField="true" labelField="CDLabelEditorLabelHidden" />
+					</div>
+				</div>
+				<div class="ui-block-b" data-role="none">
+					<div style="float: left">
+						<label id="label2" for="radioEditor2">No</label>
+					</div>
+					<div style="float: left; margin-top: 4px; margin-left: -15px">
+						<input type="radio" name="radioEditor1" id="radioEditor2" value="0"
+							dataField="true" labelField="CDLabelEditorLabelHidden" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="PhysicianLookupEditor" uiRole="editor">
+			<div id="searchDiv">
+				<input type="text" id="pPhysician" placeholder="Click/Double Click" hasToggle='true'
+					editorType="PhysicianLookup"  readonly="true" />
+				<ul data-role="listview" data-inset="true"
+					style="width: 30%; position: absolute; z-index: 1000;"></ul>
+			</div>
+			
+			<div id="SubEditor"  style="display:none">
+					<div id="comboDiv"  style="display:none">
+						<select type="multiple" id="PNCompleteNameTypeCombo"
+							name="select-choice-1" dataField="true"></select>
+					</div>
+					<div id="comboDiv"  style="display:none">
+						<select type="multiple" id="PNCompletePrefixCombo"
+							name="select-choice-1" dataField="true"></select>
+					</div>
+					 <input type="text" id="PNgiven" value="" dataField="true"  style="display:none" /> 
+					 <input type="text" id="PNfamily" value="" dataField="true"   style="display:none"/> 
+					 <input type="text" id="PNsuffix" value="" dataField="true"  style="display:none"/>
+				</div>
+		</div>
+
+		<div id="ServiceLookupEditor" uiRole="editor">
+			<div id="searchDiv">
+				<input type="text" id="sService" placeholder="Search" dataType="CD"
+					hasToggle="true" editorType="ServiceLookup" dataField="true" />
+				<ul data-role="listview" data-inset="true"
+					style="width: 30%; position: absolute; z-index: 1000;"
+					dataField="true"></ul>
+			</div>
+		</div>
+
+
+		<!-- Three Textbox editor  -->
+
+		<div id="CVListThreeTextboxEditor" uiRole="editor">
+			<div>
+				<label id="CVListThreeTextboxEditorLabel">Surgery:</label>
+			</div>
+			<input id="CVListThreeTextboxDisplayValue" type="text"
+				dataType="CVList" hasToggle="true"  readonly="readonly"/>
+
+			<div data-role="none"
+				class="ui-align-text ui-form-border ui-subEditor" id="SubEditor">
+
+				<label id="CVListTextboxYearLabel">Year </label> <input type="text"
+					id="CVListTextboxYear" value="" dataField="true" /> <label
+					id="CVListTextboxReasonLabel">Reason</label> <input type="text"
+					id="CVListTextboxReason" value="" dataField="true" /> <label
+					id="CVListTextboxHospitalLabel">Hospital</label> <input type="text"
+					id="CVListTextboxHospital" value="" dataField="true" />
+			</div>
+		</div>
+
+		<!-- Two Textbox editor  -->
+
+		<div id="CVListTwoTextboxEditor" uiRole="editor">
+			<div>
+				<label id="CVListTwoTextboxEditorLabel">Allergies:</label>
+			</div>
+
+			<input id="CVListTwoTextboxDisplayValue" type="text" readonly="readonly"
+				dataType="CVList" hasToggle="true" />
+
+
+			<div data-role="none"
+				class="ui-align-text ui-form-border ui-subEditor" id="SubEditor">
+				<label id="CVListTextboxDrugLabel">Name the Drug </label> <input
+					type="text" id="CVListTextboxDrug" value="" dataField="true" /> <label
+					id="CVListTextboxReactionLabel">Reaction You Had</label> <input
+					type="text" id="CVListTextboxReaction" value="" dataField="true" />
+			</div>
+		</div>
+
+		<!-- Single Textbox editor  -->
+		<div id="CVListTextboxEditor" uiRole="editor">
+			<label id="CVListTextboxEditorLabel">Health</label> <input
+				type="text" id="CVListTextboxHealth" value="" dataField="true" />
+		</div>
+
+		<!--TextArea editor  -->
+		<div id="CVListTextareaEditor" uiRole="editor">
+			<label id="CVListTextareaEditorLabel">List</label>
+
+			<textarea type="text" name="textarea" id="CVListTextareaList"
+				value="" dataField="true" rows="20"> </textarea>
+		</div>
+
+		<div id="EDTextareaEditor" uiRole="editor">
+			<label id="EDTextareaLabel"></label>
+			<div id="EDTextareaText" dataField="true">
+			<textarea type="text" name="textarea"  value=""
+				dataType="ED" editorType="EDTextarea"  rows="2"
+				cols="20"> </textarea>
+				</div>
+		</div>
+
+		<!-- Boolean editor  -->
+
+
+		<div id="CVListBooleanEditor" uiRole="editor">
+			<label class="ui-health-habit" id="CVListBooleanLabel"></label>
+			<div class="ui-grid-a" data-role="none" style="float:left;width:87%;">
+				<div class="ui-block-a" data-role="none" style="width:11%;">
+					<div style="float: left">
+						<label id="label1" for="radioEditor1">Yes</label>
+					</div>
+					<div style="float: left; margin-top: 4px; margin-left: -15px">
+						<input type="radio" name="radioEditor" id="radioEditor1" value="1"
+							dataField="true" labelField="CDLabelEditorLabelHidden" />
+					</div>
+				</div>
+				<div class="ui-block-b" data-role="none">
+					<div style="float: left">
+						<label id="label2" for="radioEditor2">No</label>
+					</div>
+					<div style="float: left; margin-top: 4px; margin-left: -15px">
+						<input type="radio" name="radioEditor" id="radioEditor2" value="0"
+							dataField="true" labelField="CDLabelEditorLabelHidden" />
+					</div>
+				</div>
+			</div><br /><br />
+		</div>
+		<!-- CVList Calender -->
+
+		<div id="CVListCalenderEditor" uiRole="editor">
+			<label id="CVListCalenderLabel">Birth Time:</label> <input
+				id="CVListCalenderDisplayValue" type="hidden" />
+			<div data-role="none" class="ui-align-text">
+				<input type="text" readonly="readonly" id="CVListCalenderbirthTime"
+					value="" dataField="true" date="true" data-role="datebox"
+					data-options='{"mode": "flipbox","noButtonFocusMode":true}' />
+			</div>
+		</div>
+
+		<!-- CVList Slider -->
+
+		<div id="CVListSliderEditor" uiRole="editor">
+			<div style="padding-bottom: 9px;">
+				<label id="CVListSliderLabel"></label>
+			</div>
+			<div>
+				<div class="increment">Very unhealthy</div>
+				<div class="increment">
+					<a href="#" data-role="button" data-icon="arrow-l"
+						data-iconpos="notext" data-theme="v" data-inline="true"
+						id="decrementHealth"></a> <input type="hidden"
+						id="numericHealthHidden" value="" dataField="true" /> <span
+						id="numericHealth" type="text">0</span> <a href="#"
+						data-role="button" data-icon="arrow-r" data-iconpos="notext"
+						data-theme="v" data-inline="true" id="incrementHealth"></a>
+				</div>
+				<div class="decrement">Very healthy</div>
+			</div>
+			<br /> <br /> <br />
+		</div>
+
+		<div id="EDBooleanEditor" uiRole="editor">
+			<div class="ui-grid-a" data-role="none" style="padding-left:3px;">
+				<div class="ui-block-a" data-role="none">
+					<div> 
+						<label id="label1" for="radioEditor1">Yes</label>
+					</div>
+					<div style="float: left;">
+						<input type="radio" name="radioEditor" id="radioEditor1" value="1"
+							dataField="true" labelField="CDLabelEditorLabelHidden" />
+					</div>
+				</div>
+				<div class="ui-block-b" data-role="none">
+					<div>
+						<label id="label2" for="radioEditor2">No</label>
+					</div>
+					<div style="float: left;">
+						<input type="radio" name="radioEditor" id="radioEditor2" value="0"
+							dataField="true" labelField="CDLabelEditorLabelHidden" />
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- <div id="EDBooleanEditor" uiRole="editor">
+			<div class="ui-grid-a" data-role="none" style="padding-left:3px;margin-bottom: 25px;">
+				<div class="ui-block-a" data-role="none">
+					<div style="float: left">
+						<label id="label1" for="radioEditor1">Yes</label>
+					</div>
+					<div style="float: left; margin-top: 4px; margin-left: -15px">
+						<input type="radio" name="radioEditor" id="radioEditor1" value="1"
+							dataField="true" labelField="CDLabelEditorLabelHidden" />
+					</div>
+				</div>
+				<div class="ui-block-b" data-role="none">
+					<div style="float: left">
+						<label id="label2" for="radioEditor2">No</label>
+					</div>
+					<div style="float: left; margin-top: 4px; margin-left: -15px">
+						<input type="radio" name="radioEditor" id="radioEditor2" value="0"
+							dataField="true" labelField="CDLabelEditorLabelHidden" />
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<div id="EDTextBoxEditor" uiRole="editor">
+			<label id="EDTextBoxEditorLabel"></label> <input id="EDDisplayValue"
+				type="text" dataField="true" dataType="ED" editorType="EDTextBox" />
+		</div>
+
+		<div id="ONEditor" uiRole="editor">
+			<label id="ONEditorLabel">Name:</label> <input readonly="readonly"
+				id="ONDisplayValue" type="text" dataType="ON" editorType="ON"
+				hasToggle="true" />
+			<div data-role="none"
+				class="ui-align-text ui-form-border ui-subEditor" id="SubEditor">
+				<label>Name Type:</label>
+				<div id="comboDiv">
+					<select type="multiple" id="ONuse" name="select-choice-1"
+						dataField="true" data-native-menu="false"></select>
+				</div>
+				<label>Name:</label> <input type="text" id="ONprefix" value=""
+					dataField="true" />
+			</div>
+		</div>
+
+		<div id="ONInplaceEditor" uiRole="editor">
+			<label id="ONInplaceEditorLabel">Oraganization:</label> <input
+				readonly="readonly" id="ONInplaceDisplayValue" type="hidden"
+				dataType="ON" editorType="ON" hasToggle="true" /> <input
+				type="text" id="ONInplacePrefix" value="" dataField="true" />
+		</div>
+
+		<div id="EntityLookupEditor" uiRole="editor">
+			<input id="consultant" type="hidden" />
+			<div id="searchDiv">
+				<input type="text" id="EntityDisplayValue" placeholder="Search"
+					dataField="true" />
+				<ul id="entityList" data-role="listview" data-inset="true"
+					style="width: 30%; position: absolute; z-index: 1000;"></ul>
+			</div>
+		</div>
+
+		<div id="STEditor" uiRole="editor">
+			<label id="STEditorLabel">Job Title.:</label> <input
+				id="STDisplayValue" type="hidden" dataType="ST" editorType="ST"
+				hasToggle="true" /> <input type="text" id="STtext" value=""
+				dataField="true" />
+		</div>
+
+		<div id="STLabelEditor" uiRole="editor">
+			<label id="STLabelEditorLabel" type="label" dataField="true"
+				dataType="ST" editorType="STLabel">Just a label</label>
+		</div>
+
+		<div id="EDLabelEditor" uiRole="editor">
+			<label id="EDLabelEditorLabel" type="label" dataField="true"
+				dataType="ED" editorType="EDLabel">Just a label</label>
+		</div>
+
+		<div id="EDCheckBoxEditor" uiRole="editor">
+			<input id="EDCheckBoxDisplayValue" type="checkbox" dataField="true"
+				labelField="CDLabelEditorLabelHidden" style="margin:-4px 0 0;" /> <label
+				id="EDCheckBoxLabel" type="label" dataField="true" for="EDCheckBoxDisplayValue"></label>
+
+		</div>
+
+		<div id="EDSpanEditor" uiRole="editor">
+			<span id="EDSpan" dataField="true"></span>
+		</div>
+
+		<div id="CDCheckBoxEditor" uiRole="editor"
+			style="width: 70%; float: left;">
+			<div style="width: 7%; float: left; margin-top: 5px;">
+				<input id="CDCheckBoxDisplayValue" type="checkbox" dataField="true" />
+			</div>
+			<div style="width: 70%; float: left">
+				<label id="CDCheckBoxLabel" type="label"></label>
+			</div>
+		</div>
+		<div id="CDEditor" style="width: 50%" uiRole="editor">
+			<label id="CDEditorLabel">:</label> <input id="CDDisplayValue"
+				type="hidden" dataType="CD" editorType="CD" hasToggle="true" />
+			<div id="comboDiv" hasToggle="true">
+				<select id="select-choice" name="select-choice-1" dataField="true"
+					data-native-menu="false" type="multiple">
+				</select>
+			</div>
+		</div>
+		<div id="CDProgramsEditor" uiRole="editor">
+			<label id="CDProgramsEditorLabel">:</label> <input
+				id="CDDisplayValue" type="hidden" dataType="CD"
+				editorType="CDPrograms" hasToggle="true" /> <input type="hidden"
+				id="CDProgramsCode" value="" dataField="true" /> <input
+				type="hidden" id="CDProgramsDisplayName" value="" dataField="true" />
+			<fieldset class="ui-grid-b" id="programs">
+				<div nameType="shortName" class="demo-programs ui-block-a" program="">
+					<div class="program">
+						<img image="smallIcon" src="" />
+					</div>
+					<div nameType="name" class="ui-program-position ui-cursor-point"></div>
+				</div>
+				<div nameType="shortName" class="demo-programs ui-block-b" program="">
+					<div class="program">
+						<img image="smallIcon" src="" />
+					</div>
+					<div nameType="name" class="ui-program-position ui-cursor-point"></div>
+				</div>
+				<div nameType="shortName" class="demo-programs ui-block-a" program="">
+					<div class="program">
+						<img image="smallIcon" src="" />
+					</div>
+					<div nameType="name" class="ui-program-position ui-cursor-point"></div>
+				</div>
+				<div nameType="shortName" class="demo-programs ui-block-b" program="">
+					<div class="program">
+						<img image="smallIcon" src="" />
+					</div>
+					<div nameType="name" class="ui-program-position ui-cursor-point"></div>
+				</div>
+				<div nameType="shortName" class="demo-programs ui-block-a" program="">
+					<div class="program">
+						<img image="smallIcon" src="" />
+					</div>
+					<div nameType="name" class="ui-program-position ui-cursor-point"></div>
+				</div>
+				<div nameType="shortName" class="demo-programs ui-block-b" program="">
+					<div class="program">
+						<img image="smallIcon" src="" />
+					</div>
+					<div nameType="name" class="ui-program-position ui-cursor-point"></div>
+				</div>
+				<div nameType="shortName" class="demo-programs ui-block-a" program="">
+					<div class="program">
+						<img image="smallIcon" src="" />
+					</div>
+					<div nameType="name" class="ui-program-position ui-cursor-point"></div>
+				</div>
+				<div nameType="shortName" class="demo-programs ui-block-b" program="">
+					<div class="program">
+						<img image="smallIcon" src="" />
+					</div>
+					<div nameType="name" class="ui-program-position ui-cursor-point"></div>
+				</div>
+				<div nameType="shortName" class="demo-programs ui-block-a" program="">
+					<div class="program">
+						<img image="smallIcon" src="" />
+					</div>
+					<div nameType="name" class="ui-program-position ui-cursor-point"></div>
+				</div>
+				<div nameType="shortName" class="demo-programs ui-block-b" program="">
+					<div class="program">
+						<img image="smallIcon" src="" />
+					</div>
+					<div nameType="name" class="ui-program-position ui-cursor-point"></div>
+				</div>
+			</fieldset>
+		</div>
+
+		<div id="CESearchEditor" uiRole="editor">
+			<label id="CESearchLabel"></label>
+			<div id="searchDiv" style="width: 100%;">
+				<input data-inline="true" value="" id="select-dose" type="text" hasToggle="true"
+					data-type="search" placeholder="Search"  dataField="true" hasToggle='true'>
+				<ul id="select-doseList" data-theme="v" data-role="listview"
+					class="ui-search-lookup"></ul>
+				<div  id="SubEditor" style="display:none">
+				 <input  value="" id="select-doseHidden" type="text" dataField="true" style="display:none"/>
+				 </div>
+			</div>
+			
+		</div>
+
+		<div id="IIPermissionEditor" uiRole="editor">
+			<input id="IIPermissionEditorDisplayValue" type="hidden"
+				dataType="II" editorType="IIPermission" hasToggle="true" /> <label
+				type="label" for="permissionlabel" id="IIPermissionRoot"></label> <input
+				type="checkbox" id="IIPermissionExtension" value="" dataField="true" />
+			<input type="hidden" id="IIPermissionAssigningAuthorityName" value=""
+				dataField="true" />
+		</div>
+
+		<div id="RTO_PQ_PQInplaceEditor" uiRole="editor">
+			<label id="RTO_PQ_PQProductLabel"></label> <input type="text"
+				id="RTO_PQ_PQProduct" value="" dataField="true" />
+		</div>
+
+		<div id="RTO_MO_PQInplaceEditor" uiRole="editor">
+			<label id="RTO_MO_PQProductLabel"></label> <input type="text"
+				id="RTO_MO_PQProduct" value="" dataField="true" />
+		</div>
+
+		<div id="CELabelEditor" uiRole="editor">
+			<label id="CELabel" type="label">Range:</label> <input
+				id="CELabelHidden" type="hidden" dataField="true" />
+		</div>
+
+
+		<div id="EDCalenderEditor" uiRole="editor">
+			<label id="EDCalenderLabel">Birth Time:</label> <input
+				id="EDCalenderDisplayValue" type="hidden" />
+			<div data-role="none" class="ui-align-text">
+				<input type="text" readonly="readonly" id="EDCalenderbirthTime"
+					value="" dataField="true" date="true" data-role="datebox"
+					data-options='{"mode": "calbox","calUsePickers": true, "calNoHeader": true, "dateFormat": "%B-%d-%Y, %k:%M:%S"}' />
+				<!--   <input type="text"  id="EDCalenderbirthTime" value="" dataField="true"/> -->
+
+			</div>
+		</div>
+
+		<div id="EDComboBoxEditor" uiRole="editor" style="width: 50%">
+			<label id="EDCombolabel"></label>
+			<div id="comboDiv">
+				<select type="multiple" id="EDComboBox" name="select-choice-1"
+					dataField="true" data-native-menu="false"></select>
+			</div>
+		</div>
+		<div id="PQInplaceBooleanEditor" uiRole="editor">
+			<label id="PQInplaceBooleanLabel"></label>
+			<div class="ui-grid-a" data-role="none" style="margin-bottom: 25px;">
+				<div data-role="none">
+					<div style="float: left">
+						<label id="label1" for="radioEditor1">Yes</label>
+					</div>
+					<div style="float: left; margin-top: 4px; margin-left: -15px">
+						<input type="radio" name="radioEditor" id="radioEditor1" value="1"
+							dataField="true" labelField="CDLabelEditorLabelHidden" />
+					</div>
+				</div>
+				<div class="ui-block-b" data-role="none" style="margin-left: 25px">
+					<div style="float: left">
+						<label id="label2" for="radioEditor2">No</label>
+					</div>
+					<div style="float: left; margin-top: 4px; margin-left: -15px">
+						<input type="radio" name="radioEditor" id="radioEditor2" value="0"
+							dataField="true" labelField="CDLabelEditorLabelHidden" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="EDSingleBooleanEditor" uiRole="editor">
+				<fieldset class="ui-grid-d">
+					<div class="ui-block-a">
+					<div style="width:80%;position:relative;left:15px;">
+						<label id="label1" for="radioEditor1">yes</label>
+					<input type="radio" name="radio-mini" id="radioEditor1" value="1" dataField="true" labelField="CDLabelEditorLabelHidden"/>
+					</div>
+					<div style="height:20px;text-align:center;position:relative;bottom:5px;">
+					<p id="p1">Normal1</p>
+ 					</div>
+					</div>
+					<div class="ui-block-b">
+					<div style="width:80%;position:relative;left:15px">
+					<label id="label2" for="radioEditor2">yes</label>
+					<input type="radio" name="radio-mini" id="radioEditor2" value="1" dataField="true" labelField="CDLabelEditorLabelHidden"/>
+					</div>
+					<div style="height:20px;text-align:center;position:relative;bottom:5px">
+					<p id="p2">Normal2</p>
+ 					</div>
+					</div>
+
+					<div class="ui-block-c">
+					<div style="width:80%;position:relative;left:15px;">
+					<label id="label3" for="radioEditor3">yes</label>
+					<input type="radio" name="radio-mini" id="radioEditor3" value="1" dataField="true" labelField="CDLabelEditorLabelHidden"/>
+					</div>
+					<div style="height:20px;text-align:center;position:relative;bottom:5px">
+					<p id="p3">Normal3</p>
+ 					</div>
+					</div>
+					<div class="ui-block-d">
+					<div style="width:80%;position:relative;left:15px">
+					<label id="label4" for="radioEditor4">yes</label>
+					<input type="radio" name="radio-mini" id="radioEditor4" value="1" dataField="true" labelField="CDLabelEditorLabelHidden"/>
+					</div>
+					<div style="height:20px;text-align:center;position:relative;bottom:5px">
+					<p id="p4">Normal4</p>
+ 					</div>
+					</div>
+					<div class="ui-block-e">
+					<div style="width:80%;position:relative;left:15px">
+					<label id="label5" for="radioEditor5">yes</label>
+					<input type="radio" name="radio-mini" id="radioEditor5" value="1" dataField="true" labelField="CDLabelEditorLabelHidden"/>
+					</div>
+					<div style="height:20px;text-align:center;position:relative;bottom:5px">
+					<p id="p5">Normal5</p>
+ 					</div>
+					</div>
+				</fieldset>
+
+
+		</div>
+
+		<div id="ColorPickerEditor" uiRole="editor">
+			<input id="colorValue" type="text" dataField="true" dataType="CD" editorType="ColorPicker" placeholder="Click" name="color1" readonly="readonly"/>
+		</div>
+		
+		<div id="IIinplaceComboEditor" style="width: 100%" uiRole="editor">
+			<label id="IIcomboLabel"></label> 
+			<input id="IIHidden" dataField="true" type="hidden" />
+			<div id="comboDiv">
+				<select id="select-choice" name="select-choice-1" dataField="true"
+					data-native-menu="false" type="multiple">
+				</select>
+			</div>
+		</div>
+		
+		<div id="IISingleCheckBoxEditor" uiRole="editor">
+			<input type="hidden" id="IIRoot" value="" dataField="true" />
+			<input type="checkbox" id="IIExtension" value="" dataField="true" />
+		</div>
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:util="http://java.sun.com/jsf/composite/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<rich:collapsiblePanel
+			header="#{messageConfigurationBean.indexFieldsVO.name}"
+			switchType="client" style="width:950px">
+			<h:form>
+				<a4j:jsFunction name="renderImages" ajaxSingle="true"
+					immediate="true" reRender="f1" />
+				<h:panelGrid columns="2">
+					<h:column>
+						<h:outputText id="name" value="Data Type" />
+					</h:column>
+					<h:column>
+						<h:inputText id="nameValue"
+							value="#{messageConfigurationBean.indexFieldsVO.type}"
+							required="false" requiredMessage="message type is required"
+							disabled="false" />
+					</h:column>
+					<h:column>
+						<h:outputText id="indexed" value="indexed" />
+					</h:column>
+					<h:selectOneMenu id="indexedValue"
+						value="#{messageConfigurationBean.indexFieldsVO.indexed}">
+						<f:selectItem itemValue="true" itemLabel="True" />
+						<f:selectItem itemValue="false" itemLabel="false" />
+					</h:selectOneMenu>
+					<h:column>
+						<h:outputText id="analyzed" value="Analyzed" />
+					</h:column>
+					<h:selectOneMenu id="analyzedValue"
+						value="#{messageConfigurationBean.indexFieldsVO.analyzed}">
+						<f:selectItem itemValue="true" itemLabel="True" />
+						<f:selectItem itemValue="false" itemLabel="false" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+				<br/>
+				<h:commandButton value="Save Field" id="saveIndexField"
+					action="#{messageConfigurationBean.addToIndexFieldsList}" />
+				<h:commandButton value="Back " id="back" action="viewMessageType" />
+			</h:form>
+		</rich:collapsiblePanel>
+	</ui:define>
+
+</ui:composition>
+</html>

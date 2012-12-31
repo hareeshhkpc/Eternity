@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Message Api</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="css/hin.css" />
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.json-2.3.js"></script>
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+
+<script src="js/hl7adapter_new.js"></script>
+<script type="text/javascript" src="js/xml2json.js"></script>
+<script type="text/javascript" src="js/json2xml.js"></script>
+
+<script src="js/XmlUtil.js"></script> 
+<script src="js/MessageAndUIBinder.js"></script>
+
+<script>
+
+var msgBinder = null;
+
+$(document).ready(function(){
+	alert("using Message Api");
+	
+	$("#loadMessage").click(function(){
+		loadMessage('/message-configuration/Message.xml');
+	});
+	
+	$("#loadConfig").click(function(){
+		loadConfiguration('/message-configuration/PRPA_IN203000HT04.xml');
+	});	
+	
+	
+	$('#saveMessage').click(function(){
+		 alert("Message xml: \n" +  XmlUtil.xmlToString(msgBinder.messageObject.getXML()));
+	});
+
+});
+
+function loadMessage(messageId){
+	getMessageDocument(messageId, 
+		function(messageObj){
+			alert(messageObj)
+			msgBinder = new MessageAndUIBinder('MSG-10001', messageObj, 'PRPA_IN203000HT04');
+			msgBinder.loadDataOntoForm();
+		},
+		function(status){
+			alert("Failed to load message for ID : " + messageId + ", Status: " + status);
+		}
+	);
+}
+
+function loadConfiguration(messageConfigId){
+	//alert("in load");
+	getMessage(messageConfigId, 
+		function(configData){
+			
+			var doc = new ConfigDocument(configData)
+	        var result = 0;
+	        result = doc.getArtifactId();
+	        // alert("result :"+result);
+	         
+	        config = doc;
+	        
+	        alert('Configuration for ' + messageConfigId + " Loaded");
+	        
+	        msgBinder = new MessageAndUIBinder('MSG-10001', config.createMessage(), 'PRPA_IN203000HT04');
+	        msgBinder.bindFieldEvents();
+		},
+		function(status){
+			alert("Failed to load configuration for ID : " + messageConfigId + ", Status: " + status);
+		}
+	);
+}
+
+</script>
+</head>
+<body>
+
+<div parentDiv="true" id="MSG-10001">
+	ID Root:<input type="text" pathFields="subject,subsumedBy,subsumingPerson" tagName="id" fields="pIDRoot,pIDExtension,null" dataType="II" id="pIDRoot" dataField="true" />
+	ID Extension:<input type="text" pathFields="subject,subsumedBy,subsumingPerson" tagName="id" fields="pIDRoot,pIDExtension,null" dataType="II" id="pIDExtension" dataField="true" />
+	
+	Sex: 
+	<select pathFields="subject,subsumedBy,subsumingPerson" tagName="administrativeGenderCode" fields="administrativeGenderCode" dataType="PN" id="administrativeGenderCode" dataField="true">
+		<option value="null">- Select -</option>
+		<option value="M">Male</option>
+		<option value="F">Female</option>
+		<option value="O">Others</option>
+	</select>
+	
+	Name: <input type="text" pathFields="subject,subsumedBy,subsumingPerson" tagName="name" fields="pName" dataType="PN" id="pName" dataField="true" />
+	birthTime Time: <input type="text" pathFields="subject,subsumedBy,subsumingPerson" tagName="birthTime" fields="birthTime" dataType="TS" id="birthTime" dataField="true"  />
+	
+</div>
+
+<input type="button" data-inline="true" id="loadConfig" value="Load Configuration"/>
+<input type="button" data-inline="true" id="loadMessage" value="Load Message"/>
+<input type="button" data-inline="true" id="saveMessage" value="Save Message"/>
+</body>
+</html>

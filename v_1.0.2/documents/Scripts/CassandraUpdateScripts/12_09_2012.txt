@@ -1,0 +1,10 @@
+use HIN_ETERNITY;
+
+create column family COUCH_SEQUENCE
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: LASTSEQUENCE, validation_class: UTF8Type}
+	];
+set COUCH_SEQUENCE['couchSequence']['LASTSEQUENCE']='0';

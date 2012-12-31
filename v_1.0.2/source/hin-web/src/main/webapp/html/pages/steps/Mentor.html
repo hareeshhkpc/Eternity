@@ -1,0 +1,98 @@
+<!-- <link rel="stylesheet" href="../../js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="../../css/violet.css" />
+<link rel="stylesheet" href="../../css/mobile.css" type="text/css" />
+<script src="../../js/jquery-1.6.4.min.js"></script>
+<script src="../../js/jquery.json-2.3.js"></script>
+<script src="../../js/jquery.mobile-1.0.1.min.js"></script>
+
+<script src="../../js/vo/FormVO.js"></script>
+<script src="../../js/vo/Message.js"></script>
+<script src="../../js/vo/ProcessDefinition.js"></script>
+<script src="../../js/vo/Step.js"></script> -->
+
+
+<script type="text/javascript">
+	var mentorProcessDefinition = null;
+	var mentorForms = [];
+	var mentorSelectedStep = null;
+	var mentorGroupHeaderMap = new HIN.HashMap();
+	var mentorFormIndex = 0;
+
+	//if (HIN.UIGenerator.instances == null)
+	HIN.UIGenerator.instances = new HIN.HashMap();
+
+	$(document)
+			.ready(
+					function() {
+						HIN.UIGenerator.instances.clearItems();
+						mentorProcessDefinition = appController.getComponent(
+								"RenderingEngine").getChildComponent("Process")
+								.getProcessDefinition();
+						//alert( $.toJSON(mentorProcessDefinition));
+						mentorSelectedStep = appController.getComponent(
+								"RenderingEngine").getChildComponent("Form").selectedStep;
+						//alert(mentorSelectedStep);
+						mentorForms = mentorSelectedStep.getMessageTypes();//Names();
+
+						loadMentorForms();
+
+					});
+
+	function loadMentorForms() {
+		if (mentorFormIndex < mentorForms.length) {
+			var formVO = mentorForms[mentorFormIndex];
+			var sortType = formVO.sortType;
+			var sortBy = formVO.typeName;
+			mentorFormIndex++;
+			var id = idGenerator.getId();
+			var map = mentorGroupHeaderMap.get(sortBy);
+
+			if (map == null) {
+				mentorGroupHeaderMap.put(sortBy, id);
+				$('#mentorPage')
+						.append(
+								"<div id='inner-form-"+sortBy+"Placeholder-"+id+"'></div>");
+				var uiGenerator = new HIN.UIGenerator(id, appController,
+						mentorSelectedStep, 'inner-form-' + sortBy
+								+ 'Placeholder-' + id, formVO, loadMentorForms);
+				HIN.UIGenerator.instances.put(id, uiGenerator);
+				// uiGenerator.hideMainHeader();
+				uiGenerator.hideAddIcon();
+				//uiGenerator.hideSubHeader();
+				uiGenerator.hideRemoveIcon();
+				uiGenerator.load(sortType, sortBy);
+
+			} else {
+
+				var id = map.value;
+				var uiGenerator = HIN.UIGenerator.instances.get(id).value;
+				/* alert("uiGenerator : " + uiGenerator); */
+				var messages = formVO.getMessages();
+				for ( var messageIndex = 0; messageIndex < messages.length; messageIndex++) {
+					var message = messages[messageIndex];
+					if (message.instanceId == -1) {
+						message.instanceId = id;
+						uiGenerator.uiMessages.push(message);
+					}
+				}
+				uiGenerator.loadUIForms();
+				//loadMentorForms();
+			}
+		}
+	}
+</script>
+
+<div class="ui-inner-display-box ui-header-corner-top" id="mentorPage">
+	<!-- <div data-role="navbar">
+		<ul>
+			<li><a href="#" id="saveMessage">Save Message</a>
+			</li>
+			<li><a href="#" id="saveProcess">Save Process</a>
+			</li>
+		</ul>
+	</div> -->
+</div>
+
+
+<!-- 	</div>
+</div> -->

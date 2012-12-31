@@ -1,0 +1,8 @@
+create column family ENTITY_STATE
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: active, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: checkedin, validation_class: UTF8Type, index_type: KEYS}
+	];

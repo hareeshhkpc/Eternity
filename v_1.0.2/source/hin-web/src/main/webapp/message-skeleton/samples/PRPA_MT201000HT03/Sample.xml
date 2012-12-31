@@ -1,0 +1,24 @@
+<message config="PRPA_MT201000HT03">
+	<PRPA_MT201000HT03>
+		<id>
+			<root>HIN_MSG_ID</root>
+			<extension>1234567890</extension>
+		</id>
+		<identifiedPerson>
+			<id>
+				<root>HIN_MSG_ID</root>
+				<extension>44444444444444</extension>
+			</id>
+			<name>
+				<family>dd</family>
+				<given>dd</given>
+				<suffix>dd</suffix>
+			</name>
+			<name>
+				<family>eegggggggggggggggg</family>
+				<given>eeeeeeeeeeee</given>
+				<suffix>jjjjjjjjjjjjjjjjjjjj</suffix>
+			</name>
+		</identifiedPerson>
+	</PRPA_MT201000HT03>
+</message>

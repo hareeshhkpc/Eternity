@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<script type="text/javascript" src="jquery-1.6.4.js"></script>
+		<script type="text/javascript" src="jquery.xml.js"></script>
+		<script type="text/javascript" src="XmlUtil.js"></script>
+		<script type="text/javascript">
+			function getXMLDocument(xmlFileName){
+				if (window.XMLHttpRequest)
+				  {// code for IE7+, Firefox, Chrome, Opera, Safari
+				  xmlhttp=new XMLHttpRequest();
+				  }
+				else
+				  {// code for IE6, IE5
+				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				  }
+				xmlhttp.open("GET",xmlFileName,false);
+				xmlhttp.send();
+				xmlDoc=xmlhttp.responseXML;
+				return xmlDoc;
+			}
+			
+			function loadTemplateFile(fileName){
+				$.load(fileName, function(resp){
+					alert(resp);
+				});
+			}
+		
+			var sampleDoc = getXMLDocument("DataTypeSamples.xml");
+			alert(sampleDoc);
+			var template = loadTemplateFile("DataTypeTemplate.html");
+			
+			function makeEDView(newID, elementName){
+				
+				var xmls = $(sampleDoc).find("type[type='ED' order='1']")
+				
+				var xml =$('<' + elementName 
+						+ ' e_id="' + newID + '" mediaType="12" language="" compression="133" integrityCheck="" integrityCheckAlgorithm="" representation="66" nullFlavor="">  <!-- ED -->'
+						+ '<reference e_id="' + newID + '_1_1" value="23" use="34"><useablePeriod e_id="id1_2_1" operator="132" value="" /></reference>'
+						+ '<!--  <thumbnail e_id="' + newID + '_2_1"/> -->'
+						+ '</' + elementName + '>');
+				
+				html = getEDView(newID, xml);
+				$('#EDViewDiv').append($(html));
+				
+				/* html = getEDView(newID, xml);
+				$('#EDViewDiv').append($(html)); */
+			}
+			
+			function getEDView(newID, xml){
+				
+				var htmlFragment = $('#DivForED').html();
+				/* converting str into obj*/
+				htmlFragment = $(htmlFragment);
+
+				$(htmlFragment).find('#text_id1').attr("id",'text_' + newID + '_1');	
+				$(htmlFragment).find('#media_id1').attr("id", 'media_' + newID + '_2');
+				$(htmlFragment).find('#lang_id1').attr("id", 'lang_' + newID + '_3');
+				$(htmlFragment).find('#comp_id1').attr("id", 'comp_' + newID + '_4');
+				$(htmlFragment).find('#intChk_id1').attr("id", 'intChk_' + newID + '_5');
+				$(htmlFragment).find('#intChkAlg_id1').attr("id", 'intChkAlg_' + newID + '_6');
+				$(htmlFragment).find('#rep_id1').attr("id", 'rep_' + newID + '_7');
+				$(htmlFragment).find('#nflavor_id1').attr("id", 'nflavor_' + newID + '_8');
+				
+				var mediaType=XmlUtil.getAttributeValueFromXml(xml,'mediaType');
+				var language=XmlUtil.getAttributeValueFromXml(xml,'language');
+				var compression=XmlUtil.getAttributeValueFromXml(xml,'compression');
+				var integrityCheck=XmlUtil.getAttributeValueFromXml(xml,'integrityCheck');
+				var integrityCheckAlgorithm=XmlUtil.getAttributeValueFromXml(xml,'integrityCheckAlgorithm');
+				var representation=XmlUtil.getAttributeValueFromXml(xml,'representation');
+				var nullFlavor=XmlUtil.getAttributeValueFromXml(xml,'nullFlavor');
+				
+				/*CONDITIONS FOR DISPLAY*/
+				if (mediaType != "")
+					$(htmlFragment).find("#mediaType").css("display", "block");
+				if(language != "")
+					$(htmlFragment).find("#language").css("display", "block");
+				if(compression != "")
+					$(htmlFragment).find("#compression").css("display", "block");
+				if(integrityCheck != "")
+					$(htmlFragment).find("#integrityCheck").css("display", "block");
+				if(integrityCheckAlgorithm != "")
+					$(htmlFragment).find("#integrityCheckAlgorithm").css("display", "block");
+				if(representation != "")
+					$(htmlFragment).find("#representation").css("display", "block");				
+								
+				$(htmlFragment).find("#media_" +  newID + '_2').attr("value", mediaType);
+				$(htmlFragment).find('#lang_' +  newID + '_3').attr("value", language);
+				$(htmlFragment).find('#comp_' +  newID + '_4').attr("value", compression);
+				$(htmlFragment).find('#intChk_' +  newID + '_5').attr("value", integrityCheck);
+				$(htmlFragment).find('#intChkAlg_' +  newID + '_6').attr("value", integrityCheckAlgorithm);
+				$(htmlFragment).find('#rep_' +  newID + '_7').attr("value", representation);
+				$(htmlFragment).find('#nflavor_' +  newID + '_8').attr("value", nullFlavor);			
+				
+				
+				 /* element : reference */
+				var elementNode = XmlUtil.findElement(xml, 'reference'); 
+				 
+				if(elementNode.length > 0){
+						var reference = getTELView(newID + '_1_1', elementNode);
+						$(htmlFragment).find("#DivForReference").css("display", "block");
+						
+						/* div id where the new div is appended */
+						$(htmlFragment).find("#DivForReference").append($(reference));
+					}
+				
+				/* element : thumbnail */
+				var elementNode = XmlUtil.findElement(xml, 'thumbnail'); 
+				 
+				if(elementNode.length > 0){
+						var thumbnail = getThumbnailView(newID + '_2_1', elementNode);
+						$(htmlFragment).find("#DivForThumbnail").css("display", "block");
+						
+						/* div id where the new div is appended */
+						$(htmlFragment).find("#DivForThumbnail").append($(thumbnail));
+					}				
+				
+				return $(htmlFragment.html());				
+			}
+			
+			function getTELView(newID, xml){
+				
+				var htmlFragment = $('#DivForTEL').html();
+				
+				htmlFragment = $(htmlFragment);
+				
+				$(htmlFragment).find('#value_id2').attr("id", 'value_' + newID + '_1');	
+				$(htmlFragment).find('#use_id2').attr("id", 'use_' + newID + '_2');
+				
+		  		var value = XmlUtil.getAttributeValueFromXml(xml,'value');
+		  		var use = XmlUtil.getAttributeValueFromXml(xml,'use');
+		  		
+		  		if(value != "")
+		  			$(htmlFragment).find("#value").css("display", "block");
+		  		if(use != "")
+		  			$(htmlFragment).find("#use").css("display", "block");
+		  		
+		  		$(htmlFragment).find("#value_" +  newID + '_1').attr("value", value);
+		  		$(htmlFragment).find("#use_" +  newID + '_2').attr("value", use);
+		  		
+		  		
+		  		/* element : useablePeriod */
+				var elementNode = XmlUtil.findElement(xml, 'useablePeriod'); 
+				 
+				if(elementNode.length > 0){
+						var useablePeriod = getSXCM_TSView(newID + '_2_1', elementNode);
+						$(htmlFragment).find("#DivForUseablePeriod").css("display", "block");
+						
+						/* div id where the new div is appended */
+						$(htmlFragment).find("#DivForUseablePeriod").append($(useablePeriod));
+					}			  		
+		  		
+				return $(htmlFragment.html());
+				
+				
+			}
+			
+			function getSXCM_TSView(newID, xml){
+				var htmlFragment = $('#DivForSXCM_TS').html();
+				
+				htmlFragment = $(htmlFragment);
+				
+				$(htmlFragment).find('#value_id3').attr("id", 'value_' + newID + '_1');	
+				$(htmlFragment).find('#operator_id3').attr("id", 'operator_' + newID + '_2');	
+
+		  		var operator=XmlUtil.getAttributeValueFromXml(xml,'operator');	
+		  		var value=XmlUtil.getAttributeValueFromXml(xml,'value');
+		  		var nullFlavor=XmlUtil.getAttributeValueFromXml(xml,'nullFlavor');
+		  		
+		  		if(operator != "")
+		  			$(htmlFragment).find("#operator").css("display", "block");
+		  		if(value != "")
+		  			$(htmlFragment).find("#sxcm_value").css("display", "block");
+		  		
+		  		$(htmlFragment).find('#value_' +  newID + '_1').attr("value", value);
+		  		$(htmlFragment).find('#operator_' +  newID + '_2').attr("value", operator); 	
+		  	
+		  		
+		  		return $(htmlFragment.html()); 
+				
+			}
+			
+			function getThumbnailView(newID, xml){
+				alert("thumb");
+				var htmlFragment = $('#DivForThumb').html();
+				
+				htmlFragment = $(htmlFragment);
+				
+				 /* element : reference */
+				 var elementNode = XmlUtil.findElement(xml, 'reference'); 
+				 
+				if(elementNode.length > 0){
+						var reference = getTELView(newID + '_2_1_1', elementNode);
+						alert("ref:"+reference);
+						/* div id where the new div is appended */
+						$(htmlFragment).find("#DivForThumbnailRef").append($(reference));
+					}		
+				return $(htmlFragment.html());
+			}
+			
+		
+		</script>
+	</head>
+	<body onload="makeEDView('id1', 'ProfileID')">
+		<!-- <form> -->
+			<div id="EDViewDiv"> </div>
+		<!-- </form> -->
+		<!-- <div id="TypeUI"> -->
+			<div id="DivForED" style="display:none;">
+				<div id="EDWrapper">
+					<fieldset>
+							<div id= "TextContent" style="display: none;"> <span>Text Content :</span> 				<input type="text" id="text_id1" />   	   		 </div>					
+							
+							<div id= "mediaType" style="display: none;"> 		<span> mediaType: </span> 				<input type="text" id="media_id1"/>    			 </div>       			
+							<div id= "language" style="display: none;"> 		<span> language: </span>    			<input type="text" id="lang_id1" />    			 </div>      				
+							<div id= "compression" style="display: none;"> 			<span> compression: </span> 		<input type="text" id="comp_id1" />       		 </div> 				
+						    <div id= "integrityCheck" style="display: none;"> 	<span> integrityCheck: </span> 			<input type="text" id="intChk_id1" />  			 </div>			
+						    <div id= "integrityCheckAlgorithm" style="display: none;"> <span> integrityCheckAlgorithm: </span> <input type="text" id="intChkAlg_id1" />	 </div>
+					    	<div id= "representation" style="display: none;"> 	<span> representation: </span> 			<input type="text" id="rep_id1" />      		 </div>				
+							<div id= "nullFlavor" style="display: none;"> 		<span> nullFlavor: </span> 				<input type="text" id="null_id1" />                </div>
+							
+							<div id="DivForReference" style="display:none;"></div> 
+							<div id="DivForThumbnail" style="display:none;"></div> 
+					</fieldset>
+				</div>
+			</div>
+			
+			<div id="DivForTEL" style="display: none;">
+				<div id="TELWrapper">
+					<fieldset>
+						 <div id= "value" style="display: none;"> <span> value: </span> <input type="text" id="value_id2" />   </div>
+						 <div id= "use" style="display: none;">   <span> use: </span> 	<input type="text" id="use_id2" />     </div>
+						
+						<div id="DivForUseablePeriod" style="display: none;"></div>
+					</fieldset>
+				</div>
+			</div>
+			<div id="DivForSXCM_TS" style="display: none;">
+				<div id="SXCM_TSWrapper">
+					<fieldset>
+						<div id= "sxcm_value" style="display: none;"> <span> value: </span>    <input type="text" id="value_id3" />     </div>	   
+						<div id= "operator" style="display: none;">   <span> operator: </span> <input type="text" id="operator_id3" />   </div>
+					</fieldset>
+				</div>
+			</div>
+				
+			<div id="DivForThumb" style="display: none;">
+				<div id="ThumbnailSWrapper">
+					<fieldset>
+						<div id="DivForThumbnailRef" style="display:none;"></div> 
+					</fieldset>
+				</div>
+			</div>
+	<!-- </div>	 -->
+	</body>

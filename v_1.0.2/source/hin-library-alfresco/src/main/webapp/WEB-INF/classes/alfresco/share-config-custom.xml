@@ -1,0 +1,9 @@
+<alfresco-config>
+    <!-- Put Share Client in debug mode -->
+    <config replace="false">
+        <flags>
+            <client-debug>false</client-debug>
+            <client-debug-autologging>false</client-debug-autologging>
+        </flags>
+    </config>
+</alfresco-config>

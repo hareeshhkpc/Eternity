@@ -1,0 +1,525 @@
+<!--$Header: /lafrz/jw1_top/CVS/hc/ctb_docs/cscg/input/artifacts/cmets/mifs/COCT_MT410002HT03.mif,v 1.1 2008/04/17 03:44:27 katryan Exp $-->
+<mif:serializedStaticModel xmlns:mif="urn:hl7-org:v3/mif"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                           xsi:schemaLocation=""
+                           packageKind="version"
+                           representationKind="serialized"
+                           isSerializable="true"
+                           isAbstract="false"
+                           name="03">
+   <mif:packageLocation root="DEFN" section="IM" subSection="CO" domain="CT" artifact="MT-deprecated"
+                        realm="HT"
+                        version="03"
+                        id="410002"/>
+   <mif:header>
+      <mif:renderingInformation schemaVersion="1" application="Visio to MIF transform"/>
+      <mif:legalese copyrightOwner="Health Level Seven" copyrightYears="2007"/>
+   </mif:header>
+   <mif:graphicRepresentation presentation="HL7">
+      <mif:graphElement name="Main">
+         <mif:position x="0.0" y="0.0"/>
+         <mif:size width="8.410" height="4.275"/>
+      </mif:graphElement>
+   </mif:graphicRepresentation>
+   <mif:derivationSupplier staticModelDerivationId="1">
+      <mif:targetStaticModel root="DEFN" artifact="RIM" version="00"/>
+   </mif:derivationSupplier>
+   <mif:derivationSupplier staticModelDerivationId="2">
+      <mif:targetStaticModel root="DEFN" section="IM" subSection="CO" domain="CT" artifact="RM-deprecated"
+                             realm="HT"
+                             version="03"
+                             id="410002"/>
+   </mif:derivationSupplier>
+   <mif:derivationSupplier staticModelDerivationId="3">
+      <mif:targetStaticModel root="DEFN" section="IM" subSection="CO" domain="CT" artifact="HD-deprecated"
+                             realm="HT"
+                             version="03"
+                             id="410002"/>
+   </mif:derivationSupplier>
+   <mif:ownedEntryPoint id="COCT_MT410002HT03" name="R_EmploymentStaff" isAbstract="false">
+      <mif:annotations>
+         <mif:description>
+            <mif:text>Supports messages related to a staff member who is acting in the employ of an organization and holds certain positions</mif:text>
+         </mif:description>
+      </mif:annotations>
+      <mif:graphicRepresentation>
+         <mif:graphElement shapeId="Sheet.32" containerDiagramName="Main">
+            <mif:position x="0.276" y="0.028"/>
+            <mif:size width="1.735" height="0.853"/>
+            <mif:anchorage connectToShapeId="Sheet.32">
+               <mif:position x="1.204" y="0.881"/>
+               <mif:graphEdge>
+                  <mif:anchor connectToShapeId="Sheet.18">
+                     <mif:position x="1.084" y="2.081"/>
+                  </mif:anchor>
+               </mif:graphEdge>
+            </mif:anchorage>
+         </mif:graphElement>
+      </mif:graphicRepresentation>
+      <mif:specializedClass>
+         <mif:class name="EmploymentStaff" isAbstract="false">
+            <mif:derivationSupplier staticModelDerivationId="1" className="Employee"/>
+            <mif:derivationSupplier staticModelDerivationId="2" className="EmploymentStaff"/>
+            <mif:derivationSupplier staticModelDerivationId="3" className="EmploymentStaff"/>
+            <mif:graphicRepresentation presentation="HL7">
+               <mif:graphElement shapeId="Sheet.18" containerDiagramName="Main" shapeTemplate="Role"
+                                 isWidthAutoSize="true"
+                                 isHeightAutoSize="true">
+                  <mif:position x="0.046" y="2.081"/>
+                  <mif:size width="2.075" height="1.181"/>
+               </mif:graphElement>
+            </mif:graphicRepresentation>
+            <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                           conformance="R"
+                           isMandatory="true"
+                           isStructural="true">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Employee" attributeName="classCode"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="EmploymentStaff"
+                                       attributeName="classCode"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="EmploymentStaff"
+                                       attributeName="classCode"/>
+               <mif:type name="CS"/>
+               <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="RoleClass" mnemonic="EMP"/>
+            </mif:attribute>
+            <mif:attribute name="id" sortKey="2" minimumMultiplicity="1" maximumMultiplicity="*"
+                           conformance="R"
+                           isMandatory="true"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Employee" attributeName="id"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="EmploymentStaff" attributeName="id"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="EmploymentStaff" attributeName="id"/>
+               <mif:type name="SET">
+                  <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="II"/>
+               </mif:type>
+            </mif:attribute>
+            <mif:attribute name="code" sortKey="3" minimumMultiplicity="0" maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Employee" attributeName="code"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="EmploymentStaff" attributeName="code"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="EmploymentStaff" attributeName="code"/>
+               <mif:type name="CE"/>
+               <mif:supplierDomainSpecification codingStrength="CWE" domainName="RoleCode"/>
+            </mif:attribute>
+            <mif:attribute name="addr" sortKey="4" minimumMultiplicity="0" maximumMultiplicity="*"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Employee" attributeName="addr"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="EmploymentStaff" attributeName="addr"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="EmploymentStaff" attributeName="addr"/>
+               <mif:type name="BAG">
+                  <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="AD"/>
+               </mif:type>
+            </mif:attribute>
+            <mif:attribute name="telecom" sortKey="5" minimumMultiplicity="0" maximumMultiplicity="*"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Employee" attributeName="telecom"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="EmploymentStaff" attributeName="telecom"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="EmploymentStaff" attributeName="telecom"/>
+               <mif:type name="BAG">
+                  <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="TEL"/>
+               </mif:type>
+            </mif:attribute>
+            <mif:attribute name="statusCode" sortKey="6" minimumMultiplicity="0" maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Employee" attributeName="statusCode"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="EmploymentStaff"
+                                       attributeName="statusCode"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="EmploymentStaff"
+                                       attributeName="statusCode"/>
+               <mif:type name="CS"/>
+               <mif:supplierDomainSpecification codingStrength="CNE" domainName="RoleStatus"/>
+            </mif:attribute>
+            <mif:attribute name="effectiveTime" sortKey="7" minimumMultiplicity="0"
+                           maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Employee" attributeName="effectiveTime"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="EmploymentStaff"
+                                       attributeName="effectiveTime"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="EmploymentStaff"
+                                       attributeName="effectiveTime"/>
+               <mif:type name="IVL">
+                  <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="TS"/>
+               </mif:type>
+            </mif:attribute>
+            <mif:association sortKey="2">
+               <mif:graphicRepresentation>
+                  <mif:graphElement connectToShapeId="Sheet.18" containerDiagramName="Main">
+                     <mif:position x="1.914" y="2.199"/>
+                     <mif:graphEdge>
+                        <mif:anchor connectToShapeId="Sheet.123">
+                           <mif:position x="3.308" y="1.614"/>
+                        </mif:anchor>
+                     </mif:graphEdge>
+                  </mif:graphElement>
+               </mif:graphicRepresentation>
+               <mif:targetConnection name="employeePerson" minimumMultiplicity="0" maximumMultiplicity="1"
+                                     isMandatory="false"
+                                     sortKey="AZ">
+                  <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="player"/>
+                  <mif:derivationSupplier staticModelDerivationId="2" className="EmploymentStaff"
+                                          associationEndName="employeePerson"/>
+                  <mif:derivationSupplier staticModelDerivationId="3" className="EmploymentStaff"
+                                          associationEndName="employeePerson"/>
+                  <mif:participantClass>
+                     <mif:class name="Person" isAbstract="false">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Person"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="Person"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="Person"/>
+                        <mif:graphicRepresentation presentation="HL7">
+                           <mif:graphElement shapeId="Sheet.123" containerDiagramName="Main" shapeTemplate="Entity"
+                                             isWidthAutoSize="true"
+                                             isHeightAutoSize="true">
+                              <mif:position x="3.308" y="0.091"/>
+                              <mif:size width="3.384" height="3.048"/>
+                           </mif:graphElement>
+                        </mif:graphicRepresentation>
+                        <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="true">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="classCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="classCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="classCode"/>
+                           <mif:type name="CS"/>
+                           <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="EntityClass" mnemonic="PSN"/>
+                        </mif:attribute>
+                        <mif:attribute name="determinerCode" sortKey="2" minimumMultiplicity="1"
+                                       maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="true">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="determinerCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="determinerCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="determinerCode"/>
+                           <mif:type name="CS"/>
+                           <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="EntityDeterminer" mnemonic="INSTANCE"/>
+                        </mif:attribute>
+                        <mif:attribute name="id" sortKey="3" minimumMultiplicity="0" maximumMultiplicity="*"
+                                       conformance="R"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="id"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="id"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="id"/>
+                           <mif:type name="SET">
+                              <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="II"/>
+                           </mif:type>
+                        </mif:attribute>
+                        <mif:attribute name="name" sortKey="4" minimumMultiplicity="1" maximumMultiplicity="*"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="name"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="name"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="name"/>
+                           <mif:type name="SET">
+                              <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="PN"/>
+                           </mif:type>
+                        </mif:attribute>
+                        <mif:attribute name="desc" sortKey="5" minimumMultiplicity="0" maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="desc"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="desc"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="desc"/>
+                           <mif:type name="ED"/>
+                        </mif:attribute>
+                        <mif:attribute name="statusCode" sortKey="6" minimumMultiplicity="0" maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="statusCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="statusCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="statusCode"/>
+                           <mif:type name="CS"/>
+                           <mif:supplierDomainSpecification codingStrength="CNE" domainName="EntityStatus"/>
+                        </mif:attribute>
+                        <mif:attribute name="telecom" sortKey="7" minimumMultiplicity="0" maximumMultiplicity="*"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="telecom"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="telecom"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="telecom"/>
+                           <mif:type name="BAG">
+                              <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="TEL"/>
+                           </mif:type>
+                        </mif:attribute>
+                        <mif:attribute name="administrativeGenderCode" sortKey="8" minimumMultiplicity="0"
+                                       maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person"
+                                                   attributeName="administrativeGenderCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person"
+                                                   attributeName="administrativeGenderCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person"
+                                                   attributeName="administrativeGenderCode"/>
+                           <mif:type name="CE"/>
+                           <mif:supplierDomainSpecification codingStrength="CWE" domainName="AdministrativeGender"/>
+                        </mif:attribute>
+                        <mif:attribute name="birthTime" sortKey="9" minimumMultiplicity="0" maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="birthTime"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="birthTime"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="birthTime"/>
+                           <mif:type name="TS"/>
+                        </mif:attribute>
+                        <mif:attribute name="deceasedInd" sortKey="10" minimumMultiplicity="0" maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="deceasedInd"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="deceasedInd"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="deceasedInd"/>
+                           <mif:type name="BL"/>
+                        </mif:attribute>
+                        <mif:attribute name="deceasedTime" sortKey="11" minimumMultiplicity="0"
+                                       maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="deceasedTime"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="deceasedTime"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="deceasedTime"/>
+                           <mif:type name="TS"/>
+                        </mif:attribute>
+                        <mif:attribute name="multipleBirthInd" sortKey="12" minimumMultiplicity="0"
+                                       maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="multipleBirthInd"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="multipleBirthInd"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="multipleBirthInd"/>
+                           <mif:type name="BL"/>
+                        </mif:attribute>
+                        <mif:attribute name="multipleBirthOrderNumber" sortKey="13" minimumMultiplicity="0"
+                                       maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person"
+                                                   attributeName="multipleBirthOrderNumber"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person"
+                                                   attributeName="multipleBirthOrderNumber"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person"
+                                                   attributeName="multipleBirthOrderNumber"/>
+                           <mif:type name="INT"/>
+                        </mif:attribute>
+                        <mif:attribute name="organDonorInd" sortKey="14" minimumMultiplicity="0"
+                                       maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="organDonorInd"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="organDonorInd"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="organDonorInd"/>
+                           <mif:type name="BL"/>
+                        </mif:attribute>
+                        <mif:attribute name="addr" sortKey="15" minimumMultiplicity="0" maximumMultiplicity="*"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="addr"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="addr"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="addr"/>
+                           <mif:type name="BAG">
+                              <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="AD"/>
+                           </mif:type>
+                        </mif:attribute>
+                        <mif:attribute name="maritalStatusCode" sortKey="16" minimumMultiplicity="0"
+                                       maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person"
+                                                   attributeName="maritalStatusCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person"
+                                                   attributeName="maritalStatusCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person"
+                                                   attributeName="maritalStatusCode"/>
+                           <mif:type name="CE"/>
+                           <mif:supplierDomainSpecification codingStrength="CWE" domainName="MaritalStatus"/>
+                        </mif:attribute>
+                        <mif:attribute name="disabilityCode" sortKey="17" minimumMultiplicity="0"
+                                       maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="disabilityCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="disabilityCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="disabilityCode"/>
+                           <mif:type name="CE"/>
+                           <mif:supplierDomainSpecification codingStrength="CWE" domainName="PersonDisabilityType"/>
+                        </mif:attribute>
+                        <mif:attribute name="livingArrangementCode" sortKey="18" minimumMultiplicity="0"
+                                       maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person"
+                                                   attributeName="livingArrangementCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person"
+                                                   attributeName="livingArrangementCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person"
+                                                   attributeName="livingArrangementCode"/>
+                           <mif:type name="CE"/>
+                           <mif:supplierDomainSpecification codingStrength="CWE" domainName="LivingArrangement"/>
+                        </mif:attribute>
+                        <mif:attribute name="religiousAffiliationCode" sortKey="19" minimumMultiplicity="0"
+                                       maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person"
+                                                   attributeName="religiousAffiliationCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person"
+                                                   attributeName="religiousAffiliationCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person"
+                                                   attributeName="religiousAffiliationCode"/>
+                           <mif:type name="CE"/>
+                           <mif:supplierDomainSpecification codingStrength="CWE" domainName="ReligiousAffiliation"/>
+                        </mif:attribute>
+                        <mif:attribute name="raceCode" sortKey="20" minimumMultiplicity="0" maximumMultiplicity="*"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="raceCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="raceCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="raceCode"/>
+                           <mif:type name="SET">
+                              <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="CE"/>
+                           </mif:type>
+                           <mif:supplierDomainSpecification codingStrength="CWE" domainName="Race"/>
+                        </mif:attribute>
+                        <mif:attribute name="ethnicGroupCode" sortKey="21" minimumMultiplicity="0"
+                                       maximumMultiplicity="*"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="Person" attributeName="ethnicGroupCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="Person" attributeName="ethnicGroupCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="Person" attributeName="ethnicGroupCode"/>
+                           <mif:type name="SET">
+                              <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="CE"/>
+                           </mif:type>
+                           <mif:supplierDomainSpecification codingStrength="CWE" domainName="Ethnicity"/>
+                        </mif:attribute>
+                        <mif:association sortKey="1">
+                           <mif:graphicRepresentation>
+                              <mif:graphElement connectToShapeId="Sheet.123" containerDiagramName="Main">
+                                 <mif:position x="5.000" y="3.138"/>
+                                 <mif:graphEdge>
+                                    <mif:anchor connectToShapeId="Sheet.127">
+                                       <mif:position x="6.464" y="3.655"/>
+                                    </mif:anchor>
+                                 </mif:graphEdge>
+                              </mif:graphElement>
+                           </mif:graphicRepresentation>
+                           <mif:targetConnection name="asPersonDomain" minimumMultiplicity="0" maximumMultiplicity="1"
+                                                 isMandatory="false"
+                                                 sortKey="AAABA_____">
+                              <mif:derivationSupplier staticModelDerivationId="1" className="Entity" associationEndName="playedRole"/>
+                              <mif:derivationSupplier staticModelDerivationId="2" className="Person"
+                                                      associationEndName="asPersonDomain"/>
+                              <mif:derivationSupplier staticModelDerivationId="3" className="Person"
+                                                      associationEndName="asPersonDomain"/>
+                              <mif:participantClass>
+                                 <mif:class name="PersonDomain" isAbstract="false">
+                                    <mif:derivationSupplier staticModelDerivationId="1" className="Role"/>
+                                    <mif:derivationSupplier staticModelDerivationId="2" className="PersonDomain"/>
+                                    <mif:derivationSupplier staticModelDerivationId="3" className="PersonDomain"/>
+                                    <mif:graphicRepresentation presentation="HL7">
+                                       <mif:graphElement shapeId="Sheet.127" containerDiagramName="Main" shapeTemplate="Role"
+                                                         isWidthAutoSize="true"
+                                                         isHeightAutoSize="true">
+                                          <mif:position x="6.270" y="3.591"/>
+                                          <mif:size width="1.939" height="0.648"/>
+                                       </mif:graphElement>
+                                    </mif:graphicRepresentation>
+                                    <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                                                   conformance="R"
+                                                   isMandatory="true"
+                                                   isStructural="true">
+                                       <mif:derivationSupplier staticModelDerivationId="1" className="Role" attributeName="classCode"/>
+                                       <mif:derivationSupplier staticModelDerivationId="2" className="PersonDomain" attributeName="classCode"/>
+                                       <mif:derivationSupplier staticModelDerivationId="3" className="PersonDomain" attributeName="classCode"/>
+                                       <mif:type name="CS"/>
+                                       <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="RoleClass" mnemonic="IDENT"/>
+                                    </mif:attribute>
+                                    <mif:attribute name="id" sortKey="2" minimumMultiplicity="1" maximumMultiplicity="1"
+                                                   conformance="R"
+                                                   isMandatory="true"
+                                                   isStructural="false">
+                                       <mif:derivationSupplier staticModelDerivationId="1" className="Role" attributeName="id"/>
+                                       <mif:derivationSupplier staticModelDerivationId="2" className="PersonDomain" attributeName="id"/>
+                                       <mif:derivationSupplier staticModelDerivationId="3" className="PersonDomain" attributeName="id"/>
+                                       <mif:type name="II"/>
+                                    </mif:attribute>
+                                    <mif:attribute name="code" sortKey="3" minimumMultiplicity="1" maximumMultiplicity="1"
+                                                   conformance="R"
+                                                   isMandatory="true"
+                                                   isStructural="false">
+                                       <mif:derivationSupplier staticModelDerivationId="1" className="Role" attributeName="code"/>
+                                       <mif:derivationSupplier staticModelDerivationId="2" className="PersonDomain" attributeName="code"/>
+                                       <mif:derivationSupplier staticModelDerivationId="3" className="PersonDomain" attributeName="code"/>
+                                       <mif:type name="CE"/>
+                                       <mif:supplierDomainSpecification codingStrength="CWE" codeSystemName="RoleCode"/>
+                                    </mif:attribute>
+                                 </mif:class>
+                              </mif:participantClass>
+                           </mif:targetConnection>
+                           <mif:sourceConnection>
+                              <mif:nonTraversableConnection participantClassName="Person">
+                                 <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="player"/>
+                              </mif:nonTraversableConnection>
+                           </mif:sourceConnection>
+                        </mif:association>
+                     </mif:class>
+                  </mif:participantClass>
+               </mif:targetConnection>
+               <mif:sourceConnection>
+                  <mif:nonTraversableConnection participantClassName="EmploymentStaff">
+                     <mif:derivationSupplier staticModelDerivationId="1" className="Entity" associationEndName="playedRole"/>
+                  </mif:nonTraversableConnection>
+               </mif:sourceConnection>
+            </mif:association>
+            <mif:association sortKey="3">
+               <mif:graphicRepresentation>
+                  <mif:graphElement connectToShapeId="Sheet.18" containerDiagramName="Main">
+                     <mif:position x="1.914" y="3.144"/>
+                     <mif:graphEdge>
+                        <mif:anchor connectToShapeId="Sheet.48">
+                           <mif:position x="3.288" y="3.953"/>
+                        </mif:anchor>
+                     </mif:graphEdge>
+                  </mif:graphElement>
+               </mif:graphicRepresentation>
+               <mif:targetConnection name="employerOrganization" minimumMultiplicity="0" maximumMultiplicity="1"
+                                     isMandatory="false"
+                                     sortKey="BZ">
+                  <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="scoper"/>
+                  <mif:derivationSupplier staticModelDerivationId="2" className="EmploymentStaff"
+                                          associationEndName="employerOrganization"/>
+                  <mif:derivationSupplier staticModelDerivationId="3" className="EmploymentStaff"
+                                          associationEndName="employerOrganization"/>
+                  <mif:participantClass>
+                     <mif:commonModelElementRef name="E_OrganizationUniversal">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="Organization"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="E_OrganizationUniversal"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="E_OrganizationUniversal"/>
+                        <mif:supplierStructuralDomain domainName="EntityClass" mnemonic="ORG"/>
+                        <mif:graphicRepresentation presentation="HL7">
+                           <mif:graphElement shapeId="Sheet.48" containerDiagramName="Main" shapeTemplate="CMET"
+                                             isWidthAutoSize="true"
+                                             isHeightAutoSize="true">
+                              <mif:position x="3.287" y="3.577"/>
+                              <mif:size width="1.220" height="0.628"/>
+                           </mif:graphElement>
+                        </mif:graphicRepresentation>
+                        <mif:generalizationParent name="COCT_MT150000HT04"/>
+                     </mif:commonModelElementRef>
+                  </mif:participantClass>
+               </mif:targetConnection>
+               <mif:sourceConnection>
+                  <mif:nonTraversableConnection participantClassName="EmploymentStaff">
+                     <mif:derivationSupplier staticModelDerivationId="1" className="Entity" associationEndName="scopedRole"/>
+                  </mif:nonTraversableConnection>
+               </mif:sourceConnection>
+            </mif:association>
+         </mif:class>
+      </mif:specializedClass>
+   </mif:ownedEntryPoint>
+</mif:serializedStaticModel>

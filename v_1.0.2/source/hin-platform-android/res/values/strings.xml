@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, HINPlatformAndroidLauncher!</string>
+    <string name="app_name">Health Network</string>
+    <string name="welcome_message">Welcome !</string>
+    
+    <!-- constants accessed in webview -->
+	<string name="config_js_interface">JSI</string>
+	
+	<string name="next">Next</string>
+	<string name="previous">Previous</string>
+	<string name="list">List</string>
+	
+	<string name="exitOption">Exit</string>
+    <string name="aboutOption">About</string>
+    
+    <string name="vieweditOption">View/Edit</string>
+    <string name="saveOption">Save</string>
+    <string name="findOption">Find</string>
+    
+    <string name="save">View/Edit</string>
+    <string name="cancel">Save</string>
+    <string name="test">Find</string>
+	
+</resources>

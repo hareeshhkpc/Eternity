@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config-generation
+	configFilePath="src/main/webapp/message-configuration/FIAB_MT020000HT02.xml"
+	rootClass="FIAB_MT020000HT02.FinancialTransaction" description="Financial Transaction Message"
+	artifactId="FIAB_MT020000HT02">
+
+	<schema-set type="MESSAGE"
+		path="src/main/webapp/WEB-INF/htb/schemas/FIAB_MT020000HT02.xsd" />
+	<schema-set type="CORESCHEMA" path="src/main/webapp/WEB-INF/htb/coreschemas" />
+	<schema-set type="SCHEMAS" path="src/main/webapp/WEB-INF/htb/schemas" />
+
+	<!-- traverseChildWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- repeatCount="numeric(default 1)" -->
+	<!-- traverseMessageObjectChild="true(default)" -->
+	<!-- traverseHL7DataTypeChild="false(default)" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- traveseChildList="comma(,) seperated list" -->
+	<tree-node xpath="/" />
+	<tree-node xpath="/id/" considerChildrenWhen="MANDATORY"
+		traverseChildWhen="ALWAYS" repeatCount="1" />
+		
+	<tree-node xpath="/creditExchangeRateQuantity/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/debitExchangeRateQuantity/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+		
+	<tree-node xpath="/postingTo/" considerChildrenWhen="MANDATORY"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/postingTo/patientAccount/" considerChildrenWhen="MANDATORY"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/" considerChildrenWhen="MANDATORY"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/" considerChildrenWhen="MANDATORY"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/" considerChildrenWhen="MANDATORY"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/id/" considerChildrenWhen="MANDATORY"/>
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/subject/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/subject/patient/" considerChildrenWhen="MANDATORY"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/subject/patient/patientPerson/" considerChildrenWhen="MANDATORY"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/subject/patient/patientPerson/id/" considerChildrenWhen="OPTIONAL"/>
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/subject/patient/patientPerson/name/" considerChildrenWhen="OPTIONAL"/>
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/subject/patient/patientPerson/telecom/" considerChildrenWhen="OPTIONAL"/>
+	
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/consultant/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/consultant/employmentStaff/" considerChildrenWhen="MANDATORY"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/consultant/employmentStaff/employeePerson/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/consultant/employmentStaff/employeePerson/id/" 
+	    considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/consultant/employmentStaff/employeePerson/name/" considerChildrenWhen="MANDATORY"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/postingTo/patientAccount/pertinentInformation/encounterEvent/consultant/employmentStaff/employeePerson/telecom/" considerChildrenWhen="OPTIONAL"/>
+	
+	<tree-node xpath="/component/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+		
+	<tree-node xpath="/pertinentInformation/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+		
+	<tree-node xpath="/pertinentInformation/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/pertinentInformation/observationOrder/id/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/pertinentInformation/observationEventGeneral/id/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/pertinentInformation/procedureOrder/id/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/pertinentInformation/procedureEvent/id/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/pertinentInformation/substanceAdministrationOrder/id/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/pertinentInformation/substanceAdministrationEvent/id/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/pertinentInformation/specimenObservationOrder/id/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/pertinentInformation/specimenObservationEvent/id/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/pertinentInformation/diagnosticReportObservationEvent/id/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/pertinentInformation/supplyRequest/id/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/pertinentInformation/dietRequest/id/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/pertinentInformation/accommodationSupplied/id/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" />
+		
+</config-generation>

@@ -1,0 +1,3 @@
+mvn install:install-file -DgroupId=org.jwebsocket -DartifactId=jWebSocketServer -Dversion=0.10 -Dpackaging=jar -Dfile=src\main\webapp\WEB-INF\lib\jWebSocketServer-0.10.jar
+mvn install:install-file -DgroupId=org.jwebsocket -DartifactId=jWebSocketCommon -Dversion=0.10 -Dpackaging=jar -Dfile=src\main\webapp\WEB-INF\lib\jWebSocketCommon-0.10.jar
+mvn install:install-file -DgroupId=org.jwebsocket -DartifactId=jWebSocketServerAPI -Dversion=0.10 -Dpackaging=jar -Dfile=src\main\webapp\WEB-INF\lib\jWebSocketServerAPI-0.10.jar

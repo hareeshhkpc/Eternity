@@ -1,0 +1,199 @@
+
+<div data-role="header" data-theme="v" data-backBtn="true"
+	class="header_bg">
+	<fieldset class="ui-header-text ui-grid-b">
+		<div class="ui-header-left-text ui-block-a">Glen Carroll</div>
+		<div class="ui-header-left-text ui-block-b">Ms Melissa Blair -
+			Reception at Dubai Clinic</div>
+		<div class="ui-header-right-text ui-block-c" style="width: 30%;">Logout</div>
+	</fieldset>
+</div>
+<div data-role="none" data-theme="v">
+	<fieldset class="ui-form-header ui-grid-a">
+		<div class="ui-block-a">
+			<div class="form-header-name">Form Name</div>
+		</div>
+		<div class="ui-block-b" id="navigation"></div>
+	</fieldset>
+</div>
+<div data-role="content">
+	<div class="left-side-content ui-round-corner" style="width:98%;">
+
+		<div id="form">
+			<div class="inner-left">
+				<div class="ui-nav nav-current">
+					<div class="rotate-text registration">Demographics</div>
+				</div>
+				<div class="ui-nav nav-unread ui-nav-position">
+					<div class="rotate-text">History</div>
+				</div>
+				<div class="ui-nav nav-unread" style="display:none;">
+					<div class="rotate-text">Consent</div>
+				</div>
+			</div>
+			<div class="inner-right-form ui-header-corner-top ui-info-bg">
+				<div class="header_bg ui-header-corner-top ui-page-header-text">
+					Complete/Confirm Patient Demographics
+				</div>
+				
+				<div class="ui-profile-form">
+					<fieldset>
+						<div class="ui-profile-image">
+							<img src="" />
+						</div>
+						<div class="ui-profile-main-field">						
+							<fieldset>
+								<div class="ui-profile-inner-field">									
+								    <div class="ui-tele-field" style="width:60%"><label>Name(s)</label><input type="text" name="name" id="name" value="" /></div>								    
+								    <div class="ui-tele-add" style="width:40%; margin-top:-5px;"> 
+								    	<label>Gender</label>
+									    <select id="select-gender" name="select-choice-1">
+											<option value="male">Male</option>
+											<option value="female">Female</option>																
+										</select>
+									</div><br />
+								</div>
+								<label>Telecoms</label>
+							    <div class="ui-tele-field"><input type="text" name="name" id="name" value="" /></div><div class="ui-tele-add"><img src="images/add.png" /></div><br />
+							    <label>Identification(s)</label>
+							    <div class="ui-tele-field"><input type="text" name="name" id="name" value="" /></div><div class="ui-tele-add"><img src="images/add.png" /></div>							    
+						    </fieldset>						    
+						</div>
+					</fieldset>
+						<div class="ui-profile-inner-form">
+						    	<label>Address(es)</label>
+							    <div class="ui-tele-field"><input type="text" name="name" id="name" value="" /></div><div class="ui-tele-add" style="margin-left:-10px"><img src="images/add.png" /></div><br />							  
+								<fieldset class="ui-profile-field">	
+								    <div class="ui-tele-field">
+									    <label>Birth Time</label>
+									    <input type="text" name="name" id="name" value="" />
+								    </div>	
+								    	
+								    <div class="ui-tele-field">
+									    <label>Race</label>
+									    <select id="select-race" name="select-choice-1">
+											<option value="arab">Arab</option>																							
+										</select>
+								    </div>
+								    
+								    <div class="ui-tele-field">
+									    <label>Religious Affiliation</label>
+									    <select id="select-religious" name="select-choice-1">
+											<option value="arab">Arab</option>																							
+										</select>
+								    </div>								    
+								    
+								</fieldset>	
+								<fieldset class="ui-profile-field">	
+								    <div class="ui-tele-field">
+									    <label>Marital Status</label>
+									    <select id="select-marital-status" name="select-choice-1">
+											<option value="married">Married</option>	
+											<option value="single">Single</option>																						
+										</select>
+								    </div>	
+								    	
+								    <div class="ui-tele-field">
+									    <label>Disability</label>
+									    <select id="select-disability" name="select-choice-1">
+											<option value="arab">Arab</option>																							
+										</select>
+								    </div>
+								    
+								    <div class="ui-tele-field">
+									    <label>Ethnic Group</label>
+									    <select id="select-ethnic-group" name="select-choice-1">
+											<option value="arab">Arab</option>																							
+										</select>
+								    </div>								    
+								    
+								</fieldset>			    
+						</div>
+						
+				</div>
+				<!-- <div class="ui-form-fields">
+					<span>Name(s)</span>
+					<div data-role="none" class="ui-align-text ui-form-border">
+					    <label>Title:</label>
+					    <select id="select-choice-1" name="select-choice-1">
+							<option value="mr">Mr.</option>
+							<option value="ms">Ms.</option>
+							<option value="mrs">Mrs.</option>								
+						</select>	
+					    <label>Given Name:</label>
+					    <input type="text" name="name" id="name" value=""  />
+					    <label>Family Name:</label>
+					    <input type="text" name="name" id="name" value=""  />
+					    <label>Suffix:</label>
+					    <input type="text" name="name" id="name" value=""  />
+					</div>	
+					<div data-role="none" class="ui-align-text" style="margin-top:10px;">
+					    <label style="padding-top:10px;">Gender:</label>
+					    <select id="select-choice-1" name="select-choice-1">
+							<option value="male">Male</option>
+							<option value="female">Female</option>								
+						</select>
+					    <label>Telecoms:</label>
+					    <input type="text" name="name" id="name" value="" />					  
+					    <input type="text" name="name" id="name" value="" style="margin-top:10px;" />					  
+					</div>
+				</div> -->
+				
+			</div>
+		</div>
+		
+		<div id="formActions" style="display: none">
+			<input type="button" id="savePatient" value="Save" />
+		</div>		
+
+	</div>
+
+	<!-- <div class="right-side-content ui-round-corner" id="right">
+		<div class="ui-left-top">
+			<div id="search"></div>
+		</div>
+		<div class="ui-left-bottom">
+			<div class="ui-right-end-btn">
+				<input type="button" id="newPatient" value="New Patient" />
+			</div>
+		</div>
+	</div> -->
+
+
+	<!-- <div class="ui-round-corner left_side_content" id="form">
+		Registration Form		
+	</div>
+
+	<div class="content-secondary ui-corner-all ui-shadow-inset" id="right">
+		<div id="search" ></div>
+		<div id="poll">
+			<ul data-role="listview" data-icon="custom" class="searchlist">
+
+				<li class="ui-corner-all ui-shadow-inset" data-theme="c" id="id1"><a
+					href="#"> <span style="float: left;"><img
+							src="images/eternity/user.png" />
+					</span> <b>Martin Kruger</b><br /> <span>Age Management Program.</span><br />
+						<span>Diagnostic Tests. </span><br /> <span> Miriam Fattah</span>
+						<span class="ui-li-aside"><strong>8</strong> min</span> </a></li>
+
+				<li class="ui-corner-all ui-shadow-inset" data-theme="c"><a
+					href="#"> <span style="float: left;"><img
+							src="images/eternity/user.png" />
+					</span> <b style="white-space: normal;">Glen Carroll</b><br /> <span>Administration
+							Registered</span><br /> <span> Melissa Blair</span>
+						<p class="ui-li-aside">
+							<strong>10</strong> min
+						</p> </a></li>
+
+			</ul>
+		</div>
+		<div>
+			<input type="button" value="New Patient" />
+		</div>
+	</div> -->
+</div>
+
+
+
+
+

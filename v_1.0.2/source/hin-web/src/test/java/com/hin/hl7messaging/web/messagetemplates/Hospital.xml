@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><COCT_MT150000 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ITSVersion="XML_1.0" classCode="ORG" determinerCode="ORG" id="id1_1">
+	<user type="HOSPITAL"/>
+	<id extension="HIN" id="id1_1_id227_1" root="his1"/>
+	<name id="id1_1_id229_1">
+		<prefix>imtac</prefix>
+		<given>ICT</given>
+		<family>IMTAC</family>
+	</name>
+	<telecom id="id1_1_id232_1" value="admin@imtacict.com" use="admin@imtacict.com"/>
+	<addr id="id1_1_id233_1">
+		<country>India</country>
+		<state>Karnataka</state>
+		<city>Hubli</city>
+		<postalCode>574140</postalCode>
+		<streetName>Nagundanahalli</streetName>
+		<houseNumber>67</houseNumber>
+	</addr>
+</COCT_MT150000>

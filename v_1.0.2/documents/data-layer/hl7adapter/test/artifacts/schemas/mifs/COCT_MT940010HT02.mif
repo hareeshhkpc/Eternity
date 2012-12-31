@@ -1,0 +1,314 @@
+<!--$Header: /lafrz/jw1_top/CVS/hc/ctb_docs/cscg/input/artifacts/cmets/mifs/COCT_MT940010HT02.mif,v 1.1 2008/04/17 03:44:27 katryan Exp $-->
+<mif:serializedStaticModel xmlns:mif="urn:hl7-org:v3/mif"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                           xsi:schemaLocation=""
+                           packageKind="version"
+                           representationKind="serialized"
+                           isSerializable="true"
+                           isAbstract="false"
+                           name="02">
+   <mif:packageLocation root="DEFN" section="IM" subSection="CO" domain="CT" artifact="MT-deprecated"
+                        realm="HT"
+                        version="02"
+                        id="940010"/>
+   <mif:header>
+      <mif:renderingInformation schemaVersion="1" application="Visio to MIF transform"/>
+      <mif:legalese copyrightOwner="Health Level Seven" copyrightYears="2007"/>
+   </mif:header>
+   <mif:graphicRepresentation presentation="HL7">
+      <mif:graphElement name="Main">
+         <mif:position x="0.0" y="0.0"/>
+         <mif:size width="5.432" height="4.229"/>
+      </mif:graphElement>
+   </mif:graphicRepresentation>
+   <mif:derivationSupplier staticModelDerivationId="1">
+      <mif:targetStaticModel root="DEFN" artifact="RIM" version="00"/>
+   </mif:derivationSupplier>
+   <mif:derivationSupplier staticModelDerivationId="2">
+      <mif:targetStaticModel root="DEFN" section="IM" subSection="CO" domain="CT" artifact="RM-deprecated"
+                             realm="HT"
+                             version="02"
+                             id="940010"/>
+   </mif:derivationSupplier>
+   <mif:derivationSupplier staticModelDerivationId="3">
+      <mif:targetStaticModel root="DEFN" section="IM" subSection="CO" domain="CT" artifact="HD-deprecated"
+                             realm="HT"
+                             version="02"
+                             id="940010"/>
+   </mif:derivationSupplier>
+   <mif:ownedEntryPoint id="COCT_MT940010HT02" name="R_SupplyItem" isAbstract="false">
+      <mif:annotations>
+         <mif:description>
+            <mif:text>This CMET provides support for identification of a supply item. Each supply item is a manufactured material. The material can be further qualified by manufacturer.</mif:text>
+         </mif:description>
+      </mif:annotations>
+      <mif:graphicRepresentation>
+         <mif:graphElement shapeId="Sheet.43" containerDiagramName="Main">
+            <mif:position x="2.840" y="0.028"/>
+            <mif:size width="2.544" height="0.853"/>
+            <mif:anchorage connectToShapeId="Sheet.43">
+               <mif:position x="4.100" y="0.881"/>
+               <mif:graphEdge>
+                  <mif:anchor connectToShapeId="Sheet.45">
+                     <mif:position x="4.125" y="1.381"/>
+                  </mif:anchor>
+               </mif:graphEdge>
+            </mif:anchorage>
+         </mif:graphElement>
+      </mif:graphicRepresentation>
+      <mif:specializedClass>
+         <mif:class name="SupplyItem" isAbstract="false">
+            <mif:derivationSupplier staticModelDerivationId="1" className="Role"/>
+            <mif:derivationSupplier staticModelDerivationId="2" className="SupplyItem"/>
+            <mif:derivationSupplier staticModelDerivationId="3" className="SupplyItem"/>
+            <mif:graphicRepresentation presentation="HL7">
+               <mif:graphElement shapeId="Sheet.45" containerDiagramName="Main" shapeTemplate="Role"
+                                 isWidthAutoSize="true"
+                                 isHeightAutoSize="true">
+                  <mif:position x="3.500" y="1.381"/>
+                  <mif:size width="1.250" height="0.500"/>
+               </mif:graphElement>
+            </mif:graphicRepresentation>
+            <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                           conformance="R"
+                           isMandatory="true"
+                           isStructural="true">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Role" attributeName="classCode"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="SupplyItem" attributeName="classCode"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="SupplyItem" attributeName="classCode"/>
+               <mif:type name="CS"/>
+               <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="RoleClass" mnemonic="DST"/>
+            </mif:attribute>
+            <mif:association sortKey="5">
+               <mif:graphicRepresentation>
+                  <mif:graphElement connectToShapeId="Sheet.45" containerDiagramName="Main">
+                     <mif:position x="3.625" y="1.831"/>
+                     <mif:graphEdge>
+                        <mif:anchor connectToShapeId="Sheet.5">
+                           <mif:position x="2.537" y="2.249"/>
+                        </mif:anchor>
+                     </mif:graphEdge>
+                  </mif:graphElement>
+               </mif:graphicRepresentation>
+               <mif:targetConnection name="distributedManufacturedMaterialKind" minimumMultiplicity="1"
+                                     maximumMultiplicity="1"
+                                     conformance="R"
+                                     isMandatory="true"
+                                     sortKey="AZ">
+                  <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="player"/>
+                  <mif:derivationSupplier staticModelDerivationId="2" className="SupplyItem"
+                                          associationEndName="distributedManufacturedMaterialKind"/>
+                  <mif:derivationSupplier staticModelDerivationId="3" className="SupplyItem"
+                                          associationEndName="distributedManufacturedMaterialKind"/>
+                  <mif:participantClass>
+                     <mif:class name="ManufacturedMaterialKind" isAbstract="false">
+                        <mif:derivationSupplier staticModelDerivationId="1" className="ManufacturedMaterial"/>
+                        <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedMaterialKind"/>
+                        <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedMaterialKind"/>
+                        <mif:graphicRepresentation presentation="HL7">
+                           <mif:graphElement shapeId="Sheet.5" containerDiagramName="Main" shapeTemplate="Entity"
+                                             isWidthAutoSize="true"
+                                             isHeightAutoSize="true">
+                              <mif:position x="0.042" y="1.954"/>
+                              <mif:size width="2.495" height="1.181"/>
+                           </mif:graphElement>
+                        </mif:graphicRepresentation>
+                        <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="true">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="ManufacturedMaterial"
+                                                   attributeName="classCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedMaterialKind"
+                                                   attributeName="classCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedMaterialKind"
+                                                   attributeName="classCode"/>
+                           <mif:type name="CS"/>
+                           <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="EntityClass" mnemonic="MMAT"/>
+                        </mif:attribute>
+                        <mif:attribute name="determinerCode" sortKey="2" minimumMultiplicity="1"
+                                       maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="true">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="ManufacturedMaterial"
+                                                   attributeName="determinerCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedMaterialKind"
+                                                   attributeName="determinerCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedMaterialKind"
+                                                   attributeName="determinerCode"/>
+                           <mif:type name="CS"/>
+                           <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="EntityDeterminer" mnemonic="KIND"/>
+                        </mif:attribute>
+                        <mif:attribute name="id" sortKey="3" minimumMultiplicity="0" maximumMultiplicity="*"
+                                       conformance="R"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="ManufacturedMaterial" attributeName="id"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedMaterialKind"
+                                                   attributeName="id"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedMaterialKind"
+                                                   attributeName="id"/>
+                           <mif:type name="SET">
+                              <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="II"/>
+                           </mif:type>
+                        </mif:attribute>
+                        <mif:attribute name="code" sortKey="4" minimumMultiplicity="1" maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="true"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="ManufacturedMaterial"
+                                                   attributeName="code"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedMaterialKind"
+                                                   attributeName="code"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedMaterialKind"
+                                                   attributeName="code"/>
+                           <mif:type name="CE"/>
+                           <mif:supplierDomainSpecification codingStrength="CWE" domainName="MaterialEntityClassType"/>
+                        </mif:attribute>
+                        <mif:attribute name="quantity" sortKey="5" minimumMultiplicity="0" maximumMultiplicity="1"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="ManufacturedMaterial"
+                                                   attributeName="quantity"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedMaterialKind"
+                                                   attributeName="quantity"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedMaterialKind"
+                                                   attributeName="quantity"/>
+                           <mif:type name="PQ"/>
+                        </mif:attribute>
+                        <mif:attribute name="name" sortKey="6" minimumMultiplicity="0" maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="ManufacturedMaterial"
+                                                   attributeName="name"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedMaterialKind"
+                                                   attributeName="name"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedMaterialKind"
+                                                   attributeName="name"/>
+                           <mif:type name="TN"/>
+                        </mif:attribute>
+                        <mif:attribute name="formCode" sortKey="7" minimumMultiplicity="0" maximumMultiplicity="1"
+                                       conformance="R"
+                                       isMandatory="false"
+                                       isStructural="false">
+                           <mif:derivationSupplier staticModelDerivationId="1" className="ManufacturedMaterial"
+                                                   attributeName="formCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedMaterialKind"
+                                                   attributeName="formCode"/>
+                           <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedMaterialKind"
+                                                   attributeName="formCode"/>
+                           <mif:type name="CE"/>
+                           <mif:supplierDomainSpecification codingStrength="CWE" domainName="MaterialForm"/>
+                        </mif:attribute>
+                        <mif:association sortKey="0">
+                           <mif:graphicRepresentation>
+                              <mif:graphElement connectToShapeId="Sheet.5" containerDiagramName="Main">
+                                 <mif:position x="2.537" y="2.840"/>
+                                 <mif:graphEdge>
+                                    <mif:anchor connectToShapeId="Sheet.19">
+                                       <mif:position x="3.958" y="3.031"/>
+                                    </mif:anchor>
+                                 </mif:graphEdge>
+                              </mif:graphElement>
+                           </mif:graphicRepresentation>
+                           <mif:targetConnection name="asManufacturedProduct" minimumMultiplicity="0" maximumMultiplicity="1"
+                                                 isMandatory="false"
+                                                 sortKey="AAABD_____">
+                              <mif:derivationSupplier staticModelDerivationId="1" className="Entity" associationEndName="playedRole"/>
+                              <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedMaterialKind"
+                                                      associationEndName="asManufacturedProduct"/>
+                              <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedMaterialKind"
+                                                      associationEndName="asManufacturedProduct"/>
+                              <mif:participantClass>
+                                 <mif:class name="ManufacturedProduct" isAbstract="false">
+                                    <mif:derivationSupplier staticModelDerivationId="1" className="Role"/>
+                                    <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedProduct"/>
+                                    <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedProduct"/>
+                                    <mif:graphicRepresentation presentation="HL7">
+                                       <mif:graphElement shapeId="Sheet.19" containerDiagramName="Main" shapeTemplate="Role"
+                                                         isWidthAutoSize="true"
+                                                         isHeightAutoSize="true">
+                                          <mif:position x="3.809" y="2.981"/>
+                                          <mif:size width="1.491" height="0.500"/>
+                                       </mif:graphElement>
+                                    </mif:graphicRepresentation>
+                                    <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                                                   conformance="R"
+                                                   isMandatory="true"
+                                                   isStructural="true">
+                                       <mif:derivationSupplier staticModelDerivationId="1" className="Role" attributeName="classCode"/>
+                                       <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedProduct"
+                                                               attributeName="classCode"/>
+                                       <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedProduct"
+                                                               attributeName="classCode"/>
+                                       <mif:type name="CS"/>
+                                       <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="RoleClass" mnemonic="MANU"/>
+                                    </mif:attribute>
+                                    <mif:association sortKey="3">
+                                       <mif:graphicRepresentation>
+                                          <mif:graphElement connectToShapeId="Sheet.19" containerDiagramName="Main">
+                                             <mif:position x="3.958" y="3.431"/>
+                                             <mif:graphEdge>
+                                                <mif:anchor connectToShapeId="Sheet.29">
+                                                   <mif:position x="1.910" y="3.941"/>
+                                                </mif:anchor>
+                                             </mif:graphEdge>
+                                          </mif:graphElement>
+                                       </mif:graphicRepresentation>
+                                       <mif:targetConnection name="manufacturerOrganization" minimumMultiplicity="1" maximumMultiplicity="1"
+                                                             conformance="R"
+                                                             isMandatory="false"
+                                                             sortKey="BZ">
+                                          <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="scoper"/>
+                                          <mif:derivationSupplier staticModelDerivationId="2" className="ManufacturedProduct"
+                                                                  associationEndName="manufacturerOrganization"/>
+                                          <mif:derivationSupplier staticModelDerivationId="3" className="ManufacturedProduct"
+                                                                  associationEndName="manufacturerOrganization"/>
+                                          <mif:participantClass>
+                                             <mif:commonModelElementRef name="E_OrganizationUniversal">
+                                                <mif:derivationSupplier staticModelDerivationId="1" className="Organization"/>
+                                                <mif:derivationSupplier staticModelDerivationId="2" className="E_OrganizationUniversal"/>
+                                                <mif:derivationSupplier staticModelDerivationId="3" className="E_OrganizationUniversal"/>
+                                                <mif:supplierStructuralDomain domainName="EntityClass" mnemonic="ORG"/>
+                                                <mif:graphicRepresentation presentation="HL7">
+                                                   <mif:graphElement shapeId="Sheet.29" containerDiagramName="Main" shapeTemplate="CMET"
+                                                                     isWidthAutoSize="true"
+                                                                     isHeightAutoSize="true">
+                                                      <mif:position x="0.690" y="3.502"/>
+                                                      <mif:size width="1.220" height="0.628"/>
+                                                   </mif:graphElement>
+                                                </mif:graphicRepresentation>
+                                                <mif:generalizationParent name="COCT_MT150000HT04"/>
+                                             </mif:commonModelElementRef>
+                                          </mif:participantClass>
+                                       </mif:targetConnection>
+                                       <mif:sourceConnection>
+                                          <mif:nonTraversableConnection participantClassName="ManufacturedProduct">
+                                             <mif:derivationSupplier staticModelDerivationId="1" className="Entity" associationEndName="scopedRole"/>
+                                          </mif:nonTraversableConnection>
+                                       </mif:sourceConnection>
+                                    </mif:association>
+                                 </mif:class>
+                              </mif:participantClass>
+                           </mif:targetConnection>
+                           <mif:sourceConnection>
+                              <mif:nonTraversableConnection participantClassName="ManufacturedMaterialKind">
+                                 <mif:derivationSupplier staticModelDerivationId="1" className="Role" associationEndName="player"/>
+                              </mif:nonTraversableConnection>
+                           </mif:sourceConnection>
+                        </mif:association>
+                     </mif:class>
+                  </mif:participantClass>
+               </mif:targetConnection>
+               <mif:sourceConnection>
+                  <mif:nonTraversableConnection participantClassName="SupplyItem">
+                     <mif:derivationSupplier staticModelDerivationId="1" className="Entity" associationEndName="playedRole"/>
+                  </mif:nonTraversableConnection>
+               </mif:sourceConnection>
+            </mif:association>
+         </mif:class>
+      </mif:specializedClass>
+   </mif:ownedEntryPoint>
+</mif:serializedStaticModel>

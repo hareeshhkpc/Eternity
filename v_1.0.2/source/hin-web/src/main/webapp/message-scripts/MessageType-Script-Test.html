@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Message type Script Test</title>
+
+<!-- link rel="stylesheet" href="../html/css/common.css" /-->
+<link rel="stylesheet" href="../html/js/jquery.mobile-1.0.1.min. css" />
+
+<!-- <link rel="stylesheet" href="../html/css/hin.css" /> -->
+
+<link rel="stylesheet" href="../html/css/violet.css" />
+<link rel="stylesheet" href="../html/css/mobile.css" type="text/css" />
+<link rel="stylesheet" href="../html/js/jquery.mobile.datebox.min.css" />
+<link rel="stylesheet" href="../html/css/healthhistoryquestionnaire.css" />
+
+
+<link href="../html/css/jquery.mCustomScrollbar.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- <link rel="stylesheet" href="../html/css/screen.css" type="text/css" media="screen" /> -->
+
+
+<link rel="stylesheet" href="../html/js/jquery.ui.datepicker.mobile.css" />
+<link rel="stylesheet" href="../html/js/jquery.mobile.datebox.min.css">
+<script src="../html/js/jquery-1.6.4.min.js"></script>
+<script src="../html/js/jquery.json-2.3.js"></script>
+<script src="../html/js/jquery.mobile-1.0.1.min.js"></script>
+<script src="../html/js/jquery.mobile.datebox.min.js"></script>
+<script src="../html/js/jquery.easydate-0.2.4.js"></script>
+
+<script type="text/javascript" src="../html/js/jsCharts/highcharts.js"></script>
+<!-- <script type="text/javascript" src="../html/js/jsCharts/reviewHighchart.js"></script> -->
+<!--  <script type="text/javascript" src="../html/js/jsCharts/jquery.min.js"></script>
+<script type="text/javascript" src="../html/js/jsCharts/jquery-1.6.4.js"></script>
+<script type="text/javascript" src="../html/js/jsCharts/themes/grid.js"></script> -->
+
+<!-- <script type="text/javascript" src="../html/js/jQuery.ui.datepicker.js"></script> -->
+<!-- <script src="../html/js/jquery.mobile.datebox.min.js"></script> -->
+<script src="../mobile/js/jquery.mousewheel.min.js"></script>
+<script src="../html/js/AjaxMultipart.js"></script>
+<script src="../html/js/AppConstants.js"></script>
+<script src="../html/js/ApplicationController.js"></script>
+<script src="../html/js/AppUtil.js"></script>
+<script src="../html/js/Callback.js"></script>
+<script src="../html/js/CommonUtil.js"></script>
+<script src="../html/js/Context.js"></script>
+<script src="../html/js/DataLayer.js"></script>
+<script src="../html/js/DataTypeAPI.js"></script>
+<script src="../html/js/EventQueue.js"></script>
+<script src="../html/js/HashMap.js"></script>
+<script src="../html/js/IDGenerator.js"></script>
+<script src="../html/js/hl7adapter_new.js"></script>
+<!-- <script src="../html/js/hl7adapter.js"></script> -->
+<script src="../html/js/LookupHandler.js"></script>
+<script src="../html/js/MessageAndUIBinder.js"></script>
+<script src="../html/js/RenderingEngine.js"></script>
+<script src="../html/js/UpdatePathfield.js"></script>
+<script src="../html/js/XmlUtil.js"></script>
+
+
+
+<script src="../html/js/custom/AppSchedule.js"></script>
+<script src="../html/js/custom/AppCalendar.js"></script>
+<script src="../html/js/custom/Form.js"></script>
+<script src="../html/js/custom/Home.js"></script>
+<script src="../html/js/custom/Library.js"></script>
+<script src="../html/js/custom/Login.js"></script>
+<script src="../html/js/custom/SignUp.js"></script>
+<!-- <script src="../html/js/custom/Mentor.js"></script>
+<script src="../html/js/custom/Monitor.js"></script>
+<script src="../html/js/custom/Measure.js"></script> -->
+
+<script src="../html/js/custom/Navigation.js"></script>
+<script src="../html/js/custom/Patient.js"></script>
+<script src="../html/js/custom/Process.js"></script>
+<script src="../html/js/custom/Program.js"></script>
+<script src="../html/js/custom/Licensee.js"></script>
+
+<script src="../html/js/custom/Search.js"></script>
+<script src="../html/js/custom/User.js"></script>
+<script src="../html/js/vo/ConceptLookup.js"></script>
+
+<script src="../html/js/custom/Review.js"></script>
+
+<script src="../html/js/custom/TestResult.js"></script>
+<script src="../html/js/custom/Statistics.js"></script>
+<script src="../html/js/custom/Archive.js"></script>
+<!-- <script src="../html/js/custom/WorkFlow.js"></script> -->
+<script src="../html/js/ui/AppointmentSchedule.js"></script>
+<script src="../html/js/ui/CalendarData.js"></script>
+
+<!-- <script src="../html/js/ui/Measure.js"></script>
+<script src="../html/js/ui/Substances.js"></script> -->
+<script src="../html/js/ui/UIGenerator.js"></script>
+<script src="../html/js/ui/Page.js"></script>
+<script src="../html/js/ui/MonitorPage.js"></script>
+
+<script src="../html/js/vo/AppointmentVO.js"></script>
+<script src="../html/js/vo/ChartVO.js"></script>
+<script src="../html/js/vo/FormVO.js"></script>
+<script src="../html/js/vo/Message.js"></script>
+<script src="../html/js/vo/MessageVO.js"></script>
+<script src="../html/js/vo/ProcessVO.js"></script>
+<script src="../html/js/vo/ProcessDefinition.js"></script>
+<script src="../html/js/vo/SearchVO.js"></script>
+<script src="../html/js/vo/Step.js"></script>
+<script src="../html/js/vo/MessageType.js"></script>
+<!-- <script src="../html/js/vo/MessageTypeName.js"></script> -->
+<script src="../html/js/vo/Query.js"></script>
+<script src="../html/js/vo/UserProcess.js"></script>
+<script src="../html/js/vo/UserVO.js"></script>
+<script src="../html/js/vo/TaskVO.js"></script>
+<script src="../html/js/vo/StatisticsVO.js"></script>
+<script src="../html/js/vo/StepGroup.js"></script>
+<script src="../html/js/vo/UserVO.js"></script>
+<script src="../html/js/jquery.base64.min.js"></script>
+<script src='../html/js/calendar/src/_loader.js?debug'></script>
+
+
+<link rel="stylesheet" href="../html/css/jquery.scroller-1.0.2.min.css" />
+<link rel="stylesheet" href="../html/css/validationEngine.jquery.css"
+	type="text/css" />
+
+<script src="../html/js/jquery.mobile.message.min.js"></script>
+<script src="../html/js/languages/jquery.validationEngine-en.js"></script>
+<script src="../html/js/jquery.validationEngine.js"></script>
+
+<script type="text/javascript" src="../html/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript"
+	src="../html/js/jquery.mCustomScrollbar.js"></script>
+
+<!-- Notification Allert -->
+<script type="text/javascript" src="../html/js/humane.js"></script>
+<link rel="stylesheet" type="text/css" href="../html/css/jackedup.css"
+	media="screen" />
+
+<script src="../html/js/jqm.autoComplete-1.4.js"></script>
+
+<script src='MessageTypeScript.js'></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	var messageTypeScript = null;
+	
+	var appController = null;
+	appController = new ApplicationController();
+	
+	$("#loadProcess").click(function(){
+		
+		var messageType='POLB_MT004000HT01_Cardioscan';
+		var dataLayer = appController.getComponent("DataLayer");
+		
+		function doIt(msg){
+			messageTypeScript = new MessageTypeScript(msg, messageType, appController);			
+			loadData('/message-scripts/'+messageType+'.js', {}, function(data){ 
+				alert("Script loaded");
+				messageTypeScript.loadScript(data);	
+				messageTypeScript.initialize();
+				alert("initialized");
+				
+				/* FinancialTransaction */
+				if(messageType == 'FIAB_MT020000HT02'){
+			     messageTypeScript.fillData('amt', 200);
+			    
+			     var components = [{'quantity': 1, 'unitPrice': 2000, 'netAmount': 3000}];
+				 messageTypeScript.fillData('financialTransactionChargeDetail', components);
+				 
+				 alert("XML in test case for FIAB_MT020000HT02:\n" + XmlUtil.xmlToString(msg.getXML()));
+			     
+				}
+				
+				/* EncounterAppointmentIndex */
+				if(messageType == 'PRPA_MT410001HT02'){
+					var components = [{'low': 10, 'high': 20}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					alert("XML in test case for PRPA_MT410001HT02:\n" + XmlUtil.xmlToString(msg.getXML()));
+				} 
+				
+				/* Organization Registration */
+				if(messageType == 'COCT_MT150000HT04'){
+					var components = [{'use': 'MobP', 'value': 9688443399}];
+					messageTypeScript.fillData('telecom', components);
+					
+					alert("XML in test case for COCT_MT150000HT04 :\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* AWARENESS_QUESTIONNAIRE */
+				if(messageType == 'POCD_MT000040UV_AWARENESS_QUESTIONNAIRE'){
+					
+					 messageTypeScript.fillData('effectiveTime', 2000);
+					 
+					 messageTypeScript.fillData('code', 'AQ');
+					
+					alert("XML in test case for POCD_MT000040UV_AWARENESS_QUESTIONNAIRE:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* ConsentForm */
+				if(messageType == 'POCD_MT000040UV_ConsentForm'){
+					
+					  messageTypeScript.fillData('effectiveTime', 3000);
+					 
+					 messageTypeScript.fillData('code', 'CF'); 
+					
+					alert("XML in test case for POCD_MT000040UV_ConsentForm:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* CULTURE_QUESTIONNAIRE */
+				if(messageType == 'POCD_MT000040UV_CULTURE_QUESTIONNAIRE'){
+					
+					  messageTypeScript.fillData('effectiveTime', 4000);
+					 
+					 messageTypeScript.fillData('code', 'CQ'); 
+					
+					alert("XML in test case  for POCD_MT000040UV_CULTURE_QUESTIONNAIRE:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				
+				/* ENVIRONMENT_QUESTIONNAIRE */ 
+				if(messageType == 'POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE'){
+					
+					  messageTypeScript.fillData('effectiveTime', 5000);
+					 
+					 messageTypeScript.fillData('code', 'EQ'); 
+					
+					alert("XML in test case  for POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* LIFE_STYLE_QUESTIONNAIRE */
+				if(messageType == 'POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE'){
+					
+					  messageTypeScript.fillData('effectiveTime', 6000);
+					 
+					 messageTypeScript.fillData('code', 'LSQ'); 
+					
+					alert("XML in test case  for POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* Program */
+				if(messageType == 'POCD_MT000040UV_Program'){
+					
+					  messageTypeScript.fillData('effectiveTime', 7000);
+					 
+					 messageTypeScript.fillData('code', 'PR'); 
+					
+					alert("XML in test case  for POCD_MT000040UV_Program:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* Welcome */
+				if(messageType == 'POCD_MT000040UV_Welcome'){
+					
+					  messageTypeScript.fillData('effectiveTime', 8000);
+					 
+					 messageTypeScript.fillData('code', 'WEL'); 
+					
+					alert("XML in test case  for POCD_MT000040UV_Welcome:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* ABI */
+				if(messageType == 'POLB_MT004000HT01_ABI'){
+					
+					var components = [{'low': 30, 'high': 40}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					 messageTypeScript.fillData('code', 'ABI'); 
+					
+					alert("XML in test case for POLB_MT004000HT01_ABI:\n" + XmlUtil.xmlToString(msg.getXML()));
+				} 
+				
+				/* CAC */
+				if(messageType == 'POLB_MT004000HT01_CAC'){
+					
+					var components = [{'low': 50, 'high': 60}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					 messageTypeScript.fillData('code', 'CAC'); 
+					
+					alert("XML in test case for POLB_MT004000HT01_CAC:\n" + XmlUtil.xmlToString(msg.getXML()));
+				} 
+				
+				/* Cardioscan */ 
+				if(messageType == 'POLB_MT004000HT01_Cardioscan'){
+					
+					 messageTypeScript.fillData('code', 'Cardio'); 
+					
+					alert("XML in test case for POLB_MT004000HT01_Cardioscan:\n" + XmlUtil.xmlToString(msg.getXML()));
+				} 
+				
+				/* IMT */
+				if(messageType == 'POLB_MT004000HT01_IMT'){
+					
+					var components = [{'low': 90, 'high': 100}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					 messageTypeScript.fillData('code', 'IMT'); 
+					
+					alert("XML in test case for POLB_MT004000HT01_IMT:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* MCG */
+				if(messageType == 'POLB_MT004000HT01_MCG'){
+					
+					var components = [{'low': 110, 'high': 120}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					 messageTypeScript.fillData('code', 'MCG'); 
+					
+					alert("XML in test case for POLB_MT004000HT01_MCG:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* LABS */
+				if(messageType == 'POLB_MT004000HT01_Labs'){
+					
+					var components = [{'low': 130, 'high': 140}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					 messageTypeScript.fillData('code', 'Labs'); 
+					
+					alert("XML in test case for POLB_MT004000HT01_Labs:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				
+				/* SphygmoCor*/
+				if(messageType == 'POLB_MT004000HT01_SphygmoCor'){
+					
+					var components = [{'low': 150, 'high': 160}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					 messageTypeScript.fillData('code', 'SphygmoCor'); 
+					
+					alert("XML in test case for POLB_MT004000HT01_SphygmoCor:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}	
+				
+				/* SubstanceAdministrationOrder */ 
+				if(messageType == 'POSA_MT920000HT03'){
+					
+					 messageTypeScript.fillData('code', 'SAO'); 
+					 
+					 var components = [{'numerator': 200, 'denominator': 100}];
+					 messageTypeScript.fillData('doseCheckQuantity', components); 
+					
+					 alert("XML in test case for POSA_MT920000HT03:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* Genetics */
+				if(messageType == 'POSA_MT920000HT03_Genetics'){
+					
+					 messageTypeScript.fillData('code', 'Genetics'); 
+					 
+					 var components = [{'numerator': 100, 'denominator': 25}];
+					 messageTypeScript.fillData('doseCheckQuantity', components); 
+					
+					 alert("XML in test case for POSA_MT920000HT03_Genetics:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* Hormones */
+				if(messageType == 'POSA_MT920000HT03_Hormones'){
+					
+					 messageTypeScript.fillData('code', 'Hormones'); 
+					 
+					 var components = [{'numerator': 20, 'denominator': 5}];
+					 messageTypeScript.fillData('doseCheckQuantity', components); 
+					
+					 alert("XML in test case for POSA_MT920000HT03_Hormones:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}	
+				
+				/* Supplements */
+				if(messageType == 'POSA_MT920000HT03_Supplements'){
+					
+					 messageTypeScript.fillData('code', 'Supplements'); 
+					 
+					 var components = [{'numerator': 20, 'denominator': 5}];
+					 messageTypeScript.fillData('doseCheckQuantity', components); 
+					
+					 alert("XML in test case for POSA_MT920000HT03_Supplements:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}	
+				
+				/* Person Registry */
+				if(messageType == 'PRPA_MT201000HT03'){
+					
+					var components = [{'use': 'LandP', 'value': 123456}];
+					messageTypeScript.fillData('telecom', components);
+					
+					var components = [{'low': 12, 'high': 8}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					alert("XML in test case for PRPA_MT201000HT03:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* ROLE_EMPLOYEE */
+				if(messageType == 'ROLE_EMPLOYEE'){
+					
+					var components = [{'low': 20, 'high': 5}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					messageTypeScript.fillData('statusCode', 'Active'); 
+					
+					alert("XML in test case for ROLE_EMPLOYEE:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* ROLE_PATIENT */ 
+				if(messageType == 'ROLE_PATIENT'){
+					
+					var components = [{'low': 40, 'high': 10}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					messageTypeScript.fillData('statusCode', 'Inctive'); 
+					
+					alert("XML in test case for ROLE_PATIENT:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* ROLE_PERMISSION */
+				if(messageType == 'ROLE_PERMISSION'){
+					
+					var components = [{'low': 140, 'high': 220}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					messageTypeScript.fillData('statusCode', 'Active'); 
+					
+					alert("XML in test case for ROLE_PERMISSION:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* ROLE_PHYSICIAN */
+				if(messageType == 'ROLE_PHYSICIAN'){
+					
+					var components = [{'low': 240, 'high': 320}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					messageTypeScript.fillData('statusCode', 'Active'); 
+					
+					alert("XML in test case for ROLE_PHYSICIAN:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* ROLE_USER */
+				if(messageType == 'ROLE_USER'){
+					
+					var components = [{'low': 1140, 'high': 1320}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					messageTypeScript.fillData('statusCode', 'Active'); 
+					
+					alert("XML in test case for ROLE_PHYSICIAN:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* Elastometer */
+				if(messageType == 'POLB_MT004000HT01_Elastometer'){
+					
+					var components = [{'low': 250, 'high': 310}];
+					messageTypeScript.fillData('effectiveTime', components);
+					
+					 messageTypeScript.fillData('code', 'Elastometer'); 
+					
+					alert("XML in test case for POLB_MT004000HT01_SphygmoCor:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* ClinicalDocument */
+				if(messageType == 'POCD_MT000040UV'){
+					
+					messageTypeScript.fillData('effectiveTime', 250);
+					
+					 messageTypeScript.fillData('code', 'Clinical Document'); 
+					
+					alert("XML in test case for POCD_MT000040UV:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* HEALTH_HISTORY_QUESTIONNAIRE */
+				if(messageType == 'POCD_MT000040UV_HEALTH_HISTORY_QUESTIONNAIRE'){
+					
+					messageTypeScript.fillData('effectiveTime', 1250);
+					
+					 messageTypeScript.fillData('code', 'HHQ'); 
+					
+					alert("XML in test case for POCD_MT000040UV_HEALTH_HISTORY_QUESTIONNAIRE:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+				
+				/* BloodTest */
+				if(messageType == 'POLB_MT004000HT01_BloodTest'){
+					
+					messageTypeScript.fillData('code', 'BT');
+					
+					alert("XML in test case for POLB_MT004000HT01_BloodTest:\n" + XmlUtil.xmlToString(msg.getXML()));
+				}
+			});	
+		}
+		
+		
+		
+		
+		loadConfig(messageType, function(config){
+			var msg = config.createMessage();
+			doIt(msg);
+		});
+		
+			
+			
+	});
+	
+	function loadConfig(messageType, callBackFunction) {
+		getMessage('/message-configuration/' + messageType + '.xml', function(
+				configData) {
+
+			var configDoc = new ConfigDocument(configData)
+
+			if (callBackFunction)
+				callBackFunction(configDoc);
+
+		}, function(status) {
+			thisObject.log("Failed to load configuration. Status: " + status);
+		});
+	}
+	;
+	
+	function loadData(resourceUrl, paramData, callBack){
+		//alert("Loading: " + resourceUrl);
+		$.ajax({
+			type : "GET",
+			url : "/hin-web" + resourceUrl,
+			data : paramData,
+			dataType : "html",
+			cache : false,
+			success : function(jsString) {
+				if (callBack)
+					callBack(jsString);
+			},
+
+			error : function(request, error) {				
+				alert(error);
+			}
+		});
+	};
+
+});
+</script>
+
+</head>
+<body>
+	<div data-role="page" class="ui-corner-all ui-shadow-inset"
+		data-theme="d">
+		<input type="button" data-inline="true" id="loadProcess"
+			value="Load Message Type Sript" />
+
+		<div id="result"></div>
+	</div>
+</body>
+
+</html>

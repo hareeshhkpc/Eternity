@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">var HIN;
+if (!HIN)
+	HIN = {};
+<span id='HIN-Step'>/**
+</span> * Step
+ * 
+ * it holds the step information like stepName, groupName, description,
+ * different message types , status , state and also the UI should be render
+ * based on the formHtml property against a step.
+ * 
+ */
+HIN.Step = function Step() {
+<span id='HIN-Step-property-stepName'>	/** stepName holds the name of the step */
+</span>	this.stepName = null;
+<span id='HIN-Step-property-groupName'>	/**
+</span>	 * groupName holds the groupName of the step.Step which have same groupName
+	 * will come under a single group
+	 */
+	this.groupName = null;
+<span id='HIN-Step-property-shortDescription'>	/** shortDescription holds the shortDescription of the step */
+</span>	this.shortDescription = null;
+<span id='HIN-Step-property-longDescription'>	/** longDescription holds the longDescription of the step */
+</span>	this.longDescription = null;
+<span id='HIN-Step-property-messageTypes'>	/** messageTypes holds the messageTypes under the step */
+</span>	this.messageTypes = [];
+<span id='HIN-Step-property-formHtml'>	/**
+</span>	 * formHtml holds the entry page of the step and it should refer a page UI
+	 * component with suffix 'Page' For e.g. formHtml is defined as
+	 * 'PatientRegistration' under the step in process definition , then UI
+	 * component name should be 'PatientRegistrationPage.js'
+	 */
+	this.formHtml = null;
+	this.messageTypeIndex = 0;
+	this.messageGroups = new HIN.HashMap();
+	this.typeNameMap = new HIN.HashMap();
+
+<span id='HIN-Step-property-state'>	/**
+</span>	 * state holds the state of the step like 'read','empty'or 'unread',
+	 * 'current'. 'read' : If all the messages are read(finished) under the step
+	 * then it should be 'read'. 'empty' : There is no messages under the step.
+	 * 'current' : At least one message and the status not read.
+	 * 
+	 */
+	this.state = &quot;unread&quot;;
+<span id='HIN-Step-property-status'>	/**
+</span>	 * status holds the status of the step like 'ACTIVE' or 'INACTIVE' , based
+	 * on the status the UI will be decide to show/hide.
+	 */
+	this.status = &quot;ACTIVE&quot;;
+	this.initializeScript = null;
+	this.initializeScriptExecuted = false;
+<span id='HIN-Step-property-stepStatusInfo'>	/**
+</span>	 * stepStatusInfo holds the true o false value. Based on the stepStatusInfo
+	 * the UI will be decide to show/hide the status information like message
+	 * type count under the step etc.
+	 */
+
+	this.stepStatusInfo = true;
+};
+
+HIN.Step.prototype.addMessageGroup = function(messageType, count) {
+
+	var object = new Object();
+	object.messageType = messageType;
+	object.count = count;
+
+	var key = messageType.title;
+
+	if (this.messageGroups.get(key) == null) {
+		this.messageGroups.put(key, object)
+	} else {
+		var map = this.messageGroups.get(key);
+		var object = map.value;
+		object.count = parseInt(object.count) + count;
+		// map.value = map.value + count;
+	}
+
+};
+
+HIN.Step.prototype.updateMessageGroupByType = function(messageType, count) {
+
+	var key = messageType.title;
+	var map = this.messageGroups.get(key);
+	if (map) {
+		var object = map.value;
+		object.count = parseInt(object.count) - count;
+		// map.value =object;
+		if (parseInt(object.count) == 0) {
+			this.messageGroups.removeItem(key);
+		}
+	}
+};
+
+HIN.Step.prototype.removeMessageGroup = function(messageType) {
+
+	var key = messageType.title;
+
+	if (this.messageGroups.get(key)) {
+		this.messageGroups.removeItem(key);
+	}
+
+};
+
+HIN.Step.prototype.clearMessageGroup = function() {
+	this.messageGroups.clearItems();
+};
+
+HIN.Step.prototype.updateMessageGroup = function() {
+	var messageTypes = this.getMessageTypes();
+	for ( var messageTypeIndex = 0; messageTypeIndex &lt; messageTypes.length; messageTypeIndex++) {
+		var messageType = messageTypes[messageTypeIndex];
+		var map = this.messageGroups.get(messageType.title);
+		if (map) {
+			var object = map.value;
+			if (object)
+				object.messageType.finished = messageType.finished;
+		} /*
+			 * else { var object = new Object(); object.messageType =
+			 * messageType; object.count = 1; object.messageType.finished =
+			 * messageType.finished; this.addMessageGroup(messageType, object); }
+			 */
+	}
+}
+
+HIN.Step.prototype.removeAllMessageTypes = function() {
+	// this.messageTypes.splice(0, this.messageTypes.length);
+	for ( var index = 0, l = this.messageTypes.length; index &lt; l; index++) {
+		this.messageTypes.splice(index);
+	}
+};
+
+HIN.Step.prototype.removeMessageType = function(typeName) {
+	for ( var messageTypeIndex = 0; messageTypeIndex &lt; this.messageTypes.length; messageTypeIndex++) {
+		if (typeName == this.messageTypes[messageTypeIndex].typeName) {
+			var messageType = this.messageTypes[messageTypeIndex];
+			this.messageTypes.splice(messageTypeIndex, 1);
+			return messageType;
+		}
+	}
+};
+
+HIN.Step.prototype.getMessageType = function(messageType) {
+	for ( var messageTypeIndex = 0; messageTypeIndex &lt; this.messageTypes.length; messageTypeIndex++) {
+		if (messageType.type == this.messageTypes[messageTypeIndex].type)
+			return this.messageTypes[messageTypeIndex];
+	}
+
+};
+<span id='HIN-Step-method-getMessageTypeByType'>/**
+</span> * getMessageTypeByType method will return the message type based on the type
+ * which passed as parameter to the method.
+ * 
+ * @param type :
+ *            Its a string which hold the value of message type
+ * @return {MessageType}
+ */
+
+HIN.Step.prototype.getMessageTypeByType = function(type) {
+	for ( var messageTypeIndex = 0; messageTypeIndex &lt; this.messageTypes.length; messageTypeIndex++) {
+		if (type == this.messageTypes[messageTypeIndex].type)
+			return this.messageTypes[messageTypeIndex];
+	}
+
+};
+
+HIN.Step.prototype.getMessageTypeByTypeName = function(typeName) {
+	for ( var messageTypeIndex = 0; messageTypeIndex &lt; this.messageTypes.length; messageTypeIndex++) {
+		if (typeName == this.messageTypes[messageTypeIndex].typeName)
+			return this.messageTypes[messageTypeIndex];
+	}
+
+};
+
+<span id='HIN-Step-method-getMessageTypes'>/**
+</span> * getMessageTypes method will return all the message types under this step.
+ * 
+ * @return {MessageType []}
+ */
+HIN.Step.prototype.getMessageTypes = function() {
+	return this.messageTypes;
+};
+
+<span id='HIN-Step-method-addMessageType'>/**
+</span> * addMessageType method will add the message type under the step.
+ * 
+ * @param messageType :
+ *            Its an object of MessageType
+ * @return {void}
+ */
+HIN.Step.prototype.addMessageType = function(messageType) {
+	if (messageType.status == &quot;ACTIVE&quot;) {
+		this.messageTypes.push(messageType);
+		if (!this.typeNameMap.get(messageType.title))
+			this.typeNameMap.put(messageType.title, messageType.type);
+		// alert(messageType);
+		if (messageType.getMessages().length &gt; 0) {
+			var count = messageType.getMessages().length;
+			/*
+			 * var object = new Object(); object.messageType = messageType;
+			 * object.count = messageType.getMessages().length;
+			 * object.messageType.finished = messageType.finished;
+			 */
+			// this.addMessageGroup(messageType, count);
+		}
+
+	}
+};
+
+HIN.Step.prototype.insertMessageType = function(index, messageType) {
+	if (messageType.status == &quot;ACTIVE&quot;) {
+		var arrayToInsert = [ messageType ];
+
+		Array.prototype.splice.apply(this.messageTypes, [ index, 0 ]
+				.concat(arrayToInsert));
+		// this.messageTypes.insert(index, messageType);
+		if (!this.typeNameMap.get(messageType.title))
+			this.typeNameMap.put(messageType.title, messageType.type);
+		// alert(messageType);
+		if (messageType.getMessages().length &gt; 0) {
+			var count = messageType.getMessages().length;
+			/*
+			 * var object = new Object(); object.messageType = messageType;
+			 * object.count = messageType.getMessages().length;
+			 * object.messageType.finished = messageType.finished;
+			 */
+			// this.addMessageGroup(messageType, count);
+		}
+
+	}
+};
+
+<span id='HIN-Step-method-isMessageTypeExist'>/**
+</span> * isMessageTypeExist method will return true or false based on the message type
+ * which is passed as parameter to the method.
+ * 
+ * @param type :
+ *            Its a string which hold the value of message type
+ * @returns {Boolean}
+ */
+HIN.Step.prototype.isMessageTypeExist = function(type) {
+	for ( var messageTypeIndex = 0; messageTypeIndex &lt; this.messageTypes.length; messageTypeIndex++) {
+		if (type == this.messageTypes[messageTypeIndex].type)
+			return this.messageTypes[messageTypeIndex];
+	}
+	return null;
+};
+
+HIN.Step.prototype.getMessage = function(message) {
+	var messageType = this.isMessageTypeExist(message.messageType);
+	if (messageType) {
+		var messages = messageType.getMessages();
+		for ( var messageIndex = 0; messageIndex &lt; messages.length; messageIndex++) {
+			var messageObject = messages[messageIndex];
+			if (messageObject.id == message.id) {
+				return messageObject;
+			}
+		}
+	}
+};
+
+HIN.Step.prototype.removeMessage = function(message) {
+	var messageType = this.isMessageTypeExist(message.messageType);
+	if (messageType) {
+		var messages = messageType.getMessages();
+		for ( var messageIndex = 0; messageIndex &lt; messages.length; messageIndex++) {
+			var messageObject = messages[messageIndex];
+			if (messageObject.messageId == message.messageId) {
+				messages.splice(messageIndex); // alert(&quot;removed&quot;);
+				return true;
+			}
+		}
+	}
+	/*
+	 * var messageTypes = this.getMessageTypes(); for ( var messageTypeIndex =
+	 * 0; messageTypeIndex &lt; messageTypes.length; messageTypeIndex++) { var
+	 * messageType = messageTypes[messageTypeIndex]; var messages =
+	 * messageType.getMessages(); for ( var messageIndex = 0; messageIndex &lt;
+	 * messages.length; messageIndex++) { var message = messages[messageIndex];
+	 * if (messageId == message.messageId) { messages.splice(messageIndex); //
+	 * alert(&quot;removed&quot;); return true; } } }
+	 */
+	return false;
+};
+
+HIN.Step.prototype.getState = function() {
+
+	var messageTypes = this.getMessageTypes();
+	var read = true;
+	var empty = true;
+	/*
+	 * if (messageTypes.length == 0) { empty = true; }
+	 */
+	for ( var messageTypeIndex = 0; messageTypeIndex &lt; messageTypes.length; messageTypeIndex++) {
+		var messageType = messageTypes[messageTypeIndex];
+		var messages = messageType.getMessages();
+		if (messages.length &gt; 0) {
+			empty = false;
+			// break;
+		}
+
+		for ( var messageIndex = 0; messageIndex &lt; messages.length; messageIndex++) {
+			var message = messages[messageIndex];
+			if (messageType.state != message.messageStatus) {
+				read = false;
+				break;
+			}
+
+		}
+		if (!read)
+			break;
+
+	}
+	if (empty) {
+		this.state = &quot;unread&quot;;
+	} else if (read) {
+		this.state = &quot;read&quot;;
+	} else {
+		this.state = &quot;current&quot;;
+	}
+	/* alert(&quot;Step : &quot; + this.state) */
+	return this.state;
+};
+
+HIN.Step.prototype.isFinished = function(currentMessage) {
+	for ( var messageTypeIndex = 0; messageTypeIndex &lt; this.messageTypes.length; messageTypeIndex++) {
+		var messageType = this.messageTypes[messageTypeIndex];
+		var messages = messageType.getMessages();
+		for ( var messageIndex = 0; messageIndex &lt; messages.length; messageIndex++) {
+			var message = messages[messageIndex];
+			if (message.finished == false
+					&amp;&amp; message.messageTypeName == currentMessage.messageTypeName
+					&amp;&amp; message.messageId != currentMessage.messageId) {
+				return false;
+			}
+		}
+	}
+	return true;
+};
+/*
+ * Pakage finance is attached with all service under that package,one service is
+ * finished then remove the depend finance from other service
+ */
+HIN.Step.prototype.removeDependendMessages = function(currentMessage) {
+	for ( var messageTypeIndex = 0; messageTypeIndex &lt; this.messageTypes.length; messageTypeIndex++) {
+		var messageType = this.messageTypes[messageTypeIndex];
+		var messages = messageType.getMessages();
+		for ( var messageIndex = 0; messageIndex &lt; messages.length; messageIndex++) {
+			var message = messages[messageIndex];
+			if (message.partOfPackage == true
+					&amp;&amp; message.packageId != null
+					&amp;&amp; message.messageTypeName == currentMessage.messageTypeName
+					&amp;&amp; message.messageId != currentMessage.messageId
+					&amp;&amp; message.packageId == currentMessage.packageId) {
+				message.removeDependendMessages();
+			}
+		}
+	}
+
+};
+
+HIN.Step.prototype.optimize = function() {
+	for ( var messageTypeIndex = 0; messageTypeIndex &lt; this.messageTypes.length; messageTypeIndex++) {
+		var messageType = this.messageTypes[messageTypeIndex];
+		messageType.optimize();
+	}
+	// this.messageGroups = null;
+	// this.typeNameMap = null;
+};
+
+HIN.Step.prototype.toString = function() {
+	return &quot;[&quot; + this.stepName + &quot; , &quot; + this.messageTypes + &quot;]&quot;;
+};
+</pre>
+</body>
+</html>

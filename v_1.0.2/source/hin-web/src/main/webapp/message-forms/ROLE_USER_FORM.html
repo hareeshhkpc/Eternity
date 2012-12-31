@@ -1,0 +1,41 @@
+<div data-role="none" class="ui-align-text">
+	<div class="ui-form-fields">
+
+		<div isEditor="true" editorLabel="Subscriber ID.:" pathFields=""
+			tagName="id" dataType="II" editorType="II" groupId="idFields"
+			style="display: none" idSuffix="2"></div>
+
+		<div isEditor="true" editorLabel="Role Name" pathFields=""
+			tagName="id" dataType="II" editorType="II"
+			configParams="[{name:'root.value',value:'ROLE_NAME'},{name:'root.label',value:'Role Name Prefix'},
+				{name:'root.readOnly',value:'true'},{name:'extension.label',value:'Role Code.'},
+				{name:'assigningAuthorityName.label',value:'Assigned By'},{name:'assigningAuthorityName.value',value:'HIN'},
+				{name:'assigningAuthorityName.readOnly',value:'true'}]"
+			groupId="idFields" idSuffix="3"></div>
+
+		<div isEditor="true" editorLabel="Organization Name::"
+			pathFields="providerOrganization" tagName="name" dataType="ON"
+			editorType="ON" configParams="[{name:'orgNameTypeConceptClass',value:'orgNameType'},{name:'orgNameTypeLookupType',value:'static'},
+				{name:'orgNameTypeLookupSelectType',value:'single'},{name:'orgNameTypeLookupControl',value:'multiple'}]"></div>
+
+		<div isEditor="true" editorLabel="Telecoms:" pathFields=""
+			tagName="telecom" dataType="TEL" editorType="TEL"
+			configParams="[{name:'telecomUseConceptClass',value:'telecomUse'},{name:'telecomUseLookupType',value:'static'},
+			                    {name:'telecomUseLookupSelectType',value:'single'},{name:'telecomUseLookupControl',value:'multiple'}]"></div>
+
+		<div isEditor="true" editorLabel="Address:" pathFields=""
+			tagName="addr" dataType="AD" editorType="AD"
+			configParams="[{name:'cityConceptClass',value:'city'},{name:'cityLookupType',value:'dynamic'},
+					           {name:'cityLookupSelectType',value:'single'},{name:'cityLookupControl',value:'autoComplete'},
+					           {name:'stateConceptClass',value:'state'},{name:'stateLookupType',value:'dynamic'},
+					           {name:'stateLookupSelectType',value:'single'},{name:'stateLookupControl',value:'autoComplete'},
+					           {name:'countryConceptClass',value:'country'},{name:'countryLookupType',value:'dynamic'},
+					           {name:'countryLookupSelectType',value:'single'},{name:'countryLookupControl',value:'autoComplete'}]"></div>
+
+		<div isEditor="true" editorLabel="Status:" pathFields=""
+			tagName="statusCode" dataType="CS" editorType="CSInplace"></div>
+
+		<div isEditor="true" editorLabel="Effective Time:" pathFields=""
+			tagName="effectiveTime" dataType="IVL_TS" editorType="IVL_TS"></div>
+	</div>
+</div>

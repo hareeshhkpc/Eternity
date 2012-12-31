@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">var HIN;
+if (!HIN)
+	HIN = {};
+<span id='HIN-Message'>/**
+</span> * Message
+ * 
+ * it holds the message information like messageId, message (stringfied xml),
+ * msg (xml doc),messageType, messageStatus , messageForm , messageTypeName,
+ * title, description,transactionType ,transactionStatus, finished, readOnly,
+ * taskVO and also the UI should be render based on the formHtml property
+ * against a message type.
+ * 
+ */
+HIN.Message = function Message() {
+
+	this.instanceId = -1;
+
+	this.id = 0;
+	this.messageIndex = 0;
+<span id='HIN-Message-property-messageId'>	/** messageId holds the message's id. */
+</span>	this.messageId = null;
+
+<span id='HIN-Message-property-message'>	/** message holds the xml string based on the message. */
+</span>	this.message = null;
+
+	this.messageStatus = null;
+<span id='HIN-Message-property-messageType'>	/** messageType holds the message type. */
+</span>	this.messageType = null;
+<span id='HIN-Message-property-messageForm'>	/** messageForm holds the name of the html which should be render in UI. */
+</span>	this.messageForm = null;
+<span id='HIN-Message-property-messageTypeName'>	/**
+</span>	 * messageTypeName holds the type name , based on this message type will
+	 * group the messages.
+	 */
+	this.messageTypeName = null;
+	/*
+	 * this.groupName = null; this.title = null; this.header = null; this.empty =
+	 * false;
+	 */
+<span id='HIN-Message-property-title'>	/** title holds the title of the message. */
+</span>	this.title = null;
+<span id='HIN-Message-property-description'>	/** description holds the description of the message. */
+</span>	this.description = null;
+
+	this.selectionArray = [];
+
+<span id='HIN-Message-property-taskVO'>	/** taskVO holds the task information against the message. */
+</span>	this.taskVO = null;
+
+<span id='HIN-Message-property-messageAndUIBinder'>	/**
+</span>	 * messageAndUIBinder hold the ui rendering and event handling against the
+	 * form input controls
+	 */
+	this.messageAndUIBinder = null;
+
+	this.rendered = false;
+
+<span id='HIN-Message-property-readOnly'>	/** readOnly holds the true or false value base on the ui component act. */
+</span>	this.readOnly = false;
+
+<span id='HIN-Message-property-status'>	/**
+</span>	 * status holds the status of the message like 'ACTIVE' or 'INACTIVE' ,
+	 * based on the status the UI will be decide to show/hide.
+	 */
+	this.status = AppConstants.Status.ACTIVE;
+
+	this.dependendMessageProcessed = false;
+
+<span id='HIN-Message-property-dependendMessages'>	/**
+</span>	 * dependendMessages holds the dependendMessages under the message ,
+	 * collection of messages.
+	 */
+	this.dependendMessages = [];
+
+<span id='HIN-Message-property-initializeScriptExecuted'>	/**
+</span>	 * initializeScriptExecuted holds true or false value , whether
+	 * initializeScriptExecuted or not
+	 */
+	this.initializeScriptExecuted = false;
+
+<span id='HIN-Message-property-msg'>	/** msg holds the message document xml based on the message. */
+</span>	this.msg = null;
+
+	this.sync = false;
+
+<span id='HIN-Message-property-transactionType'>	/** transactionType holds the transactionType of the message. */
+</span>	this.transactionType = null;
+<span id='HIN-Message-property-transactionStatus'>	/** transactionStatus holds the transactionStatus of the message. */
+</span>	this.transactionStatus = null;
+
+<span id='HIN-Message-property-renderUI'>	/**
+</span>	 * renderUI holds the true or false, once it renders the value make it
+	 * false.
+	 */
+	this.renderUI = true;
+<span id='HIN-Message-property-finished'>	/**
+</span>	 * finished holds true or false value, based on this which will identify
+	 * completed or not.
+	 */
+	this.finished = false;
+
+	this.newTask = false;
+
+	this.partOfPackage = false;
+
+	this.packageId = null;
+
+<span id='HIN-Message-property-formView'>	/**
+</span>	 * formView hold true or false value,based on this UI will be decide to
+	 * show/hide form.
+	 */
+	this.formView = true;
+
+	this.messageTypeCompeletionTempStatus = 0;
+
+	this.messageProcessCompeletionStatus = 0;
+
+	this.addNew = false;
+
+	this.financeType = null;
+
+<span id='HIN-Message-property-deletable'>	/**
+</span>	 * deletable hold true or false value,based on this UI will be decide to
+	 * provide delete option or not.
+	 */
+	this.deletable = false;
+
+	this.insertBeforeFooter = false;
+};
+
+<span id='HIN-Message-method-addDependendMessage'>/**
+</span> * addDependendMessage method will add the message under the message.
+ * 
+ * @param message :
+ *            Its an object of message
+ * @return {void}
+ */
+HIN.Message.prototype.addDependendMessage = function(message) {
+	if (!this.isDependendMessagesExist(message)) {
+		this.dependendMessages.push(message);
+	}
+};
+
+<span id='HIN-Message-method-removeDependendMessages'>/**
+</span> * removeDependendMessages method will remove all messages under the message.
+ */
+HIN.Message.prototype.removeDependendMessages = function() {
+	if (this.dependendMessages)
+		this.dependendMessages.splice(0, this.dependendMessages.length);
+};
+
+<span id='HIN-Message-method-markAsObsolete'>/**
+</span> * markAsObsolete method will change the message status to 'OBSOLETE'.
+ */
+HIN.Message.prototype.markAsObsolete = function() {
+	this.status = AppConstants.Status.OBSOLETE;
+	this.markDependendMessagesAsObsolete();
+};
+
+<span id='HIN-Message-method-markDependendMessagesAsObsolete'>/**
+</span> * markDependendMessagesAsObsolete method will change all dependend messages
+ * status to 'OBSOLETE'.
+ */
+HIN.Message.prototype.markDependendMessagesAsObsolete = function() {
+	if (this.dependendMessages) {
+		for ( var index = 0; index &lt; this.dependendMessages.length; index++) {
+			this.dependendMessages[index].status = AppConstants.Status.OBSOLETE;
+		}
+	}
+};
+
+<span id='HIN-Message-method-isDependendMessagesExist'>/**
+</span> * isDependendMessagesExist method will return true or false based on the
+ * message which is passed as parameter to the method.
+ * 
+ * @param message :
+ *            Its an object of message.
+ * @returns {Boolean}
+ */
+HIN.Message.prototype.isDependendMessagesExist = function(message) {
+	if (this.dependendMessages) {
+		for ( var index = 0; index &lt; this.dependendMessages.length; index++) {
+			if (this.dependendMessages[index].messageId == message.messageId) {
+				return true;
+			}
+		}
+	}
+};
+<span id='HIN-Message-method-removeDependendMessage'>/**
+</span> * removeDependendMessage method will remove the dependend message under the
+ * message.
+ * 
+ * @param message :
+ *            Its an object of message.
+ * @returns {Boolean}
+ */
+HIN.Message.prototype.removeDependendMessage = function(message) {
+	if (this.isDependendMessagesExist(message)) {
+		// var messages = this.getMessages();
+		this.dependendMessages = removeDependendArray(this.dependendMessages,
+				message)
+		/*
+		 * for ( var messageIndex = 0; messageIndex &lt; messages.length;
+		 * messageIndex++) { var messageObject = messages[messageIndex]; if
+		 * (messageObject.messageId == message.messageId) {
+		 * messages.splice(messageIndex); // alert(&quot;removed&quot;); return true; } }
+		 */
+		return true;
+	}
+	return false;
+};
+
+function removeDependendArray(arr) {
+	var what, a = arguments, L = a.length, ax;
+	while (L &gt; 1 &amp;&amp; arr.length) {
+		what = a[--L];
+		while ((ax = arr.indexOf(what)) != -1) {
+			arr.splice(ax, 1);
+		}
+	}
+	return arr;
+}
+
+<span id='HIN-Message-method-setInitializeScriptExecuted'>/**
+</span> * setInitializeScriptExecuted method will set true or false value.
+ * 
+ * @param initializeScriptExecuted :
+ *            Its a boolean value.
+ * @returns {void}
+ */
+HIN.Message.prototype.setInitializeScriptExecuted = function(
+		initializeScriptExecuted) {
+	this.initializeScriptExecuted = initializeScriptExecuted;
+};
+
+<span id='HIN-Message-method-isInitializeScriptExecuted'>/**
+</span> * isInitializeScriptExecuted method will return true or false.
+ * 
+ * @returns {Boolean}
+ */
+
+HIN.Message.prototype.isInitializeScriptExecuted = function() {
+	/*
+	 * if (this.taskVO == null &amp;&amp; !this.initializeScriptExecuted) return false;
+	 */
+	return this.initializeScriptExecuted;
+	// return this.taskVO == null ? false : true;
+};
+
+HIN.Message.prototype.isFinanced = function() {
+	return this.taskVO == null ? false : true;
+};
+
+HIN.Message.prototype.optimize = function() {
+	/*
+	 * this.groupName = null; this.title = null; this.header = null; this.empty =
+	 * false;
+	 */
+	this.message = null;
+	this.selectionArray = [];
+	this.taskVO = null;
+	this.messageAndUIBinder = null;
+	this.msg = null;
+};
+HIN.Message.prototype.toString = function() {
+	return &quot;  \r\n Message : [&quot; + this.instanceId + &quot; , &quot; + this.messageId
+			+ &quot; , &quot; + this.messageType + &quot; , &quot; + this.messageStatus + &quot;, &quot;
+			+ this.messageTypeName + &quot;, &quot; + this.messageForm + &quot;, &quot;
+			+ this.renderUI + &quot;, messageTypeCompeletionTempStatus : &quot;
+			+ this.messageTypeCompeletionTempStatus + &quot;, &quot;
+			+ this.messageProcessCompeletionStatus + &quot;, &quot; + this.finished
+			+ &quot;, &quot; + &quot;]&quot;;
+};
+</pre>
+</body>
+</html>

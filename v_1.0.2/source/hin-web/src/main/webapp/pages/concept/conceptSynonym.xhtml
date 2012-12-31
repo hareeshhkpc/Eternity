@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<rich:panel header="#{msg['conceptSynonym.title']}">
+			<h:form id="conceptSynonymForm">
+				<h:panelGrid columns="2">
+					<h:outputText value="#{msg['conceptSynonym.name']}: " />
+					<h:inputText id="name" required="true"
+						value="#{conceptSynonymBean.conceptSynonym.name}">
+						<h:message style="color: red" for="name" />
+					</h:inputText>
+
+					<h:outputText value="Status" />
+					<h:selectOneMenu id="statusId"
+						value="#{conceptSynonymBean.conceptSynonym.status}">
+						<f:selectItems value="#{conceptSynonymBean.statuses}" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+				<h:commandButton value="#{msg['conceptSynonym.save']} "
+					action="#{conceptSynonymBean.saveSynonym}" reRender="concepts" />
+				<h:commandButton value="#{msg['conceptClass.back']} "
+					action="conceptSynonyms" />
+			</h:form>
+		</rich:panel>
+	</ui:define>
+</ui:composition>
+</html>

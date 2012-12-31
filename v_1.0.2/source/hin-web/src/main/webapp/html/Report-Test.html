@@ -1,0 +1,687 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+
+<!-- <link rel="stylesheet" href="css/hin.css" /> -->
+
+<!-- <link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" type="text/css" /> -->
+<link rel="stylesheet" href="css/invoice.css" type="text/css" />
+<link rel="stylesheet" href="js/jquery.mobile.datebox.min.css" />
+<link rel="stylesheet" href="css/healthhistoryquestionnaire.css" />
+
+
+<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" /> -->
+
+
+<link rel="stylesheet" href="js/jquery.ui.datepicker.mobile.css" />
+<!-- link rel="stylesheet" href="js/jquery.mobile.datebox.min.css"> -->
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.json-2.3.js"></script>
+<!-- <script src="js/jquery.mobile-1.0.1.min.js"></script>
+<script src="js/jquery.mobile.datebox.min.js"></script> -->
+<script src="js/jquery.easydate-0.2.4.js"></script>
+
+<script type="text/javascript" src="js/jsCharts/highcharts.js"></script>
+<!-- <script type="text/javascript" src="js/jsCharts/reviewHighchart.js"></script> 
+  <script type="text/javascript" src="js/jsCharts/jquery.min.js"></script>
+<script type="text/javascript" src="js/jsCharts/jquery-1.6.4.js"></script>
+<script type="text/javascript" src="js/jsCharts/themes/grid.js"></script> -->
+
+<!-- <script type="text/javascript" src="js/jQuery.ui.datepicker.js"></script> -->
+<!-- <script src="js/jquery.mobile.datebox.min.js"></script> -->
+<script src="../mobile/js/jquery.mousewheel.min.js"></script>
+<script src="js/AjaxMultipart.js"></script>
+<script src="js/AppConstants.js"></script>
+<script src="js/ApplicationController.js"></script>
+<script src="js/AppUtil.js"></script>
+<script src="js/Callback.js"></script>
+<script src="js/CommonUtil.js"></script>
+<script src="js/Context.js"></script>
+<script src="js/DataLayer.js"></script>
+<script src="js/DataTypeAPI.js"></script>
+<script src="js/EventQueue.js"></script>
+<script src="js/HashMap.js"></script>
+<script src="js/FactoryClass.js"></script>
+<script src="js/IDGenerator.js"></script>
+<script src="js/IFrameAPI.js"></script>
+<!-- <script src="js/hl7adapter_new.js"></script> -->
+<!-- <script src="js/hl7adapter.js"></script> -->
+<script src="js/LookupHandler.js"></script>
+<script src="js/MessageAndUIBinder.js"></script>
+<script src="js/MessageLoader.js"></script>
+<script src="js/RenderingEngine.js"></script>
+<script src="js/ServiceLayer.js"></script>
+<script src="js/UpdatePathfield.js"></script>
+<script src="js/XmlUtil.js"></script>
+<script src="js/WorkFlowManagerCache.js"></script>
+<script src="js/CacheManager.js"></script>
+<script src="js/ProcessManagerCache.js"></script>
+
+<script src="js/custom/AppSchedule.js"></script>
+<script src="js/custom/AppCalendar.js"></script>
+<script src="js/custom/Form.js"></script>
+<script src="js/custom/Home.js"></script>
+<script src="js/custom/Library.js"></script>
+<script src="js/custom/Login.js"></script>
+<script src="js/custom/SignUp.js"></script>
+
+<!-- <script src="js/custom/Mentor.js"></script>
+<script src="js/custom/Monitor.js"></script>
+<script src="js/custom/Measure.js"></script> -->
+
+<script src="js/custom/Navigation.js"></script>
+<script src="js/custom/Patient.js"></script>
+<script src="js/custom/Process.js"></script>
+<script src="js/custom/Program.js"></script>
+<script src="js/custom/Licensee.js"></script>
+<script src="js/custom/Resize.js"></script>
+
+<script src="js/custom/Staff.js"></script>
+
+<script src="js/custom/Search.js"></script>
+<script src="js/custom/User.js"></script>
+<script src="js/vo/ConceptLookup.js"></script>
+
+<script src="js/custom/Review.js"></script>
+
+<script src="js/custom/TestResult.js"></script>
+<script src="js/custom/Statistics.js"></script>
+<script src="js/custom/Archive.js"></script>
+<!-- <script src="js/custom/WorkFlow.js"></script> -->
+<script src="js/ui/AppointmentSchedule.js"></script>
+<script src="js/ui/CalendarData.js"></script>
+
+<!-- <script src="js/ui/Measure.js"></script>
+<script src="js/ui/Substances.js"></script> -->
+<script src="js/ui/AutoCompleteSearch.js"></script>
+<script src="js/ui/UIGenerator.js"></script>
+<script src="js/ui/Page.js"></script>
+<script src="js/ui/AppointmentSchedulePage.js"></script>
+<script src="js/ui/MonitorPage.js"></script>
+<script src="js/ui/EnrollmentPage.js"></script>
+<script src="js/ui/PatientRegistrationPage.js"></script>
+<script src="js/ui/PatientDemographicsPage.js"></script>
+<script src="js/ui/MeasurePage.js"></script>
+<script src="js/ui/LicenseeRegistrationPage.js"></script>
+<script src="js/ui/StaffRegistrationPage.js"></script>
+<script src="js/ui/StepPage.js"></script>
+<!-- <script src="js/ui/UserRegistrationPage.js"></script> -->
+<script src="js/ui/RolesPage.js"></script>
+<script src="js/ui/AccountsPage.js"></script>
+<script src="js/ui/BillingPage.js"></script>
+<script src="js/ui/CollectionPage.js"></script>
+<script src="js/ui/WelcomePage.js"></script>
+<script src="js/ui/ConsentPage.js"></script>
+<script src="js/ui/QuestionnairePage.js"></script>
+<script src="js/ui/SubstancesPage.js"></script>
+<script src="js/ui/ReviewPage.js"></script>
+<script src="js/ui/MonitorMeasurePage.js"></script>
+<script src="js/ui/HistoryPage.js"></script>
+<script src="js/ui/SignUpPage.js"></script>
+<script src="js/ui/PhysicalExaminationPage.js"></script>
+<script src="js/ui/ProfilePage.js"></script>
+<script src="js/ui/PermissionPage.js"></script>
+<script src="js/ui/SettingsPage.js"></script>
+<script src="js/ui/ContactPersonPage.js"></script>
+<script src="js/ui/ResultsPage.js"></script>
+<script src="js/ui/ProgramsPage.js"></script>
+<script src="js/vo/AppointmentVO.js"></script>
+<script src="js/vo/ChartVO.js"></script>
+<script src="js/vo/FormVO.js"></script>
+<script src="js/vo/Message.js"></script>
+<script src="js/vo/MessageVO.js"></script>
+<script src="js/vo/ProcessVO.js"></script>
+<script src="js/vo/ProcessDefinition.js"></script>
+<script src="js/vo/SearchVO.js"></script>
+<script src="js/vo/Step.js"></script>
+<script src="js/vo/MessageType.js"></script>
+<!-- <script src="js/vo/MessageTypeName.js"></script> -->
+<script src="js/vo/ProfileVO.js"></script>
+<script src="js/vo/Query.js"></script>
+<script src="js/vo/UserProcess.js"></script>
+<script src="js/vo/UserVO.js"></script>
+<script src="js/vo/LicenseeVO.js"></script>
+<script src="js/vo/StaffVO.js"></script>
+<script src="js/vo/TaskVO.js"></script>
+<script src="js/vo/StatisticsVO.js"></script>
+<script src="js/vo/PatientVO.js"></script>
+<!-- <script src="js/vo/OrganizationVO.js"></script> -->
+<script src="js/vo/StepGroup.js"></script>
+<script src="js/jquery.base64.min.js"></script>
+<script src='js/calendar/src/_loader.js?debug'></script>
+
+<script src="../process-scripts/ProcessEntry.js"></script>
+<script src="../process-scripts/ProcessScript.js"></script>
+<script src='../message-scripts/MessageTypeScript.js'></script>
+
+<link rel="stylesheet" href="css/jquery.scroller-1.0.2.min.css" />
+<link rel="stylesheet" href="css/validationEngine.jquery.css"
+	type="text/css" />
+
+<script src="js/jquery.mobile.message.min.js"></script>
+<script src="js/languages/jquery.validationEngine-en.js"></script>
+<script src="js/jquery.validationEngine.js"></script>
+
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
+
+<!-- Notification Allert -->
+<script type="text/javascript" src="js/humane.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jackedup.css"
+	media="screen" />
+
+<script src="js/jqm.autoComplete-1.4.js"></script>
+<script src="js/jquery.cuteTime.js" type="text/javascript"></script>
+<script src="js/custom/QuestionnaireFormGenerator.js"></script>
+<script src="js/ui/InvoicePage.js"></script>
+
+
+<script type="text/javascript" src="js/editor/EditorXmlApi.js"></script>
+<script type="text/javascript" src="js/editor/EditorSMOValueApi.js"></script>
+<script type="text/javascript" src="js/editor/EditorUIApi.js"></script>
+
+<script type="text/javascript" src="js/message_api/script/xml2json.js"></script>
+<script type="text/javascript" src="js/message_api/script/json2xml.js"></script>
+<script type="text/javascript"
+	src="js/message_api/script/lawnchair/Lawnchair.js"></script>
+<script type="text/javascript"
+	src="js/message_api/script/lawnchair/adapters/webkit-sqlite.js"></script>
+<script type="text/javascript"
+	src="js/message_api/script/lawnchair/adapters/dom.js"></script>
+<script type="text/javascript" src="js/MessageQueue.js"></script>
+<script type="text/javascript" src="js/message_api/script/hl7adapter.js"></script>
+<script type="text/javascript"
+	src="js/message_api/script/hl7adapter.unit.js"></script>
+	
+	<script src="../client-report/indicator.js"></script>
+
+</head>
+
+<script type="text/javascript">
+
+var reportRenderer = null;
+var reportRenderer = null;
+var appController = null;
+var idGenerator = null;
+var svgContainerID = 0;
+function loadPage(pageId){
+	var pageUri = "../client-report/results/"+pageId + ".svg"; 
+	//alert("Page: " + pageUri)
+	var xmlNode = XmlUtil.loadXml(pageUri);
+	reportRenderer.setSVGDoc(xmlNode);
+	
+	var data = getData(pageId);
+	
+	if(data !== null){
+		reportRenderer.createIndicator(data);
+	}
+	reportRenderer.appendSVG();
+}
+
+function loadConsultationPage(pageId){
+	
+	$('#'+pageId).load("../client-report/consultation-pages/"+pageId+'.html', function() {
+		
+		var indicatorContainerID;
+		var data = getData(pageId);
+		for (i in data) {
+			var dataArray = data[i].array;
+			for(j in dataArray){
+				svgContainerID =svgContainerID+1;
+				//alert(svgContainerID);
+				reportRenderer = new ReportRenderer($('#indicatorContainer'+svgContainerID), window.document);
+				var array = dataArray[j];
+				indicatorContainerID = "indicator"+pageId+j;
+				var indicatorContainer = createIndicatorContainer(indicatorContainerID);
+				var svgdoc = XmlUtil.stringToXml(indicatorContainer);
+				reportRenderer.setSVGDoc(svgdoc);
+				
+				if(data !== null){
+						reportRenderer.createIndicatorConsultation(array, data);
+				}
+					
+				reportRenderer.appendSVG(); 
+			}
+			 
+		}
+		 
+	});
+}
+
+function createIndicatorContainer(indicatorContainerID){
+	var svgContainer = '<svg id="'+indicatorContainerID+'" xmlns="http://www.w3.org/2000/svg" width="800" height="100">';
+	svgContainer += '</svg>';
+	return svgContainer;
+}
+
+function loadConfiguration(messageConfigId) {
+	var lookupHandler = new LookupHandler();
+	HL.getConfigDocument(messageConfigId, function(doc) {
+		var result = 0;
+		result = doc.getArtifactId();
+		config = doc;
+
+		alert('Configuration for ' + result + " Loaded");
+
+		msgBinder = new MessageAndUIBinder('consultationPages', config
+				.createMessage(), result);
+		msgBinder.loadDataOntoForm(lookupHandler);
+	}, function(status) {
+		alert("Failed to load configuration for ID : " + messageConfigId
+				+ ", Status: " + status);
+	});
+};
+
+$(document).ready(function(){
+	//loads results pages
+	appController = new ApplicationController();
+		idGenerator = new IDGenerator();
+	for(pageIndex=1; pageIndex<=12; pageIndex++){
+		var pageId = "page" + pageIndex;
+		reportRenderer = new ReportRenderer($('#'+pageId), window.document);
+		loadPage(pageId);
+	}
+	//loads consultation pages
+	 for(pageIndex=1; pageIndex<=5; pageIndex++){
+		var pageId = "consultationpage" + pageIndex;
+		//reportRenderer = new ReportRenderer($('#'+pageId), window.document);
+		loadConsultationPage(pageId);
+	} 
+	 loadConfiguration('POCD_MT000040UV_PhysiciansComments');
+});
+
+function getData(page){
+	var score_Array
+	var data;
+	if(page=="page1"){
+		data=null;
+	}
+	if(page=="page2"){
+		data=null;
+	}
+	if(page=="page3"){
+		score_Array = [160, 100, 80, 160, 100, 80, 160, 100];
+		coordinates = [{
+			"y_rect" : 240,
+			"y_circle" : 255,
+			"y_text": 262,
+			"x1_line": 640,
+			"x2_line" :658,
+			"y1_line": 68,
+			"y2_line": 68,
+			"x_circle_small" :660,
+			"y_circle_small" :68,
+			"y_standard": 68,
+			"array_increment": 0,
+			"y_standard_increment" :0
+		}];
+		
+		data=[ {
+			"overall" :100,
+			"page" : "OverviewResult",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	if(page=="page4"){
+		coordinates = [{
+			"y_rect" : 162,
+			"y_circle" : 177,
+			"y_text": 184,
+			"x1_line": 640,
+			"x2_line" :658,
+			"y1_line": 178,
+			"y2_line": 178,
+			"x_circle_small" :660,
+			"y_circle_small" :178,
+			"y_standard": 178,
+			"array_increment": 22.5,
+			"y_standard_increment" :81.3
+		}];
+		
+		score_Array = [[160, 100, 80],[160, 100], [80, 160, 0], [80, 160, 100]];
+		data=[ {
+			"page" : "Results",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+	if(page=="page5"){
+		coordinates = [{
+			"y_rect" : 162,
+			"y_circle" : 177,
+			"y_text": 184,
+			"x1_line": 640,
+			"x2_line" :658,
+			"y1_line": 178,
+			"y2_line": 178,
+			"x_circle_small" :660,
+			"y_circle_small" :178,
+			"y_standard": 178,
+			"array_increment": 0,
+			"y_standard_increment" :0
+		}];
+		
+		score_Array = [[160, 100, 0, 160, 100, 80, 160, 0, 80, 160, 100]];
+		data=[ {
+			"page" : "Results",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+	if(page=="page6"){
+		coordinates = [{
+			"y_rect" : 188,
+			"y_circle" : 203,
+			"y_text": 210,
+			"x1_line": 640,
+			"x2_line" :658,
+			"y1_line": 204,
+			"y2_line": 204,
+			"x_circle_small" :660,
+			"y_circle_small" :204,
+			"y_standard": 204,
+			"array_increment": 47,
+			"y_standard_increment" :82.2
+		}];
+		
+		score_Array = [[160, 100, 80, 160, 100], [80, 160, 100, 80, 160, 80]];
+		data=[ {
+			"page" : "Results",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+	if(page=="page7"){
+		coordinates = [{
+			"y_rect" : 170,
+			"y_circle" : 185,
+			"y_text": 192,
+			"x1_line": 640,
+			"x2_line" :658,
+			"y1_line": 186,
+			"y2_line": 186,
+			"x_circle_small" :660,
+			"y_circle_small" :186,
+			"y_standard": 186,
+			"array_increment": 0,
+			"y_standard_increment" :0
+		}];
+		
+		score_Array = [[160, 100, 80,  160, 100, 160, 0]];
+		data=[ {
+			"page" : "Results",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+	if(page=="page8"){
+		coordinates = [{
+			"y_rect" : 232,
+			"y_circle" : 247,
+			"y_text": 256,
+			"x1_line": 640,
+			"x2_line" :658,
+			"y1_line": 250,
+			"y2_line": 250,
+			"x_circle_small" :660,
+			"y_circle_small" :250,
+			"y_standard": 250,
+			"array_increment": 0,
+			"y_standard_increment" :0
+		}];
+		
+		score_Array = [[80, 0, 100, 80, 0, 100]];
+		data=[ {
+			"page" : "Results",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+	if(page=="page9"){
+		coordinates = [{
+			"y_rect" : 160,
+			"y_circle" : 175,
+			"y_text": 182,
+			"x1_line": 640,
+			"x2_line" :658,
+			"y1_line": 176,
+			"y2_line": 176,
+			"x_circle_small" :660,
+			"y_circle_small" :176,
+			"y_standard": 176,
+			"array_increment": 0,
+			"y_standard_increment" :0
+		}];
+		
+		score_Array = [[160, 100, 80,  160, 100, 80, 160, 100, 0, 160, 100]];
+		data=[ {
+			"page" : "Results",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+	if(page=="page10"){
+		coordinates = [{
+			"y_rect" : 144,
+			"y_circle" : 159,
+			"y_text": 166,
+			"x1_line": 640,
+			"x2_line" :658,
+			"y1_line": 160,
+			"y2_line": 160,
+			"x_circle_small" :660,
+			"y_circle_small" :160,
+			"y_standard": 160,
+			"array_increment": 0,
+			"y_standard_increment" :0
+		}];
+		
+		score_Array = [[160, 100, 80,  160, 100, 80, 160, 100, 0, 160, 0, 80 ]];
+		data=[ {
+			"page" : "Results",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+	if(page=="page11"){
+		coordinates = [{
+			"y_rect" : 142,
+			"y_circle" : 157,
+			"y_text": 164,
+			"x1_line": 640,
+			"x2_line" :658,
+			"y1_line": 158,
+			"y2_line": 158,
+			"x_circle_small" :660,
+			"y_circle_small" :158,
+			"y_standard": 158,
+			"array_increment": 0,
+			"y_standard_increment" :0
+		}];
+		
+		score_Array = [[160, 100, 80,  160, 0, 80, 160, 100, 80]];
+		data=[ {
+			"page" : "Results",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+	if(page=="page12"){
+		coordinates = [{
+			"y_rect" : 160,
+			"y_circle" : 175,
+			"y_text": 182,
+			"x1_line": 640,
+			"x2_line" :658,
+			"y1_line": 176,
+			"y2_line": 176,
+			"x_circle_small" :660,
+			"y_circle_small" :176,
+			"y_standard": 176,
+			"array_increment": 0,
+			"y_standard_increment" :0
+		}];
+		
+		score_Array = [[160, 100, 80,  160, 100, 80, 160, 100, 80, 160, 100]];
+		data=[ {
+			"page" : "Results",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+	if(page=="consultationpage1"){
+		
+		coordinates = [{
+			"x_rect": 150,
+			"x_circle":120,
+			"x1_line": 140,
+			"x2_line" :160,
+			"x_circle_small" :160,
+			"x_standard": 160,
+			"x_text":105
+		}];
+		score_Array = [[160, 160, 160], [160, 160, 160]];
+		//score_Array = [160, 160, 160];
+		data=[ {
+			"page" : "Consultation",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+if(page=="consultationpage2"){
+		
+		coordinates = [{
+			"x_rect": 150,
+			"x_circle":120,
+			"x1_line": 140,
+			"x2_line" :160,
+			"x_circle_small" :160,
+			"x_standard": 160,
+			"x_text":105
+		}];
+		score_Array = [[160, 160, 160], [160, 160, 160]];
+		data=[ {
+			"page" : "Consultation",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+
+if(page=="consultationpage3"){
+		
+		coordinates = [{
+			"x_rect": 150,
+			"x_circle":120,
+			"x1_line": 140,
+			"x2_line" :160,
+			"x_circle_small" :160,
+			"x_standard": 160,
+			"x_text":105
+		}];
+		score_Array = [[160, 160, 160]];
+		data=[ {
+			"page" : "Consultation",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+if(page=="consultationpage4"){
+	
+	coordinates = [{
+		"x_rect": 150,
+		"x_circle":120,
+		"x1_line": 140,
+		"x2_line" :160,
+		"x_circle_small" :160,
+		"x_standard": 160,
+		"x_text":105
+	}];
+	score_Array = [[160, 160, 160]];
+	data=[ {
+		"page" : "Consultation",
+		"array" : score_Array,
+		"coordinates": coordinates
+	} ];
+}
+
+if(page=="consultationpage5"){
+	
+	coordinates = [{
+		"x_rect": 150,
+		"x_circle":120,
+		"x1_line": 140,
+		"x2_line" :160,
+		"x_circle_small" :160,
+		"x_standard": 160,
+		"x_text":105
+	}];
+	score_Array = [[160, 160, 160]];
+	data=[ {
+		"page" : "Consultation",
+		"array" : score_Array,
+		"coordinates": coordinates
+	} ];
+}
+	
+	return data;
+}
+	
+
+</script>
+
+<body>
+
+<div id="page1">
+</div>
+<div id="page2">
+</div>
+<div id="page3">
+</div>
+<div id="page4">
+</div>
+<div id="page5">
+</div>
+<div id="page6">
+</div>
+<div id="page7">
+</div>
+<div id="page8">
+</div>
+<div id="page9">
+</div>
+<div id="page10">
+</div>
+<div id="page11">
+</div>
+<div id="page12">
+</div>
+<div id="consultationPages">
+<div id="consultationpage1"></div><br>
+<div id="consultationpage2"></div><br>
+<div id="consultationpage3"></div><br>
+<div id="consultationpage4"></div><br>
+<div id="consultationpage5"></div><br>
+<div id="consultationpage6"></div><br>
+</div>
+</body>
+</html>

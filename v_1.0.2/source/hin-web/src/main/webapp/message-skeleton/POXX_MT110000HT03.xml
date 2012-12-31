@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POXX_MT110000HT03">
+	<POXX_MT110000HT03>
+		<id />
+		<code />
+		<statusCode />
+		<value />
+		<subject>
+			<patient>
+				<id />
+			</patient>
+		</subject>
+	</POXX_MT110000HT03>
+</message>

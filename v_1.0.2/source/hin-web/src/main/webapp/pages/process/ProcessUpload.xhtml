@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:util="http://java.sun.com/jsf/composite/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<rich:collapsiblePanel header="Process Upload" switchType="client"
+			style="width:650px">
+			<h:form>
+				<a4j:jsFunction name="renderImages" ajaxSingle="true"
+					immediate="true" render="process" />
+				<h:panelGrid columns="2">
+					<h:column>
+						<h:outputText id="processUpload" value="Upload Process" />
+					</h:column>
+					<h:column>
+						<rich:fileUpload id="uploadProcess" uploadData="#{bean.data}"
+							maxRequestSize="100" maxFilesQuantity="1" acceptedTypes="xls"
+							immediateUpload="false" onuploadcomplete="renderImages();"
+							fileUploadListener="#{processUploadBean.fileUploaded}"
+							style="height:100px">
+						</rich:fileUpload>
+					</h:column>
+					<!-- Upload Code Ends Here -->
+				</h:panelGrid>
+				<rich:dataTable id="process"
+					value="#{processUploadBean.updatedProcessList}" var="process"
+					rows="10" style="width:600px" rowClasses="odd-row, even-row"
+					rowClass="row" styleClass="stable">
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Process Name" />
+						</f:facet>
+						<h:outputText value="#{process.name}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Upload Status" />
+						</f:facet>
+						<h:outputText value="#{process.status}" />
+					</rich:column>
+					<br />
+					<f:facet name="footer">
+						<rich:dataScroller for="process" align="right"
+							renderIfSinglePage="false" fastStep="5" fastControls="auto"
+							render="id3 id4" />
+					</f:facet>
+				</rich:dataTable>
+			</h:form>
+		</rich:collapsiblePanel>
+		<rich:jQuery id="id3" selector=".stable tr.row" event="mouseover"
+			query="jQuery(this).addClass('active-row')" />
+		<rich:jQuery id="id4" selector=".stable tr.row" event="mouseout"
+			query="jQuery(this).removeClass('active-row')" />
+	</ui:define>
+</ui:composition>
+</html>

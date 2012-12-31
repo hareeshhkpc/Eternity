@@ -1,0 +1,41 @@
+<HL7MessageConfiguration id="id101" configType="MESSAGE">
+  <MetaInfo id="id102" artifactID="POCD_MT000040HT01" createdDate="2012-05-21 04:28:01.750 UTC" entryPoint="POCD_MT000040HT01.ClinicalDocument" description="CDA Message" configType="META_INFO"/>
+  <Class id="id103" rimType="ACT" configType="CLASS" tagName="POCD_MT000040HT01" type="POCD_MT000040HT01.ClinicalDocument">
+    <Field id="id104" tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+    <Field id="id105" tagName="code" type="CE" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+    <Field id="id106" tagName="title" type="ST" label="Title" displayOrder="2" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+    <Field id="id107" tagName="effectiveTime" type="TS" label="Effective Time" displayOrder="3" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+    <Field id="id108" tagName="confidentialityCode" type="CE" label="Confidentiality Code" displayOrder="4" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+    <Class id="id109" rimType="PARTICIPATION" configType="CLASS" tagName="recordTarget" type="POCD_MT000040HT01.RecordTarget" label="Record Target" displayOrder="5" minOccurs="1" maxOccurs="-1">
+      <Class id="id110" rimType="ROLE" configType="CLASS" tagName="patientRole" type="POCD_MT000040HT01.PatientRole" label="Patient Role" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field id="id111" tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1" configType="FIELD"/>
+      </Class>
+    </Class>
+    <Class id="id109" rimType="PARTICIPATION" configType="CLASS" tagName="author" type="POCD_MT000040HT01.Author" label="Author" displayOrder="6" minOccurs="1" maxOccurs="-1">
+      <Field id="id110" tagName="time" type="TS" label="Time" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+      <Class id="id111" rimType="ROLE" configType="CLASS" tagName="assignedAuthor" type="POCD_MT000040HT01.AssignedAuthor" label="Assigned Author" displayOrder="1" minOccurs="1" maxOccurs="1">
+        <Field id="id112" tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1" configType="FIELD"/>
+      </Class>
+    </Class>
+    <Class id="id109" rimType="PARTICIPATION" configType="CLASS" tagName="custodian" type="POCD_MT000040HT01.Custodian" label="Custodian" displayOrder="7" minOccurs="1" maxOccurs="1">
+      <Class id="id110" rimType="ROLE" configType="CLASS" tagName="assignedCustodian" type="POCD_MT000040HT01.AssignedCustodian" label="Assigned Custodian" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Class id="id111" rimType="ENTITY" configType="CLASS" tagName="representedCustodianOrganization" type="POCD_MT000040HT01.CustodianOrganization" label="Represented Custodian Organization" displayOrder="0" minOccurs="1" maxOccurs="1">
+          <Field id="id112" tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1" configType="FIELD"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class id="id109" rimType="ACTRELATIONSHIP" configType="CLASS" tagName="component" type="POCD_MT000040HT01.Component1" label="Component" displayOrder="8" minOccurs="1" maxOccurs="1">
+      <Class id="id110" rimType="ACT" configType="CLASS" tagName="structuredBody" type="POCD_MT000040HT01.StructuredBody" label="Structured Body" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Class id="id111" rimType="ACTRELATIONSHIP" configType="CLASS" tagName="component" type="POCD_MT000040HT01.Component2" label="Component" displayOrder="0" minOccurs="1" maxOccurs="-1">
+          <Class id="id112" rimType="ACT" configType="CLASS" tagName="section" type="POCD_MT000040HT01.Section" label="Section" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Class id="id113" rimType="ACTRELATIONSHIP" configType="CLASS" tagName="entry" type="POCD_MT000040HT01.Entry" label="Entry" displayOrder="0" minOccurs="0" maxOccurs="-1">
+              <Class id="id114" rimType="ACT" configType="CLASS" tagName="observation" type="POCD_MT000040HT01.Observation" label="Observation" displayOrder="0" minOccurs="1" maxOccurs="1">
+                <Field id="id115" tagName="code" type="CD" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+              </Class>
+            </Class>
+          </Class>
+        </Class>
+      </Class>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

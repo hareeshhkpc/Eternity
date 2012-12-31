@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="FIAB_MT020000HT02" >
+
+    <FIAB_MT020000HT02>
+        <id></id>
+        <code />
+        <statusCode />
+        <effectiveTime></effectiveTime>
+        <activityTime />
+        <amt></amt>
+        <component>
+            
+       </component>
+
+        <postingTo>
+            <patientAccount>
+                <id />
+                <code />
+                <statusCode />
+                <activityTime />
+                <balanceAmt />
+                <pertinentInformation>
+                    <encounterEvent>
+                        <id />
+                        <code />
+                        <statusCode />
+                        <subject>
+                            <patient>
+                                <id />
+                                <patientPerson>
+                                    <id />
+                                    <name></name>
+                                    <telecom />
+                                </patientPerson>
+                            </patient>
+                        </subject>
+                        <consultant>
+                            <employmentStaff>
+                                <employeePerson>
+                                    <id />
+                                    <name></name>
+                                    <telecom />
+                                </employeePerson>
+                            </employmentStaff>
+                        </consultant>
+                    </encounterEvent>
+                </pertinentInformation>
+            </patientAccount>
+        </postingTo>
+    </FIAB_MT020000HT02>
+
+</message>

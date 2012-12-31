@@ -1,0 +1,42 @@
+<html>
+<head>
+<script src="script/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="script/xml2json.js"></script>
+<script type="text/javascript" src="script/json2xml.js"></script>
+<script src="script/lawnchair/Lawnchair.js" type="text/javascript"></script>
+<script src="script/lawnchair/adapters/webkit-sqlite.js"></script>
+<script src="script/lawnchair/adapters/dom.js"></script>
+<script src="script/hl7adapter.js" type="text/javascript"></script>
+<script src="script/hl7adapter.unit.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+var result = 0
+function start() {alert(result + " tests failed")}
+function ok(a,b,c) {result+= !a}
+
+
+//$(document).ready(runTest);
+</script>
+
+</head><body>
+<H3>Run tests</H3>
+<table>
+<tr><td><button onclick="javascript:new testMeta().run()">Meta</button></td></tr>
+<tr><td><button onclick="javascript:new testMessage().run()">Message</button></td></tr>
+<tr><td><button onclick="javascript:new testSmoValue().run()">SMOValue</button></td></tr>
+<tr><td><button onclick="javascript:new testLoadAndValidate().run()">Loading from DB and Validate</button></td></tr>
+<tr><td><button onclick="javascript:new testLoadAndSave().run()">Loading from DB and Saving to DB</button></td></tr>
+<tr><td><button onclick="javascript:new testSyncMeta().run()">Sync Meta</button></td></tr>
+<tr><td><button onclick="javascript:new testSyncMessages().run()">Sync Message</button></td></tr>
+<tr><td><button onclick="javascript:new testAutoSave().run()">Autosave</button></td></tr>
+<tr><td><button onclick="javascript:new testDeleteDocument().run()">Delete Document</button></td></tr>
+<tr><td><button onclick="javascript:new testMandatoryTags().run()">Test mandatory tags</button></td></tr>
+<tr><td><button onclick="javascript:new testValidation().run()">Test validations</button></td></tr>
+<tr><td><button onclick="javascript:new testValidHL7().run()">Test valid HL7</button></td></tr>
+<tr><td><button onclick="javascript:new testStatic().run()">Test Static</button></td></tr>
+<tr><td><button onclick="javascript:new testDynamic().run()">Test Dynamic</button></td></tr>
+
+
+</body>
+</html>
+

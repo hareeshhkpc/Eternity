@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POLB_MT004000HT01_CAC">
+	<POLB_MT004000HT01_CAC>
+		<code />
+		<text />
+		<effectiveTime />
+		<confidentialityCode />
+		<value />
+		<interpretationCode />
+		<methodCode />
+		<targetSiteCode />
+		<specimen>
+			<sequenceNumber />
+			<specimen>
+				<code />
+				<specimenMaterial>
+					<code />
+				</specimenMaterial>
+				<sourcePerson>
+					<id />
+					<name />
+				</sourcePerson>
+			</specimen>
+		</specimen>
+		<recordTarget>
+			<patient>
+				<id />
+				<patientPerson>
+					<id />
+					<name />
+				</patientPerson>
+			</patient>
+		</recordTarget>
+		<performer>
+			<assignedPerson>
+				<id />
+			</assignedPerson>
+		</performer>
+		<author>
+			<time />
+			<employmentStaff>
+				<id />
+				<employeePerson>
+					<id />
+					<name />
+				</employeePerson>
+			</employmentStaff>
+		</author>
+		<referenceRange>
+			<interpretationRange>
+				<text />
+				<value />
+				<interpretationCode />
+				<methodCode />
+				<precondition>
+					<criterion>
+						<code />
+						<value />
+					</criterion>
+				</precondition>
+			</interpretationRange>
+		</referenceRange>
+	</POLB_MT004000HT01_CAC>
+</message>

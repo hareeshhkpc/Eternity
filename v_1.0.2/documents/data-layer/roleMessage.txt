@@ -1,0 +1,1 @@
+<message config="ROLE_USER"><ROLE_USER><id><root>HIN_MSG_ID</root><extension>ebe9211c-c14a-17e8-0c66-368b6b726b9b</extension></id><id><root>SUBSCRIBER_ID</root><extension>1</extension></id><id><root>ROLE_NAME</root><extension>user</extension></id><providerOrganization><name><prefix>HIN</prefix></name></providerOrganization></ROLE_USER></message>

@@ -1,0 +1,47 @@
+<div>
+	<div data-role="none" class="ui-align-text">
+
+		<!-- prefix family given suffix -->
+		<fieldset>
+
+			<input type="hidden" id="subscriberId" value=""
+				pathFields="identifiedPerson" tagName="id" fields="subscriberId"
+				dataType="II" dataField="true" />
+
+			<div class="ui-appointment-label">Desired Time</div>
+			<div class="ui-appointment-textbox">
+			<div isEditor="true" editorLabel="" pathFields="" tagName="effectiveTime" editorType ="Calendar" dataType="IVL_TS"></div>
+			</div>
+			<div class="ui-appointment-label">Physician</div>
+			<div class="ui-appointment-textbox">
+				<div isEditor="true" editorLabel="" pathFields="consultant,employmentStaff,employeePerson" tagName="name" editorType ="PhysicianLookup" 
+				configParams="[{name:'prefixConceptClass',value:'prefix'},{name:'prefixLookupType',value:'static'},
+						{name:'prefixLookupSelectType',value:'single'},{name:'prefixLookupControl',value:'multiple'},
+						{name:'nameUseConceptClass',value:'nameUse'},{name:'nameUseLookupType',value:'static'},
+						{name:'nameUseLookupSelectType',value:'single'}]"
+				dataType="PN"></div>				
+				<div isEditor="true" editorLabel="" pathFields="consultant,employmentStaff" tagName="id" editorType ="II" dataType="II"  style="display:none"></div>
+						
+			</div>
+			<br />
+			<br />
+			<div class="ui-appointment-label">Color</div>
+			<div class="ui-appointment-textbox">
+				<div isEditor="true" editorLabel="" pathFields="" tagName="reasonCode" editorType ="ColorPicker" dataType="CD"></div>
+			<!-- 
+				<div isEditor="true" editorLabel="" pathFields="" tagName="reasonCode" editorType ="CE" dataType="CE"
+				configParams="[{name:'conceptClass',value:'AppointmentReason'},{name:'lookupType',value:'static'},
+				{name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'multiple'},{name:'width',value:'95%'}]"></div>
+			 -->
+			</div>
+			<div class="ui-appointment-label"></div>
+			<div class="ui-appointment-textbox"></div>
+			<br />
+			<br />
+			<div class="ui-appointment-label">Comments</div>
+			<div class="ui-appointment-textbox">
+			<div isEditor="true" editorLabel="" pathFields="" tagName="code" editorType ="CDInplace" dataType="CD"></div>
+			</div>
+		</fieldset>
+	</div>
+</div>

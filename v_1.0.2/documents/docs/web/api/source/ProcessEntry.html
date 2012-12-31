@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">var HIN;
+if (!HIN)
+	HIN = {};
+<span id='HIN-ProcessEntry'>/**
+</span> * ProcessEntry is the entry point of dynamic process definition. Based on the
+ * process definition it queries all the messages under the message type against
+ * the step.
+ */
+HIN.ProcessEntry = function(appController, processName, callback) {
+	this.appController = appController;
+	this.context = this.appController.getComponent(&quot;Context&quot;);
+	this.stepsQueueIndex = 0;
+<span id='HIN-ProcessEntry-property-steps'>	/**
+</span>	 * steps holds steps of the processDefinition.
+	 */
+	this.steps = null;
+	this.step = null;
+<span id='HIN-ProcessEntry-property-processDefinition'>	/**
+</span>	 * processDefinition holds dynamic processDefinition instance based on the
+	 * processName.
+	 */
+	this.processDefinition = null;
+	this.subscriberId = -1;
+<span id='HIN-ProcessEntry-property-processName'>	/** processName holds which the name of process need to be created. */
+</span>	this.processName = processName;
+	HIN.ProcessEntry.instances = new HIN.HashMap();
+	HIN.ProcessEntry.instances.put(-1, this);
+<span id='HIN-ProcessEntry-property-patientId'>	/** patientId holds current selected patient id. */
+</span>	this.patientId = null;
+	this.callback = callback;
+	this.discountMessageMap = new HIN.HashMap();
+};
+
+HIN.ProcessEntry.prototype.processInitialization = function() {
+
+};
+
+/*
+ * HIN.ProcessEntry.prototype.fetchProcessInstance = function() { //
+ * alert(&quot;fetchProcessInstance&quot;); this.appController.getComponent(&quot;DataLayer&quot;)
+ * .getProcessDefinitionByProcessName(this.processName,
+ * this.getProcessInstance); };
+ */
+<span id='HIN-ProcessEntry-method-getProcessInstance'>/**
+</span> * Provides the dynamically queried messages filled process definition instance
+ * based on the process name.
+ * 
+ * @returns {void}
+ */
+HIN.ProcessEntry.prototype.getProcessInstance = function() {
+
+	this.processDefinition = this.appController.getComponent(&quot;DataLayer&quot;)
+			.getNewProcessDefinitionInstance(this.processName);
+	if (this.processDefinition) {
+		this.loadProcessInstance();
+	} else {
+		alert(this.processName + &quot; is not found&quot;);
+	}
+	/*
+	 * if (processDefinition) { // alert(&quot;getProcessInstance&quot; +
+	 * processDefinition); processDefinition.id = &quot;&quot;; var processEntry =
+	 * HIN.ProcessEntry.instances.get(-1).value; processEntry.processDefinition =
+	 * processDefinition; processEntry.loadProcessInstance(); } else {
+	 * alert(this.processName + &quot; is not found&quot;); }
+	 */
+};
+
+HIN.ProcessEntry.prototype.loadProcessInstance = function() {
+	if (this.context.getUserVo()) {
+		this.subscriberId = this.context.getUserVo().subscriberId;
+
+		var patientId = this.context.getPatient();
+		this.patientId = patientId;
+
+		this.steps = this.processDefinition.getSteps();
+		this.loadSteps();
+	} else if (this.processDefinition) {
+		if (this.processDefinition.initializeScript) {
+			// alert(&quot;TODO processDefinition.initializeScript&quot;);
+		}
+		this.callback(this.processDefinition);
+	}
+};
+
+<span id='HIN-ProcessEntry-method-loadSteps'>/**
+</span> * Iterate the active steps and make the query against each step.
+ * 
+ * @returns {void}
+ */
+HIN.ProcessEntry.prototype.loadSteps = function() {
+
+	if (this.stepsQueueIndex &lt; this.steps.length) {
+		this.step = this.steps[this.stepsQueueIndex];
+		this.stepsQueueIndex++;
+
+		if (this.step.status == &quot;ACTIVE&quot;
+				&amp;&amp; (this.processDefinition.processName == &quot;Accounts&quot;
+						|| this.processDefinition.processName == &quot;Appointments&quot; || this.processDefinition.processName == &quot;LicenseeAccounts&quot;)) {
+			this.createQueries(this.step);
+		} else {
+			this.loadSteps();
+		}
+	} else {
+		// alert($.toJSON(this.processDefinition));
+		this.callback(this.processDefinition);
+	}
+};
+
+<span id='HIN-ProcessEntry-method-createQueries'>/**
+</span> * As per the process definition it create queries and load the messages. *
+ * 
+ * @param step :
+ *            Its an object of step.
+ * @returns{void}
+ */
+HIN.ProcessEntry.prototype.createQueries = function(step) {
+	// alert(&quot;StepName : &quot; + step.stepName);
+	var query = new HIN.Query();
+	query.id = this.patientId;
+	var queryHashMap = new HIN.HashMap();
+	var messageTypes = step.getMessageTypes();
+	for ( var index = 0; index &lt; messageTypes.length; index++) {
+		var queryString = &quot;&quot;;// subscriberId = &quot; + this.subscriberId;
+		if (messageTypes[index].queryString) {
+			if (this.processDefinition.processName == &quot;LicenseeAccounts&quot;) {
+				var orgId = appController.getComponent(&quot;Context&quot;)
+						.getSelectedOrganizationVO().subscriberId;
+				queryString = messageTypes[index].queryString
+						+ &quot; +organizationId:&quot; + orgId;
+			} else {
+				queryString = messageTypes[index].queryString
+						+ &quot; +subscriberId:&quot; + this.patientId;
+			}
+		}
+		// query.addCondition(messageTypes[index].type, queryString);
+		if (messageTypes[index].status == AppConstants.Status.ACTIVE) {
+			queryHashMap.put(messageTypes[index].type, queryString);
+		}
+
+		if (this.processDefinition.processName == &quot;Accounts&quot;) {
+			if (step.stepName == &quot;Step1&quot;) {
+				// alert(&quot;Accounts Step 1&quot;);
+			} else if (step.stepName == &quot;Step2&quot;) {
+				// alert(&quot;Accounts Step 2&quot;);
+			} else if (step.stepName == &quot;Step3&quot;) {
+				// alert(&quot;Accounts Step 3&quot;);
+			}
+		}
+
+	}
+	this.loadStepMessages(queryHashMap, step);
+};
+
+<span id='HIN-ProcessEntry-method-loadStepMessages'>/**
+</span> * Query the all messages using datalayer API. *
+ * 
+ * @param queryHashMap:
+ *            Its an object of hashMap.
+ * @param step :
+ *            Its an object of step.
+ * @returns{void}
+ */
+HIN.ProcessEntry.prototype.loadStepMessages = function(queryHashMap, step) {
+
+	var patientId = &quot;&quot;;
+	if (this.patientId) {
+		patientId = this.patientId;
+	}
+	// alert(&quot;loadStepMessages : &quot; + patientId);
+
+	/* var query = $.toJSON(queryHashMap); */
+	// alert(query);
+	var messageRequired = false;
+	var processEntry = HIN.ProcessEntry.instances.get(-1).value;
+	if (processEntry.processDefinition.processName == &quot;Accounts&quot;
+			|| processEntry.processDefinition.processName == &quot;LicenseeAccounts&quot;) {
+		messageRequired = true;
+	}
+
+	this.appController.getComponent(&quot;DataLayer&quot;).getMessages(patientId,
+			queryHashMap, function(data) {
+				processEntry.fillStepMessages(data, step)
+			}, messageRequired);
+
+	/*
+	 * $.getJSON(&quot;/hin-web/rest/getMessageList&quot;, { patientId : patientId,
+	 * conditionMap : query, messageRequired : false }, function(data) {
+	 * processEntry.fillStepMessages(data, step) });
+	 */
+
+};
+
+<span id='HIN-ProcessEntry-method-fillStepMessages'>/**
+</span> * Queried messages to be filled to the corresponding step based on the process
+ * definition. *
+ * 
+ * @param data:
+ *            Its an object of message.
+ * @param step :
+ *            Its an object of step.
+ * @returns{void}
+ */
+HIN.ProcessEntry.prototype.fillStepMessages = function(data, step) {
+
+	var processEntry = HIN.ProcessEntry.instances.get(-1).value;
+
+	if (processEntry.processDefinition.processName == &quot;Accounts&quot;) {
+		// processEntry.customRender(data, step);
+	}
+
+	if (data) {
+		// alert(step.stepName + &quot; : &quot; + data.length)
+		for ( var index = 0; index &lt; data.length; index++) {
+			var message = new HIN.Message();
+
+			message.messageId = data[index].messageId;
+
+			/*
+			 * alert(&quot;messageId : &quot; + message.messageId + &quot; length : &quot; +
+			 * message.length);
+			 */
+
+			if (message.messageId &amp;&amp; message.messageId.length &gt; 0) {
+
+				message.messageStatus = data[index].messageStatus;
+				message.messageType = data[index].messageType;
+				message.transactionType = data[index].transactionType;
+				message.transactionStatus = data[index].transactionStatus;
+				message.id = idGenerator.getId();
+				message.finished = data[index].finished;// true;
+				message.message = data[index].message;// true;
+				/*
+				 * alert(message.messageId + &quot; : &quot; + message.transactionType + &quot; : &quot; +
+				 * message.transactionStatus);
+				 */
+
+				var messageTypes = step.getMessageTypes();
+
+				for ( var messageTypeIndex = 0; messageTypeIndex &lt; messageTypes.length; messageTypeIndex++) {
+					var messageType = messageTypes[messageTypeIndex];
+					message.messageForm = messageType.formHtml;
+					message.messageTypeName = messageType.typeName;
+					message.title = messageType.title;
+
+					if (message.messageType == messageType.type) {
+						// alert(messageType.typeName);
+						if (processEntry.processDefinition.processName == &quot;Accounts&quot;) {
+							if (message.transactionType == &quot;DISCOUNT&quot;) {
+								if (step.stepName == &quot;Step4&quot;) {
+									message.formView = false;
+								}
+								processEntry.addToDisountMessageMap(message);
+
+							}
+
+							if (messageType.getMessages().length &gt; 0
+									&amp;&amp; messageType.typeName
+											.indexOf(&quot;UnpaidInvoice&quot;) &gt; -1) {
+								continue;
+							}
+						}
+
+						if (messageType.transactionType) {
+							if (message.transactionType == messageType.transactionType) {
+								if (!messageType.isMessageExist(message))
+									messageType.addMessage(message);
+								break;
+							}
+
+						} else {
+							if (!messageType.isMessageExist(message))
+								messageType.addMessage(message);
+							break;
+						}
+					}
+				}
+			}
+		}
+		if (processEntry.processDefinition.processName == &quot;Accounts&quot;) {
+			processEntry.addDisountMessages(step);
+		}
+
+	}
+	var messageTypes = step.getMessageTypes();
+	for ( var messageTypeIndex = 0; messageTypeIndex &lt; messageTypes.length; messageTypeIndex++) {
+		var messageType = messageTypes[messageTypeIndex]
+		var count = messageType.getMessages().length;
+		if (count &gt; 0) {
+			// alert(messageType.title + &quot; : &quot; + count);
+			step.addMessageGroup(messageType, count);
+		}
+	}
+	if (step.initializeScript) {
+		// alert(&quot;TODO : step.initializeScript&quot;);
+	}
+	processEntry.loadSteps();
+
+};
+/*
+ * HIN.ProcessEntry.prototype.customRender = function(data, step) { var
+ * processEntry = HIN.ProcessEntry.instances.get(-1).value; if (data) { var
+ * messageTypeObjects = []; // alert(step.stepName + &quot; : &quot; + data.length) var
+ * count = 0; for ( var index = 0; index &lt; data.length; index++) { var message =
+ * new HIN.Message();
+ * 
+ * message.messageId = data[index].messageId;
+ * 
+ * if (message.messageId &amp;&amp; message.messageId.length &gt; 0) {
+ * 
+ * message.messageStatus = data[index].messageStatus; message.messageType =
+ * data[index].messageType; message.transactionType =
+ * data[index].transactionType; message.transactionStatus =
+ * data[index].transactionStatus; message.id = idGenerator.getId();
+ * message.finished = data[index].finished;// true; message.message =
+ * data[index].message;// true; var messageTypes = step.getMessageTypes();
+ * 
+ * if (processEntry.processDefinition.processName == &quot;Accounts&quot;) { if
+ * (step.stepName == &quot;Step1&quot;) { alert(message) alert(message.messageId + &quot; : &quot; +
+ * message.messageStatus + &quot; : &quot; + message.transactionType + &quot;:&quot; +
+ * message.transactionStatus); } }
+ * 
+ * for ( var messageTypeIndex = 0; messageTypeIndex &lt; messageTypes.length;
+ * messageTypeIndex++) { var messageType = messageTypes[messageTypeIndex]; if
+ * (processEntry.processDefinition.processName == &quot;Accounts&quot;) { if
+ * (step.stepName == &quot;Step2&quot; &amp;&amp; messageType.typeName == &quot;UnpaidInvoice&quot; &amp;&amp;
+ * message.transactionType == AppConstants.TransactionType.INVOICE) { count++;
+ * 
+ * 
+ * alert(&quot;Step 2 : &quot; + messageType.typeName + &quot; : &quot; + message.transactionType);
+ * 
+ * if (count &gt; 0) { messageType.status = AppConstants.Status.INACTIVE; var
+ * messageTypeObj = factoryClass .createMessageType(messageType.type,
+ * &quot;UnpaidInvoice-No-&quot; + (count), messageType.formHtml, messageType.title);
+ * messageTypeObj.transactionType = messageType.transactionType; //
+ * step.addMessageType(messageTypeObj); //
+ * alert(messageTypeObj.transactionType);
+ * messageTypeObjects.push(messageTypeObj); } } } } } } if
+ * (processEntry.processDefinition.processName == &quot;Accounts&quot;) { if
+ * (step.stepName == &quot;Step2&quot;) { var messageTypeObj =
+ * step.removeMessageType(&quot;UnpaidInvoice&quot;); messageTypeObj =
+ * step.removeMessageType(&quot;Accounthistory&quot;);
+ * messageTypeObjects.push(messageTypeObj); }
+ * 
+ * for ( var index = 0; index &lt; messageTypeObjects.length; index++) {
+ * step.addMessageType(messageTypeObjects[index]); } } } };
+ */
+HIN.ProcessEntry.prototype.getInvoiceID = function(message) {
+	// alert((message.message));
+	// alert(&quot;Message xml : &quot; + XmlUtil.xmlToString(message.message));
+	var msg = XmlUtil.stringToXml(message.message);
+	var extension = XmlUtil.getXPathResult(msg,
+			&quot;//FIAB_MT020000HT02/id[root='INVOICE_ID']/extension&quot;,
+			XPathResult.STRING_TYPE);
+	if (extension)
+		return extension.stringValue;
+	return 0;
+
+};
+
+HIN.ProcessEntry.prototype.addToDisountMessageMap = function(message) {
+	var processEntry = HIN.ProcessEntry.instances.get(-1).value;
+	var invoiceId = processEntry.getInvoiceID(message);
+	var map = processEntry.discountMessageMap.get(invoiceId);
+	var messages = [];
+	var exist = false;
+	if (map &amp;&amp; map.value) {
+		messages = map.value;
+		for ( var index = 0; index &lt; messages.length; index++) {
+			if (messages[index].messageId == message.messageId) {
+				exist = true;
+				break;
+			}
+		}
+		if (exist == false) {
+			messages.push(message);
+		}
+
+	} else {
+		messages.push(message);
+		processEntry.discountMessageMap.put(invoiceId, messages)
+	}
+
+	// alert(invoiceId);
+	// processEntry.addDisountMessage(step, invoiceId, message);
+}
+
+HIN.ProcessEntry.prototype.addDisountMessages = function(step) {
+
+	var processEntry = HIN.ProcessEntry.instances.get(-1).value;
+
+	for ( var index = 0; index &lt; processEntry.discountMessageMap.length(); index++) {
+		var map = processEntry.discountMessageMap.getItemAt(index);
+		if (map &amp;&amp; map.value) {
+			var invoiceId = map.key;
+			var messageType = processEntry.getInvoiceMessageType(step,
+					invoiceId)
+
+			var messages = map.value;
+			for ( var messageIndex = 0; messageIndex &lt; messages.length; messageIndex++) {
+				// alert(&quot;discountMessage : &quot; + messages.length);
+				var discountMessage = messages[messageIndex];
+				if (messageType &amp;&amp; !messageType.isMessageExist(discountMessage)) {
+					messageType.addMessage(discountMessage);
+					// alert(invoiceId + &quot; : &quot; + discountMessage.message);
+				}
+			}
+		}
+	}
+};
+
+HIN.ProcessEntry.prototype.getInvoiceMessageType = function(step, invoiceId) {
+	var messageTypes = step.getMessageTypes();
+	for ( var messageTypeIndex = 0; messageTypeIndex &lt; messageTypes.length; messageTypeIndex++) {
+		var messageType = messageTypes[messageTypeIndex];
+		var message = messageType.getMessage(invoiceId);
+		if (message) {
+			return messageType;
+		}
+	}
+	return null;
+};
+</pre>
+</body>
+</html>

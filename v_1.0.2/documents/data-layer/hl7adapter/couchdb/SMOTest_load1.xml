@@ -1,0 +1,13 @@
+<message config="PRPA_IN203000HT04">
+    <registrationEvent>
+        <id>1</id>
+        <code>code</code>
+	    <subject>
+		    <subsumedBy>
+                <id>1</id>
+                <statusCode>code</statusCode>
+			    <subsumingPerson></subsumingPerson>
+		    </subsumedBy>
+	    </subject>
+    </registrationEvent>
+</message>

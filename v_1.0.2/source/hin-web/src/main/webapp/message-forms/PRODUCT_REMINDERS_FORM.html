@@ -1,0 +1,72 @@
+<div>
+	<div data-role="none" class="ui-align-text">
+
+		<!-- prefix family given suffix -->
+		<fieldset class="ui-grid-a">
+			<div class="ui-block-a">
+
+				<input type="hidden" id="subscriberId" value=""
+					pathFields="identifiedPerson" tagName="id" fields="subscriberId"
+					dataType="II" dataField="true" />
+				<div class="ui-reminder-label">Supplement</div>
+				<div class="ui-reminder-textbox">
+					<div isEditor="true" editorLabel="" pathFields="" tagName="id"
+						editorType="II" dataType="II" style="display: none" groupId="idFields"></div>
+					<div isEditor="true" editorLabel="" pathFields="" tagName="id"
+						editorType="II" dataType="II" style="display: none" groupId="idFields"></div>
+					<div isEditor="true" editorLabel="" pathFields="" tagName="id"
+						editorType="IIUserName" dataType="II" groupId="idFields"></div>
+				</div>
+				<!-- <br /> <br />
+				<div class="ui-reminder-label">Reason</div>
+				<div class="ui-reminder-textbox">
+					<div isEditor="true" editorLabel="" pathFields=""
+						tagName="reasonCode" editorType="CEInplace" dataType="CE"></div>
+				</div>
+				<br /> <br />
+				<div class="ui-reminder-label">Physician</div>
+				<div class="ui-reminder-textbox">
+					<div isEditor="true" editorLabel=""
+						pathFields="consultant,employmentStaff,employeePerson"
+						tagName="name" editorType="PhysicianLookup"
+						configParams="[{name:'prefixConceptClass',value:'prefix'},{name:'prefixLookupType',value:'static'},
+						{name:'prefixLookupSelectType',value:'single'},{name:'prefixLookupControl',value:'multiple'},
+						{name:'nameUseConceptClass',value:'nameUse'},{name:'nameUseLookupType',value:'static'},
+						{name:'nameUseLookupSelectType',value:'single'}]"
+						dataType="PN"></div>
+					<div isEditor="true" editorLabel=""
+						pathFields="consultant,employmentStaff" tagName="id"
+						editorType="II" dataType="II" style="display: none"></div>
+				</div> -->
+			</div>
+			<div class="ui-block-b" class="ui-grid-b">
+				<div class="ui-block-a" style="width: 25%;">
+					<div style="width: 35%; float: right;">
+						<div id="sendEmail" class="other send-icon-link"></div>
+						<div style="text-align: center">Send</div>
+					</div>
+				</div>
+				<!-- 		<div class="ui-block-b" style="width: 25%;">
+					<div style="width: 35%; float: right;">
+						<div id="sendEmail" class="other send-icon-link"></div>
+						<div style="text-align: center">Messages</div>
+					</div>
+				</div>
+				<div class="ui-block-c" style="width: 25%;">
+					<div style="width: 35%; float: right;">
+						<div id="sendEmail" class="other send-icon-link"></div>
+						<div style="text-align: center">SMS</div>
+					</div>
+				</div> -->
+			</div>
+		</fieldset>
+		<div style="margin-top: 10px">
+			<div>Mail Content</div>
+			<div id="messageContent" isEditor="true" editorLabel="" pathFields=""
+				tagName="text" dataType="ED" containerType="tinyMCE"
+				editorType="EDTextarea" idSuffix="1"
+				configParams="[{name:'width',value:'90%'},{name:'height',value:'500px'}]">
+			</div>
+		</div>
+	</div>
+</div>

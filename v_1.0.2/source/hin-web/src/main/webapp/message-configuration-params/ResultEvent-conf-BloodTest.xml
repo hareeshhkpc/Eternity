@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config-generation
+	configFilePath="src/main/webapp/message-configuration/POLB_MT004000HT01_BloodTest.xml"
+	rootClass="POLB_MT004000HT01.ObservationBattery" description="Result Event Message for BloodTest"
+	artifactId="POLB_MT004000HT01_BloodTest"
+	artifactIDAsRootTag="true">
+
+	<schema-set type="MESSAGE"
+		path="src/main/webapp/WEB-INF/htb/schemas/POLB_MT004000HT01.xsd" />
+	<schema-set type="CORESCHEMA" path="src/main/webapp/WEB-INF/htb/coreschemas" />
+	<schema-set type="SCHEMAS" path="src/main/webapp/WEB-INF/htb/schemas" />
+
+	<!-- traverseChildWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- repeatCount="numeric(default 1)" -->
+	<!-- traverseMessageObjectChild="true(default)" -->
+	<!-- traverseHL7DataTypeChild="false(default)" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- traveseChildList="comma(,) seperated list" -->
+	<!-- overriddenFieldType="HL7 type to be overridden, when the given is ANY(CD by default)" -->
+	
+	<!-- Observation Battery -->
+	<tree-node xpath="/" />
+	<tree-node xpath="/id/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/text/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/confidentialityCode/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+		
+	<!-- Specimen -->
+	<tree-node xpath="/specimen/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/specimen/sequenceNumber/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/specimen/specimen/specimenMaterial/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/specimen/specimen/sourcePerson/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/specimen/specimen/sourcePerson/id/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/specimen/specimen/sourcePerson/name/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+		
+	<!-- Record Target (Patient) -->
+	<tree-node xpath="/recordTarget/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/recordTarget/patient/patientPerson/id/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/recordTarget/patient/patientPerson/name/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+		
+	<!-- Performer -->
+	<tree-node xpath="/performer/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" traveseChildList="assignedPerson" />
+	<tree-node xpath="/performer/assignedPerson/id/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	
+	<!-- Observation Event -->
+	<tree-node xpath="/component2/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/component2/observationEvent/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/component2/observationEvent/id/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/component2/observationEvent/value/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" overriddenFieldType="PQ" />
+	<tree-node xpath="/component2/observationEvent/text/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/component2/observationEvent/confidentialityCode/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/component2/observationEvent/interpretationCode/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/component2/observationEvent/methodCode/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/component2/observationEvent/targetSiteCode/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+		
+	<tree-node xpath="/component2/observationEvent/referenceRange/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/component2/observationEvent/referenceRange/interpretationRange/text/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/component2/observationEvent/referenceRange/interpretationRange/value/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" overriddenFieldType="IVL_PQ" />
+	<tree-node xpath="/component2/observationEvent/referenceRange/interpretationRange/methodCode/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" />
+	<!-- <tree-node xpath="/component2/observationEvent/referenceRange/interpretationRange/precondition/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="ALWAYS" /> -->	
+	
+	<!-- Skip all other choices in the component2 -->
+	<tree-node xpath="/component2/observationReport/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" repeatCount="0" />
+	<tree-node xpath="/component2/observationBattery/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" repeatCount="0" />
+	<tree-node xpath="/component2/specimenObservationCluster/" considerChildrenWhen="OPTIONAL"
+		traverseChildWhen="OPTIONAL" repeatCount="0" />
+
+</config-generation>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='FactoryClass'>/**
+</span> * FactoryClass creates objects without exposing the instantiation logic to the
+ * end user, Methods of a factory whose main purpose is creation of objects.
+ * 
+ * @returns
+ */
+function FactoryClass() {
+	// id variable
+	var id = 1;
+	var idGenerator = null;
+	// instance of the idGenerator
+	this.factoryClassInstance = null;
+
+	// Get the instance of the SingletonClass
+	// If there is no instance in this.idGeneratorInstance, instanciate one
+	var getInstance = function() {
+		if (!this.factoryClassInstance) {
+			// create a instance
+			this.factoryClassInstance = createInstance();
+		}
+
+		// return the instance of the idGeneratorClass
+		return this.factoryClassInstance;
+	}
+
+	// function for the creation of the SingletonClass class
+	var createInstance = function() {
+
+		// public methodes
+		return {
+<span id='FactoryClass-method-createMessage'>			/**
+</span>			 * Provide the message object
+			 * 
+			 * @returns {Message}
+			 */
+			createMessage : function() {
+				if (!idGenerator)
+					idGenerator = new IDGenerator();
+				var message = new HIN.Message();
+				var id = idGenerator.getId();
+				message.id = id;
+				message.messageStatus = 0;// AppConstants.MessageStatus.PENDING;
+				message.status = AppConstants.Status.ACTIVE
+				message.rendered = false;
+				message.finished = false;
+				message.addNew = true;
+				message.initializeScriptExecuted = false;
+				/* message.deletable = true; */
+				return message;
+			},
+<span id='FactoryClass-method-createMessageType'>			/**
+</span>			 * Provide the message type object
+			 * 
+			 * @param type:
+			 *            Its a string value , holds message type.
+			 * @param typeName:
+			 *            Its a string value,holds message typeName.
+			 * @param formHtml:
+			 *            Its a string value,holds name of the form.
+			 * @param title:
+			 *            Its a string value,holds title of the message type.
+			 * @returns {MessageType}
+			 * 
+			 */
+			createMessageType : function(type, typeName, formHtml, title) {
+				var messageType = new HIN.MessageType();
+				messageType.type = type;
+				messageType.state = 2;// AppConstants.MessageStatus.PENDING;
+				messageType.typeName = typeName;
+				messageType.formHtml = formHtml;
+				messageType.status = AppConstants.Status.ACTIVE
+				messageType.title = title;
+				return messageType;
+			},
+<span id='FactoryClass-method-createTaskVo'>			/**
+</span>			 * Provide the taskvo object
+			 * 
+			 * @returns {TaskVO}
+			 */
+			createTaskVo : function() {
+				var taskVo = new HIN.TaskVO();
+				return taskVo;
+			},
+<span id='FactoryClass-method-createStep'>			/**
+</span>			 * Provide the step object
+			 * 
+			 * @param stepName:
+			 *            Its a string value holds the step name.
+			 * @returns {Step}
+			 */
+			createStep : function(stepName) {
+				var step = new HIN.Step();
+				step.status = AppConstants.Status.ACTIVE;
+				step.stepName = stepName;
+				step.groupName = stepName;
+				step.shortDescription = stepName + &quot; Short Description&quot;;
+				step.longDescription = stepName + &quot;Long Description&quot;;
+				return step;
+			},
+
+			createHiddenStep : function(stepName) {
+				var step = new HIN.Step();
+				step.status = AppConstants.Status.ACTIVE;
+				step.stepName = &quot;Hidden_&quot; + stepName;
+				step.groupName = stepName;
+				step.shortDescription = stepName + &quot; Short Description&quot;;
+				step.longDescription = stepName + &quot;Long Description&quot;;
+				return step;
+			},
+<span id='FactoryClass-method-createProcessDefinitionInstance'>			/**
+</span>			 * Provide the process definition object
+			 * 
+			 * @param data:
+			 *            Its a string vale,holds process definition json
+			 *            string.
+			 * @returns {ProcessDefinition}
+			 */
+			createProcessDefinitionInstance : function(data) {
+				// alert(data.processName);
+				if (!data)
+					return null;
+				var definition = new HIN.ProcessDefinition();
+				definition.processName = data.processName;
+				definition.description = data.description;
+				definition.scripts = data.scripts;
+				definition.id = data.id;
+				definition.status = data.status;
+				definition.initializeScript = data.initializeScript;
+
+				var prop = 'order'
+				var asc = 'asc';
+				var sortedSteps = data.steps.sort(function(a, b) {
+					if (asc)
+						return (a[prop] &gt; b[prop]);
+					else
+						return (b[prop] &gt; a[prop]);
+				});
+				// counter++;
+				for ( var stepIndex = 0; stepIndex &lt; sortedSteps.length; stepIndex++) {
+					var jsonStep = sortedSteps[stepIndex];
+					if (jsonStep.status == &quot;ACTIVE&quot;) {
+
+						var step = new HIN.Step();
+						step.stepName = jsonStep.stepName;
+						step.groupName = jsonStep.groupName;
+						if (step.groupName)
+							step.groupName = step.groupName
+									.replace(/\s+/g, '_');
+						step.shortDescription = jsonStep.shortDescription;
+						step.longDescription = jsonStep.longDescription;
+						step.formHtml = jsonStep.formHtml;
+						step.status = jsonStep.status;
+						step.state = jsonStep.state;
+						step.stepStatusInfo = jsonStep.stepStatusInfo;
+						// alert(&quot;Message Length : &quot;+jsonStep.messages.length);
+						var prop = 'msgTypeOrder'
+						var asc = 'asc';
+						var sortedMessageTypes = jsonStep.messageTypes
+								.sort(function(a, b) {
+									if (asc)
+										return (a[prop] &gt; b[prop]);
+									else
+										return (b[prop] &gt; a[prop]);
+								});
+
+						for ( var messageTypeIndex = 0; messageTypeIndex &lt; sortedMessageTypes.length; messageTypeIndex++) {
+							var jsonMessageType = sortedMessageTypes[messageTypeIndex];
+							if (jsonMessageType.status == &quot;ACTIVE&quot;) {
+								var messageType = new HIN.MessageType();
+								messageType.state = jsonMessageType.state;
+								messageType.type = jsonMessageType.type;
+								messageType.typeName = jsonMessageType.typeName;
+								if (!messageType.typeName)
+									messageType.typeName = &quot;Unknown Group&quot;
+								messageType.typeName = messageType.typeName
+										.replace(/\s+/g, '_');
+								messageType.formHtml = jsonMessageType.formHtml;
+								messageType.sortType = jsonMessageType.type;
+								messageType.title = jsonMessageType.title;
+								messageType.status = jsonMessageType.status;
+								messageType.queryString = jsonMessageType.queryString;
+								messageType.category = jsonMessageType.category;
+								messageType.status = jsonMessageType.status;
+								messageType.transactionType = jsonMessageType.transactionType;
+								messageType.finished = jsonMessageType.finished;
+								// alert(jsonMessageType.messages.length);
+								for ( var messageIndex = 0; messageIndex &lt; jsonMessageType.messages.length; messageIndex++) {
+									var jsonMessage = jsonMessageType.messages[messageIndex];
+									var message = new HIN.Message();
+									message.id = idGenerator.getId();// jsonMessage.messageIndex;
+									message.messageIndex = message.id;
+									message.messageId = jsonMessage.messageId;
+									message.message = jsonMessage.message;
+									message.messageStatus = jsonMessage.messageStatus;
+									message.messageType = jsonMessage.messageType;
+									message.messageForm = jsonMessage.messageForm;
+									message.header = jsonMessage.header;
+									message.title = jsonMessage.title;
+									message.transactionType = jsonMessage.transactionType;
+									message.finished = jsonMessage.finished;
+									message.messageProcessCompeletionStatus = jsonMessage.messageProcessCompeletionStatus;
+									message.partOfPackage = jsonMessage.partOfPackage;
+									message.financeType = jsonMessage.financeType;
+									message.addNew = jsonMessage.addNew;
+									message.initializeScriptExecuted = jsonMessage.initializeScriptExecuted;
+									message.deletable = jsonMessage.deletable;
+									messageType.addMessage(message);
+									/*
+									 * if (jsonMessage.dependendMessages)
+									 * alert(jsonMessage.dependendMessages.length);
+									 */
+									for ( var dependendMessageIndex = 0; dependendMessageIndex &lt; jsonMessage.dependendMessages.length; dependendMessageIndex++) {
+										var jsonDependendMessage = jsonMessage.dependendMessages[dependendMessageIndex];
+										var dependendMessage = new HIN.Message();
+										dependendMessage.id = idGenerator
+												.getId();// jsonMessage.messageIndex;
+										dependendMessage.messageIndex = jsonDependendMessage.id;
+										dependendMessage.messageId = jsonDependendMessage.messageId;
+										dependendMessage.message = jsonDependendMessage.message;
+										dependendMessage.messageStatus = jsonDependendMessage.messageStatus;
+										dependendMessage.messageType = jsonDependendMessage.messageType;
+										dependendMessage.messageForm = jsonDependendMessage.messageForm;
+										dependendMessage.header = jsonDependendMessage.header;
+										dependendMessage.title = jsonDependendMessage.title;
+										dependendMessage.transactionType = jsonDependendMessage.transactionType;
+										dependendMessage.finished = jsonDependendMessage.finished;
+										message
+												.addDependendMessage(dependendMessage);
+									}
+								}
+								step.addMessageType(messageType);
+
+								var count = messageType.getMessages().length;
+								if (count &gt; 0) {
+									/* alert(messageType.title + &quot; : &quot; + count); */
+									step.addMessageGroup(messageType, count);
+								}
+							}
+						}
+						definition.addStep(step);
+					}
+
+				}
+
+				return definition;
+			}
+
+		}
+	}
+
+	// wen constructed the getInstance is automaticly called and return the
+	// SingletonClass instance
+	return getInstance();
+}
+</pre>
+</body>
+</html>

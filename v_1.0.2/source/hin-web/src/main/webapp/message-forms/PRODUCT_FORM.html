@@ -1,0 +1,23 @@
+ <fieldset class="ui-grid-e ui-accounting-box" amountParent="product"> 
+ <div class="ui-block-a ui-accounting-field" style="width: 3%;height:37px;">
+		<input type="checkbox" data-role="none" id="chk" value="" />
+</div>
+<div class="ui-block-b ui-accounting-field" style="width: 16%">
+<div isEditor="true" editorLabel="" pathFields="" tagName="effectiveTime" dataType="TS" editorType="TS"></div>	
+   </div>
+<div class="ui-block-c ui-accounting-field ui-accounting-position" style="width: 46.9%">		
+	<div isEditor="true" editorLabel="" pathFields="pertinentInformation,substanceAdministrationOrder,consumable,materialMedProduct,manufacturedMaterialKind" tagName="code" dataType="CE" instanceId="service" editorType="ServiceLookup" queryType="Drug"></div>    	     	   
+</div>
+<div class="ui-block-d ui-accounting-field ui-accounting-position" style="width: 12.3%">
+	<div isEditor="true" editorLabel="" pathFields="component,financialTransactionChargeDetail" tagName="unitQuantity" dataType="RTO_PQ_PQ" editorType="RTO_PQ_PQInplace"></div>				    	  
+</div>	
+<div class="ui-block-e ui-accounting-field ui-accounting-align ui-accounting-position" style="width: 14.2%">
+	<div isEditor="true" editorLabel="" pathFields="component,financialTransactionChargeDetail" tagName="unitPriceAmt" dataType="RTO_MO_PQ" editorType="RTO_MO_PQInplace"
+	configParams="[{name:'editable',value:false}]"></div>
+	<input type="hidden" id="unitPrice" />
+</div>
+<div class="ui-block-f ui-delete-icon">
+	<img src="images/delete.png" />
+</div>
+</fieldset>
+<div id="actions"></div>

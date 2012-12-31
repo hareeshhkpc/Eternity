@@ -1,0 +1,94 @@
+<script type="text/javascript">
+	var ageMgmtHistoryProcessDefinition = null;
+	var ageMgmtHistoryForms = [];
+	var ageMgmtHistorySelectedStep = null;
+	var ageMgmtHistoryGroupHeaderMap = new HIN.HashMap();
+	var ageMgmtHistoryFormIndex = 0;
+
+	//if (HIN.UIGenerator.instances == null)
+	HIN.UIGenerator.instances = new HIN.HashMap();
+
+	$(document)
+			.ready(
+					function() {
+						HIN.UIGenerator.instances.clearItems();
+						ageMgmtHistoryProcessDefinition = appController
+								.getComponent("RenderingEngine")
+								.getChildComponent("Process")
+								.getProcessDefinition();
+						//alert( $.toJSON(ageMgmtHistoryProcessDefinition));
+						ageMgmtHistorySelectedStep = appController
+								.getComponent("RenderingEngine")
+								.getChildComponent("Form").selectedStep;
+						//alert(ageMgmtHistorySelectedStep);
+						ageMgmtHistoryForms = ageMgmtHistorySelectedStep
+								.getMessageTypes();
+
+						loadAgeMgmtHistoryForms();
+
+					});
+
+	function loadAgeMgmtHistoryForms() {
+		if (ageMgmtHistoryFormIndex < ageMgmtHistoryForms.length) {
+			var formVO = ageMgmtHistoryForms[ageMgmtHistoryFormIndex];
+			var sortType = formVO.sortType;
+			var sortBy = formVO.typeName;
+			//alert(formVO.typeName);
+			ageMgmtHistoryFormIndex++;
+			var id = idGenerator.getId();
+
+			var map = ageMgmtHistoryGroupHeaderMap.get(sortBy);
+
+			if (map == null) {
+				ageMgmtHistoryGroupHeaderMap.put(sortBy, id);
+				$('#ageMgmtHistoryPage')
+						.append(
+								"<div id='inner-form-"+sortBy+"Placeholder-"+id+"'></div>");
+				var uiGenerator = new HIN.UIGenerator(id, appController,
+						ageMgmtHistorySelectedStep, 'inner-form-' + sortBy
+								+ 'Placeholder-' + id, formVO,
+						loadAgeMgmtHistoryForms);
+				HIN.UIGenerator.instances.put(id, uiGenerator);
+				/* uiGenerator.hideMainHeader();
+				uiGenerator.hideAddIcon();
+				uiGenerator.hideSubHeader();
+				uiGenerator.hideRemoveIcon(); */
+				uiGenerator.load(sortType, sortBy);
+
+			} else {
+				var id = map.value;
+				var uiGenerator = HIN.UIGenerator.instances.get(id).value;
+				/* alert("uiGenerator : " + uiGenerator); */
+				var messages = ageMgmtHistoryForms.getMessages();
+				for ( var messageIndex = 0; messageIndex < messages.length; messageIndex++) {
+					var message = messages[messageIndex];
+					if (message.instanceId == -1) {
+						message.instanceId = id;
+						uiGenerator.uiMessages.push(message);
+					}
+				}
+				uiGenerator.loadUIForms();
+				//loadAgeMgmtHistoryForms();
+			}
+
+		} else {
+			/* 	$('#saveHistory').unbind('click', saveHistory);
+				$('#saveHistory').bind('click', saveHistory); */
+		}
+
+	}
+
+	function saveHistory() {
+		appController.getComponent("DataLayer").saveMessages();
+	}
+</script>
+<div class="ui-inner-display-box ui-header-corner-top"
+	id="ageMgmtHistoryPage">
+	<!-- <div data-role="navbar">
+		<ul>
+			<li><a href="#" id="saveHistory">Save History</a>
+			</li>
+		</ul>
+	</div> -->
+</div>
+

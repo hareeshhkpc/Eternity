@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:util="http://java.sun.com/jsf/composite/util"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<rich:collapsiblePanel header="#{msg['messageType.title']}"
+			switchType="client" style="width:950px">
+			<h:form id="messageConfiguration">
+				<a4j:jsFunction name="renderImages" ajaxSingle="true"
+					immediate="true" reRender="f1" />
+				<h:panelGrid columns="2">
+					<h:column>
+						<h:outputText id="name" value="Type" />
+					</h:column>
+					<h:column>
+						<h:inputText id="type"
+							value="#{messageConfigurationBean.messageType.type}"
+							disabled="true" />
+					</h:column>
+					<h:column>
+						<h:outputText id="title" value="Title" />
+					</h:column>
+					<h:column>
+						<h:inputText id="titleValue"
+							value="#{messageConfigurationBean.messageType.title}"
+							disabled="false" />
+					</h:column>
+					<h:column>
+						<h:outputText id="indexFolder" value="Index Folder" />
+					</h:column>
+					<h:column>
+						<h:inputText id="indexFolderValue"
+							value="#{messageConfigurationBean.messageType.indexFolder}"
+							disabled="true" />
+					</h:column>
+					<h:column>
+						<h:outputText id="uploadMessageType" value="Upload MessageType" />
+					</h:column>
+					<h:column>
+						<rich:fileUpload id="uploadFile" uploadData="#{bean.data}"
+							maxRequestSize="100" maxFilesQuantity="1" acceptedTypes="xml"
+							immediateUpload="false"
+							fileUploadListener="#{messageConfigurationBean.fileUploaded}"
+							style="height:100px">
+							<!-- <a4j:support event="onuploadcomplete" reRender="indexFields" /> -->
+							<f:ajax event="uploadcomplete" render="messageConfiguration" />
+						</rich:fileUpload>
+					</h:column>
+					<br />
+					<br />
+				</h:panelGrid>
+				<br />
+				<a4j:region rendered="#{!messageConfigurationBean.newMessageType}">
+					<rich:collapsiblePanel header="Index Fields" switchType="client"
+						style="width:100%">
+						<h:commandButton value="Add New Field"
+							action="#{processDefBean.newStep}" reRender="stepsId" />
+						<br />
+						<rich:dataTable id="indexFields"
+							value="#{messageConfigurationBean.messageType.indexFieldsVOs}"
+							var="indexFieldsVO" rows="10" style="width:700px"
+							rowClasses="odd-row, even-row" rowClass="row" styleClass="stable">
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Name" />
+								</f:facet>
+								<h:outputText value="#{indexFieldsVO.name}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Indexed" />
+								</f:facet>
+								<h:outputText value="#{indexFieldsVO.indexed}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="Analyzed" />
+								</f:facet>
+								<h:outputText value="#{indexFieldsVO.analyzed}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="View" />
+								</f:facet>
+								<center>
+									<h:commandButton id="editlink"
+										image="../../html/images/iconedit.gif"
+										action="#{messageConfigurationBean.viewIndexField}"
+										value="#{msg['left.categories.concept.view']}" alt="Edit"
+										title="Edit">
+										<f:setPropertyActionListener
+											target="#{messageConfigurationBean.indexFieldsVO}"
+											value="#{indexFieldsVO}" />
+									</h:commandButton>
+								</center>
+							</rich:column>
+							<br />
+							<f:facet name="footer">
+								<rich:dataScroller for="indexFields" align="right"
+									renderIfSinglePage="false" fastStep="5" fastControls="auto"
+									render="id3 id4" />
+							</f:facet>
+						</rich:dataTable>
+					</rich:collapsiblePanel>
+				</a4j:region>
+				<br />
+				<h:commandButton value="Save MessageType" id="saveMessageType"
+					action="#{messageConfigurationBean.saveMessageType}" />
+				<h:commandButton value="Back" id="back" action="#{messageConfigurationBean.viewMessageTypes}" />
+			</h:form>
+		</rich:collapsiblePanel>
+	</ui:define>
+</ui:composition>
+</html>

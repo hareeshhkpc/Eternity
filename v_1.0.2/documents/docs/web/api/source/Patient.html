@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Patient'>/**
+</span> * Patient is a child component of Rendering Engine which displays the patient
+ * home page to user and sends same information to rendering engine for further
+ * processing.
+ */
+
+function Patient(renderingEngine) {
+
+<span id='Patient-method-eventHandler'>	/**
+</span>	 * Handles the events from components
+	 * 
+	 * @param event
+	 * @returns {void}
+	 */
+	this.eventHandler = eventHandler;
+	this.className = &quot;Patient&quot;;
+
+	this.loadUI = loadUI;
+	var renderingEngine = renderingEngine;
+	var patient = this;
+<span id='Patient-property-userProcesses'>	/**
+</span>	 * userProcesses holds the process information against the patient
+	 */
+	var userProcesses = [];
+
+	/* Function definitions */
+
+	function eventHandler(event) {
+		// alert(&quot;inside patient event handler: &quot; + event.type);
+
+		/*
+		 * renderingEngine.getEventQueue().postEvent(AppConstants.Event.RESIZE,
+		 * {}, renderingEngine, patient);
+		 */
+		if (event.type == AppConstants.Event.PATIENT_HOME_PAGE_LOAD_EVENT) {
+			// alert(&quot;inside patient event handler: &quot; + event.type);
+			var subscriberId = null;
+			var searchVO = renderingEngine.getComponent(&quot;Context&quot;)
+					.getSearchVO();
+			appController.getComponent(&quot;RenderingEngine&quot;).showPageLoading(
+					&quot;Fetching Patient data&quot;);
+			if (searchVO)
+				subscriberId = searchVO.id;
+
+			if (!subscriberId) {
+				var patientVO = renderingEngine.getComponent(&quot;Context&quot;)
+						.getPatientVO();
+				if (patientVO)
+					subscriberId = patientVO.subscriberId;
+
+			}
+
+			if (subscriberId) {
+				loadPatientNavigationLine();
+				// alert(&quot;subscriberId : &quot; + subscriberId);
+				renderingEngine.getEventQueue().postEvent(
+						AppConstants.Event.PATIENT_HOME_PAGE_FETCH_DATA,
+						subscriberId, renderingEngine, patient);
+			}
+
+		} else if (event.type == AppConstants.Event.PATIENT_HOME_PAGE_FILL_DATA) {
+			renderingEngine.getComponent(&quot;Context&quot;).clearSearchContext();
+			var patientVO = renderingEngine.getComponent(&quot;Context&quot;)
+					.getPatientVO();
+			var subscriberId = patientVO.subscriberId;
+			userProcesses = renderingEngine.getComponent(&quot;DataLayer&quot;)
+					.getUserProcesses(subscriberId);
+			// renderingEngine.getComponent(&quot;Context&quot;).setPatient(subscriberId);
+			loadHomeUI();
+		} else if (event.type == AppConstants.Event.PATIENT_HOME_PAGE_BIND_EVENT) {
+
+			$('#left-side').removeClass('left-side-bg');
+			$('#left-side').addClass('patient-home-bg');
+
+			bindHomeEvents();
+		} else if (event.type == AppConstants.Event.ON_ENTITY_STATE_CHANGE) {
+			changeCheckinState(event.data.result);
+
+		} else if (event.type == AppConstants.Event.PATIENT_PAGE_BIND_EVENT) {
+
+		} else if (event.type == AppConstants.Event.PATIENT_PAGE_RESPONSE) {
+
+		} else if (event.type == AppConstants.Event.PATIENT_PAGE_ERROR) {
+
+		} else if (event.type == AppConstants.Event.PATIENT_PAGE_FILL_DATA) {
+
+		} else if (event.type == AppConstants.Event.PATIENT_PAGE_LOAD_EVENT) {
+
+		}
+		/*
+		 * else if (event.type ==
+		 * AppConstants.Event.PATIENT_WORK_FLOW_PAGE_BIND_EVENT) {
+		 * 
+		 * $('.registration') .live( 'click', function(event) {
+		 * 
+		 * renderingEngine .fireEvent(AppConstants.Event.CLEAR_SEARCH_CONTEXT);
+		 * renderingEngine .setFormName(&quot;New Patient Registration&quot;);
+		 * renderingEngine.getChildComponent(&quot;Form&quot;)
+		 * .setMessageType(&quot;PRPA_IN203000HT04&quot;);
+		 * alert(renderingEngine.getChildComponent(&quot;Form&quot;) .getMessageType());
+		 * renderingEngine .fireEvent(AppConstants.Event.FORM_PAGE_INITIALIZED);
+		 * }); }
+		 */
+	}
+	;
+
+<span id='Patient-method-loadUI'>	/**
+</span>	 * Load the html page and bind the ui events.
+	 * 
+	 * @returns {void}
+	 */
+	function loadUI() {
+		/*
+		 * set searchVO.
+		 */
+		renderingEngine.getComponent(&quot;Context&quot;).clearSearchContext();
+		renderingEngine.getComponent(&quot;Context&quot;)
+				.clearSelectedOrganizationVOContext();
+		renderingEngine.getChildComponent(&quot;NavigationLine&quot;)
+				.removeNavigationLine();
+		var organizationVO = renderingEngine.getComponent(&quot;Context&quot;)
+				.getOrganizationVO();
+		renderingEngine.getComponent(&quot;Context&quot;).setSelectedOrganizationVO(
+				organizationVO);
+
+		var searchVO = new HIN.SearchVO();
+		searchVO.type = AppConstants.SearchType.PATIENT_PROFILE_SEARCH;
+		searchVO.serverURI = &quot;/hin-web/rest/search/entitySearchWithCondtion&quot;;
+		searchVO.role = &quot;patient&quot;;
+		searchVO.messageType = &quot;PRPA_MT201000HT03&quot;;
+		searchVO.placeHolder = &quot;Patient Search&quot;;
+		renderingEngine.getComponent(&quot;Context&quot;).setSearchVO(searchVO);
+		searchVO.assigningOrganizationID = renderingEngine.getComponent(
+				&quot;Context&quot;).getSelectedOrganizationVO().subscriberId;
+		renderingEngine.loadPage(&quot;pages/search/search.html&quot;, &quot;search&quot;,
+				AppConstants.Event.SEARCH_PAGE_BIND_EVENTS);
+
+		renderingEngine.setLeftHeaderInfo(&quot;&quot;);
+		renderingEngine.registerClickEvent('newPatient', loadProcess);
+		/*
+		 * appController.getComponent(&quot;RenderingEngine&quot;).fireEvent(
+		 * AppConstants.Event.RESIZE);
+		 */
+		if (renderingEngine.getComponent(&quot;Context&quot;).getBackToPatientHome() == true) {
+			renderingEngine
+					.fireEvent(AppConstants.Event.PATIENT_HOME_PAGE_LOAD_EVENT);
+			renderingEngine.getComponent(&quot;Context&quot;).setBackToPatientHome(false);
+			appController.getComponent(&quot;RenderingEngine&quot;).fireEvent(
+					AppConstants.Event.RESIZE);
+		} else {
+
+			appController.getComponent(&quot;RenderingEngine&quot;).fireEvent(
+					AppConstants.Event.RESIZE);
+		}
+		// loadHomeUI();
+
+	}
+	;
+
+<span id='Patient-method-loadHomeUI'>	/**
+</span>	 * Load the home page and bind the ui events.
+	 * 
+	 * @returns {void}
+	 */
+	function loadHomeUI() {
+		// alert(&quot;loadHomeUI&quot;);
+		renderingEngine.showPageLoading(&quot;Binding home page&quot;);
+		renderingEngine.loadPage(&quot;pages/patient/home.html&quot;, &quot;form&quot;,
+				AppConstants.Event.PATIENT_HOME_PAGE_BIND_EVENT);
+
+		appController.getComponent(&quot;RenderingEngine&quot;).fireEvent(
+				AppConstants.Event.RESIZE);
+
+		/*
+		 * renderingEngine.getEventQueue().postEvent(AppConstants.Event.HOME_PAGE_RESIZE,
+		 * {}, renderingEngine, patient);
+		 */
+
+	}
+	;
+<span id='Patient-method-bindHomeEvents'>	/**
+</span>	 * Bind the home page ui components events.
+	 * 
+	 * @returns {void}
+	 */
+	function bindHomeEvents() {
+		var patientVO = renderingEngine.getComponent(&quot;Context&quot;).getPatientVO();
+		renderingEngine.setLeftHeaderInfo(patientVO.name);
+		// alert(&quot;patientVO : &quot; + patientVO);
+		/*
+		 * var searchVO = renderingEngine.getComponent(&quot;Context&quot;).getSearchVO();
+		 * renderingEngine.setLeftHeaderInfo(searchVO.displayValue);
+		 */
+		// alert(searchVO.id+&quot;displayValue : &quot;+searchVO.displayValue);
+		var processId = 0;
+		var processName = null;
+
+		if (userProcesses) {
+			for ( var index = 0; index &lt; userProcesses.length; index++) {
+				var userProcess = userProcesses[index];
+
+				var count = userProcess.count();
+				if (userProcess.processName == &quot;DemographicsAndBackground&quot;) {
+					processName = userProcess.processName;
+					processId = userProcess.processIds[0];
+					$('#demographics').attr(&quot;processId&quot;, processId);
+				} else if (userProcess.processName == &quot;AgeManagementProgram&quot;
+						|| userProcess.processName == &quot;BHRTProgram&quot;) {
+					processName = userProcess.processName;
+					processId = userProcess.processIds[0];
+					$('#programs').attr(&quot;processName&quot;, userProcess.processName);
+					$('#programs').attr(&quot;processId&quot;, processId);
+					$('#programs').attr(&quot;formName&quot;, userProcess.processName);
+
+					/*
+					 * $('#programs').find(&quot;.patient-home-text&quot;).html(
+					 * userProcess.processName);
+					 */
+
+					// $('#programs').find(&quot;.count&quot;).html('[' + count + ']');
+				} else if (userProcess.processName == &quot;Monitor&quot;) {
+					processName = userProcess.processName;
+					processId = userProcess.processIds[0];
+					$('#monitor').attr(&quot;processId&quot;, processId);
+					// $('#monitor').find(&quot;.count&quot;).html('[' + count + ']');
+				}
+				// alert(processName);
+				else if (userProcess.processName == &quot;ProgressReport&quot;) {
+					// alert(userProcess.processName);
+					processName = userProcess.processName;
+					processId = userProcess.processIds[0];
+					$('#progressReport').attr(&quot;processId&quot;, processId);
+					// $('#monitor').find(&quot;.count&quot;).html('[' + count + ']');
+				}
+			}
+			// $('#programs').attr(&quot;processName&quot;, &quot;AgeManagementProgram&quot;);
+		}
+
+		renderingEngine.iconChange();
+		/*
+		 * $('#demographics').live( 'click', function(event) {
+		 * 
+		 * renderingEngine.setLeftHeaderInfo(&quot;Patient Name&quot;);
+		 * renderingEngine.setFormName(&quot;Demographics And Background&quot;);
+		 * renderingEngine.getEventQueue().postEvent(
+		 * AppConstants.Event.PROCESS_PAGE_LOAD_EVENT, { processName :
+		 * &quot;DemographicsAndBackground&quot;, processId : processId },
+		 * renderingEngine, patient); });
+		 */
+
+		$('#demographics').unbind(&quot;click&quot;, loadProcess);
+		$('#demographics').bind(&quot;click&quot;, loadProcess);
+
+		$('#appointment').unbind('click', loadProcess);
+		$('#appointment').bind('click', loadProcess);
+
+		$('#accounts').unbind('click', loadProcess);
+		$('#accounts').bind('click', loadProcess);
+
+		$('#programs').unbind('click', loadProcess);
+		$('#programs').bind('click', loadProcess);
+
+		/*
+		 * $('#monitor').unbind('click', loadProcess);
+		 * $('#monitor').bind('click', loadProcess);
+		 */
+
+		/*
+		 * $('#progressReport').unbind('click', loadProgressReport);
+		 * $('#progressReport').bind('click', loadProgressReport);
+		 */
+
+		$('#progressReport').unbind('click', loadDocuments);
+		$('#progressReport').bind('click', loadDocuments);
+
+		$('#checkinPatient').unbind('click', entityStateChanged);
+		$('#checkinPatient').bind('click', entityStateChanged);
+
+		$('#checkoutPatient').unbind('click', entityStateChanged);
+		$('#checkoutPatient').bind('click', entityStateChanged);
+		var checkinstate = renderingEngine.getComponent(&quot;Context&quot;)
+				.getCheckinState();
+		checkinState(checkinstate);
+		appController.getComponent(&quot;RenderingEngine&quot;).fireEvent(
+				AppConstants.Event.RESIZE);
+		renderingEngine.closeModalDialog();
+	}
+	;
+
+<span id='Patient-method-loadProcess'>	/**
+</span>	 * Load the process based on the selected process definition from the
+	 * patient dashboard.
+	 * 
+	 * @returns {void}
+	 */
+	function loadProcess() {
+
+		var leftHeaderInfo = $(this).attr(&quot;leftHeaderInfo&quot;);
+		var formName = $(this).attr(&quot;formName&quot;);
+		var processName = $(this).attr(&quot;processName&quot;);
+		if (processName) {
+			var processId = $(this).attr(&quot;processId&quot;);
+			if (this.id == &quot;newPatient&quot;) {
+				leftHeaderInfo = &quot;New Patient&quot;;
+				renderingEngine.getComponent(&quot;Context&quot;).clearNavigationMap();
+				renderingEngine.getComponent(&quot;Context&quot;).clearPhysicianContext();
+				renderingEngine.getComponent(&quot;Context&quot;).clearPatientVOContext();
+			}
+			if (leftHeaderInfo)
+				renderingEngine.setLeftHeaderInfo(leftHeaderInfo);
+			renderingEngine.fireEvent(AppConstants.Event.CLEAR_CONTEXT);
+			renderingEngine.getEventQueue().postEvent(
+					AppConstants.Event.PROCESS_PAGE_LOAD_EVENT, {
+						processName : processName,
+						type : &quot;NewProcess&quot;,
+						processId : processId
+					}, renderingEngine, patient);
+		}
+	}
+	;
+
+	function entityStateChanged() {
+		var stateValue = $(this).attr(&quot;state&quot;);
+		var patientId = renderingEngine.getComponent(&quot;Context&quot;).getPatient();
+		var date = new Date();
+		var currentTime = formatDate(date, 'yyyy/MM/dd HH:mm:ss');
+		var organizationId = renderingEngine.getComponent(&quot;Context&quot;)
+				.getSelectedOrganizationVO().subscriberId;
+		var entityState = new HIN.EntityState();
+		entityState.entityid = patientId;
+		entityState.state = &quot;checkedin&quot;;
+		entityState.statevalue = stateValue;
+		entityState.time = currentTime;
+		entityState.assigningOrganizationID = organizationId;
+		patientId = patientId.replace(/\s+/g, '_');
+		renderingEngine.getComponent(&quot;Context&quot;).setSelectedProfile(patientId);
+		renderingEngine.getComponent(&quot;DataLayer&quot;).changeEntityState(
+				entityState, changeCheckinState);
+	}
+	;
+
+	function checkinState(checkinstate) {
+		var isPatientTransfer = renderingEngine.getComponent(&quot;Context&quot;)
+				.getIsPatientTransfer();
+		if (checkinstate == &quot;true&quot;) {
+			$('#checkin').hide();
+			$('#checkout').show();
+		} else if (checkinstate == &quot;false&quot;) {
+			$('#checkin').show();
+			$('#checkout').hide();
+		} else if (checkinstate == &quot;transfer&quot;) {
+			$('#checkin').hide();
+			$('#checkout').hide();
+		} else {
+			$('#checkin').show();
+			$('#checkout').hide();
+		}
+	}
+	;
+
+	function loadAppointments() {
+		renderingEngine
+				.fireEvent(AppConstants.Event.APP_SCHEDULE_PAGE_INITIALIZED);
+	}
+	;
+
+	function updateCheckedinPatient() {
+		var organizationId = renderingEngine.getComponent(&quot;Context&quot;)
+				.getSelectedOrganizationVO().subscriberId;
+		var searchVO = renderingEngine.getComponent(&quot;Context&quot;).getSearchVO();
+		searchVO.queryString = &quot;&quot;;
+		searchVO.max = 100;
+		var conditionMap = new HIN.HashMap();
+		conditionMap.put(&quot;organizationId&quot;, organizationId);
+		var callback = renderingEngine.getChildComponent(&quot;Search&quot;).checkedinPatientResult;
+		var entityState = new HIN.EntityState();
+		entityState.state = &quot;checkedin&quot;;
+		entityState.statevalue = &quot;true&quot;;
+		entityState.assigningOrganizationID = organizationId;
+
+		renderingEngine.getComponent(&quot;DataLayer&quot;).fetchCheckedinPatient(
+				searchVO, entityState, conditionMap, callback);
+
+	}
+	;
+
+	function changeCheckinState(checkinstate) {
+		renderingEngine.getComponent(&quot;Context&quot;).setCheckinState(
+				checkinstate.statevalue);
+		checkinState(checkinstate.statevalue);
+		updateCheckedinPatient();
+	}
+	;
+
+	/*
+	 * function loadProgressReport() { renderingEngine
+	 * .fireEvent(AppConstants.Event.TEST_RESULTS_PAGE_INITIALIZED); } ;
+	 */
+	this.loadDocuments = loadDocuments;
+	function loadDocuments() {
+		renderingEngine.loadDocument();
+		// renderingEngine.slideRight();
+
+		/*
+		 * renderingEngine.getEventQueue().postEvent(
+		 * AppConstants.Event.DOCUMENT_PAGE_INITIALIZED,
+		 * AppConstants.DocumentType.DOCUMENTS, renderingEngine, patient);
+		 */
+		// renderingEngine.hidePageLoading();
+		/*
+		 * loadPage(&quot;pages/documents/documents.html&quot;, &quot;form&quot;,
+		 * AppConstants.Event.DOCUMENT_PAGE_INITIALIZED);
+		 */
+	}
+	;
+
+	this.loadPatientsHome = loadPatientsHome;
+	function loadPatientsHome() {
+		renderingEngine.getEventQueue().postEvent(
+				AppConstants.Event.PATIENT_PAGE_INITIALIZED, {},
+				renderingEngine, patient);
+	}
+	;
+
+	this.loadPatientHome = loadPatientHome;
+	function loadPatientHome() {
+		renderingEngine.openModalDialog(&quot;Patient home page loading&quot;);
+		$(&quot;.left-side-content&quot;).addClass(&quot;patient-home-bg&quot;).removeClass(
+				&quot;document-home-bg&quot;);
+		renderingEngine.slideLeft();
+		renderingEngine
+				.fireEvent(AppConstants.Event.PATIENT_HOME_PAGE_LOAD_EVENT);
+	}
+	;
+
+	function loadPatientNavigationLine() {
+		renderingEngine.getUIDimensions();
+		renderingEngine.getComponent(&quot;Context&quot;).clearNavigationMap();
+		var navigationLine = renderingEngine
+				.getChildComponent(&quot;NavigationLine&quot;);
+		var navigationLineId = navigationLine.setNavigationLine(&quot;Patient Home&quot;);
+		$('#' + navigationLineId).unbind(&quot;click&quot;, loadPatientHome);
+		$('#' + navigationLineId).bind(&quot;click&quot;, loadPatientHome);
+	}
+	;
+	/*
+	 * function loadProcess() { renderingEngine.setLeftHeaderInfo(&quot;New
+	 * Patient&quot;); renderingEngine.setFormName(&quot;Patient Registration&quot;);
+	 * renderingEngine.fireEvent(AppConstants.Event.CLEAR_SEARCH_CONTEXT);
+	 * renderingEngine.getEventQueue().postEvent(
+	 * AppConstants.Event.PROCESS_PAGE_LOAD_EVENT, { processName :
+	 * &quot;PatientRegistration&quot;, type : &quot;NewProcess&quot; }, renderingEngine, patient); } ;
+	 */
+
+	// PatientRegistration&quot;//AgeManagementProgram&quot;//Monitor&quot;//DemographicsAndBackground&quot;//&quot;Accounts&quot;
+}
+</pre>
+</body>
+</html>

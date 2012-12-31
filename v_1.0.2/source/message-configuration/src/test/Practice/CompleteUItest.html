@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+	<head>
+		<script type="text/javascript" src="jquery-1.6.4.js"></script>
+		<script type="text/javascript" src="jquery.xml.js"></script>
+		<script type="text/javascript" src="DataTypeAPI.js"></script>
+		<script type="text/javascript">
+			//datatype II
+			var IIxml = null;
+			function IItestGetValue(){
+				IIxml = IIgetValues('id2','pfId');
+			}
+			function IItestSetValue(){
+				IIsetValue('id2', IIxml);
+			}
+			
+			//datatype SXCM_TS
+			var SXCM_TSxml = null;
+			function SXCM_TStestGetValue(){
+				SXCM_TSxml = SXCM_TSgetValues('idsxcm','useablePeriod');
+			}
+			function SXCM_TStestSetValue(){
+				 SXCM_TSsetValue('idsxcm', SXCM_TSxml); 
+			}	
+			
+			//datatype TEL
+			var TELxml = null;
+			function TELtestGetValue(){
+				TELxml = TELgetValues('idtel','telecom');
+			}
+			function TELtestSetValue(){
+				TELsetValue('idtel',  TELxml);
+			}
+			function TELtestDisplay(){
+				$("#SXCM_TSform").toggle();
+			}
+			
+			function TELcloseDiv(){
+					$("#DivForSXCM_TS").hide();
+					$("#b1").hide();
+			}
+			
+			function updateXml(){
+				alert("in update");
+				/* newSXCM_TSxml=SXCM_TSxml */
+				$(TELxml).append($(SXCM_TSxml)); 
+				alert("xml="+$(TELxml).xml());
+			}
+		</script>
+	</head>
+	<body>
+		<!-- datatype II -->
+		<div id="IIform" style="display:none">
+		<form>
+			<fieldset>
+				root1: <input type="text" id="id11"/>
+				extension1:  <input type="text" id="id12"/>
+				assigningAuthorityName1:<input type="text" id="id13"/>
+				displayable1:<input type="text" id="id14"/>
+				
+				<br/><br/>
+				root1: <input type="text" id="id21"/>
+				extension1:  <input type="text" id="id22"/>
+				assigningAuthorityName1:<input type="text" id="id23"/>
+				displayable1:<input type="text" id="id24"/>
+				<br/>
+				
+				<input type="button"  value="getValue" onclick="IItestGetValue();"/>
+				<input type="button"  value="clearValue" onclick="IIclearValues('id2');"/>
+				<input type="button"  value="setValue" onclick="IItestSetValue();"/>
+			</fieldset>
+		</form>	
+		</div>
+		
+		<div  id="TELform">
+		<form>
+  			<fieldset>
+  				<legend>TEL</legend>
+  				value: <input type="text" id="idtel1"/> <br/>
+  				
+				useablePeriod: <a href="#" onclick="TELtestDisplay();">SXCM_TS</a> <br/>
+				
+				<div  id="SXCM_TSform" style="display:none;">
+		  			<fieldset>
+		  				<legend>SXCM_TS</legend>
+		  				value: <input type="text" id="idsxcm1"/>
+						operator: <input type="text" id="idsxcm2"/>
+						<br/>
+					
+						<input type="button"  value="getValue" onclick="SXCM_TStestGetValue();"/>
+						<input type="button"  value="clearValue" onclick="SXCM_TSclearValues('idsxcm');"/>
+						<input type="button"  value="setValue" onclick="SXCM_TStestSetValue();updateXml();"/>
+					</fieldset>
+				</div>
+
+				use: <input type="text" id="idtel2"/> <br/>
+				
+				<input type="button"  value="getValue" onclick="TELtestGetValue();"/>
+				<input type="button"  value="clearValue" onclick="TELclearValues('idtel');"/>
+				<input type="button"  value="setValue" onclick="TELtestSetValue();"/>
+			</fieldset>
+		</form>	
+		</div>		
+		
+	</body>
+</html>

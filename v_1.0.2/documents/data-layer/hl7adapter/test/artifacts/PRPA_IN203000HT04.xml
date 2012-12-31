@@ -1,0 +1,59 @@
+<HL7MessageConfiguration configType="MESSAGE">
+  <MetaInfo artifactID="PRPA_IN203000HT04" description="PRPA_IN203000HT04">
+    <selected>false</selected>
+    <configType>META_INFO</configType>
+  </MetaInfo>
+  <Class rimType="ACT" configType="CLASS" tagName="registrationEvent" type="MFMI_MT700700HT03.RegistrationEvent" inputControl="Class" label="Registration Event" displayOrder="1">
+    <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="1" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+    <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+    <Class rimType="PARTICIPATION" configType="CLASS" tagName="subject" type="MFMI_MT700700HT03.Subject2" inputControl="Class" label="Subject2" displayOrder="1">
+      <Class rimType="ROLE" configType="CLASS" tagName="subsumedBy" type="PRPA_MT203000HT04.SubsumedBy" label="Subsumed By">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="1" minOccurs="1" maxOccurs="-1" configType="FIELD"/>
+        <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="1" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+        <Class rimType="ENTITY" configType="CLASS" tagName="subsumingPerson" type="COCT_MT030200HT04.Person" label="Subsuming Person">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="1" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="1" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field tagName="desc" type="ED" inputControl="ED" label="Desc" displayOrder="1" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="1" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="1" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field tagName="administrativeGenderCode" type="CE" inputControl="CE" label="Administrative Gender Code" displayOrder="1" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="birthTime" type="TS" inputControl="TS" label="Birth Time" displayOrder="1" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="deceasedInd" type="BL" inputControl="BL" label="Deceased Ind" displayOrder="1" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="deceasedTime" type="TS" label="Deceased Time" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="multipleBirthInd" type="BL" label="Multiple Birth Ind" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="multipleBirthOrderNumber" type="INT" label="Multiple Birth Order Number" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="organDonorInd" type="BL" label="Organ Donor Ind" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="addr" type="AD" label="Addr" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field tagName="maritalStatusCode" type="CE" label="Marital Status Code" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="educationLevelCode" type="CE" label="Education Level Code" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="disabilityCode" type="CE" label="Disability Code" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="livingArrangementCode" type="CE" label="Living Arrangement Code" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="religiousAffiliationCode" type="CE" label="Religious Affiliation Code" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="raceCode" type="CE" label="Race Code" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field tagName="ethnicGroupCode" type="CE" label="Ethnic Group Code" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+        </Class>
+        <Class rimType="ENTITY" configType="CLASS" tagName="subsumedPerson" type="COCT_MT030202HT04.Person" label="Subsumed Person">
+          <Field tagName="id" type="II" label="Id" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field tagName="name" type="PN" label="Name" minOccurs="1" maxOccurs="-1" configType="FIELD"/>
+          <Field tagName="desc" type="ED" label="Desc" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="statusCode" type="CS" label="Status Code" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="telecom" type="TEL" label="Telecom" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field tagName="administrativeGenderCode" type="CE" label="Administrative Gender Code" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="birthTime" type="TS" label="Birth Time" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="deceasedInd" type="BL" label="Deceased Ind" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="deceasedTime" type="TS" label="Deceased Time" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="multipleBirthInd" type="BL" label="Multiple Birth Ind" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="multipleBirthOrderNumber" type="INT" label="Multiple Birth Order Number" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="organDonorInd" type="BL" label="Organ Donor Ind" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="addr" type="AD" label="Addr" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field tagName="maritalStatusCode" type="CE" label="Marital Status Code" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="disabilityCode" type="CE" label="Disability Code" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="livingArrangementCode" type="CE" label="Living Arrangement Code" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="religiousAffiliationCode" type="CE" label="Religious Affiliation Code" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+          <Field tagName="raceCode" type="CE" label="Race Code" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+          <Field tagName="ethnicGroupCode" type="CE" label="Ethnic Group Code" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+        </Class>
+      </Class>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

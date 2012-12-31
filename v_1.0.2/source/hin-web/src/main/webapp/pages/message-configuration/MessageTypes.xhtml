@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<rich:messages infoClass="infoClass" errorClass="errorClass" />
+		<h:form>
+			<rich:toolbar height="26" itemSeparator="grid" style="width:700px">
+			<rich:toolbarGroup>
+					<h:commandLink action="#{messageConfigurationBean.createNewMessageType}">
+						<h:panelGrid columns="2">
+							<img src="../../html/images/page_white_add.png" />
+							<h:outputText value="#{msg['messageTypes.title']}" />
+						</h:panelGrid>
+					</h:commandLink>
+				</rich:toolbarGroup>
+				<rich:toolbarGroup location="right">
+					<h:outputText value="Search:" />
+					<h:inputText styleClass="barsearch" />
+				</rich:toolbarGroup>
+			</rich:toolbar>
+			<br />
+			<rich:dataTable id="messageTypes" value="#{messageConfigurationBean.messageTypes}" var="messageType"
+				rows="10" style="width:700px">
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Code" />
+					</f:facet>
+					<h:outputText value="#{messageType.type}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Title" />
+					</f:facet>
+					<h:outputText value="#{messageType.title}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Index Folder" />
+					</f:facet>
+					<h:outputText value="#{messageType.indexFolder}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="View" />
+					</f:facet>
+					<center>
+						<h:commandButton id="editlink"
+							image="../../html/images/iconedit.gif"
+							action="#{messageConfigurationBean.viewMessageType}" value="#{msg['left.categories.concept.view']}" alt="Edit"
+							title="Edit">
+							<f:setPropertyActionListener
+									target="#{messageConfigurationBean.messageType}"
+									value="#{messageType}" />
+						</h:commandButton>
+					</center>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Remove" />
+					</f:facet>
+				</rich:column>
+				<br />
+				<f:facet name="footer">
+					<rich:dataScroller for="messageTypes" align="right"
+						renderIfSinglePage="false" fastStep="5" fastControls="auto" />
+				</f:facet>
+			</rich:dataTable>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>
+
+
+

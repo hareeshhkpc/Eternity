@@ -1,0 +1,15 @@
+curl -i -X POST -H 'Content-Type: application/xml' -d '<message artifactID="123"><a><b><c></c></b></a></message>' http://localhost:5984/messagestore/_design/hl7store/_update/postXML/storagekey
+
+dest="http://localhost:5984"
+dest="http://openpowerwatch.iriscouch.com"
+
+curl -i -X POST -H 'Content-Type: application/xml' -d @PRPA_IN203000HT04.xml $dest/messagestore/_design/hl7store/_update/postXML/PRPA_IN203000HT04?objecttype=meta
+
+curl -i -X POST -H 'Content-Type: application/xml' -d @SMOTest_load1.xml $dest/messagestore/_design/hl7store/_update/postXML/SMOTest_load1
+curl -i -X POST -H 'Content-Type: application/xml' -d @SMOTest_load_invalid.xml $dest/messagestore/_design/hl7store/_update/postXML/SMOTest_load_invalid
+
+curl -i -X PUT -H 'Content-Type: application/json' -d'{"key":1}' $dest/messagestore/123
+
+curl -i -X POST -H 'Content-Type: application/xml' -d'<test/>' $dest/messagestore/_design/hl7store/_update/postDoc/123
+
+curl -i -X DELETE  $dest/messagestore/SMOTest_load1?rev=2-5add547b4c1701dfd056fdef0b3c7b53

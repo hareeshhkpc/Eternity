@@ -1,0 +1,648 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Eternity: Login</title>
+
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+
+<!-- <link rel="stylesheet" href="css/hin.css" /> -->
+
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" type="text/css" />
+<link rel="stylesheet" href="js/jquery.mobile.datebox.min.css" />
+<link rel="stylesheet" href="css/healthhistoryquestionnaire.css" />
+
+
+<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" /> -->
+
+
+<link rel="stylesheet" href="js/jquery.ui.datepicker.mobile.css" />
+<link rel="stylesheet" href="js/jquery.mobile.datebox.min.css">
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.json-2.3.js"></script>
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+<script src="js/jquery.mobile.datebox.min.js"></script>
+<script src="js/jquery.easydate-0.2.4.js"></script>
+
+<script type="text/javascript" src="js/jsCharts/highcharts.js"></script>
+<!-- <script type="text/javascript" src="js/jsCharts/reviewHighchart.js"></script> -->
+<!--  <script type="text/javascript" src="js/jsCharts/jquery.min.js"></script>
+<script type="text/javascript" src="js/jsCharts/jquery-1.6.4.js"></script>
+<script type="text/javascript" src="js/jsCharts/themes/grid.js"></script> -->
+
+<!-- <script type="text/javascript" src="js/jQuery.ui.datepicker.js"></script> -->
+<!-- <script src="js/jquery.mobile.datebox.min.js"></script> -->
+<script src="../mobile/js/jquery.mousewheel.min.js"></script>
+<script src="js/AjaxMultipart.js"></script>
+<script src="js/AppConstants.js"></script>
+<script src="js/ApplicationController.js"></script>
+<script src="js/AppUtil.js"></script>
+<script src="js/Callback.js"></script>
+<script src="js/CommonUtil.js"></script>
+<script src="js/Context.js"></script>
+<script src="js/DataLayer.js"></script>
+<script src="js/DataTypeAPI.js"></script>
+<script src="js/EventQueue.js"></script>
+<script src="js/HashMap.js"></script>
+<script src="js/FactoryClass.js"></script>
+<script src="js/IDGenerator.js"></script>
+<script src="js/IFrameAPI.js"></script>
+<script src="js/hl7adapter_new.js"></script>
+<!-- <script src="js/hl7adapter.js"></script> -->
+<script src="js/LookupHandler.js"></script>
+<script src="js/MessageAndUIBinder.js"></script>
+<script src="js/MessageLoader.js"></script>
+<script src="js/RenderingEngine.js"></script>
+<script src="js/UpdatePathfield.js"></script>
+<script src="js/XmlUtil.js"></script>
+
+
+
+<script src="js/custom/AppSchedule.js"></script>
+<script src="js/custom/AppCalendar.js"></script>
+<script src="js/custom/Form.js"></script>
+<script src="js/custom/Home.js"></script>
+<script src="js/custom/Library.js"></script>
+<script src="js/custom/Login.js"></script>
+<script src="js/custom/SignUp.js"></script>
+
+<!-- <script src="js/custom/Mentor.js"></script>
+<script src="js/custom/Monitor.js"></script>
+<script src="js/custom/Measure.js"></script> -->
+
+<script src="js/custom/Navigation.js"></script>
+<script src="js/custom/Patient.js"></script>
+<script src="js/custom/Process.js"></script>
+<script src="js/custom/Program.js"></script>
+<script src="js/custom/Licensee.js"></script>
+
+<script src="js/custom/Staff.js"></script>
+
+<script src="js/custom/Search.js"></script>
+<script src="js/vo/ConceptLookup.js"></script>
+
+<script src="js/custom/Review.js"></script>
+
+<script src="js/custom/TestResult.js"></script>
+<script src="js/custom/Statistics.js"></script>
+<script src="js/custom/Archive.js"></script>
+<!-- <script src="js/custom/WorkFlow.js"></script> -->
+<script src="js/ui/AppointmentSchedule.js"></script>
+<script src="js/ui/CalendarData.js"></script>
+
+<!-- <script src="js/ui/Measure.js"></script>
+<script src="js/ui/Substances.js"></script> -->
+<script src="js/ui/AutoCompleteSearch.js"></script>
+<script src="js/ui/UIGenerator.js"></script>
+<script src="js/ui/Page.js"></script>
+<script src="js/ui/AppointmentSchedulePage.js"></script>
+<script src="js/ui/MonitorPage.js"></script>
+<script src="js/ui/EnrollmentPage.js"></script>
+<script src="js/ui/PatientRegistrationPage.js"></script>
+<script src="js/ui/PatientDemographicsPage.js"></script>
+<script src="js/ui/MeasurePage.js"></script>
+<script src="js/ui/LicenseeRegistrationPage.js"></script>
+<script src="js/ui/StaffRegistrationPage.js"></script>
+<script src="js/ui/StepPage.js"></script>
+<!-- <script src="js/ui/UserRegistrationPage.js"></script> -->
+<script src="js/ui/RolesPage.js"></script>
+<script src="js/ui/AccountsPage.js"></script>
+<script src="js/ui/BillingPage.js"></script>
+<script src="js/ui/CollectionPage.js"></script>
+<script src="js/ui/WelcomePage.js"></script>
+<script src="js/ui/ConsentPage.js"></script>
+<script src="js/ui/QuestionnairePage.js"></script>
+<script src="js/ui/SubstancesPage.js"></script>
+<script src="js/ui/ReviewPage.js"></script>
+<script src="js/ui/MonitorMeasurePage.js"></script>
+<script src="js/ui/HistoryPage.js"></script>
+<script src="js/ui/SignUpPage.js"></script>
+<script src="js/ui/PhysicalExaminationPage.js"></script>
+<script src="js/ui/ProfilePage.js"></script>
+<script src="js/ui/PermissionPage.js"></script>
+<script src="js/ui/SettingsPage.js"></script>
+<script src="js/ui/ContactPersonPage.js"></script>
+<script src="js/vo/AppointmentVO.js"></script>
+<script src="js/vo/ChartVO.js"></script>
+<script src="js/vo/FormVO.js"></script>
+<script src="js/vo/Message.js"></script>
+<script src="js/vo/MessageVO.js"></script>
+<script src="js/vo/ProcessVO.js"></script>
+<script src="js/vo/ProcessDefinition.js"></script>
+<script src="js/vo/SearchVO.js"></script>
+<script src="js/vo/Step.js"></script>
+<script src="js/vo/MessageType.js"></script>
+<!-- <script src="js/vo/MessageTypeName.js"></script> -->
+<script src="js/vo/Query.js"></script>
+<script src="js/vo/UserProcess.js"></script>
+<script src="js/vo/UserVO.js"></script>
+<script src="js/vo/LicenseeVO.js"></script>
+<script src="js/vo/StaffVO.js"></script>
+<script src="js/vo/TaskVO.js"></script>
+<script src="js/vo/StatisticsVO.js"></script>
+<script src="js/vo/PatientVO.js"></script>
+<script src="js/vo/OrganizationVO.js"></script>
+<script src="js/vo/StepGroup.js"></script>
+<script src="js/jquery.base64.min.js"></script>
+<script src='js/calendar/src/_loader.js?debug'></script>
+
+<script src="../process-scripts/ProcessEntry.js"></script>
+<script src="../process-scripts/ProcessScript.js"></script>
+<script src='../message-scripts/MessageTypeScript.js'></script>
+
+<link rel="stylesheet" href="css/jquery.scroller-1.0.2.min.css" />
+<link rel="stylesheet" href="css/validationEngine.jquery.css"
+	type="text/css" />
+
+<script src="js/jquery.mobile.message.min.js"></script>
+<script src="js/languages/jquery.validationEngine-en.js"></script>
+<script src="js/jquery.validationEngine.js"></script>
+
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
+
+<!-- Notification Allert -->
+<script type="text/javascript" src="js/humane.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jackedup.css"
+	media="screen" />
+
+<script src="js/jqm.autoComplete-1.4.js"></script>
+<script src="js/jquery.cuteTime.js" type="text/javascript"></script>
+<script src="js/custom/QuestionnaireFormGenerator.js"></script>
+
+<!-- link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.8.20/themes/base/jquery-ui.css"
+	type="text/css" media="all" />
+<link rel="stylesheet"
+	href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css"
+	type="text/css" media="all" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
+	type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.8.20/jquery-ui.min.js"
+	type="text/javascript"></script-->
+
+<!-- link rel="stylesheet" href="registration/View.css" /> 
+<script src="pages/registration/DataTypeAPI.js"></script>
+<script src="pages/registration/Profile.js"></script>
+<script src="pages/registration/UpdateUI.js"></script-->
+<script type="text/javascript">
+	var appController = null;
+	var idGenerator = null;
+	var page = null;
+	var factoryClass = null;
+
+	var review = this;
+	var xValue = 200;// X axis starts from
+	var yValue = 360;
+	var ymin = 150;// Y axis starts from
+	var ymax = yValue;//
+	var verticalYValueSpace = 120;// Space between vertical lines
+	this.pathData = "";
+	this.plotData = "";
+	this.scale = "";
+	this.scalePixel = "";
+	this.range = 0.0;
+	this.arrowRange = 0.0;
+	var titleValue = 0;
+	var testArray = new Array();
+	var series = [ {
+		data : [ 80, 75, 65, 55, 45, 35, 25, 15 ],
+		color : [ "orange" ],
+		title : [ "Weight" ],
+		range : [ "40" ]
+
+	}, {
+		data : [ 45, 35, 25, 30, 35, 45, 55, 65 ],
+		color : [ "#92d050" ],
+		title : [ "BodyFat" ],
+		range : [ "20" ]
+
+	}, {
+		data : [ 4, 3, 2, 3.5, 4, 3.2, 1.7, 4.6 ],
+		color : [ "#3b618e" ],
+		title : [ "HeartRate" ],
+		range : [ "3" ]
+
+	}, {
+		data : [ 60, 57, 52, 40, 37, 29, 20, 46 ],
+		color : [ "#f37122" ],
+		title : [ "Smoking" ],
+		range : [ "40" ]
+
+	}, {
+		data : [ 25, 30, 27, 32, 26, 31, 35, 21 ],
+		color : [ "#8dc642" ],
+		title : [ "Alcohol" ],
+		range : [ "20" ]
+
+	}, {
+		data : [ 4, 3, 2, 3.5, 4, 3.2, 1.7, 4.6 ],
+		color : [ "#4881be" ],
+		title : [ "HeavyMetals" ],
+		range : [ "3" ]
+
+	} ];
+
+	var titleArray = [ {
+		title : "Nutrition and metabolism"
+	}, {
+		title : "Toxin reduction"
+	} ]
+
+	var xAxisData = [ 'jan 2011', 'mar 2011', 'may 2011', 'jul 2011',
+			'sep 2011', 'nov 2011', 'jan 2011', 'mar 2011' ];//x axis data
+	$(document)
+			.ready(
+					function() {
+						for (i in series) {
+							$('#mainDiv')
+									.append(
+											'<div class="chartCss" id="chartxmldynamic1'+series[i].title+'"></div>');
+						}
+
+						loadChart();
+						function loadChart() {
+							var chartdata = new HIN.ChartVO();
+							chartdata.testData = series;
+							chartdata.patientId = '1234';
+							chartdata.testDate = new Date();
+							chartdata.testType = "Testosterone";
+							chartdata.ymin = ymin;
+							chartdata.ymax = ymax;
+							var json = $.toJSON(chartdata);
+							loadPathData(json);
+						}
+						;
+						function loadPathData(json) {
+							$.getJSON("/hin-web/rest/chart/chartController", {
+								json : json
+							}, function(data) {
+								createChart(data);
+							});
+						}
+						;
+						function createChart(data) {
+							var finalString = "";
+							finalString += '<?xml version="1.0" encoding="UTF-8" standalone="no"?>';
+							finalString += '<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1500px" height="2500">';
+							var temp = 350;
+							for (ict in series) {								
+								pathData = data.pathList[ict].data;
+								plotData = data.plotList[ict].data;
+								range = data.testRangeMap[ict].range;
+								arrowRange = parseFloat(range)
+										+ parseFloat(15.13);
+								scale = data.scaleList[ict].scaleList;
+								scalePixel = data.scalePixel;
+								var x = xValue;// x default position
+								var y = ymin;// y default position
+								var verticalXvalue = x;
+								var midPoint = ((x * 2) + verticalYValueSpace) / 2;
+								var xmlNode = XmlUtil
+										.loadXml("charts/chart.xml");
+
+								// function for creating vertical Lines
+								for ( var i = 0; i < pathData.length + 1; i++) {
+									var childBefore = XmlUtil.find(xmlNode,
+											"id", "horizontalLine");
+									var pathNode = XmlUtil.find(xmlNode, "id",
+											"verticalLine");
+									var clonePath = pathNode.cloneNode(true);
+									if (i == 0) {
+										ymax += 10;
+									} else {
+										ymax = yValue;
+									}
+									var pathNodeId = "M " + verticalXvalue
+											+ "," + y + " " + verticalXvalue
+											+ "," + (ymax) + "";
+									var subpathNode = XmlUtil.find(xmlNode,
+											"id", clonePath.id);
+									XmlUtil.attr(subpathNode, "d", pathNodeId);
+									childBefore.parentNode.insertBefore(
+											clonePath, childBefore);
+									verticalXvalue += verticalYValueSpace;
+
+								}
+
+								// arrow Mark creation
+								var arrow = "m "
+										+ ((verticalXvalue - verticalYValueSpace) + 30)
+										+ ","
+										+ (parseFloat(range) + parseFloat(42))
+										+ " 0,-10.4 -24.98,0 0,-28.65 24.98,0 0,-16.41 26.68,31.23 -26.68,31.23 z";
+								var arrowNode = XmlUtil.find(xmlNode, "id",
+										"arrow");
+								XmlUtil.attr(arrowNode, "d", arrow);
+
+								// horizontalLine								
+								/* (((verticalXvalue - verticalYValueSpace) - verticalYValueSpace)) */
+								var horizontalNodeValue = "m " + (x - 10) + ","
+										+ ymax + " " + 1000 + ",0";
+								var horizontalNode = XmlUtil.find(xmlNode,
+										"id", "horizontalLine");
+								XmlUtil.attr(horizontalNode, "d",
+										horizontalNodeValue);
+
+								//last line
+								/* var lastNodeValue = "m "
+										+ (x - 10)
+										+ ","
+										+ (parseFloat(ymax) + parseFloat(20))
+										+ " "
+										+ (((verticalXvalue - verticalYValueSpace) - verticalYValueSpace))
+										+ ",0";
+								var lastNode = XmlUtil.find(xmlNode, "id",
+										"lastXscaleNode");
+								XmlUtil.attr(lastNode, "d", lastNodeValue); */
+
+								// title
+								/* var titleNode = XmlUtil.find(xmlNode, "id",
+										"title");
+								XmlUtil.text(titleNode, series[ict].title);
+								XmlUtil.attr(titleNode, "x", (x + 20));
+								XmlUtil.attr(titleNode, "y", (y - 45)); */
+
+								// legend creation
+								var legendNode = XmlUtil.find(xmlNode, "id",
+										"legend");
+								XmlUtil
+										.attr(
+												legendNode,
+												"x",
+												((verticalXvalue - verticalYValueSpace) + 60));
+								XmlUtil.attr(legendNode, "y", (y + 20));
+
+								// legend Symbol
+								var legendSymbolNode = XmlUtil.find(xmlNode,
+										"id", "legendSymbol");
+								XmlUtil
+										.attr(
+												legendSymbolNode,
+												"x",
+												((verticalXvalue - verticalYValueSpace) + 60));
+								XmlUtil.attr(legendSymbolNode, "y", (y + 30));
+								XmlUtil.attr(legendSymbolNode, "fill",
+										series[ict].color);
+
+								// optimum range
+								var optimumRangeNode = XmlUtil.find(xmlNode,
+										"id", "optimumRange");
+								XmlUtil
+										.attr(
+												optimumRangeNode,
+												"x",
+												((verticalXvalue - verticalYValueSpace) + 60));
+								XmlUtil.attr(optimumRangeNode, "y", range);
+
+								// optimum range title 1
+								var optimumTitle1Node = XmlUtil.find(xmlNode,
+										"id", "optimumTitle1");
+								XmlUtil
+										.attr(
+												optimumTitle1Node,
+												"x",
+												((verticalXvalue - verticalYValueSpace) + 70));
+								XmlUtil.attr(optimumTitle1Node, "y",
+										parseInt(range) + 20);
+
+								/* 
+								 // optimum range title 2
+								 var optimumTitle2Node = XmlUtil.find(xmlNode,
+								 "id", "optimumTitle2");
+								 XmlUtil
+								 .attr(
+								 optimumTitle2Node,
+								 "x",
+								 ((verticalXvalue - verticalYValueSpace) + 70));
+								 XmlUtil.attr(optimumTitle2Node, "y", (y + 140)); */
+
+								// legend Title
+								var legendTitleNode = XmlUtil.find(xmlNode,
+										"id", "legendTitle");
+								XmlUtil
+										.attr(
+												legendTitleNode,
+												"x",
+												((verticalXvalue - verticalYValueSpace) + 120));
+								XmlUtil.attr(legendTitleNode, "y", (y + 40));
+								XmlUtil
+										.text(legendTitleNode,
+												series[ict].title);
+
+								// reference Range Creation
+
+								var referenceRangeValue = (verticalXvalue - verticalYValueSpace)
+										- x;
+								var referenceRangeNode = XmlUtil.find(xmlNode,
+										"id", "referenceRange");
+								XmlUtil.attr(referenceRangeNode, "width",
+										referenceRangeValue);
+								XmlUtil.attr(referenceRangeNode, "x", x);
+								XmlUtil.attr(referenceRangeNode, "y", range);
+
+								//headerTitle
+								if (ict % 3 == 0) {
+									var headerTitleNode = XmlUtil.find(xmlNode,
+											"id", "mainHeaderId");
+									XmlUtil.attr(headerTitleNode, "x",
+											(xValue - 70));
+									XmlUtil.attr(headerTitleNode, "y", 38);
+									XmlUtil.attr(headerTitleNode, "height", 90);
+									XmlUtil
+											.attr(headerTitleNode, "width",
+													1280);
+
+									var mainHeaderTitle = XmlUtil.find(xmlNode,
+											"id", "mainHeaderTitle");
+									XmlUtil.attr(mainHeaderTitle, "x",
+											(xValue - 70));
+									XmlUtil.attr(mainHeaderTitle, "y", 92);
+
+									var mainHeaderTitleNode = XmlUtil.find(
+											xmlNode, "id", "mainHeaderText");
+									XmlUtil.attr(mainHeaderTitleNode, "x",
+											(xValue - 70));
+									XmlUtil.attr(mainHeaderTitleNode, "y", 92);
+									XmlUtil.text(mainHeaderTitleNode,
+											titleArray[titleValue].title);
+									titleValue += 1;
+								}
+
+								// function for Plotting
+								for (i in plotData) {
+									var childBefore = XmlUtil.find(xmlNode,
+											"id", "scaleMarker");
+									var plotNode = XmlUtil.find(xmlNode, "id",
+											"plot");
+									var clonePlot = plotNode.cloneNode(true);
+									var plotNodeId = "m "
+											+ midPoint
+											+ ","
+											+ plotData[i]
+											+ " c 1.042,0 1.887,-0.88 1.887,-1.98 0,-1.09 -0.845,-1.98 -1.887,-1.98 -1.043,0 -1.887,0.89 -1.887,1.98 0,1.1 0.844,1.98 1.887,1.98 z";
+									var subPlotNode = XmlUtil.find(xmlNode,
+											"id", clonePlot.id);
+									XmlUtil.attr(subPlotNode, "d", plotNodeId);
+									childBefore.parentNode.insertBefore(
+											clonePlot, childBefore);
+									midPoint += verticalYValueSpace;
+								}
+								midPoint = (x + (x + verticalYValueSpace)) / 2;
+
+								// function for Drawing Line path
+								/*
+								 * for (i in pathData) { if (i == 0) { stringData = "M " + x + "," +
+								 * pathData[i] + " L " + midPoint + " " + pathData[i] + ""; } else {
+								 * midPoint += verticalYValueSpace; stringData += "," + midPoint + " " +
+								 * pathData[i] + ""; } }
+								 */
+
+								// function for curve path
+								for ( var i = 0; i < pathData.length; i++) {
+									if (i == 0) {
+										stringData = "M " + x + ","
+												+ pathData[i] + " C " + x + ","
+												+ pathData[i] + " " + (x + 10)
+												+ "," + (pathData[i]) + " "
+												+ midPoint + " " + pathData[i]
+												+ "";
+									} else {
+
+										stringData += " C " + (midPoint + 20)
+												+ "," + (pathData[i - 1]) + " "
+												+ (midPoint + 60) + ","
+												+ (pathData[i]) + "";
+
+										midPoint += verticalYValueSpace;
+
+										stringData += "," + midPoint + " "
+												+ pathData[i] + "";
+									}
+								}
+								var style = "fill:none;stroke:"
+										+ series[ict].color
+										+ ";stroke-width:6;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-opacity:1;stroke-dasharray:none";
+								var pathNode = XmlUtil.find(xmlNode, "id",
+										"path");
+								XmlUtil.attr(pathNode, "d", stringData);
+								XmlUtil.attr(pathNode, "style", style);
+
+								// scale markers for yAxis Line
+								for (i in scalePixel) {
+									var childBefore = XmlUtil.find(xmlNode,
+											"id", "scale");
+									var pathNode = XmlUtil.find(xmlNode, "id",
+											"scaleMarker");
+									var clonePath = pathNode.cloneNode(true);
+									var pathNodeId = "m " + (x - 5) + ","
+											+ scalePixel[i] + " 3.317,0.01";
+									var subpathNode = XmlUtil.find(xmlNode,
+											"id", clonePath.id);
+									XmlUtil.attr(subpathNode, "d", pathNodeId);
+									childBefore.parentNode.insertBefore(
+											clonePath, childBefore);
+									XmlUtil.attr(pathNode, "id", "scale"
+											+ (i + 1));
+								}
+
+								// y axis Data (scale values)
+								for (i in scale) {
+									var childBefore = XmlUtil.find(xmlNode,
+											"id", "lastNode");
+									var pathNode = XmlUtil.find(xmlNode, "id",
+											"scale");
+									var clonePath = pathNode.cloneNode(true);
+									var pixel = scalePixel[i] + 3;
+									var yAxisScaleNode = XmlUtil.find(xmlNode,
+											"id", "yAxisScale");
+									XmlUtil.attr(yAxisScaleNode, "x", x - 30);
+									XmlUtil.attr(yAxisScaleNode, "y", pixel);
+									childBefore.parentNode.insertBefore(
+											clonePath, childBefore);
+									XmlUtil.text(yAxisScaleNode, scale[i]);
+								}
+								midPoint = (x + (x + verticalYValueSpace)) / 2;
+
+								// X axis Data
+								for (i in xAxisData) {
+									var childBefore = XmlUtil.find(xmlNode,
+											"id", "lastXscaleNode");
+									var pathNode = XmlUtil.find(xmlNode, "id",
+											"xScale");
+									var clonePath = pathNode.cloneNode(true);
+									var pixel = midPoint;
+									childBefore.parentNode.insertBefore(
+											clonePath, childBefore);
+									var xScaleNode = XmlUtil.find(xmlNode,
+											"id", "xData");
+									XmlUtil.text(xScaleNode, xAxisData[i]);
+									XmlUtil.attr(xScaleNode, "x", (pixel - 20));
+									XmlUtil.attr(xScaleNode, "y", (ymax + 20));
+									midPoint += verticalYValueSpace;
+								}
+								midPoint = (x + (x + verticalYValueSpace)) / 2;
+
+								// y values on path
+								for (i in xAxisData) {
+									var childBefore = XmlUtil.find(xmlNode,
+											"id", "lastXscaleNode");
+									var pathNode = XmlUtil.find(xmlNode, "id",
+											"plotingValue");
+									var clonePath = pathNode.cloneNode(true);
+									var pixel = midPoint;
+									childBefore.parentNode.insertBefore(
+											clonePath, childBefore);
+									var xScaleNode = XmlUtil.find(xmlNode,
+											"id", "plotValue");
+									XmlUtil.text(xScaleNode,
+											data.testData[ict].data[i]);
+									XmlUtil.attr(xScaleNode, "x",
+											(midPoint - 5));
+									XmlUtil.attr(xScaleNode, "y",
+											(plotData[i] - 10));
+									midPoint += verticalYValueSpace;
+								}
+
+								$('#chartxmldynamic1' + series[ict].title + '')
+										.html(XmlUtil.xmlToString(xmlNode));
+								var svgNode = XmlUtil
+										.findByName(xmlNode, "svg");
+								var gnode = XmlUtil.findByName(svgNode, "g",
+										true);
+								var node = XmlUtil.find(gnode, "id",
+										"transformId");
+								if (ict > 0) {
+									var transformNode = "translate(0," + temp
+											+ ")";
+									XmlUtil.attr(node, "transform",
+											transformNode);
+									temp += 350;
+								}
+								finalString += XmlUtil.xmlToString(gnode);
+							}
+							finalString += '</svg>';
+							$("#mainDivText").val(finalString);
+
+						}
+						;
+					});
+</script>
+
+</head>
+<body>
+	<div>
+		<div id="mainDiv"></div>
+	</div>
+	<textarea rows="500" cols="100" id="mainDivText" />
+</body>
+</html>
+
+

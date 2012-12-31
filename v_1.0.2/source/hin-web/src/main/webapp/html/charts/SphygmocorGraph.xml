@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1000" height="500" id="svgId">
+
+	<g stroke="black" stroke-width="2">
+		<g id="gId" transform="translate(50,35)" >
+
+			<!--   vertical lines	-->
+		   <line x1="0" y1="0" x2="0" y2="200" id="r1vl1"/>
+		   <line x1="100" y1="0" x2="100" y2="200"  style="stroke-width:4" id="r1vl2"/>
+		   <line x1="300" y1="0" x2="300" y2="200"  style="stroke-width:4" id="r1vl3"/>
+		   <line x1="400" y1="0" x2="400" y2="200" id="r1vl4"/>
+		   
+		   <!--    Horizontal Lines -->
+		   <text id="text5">
+				<tspan
+				   id="r1lowRange"
+				   sodipodi:role="line"
+				   y="-15"
+				   x="10" 
+				   style="font-size:15px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">
+				   Lower 5%
+				</tspan>
+          </text>
+		  
+		  <text id="text58">
+			<tspan
+			   id="r1midRange1"
+			   sodipodi:role="line"
+			   y="-24"
+			   x="150" 
+			   style="font-size:15px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">
+			   Reference Range
+			   </tspan>
+          </text>
+		  <text id="text580">
+			<tspan
+			   id="r1midRange2"
+			   sodipodi:role="line"
+			   y="-10"
+			   x="150"  
+			   style="font-size:15px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">
+			   (31 yr Female)
+			   </tspan>
+          </text>
+		  <text id="text5806">
+			<tspan
+			   id="r1highRange"
+			   sodipodi:role="line"
+			   y="-15"
+			   x="320" 
+			   style="font-size:15px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">
+			   Upper 5%
+			   </tspan>
+          </text>
+		   <line x1="0" y1="0" x2="400" y2="0" id="r1hl1"/>
+		   
+			<rect id="rect111" x="0" y="20" width="98" height="3" style="fill:#FFFF80;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			<rect id="rect112" x="102" y="20" width="98" height="3" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			<rect id="rect113" x="200" y="20" width="98" height="3" style="fill:#FFFF80;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			<rect id="rect114" x="302" y="20" width="98" height="3" style="fill:#FF0000;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 
+			<rect id="rect121" x="0" y="70" width="98" height="3" style="fill:#FFFF80;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			<rect id="rect122" x="102" y="70" width="98" height="3" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			<rect id="rect123" x="200" y="70" width="98" height="3" style="fill:#FFFF80;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			<rect id="rect124" x="302" y="70" width="98" height="3" style="fill:#FF0000;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			  
+			 <rect id="rect131" x="0" y="130" width="98" height="3" style="fill:#FFFF80;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 <rect id="rect132" x="102" y="130" width="98" height="3" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 <rect id="rect133" x="200" y="130" width="98" height="3" style="fill:#FFFF80;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 <rect id="rect134" x="302" y="130" width="98" height="3" style="fill:#FF0000;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 
+			 <rect id="rect141" x="0" y="180" width="98" height="3" style="fill:#FFFF80;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 <rect id="rect142" x="102" y="180" width="98" height="3" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 <rect id="rect143" x="200" y="180" width="98" height="3" style="fill:#FFFF80;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 <rect id="rect144" x="302" y="180" width="98" height="3" style="fill:#FF0000;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 
+			 <line x1="0" y1="200" x2="400" y2="200" id="r1hl2"/>
+			
+			<!--  RECT : change the value of x with the reading from textbox-->
+			 <rect id="rectSmall11" x="0" y="14" width="20" height="15" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 <rect id="rectSmall12" x="0" y="64" width="20" height="15" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 <rect id="rectSmall13" x="0" y="124" width="20" height="15" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 <rect id="rectSmall14" x="0" y="174" width="20" height="15" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+		 </g>
+		 
+		 
+		  <g id="gId" transform="translate(50,290)" >
+			 <!--  vertical lines	 -->
+			<text id="text5806">
+				<tspan
+				   id="month1"
+				   sodipodi:role="line"
+				   y="-15"
+				   x="10" style="font-size:15px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">
+				   Lower 5%
+				</tspan>
+	          </text>
+			  
+			  <text id="text5806">
+				<tspan
+				   id="month1"
+				   sodipodi:role="line"
+				   y="-24"
+				   x="150" style="font-size:15px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">
+				   Reference Range
+				</tspan>
+	          </text>
+			  <text id="text5806">
+				<tspan
+				   id="month1"
+				   sodipodi:role="line"
+				   y="-10"
+				   x="170" style="font-size:15px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">
+				   (75 bpm)
+				</tspan>
+	          </text>
+			  <text id="text5806">
+				<tspan
+				   id="month1"
+				   sodipodi:role="line"
+				   y="-15"
+				   x="320" style="font-size:15px;font-variant:normal;font-weight:bold;writing-mode:lr-tb;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Calibri;-inkscape-font-specification:Calibri">
+				   Upper 5%
+				 </tspan>
+	          </text>
+			  
+			   <line x1="0" y1="0" x2="0" y2="100"/>
+			   <line x1="100" y1="0" x2="100" y2="100"  style="stroke-width:4"/>
+			   <line x1="300" y1="0" x2="300" y2="100"  style="stroke-width:4"/>
+			   <line x1="400" y1="0" x2="400" y2="100" />
+			   
+			      <!-- Horizontal Lines -->
+			  <line x1="0" y1="0" x2="400" y2="0"/>
+			   
+			  <rect id="rect211" x="0" y="20" width="98" height="3" style="fill:#FFFF80;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			  <rect id="rect212" x="102" y="20" width="98" height="3" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			  <rect id="rect213" x="200" y="20" width="98" height="3" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			  <rect id="rect214" x="302" y="20" width="98" height="3" style="fill:#FF0000;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+				 
+			  <rect id="rect221" x="0" y="70" width="98" height="3" style="fill:#FF0000;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			  <rect id="rect222" x="102" y="70" width="98" height="3" style="fill:#FFFF80;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			  <rect id="rect223" x="200" y="70" width="98" height="3" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			  <rect id="rect224" x="302" y="70" width="98" height="3" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+				 
+			   <line x1="0" y1="100" x2="400" y2="100" />
+			
+				<!--  RECT : change the value of x with the reading from textbox -->
+				<rect id="rectSmall21" x="0" y="14" width="20" height="15" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+				<rect id="rectSmall22" x="0" y="64" width="20" height="15" style="fill:#3EBA1A;stroke:#808080;stroke-width:0.5; stroke-opacity:0.9"/>
+			 </g> 
+     </g> 
+</svg>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POXX_MT111000HT02_IMT">
+	<POXX_MT111000HT02_IMT>
+		<observation>
+			<id />
+			<code code="IMT Mean(Right)" displayName="IMT Mean(Right)"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="11"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="Plaque Present/Absent(Right)" displayName="Plaque Present/Absent(Right)"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="22"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="IMT Mean(Left)" displayName="IMT Mean(Left)"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="33"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="Plaque Present/Absent(Left)" displayName="Plaque Present/Absent(Left)"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="44"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="Risk Score" displayName="Risk Score"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="55"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="IMT Percentile" displayName="IMT Percentile"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="66"/>
+		</observation>
+		<subject>
+			<specimen>
+				<code />
+				<specimenMaterial>
+					<code />
+				</specimenMaterial>
+				<sourcePerson>
+					<id />
+				</sourcePerson>
+			</specimen>
+		</subject>
+		<recordTarget>
+			<patient>
+				<id />
+			</patient>
+		</recordTarget>
+		<author>
+			<employmentStaff>
+				<employeePerson>
+					<id />
+					<name />
+				</employeePerson>
+			</employmentStaff>
+		</author>
+	</POXX_MT111000HT02_IMT>
+</message>

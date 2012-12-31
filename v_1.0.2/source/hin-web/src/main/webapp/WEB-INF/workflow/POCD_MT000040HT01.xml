@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WorkFlowDefinition id="1" version="1.0">
+    <name>Patient history</name>
+  <start g="20,20,48,48">
+    <transition name="true" to="Save" />
+  </start>
+    <task name="Save" >
+       		 <privacy>
+					<Role></Role>
+        			<Location></Location>
+                    <OrgStructure></OrgStructure>
+   			 </privacy>
+   			 <Timer></Timer>
+      		 <transition name="Complete" to="Complete" />
+  	</task>				
+  	<task name="Complete" >
+  	</task>	
+ </WorkFlowDefinition>  

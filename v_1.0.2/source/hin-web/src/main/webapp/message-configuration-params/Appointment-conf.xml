@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config-generation
+	configFilePath="src/main/webapp/message-configuration/PRPA_MT410001HT02.xml"
+	rootClass="PRPA_MT410001HT02.EncounterAppointment" description="Appointment Message"
+	artifactId="PRPA_MT410001HT02">
+
+	<schema-set type="MESSAGE"
+		path="src/main/webapp/WEB-INF/htb/schemas/PRPA_MT410001HT02.xsd" />
+	<schema-set type="CORESCHEMA" path="src/main/webapp/WEB-INF/htb/coreschemas" />
+	<schema-set type="SCHEMAS" path="src/main/webapp/WEB-INF/htb/schemas" />
+
+	<!-- traverseChildWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- repeatCount="numeric(default 1)" -->
+	<!-- traverseMessageObjectChild="true(default)" -->
+	<!-- traverseHL7DataTypeChild="false(default)" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- considerChildrenWhen="MANDATORY(default)/ALWAYS/OPTIONAL" -->
+	<!-- traveseChildList="comma(,) seperated list" -->
+	<tree-node xpath="/" repeatCount="1" considerChildrenWhen="MANDATORY"
+		traverseChildWhen="MANDATORY" traverseMessageObjectChild="true"
+		traverseHL7DataTypeChild="false" />
+	<tree-node xpath="/effectiveTime/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/reasonCode/" considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/consultant/" considerChildrenWhen="ALWAYS"
+		traverseChildWhen="OPTIONAL" />
+	<tree-node xpath="/consultant/employmentStaff/" considerChildrenWhen="MANDATORY"
+	  	traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/consultant/employmentStaff/employeePerson/"  considerChildrenWhen="OPTIONAL"
+	  	traverseChildWhen="ALWAYS" />
+	<tree-node xpath="/consultant/employmentStaff/employeePerson/name/" considerChildrenWhen="MANDATORY" />
+	<tree-node xpath="/consultant/employmentStaff/employeePerson/telecom/" considerChildrenWhen="OPTIONAL" />
+	<tree-node xpath="/subject/patient/patientPerson/" />
+	<tree-node xpath="/subject/patient/patientPerson/id/"
+		considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/subject/patient/patientPerson/name/"
+		considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/subject/patient/patientPerson/telecom/"
+		considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/subject/patient/patientPerson/desc/"
+		considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/subject/patient/patientPerson/administrativeGenderCode/"
+		considerChildrenWhen="ALWAYS" />
+	<tree-node xpath="/subject/patient/patientPerson/birthTime/"
+		considerChildrenWhen="ALWAYS" />
+</config-generation>

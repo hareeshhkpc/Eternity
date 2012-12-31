@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">var HIN;
+
+if (!HIN)
+	HIN = {};
+<span id='HIN-HashMap'>/**
+</span> * HashMap that maps keys to values. Each key can map to at most one value.
+ */
+HIN.HashMap = function() {
+	this.maps = new Array();
+	this.index = 0;
+};
+
+<span id='HIN-HashMap-method-put'>/**
+</span> * Associates the specified value with the specified key in this map.
+ * 
+ * @param key :
+ *            Its a string value.
+ * @param value :
+ *            Its an type of object.
+ * @returns {void}
+ */
+HIN.HashMap.prototype.put = function(key, value) {
+	var map = new Object();
+	map.key = key;
+	map.value = value;
+	this.maps[this.index++] = map;
+};
+
+<span id='HIN-HashMap-method-get'>/**
+</span> * Returns the object to which the specified key is mapped in this identity hash
+ * map, or null if the map contains no mapping for this key.
+ * 
+ * @param key :
+ *            Its a string value.
+ * @returns {Object}
+ */
+HIN.HashMap.prototype.get = function(key) {
+	for (i = 0; i &lt; this.maps.length; i++) {
+		var map = this.maps[i];
+		if (map != null &amp;&amp; map.key == key)
+			return map;
+	}
+	return null;
+};
+
+<span id='HIN-HashMap-method-getItem'>/**
+</span> * Returns the value to which the specified key is mapped in this identity hash
+ * map, or null if the map contains no mapping for this key.
+ * 
+ * @param key :
+ *            Its a string value.
+ * @returns {Object}
+ */
+HIN.HashMap.prototype.getItem = function(key) {
+	for (i = 0; i &lt; this.maps.length; i++) {
+		var map = this.maps[i];
+		if (map != null &amp;&amp; map.key == key)
+			return map.value;
+	}
+	return null;
+};
+
+<span id='HIN-HashMap-method-length'>/**
+</span> * Returns the number of key-value mappings in this map.
+ * 
+ * @returns {Integer}
+ */
+HIN.HashMap.prototype.length = function() {
+	return this.maps.length;
+};
+
+HIN.HashMap.prototype.getItemAt = function(i) {
+	return this.maps[i];
+};
+
+HIN.HashMap.prototype.itemSelectionChanged = function(key, value) {
+	var map = this.get(key);
+	if (map != null) {
+		map.value = value;
+	} else {
+		this.put(key, value);
+	}
+};
+HIN.HashMap.prototype.getSelectedItems = function() {
+	var items = &quot;&quot;;
+	if (this.maps == null || this.maps.length == 0)
+		return items
+
+	for (i = 0; i &lt; this.maps.length; i++) {
+		var map = this.maps[i];
+		if (map != null &amp;&amp; map.value == true) {
+			items = items.concat(map.key).concat(&quot;,&quot;);
+		}
+	}
+	if (items.lastIndexOf(&quot;,&quot;) &gt; -1) {
+		items = items.substring(0, items.length - 1);
+	}
+	return items;
+};
+
+HIN.HashMap.prototype.clearItems = function() {
+	if (this.maps != null &amp;&amp; this.maps.length &gt; 0) {
+		this.maps.splice(0, this.maps.length);
+		this.index = 0;
+	}
+};
+
+HIN.HashMap.prototype.removeItem = function(key) {
+	for ( var i = 0; i &lt; this.maps.length; i++) {
+		var map = this.maps[i];
+		if (map != null &amp;&amp; map.key == key) {
+			map.key = -1;
+			// alert(map.key + &quot;==&quot; + key);
+			this.maps.splice(i, 1);
+			return true;
+		}
+	}
+	return false;
+};</pre>
+</body>
+</html>

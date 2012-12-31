@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="../template.xhtml">
+	<ui:define name="leftnav">
+		<h:form>
+			<rich:panelMenu style="width:170px" itemMode="ajax" groupMode="ajax"
+				groupExpandedLeftIcon="triangleUp"
+				groupCollapsedLeftIcon="triangleDown"
+				topGroupExpandedRightIcon="chevronUp"
+				topGroupCollapsedRightIcon="chevronDown" itemLeftIcon="grid">
+				<rich:panelMenuGroup label="#{msg['left.categories.title']}">
+					<p>
+						<ul type="disc">
+							<li><h:commandLink action="concepts"
+									value="#{msg['left.categories.concept.list']}">
+								</h:commandLink>
+							</li>
+
+							<li><h:commandLink action="#{conceptClassBean.moveto}">
+									<h:outputText value="#{msg['left.categories.concept.class']}" />
+								</h:commandLink>
+							</li>
+
+							<li><h:commandLink action="viewconceptsource">
+									<h:outputText value="#{msg['left.categories.concept.sources']}" />
+								</h:commandLink>
+							</li>
+
+							<li><h:commandLink action="#{conceptLocaleBean.navigateTo}">
+									<h:outputText value="#{msg['left.categories.concept.locale']}" />
+								</h:commandLink>
+							</li>
+
+
+							<li><h:commandLink action="#{conceptBean.addConceptSynonym}">
+									<h:outputText
+										value="#{msg['left.categories.concept.synonyms']}" />
+								</h:commandLink>
+							</li>
+
+							<li><h:commandLink action="#{unitBean.loadUnits}">
+									<h:outputText value="#{msg['left.categories.concept.unit']}" />
+								</h:commandLink>
+							</li>
+						</ul>
+					</p>
+				</rich:panelMenuGroup>
+				<rich:panelMenuGroup label="#{msg['left.categories.title.process']}">
+					<p>
+						<ul type="disc">
+							<li><h:commandLink action="processdefinitionlist">
+									<h:outputText
+										value="#{msg['left.categories.process.processDefinitions']}" />
+								</h:commandLink>
+							</li>
+							<li><h:commandLink action="processInstances">
+									<h:outputText
+										value="#{msg['left.categories.process.processInstances']}" />
+								</h:commandLink>
+							</li>
+						</ul>
+					</p>
+				</rich:panelMenuGroup>
+				<rich:panelMenuGroup label="#{msg['left.categories.title.synchronize']}">
+					<p>
+						<ul type="disc">
+							<li><h:commandLink action="#{syncBean.viewSync}">
+									<h:outputText
+										value="#{msg['left.categories.synchronize.synchronize']}" />
+								</h:commandLink>
+							</li>
+						</ul>
+					</p>
+				</rich:panelMenuGroup>
+				<rich:panelMenuGroup label="#{msg['left.categories.title.import']}">
+					<p>
+						<ul type="disc">
+							<li><h:commandLink action="importconcept">
+									<h:outputText
+										value="#{msg['left.categories.import.importConcept']}" />
+								</h:commandLink>
+							</li>
+							<li><h:commandLink action="importprocess">
+									<h:outputText
+										value="#{msg['left.categories.import.importProcess']}" />
+								</h:commandLink>
+							</li>
+						</ul>
+					</p>
+				</rich:panelMenuGroup>
+				<rich:panelMenuGroup label="Update">
+					<p>
+						<ul type="disc">
+							<li><h:commandLink action="updateattribute">
+									<h:outputText
+										value="Update Attribute" />
+								</h:commandLink>
+							</li>
+						</ul>
+					</p>
+				</rich:panelMenuGroup>
+				<rich:panelMenuGroup label="Cassandra">
+					<p>
+					<ul type="disc">
+						<li><h:commandLink action="cassandradata">
+							<h:outputText value="Patient Data Browser" />
+						</h:commandLink></li>
+					</ul>
+					</p>
+				</rich:panelMenuGroup>
+				<!-- <rich:panelMenuGroup label="#{msg['left.categories.title.lucene']}">
+					<p>
+						<ul type="disc">
+							<li><h:commandLink action="luceneMessageTypes">
+									<h:outputText
+										value="#{msg['left.categories.lucene.messageType']}" />
+								</h:commandLink>
+							</li>
+						</ul>
+					</p>
+				</rich:panelMenuGroup> -->
+				<rich:panelMenuGroup label="#{msg['left.categories.title.messageConfiguration']}">
+					<p>
+						<ul type="disc">
+							<li><h:commandLink action="#{messageConfigurationBean.viewMessageTypes}">
+									<h:outputText
+										value="#{msg['left.categories.messageConfiguration.messageType']}" />
+								</h:commandLink>
+							</li>
+						</ul>
+					</p>
+				</rich:panelMenuGroup>
+			</rich:panelMenu>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,272 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Eternity: Login</title>
+
+<!-- link rel="stylesheet" href="css/common.css" /-->
+<link rel="stylesheet" href="js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="css/hin.css" />
+<link rel="stylesheet" href="css/violet.css" />
+<link rel="stylesheet" href="css/mobile.css" />
+
+<script src="js/jquery-1.6.4.min.js"></script>
+<script src="js/jquery.json-2.3.js"></script>
+<script src="js/jquery.mobile-1.0.1.min.js"></script>
+
+<script src="js/hl7adapter.js"></script>
+
+<script>
+	$(document).ready(function(){
+		//alert("ready")
+		$('#loadForm').click(function(){
+			loadForm('message-configuration/POXX_MT111000HT02.xml');
+		});
+		
+		$('#createMsg').click(function(){
+			createMessage_POXX_MT111000HT02();
+		});
+		
+		$('#readMsg').click(function(){
+			readMsg_POXX_MT111000HT02();
+		});
+		
+	});
+	
+	var config = null, msg = null;
+	
+	function createMessage_POXX_MT111000HT02(){
+		var msg = config.createMessage();
+		 alert("Message: " + msg);
+		 
+		 var obj = msg.createObject('POXX_MT111000HT02');
+		 obj.setValue("id", "123");
+		 alert("ID: " + obj);
+		 
+		 //consultant
+		 var consultant = obj.createObject('consultant');
+		 //employmentStaff
+		 var employmentStaff = consultant.createObject('employmentStaff');
+		 employmentStaff.setValue("id", "HIN-1000001");
+		 alert("ID: " + employmentStaff);
+		 
+		 alert("Message xml: " + msg.getXML());
+		 
+		 putMessage("SMOTest_load3", msg.getXML(),null, null);
+		
+		/* putMessage("SMOTest_load3", msg.getXML());
+		msg = updateMessage(config, null, '/message/POXX_MT111000HT02/recordTarget/patient/id[1]', 'MRN-100001');
+		msg = updateMessage(config, msg, '/message/POXX_MT111000HT02/subject/specimen/sourcePerson/id[1]', 'HIN-99988');
+	
+		putMessage("SMOTest_load3", msg.getXML()); */
+	}
+	function readMsg_POXX_MT111000HT02(){
+		getMessageDocument("message-skeleton/POXX_MT111000HT02.xml",function(msgObj){
+			/* var obj = msg.findObject("/message/PRPA_MT410001HT02")[0]; 
+			putMessage("SMOTest_load3", msg.getXML());
+			obj = obj.findObject("consultant")[0]; 
+			obj = obj.findObject("employmentStaff")[0]; 
+			
+	        alert(obj.getValue("id")); */
+	        
+	        msg = msgObj;
+	        putMessage("SMOTest_load3", msg.getXML());
+		}, function(){
+			alert("Load failed");
+		})
+	}
+	
+	function loadForm(id){
+		getMessage(id, 
+		function(configData){
+			alert("Loaded");
+			
+			 var doc = new ConfigDocument(configData)
+	         var result = 0;
+	         result = doc.getArtifactId();
+	         //alert(result);
+	         
+	         config = doc;
+		},
+		function(){
+			alert("Failed");
+		});
+	}
+	
+	
+	/**
+	* Update / create a message using HL7Adaptor API.
+	* config - The configuration object that is created by loading the Message Configuration
+	* messageObject - SMOMessage if the message is already created, null otherwise
+	* xpath - XML Xpath to access the node in the message (will create the nodes if they do not exist)
+	* nodeString - Value to be updated in the Xpath
+	*/
+	function updateMessage(config, messageObject, xpath, nodeString){
+		
+		// Create message is it is not existing
+		if(!messageObject || messageObject === null){
+			messageObject = config.createMessage();
+		} else {
+			//alert("Message exists");
+		}
+		
+		var obj = messageObject.findObject(xpath);
+		
+		//alert("Before: " + obj + ", Type: " + typeof(obj) + ", Message Object: " + messageObject);
+		if(!obj || obj.length < 1){
+			paths = xpath.split('/');
+			
+			//alert("Paths: " + paths);
+			
+			var x = '/message/' + paths[2];
+			//alert("Root Path: " + x);
+			
+			obj = messageObject.findObject(x)[0];
+			if(!obj || obj.length < 1){
+				obj = messageObject.createObject(paths[2]);
+				//alert("Root created: " + obj);
+			} else {
+				//alert("Root existing: " + obj);
+			}
+			
+			var wxpath = x, i = 3;
+			
+			if(paths.length > 3){
+				for(; i < paths.length; i++){
+					path = paths[i].indexOf('[');
+					index = 1;
+					if(path > -1){
+						xp = paths[i].substring(0, path);
+						index = paths[i].substring(path);
+						index = index.substring(1, index.length - 1);
+						path = xp;
+						//alert("Index: " + index + ", Path: " + path);
+					}
+					else {
+						path = paths[i];
+						//alert("Path : " + path + ", i = " + i);
+					}
+					for(j = 1; j <= index; j++){
+						cxpath = wxpath + '/' + path + '[' + j + ']';
+						//alert("Curr Xpath: " + cxpath);
+						iobj = messageObject.findObject(cxpath);
+						//alert("Found: " + iobj.length + ", exitsting: " + obj);
+						if(!iobj || iobj.length < 1){
+							//alert("Should create new: " + path + ", Path len: " + paths.length + ", i: " + i);
+							
+							if(((i + 1) === paths.length) && (j === index)){
+								obj.setValue(path, nodeString);
+							} else {
+								iobj = obj.createObject(path);
+								//alert("Created: " + iobj);
+							}
+							
+							if((i + 1) < paths.length){
+								obj = iobj;
+							}
+							
+						}
+						else {
+							iobj[0].setValue(path, nodeString);
+						}
+						if(j === index){
+							wxpath += '/' + path + '[' + j + ']';
+						}
+					}
+				}
+			}
+		} else {
+			obj.setValue(path, nodeString);
+		}
+		//alert("After: " + messageObject.getXML());
+		return messageObject;
+	}
+	
+	function readMsg(){
+		getMessageDocument("app-msg.xml",function(msg){
+			var obj = msg.findObject("/message/PRPA_MT410001HT02")[0]; 
+			putMessage("SMOTest_load3", msg.getXML());
+			obj = obj.findObject("consultant")[0]; 
+			obj = obj.findObject("employmentStaff")[0]; 
+			
+	        alert(obj.getValue("id"));
+		}, function(){
+			alert("Load failed");
+		})
+	}
+	
+	function addMoreID(){
+		msg = updateMessage(config, msg, '/message/PRPA_MT410001HT02/consultant[1]/employmentStaff/id[2]', '222222222222222222222');
+	}
+	
+	function createMessage(){
+		
+		msg = updateMessage(config, null, '/message/PRPA_MT410001HT02/id[1]', 'Hello World');
+		msg = updateMessage(config, msg, '/message/PRPA_MT410001HT02/effectiveTime', '2343434545454545');
+		msg = updateMessage(config, msg, '/message/PRPA_MT410001HT02/consultant[1]/employmentStaff/id[1]', '111111111111111111111');
+		msg = updateMessage(config, msg, '/message/PRPA_MT410001HT02/consultant[1]/employmentStaff/id[1]', '111111111111111111111');
+
+		putMessage("SMOTest_load3", msg.getXML());
+		
+		 /* var msg = config.createMessage();
+		 alert("Message: " + msg);
+		 
+		 var obj = msg.createObject('PRPA_MT410001HT02');
+		 obj.setValue("id", "123");
+		 alert("ID: " + obj);
+		 
+		 //consultant
+		 var consultant = obj.createObject('consultant');
+		 //employmentStaff
+		 var employmentStaff = consultant.createObject('employmentStaff');
+		 employmentStaff.setValue("id", "HIN-1000001");
+		 alert("ID: " + employmentStaff);
+		 
+		 alert("Message xml: " + msg.getXML());
+		 
+		 putMessage("SMOTest_load3", msg.getXML(),
+			function(){
+			
+		 	},
+		 	function(){
+		 		
+		 	}); */
+	}
+</script>
+</head>
+<body>
+	<div id="main" data-role="page" class="ui-corner-all ui-shadow-inset"
+		data-theme="d">
+		<div data-role="header" data-theme="v" data-backBtn="true"
+			class="header_bg" id="header" style="display: none">
+			<fieldset class="ui-header-text ui-grid-b">
+				<div class="ui-header-left-text ui-block-a" id="leftHeader"></div>
+				<div class="ui-header-left-text ui-block-b" id="mainHeader"></div>
+				<div class="ui-header-right-text ui-block-c" id="logout"
+					style="width: 30%;">Logout</div>
+			</fieldset>
+		</div>
+		<div data-role="none" data-theme="v" id="navigationHeader">
+			<fieldset class="ui-form-header ui-grid-a">
+				<div class="ui-block-a">
+					<div class="form-header-name" id="formName">
+					
+					</div>
+				</div>
+				<div class="ui-block-b" id="navigation"></div>
+			</fieldset>
+		</div>
+
+		<div id="template">		
+			<button id="loadForm">Load Appointment Form</button>
+			<button id="createMsg">Save Appointment Message</button>
+			<button id="readMsg">Read Appointment Message</button>
+		</div>
+
+		<div data-role="footer" class="footer-docs" data-theme="c">
+			<p>&copy; 2012 The Eternity Project</p>
+		</div>
+	</div>
+</body>
+</html>

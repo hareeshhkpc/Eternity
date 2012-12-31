@@ -1,0 +1,54 @@
+
+<html>
+<head>
+<title> XML/JSON - Tests </title>
+<script type="text/javascript" src="script/xml2json.js"></script>
+<script type="text/javascript" src="script/json2xml.js"></script>
+<script type="text/javascript">
+
+var xml=[
+      '<e><a>text</a><b>text</b></e>',"<m><name>schalk</name><surname>heunis</surname></m>"
+   ];
+
+function parseXml(xml) {
+   var dom = null;
+   if (window.DOMParser) {
+      try { 
+         dom = (new DOMParser()).parseFromString(xml, "text/xml"); 
+      } 
+      catch (e) { dom = null; }
+   }
+   else if (window.ActiveXObject) {
+      try {
+         dom = new ActiveXObject('Microsoft.XMLDOM');
+         dom.async = false;
+         if (!dom.loadXML(xml)) // parse error ..
+            window.alert(dom.parseError.reason + dom.parseError.srcText);
+      } 
+      catch (e) { dom = null; }
+   }
+   else
+      alert("oops");
+   return dom;
+}
+
+window.onload = function() {
+   var json;
+   eval('a = {"e":null}');
+   for (var i=0; i<xml.length; i++) {
+      show(xml[i] + "\n\n" + 
+           (json = xml2json(parseXml(xml[i]), "  ")) + "\n\n" +
+           json2xml(eval('json='+json)));
+   }
+}
+
+function show(s) { document.getElementById("out").innerHTML += (s+"\n").replace(/&/g, "&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g, "<br/>") + "<hr/>"; }
+
+</script>
+</head>
+
+<body>
+<pre id="out"></pre>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="COCT_MT150000HT04">
+	<COCT_MT150000HT04>
+		<id root="a12-bsd-23h-op1"/>
+		<name >World Health Organization</name>
+		<desc/>
+		<telecom use="0802345455"/>
+		<addr >
+			 <country>India</country>
+			<state>Karnataka</state>
+			<city>bangalore</city>
+			<houseNumber>#29</houseNumber>
+			<streetName>1st main,1st cross</streetName>
+			<postalCode>560034</postalCode>		    
+		  </addr>
+		<contactParty>
+			<telecom use="0802345455"></telecom>
+			<contactPerson>
+				<name use="R">
+				     <prefix>Mr</prefix>
+				     <given>Ram </given>
+				     <family>Jethmalani</family>
+				     <suffix></suffix>
+				 </name>
+				<telecom use="0802345455"/>
+				<asPersonDomain>
+					<id root="a12-bsd-23h-op1"/>
+					<code displayName="232344"/>
+				</asPersonDomain>
+			</contactPerson>
+		</contactParty>
+	</COCT_MT150000HT04>
+</message>

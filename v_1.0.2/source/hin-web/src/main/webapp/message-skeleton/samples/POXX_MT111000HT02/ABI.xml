@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POXX_MT111000HT02_ABI">
+	<POXX_MT111000HT02_ABI>
+		<observation>
+			<id />
+			<code code="Pressure" displayName="Pressure"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="60"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="Pressure" displayName="Pressure"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="10"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="Right ABI" displayName="Right ABI"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="0.17"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="Pressure" displayName="Pressure"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="50"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="Pressure" displayName="Pressure"/>
+			<effectiveTime />
+			<value value="50"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="left ABI" displayName="left ABI"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="1"/>
+		</observation>
+		
+		
+		<subject>
+			<specimen>
+				<code />
+				<specimenMaterial>
+					<code />
+				</specimenMaterial>
+				<sourcePerson>
+					<id />
+				</sourcePerson>
+			</specimen>
+		</subject>
+		<recordTarget>
+			<patient>
+				<id />
+			</patient>
+		</recordTarget>
+		<author>
+			<employmentStaff>
+				<employeePerson>
+					<id />
+					<name />
+				</employeePerson>
+			</employmentStaff>
+		</author>
+	</POXX_MT111000HT02_ABI>
+</message>

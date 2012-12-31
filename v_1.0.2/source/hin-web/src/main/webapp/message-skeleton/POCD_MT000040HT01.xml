@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POCD_MT000040HT01">
+	<POCD_MT000040HT01>
+		<id />
+		<code />
+		<title />
+		<effectiveTime />
+		<confidentialityCode />
+		<recordTarget>
+			<patientRole>
+				<id />
+			</patientRole>
+		</recordTarget>
+		<author>
+			<time />
+			<assignedAuthor>
+				<id />
+			</assignedAuthor>
+		</author>
+		<custodian>
+			<assignedCustodian>
+				<representedCustodianOrganization>
+					<id />
+				</representedCustodianOrganization>
+			</assignedCustodian>
+		</custodian>
+		<component>
+			<structuredBody>
+				<component>
+					<section>
+						<entry>
+							<observation>
+								<code />
+							</observation>
+						</entry>
+					</section>
+				</component>
+			</structuredBody>
+		</component>
+	</POCD_MT000040HT01>
+</message>

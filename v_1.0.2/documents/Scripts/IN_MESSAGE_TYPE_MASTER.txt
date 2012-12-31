@@ -1,0 +1,48 @@
+use MessageKS;
+create column family IN_MESSAGE_TYPE_MASTER
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: DESCRIPTION, validation_class: UTF8Type},
+	];
+	
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM440001']['DESCRIPTION']='Admit Request';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM460001']['DESCRIPTION']='Bed Status Observation Event';
+	set IN_MESSAGE_TYPE_MASTER['POCD_RM000040']['DESCRIPTION']='CDA Document';
+	set IN_MESSAGE_TYPE_MASTER['POCD_RM000002']['DESCRIPTION']='Clinical Document Message';
+	set IN_MESSAGE_TYPE_MASTER['PORT_RM030001']['DESCRIPTION']='Clinical Trial Laboratory Observation Periodic Report';
+	set IN_MESSAGE_TYPE_MASTER['POPR_RM930000']['DESCRIPTION']='Condition Problem';
+	set IN_MESSAGE_TYPE_MASTER['FIAB_RM020000']['DESCRIPTION']='Detailed Financial Transaction';
+	set IN_MESSAGE_TYPE_MASTER['POXX_RM112000']['DESCRIPTION']='Diagnostic Report Observation Event';
+	set IN_MESSAGE_TYPE_MASTER['PODI_RM941000']['DESCRIPTION']='Diet Request';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM450001']['DESCRIPTION']='Discharge Request';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM410001']['DESCRIPTION']='Encounter Appointment';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM400001']['DESCRIPTION']='Encounter Event';
+	set IN_MESSAGE_TYPE_MASTER['PORR_RM040001']['DESCRIPTION']='Individual Case Safety Report';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM470001']['DESCRIPTION']='Intolerance Observation Event';
+	set IN_MESSAGE_TYPE_MASTER['POSA_RM940100']['DESCRIPTION']='Medication Supply Event';
+	set IN_MESSAGE_TYPE_MASTER['PORR_RM100001']['DESCRIPTION']='Notifiable Condition (Case Report)';
+	set IN_MESSAGE_TYPE_MASTER['POXX_RM110000']['DESCRIPTION']='Observation Event';
+	set IN_MESSAGE_TYPE_MASTER['POXX_RM120000']['DESCRIPTION']='Observation Order';
+	set IN_MESSAGE_TYPE_MASTER['REPC_RM002000']['DESCRIPTION']='Patient Referral Request';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM203000']['DESCRIPTION']='Person Merge';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM201000']['DESCRIPTION']='Person Registry';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM204000']['DESCRIPTION']='Person Unmerge';
+	set IN_MESSAGE_TYPE_MASTER['POXX_RM130000']['DESCRIPTION']='Procedure Order';
+	set IN_MESSAGE_TYPE_MASTER['POLB_RM004000']['DESCRIPTION']='Result Event';
+	set IN_MESSAGE_TYPE_MASTER['POXX_RM111000']['DESCRIPTION']='Specimen Observation Event';
+	set IN_MESSAGE_TYPE_MASTER['POXX_RM121000']['DESCRIPTION']='Specimen Observation Order';
+	set IN_MESSAGE_TYPE_MASTER['MFPM_RM010000']['DESCRIPTION']='Staff Registry';
+	set IN_MESSAGE_TYPE_MASTER['POSA_RM920100']['DESCRIPTION']='Substance Administration Event';
+	set IN_MESSAGE_TYPE_MASTER['POSA_RM920000']['DESCRIPTION']='Substance Administration Order';
+	set IN_MESSAGE_TYPE_MASTER['POSP_RM940000']['DESCRIPTION']='Supply Request';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_RM302001']['DESCRIPTION']='Transfer Request';
+	set IN_MESSAGE_TYPE_MASTER['POSA_IN000001']['DESCRIPTION']='Substance Administration Order';
+	set IN_MESSAGE_TYPE_MASTER['POXX_IN121001']['DESCRIPTION']='Specimen Observation Order';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_IN000001']['DESCRIPTION']='Registration';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_IN400000']['DESCRIPTION']='Encounter';
+	set IN_MESSAGE_TYPE_MASTER['PRPA_IN410001']['DESCRIPTION']='Encounter Appointment';
+	set IN_MESSAGE_TYPE_MASTER['COCT_MT150000']['DESCRIPTION']='Organization';
+	set IN_MESSAGE_TYPE_MASTER['POXX_IN120001']['DESCRIPTION']='Observation Order';
+	

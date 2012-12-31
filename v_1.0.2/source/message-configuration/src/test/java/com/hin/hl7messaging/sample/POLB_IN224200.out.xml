@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<id _i="id1349" _u="required" _mn="1" _mx="1"/>
+<creationTime _i="id1350" _u="required" _mn="1" _mx="1"/>
+<securityText _i="id1351" _u="optional" _mn="0" _mx="1"/>
+<versionCode _i="id1352" _u="optional" _mn="0" _mx="1"/>
+<interactionId _i="id1353" _u="required" _mn="1" _mx="1"/>
+<profileId _i="id1354" _u="optional" _mn="0" _mx="unbounded"/>
+<processingCode _i="id1355" _u="required" _mn="1" _mx="1"/>
+<processingModeCode _i="id1356" _u="required" _mn="1" _mx="1"/>
+<acceptAckCode _i="id1357" _u="required" _mn="1" _mx="1"/>
+<sequenceNumber _i="id1358" _u="optional" _mn="0" _mx="1"/>
+<attachmentText _i="id1359" _u="optional" _mn="0" _mx="unbounded"/>

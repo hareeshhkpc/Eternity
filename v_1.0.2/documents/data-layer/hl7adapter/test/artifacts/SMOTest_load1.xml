@@ -1,0 +1,7 @@
+<registrationEvent id="1" code="CD">
+	<subject>
+		<subsumedBy id="2" statusCode="CD">
+			<subsumingPerson></subsumingPerson>
+		</subsumedBy>
+	</subject>
+</registrationEvent>

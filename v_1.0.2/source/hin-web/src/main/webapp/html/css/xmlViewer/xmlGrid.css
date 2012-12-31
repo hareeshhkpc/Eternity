@@ -1,0 +1,158 @@
+/* 
+style0{
+border-width: 0px;}
+
+style0 table{
+  border-bottom: 0px solid black;
+  border-top: 0px solid black;
+  border-left: 0px solid black;
+  border-right: 0px solid black;
+  border-spacing: 0px;
+  font-sizes: 11px;
+  white-space:nowrap;
+  margin: 2px;
+}
+
+style0 table  tr th{
+  border-bottom: 0px;
+  border-top: 0px;
+  text-align: right;
+  padding: 1px 2px 1px 8px;
+}
+
+style0 table tr td {
+  border-width: 0px;
+  padding: 3px 5px 1px 5px;
+}
+
+
+
+style1 table tr {
+  color: black;
+}
+style1 table tr td {
+  border-left: 1px solid black;
+  padding: 1px 5px 1px 5px;
+  font-sizes: .8em;
+}
+
+style1 table tr td, tdh{
+   border-bottom: 1px solid black;
+  font-sizes: .8em;
+//  padding: 2px;
+}
+
+style1 table{
+  border: 1px solid black;
+  border-spacing: 0px;
+  font-sizes: .8em;
+  white-space:nowrap;
+}
+
+style1 table thead tr{
+}
+
+style1 table thead tr th{
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  margin: 0px;
+  padding: 1px 5px 1px 5px;
+  background-color: #cccccc;
+  text-align: left;
+  font-weight:bold;
+}
+style1 table  tr th{
+  border-bottom: 0px;
+  border-top: 0px;
+  text-align: right;
+  padding: 1px 2px 1px 18px;
+  font-sizes: 10px;
+}
+
+style1 table  tr tdh{
+  border-bottom: 1px;
+  border-top: 0px;
+  text-align: right;
+  padding: 1px 3px 1px 20px;
+  font-sizes: 9px;
+}
+
+style1 table tr {
+  color: #292325;
+}
+style1 table tr td {
+  border-left: 1px solid black;
+  padding: 1px 5px 1px 5px;
+  font-sizes: 11px;
+}
+
+style1 table tr td, tdh{
+   border-bottom: 1px solid  #292325;
+  font-sizes: 11px;
+}
+style1 table tr td header{
+   border-bottom:2px solid  #292325;
+  font-sizes: 12px;
+}
+
+style2 table{
+  border: 1px solid black;
+  border-spacing: 0px;
+   white-space:nowrap;
+}
+
+style2 table thead tr{
+}
+
+style2 table thead tr th{
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  margin: 0px;
+  padding: 1px 5px 1px 5px;
+  background-color: #cccccc;
+  text-align: left;
+  font-weight:bold;
+}
+style2 table  tr th{
+  border-bottom: 0px;
+  border-top: 0px;
+  text-align: right;
+  padding: 1px 2px 1px 18px;
+  font-sizes: 10px;
+}
+
+style2 table tr {
+  color: black;
+}
+
+style2 table tr td {
+  border-left: 0px solid black;
+  border-right: 1px solid black;
+  border-top: 0px solid black;
+  border-bottom: 1px solid black;
+  padding: 4px 5px 4px 5px;
+  font-sizes: 11px;
+}
+
+.headCell {
+  font-weight:bold;
+  background-color: #cccccc;
+  font-sizes: 11px;
+}
+
+.editableCell {
+  border-left: 1px solid blue;
+  border-right: 1px solid blue;
+  border-top: 1px solid blue;
+  border-bottom: 1px solid blue;
+  font-sizes: 11px;
+}
+
+
+
+
+ */

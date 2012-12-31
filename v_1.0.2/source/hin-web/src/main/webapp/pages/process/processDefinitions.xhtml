@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<a4j:jsFunction name="chooseProcess" execute="processAuto"
+				action="#{processDefBean.selectedProcess}" render="processDef" />
+			<rich:toolbar height="26" itemSeparator="grid">
+				<rich:toolbarGroup>
+					<h:commandLink action="#{processDefBean.addProcessDefinition}">
+						<h:panelGrid columns="2">
+							<img src="../../html/images/page_white_add.png" alt="New"
+								title="New" />
+							<h:column>Process</h:column>
+						</h:panelGrid>
+					</h:commandLink>
+				</rich:toolbarGroup>
+				<rich:toolbarGroup location="right">
+					<h:outputText value="Search:" />
+					<rich:autocomplete id="processAuto"
+						value="#{processDefBean.selectedProcess}" mode="ajax"
+						layout="table" var="var" fetchValue="#{var.processName}"
+						autocompleteMethod="#{processDefBean.processList}"
+						onselectitem="chooseProcess()"
+						autoFill="false" selectFirst="false">
+						<rich:column>
+							<h:outputText value="#{var.processName}" />
+						</rich:column>
+						<a4j:ajax event="change" />
+					</rich:autocomplete>
+				</rich:toolbarGroup>
+			</rich:toolbar>
+			<br />
+			<rich:dataTable id="processDef" style="width:700px"
+				value="#{processDefBean.process}" var="process" rows="10"
+				rowClasses="odd-row, even-row" rowClass="row" styleClass="stable">
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Process Name" />
+					</f:facet>
+					<h:outputText value="#{process.processName}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Status" />
+					</f:facet>
+					<center>
+						<h:graphicImage id="image1"
+							value="../../html/images/action_check.gif" alt="active"
+							title="active" rendered="#{process.status eq 'ACTIVE'}" />
+						<h:graphicImage id="image2" value="../../html/images/cross.png"
+							alt="active" title="inactive"
+							rendered="#{process.status ne 'ACTIVE'}" />
+					</center>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Action" />
+					</f:facet>
+					<center>
+						<h:commandButton id="editlink"
+							image="../../html/images/iconedit.gif"
+							action="#{processDefBean.viewProcessDefinition}" value="Edit "
+							alt="Edit" title="Edit">
+							<f:setPropertyActionListener
+								target="#{processDefBean.processName}"
+								value="#{process.processName}" />
+						</h:commandButton>
+					</center>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Action" />
+					</f:facet>
+					<center>
+						<h:commandButton id="removeProcess" reRender="processDef"
+							image="../../html/images/icondelete.gif" alt="delete"
+							title="delete" action="#{processDefBean.removeProcessDefinition}"
+							value="Delete "
+							onclick="return confirm('Are you sure that you want to delete this Process #{process.processName}');" >
+							<f:setPropertyActionListener
+								target="#{processDefBean.processName}"
+								value="#{process.processName}" />
+						</h:commandButton>
+					</center>
+				</rich:column>
+				<br />
+				<f:facet name="footer">
+					<rich:dataScroller for="processDef" align="right"
+						renderIfSinglePage="false" fastStep="5" fastControls="auto"
+						render="id3 id4" />
+				</f:facet>
+			</rich:dataTable>
+		</h:form>
+		<rich:jQuery id="id3" selector=".stable tr.row" event="mouseover"
+			query="jQuery(this).addClass('active-row')" />
+		<rich:jQuery id="id4" selector=".stable tr.row" event="mouseout"
+			query="jQuery(this).removeClass('active-row')" />
+	</ui:define>
+</ui:composition>
+</html>
+
+
+
+
+

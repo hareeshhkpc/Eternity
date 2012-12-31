@@ -1,0 +1,54 @@
+<HL7MessageConfiguration configType="MESSAGE">
+  <MetaInfo artifactID="ROLE_RIGHTS" createdDate="2012-12-04 13:51:02.889 UTC" entryPoint="COCT_MT410002HT03.EmploymentStaff" description="Role rights message" configType="META_INFO"/>
+  <IndexConfiguration indexName="ROLE_RIGHTS_Index">
+    <Field name="messageId" indexed="true" xpath="//ROLE_RIGHTS/id[root='HIN_MSG_ID']/extension" analyzed="false" dataType="STRING"/>
+    <Field name="documentId" indexed="true" xpath="//ROLE_RIGHTS/id[root='HIN_DOC_ID']/extension" dataType="STRING"/>
+    <Field name="subscriberId" indexed="true" xpath="//ROLE_RIGHTS/id[root='SUBSCRIBER_ID']/extension" analyzed="false" dataType="STRING"/>
+    <Field name="roleName" indexed="true" xpath="//ROLE_RIGHTS/id[root='ROLE_NAME']/extension" dataType="STRING"/>
+    <Field name="providerOrganization" indexed="true" xpath="//ROLE_RIGHTS/providerOrganization/id[root='SUBSCRIBER_ID']/extension" dataType="STRING"/>
+    <Field name="programId" indexed="true" xpath="//ROLE_RIGHTS/id[root=&apos;PROGRAM_ID&apos;]/extension" analyzed="false"/>    
+    <Field name="messageTitle" indexed="true" xpath="//ROLE_RIGHTS/id[root=&apos;MSG_TITLE&apos;]/extension" analyzed="true"/>
+    <Field name="organizationId" indexed="true" xpath="//ROLE_RIGHTS/id[root=&apos;ORGANIZATION_ID&apos;]/extension" analyzed="false"/>
+  </IndexConfiguration>
+  <ArchiveConfiguration columnFamilyName="ROLE_RIGHTS">
+    <Field name="messageId" indexed="true" xpath="//ROLE_RIGHTS/id[root='HIN_MSG_ID']/extension" type="ROWKEY"/>
+    <Field name="documentId" indexed="true" xpath="//ROLE_RIGHTS/id[root='HIN_DOC_ID']/extension" type="COLUMN"/>
+    <Field name="subscriberId" indexed="true" xpath="//ROLE_RIGHTS/id[root='SUBSCRIBER_ID']/extension" type="COLUMN" analyzed="false" />
+    <Field name="assignedOrgId" indexed="true" xpath="//ROLE_RIGHTS/providerOrganization/id[root='SUBSCRIBER_ID']/extension" type="COLUMN"/>
+    <Field name="roleName" indexed="true" xpath="//ROLE_RIGHTS/id[root='ROLE_NAME']/extension" type="COLUMN"/>
+    <Field name="providerOrganization" indexed="true" xpath="//ROLE_RIGHTS/providerOrganization/id[root='SUBSCRIBER_ID']/extension" type="COLUMN" analyzed="false" />
+    <Field name="programId" indexed="true" xpath="//ROLE_RIGHTS/id[root=&apos;PROGRAM_ID&apos;]/extension" type="COLUMN"/>
+	<Field name="messageTitle" indexed="true" xpath="//ROLE_RIGHTS/id[root=&apos;MSG_TITLE&apos;]/extension" type="COLUMN"/>
+  </ArchiveConfiguration>
+  <WorkFlowDefinition id="id">
+    <name>Workflow Configuration For: ROLE_RIGHTS</name>
+    <start g="20,20,48,48">
+      <transition name="true" to="Save"/>
+    </start>
+    <task name="Save">
+      <transition name="Save" to="Save"/>
+    </task>
+  </WorkFlowDefinition>
+  <Class rimType="ROLE" configType="CLASS" tagName="ROLE_RIGHTS" type="COCT_MT410002HT03.EmploymentStaff">
+  	<Field tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD"/>    
+    <Class rimType="ENTITY" configType="CLASS" tagName="rights" minOccurs="0" maxOccurs="-1">
+    	<Field tagName="processName" type="CS" label="Process Name" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+		<Field tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+		<!--
+			<rights>
+				<processName>Registration</processName>
+				<id root="Archive" extension="0"/>
+				<id root="Restricted" extension="1"/>
+				<id root="Execute" extension="1"/>
+			</rights>
+		-->
+    </Class>    
+    <Field tagName="statusCode" type="CS" label="Status Code" displayOrder="3" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+    <Field tagName="effectiveTime" type="IVL_TS" label="Effective Time" displayOrder="4" minOccurs="0" maxOccurs="1" configType="FIELD"/>
+    <Class rimType="ENTITY" configType="CLASS" tagName="providerOrganization" type="COCT_MT150000HT04.Organization" label="Provider Organization" displayOrder="8" minOccurs="0" maxOccurs="1">
+    	<Field tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="1" configType="FIELD"/>
+      <Field tagName="id" type="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1" configType="FIELD"/>
+      <Field tagName="name" type="ON" label="Name" displayOrder="0" minOccurs="0" maxOccurs="-1" configType="FIELD"/>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

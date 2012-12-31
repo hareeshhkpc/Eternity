@@ -1,0 +1,17 @@
+use HIN_ETERNITY;
+
+set COUCH_SEQUENCE['couchSequence']['LASTSEQUENCE']='0';
+
+set SUBSCRIBER_PROFILE['1']['MESSAGE']= '<message config="PRPA_MT201000HT03"><PRPA_MT201000HT03><identifiedPerson><name><given>admin</given></name></identifiedPerson><id><root>HIN_MSG_ID</root><extension>1</extension></id><id><root>SUBSCRIBER_ID</root><extension>1</extension></id><id><root>USERNAME</root><extension>admin</extension></id><id><root>PASSWORD</root><extension>admin123</extension></id><assigningOrganization><id><root>SUBSCRIBER_ID</root><extension>HINORG</extension></id></assigningOrganization></PRPA_MT201000HT03></message>';
+
+create column family COCT_MT150000HT04_ST with comparator = 'UTF8Type' and key_validation_class = 'UTF8Type' and default_validation_class = 'UTF8Type' and column_metadata = [{column_name: MESSAGE, validation_class: UTF8Type},{column_name: MESSAGETYPE, validation_class: UTF8Type},{column_name: MESSAGESTAUS, validation_class: UTF8Type}];
+	
+set COCT_MT150000HT04_ST['HINORG']['1']='<?xml version="1.0" encoding="UTF-8"?><message config="COCT_MT150000HT04"><COCT_MT150000HT04><id><root>SUBSCRIBER_ID</root><extension>HINORG</extension></id><id><root>HIN_MSG_ID</root><extension>HINORG</extension></id><name><prefix>Eternity</prefix></name><desc /><telecom><use>EmailB</use><value>admin@eternity.org</value></telecom><addr /><contactParty><telecom /><contactPerson><name /><telecom /><asPersonDomain><id /><code /></asPersonDomain></contactPerson></contactParty></COCT_MT150000HT04></message>';
+
+set MESSAGE_ID_TYPE['669eeb90-9250-411f-90e5-f9ca9a6e78f2']['MESSAGETYPE']='PRPA_MT201000HT03';
+
+set PRPA_MT201000HT03_ST['669eeb90-9250-411f-90e5-f9ca9a6e78f2']['1']='<message config="PRPA_MT201000HT03" ><PRPA_MT201000HT03><id><root>HIN_MSG_ID</root><extension>669eeb90-9250-411f-90e5-f9ca9a6e78f2</extension></id><id><root>SUBSCRIBER_ID</root><extension>669eeb90-9250-411f-90e5-f9ca9a6e78f2</extension></id><id><root>USERNAME</root></id><id><root>PASSWORD</root></id><assigningOrganization><id><root>SUBSCRIBER_ID</root><extension>HINORG</extension></id></assigningOrganization><identifiedPerson><name><prefix>dr</prefix><family>M</family><given>Anjali</given><suffix>Patel</suffix></name></identifiedPerson></PRPA_MT201000HT03></message>';
+
+set PRPA_MT201000HT03_ST['669eeb90-9250-411f-90e5-f9ca9a6e78f2']['VERSION']='1';
+
+set MESSAGE_ID_TYPE['HINORG']['MESSAGETYPE']='COCT_MT150000HT04';

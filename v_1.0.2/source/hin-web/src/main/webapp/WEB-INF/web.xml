@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+
+	<!--<display-name>Archetype Created Web Application</display-name> -->
+	  
+	<servlet>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value></param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:spring/applicationContext-core.xml
+		</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- Lets the bean definition file specify scopes of request 
+       and session. -->
+  <listener>
+    <listener-class>
+      org.springframework.web.context.request.RequestContextListener
+    </listener-class>
+  </listener>
+  
+  <listener>
+		<listener-class>com.hin.hl7messaging.listener.HINContextListener
+		</listener-class>
+	</listener>
+	
+	
+	
+
+	<context-param>
+	    <param-name>HIN_CONFIGURATION_FILE_PATH</param-name>
+	    <param-value>WEB-INF/hin-config/HINConfig.json</param-value>
+  	</context-param>
+
+	<!--  
+	 <listener>
+		<description>ServletContextListener</description>
+		<listener-class>org.jwebsocket.appserver.ContextListener
+		</listener-class>
+	</listener>
+	<listener>
+		<description>HttpSessionListener</description>
+		<listener-class>org.jwebsocket.appserver.SessionListener
+		</listener-class>
+	</listener>
+	-->
+	<!-- configuration servlet -->
+	<servlet>
+		<servlet-name>ConfigServices</servlet-name>
+		<servlet-class>com.hin.hl7messaging.configuration.web.rest.ConfigServices</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConfigServices</servlet-name>
+		<url-pattern>/ConfigServices</url-pattern>
+	</servlet-mapping>
+	<!-- 
+	<servlet>
+		<servlet-name>WebSocketDemo</servlet-name>
+		<servlet-class>org.jwebsocket.appserver.WebSocketDemo</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WebSocketDemo</servlet-name>
+		<url-pattern>/WebSocketDemo</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ChatServlet</servlet-name>
+		<servlet-class>org.jwebsocket.chat.ChatServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChatServlet</servlet-name>
+		<url-pattern>/ChatServlet</url-pattern>
+	</servlet-mapping> 
+	-->
+	<servlet>
+		<servlet-name>ImageServlet</servlet-name>
+		<servlet-class>com.hin.hl7messaging.web.ImageServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImageServlet</servlet-name>
+		<url-pattern>/ImageServlet/*</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- <filter id="HinSecurityFilter">
+		<filter-name>HINSecurityFilter</filter-name>
+		<filter-class>com.hin.hl7messaging.security.HINSecurityFilter
+		</filter-class>
+		<description>Performs pre-login and post-login operation</description>
+		<init-param>
+			<param-name>SomeFilterParams</param-name>
+			<param-value>SomeValue</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>HINSecurityFilter</filter-name>
+		<url-pattern>/HINServlet</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>HINSecurityFilter</filter-name>
+		<url-pattern>/Activation</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>HINSecurityFilter</filter-name>
+		<url-pattern>/CreateAccount</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>HINSecurityFilter</filter-name>
+		<url-pattern>/MessageServlet</url-pattern>
+	</filter-mapping> -->
+
+	<servlet>
+		<description></description>
+		<display-name>UpdateInfo</display-name>
+		<servlet-name>UpdateInfo</servlet-name>
+		<servlet-class>com.hin.hl7messaging.web.UpdateInfo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateInfo</servlet-name>
+		<url-pattern>/UpdateInfo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>HINServlet</servlet-name>
+		<display-name>HINServlet</display-name>
+		<servlet-class>com.hin.hl7messaging.web.HINServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HINServlet</servlet-name>
+		<url-pattern>/HINServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>MessageServlet</servlet-name>
+		<display-name>MessageServlet</display-name>
+		<servlet-class>com.hin.hl7messaging.web.MessageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MessageServlet</servlet-name>
+		<url-pattern>/MessageServlet</url-pattern>
+	</servlet-mapping>
+
+	<!-- <servlet> <servlet-name>Example</servlet-name> <display-name>Example</display-name> 
+		<servlet-class>com.hin.hl7messaging.web.Example</servlet-class> </servlet> 
+		<servlet-mapping> <servlet-name>Example</servlet-name> <url-pattern>/Example</url-pattern> 
+		</servlet-mapping> -->
+	<servlet>
+		<servlet-name>EchoServlet</servlet-name>
+		<display-name>EchoServlet</display-name>
+		<servlet-class>com.hin.hl7messaging.web.EchoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EchoServlet</servlet-name>
+		<url-pattern>/EchoServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Transformer</servlet-name>
+		<display-name>Transformer</display-name>
+		<servlet-class>com.hin.hl7messaging.web.Transformer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Transformer</servlet-name>
+		<url-pattern>/Transformer</url-pattern>
+	</servlet-mapping>
+	
+	<!--  JSF Configuration -->
+	
+	 <servlet>
+	    <servlet-name>Faces Servlet</servlet-name>
+	    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+	    <load-on-startup>1</load-on-startup>
+	  </servlet>
+	 
+	  <servlet-mapping>
+	    <servlet-name>Faces Servlet</servlet-name>
+	    <url-pattern>*.xhtml</url-pattern>
+	  </servlet-mapping>
+	 
+	  <context-param>
+	    <param-name>javax.faces.PROJECT_STAGE</param-name>
+	    <param-value>Development</param-value>
+	  </context-param>
+	  
+	  <context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	
+	<context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.richfaces.enableControlSkinning</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.richfaces.enableControlSkinningClasses</param-name>
+        <param-value>false</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>org.richfaces.skin</param-name>
+        <param-value>japanCherry</param-value>
+    </context-param>   
+
+    <!--context-param>
+        <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Tag libraries for facelets</description>
+        <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+        <param-value>/tags/iii.taglib.xml</param-value>
+    </context-param-->
+	
+	<session-config>
+      <session-timeout>120</session-timeout>    <!-- 30 minutes -->
+    </session-config>
+
+</web-app>

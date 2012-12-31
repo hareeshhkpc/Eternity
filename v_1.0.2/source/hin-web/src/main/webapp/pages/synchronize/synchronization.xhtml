@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:util="http://java.sun.com/jsf/composite/util"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<h:form>
+			<h:panelGrid columns="2">
+
+				<a4j:commandButton value="Start Service" id="startButton"
+					action="#{syncBean.startService}" disabled="#{syncBean.running}" />
+				<a4j:commandButton value="Stop Service" id="stopButton"
+					disabled="#{!syncBean.running}" action="#{syncBean.stopService}" />
+
+				<h:inputText id="sequenceText" value="#{syncBean.sequence}"
+					disabled="#{syncBean.running}" />
+				<a4j:commandButton value="Reset Sequence" id="resetButton"
+					action="#{syncBean.resetSequence}" disabled="#{syncBean.running}" />
+				<a4j:commandButton value="Clear Queue"
+					action="#{syncBean.clearQueue}" disabled="true" />
+			</h:panelGrid>
+			<a4j:poll id="poll" interval="3000" enabled="true"
+				render="poll,syncChangeTable,syncSuccessTable,syncPendingTable,syncFailureTable,id3,id4,startButton,stopButton,sequenceText,resetButton" />
+		</h:form>
+		<h:form id="SyncList" style="width:100%;">
+
+			<rich:dataTable id="syncChangeTable" style="width:100%"
+				value="#{syncBean.couchChangeList}" var="sync" rows="1"
+				rowClasses="odd-row, even-row" rowClass="row" styleClass="stable">
+
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column colspan="5">
+							<h:outputText value="Synchronization Change" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Couch Message Data" />
+					</f:facet>
+
+
+					<rich:dataTable style="width:100%" value="#{sync.couchData}"
+						var="couchData" rows="1">
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="User" />
+							</f:facet>
+							<h:outputText value="#{couchData.userid}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Message" />
+							</f:facet>
+							<h:outputText value="#{couchData.content}" />
+						</rich:column>
+					</rich:dataTable>
+
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Couch Process Data" />
+					</f:facet>
+
+					<rich:dataTable style="width:300px"
+						value="#{sync.couchProcessData}" var="couchProcessData" rows="1">
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="User" />
+							</f:facet>
+							<h:outputText value="#{couchProcessData.userid}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Message" />
+							</f:facet>
+							<h:outputText value="#{couchProcessData.content.processName}" />
+						</rich:column>
+					</rich:dataTable>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Deleted" />
+					</f:facet>
+					<h:outputText value="#{sync.deleted}" />
+				</rich:column>
+
+
+				<br />
+				<f:facet name="footer">
+					<rich:dataScroller for="syncChangeTable" align="right"
+						renderIfSinglePage="false" fastStep="5" fastControls="auto"
+						render="id3 id4" />
+				</f:facet>
+			</rich:dataTable>
+			<br />
+			<rich:dataTable id="syncSuccessTable" style="width:100%"
+				value="#{syncBean.couchSuccessList}" var="syncSuccess" rows="1"
+				rowClasses="odd-row, even-row" rowClass="row" styleClass="stable">
+
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column colspan="4">
+							<h:outputText value="Synchronization Success" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Couch Message Data" />
+					</f:facet>
+
+
+					<rich:dataTable style="width:100%" value="#{syncSuccess.couchData}"
+						var="couchData" rows="1">
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="User" />
+							</f:facet>
+							<h:outputText value="#{couchData.userid}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Message" />
+							</f:facet>
+							<h:outputText value="#{couchData.content}" />
+						</rich:column>
+					</rich:dataTable>
+
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Couch Process Data " />
+					</f:facet>
+
+					<rich:dataTable style="width:300px"
+						value="#{syncSuccess.couchProcessData}" var="couchProcessData"
+						rows="1">
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="User" />
+							</f:facet>
+							<h:outputText value="#{couchProcessData.userid}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Message" />
+							</f:facet>
+							<h:outputText value="#{couchProcessData.content.processName}" />
+						</rich:column>
+					</rich:dataTable>
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Deleted" />
+					</f:facet>
+					<h:outputText value="#{sync.deleted}" />
+				</rich:column>
+
+
+				<br />
+				<f:facet name="footer">
+					<rich:dataScroller for="syncSuccessTable" align="right"
+						renderIfSinglePage="false" fastStep="5" fastControls="auto"
+						render="id3 id4" />
+				</f:facet>
+			</rich:dataTable>
+			<br />
+
+
+			<br />
+			<rich:dataTable id="syncPendingTable" style="width:100%"
+				value="#{syncBean.couchPendingList}" var="syncPending" rows="1"
+				rowClasses="odd-row, even-row" rowClass="row" styleClass="stable">
+
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column colspan="4">
+							<h:outputText value="Synchronization Pending" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Couch Message Data" />
+					</f:facet>
+
+
+					<rich:dataTable style="width:100%" value="#{syncPending.couchData}"
+						var="pendingCouchData" rows="5">
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="User" />
+							</f:facet>
+							<h:outputText value="#{pendingCouchData.userid}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Message" />
+							</f:facet>
+							<h:outputText value="#{pendingCouchData.content}" />
+						</rich:column>
+					</rich:dataTable>
+
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Couch Process Data " />
+					</f:facet>
+
+					<rich:dataTable style="width:300px"
+						value="#{syncPending.couchProcessData}" var="couchProcessData"
+						rows="1">
+
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="User" />
+							</f:facet>
+							<h:outputText value="#{couchProcessData.userid}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">
+								<h:outputText value="Message" />
+							</f:facet>
+							<h:outputText value="#{couchProcessData.content}" />
+						</rich:column>
+					</rich:dataTable>
+				</rich:column> -->
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Deleted" />
+					</f:facet>
+					<h:outputText value="#{sync.deleted}" />
+				</rich:column>
+
+				<br />
+				<f:facet name="footer">
+					<rich:dataScroller for="syncPendingTable" align="right"
+						renderIfSinglePage="false" fastStep="5" fastControls="auto"
+						render="id3 id4" />
+				</f:facet>
+			</rich:dataTable>
+			<br />
+
+			<rich:dataTable id="syncFailureTable" style="width:100%"
+				value="#{syncBean.couchFailureList}" var="sync" rows="10"
+				rowClasses="odd-row, even-row" rowClass="row" styleClass="stable">
+
+				<f:facet name="header">
+					<rich:columnGroup>
+						<rich:column colspan="4">
+							<h:outputText value="Synchronization Failure" />
+						</rich:column>
+					</rich:columnGroup>
+				</f:facet>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+					<h:outputText value="#{sync.id}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Message" />
+					</f:facet>
+					<h:outputText value="#{sync.couchData}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Process" />
+					</f:facet>
+					<h:outputText value="#{sync.couchProcessData}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Deleted" />
+					</f:facet>
+					<h:outputText value="#{sync.deleted}" />
+				</rich:column>
+				<br />
+				<f:facet name="footer">
+					<rich:dataScroller for="syncFailureTable" align="right"
+						renderIfSinglePage="false" fastStep="5" fastControls="auto"
+						render="id3 id4" />
+				</f:facet>
+			</rich:dataTable>
+		</h:form>
+		<rich:jQuery id="id3" selector=".stable tr.row" event="mouseover"
+			query="jQuery(this).addClass('active-row')" />
+		<rich:jQuery id="id4" selector=".stable tr.row" event="mouseout"
+			query="jQuery(this).removeClass('active-row')" />
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,148 @@
+/* 
+Layout taken from http://css.maxdesign.com.au/floatutorial/tutorial0816.htm, with some changes.
+*/
+@font-face {
+	font-family: MyriadPro-Light;
+	src: url("MyriadPro-Light.otf");
+}
+
+body {
+	background: #ffffff;
+	font-family: MyriadPro-Light;
+	font-size: 11pt
+}
+
+#container {
+	width: 90%;
+	margin: 10px auto;
+	background-color: #fff;
+	color: #333;
+	border: 1px solid gray;
+	line-height: 130%;
+}
+
+#top {
+	padding: .5em;
+	background-color: #fff;
+	border-bottom: 1px solid gray;
+}
+
+#top h1 {
+	padding: 0;
+	margin: 0;
+}
+
+#flag {
+	width: 100%;
+	text-align: right;
+}
+
+#leftnav {
+	float: left;
+	width: 160px;
+	margin: 0;
+	padding: 1em;
+	border-right: 1px solid gray;
+}
+
+#content {
+	float: left;
+	/*margin-right: 200px;*/
+	padding: 1em;
+}
+
+#rightnav {
+	float: right;
+	width: 160px;
+	margin: 0;
+	padding: 1em;
+	border-left: 1px solid gray;
+}
+
+#footer {
+	clear: both;
+	margin: 0;
+	padding: .5em;
+	color: #333;
+	background-color: #591152; /* EN */
+	border-top: 1px solid gray;
+	text-align: center;
+	color: white;
+}
+
+#leftnav p {
+	margin: 0 0 1em 0;
+}
+
+#content h2 {
+	margin: 0 0 .5em 0;
+}
+
+.even-row {
+	background-color: #FCFFFE;
+}
+
+.odd-row {
+	background-color: #ECF3FE;
+}
+
+.active-row {
+	background-color: #FFEBDA !important;
+	cursor: pointer;
+}
+
+.membersLogin {
+	margin-left: 100px;
+	font-size: 16px;
+	color: #541C43;
+}
+
+#login_form {
+	float: right;
+	font-size: 16px;
+	font-weight: bold;
+	color: #7f7f7f;
+	border: 1px solid #541C43;
+	border-radius: 15px 15px 15px 15px;
+	padding: 20px;
+	position: relative;
+	width: 350px;
+	margin-left: 550px;
+}
+
+.panel {
+	margin-left: 40px;
+}
+
+.submit {
+	margin-left: 75px;
+	background: #541C43;
+	border: 0 none;
+	border-radius: 7px 7px 7px 7px;
+	color: #FFFFFF;
+	cursor: pointer;
+	left: 67px;
+	opacity: 100;
+	position: relative;
+	top: -2px;
+	outline: 0;
+	outline-style: none;
+	font-size: 14px;
+	background-image: none;
+}
+
+.input-txt-box {
+	background-color: #541C43;
+	background-image: none;
+	font-size: 16px;
+	line-height: 1.4;
+	padding: 0.4em;
+	border-radius: 0.6em;
+	border-color: #541C43;
+}
+
+.loginUserName {
+	font-size: 14px;
+	font-weight: bold;
+	color: #541C43;
+}

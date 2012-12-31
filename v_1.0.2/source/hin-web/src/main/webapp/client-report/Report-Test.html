@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<script src="../html/js/jquery-1.6.4.min.js"></script>
+<script src="indicator.js"></script>
+<script src="../html/js/XmlUtil.js"></script>
+</head>
+
+<script type="text/javascript">
+
+var reportRenderer = null;
+
+function loadPage(pageId){
+	var pageUri = pageId + ".svg"; 
+	//alert("Page: " + pageUri)
+	var xmlNode = XmlUtil.loadXml(pageUri);
+	reportRenderer.setSVGDoc(xmlNode);
+	
+	var data = getData(pageId);
+	
+	if(data !== null){
+		reportRenderer.createIndicator(data);
+	}
+	reportRenderer.appendSVG();
+}
+
+function loadConsultationPage(pageId, index){
+	
+	$('#consultationpages').load(pageId+'.html', function() {
+
+		reportRenderer = new ReportRenderer($('#indicatorContainer'+index), window.document);
+		var indicatorContainerID = "indicator"+pageId;
+		var indicatorContainer = createIndicatorContainer(indicatorContainerID);
+		
+		var svgdoc = XmlUtil.stringToXml(indicatorContainer);
+		reportRenderer.setSVGDoc(svgdoc);
+		
+		var data = getData(pageId);
+		 if(data !== null){
+			reportRenderer.createIndicator(data);
+		}
+		
+		reportRenderer.appendSVG(); 
+	});
+}
+
+function createIndicatorContainer(indicatorContainerID){
+	var svgContainer = '<svg id="'+indicatorContainerID+'" xmlns="http://www.w3.org/2000/svg" width="800" height="100">';
+	svgContainer += '</svg>';
+	return svgContainer;
+}
+
+$(document).ready(function(){
+	//loads results pages
+	for(pageIndex=3; pageIndex<=4; pageIndex++){
+		var pageId = "page" + pageIndex;
+		reportRenderer = new ReportRenderer($('#'+pageId), window.document);
+		loadPage(pageId);
+	}
+	//loads consultation pages
+	 for(pageIndex=1; pageIndex<2; pageIndex++){
+		var pageId = "consultationpage" + pageIndex;
+		loadConsultationPage(pageId, pageIndex);
+	} 
+});
+
+function getData(page){
+	var score_Array
+	var data;
+	if(page=="page1"){
+		data=null;
+	}
+	if(page=="page2"){
+		data=null;
+	}
+	if(page=="page3"){
+		score_Array = [160, 100, 80, 160, 100, 80, 160, 100];
+		coordinates = [{
+			"y_rect" : 240,
+			"y_circle" : 255,
+			"y_text": 262,
+			"x1_line": 640,
+			"x2_line" :658,
+			"y1_line": 68,
+			"y2_line": 68,
+			"x_circle_small" :660,
+			"y_circle_small" :68,
+			"y_standard": 68,
+			"array_increment": 0,
+			"y_standard_increment" :0
+		}];
+		
+		data=[ {
+			"overall" :100,
+			"page" : "OverviewResult",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	if(page=="page4"){
+		coordinates = [{
+			"y_rect" : 162,
+			"y_circle" : 177,
+			"y_text": 184,
+			"x1_line": 640,
+			"x2_line" :658,
+			"y1_line": 178,
+			"y2_line": 178,
+			"x_circle_small" :660,
+			"y_circle_small" :178,
+			"y_standard": 178,
+			"array_increment": 22.5,
+			"y_standard_increment" :81.3
+		}];
+		
+		score_Array = [[160, 100, 80],[160, 100], [80, 160, 0], [80, 160, 100]];
+		data=[ {
+			"page" : "Results",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	
+if(page=="consultationpage1"){
+		
+		coordinates = [{
+			"x_rect": 150,
+			"x_circle":120,
+			"x1_line": 140,
+			"x2_line" :160,
+			"x_circle_small" :160,
+			"x_standard": 160,
+			"x_text":105
+		}];
+		score_Array = [160, 160, 160];
+		data=[ {
+			"page" : "Consultation",
+			"array" : score_Array,
+			"coordinates": coordinates
+		} ];
+	}
+	return data;
+}
+	
+
+</script>
+
+<body>
+<div id="page1">
+</div>
+<div id="page2">
+</div>
+<div id="page3">
+</div>
+<div id="page4">
+</div>
+<div id="page5">
+</div>
+<div id="page6">
+</div>
+<div id="page7">
+</div>
+<div id="page8">
+</div>
+<div id="page9">
+</div>
+<div id="page10">
+</div>
+<div id="page11">
+</div>
+<div id="page12">
+</div>
+
+<div id="consultationpages"></div>
+<div id="consultationpage1">
+</div>
+
+
+</body>
+</html>

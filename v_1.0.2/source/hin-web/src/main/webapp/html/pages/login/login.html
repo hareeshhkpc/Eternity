@@ -1,0 +1,84 @@
+
+<div data-role="header" data-theme="v" id="divHeader"
+	data-backBtn="true" style="float:right;position:relative;top:30px;width:100%;">
+	<fieldset class="ui-grid-b" style="border: 0;margin-top:-10px;">
+		<div class="ui-block-a">
+			<img src="images/lhamp.png" style="float: right; max-width: 100%;" />
+		</div>
+		<div class="ui-block-b" style="float: right; width: 20%;">
+			<img src="images/logo.jpg"
+				style="float: right; margin-top: 0px; max-width: 100%;" />
+		</div>
+	</fieldset>
+</div>
+<script>
+	$(document).ready(function() {
+		/* $('#offline').unbind('change', selectionHandler);
+		$('#offline').bind('change', selectionHandler);
+
+		$("#offline").slider({
+			create : function(event, ui) {
+				var dataLayer = appController.getComponent("DataLayer");
+				if (dataLayer) {
+					var cache = dataLayer.cache;
+					$("#offline").val('' + cache).slider('refresh');
+				}
+			}
+		}); */
+
+	});
+
+	function selectionHandler() {
+		var cache = $(this).val();
+		var dataLayer = appController.getComponent("DataLayer");
+		if (dataLayer) {
+			dataLayer.cache = cache;
+			if (!dataLayer.cache) {
+				localStorage.clear();
+			}
+		}
+	}
+</script>
+<div data-role="content" class="loginscreen">
+	<br /> <br /> <br /> <br /> <br />
+	<!-- <div id="msg" style="padding: 2%; align: center; text-align: center"
+		data-theme="a">Login..</div> -->
+	<form name="loginForm" id="loginForm">
+		<fieldset class="ui-grid-a ui-login-position" style="border: 0;">
+			<div class="ui-block-a" style="width:40%;"></div>
+			<div class="ui-block-b">
+				<div class="login_head">Member's Login</div>
+				<div id="login_form">
+					<div data-role="fieldcontain"
+						class="ui-field-contain ui-body ui-br">
+						<label>User Name:</label> <input type="text" value=""
+							id="username" name="username" class="validate[required]"
+							data-prompt-position="topLeft:100">
+					</div>
+					<div data-role="fieldcontain"
+						class="ui-field-contain ui-body ui-br">
+						<label>&nbsp;&nbsp;&nbsp;Password:</label> <input type="password"
+							value="" id="password" name="password" class="validate[required]"
+							data-prompt-position="topLeft:100">
+					</div>
+
+					<!-- <div data-role="fieldcontain"
+						class="ui-field-contain ui-body ui-br">
+						<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cache:</label>
+						<select name="offline" id="offline" data-role="slider">
+							<option value="false">Off</option>
+							<option value="true">On</option>
+						</select>
+					</div> -->
+
+					<div id="errormsg" class="error-message">The username or
+						password you entered is incorrect.</div>
+					<input id="login" type="button" data-role="none" value="Login"
+						class="shadow" /> <input id="signup" type="button"
+						data-role="none" value="Signup" class="shadow" />
+
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>

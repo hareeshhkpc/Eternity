@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>	
+		<script type="text/javascript" src="jquery-1.6.4.js"></script>
+		<script type="text/javascript" src="jquery.xml.js"></script>
+		<script type="text/javascript" src="DataTypeAPI.js"></script>
+		<script type="text/javascript">
+			var IIxml = null;
+			function IItestGetValue(){
+				IIxml = IIgetValues('id2','pfId');
+			}
+			function IItestSetValue(){
+				IIsetValue('id2', IIxml);
+			}
+			
+			/* function testDisplay(){
+				$("#Divid").load("DatatypeTS.html");
+			} */
+		</script>
+	</head>
+	
+	<body>
+		<form>
+ 			<fieldset>
+				root1: <input type="text" id="id11"/>
+				extension1:  <input type="text" id="id12"/>
+				assigningAuthorityName1:<input type="text" id="id13"/>
+				displayable1:<input type="text" id="id14"/>
+				
+				<br/><br/>
+				root1: <input type="text" id="id21"/>
+				extension1:  <input type="text" id="id22"/>
+				assigningAuthorityName1:<input type="text" id="id23"/>
+				displayable1:<input type="text" id="id24"/>
+				<br/>
+				<!-- originalText: <a href="#" onclick="testDisplay();">TS</a> -->
+		
+				<!-- <div id="Divid"></div> -->
+				
+				<input type="button"  value="getValue" onclick="IItestGetValue();"/>
+				<input type="button"  value="clearValue" onclick="IIclearValues('id2');"/>
+				<input type="button"  value="setValue" onclick="IItestSetValue();"/>
+			</fieldset>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<title>Message Configuration</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	
+		<link rel="stylesheet" href="../../common/css/jquery.mobile-1.0.1.min.css" />
+		<link rel="stylesheet" href="../../common/css/jquery.mobile.simpledialog.min.css" />
+		
+		<script src="../../common/js/jquery.js"></script>
+		<script src="../../common/js/jquery.mobile-1.0.1.min.js"></script>
+		<script src="../../common/js/jquery.mobile.simpledialog.min.js"></script>
+		<script src="../../common/js/jquery.json-2.3.js"></script>
+		
+		<script type="text/javascript" src="../js/ConfigAction.js"></script>
+		<script type="text/javascript" src="../js/ConfigUtil.js"></script>
+		<script type="text/javascript" src="../js/ConfigManager.js"></script>
+		<script type="text/javascript" src="../js/ConfigView.js"></script>
+		
+		<script type="text/javascript">
+			var view = new ConfigView();
+		
+			/*	Make sure that the page is loaded fully	*/
+			$('#config-main-page').live('pageinit', function() {
+				/*	Initialize the application controller	*/
+				initialize();
+		
+			});
+	
+			function initialize() {
+				//view.init();
+				
+				$('#importSchema').click(function(){
+					//alert("Import");
+					$('#importFile').trigger('click');
+				});
+				
+				$('#importFile').change(function(){
+					var vals = $(this).val(),
+			        val = vals.length ? vals.split('\\').pop() : '';
+			        //alert(vals);
+			        
+			        view.configManager.uploadSchema('importForm', 'importTarget');
+				});
+				
+				$('#newMsgType').click(function(){
+					view.requestListExistingMessagesTypes();
+				});
+			};
+			
+		</script>
+	</head> 
+<body> 
+
+	<!-- Start of first page: #one -->
+	<div data-role="page" id="config-main-page" style="background-image: url('../images/configback.PNG'); background-repeat: repeat;">
+	
+		<div data-role="header" align="left">
+			<p style="margin-left: 20px">Message Configuration</p>
+		</div><!-- /header -->
+	
+		<div data-role="content">
+			<fieldset class="ui-grid-a">
+				<div class="ui-block-a"><button id="newMsgType" type="button" data-theme="c">New Message Type</button></div>
+				<div class="ui-block-b"><button id="importSchema" type="submit" data-theme="c">Import Schema</button></div>	   
+			</fieldset>		
+			
+			<form id="importForm" action="#" method="post" enctype="multipart/form-data" style="position: absolute; left: -1000px;">
+				<input name="zipFile" type="file" id="importFile">
+				<input name="action" value="SCHEMA_IMPORT" type="hidden">
+			</form>
+			<iframe id="importTarget" style="position: absolute; left: -1000px;"></iframe>
+			
+			<div id="config-div-messages" style="padding-top: 15px;">					
+				<div style="height: 100px; padding-top: 30px; font-weight: bold;" align="center">No messages configured ...</div>
+			</div>
+			
+			<div id="dummyConfigMessage" style="display: none;">		
+				<label id="dummyConfigMessageLabel" data="" style="float: none;">Organization</label>
+			</div>
+			
+		</div><!-- /content -->
+		
+		<div data-role="footer" data-theme="d">
+			<p style="margin-left: 20px">&copy; imtac iCT Life Care Technology</p>
+		</div><!-- /footer -->
+	</div><!-- /page one -->
+	<ul id="dummyConfigMessageList" data-role="listview" style="display: none;">
+		<li id="listItem">
+			<a id="listItemLink" href="index.html">					
+				<h3 id="listItemHeader">Stephen Weber</h3>
+				<p><strong  id="listItemPara1">You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+				<p id="listItemPara2">Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+				<!-- <p class="ui-li-aside"><strong>6:24</strong>PM</p> -->					
+			</a>
+		</li>
+	</ul>
+
+	<!-- Entry points view -->
+	<div data-role="page" id="config-existing-configs-page" style="background-image: url('../images/configback.PNG'); background-repeat: repeat;">
+	
+		<div data-role="header">
+			<p style="margin-left: 20px">New Message Type</p>
+		</div><!-- /header -->
+	
+		<div data-role="content">	
+			<div id="config-existing-configs">		
+				<div style="height: 100px; padding-top: 30px; font-weight: bold;" align="center">No messages configured ...</div>
+			</div>
+			<div id="messageJson"></div>
+		</div><!-- /content -->
+		
+		<div data-role="footer" data-theme="d">
+			<p>&nbsp;&nbsp;&nbsp;&copy; imtac iCT Life Care Technology</p>
+		</div><!-- /footer -->
+	</div><!-- /page two -->
+	<ul id="dummyConfigList" data-role="listview" style="display: none;">
+		<li id="listItem" style="margin: 15px;">
+			<a id="listItemLink" href="index.html">					
+				<h3 id="listItemHeader">Stephen Weber</h3>
+				<p><strong  id="listItemPara1">You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+				<p id="listItemPara2">Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+				<!-- <p class="ui-li-aside"><strong>6:24</strong>PM</p> -->					
+			</a>
+		</li>
+	</ul>
+	
+	<!-- Class view view -->
+	<div data-role="page" id="config-class-view-page" style="background-image: url('../images/configback.PNG'); background-repeat: repeat;">
+	
+		<div data-role="header">
+			<div style="float: right;" id="saveButton" data-inline="true" data-role="button">Save</div>
+			<p style="margin-left: 20px">Message Configuration </p>
+			<p class="ui-li-desc" style="margin-left: 20px">Choose the Schema you would like to base the message on</p>			
+		</div><!-- /header -->
+	
+		<div data-role="content">	
+			<div id="config-class-view">				
+				<!-- content goes here -->
+			</div>
+			<div id="messageJson"></div>
+		</div><!-- /content -->
+		
+		<div data-role="footer" data-theme="d">
+			<p>&nbsp;&nbsp;&nbsp;&copy; imtac iCT Life Care Technology</p>
+		</div><!-- /footer -->
+	</div><!-- /page two -->
+	<div style="display: none;">
+		<div id="rootItem" style="margin-bottom: -1px">
+			<a href="javascript:void(0);" data-inline="true" data-role="button">Encounter Event</a>
+			<div style="float: right; margin-top: 20px">
+				<img object-type="selection" alt="Tools" height="30px" src="../images/1332935657_tick_circle.png">
+			</div>
+		</div>
+		<div id="firstItem" style="border: 0px solid black">
+			<div data-inline="true" style="width: 40px; float: left;">&nbsp;</div> 
+			<img alt="Tree Linking Image" src="../images/vertical-line.PNG" style="float: left; margin-bottom: -19px; margin-top: -12px; height: 80px; width: 3px;">
+			<img alt="Tree Linking Image" src="../images/horizontal-line.PNG" style="float: none; margin-bottom: 8px; margin-left: -3px; margin-right: -10px">
+			<a href="javascript:void(0);" data-inline="true" data-role="button">Admitter </a>
+			<div style="float: right; margin-top: 20px">
+				<img object-type="selection" alt="Tools" height="30px" src="../images/1332935649_tick.png">
+			</div>
+		</div>
+		<div id="middleItem" style="border: 0px solid black">
+			<div data-inline="true" style="width: 40px; float: left;">&nbsp;</div> 
+			<img alt="Tree Linking Image" src="../images/vertical-line.PNG" style="float: left; margin-bottom: -9px; margin-top: -5px; height: 75px; width: 3px;">
+			<img alt="Tree Linking Image" src="../images/horizontal-line.PNG" style="float: none; margin-bottom: 9px; margin-left: -3px; margin-right: -10px">
+			<a href="javascript:void(0);" data-inline="true" data-role="button">Admitter</a>
+			<div style="float: right; margin-top: 20px">
+				<img object-type="selection" alt="Tools" height="30px" src="../images/1332935657_tick_circle.png">
+			</div>
+		</div>
+		<div id="lastItem" style="border: 0px solid black">
+			<div data-inline="true" style="width: 40px; float: left;">&nbsp;</div> 
+			<img alt="Tree Linking Image" src="../images/vertical-line.PNG" style="float: left; margin-bottom: 20px; height: 34px; width: 3px;">
+			<img alt="Tree Linking Image" src="../images/horizontal-line.PNG" style="float: none; margin-bottom: 8px; margin-left: -3px; margin-right: -10px">
+			<a href="javascript:void(0);" data-inline="true" data-role="button">Admitter</a>
+			<div style="float: right; margin-top: 20px">
+				<img object-type="selection" alt="Tools" height="30px" src="../images/1332935649_tick.png">
+			</div>
+		</div>
+	</div>
+
+	<!-- Field view  -->
+	<div data-role="page" id="config-field-view-page" style="background-image: url('../images/configback.PNG'); background-repeat: repeat;">
+	
+		<div data-role="header">
+			<div style="float: right;" id="saveButton" data-inline="true" data-role="button">Save</div>
+			<div style="float: right;" id="editClassButton">
+				<img style="margin-top: 15px;" object-type="editClass" alt="Tools" src="../images/1333086227_file_edit.png">
+			</div>
+			<p id="headerLabel" style="margin-left: 20px">Message Configuration </p>
+			<p class="ui-li-desc" style="margin-left: 20px">Choose the properties you would like to use</p>
+		</div><!-- /header -->
+	
+		<div data-role="content">	
+			<div id="config-field-view">				
+				<!-- content goes here -->
+			</div>
+		</div><!-- /content -->
+		
+		<div data-role="footer" data-theme="d">
+			<p>&nbsp;&nbsp;&nbsp;&copy; imtac iCT Life Care Technology</p>
+		</div><!-- /footer -->
+	</div><!-- /page two -->
+	<div id="message-no-fields" style="display: none; height: 70px; padding-top: 30px; font-weight: bold;" align="center">No fields to display ...</div>
+	<div style="display: none;">
+		<div id="fieldView">
+			<div id="fieldGrouper" style="background-color: silver; font-weight: bold; color: black; width: 100%; height: 30px; border: 0px solid black; text-align: left;">#</div>
+			<div id="fieldItem" style="border: 0px solid black; text-align: left;">
+				<a href="javascript:void(0);" data-role="button" data-inline="true" style="float: none;">Admitter </a>
+				<img style="margin-top: 15px; float: right;" object-type="selection" alt="Tools" height="30px" src="../images/1332935649_tick.png">
+				<img style="margin-top: 15px; float: right;" object-type="edit" alt="Tools" height="30px" src="../images/1333086227_file_edit.png">
+			</div>
+		</div>
+	</div>
+	
+	<div data-role="page" id="config-property-view-page" style="background-image: url('../images/configback.PNG'); background-repeat: repeat;">
+		<div data-role="header">
+			<div style="float: right;" id="saveButton" data-inline="true" data-role="button">Save</div>
+			<p id="headerLabel" style="margin-left: 20px">Message Configuration </p>
+			<p class="ui-li-desc" style="margin-left: 20px">Choose how the <span id="propertyHeadItem" style="font-weight: bold;">#</span> property will work</p>
+		</div><!-- /header -->
+		
+		<div data-role="content">
+			<div class="content-primary" id="config-property-view">
+				<!-- content here -->
+			</div>
+		</div>
+		
+		<div data-role="footer" data-theme="d">
+			<p>&nbsp;&nbsp;&nbsp;&copy; imtac iCT Life Care Technology</p>
+		</div><!-- /footer -->
+	</div>
+	<!--/content-primary -->
+	<form id="propertyForm" style="display: none;">
+		<ul data-role="listview" data-inset="true">
+			<li data-role="fieldcontain">
+				<h3>Attribute: <span id="attrName">##</span> </h3>
+			</li>
+			<li data-role="fieldcontain">
+				<label for="label">Display Name:</label>
+				<input type="text" name="label" id="label" value="" />
+			</li>
+			<li data-role="fieldcontain">
+				<label for="label">Control:</label>
+				<select name="inputControl" id="inputControl">
+					<option value="default">Default</option>
+					<option value="date">Date Control</option>
+					<option value="time">Time Control</option>
+				</select>
+			</li>			
+			<li data-role="fieldcontain">
+				<label for="displayOrder">Display Order:</label>
+				<input type="range" name="displayOrder" id="displayOrder" value="0" min="0"	max="100" />
+			</li>
+			<li data-role="fieldcontain">
+				<label for="minOccurs">Cardinality:</label>
+				<input type="text" name="cardinality" id="cardinality" value="1..1" />
+			</li>
+			<li class="ui-body ui-body-b">
+				<fieldset class="ui-grid-a">
+					<div class="ui-block-a">
+						<button type="button" data-theme="d" id="btnPropertyCancel">Cancel</button>
+					</div>
+					<div class="ui-block-b">
+						<button type="button" data-theme="a" id="btnPropertySave">Save</button>
+					</div>
+				</fieldset>
+			</li>
+		</ul>
+	</form>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<HL7MessageConfiguration>
+  <MetaInfo artifactID="PRPA_MT410001HT02" createdDate="2012-09-01 13:51:12.31 UTC" entryPoint="PRPA_MT410001HT02.EncounterAppointment" description="Appointment Message"/>
+  <IndexConfiguration indexName="EncounterAppointmentIndex">
+    <Field name="messageId" indexed="true" xpath="//PRPA_MT410001HT02/id[root=&apos;HIN_MSG_ID&apos;]/extension" analyzed="false" dataType="STRING"/>
+    <Field name="documentId" indexed="true" xpath="//PRPA_MT410001HT02/id[root=&apos;HIN_DOC_ID&apos;]/extension" analyzed="false" dataType="STRING"/>
+    <Field name="subscriberId" indexed="true" xpath="message/PRPA_MT410001HT02/subject/patient/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="false" dataType="STRING"/>
+    <Field name="effectiveTimeFrom" indexed="true" xpath="message/PRPA_MT410001HT02/effectiveTime/low/value" analyzed="false" dataType="LONG"/>
+    <Field name="effectiveTimeTo" indexed="true" xpath="message/PRPA_MT410001HT02/effectiveTime/high/value" analyzed="false" dataType="LONG"/>
+    <Field name="responsibleParty" indexed="true" xpath="message/PRPA_IN203000HT04/responsibleParty/assignedEntityOrganization/assignedOrganization/id/root" analyzed="true" dataType="STRING"/>
+    <Field name="consultant" indexed="true" xpath="message/PRPA_MT410001HT02/consultant/employmentStaff/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="false" dataType="STRING"/>
+    <Field name="createddate" indexed="true" xpath="message/PRPA_MT410001HT02/effectiveTime" analyzed="true"/>
+    <Field name="programId" indexed="true" xpath="//PRPA_MT410001HT02/id[root=&apos;PROGRAM_ID&apos;]/extension" analyzed="false"/>
+    <Field name="messageTitle" indexed="true" xpath="//PRPA_MT410001HT02/id[root=&apos;MSG_TITLE&apos;]/extension" analyzed="true"/>
+    <Field name="organizationId" indexed="true" xpath="//PRPA_MT410001HT02/id[root=&apos;ORGANIZATION_ID&apos;]/extension" analyzed="false"/>
+  </IndexConfiguration>
+  <ArchiveConfiguration columnFamilyName="PRPA_MT410001HT02">
+    <Field name="messageId" indexed="true" xpath="//PRPA_MT410001HT02/id[root=&apos;HIN_MSG_ID&apos;]/extension" type="ROWKEY"/>
+    <Field name="documentId" indexed="true" xpath="//PRPA_MT410001HT02/id[root=&apos;HIN_DOC_ID&apos;]/extension"/>
+    <Field name="subscriberId" indexed="true" xpath="message/PRPA_MT410001HT02/subject/patient/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="program" indexed="true" xpath="message/PRPA_MT410001HT02/subject/patient/id[root=&apos;PROGRAM&apos;]/extension" type="COLUMN"/>
+    <Field name="effectiveTimeFrom" indexed="true" xpath="message/PRPA_MT410001HT02/effectiveTime/low/value" type="COLUMN"/>
+    <Field name="effectiveTimeTo" indexed="true" xpath="message/PRPA_MT410001HT02/effectiveTime/high/value" type="COLUMN"/>
+    <Field name="responsiblePartyId" indexed="true" xpath="message/PRPA_MT410001HT02/responsibleParty/assignedEntityOrganization/assignedOrganization/id/root" type="COLUMN"/>
+    <Field name="responsiblePartyName" indexed="true" xpath="message/PRPA_MT410001HT02/responsibleParty/assignedEntityOrganization/assignedOrganization/name" type="COLUMN"/>
+    <Field name="consultant" indexed="false" xpath="message/PRPA_MT410001HT02/consultant/employmentStaff/id/root" type="COLUMN"/>
+    <Field name="programId" indexed="true" xpath="//PRPA_MT410001HT02/id[root=&apos;PROGRAM_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="messageTitle" indexed="true" xpath="//PRPA_MT410001HT02/id[root=&apos;MSG_TITLE&apos;]/extension" type="COLUMN"/>
+  </ArchiveConfiguration>
+  <WorkFlowDefinition id="id">
+    <name>Workflow Configuration For: PRPA_MT410001HT02</name>
+    <start g="20,20,48,48">
+      <transition name="true" to="Save"/>
+    </start>
+    <task name="Save">
+      <transition name="Save" to="Save"/>
+    </task>
+  </WorkFlowDefinition>
+  <Class rimType="ACT" tagName="PRPA_MT410001HT02" type="PRPA_MT410001HT02.EncounterAppointment">
+    <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+    <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="2" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="effectiveTime" type="IVL_TS" inputControl="IVL_TS" label="Effective Time" displayOrder="3" minOccurs="0" maxOccurs="1"/>
+    <Field tagName="reasonCode" type="CE" inputControl="CE" label="Reason Code" displayOrder="4" minOccurs="0" maxOccurs="1"/>
+    <Class rimType="PARTICIPATION" tagName="subject" type="PRPA_MT410001HT02.Subject1" label="Subject" displayOrder="5" minOccurs="1" maxOccurs="1">
+      <Class rimType="ROLE" tagName="patient" type="COCT_MT050000HT04.Patient" label="Patient" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+        <Class rimType="ENTITY" tagName="patientPerson" type="COCT_MT030000HT01.Person" label="Patient Person" displayOrder="1" minOccurs="1" maxOccurs="1">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+          <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="1" minOccurs="0" maxOccurs="-1"/>
+          <Field tagName="desc" type="ED" inputControl="ED" label="Desc" displayOrder="2" minOccurs="0" maxOccurs="1"/>
+          <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="3" minOccurs="0" maxOccurs="-1"/>
+          <Field tagName="administrativeGenderCode" type="CE" inputControl="CE" label="Administrative Gender Code" displayOrder="4" minOccurs="0" maxOccurs="1"/>
+          <Field tagName="birthTime" type="TS" inputControl="TS" label="Birth Time" displayOrder="5" minOccurs="0" maxOccurs="1"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class rimType="PARTICIPATION" tagName="responsibleParty" type="PRPA_MT410001HT02.ResponsibleParty2" label="Responsible Party" displayOrder="6" minOccurs="1" maxOccurs="1">
+      <Class rimType="ROLE" tagName="assignedEntityOrganization" type="COCT_MT090202HT04.AssignedEntityOrganization" label="Assigned Entity Organization" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Class rimType="ENTITY" tagName="assignedOrganization" type="COCT_MT090202HT04.Organization" label="Assigned Organization" displayOrder="0" minOccurs="1" maxOccurs="1">
+          <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+        </Class>
+      </Class>
+    </Class>
+    <Class rimType="PARTICIPATION" tagName="consultant" type="PRPA_MT410001HT02.Consultant" label="Consultant" displayOrder="7" minOccurs="0" maxOccurs="-1">
+      <Class rimType="ROLE" tagName="employmentStaff" type="COCT_MT410002HT03.EmploymentStaff" label="Employment Staff" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+        <Class rimType="ENTITY" tagName="employeePerson" type="COCT_MT410002HT03.Person" label="Employee Person" displayOrder="1" minOccurs="0" maxOccurs="1">
+          <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+          <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="1" minOccurs="0" maxOccurs="-1"/>
+        </Class>
+      </Class>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

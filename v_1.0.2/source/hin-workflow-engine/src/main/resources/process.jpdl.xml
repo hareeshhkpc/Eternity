@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="TaskAssignee" xmlns="http://jbpm.org/4.0/jpdl">
+
+  <start g="20,20,48,48">
+    <transition name="true" to="nextAssigneeCriteria1" />
+  </start>
+  
+ <java name="nextAssigneeCriteria1" 
+        expr="#{FilterCriteriaTask}"
+        method="addFilterCondition"
+        var="FilterCriteriaTask111"
+        g="215,17,99,52">
+     
+     <arg><string value="location"/></arg>
+     <arg><string class="String" value="NH"/></arg>
+      <transition to="nextAssigneeCriteria2" />
+  </java>
+  <java name="nextAssigneeCriteria2" 
+        expr="#{FilterCriteriaTask}"
+        method="addFilterCondition"
+        var="FilterCriteriaTask111"
+        g="215,17,99,52">
+     
+     <arg><string value="department"/></arg>
+     <arg><string value="Radiology"/></arg>
+      <transition to="register" />
+  </java>
+  <task name="register" 
+        g="96,16,127,52">
+         <assignment-handler class="com.hin.hl7messaging.TaskHandlers">
+	          <field name="location"><string value="NH"/></field>
+	          <field name="department"><string value="Radiology"/></field>
+	     </assignment-handler>
+      <transition name="Register Accept" to="CPOE" />
+      <transition name="Register Reject" to="CPOE" />
+  </task>
+  
+  <task name="CPOE" 
+        g="96,16,127,52">
+         <assignment-handler class="com.hin.hl7messaging.TaskHandlers">
+	          <field name="assignmentVariable"><string value="2"/></field>
+	     </assignment-handler>
+     <transition name="CPOE Accept" to="Bill"/>
+     <transition name="CPOE Reject" to="register"/>
+  </task>
+  
+   <task name="Bill" 
+        g="96,16,127,52">
+        <assignment-handler class="com.hin.hl7messaging.TaskHandlers">
+	          <field name="assignmentVariable"><string value="3"/></field>
+	     </assignment-handler>
+     <transition name="BILL Wait" to="wait"/>
+     <transition name="BILL Reject" to="CPOE"/>
+  </task>
+  
+  <state name="wait" g="255,16,88,52"/>
+
+</process>

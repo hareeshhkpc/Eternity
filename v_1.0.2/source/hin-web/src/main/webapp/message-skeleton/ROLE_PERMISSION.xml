@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="ROLE_PERMISSION">
+	<ROLE_PERMISSION>
+		<id />
+		<statusCode />
+		<effectiveTime />
+		<permission>
+			<id root="CALENDAR" extension="1" />
+		</permission>
+		<permission>
+			<id />
+		</permission>
+		<providerOrganization>
+			<id />
+			<id />
+			<name />
+		</providerOrganization>
+	</ROLE_PERMISSION>
+</message>

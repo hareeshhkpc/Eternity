@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">var HIN;
+if (!HIN)
+	HIN = {};
+<span id='HIN-LicenseeVO'>/**
+</span> * LicenseeVO is nothing but a value object which hold the licensee relevant
+ * information
+ */
+HIN.LicenseeVO = function() {
+<span id='HIN-LicenseeVO-property-subscriberId'>	/**
+</span>	 * subscriberId holds unique id.
+	 */
+	this.subscriberId = null;
+<span id='HIN-LicenseeVO-property-message'>	/**
+</span>	 * message holds stringified xml
+	 */
+	this.message = null;
+<span id='HIN-LicenseeVO-property-msg'>	/**
+</span>	 * msg holds message xml document
+	 */
+	this.msg = null;
+<span id='HIN-LicenseeVO-property-licenseeEmail'>	/**
+</span>	 * licenseeEmail holds email of the licensee
+	 */
+	this.licenseeEmail = null;
+	this.licenseePassword = null;
+	this.licenseeAttachment = new HIN.HashMap();
+	this.licenseeAttachmentName = new Array();
+<span id='HIN-LicenseeVO-property-currency'>	/**
+</span>	 * currency holds currency of the licensee
+	 */
+	this.currency = null;
+<span id='HIN-LicenseeVO-property-currencyCode'>	/**
+</span>	 * currencyCode holds currency code of the licensee
+	 */
+	this.currencyCode = null;
+<span id='HIN-LicenseeVO-property-currencySymbol'>	/**
+</span>	 * currencySymbol holds currency symbol of the licensee
+	 */
+	this.currencySymbol = null;
+<span id='HIN-LicenseeVO-property-exchangeRate'>	/**
+</span>	 * exchangeRate holds exchange Rate of the currency
+	 */
+	this.exchangeRate = null;
+	this.emailContent = null;
+	this.expiryDate = null;
+};
+<span id='HIN-LicenseeVO-method-setMsg'>/**
+</span> * set message document object
+ * 
+ * @param msg :
+ *            Its an object of msg document.
+ * @returns {void}
+ */
+HIN.LicenseeVO.prototype.setMsg = function(msg) {
+	this.msg = msg;
+};
+<span id='HIN-LicenseeVO-method-setMessage'>/**
+</span> * set stringify message document object
+ * 
+ * @param message :
+ *            Its a string value of msg document.
+ * @returns {void}
+ */
+HIN.LicenseeVO.prototype.setMessage = function(message) {
+	if (message) {
+		this.message = message;
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Licensee.SUBSCRIBER_ID,
+				XPathResult.STRING_TYPE);
+		this.subscriberId = (value &amp;&amp; value.stringValue) ? value.stringValue
+				: &quot;&quot;;
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Licensee.LICENSEE_EMAIL,
+				XPathResult.STRING_TYPE);
+		this.licenseeEmail = (value &amp;&amp; value.stringValue) ? value.stringValue
+				: &quot;&quot;;
+		var value = XmlUtil.getXPathResult(message,
+				AppConstants.XPaths.Licensee.LICENSEE_PASSWORD,
+				XPathResult.STRING_TYPE);
+		this.licenseePassword = (value &amp;&amp; value.stringValue) ? value.stringValue
+				: &quot;&quot;;
+
+		var currencyObject = XmlUtil.getXPathResult(message,
+				&quot;message/LICENSEE/currency/code/code&quot;, XPathResult.STRING_TYPE);
+		this.currency = (currencyObject &amp;&amp; currencyObject.stringValue) ? currencyObject.stringValue
+				: &quot;AED&quot;;
+
+		var expiryDateObject = XmlUtil.getXPathResult(message,
+				&quot;message/LICENSEE/licenseExpiry/expiryDate/value&quot;,
+				XPathResult.STRING_TYPE);
+		this.expiryDate = (expiryDateObject &amp;&amp; expiryDateObject.stringValue) ? expiryDateObject.stringValue
+				: &quot;&quot;;
+
+		var emailContentObject = XmlUtil.getXPathResult(message,
+				&quot;message/LICENSEE/text/thumbnail&quot;, XPathResult.STRING_TYPE);
+		this.emailContent = (emailContentObject &amp;&amp; emailContentObject.stringValue) ? emailContentObject.stringValue
+				: &quot;&quot;;
+
+		var messageXml = XmlUtil.findByName(message, &quot;message&quot;, true);
+		var licenseeFragment = XmlUtil.findByName(messageXml, &quot;LICENSEE&quot;, true);
+		var idFragment = XmlUtil.findByName(licenseeFragment, &quot;id&quot;, true);
+		if (idFragment) {
+			idFragment = XmlUtil.findByName(licenseeFragment, &quot;id&quot;, false);
+			for (i = 0; i &lt; idFragment.length; i++) {
+				var attachment = XmlUtil.getXPathResult(message,
+						&quot;message/LICENSEE/desc[&quot; + (i + 1)
+								+ &quot;]/reference/value&quot;, XPathResult.STRING_TYPE);
+				var attachmentName = XmlUtil
+						.getXPathResult(message, &quot;message/LICENSEE/desc[&quot;
+								+ (i + 1) + &quot;]/language/value&quot;,
+								XPathResult.STRING_TYPE);
+				// alert(&quot;attachmentName: &quot; + attachmentName.stringValue + &quot;
+				// :attachment : &quot;+attachment.stringValue);
+
+				if (attachmentName.stringValue.length &gt; 1
+						&amp;&amp; attachment.stringValue.length &gt; 1) {
+					this.licenseeAttachmentName
+							.push((attachmentName &amp;&amp; attachmentName.stringValue) ? attachmentName.stringValue
+									: &quot;&quot;);
+					this.licenseeAttachment
+							.put(
+									(attachment &amp;&amp; attachment.stringValue) ? attachment.stringValue
+											: &quot;&quot;,
+									(attachmentName &amp;&amp; attachmentName.stringValue) ? attachmentName.stringValue
+											: &quot;&quot;);
+				}
+			}
+		}
+	}
+
+};
+HIN.LicenseeVO.prototype.toString = function() {
+	return &quot;[&quot; + this.subscriberId + &quot; , &quot; + this.message + &quot; , &quot;
+			+ this.exchangeRate + &quot; , &quot; + this.licenseeEmail + &quot; , &quot;
+			+ this.licenseePassword + &quot; , &quot; + this.currencyCode + &quot; , &quot;
+			+ this.currencySymbol + &quot; , &quot; + this.emailContent + &quot;]&quot;;
+};</pre>
+</body>
+</html>

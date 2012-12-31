@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--$Header: /lafrz/jw1_top/CVS/hc/ctbR12/src/oracle/apps/ctb/message/defs/rim214101/schemas/PRPA_IN000004.xsd,v 1.1 2007/11/12 09:44:06 rpanigra Exp $-->
+<xs:schema xmlns="urn:hl7-org:v3" xmlns:mif="urn:hl7-org:v3/mif"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn:hl7-org:v3"
+           elementFormDefault="qualified">
+   <xs:annotation>
+      <xs:documentation>Generated using schema builder version 2.0. Stylesheets:
+HMD was rendered into XML using software provided to HL7 by Beeler Consulting LLC.
+ HMD to MIF Transform: $Id: PRPA_IN000004.xsd,v 1.1 2007/11/12 09:44:06 rpanigra Exp $
+  Base transform: $Id: PRPA_IN000004.xsd,v 1.1 2007/11/12 09:44:06 rpanigra Exp $
+  Package Id Conversion: $Id: PRPA_IN000004.xsd,v 1.1 2007/11/12 09:44:06 rpanigra Exp $
+  HTML To MIF markup: $Id: PRPA_IN000004.xsd,v 1.1 2007/11/12 09:44:06 rpanigra Exp $
+ Flat to Serialization Transform: $Id: PRPA_IN000004.xsd,v 1.1 2007/11/12 09:44:06 rpanigra Exp $
+ Fix Names Transform: $Id: PRPA_IN000004.xsd,v 1.1 2007/11/12 09:44:06 rpanigra Exp $
+  Base transform: $Id: PRPA_IN000004.xsd,v 1.1 2007/11/12 09:44:06 rpanigra Exp $
+  Package Id Conversion: $Id: PRPA_IN000004.xsd,v 1.1 2007/11/12 09:44:06 rpanigra Exp $
+StaticMifToXsd.xsl version 2.0</xs:documentation>
+   </xs:annotation>
+   <xs:include schemaLocation="../coreschemas/infrastructureRoot.xsd"/>
+   <xs:include schemaLocation="MCCI_MT000100HT04.xsd"/>
+   <xs:include schemaLocation="MFMI_MT700700HT03.xsd"/>   
+   <xs:include schemaLocation="PRPA_MT203000HT04.xsd"/>
+   
+   <xs:element name="PRPA_IN000004">
+    <xs:complexType>
+    <xs:complexContent>
+    <xs:extension base="MCCI_MT000100HT04.Message">
+    <xs:attribute name="ITSVersion" type="xs:string" 
+    use="required" fixed="XML_1.0"/>
+    </xs:extension>
+    </xs:complexContent>
+    </xs:complexType>
+    </xs:element>
+
+
+      <xs:complexType name="MCCI_MT000100HT04.Message">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="creationTime" type="TS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="securityText" type="ST" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="responseModeCode" type="CS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="versionCode" type="CS" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="interactionId" type="II" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="profileId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="processingCode" type="CS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="processingModeCode" type="CS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="acceptAckCode" type="CS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="sequenceNumber" type="INT" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="receiver" type="MCCI_MT000100HT04.Receiver" nillable="true" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="respondTo" type="MCCI_MT000100HT04.RespondTo" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="sender" type="MCCI_MT000100HT04.Sender" nillable="true" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="attentionLine" type="MCCI_MT000100HT04.AttentionLine" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="attachment" type="MCCI_MT000100HT04.Attachment" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="controlActProcess" type="MFMI_MT700700HT03.ControlActProcess" nillable="true" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+   </xs:complexType>
+
+    <xs:complexType name="MFMI_MT700700HT03.ControlActProcess">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="code" type="CD" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="effectiveTime" type="TS" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="reasonCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="languageCode" type="CE" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="author" type="MFMI_MT700700HT03.Author" nillable="true" minOccurs="0"
+                     maxOccurs="unbounded"/>
+         <xs:element name="dataEnterer" type="MFMI_MT700700HT03.DataEnterer" nillable="true"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+         <xs:element name="dataEntryLocation" type="MFMI_MT700700HT03.DataEntryLocation"
+                     nillable="true"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+         <xs:element name="reason" type="MFMI_MT700700HT03.Reason" nillable="true" minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="subject" type="MFMI_MT700700HT03.Subject1" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="ActClassControlAct" use="optional" default="CACT"/>
+      <xs:attribute name="moodCode" type="ActMood" use="optional" fixed="EVN"/>
+   </xs:complexType>
+
+   <xs:complexType name="MFMI_MT700700HT03.Subject1">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="registrationEvent" type="MFMI_MT700700HT03.RegistrationEvent"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="SUBJ"/>
+   </xs:complexType>
+
+    <xs:complexType name="MFMI_MT700700HT03.RegistrationEvent">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="code" type="CD" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="subject" type="MFMI_MT700700HT03.Subject2" nillable="true" minOccurs="1"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="ActClass" use="optional" fixed="REG"/>
+      <xs:attribute name="moodCode" type="ActMood" use="optional" fixed="EVN"/>
+   </xs:complexType>
+
+    <xs:complexType name="MFMI_MT700700HT03.Subject2">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+       
+<xs:element name="subsumedBy" type="PRPA_MT203000HT04.SubsumedBy" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <!--xs:attribute name="nullFlavor" type="NullFlavor" use="optional"/-->
+      <xs:attribute name="typeCode" type="ParticipationTargetSubject" use="optional" default="SBJ"/>
+   </xs:complexType>
+
+</xs:schema>

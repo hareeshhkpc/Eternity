@@ -1,0 +1,31 @@
+create keyspace KeyspaceIdentity;
+use Key6;
+create column family HIN_IDENTITY 
+	with column_type = 'Super' 
+	and comparator = 'UTF8Type' 
+	and subcomparator = 'UTF8Type' 
+	and column_metadata = [
+		{column_name: USERNAME, validation_class: UTF8Type},
+		{column_name: PASSWORD, validation_class: UTF8Type},
+		{column_name: PROFILE, validation_class: UTF8Type},
+		{column_name: REQUEST, validation_class: UTF8Type}
+	];
+
+create column family INDEX_HIN_IDENTITY 
+	with column_type = 'Super' 
+	and comparator = 'UTF8Type' 
+	and subcomparator = 'UTF8Type' 
+	and column_metadata = [
+		{column_name: PROFILE, validation_class: UTF8Type},
+		{column_name: REQUEST, validation_class: UTF8Type}
+	];
+
+set HIN_IDENTITY[1]['USERNAME']['VALUE'] = 'John';
+set HIN_IDENTITY[1]['PASSWORD']['VALUE'] = 'jo123';
+set HIN_IDENTITY[1]['PROFILE']['123451'] = 'PROFILE1';
+set HIN_IDENTITY[1]['PROFILE']['123452'] = 'PROFILE2';
+set HIN_IDENTITY[1]['REQUEST']['123451'] = 'REQ1';
+set HIN_IDENTITY[1]['REQUEST']['123452'] = 'REQ2';
+
+set INDEX_HIN_IDENTITY[1]['PROFILE']['VALUE'] = 'PROFILE2';
+set INDEX_HIN_IDENTITY[1]['REQUEST']['123451'] = 'REQ1';

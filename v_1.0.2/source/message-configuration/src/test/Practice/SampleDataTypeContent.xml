@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-type-instances>
+	<!-- ED instance -->
+	<desc id="id12" mediaType="" language="" compression="" integrityCheck="" integrityCheckAlgorithm="" representation="" nullFlavor=""> <!-- ED --><reference use="" value="" nullFlavor=""> <!-- TEL --><useablePeriod operator="" value="" nullFlavor=""/> <!-- SXCM_TS --></reference><thumbnail> <!-- thumbnail --><reference use="" value="" nullFlavor=""> <!-- TEL --><useablePeriod operator="" value="" nullFlavor=""/> <!-- SXCM_TS --></reference></thumbnail></desc>
+</data-type-instances>
+
+<data-type-instances>
+	<!-- TEL instance -->
+	<desc value="" use="" nullFlavor=""> <useablePeriod operator="" value="" nullFlavor=""/><!-- SXCM_TS --> </desc>  
+</data-type-instances>
+
+<data-type-instances>
+	<!-- SXCM_TS instance mixed false-->
+	<desc operator="" value="" nullFlavor=""/>
+</data-type-instances>
+
+<data-type-instances>
+	<!-- thumbnail instance -->
+	<desc> <!-- TEL -->
+		<reference value="" use="" nullFlavor="">
+			<useablePeriod operator="" value="" nullFlavor=""/><!-- SXCM_TS -->
+		</reference>
+	</desc>
+</data-type-instances>

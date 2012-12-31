@@ -1,0 +1,550 @@
+
+<div data-role="content">
+	<div class="archive-left-side-content ui-corner-all ui-archive-bg shadow"
+		id="form">
+		<div id="archiveData" class="inner-right" style="width:87%;">
+		<div id="daterangeselect"
+			class="header_bg ui-header-corner-top ui-page-header-text"
+			style="display: none">
+			<div class="ui-grid-b">
+				<div id="fromDate" class="ui-block-a">
+					<input style="color: white;" type="text"
+						data-options='{"mode":"calbox", "calUsePickers": true, "calNoHeader": true, "dateFormat": "%B %d, %Y"}'
+						data-role="datebox" id="fromdatecalendar" value=""
+						dataField="true"
+						class="ui-input-text ui-body-d ui-shadow-inset ui-corner-all ui-icon-datebox"
+						readonly="readonly">
+				</div>
+				<div class="ui-block-c">&nbsp</div>
+				<div id="toDate" class="ui-block-c">
+					<input style="color: white;" type="text"
+						data-options='{"mode":"calbox", "calUsePickers": true, "calNoHeader": true, "dateFormat": "%B %d, %Y"}'
+						data-role="datebox" id="todatecalendar" value="" dataField="true"
+						class="ui-input-text ui-body-d ui-shadow-inset ui-corner-all ui-icon-datebox"
+						readonly="readonly">
+				</div>
+			</div>
+		</div>
+		<br /> <br />
+
+		<div id="MessageViews" style="display: none;">
+			<div id="PRPA_MT201000HT03">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/PRPA_MT201000HT03/identifiedPerson/name/prefix/text(), ' ',message/PRPA_MT201000HT03/identifiedPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/PRPA_MT201000HT03/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Telecom :</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/PRPA_MT201000HT03/identifiedPerson/telecom/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="COCT_MT150000HT04">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="message/COCT_MT150000HT04/name/prefix/text()"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div class="ui-testresults">
+						<div style="float: left">Description:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/COCT_MT150000HT04/telecom/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="PRPA_MT410001HT02">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/PRPA_MT410001HT02/subject/patient/patientPerson/name/prefix/text(), ' ',message/PRPA_MT410001HT02/subject/patient/patientPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/PRPA_MT410001HT02/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Telecom:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/PRPA_MT410001HT02/subject/patient/patientPerson/telecom[1]/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POLB_MT004000HT01_ABI">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POLB_MT004000HT01_ABI/recordTarget/patient/patientPerson/name/prefix/text(), ' ',message/POLB_MT004000HT01_ABI/recordTarget/patient/patientPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POLB_MT004000HT01_ABI/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Right ABI :</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POLB_MT004000HT01_ABI/component2[3]/observationEvent/value[1]/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POLB_MT004000HT01_Bioclip">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POLB_MT004000HT01_Bioclip/recordTarget/patient/patientPerson/name/prefix/text(), ' ',message/POLB_MT004000HT01_Bioclip/recordTarget/patient/patientPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POLB_MT004000HT01_Bioclip/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Component:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POLB_MT004000HT01_Bioclip/component2/observationEvent/value[1]/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POLB_MT004000HT01_Biospace">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POLB_MT004000HT01_Biospace/recordTarget/patient/patientPerson/name/prefix/text(), ' ',message/POLB_MT004000HT01_Biospace/recordTarget/patient/patientPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POLB_MT004000HT01_Biospace/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Component:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POLB_MT004000HT01_Biospace/component2/observationEvent/value[1]/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POLB_MT004000HT01_CAC">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POLB_MT004000HT01_CAC/recordTarget/patient/patientPerson/name/prefix/text(), ' ',message/POLB_MT004000HT01_CAC/recordTarget/patient/patientPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POLB_MT004000HT01_CAC/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Total Agatston Score :</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POLB_MT004000HT01_CAC/component2[5]/observationEvent/value[1]/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POLB_MT004000HT01_Cardioscan">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POLB_MT004000HT01_Cardioscan/recordTarget/patient/patientPerson/name/prefix/text(), ' ',message/POLB_MT004000HT01_Cardioscan/recordTarget/patient/patientPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POLB_MT004000HT01_Cardioscan/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Component:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POLB_MT004000HT01_Cardioscan/component2/observationEvent/value[1]/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POLB_MT004000HT01_Elastometer">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POLB_MT004000HT01_Elastometer/recordTarget/patient/patientPerson/name/prefix/text(), ' ',message/POLB_MT004000HT01_Elastometer/recordTarget/patient/patientPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POLB_MT004000HT01_Elastometer/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Component:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POLB_MT004000HT01_Elastometer/component2/observationEvent/value[1]/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POLB_MT004000HT01_IMT">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POLB_MT004000HT01_IMT/recordTarget/patient/patientPerson/name/prefix/text(), ' ',message/POLB_MT004000HT01_IMT/recordTarget/patient/patientPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POLB_MT004000HT01_IMT/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">IMT Mean(Right) :</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POLB_MT004000HT01_IMT/component2/observationEvent/value[1]/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POLB_MT004000HT01_Labs">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POLB_MT004000HT01_Labs/recordTarget/patient/patientPerson/name/prefix/text(), ' ',message/POLB_MT004000HT01_Labs/recordTarget/patient/patientPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POLB_MT004000HT01_Labs/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Component:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POLB_MT004000HT01_Labs/component2/observationEvent/value[1]/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POLB_MT004000HT01_MCG">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POLB_MT004000HT01_MCG/recordTarget/patient/patientPerson/name/prefix/text(), ' ',message/POLB_MT004000HT01_MCG/recordTarget/patient/patientPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POLB_MT004000HT01_MCG/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Component:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POLB_MT004000HT01_MCG/recordTarget/patient/patientPerson/telecom[1]/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POLB_MT004000HT01_SphygmoCor">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POLB_MT004000HT01_SphygmoCor/recordTarget/patient/patientPerson/name/prefix/text(), ' ',message/POLB_MT004000HT01_SphygmoCor/recordTarget/patient/patientPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POLB_MT004000HT01_SphygmoCor/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Component:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POLB_MT004000HT01_SphygmoCor/component2/observationEvent/value[1]/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POLB_MT004000HT01_Thyroflex">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POLB_MT004000HT01_Thyroflex/recordTarget/patient/patientPerson/name/prefix/text(), ' ',message/POLB_MT004000HT01_Thyroflex/recordTarget/patient/patientPerson/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POLB_MT004000HT01_Thyroflex/effectiveTime/low/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Component:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POLB_MT004000HT01_Thyroflex/component2/observationEvent/value[1]/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POCD_MT000040UV_AWARENESS_QUESTIONNAIRE">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POCD_MT000040UV_AWARENESS_QUESTIONNAIRE/recordTarget/patientRole/patient/name/prefix/text(), ' ',message/POCD_MT000040UV_AWARENESS_QUESTIONNAIRE/recordTarget/patientRole/patient/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POCD_MT000040UV_AWARENESS_QUESTIONNAIRE/effectiveTime/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Telecom:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POCD_MT000040UV_AWARENESS_QUESTIONNAIRE/recordTarget/patientRole/telecom/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POCD_MT000040UV_ConsentForm">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POCD_MT000040UV_AWARENESS_QUESTIONNAIRE/recordTarget/patientRole/patient/name/prefix/text(), ' ',message/POCD_MT000040UV_AWARENESS_QUESTIONNAIRE/recordTarget/patientRole/patient/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POCD_MT000040UV_AWARENESS_QUESTIONNAIRE/effectiveTime/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Telecom:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POCD_MT000040UV_AWARENESS_QUESTIONNAIRE/recordTarget/patientRole/telecom/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POCD_MT000040UV_CULTURE_QUESTIONNAIRE">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POCD_MT000040UV_CULTURE_QUESTIONNAIRE/recordTarget/patientRole/patient/name/prefix/text(), ' ',message/POCD_MT000040UV_CULTURE_QUESTIONNAIRE/recordTarget/patientRole/patient/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POCD_MT000040UV_CULTURE_QUESTIONNAIRE/effectiveTime/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Telecom:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POCD_MT000040UV_CULTURE_QUESTIONNAIRE/recordTarget/patientRole/telecom/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POCD_MT000040UV_HEALTH_HISTORY_QUESTIONNAIRE">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POCD_MT000040UV_HEALTH_HISTORY_QUESTIONNAIRE/recordTarget/patientRole/patient/name/prefix/text(), ' ',message/POCD_MT000040UV_HEALTH_HISTORY_QUESTIONNAIRE/recordTarget/patientRole/patient/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POCD_MT000040UV_HEALTH_HISTORY_QUESTIONNAIRE/effectiveTime/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Telecom:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POCD_MT000040UV_HEALTH_HISTORY_QUESTIONNAIRE/recordTarget/patientRole/telecom/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE/recordTarget/patientRole/patient/name/prefix/text(), ' ',message/POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE/recordTarget/patientRole/patient/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE/effectiveTime/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Telecom:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POCD_MT000040UV_LIFE_STYLE_QUESTIONNAIRE/recordTarget/patientRole/telecom/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POCD_MT000040UV_PhysicalExamination">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POCD_MT000040UV_PhysicalExamination/recordTarget/patientRole/patient/name/prefix/text(), ' ',message/POCD_MT000040UV_PhysicalExamination/recordTarget/patientRole/patient/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POCD_MT000040UV_PhysicalExamination/effectiveTime/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Telecom:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POCD_MT000040UV_PhysicalExamination/recordTarget/patientRole/telecom/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POCD_MT000040UV_Program">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POCD_MT000040UV_Program/recordTarget/patientRole/patient/name/prefix/text(), ' ',message/POCD_MT000040UV_Program/recordTarget/patientRole/patient/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POCD_MT000040UV_Program/effectiveTime/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Telecom:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POCD_MT000040UV_Program/recordTarget/patientRole/telecom/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POCD_MT000040UV_Welcome">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POCD_MT000040UV_Welcome/recordTarget/patientRole/patient/name/prefix/text(), ' ',message/POCD_MT000040UV_Welcome/recordTarget/patientRole/patient/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POCD_MT000040UV_Welcome/effectiveTime/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Telecom:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POCD_MT000040UV_Welcome/recordTarget/patientRole/telecom/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE/recordTarget/patientRole/patient/name/prefix/text(), ' ',message/POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE/recordTarget/patientRole/patient/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime"
+						dataXPath="message/POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE/effectiveTime/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Telecom:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POCD_MT000040UV_ENVIRONMENT_QUESTIONNAIRE/recordTarget/patientRole/telecom/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+			<div id="POCD_MT000040UV">
+				<div id="patientNameDiv"
+					class="ui-header-corner-top ui-page-header-text ui-archive-header">
+					<div isEditor="true"
+						dataXPath="concat(message/POCD_MT000040UV/recordTarget/patientRole/patient/name/prefix/text(), ' ',message/POCD_MT000040UV/recordTarget/patientRole/patient/name/given/text())"></div>
+				</div>
+
+				<div id="messageBodyDiv" class="ui-archive-data">
+					<div isEditor="true" class="ui-testresult-date" type="label"
+						id="pTime" dataXPath="message/POCD_MT000040UV/effectiveTime/value"
+						dateFormatFunction="AppUtil.getFormattedDate"></div>
+					<div class="ui-testresults">
+						<div style="float: left">Telecom:</div>
+						<div style="float: left" isEditor="true" type="label" id="pCode"
+							dataXPath="message/POCD_MT000040UV/recordTarget/patientRole/telecom/value"
+							dataField="true"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="inner-right-corner other home-icon-link" style="" id="patientHomeIconArchive"></div>
+	</div>
+	<div class="archive-right-side-content ui-corner-all shadow" id="right">
+		<div id="search"></div>
+	<!-- 	<div id="mcs_container">
+			<div class="customScrollBox">
+				<div class="container">
+					<div class="content"> -->
+						<div style="height: 394px;">
+							<br />
+							<div id="pagination" style="width: 96%">
+								<div align="center" id="prev" style="width: 15%; float: left;">
+									<img src="images/left-arrow.png" />
+								</div>
+								<div align="center" style="width: 70%; float: left;"
+									id="messageType">
+									<div class="slides_container" id="appendmessagetype">&nbsp</div>
+								</div>
+								<div align="right" style="width: 15%; float: left;" id="next">
+									<img src="images/right-arrow.png" />
+								</div>
+							</div>
+							<div id="xmlcontent" class="ui-listview ui-list-area"
+								data-role="listview"></div>
+							<li class="ui-corner-bottom ui-li ui-li-static ui-list-bottom shadow"
+								style="color: #000000;" data-theme="c" id="fetchmoretests"><div
+									class="ui-arrow-position">
+									<img src="images/down-arrow.png" />
+								</div></li>
+						</div>
+					<!-- </div>
+				</div>
+				<div class="dragger_container" style="display: none">
+					<div class="dragger"></div>
+				</div>
+			</div>
+		</div> -->
+
+		<div id="fetchtestresult" class="ui-fetch-box">
+			<input type="button" id="fetch-test-result" value="Fetch Results" />
+		</div>
+	</div>
+</div>

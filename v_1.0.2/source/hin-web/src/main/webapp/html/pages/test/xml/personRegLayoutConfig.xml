@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LayoutConfiguration>
+
+    <Layout>
+        <table>
+            <row>
+                <column>
+                    <element id="id12" align="vertical" />
+                </column>
+            </row>
+            <row>
+                <column>
+                    <element id="id16" align="vertical" />
+                </column>
+            </row>
+            <row>
+                <column colspan="1" >
+                    <element id="id15" align="vertical" />
+                </column>
+            </row>
+        </table>
+    </Layout>
+
+</LayoutConfiguration>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POXX_MT111000HT02_CAC">
+	<POXX_MT111000HT02_CAC>
+		<id />
+		<observation>
+			<code code="Left Main(LM)" displayName="Left Main(LM)" />
+			<value value="1"/>
+		</observation>
+		<observation>
+			<code code="Left Anterior Descending(LAD)" displayName="Left Anterior Descending(LAD)" />
+			<value value="2"/>
+		</observation>
+		<observation>
+			<code code="Left Circumflex(LCX)" displayName="Left Circumflex(LCX)" />
+			<value value="3"/>
+		</observation>
+		<observation>
+			<code code="Right Coronary Artery(RCA)" displayName="Right Coronary Artery(RCA)" />
+			<value value="4"/>
+		</observation>
+		<observation>
+			<code code="Total Agatston Score" displayName="Total Agatston Score" />
+			<value value="10"/>
+		</observation>
+		<observation>
+			<code code="Percentile Ranking" displayName="Percentile Ranking" />
+			<value value="45"/>
+		</observation>
+		<observation>
+			<code code="Calcium Score" displayName="Calcium Score" />
+			<value value="198"/>
+		</observation>
+		<observation>
+			<code code="Calcium Volume" displayName="Calcium Volume" />
+			<value value="400"/>
+		</observation>
+		<subject>
+			<specimen>
+				<code />
+				<specimenMaterial>
+					<code />
+				</specimenMaterial>
+				<sourcePerson>
+					<id />
+				</sourcePerson>
+			</specimen>
+		</subject>
+		<recordTarget>
+			<patient>
+				<id />
+			</patient>
+		</recordTarget>
+		<author>
+			<employmentStaff>
+				<employeePerson>
+					<id />
+					<name />
+				</employeePerson>
+			</employmentStaff>
+		</author>
+	</POXX_MT111000HT02_CAC>
+</message>

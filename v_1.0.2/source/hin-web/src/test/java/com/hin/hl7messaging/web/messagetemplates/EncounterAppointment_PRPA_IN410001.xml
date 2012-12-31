@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PRPA_IN410001 ITSVersion="XML_1.0">
+	<id extension="3948375" root="APP00001" />
+	<creationTime value="201201181100" />
+	<responseModeCode nullFlavor="NI" />
+	<versionCode code="NE2006" />
+	<interactionId extension="PRPA_IN410001" root="2.16.840.1.113883.1.6" />
+	<processingCode code="P" />
+	<processingModeCode code="T" />
+	<acceptAckCode code="ER" />
+	<receiver typeCode="RCV">
+		<device classCode="DEV" determinerCode="INSTANCE">
+			<id extension="922" root="2.16.840.1.113883.2.6.6" />
+		</device>
+	</receiver>
+	<sender typeCode="SND">
+		<device classCode="DEV" determinerCode="INSTANCE">
+			<id extension="1" root="2.16.840.1.113883.2.6.6" />
+		</device>
+	</sender>
+	<controlActProcess moodCode="EVN">
+		<subject>
+			<encounterAppointment classCode="ENC" moodCode="APT">
+				<id extension="1" root="APP00001" />
+				<code nullFlavor="NI" />
+				<statusCode code="active" />
+				
+				<!-- appointment Activity  time  -->
+				<effectiveTime value="201201181100"/>
+				<priorityCode code="ELECTIVE"/>
+				<confidentialityCode code="N"/>
+				
+				<subject typeCode="SBJ" contextControlCode="OP">
+					<patient classCode="PAT">
+						<id root="MRN00001" extension="04P800000-1049151" />
+						<!-- patient effective time -->
+						<effectiveTime  value="201201181100"/>
+						<patientPerson classCode="PSN" determinerCode="INSTANCE">
+							<id root="${profileID}" extension="04P800000-1049151" />
+							<name>
+								<prefix>${prefix}</prefix>
+								<given>${given}</given>
+								<family>${family}</family>
+							</name>
+							<administrativeGenderCode code="${gender}"
+								codeSystem="2.16.840.1.113883.5.1" />
+							<birthTime value="${birthTime}" />
+							<coveredParty classCode="ROL">
+								<id root="2.2.2.3" extension="2323" />
+								<beneficiaryOf typeCode="BEN">
+									<policyOrAccount classCode="COV" moodCode="EVN">
+										<id root="12.12.12" extension="88888" />
+										<author typeCode="AUT">
+											<carrierRole classCode="UNDWRT">
+												<id root="2.2.2.6" extension="898989" />
+												<underwritingCarrierOrganization classCode="ORG" determinerCode="INSTANCE">
+													<name>STAR</name>
+												</underwritingCarrierOrganization>
+											</carrierRole>
+										</author>
+									</policyOrAccount>
+								</beneficiaryOf>
+							</coveredParty>
+						</patientPerson>
+					</patient>
+				</subject>
+				
+				<attender  typeCode="ATND">
+					<employmentStaff classCode="EMP">
+						<id root="12.2.12.3" extension="4545" />
+						<employeePerson classCode="PSN" determinerCode="INSTANCE">
+							<name>
+								<prefix>Mr</prefix>
+								<given>Thanveer</given>
+								<family>Aqthar</family>
+							</name>
+						</employeePerson>
+					</employmentStaff>
+				</attender>
+				
+				<referrer>
+					<employmentStaff classCode="REF">
+						<id extension="65468254" root="9.9.9.56" />
+							<employeePerson classCode="PSN" determinerCode="INSTANCE">
+							<id extension="56656" root="6.6.6.15.89" />
+							<name>
+								<prefix>Mr</prefix>
+								<given>Ram</given>
+								<family>Mishra</family>
+							</name>							
+							</employeePerson>
+					</employmentStaff>
+				</referrer>
+				
+				<consultant typeCode="CON">
+					<employmentStaff classCode="EMP">
+						<id root="22.22.331" extension="66658766"/>
+						<employeePerson classCode="PSN" determinerCode="INSTANCE">
+						<id root="22.22.007" extension="6658766"/>
+							<name>
+								<prefix>Dr</prefix>
+								<given>Kamalakhanth</given>
+								<family>Shenoy</family>
+							</name>
+						</employeePerson>
+					</employmentStaff>
+				</consultant>
+				
+				<location typeCode="LOC">
+					<id root="22.22.221" extension="66666"/>
+					<serviceDeliveryLocation classCode="SDLOC">
+						<location classCode="PLC" determinerCode="INSTANCE">
+							<id root="22.22.222" extension="77777"/>
+							<name>Unit-1</name>
+						</location>
+					</serviceDeliveryLocation>
+				</location>			
+				
+				<responsibleParty typeCode="RESP">
+					<assignedEntityOrganization classCode="ASSIGNED">
+						<id root="22.22.9165" extension="662566"/>
+						<assignedOrganization classCode="ORG"
+							determinerCode="INSTANCE">
+							<id extension="1" root="2.16.840.1.113883.2.6.6" />
+						</assignedOrganization>
+					</assignedEntityOrganization>
+				</responsibleParty>
+			</encounterAppointment>
+		</subject>
+	</controlActProcess>
+</PRPA_IN410001>

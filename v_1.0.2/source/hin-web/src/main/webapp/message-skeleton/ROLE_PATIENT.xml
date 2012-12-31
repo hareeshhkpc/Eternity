@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="ROLE_PATIENT">
+	<ROLE_PATIENT>
+		<id />
+		<addr />
+		<telecom />
+		<statusCode />
+		<effectiveTime />
+		<confidentialityCode />
+		<veryImportantPersonCode />
+		<patientPerson>
+			<id />
+			<name />
+		</patientPerson>
+		<providerOrganization>
+			<id />
+			<name />
+		</providerOrganization>
+	</ROLE_PATIENT>
+</message>

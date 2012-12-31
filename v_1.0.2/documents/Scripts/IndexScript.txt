@@ -1,0 +1,19 @@
+
+
+create keyspace KS_INDEX;
+
+use KS_INDEX;
+
+create column family CF_AD_BOOK 
+	with column_type = 'Super' 
+	and key_validation_class = 'UTF8Type'
+	and comparator = 'UTF8Type' 
+	and subcomparator = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: CITY, validation_class: UTF8Type, index_type : 0, index_name : INDEX_STREET},
+		{column_name: STATE, validation_class: UTF8Type},
+		{column_name: STREET, validation_class: UTF8Type},
+		{column_name: HOUSE, validation_class: UTF8Type}
+	];
+

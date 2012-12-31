@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1100">
+	<g>
+		<text x="45" y="50" fill="#54184f" font-size="27pt" font-family="Myriad Pro Light">Step two - mentor</text>
+		<rect x="45" y="70" width="670" height="44" style="fill:#54184f" />
+		<circle cx="65" cy="91" r="16" stroke="#FFF" stroke-width="1" fill="#54184f" />
+		<text x="65" y="103" fill="#FFF" font-size="27pt" font-family="Myriad Pro Light">I nflammation control</text>
+	</g>
+
+	<g>
+		<text x="45" y="280" fill="#54184f" font-size="22pt" font-family="Myriad Pro Light">Physician comments:</text>
+		<rect x="45" y="300" width="300" height="195" style="fill:#FFF;stroke:#000000;stroke-width:1" />
+		<line x1="360" y1="500" x2="360" y2="260" style="stroke:#000000;stroke-width:1"/>
+	</g>
+	
+	<g>
+		<rect x="370" y="260" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="268" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Age Management (CardioMetabolic) Program (Manual)</text>
+		
+		<rect x="370" y="285" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="293" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">WellMen or WellWomen (Book)</text>
+		
+		<rect x="370" y="310" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="318" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">CNN Clinton/Dr.Gupta (Video)</text>
+		
+		<rect x="370" y="335" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="343" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">CardioMetabolic Disease DR. Oz (Manual)</text>
+		
+		<rect x="370" y="360" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="368" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">The Anti-Inflammation Zone (Book)</text>
+		
+		<rect x="370" y="385" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="393" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">The Inflammation Syndrome (Book)</text>
+		
+		<rect x="370" y="410" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="418" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Going Against The Grain (Book)</text>
+		
+		<rect x="370" y="435" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="443" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">The Art Of Low Carbohydrate Living (Book)</text>
+		
+		<rect x="370" y="460" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="468" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">CardioMetabolic Program Overview (Booklet)</text>
+		
+		<rect x="370" y="485" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="493" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Quick Start Program Guide (Booklet)</text>
+	</g>
+	
+	
+	<g>
+		<rect x="45" y="570" width="670" height="44" style="fill:#54184f" />
+		<circle cx="66" cy="591" r="18" stroke="#FFF" stroke-width="1" fill="#54184f" />
+		<text x="54" y="603" fill="#FFF" font-size="27pt" font-family="Myriad Pro Light">N utrition and Metabolism</text>
+	</g>
+	
+	<g>
+		<text x="45" y="800" fill="#54184f" font-size="22pt" font-family="Myriad Pro Light">Physician comments:</text>
+		<rect x="45" y="820" width="300" height="195" style="fill:#FFF;stroke:#000000;stroke-width:1" />
+		<line x1="360" y1="1025" x2="360" y2="780" style="stroke:#000000;stroke-width:1"/>
+	</g>
+	
+	<g>
+		<rect x="370" y="780" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="788" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Nutrition (Manual)</text>
+		
+		<rect x="370" y="805" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="813" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">The Paleo Solution (Book)</text>
+		
+		<rect x="370" y="830" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="838" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Good Calories Bad Calories (Book)</text>
+		
+		<rect x="370" y="855" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="863" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Eternity Nutrition Overview (Video)</text>
+		
+		<rect x="370" y="880" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="888" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">The Dangers Of Sugar 60 Mins (Video)</text>
+		
+		<rect x="370" y="905" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="913" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">The New Glucose Revolution (Book)</text>
+		
+		<rect x="370" y="930" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="938" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">What Makes Us Fat (Article)</text>
+		
+		<rect x="370" y="955" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="963" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Carbohydrate Not Fat Cause Heart Disease (Article)</text>
+		
+		<rect x="370" y="980" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="988" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">HCG Diet (Manual)</text>
+		
+		<rect x="370" y="1005" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="1013" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Paleo Diet (Manual)</text>
+		
+	</g>
+	
+	<text x="300" y="1090" fill="#54184f" font-size="12pt" font-family="Myriad Pro Light">Step two - mentor</text>
+</svg>

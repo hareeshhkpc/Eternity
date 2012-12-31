@@ -1,0 +1,49 @@
+<script src="js/jqm.autoComplete-1.4.js"></script>
+<div id="ser">
+	<fieldset class="ui-grid-d ui-accounting-box" amountParent="service">
+		<div class="ui-block-a ui-accounting-field"
+			style="border-right: 0px; width: 3%; height: 35px;">
+			<input type="checkbox" data-role="none" id="chk" value="" />
+		</div>
+
+		<div class="ui-block-b ui-accounting-field" style="width: 16%;">
+			<div isEditor="true" editorLabel="" pathFields=""
+				tagName="effectiveTime" dataType="TS" editorType="TS"></div>
+		</div>
+		<div class="ui-block-c ui-accounting-field ui-accounting-position"
+			style="width: 30%;">
+			<div isEditor="true" editorLabel="" queryType="Service"
+				instanceId="serviceLookup"
+				pathFields="pertinentInformation,observationOrder" tagName="code"
+				editorType="ServiceLookup" dataType="CD"></div>
+		</div>
+		<div class="ui-block-d ui-accounting-field ui-accounting-position"
+			style="width: 31.3%;">
+			<div isEditor="true" editorLabel=""
+				pathFields="postingTo,patientAccount,pertinentInformation,encounterEvent,consultant,employmentStaff,employeePerson"
+				tagName="name" editorType="PhysicianLookup" dataType="PN"></div>
+			<div isEditor="true" editorLabel=""
+				pathFields="postingTo,patientAccount,pertinentInformation,encounterEvent,consultant,employmentStaff,employeePerson"
+				tagName="id" editorType="II" dataType="II" style="display: none"></div>
+			<div isEditor="true" editorLabel=""
+				pathFields="postingTo,patientAccount,pertinentInformation,encounterEvent,consultant,employmentStaff,employeePerson"
+				tagName="name" editorType="PNComplete" dataType="PN"
+				style="display: none"></div>
+		</div>
+		<div
+			class="ui-block-e ui-accounting-field ui-accounting-align ui-accounting-position"
+			style="width: 12.1%;">
+			<div isEditor="true" editorType="MOInplace" pathFields=""
+				tagName="amt" dataType="MO"
+				configParams="[{name:'editable',value:false}]"></div>
+		</div>
+		<div id="delete" instanceId="instanceId"
+			class="ui-block-f ui-delete-icon">
+			<img src="images/delete.png" onclick="" />
+		</div>
+
+		<!-- <div id="invoicePageFormID">Invoice</div> -->
+		<!-- <div id="invoicePageFormID"><img src="../html/images/invoice.png" /></div> -->
+	</fieldset>
+</div>
+

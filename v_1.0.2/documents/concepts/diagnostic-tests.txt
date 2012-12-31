@@ -1,0 +1,21 @@
+------------- concepts ---------------------
+MessageForm				CAC_FORM        
+Fee						2000        
+Cost					100        
+MessageType				POLB_MT004000HT01_CAC        
+indexFolder				POLB_MT004000HT01_CAC_Index        
+MessageTypeName			DiagnosticTest
+
+-------- Tests ---------------------------
+ABI										ABI_FORM					POLB_MT004000HT01_ABI
+BioClip 								BIOCLIP_FORM				POLB_MT004000HT01_Bioclip	
+Biospace								BIOSPACE_FORM				POLB_MT004000HT01_Biospace
+CAC										CAC_FORM					POLB_MT004000HT01_CAC
+CNS										CNS_FORM					POLB_MT004000HT01_CNS
+Elastometer 							ELASTOMETER_FORM			POLB_MT004000HT01_Elastometer
+Eternity Cardiometabolic Blood Test		BLOOD_TEST_RESULT_FORM		POLB_MT004000HT01_BloodTest
+HeartMath 								HEART_MATH_FORM				POLB_MT004000HT01_Heartmath
+IMT										IMT_FORM					POLB_MT004000HT01_IMT
+MCG 									MCG_FORM					POLB_MT004000HT01_MCG
+SPhygmoCor								SPHYGMOCOR_FORM				POLB_MT004000HT01_SphygmoCor
+Thyroflex								THYROFLEX_FORM				POLB_MT004000HT01_Thyroflex

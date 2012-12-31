@@ -1,0 +1,53 @@
+<div class="ui-form-fields" id="id">
+	<span class="ui-name-position">Name(s)</span>
+	<div data-role="none" class="ui-align-text ui-form-border">
+		<label>Title:</label> 
+		<select id="select-choice-1"
+			name="select-choice-1" data-inline="true" data-native-menu="false">
+			<option value="mr">Mr.</option>
+			<option value="ms">Ms.</option>
+			<option value="mrs">Mrs.</option>
+		</select> 
+		<label>Given Name:</label>
+		<input type="text" name="name" value=""
+			dataField="true" pathFields="subject,subsumedBy,subsumingPerson"
+			tagName="id" fields="pIDRoot,pIDExtension,null" dataType="II"
+			id="pIDRoot" /> 
+		<label>Family Name:</label> 
+		<input type="text"
+			name="name" id="name" value="" />
+		 <label>Suffix:</label> <input
+			type="text" name="name" id="name" value="" />
+	</div>
+	<div data-role="none" class="ui-form-second-row ui-align-text">
+		<label>Gender:</label> <select id="select-choice-2"
+			name="select-choice-2">
+			<option value="male">Male</option>
+			<option value="female">Female</option>
+		</select> <label>Telecoms:</label>
+		<fieldset id="telecom">
+			<div id="telecom1">
+				<div class="ui-tele-field">
+					<input type="text" name="name" id="telephone" value="telephone " />
+				</div>
+				<div class="ui-tele-add">
+					<img src="images/add.png"/>
+				</div>
+			</div>
+			<div id="telecom2">
+				<div class="ui-tele-field">
+					<input type="text" name="name" id="email" value="email " />
+				</div>
+				<div class="ui-tele-add">
+					<img src="images/add.png"/>
+				</div>
+			</div>
+		</fieldset>
+		<label>Role:</label> <select id="select-choice-3"
+			name="select-choice-2">
+			<option value="patient">Patient</option>
+			<option value="physician">Physician</option>
+			<option value="nurse">Nurse</option>
+		</select> <br/>
+	</div>
+</div>

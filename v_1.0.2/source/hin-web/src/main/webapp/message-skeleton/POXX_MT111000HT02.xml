@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POXX_MT111000HT02">
+	<POXX_MT111000HT02>
+		<id />
+		<code />
+		<statusCode />
+		<effectiveTime />
+		<value />
+		<subject>
+			<specimen>
+				<code />
+				<specimenMaterial>
+					<code />
+				</specimenMaterial>
+				<sourcePerson>
+					<id />
+				</sourcePerson>
+			</specimen>
+		</subject>
+		<recordTarget>
+			<patient>
+				<id />
+			</patient>
+		</recordTarget>
+		<author>
+			<employmentStaff>
+				<employeePerson>
+					<id />
+					<name />
+				</employeePerson>
+			</employmentStaff>
+		</author>
+	</POXX_MT111000HT02>
+</message>

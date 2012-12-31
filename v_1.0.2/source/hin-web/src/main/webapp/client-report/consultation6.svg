@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1100">
+	<g>
+		<rect x="45" y="70" width="670" height="44" style="fill:#54184f" />
+		<circle cx="65" cy="91" r="16" stroke="#FFF" stroke-width="1" fill="#54184f" />
+		<text x="57" y="103" fill="#FFF" font-size="27pt" font-family="Myriad Pro Light">L ifelong (mind-body) learning</text>
+	</g>
+
+	<g>
+		<text x="45" y="280" fill="#54184f" font-size="22pt" font-family="Myriad Pro Light">Physician comments:</text>
+		<rect x="45" y="300" width="300" height="195" style="fill:#FFF;stroke:#000000;stroke-width:1" />
+		<line x1="360" y1="500" x2="360" y2="260" style="stroke:#000000;stroke-width:1"/>
+	</g>
+	
+	<g>
+		<rect x="370" y="260" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="268" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">The Metastory (Video)</text>
+		
+		<rect x="370" y="285" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="293" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">The Ever Present Origin (Book)</text>
+		
+		<rect x="370" y="310" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="318" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Up From Eden (Book)</text>
+		
+		<rect x="370" y="335" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="343" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">The Relaxation Response (Book)</text>
+		
+		<rect x="370" y="360" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="368" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">The Heart Math Solution (Book)</text>
+		
+		<rect x="370" y="385" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="393" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Meaning and Medicine (Book)</text>
+		
+		<rect x="370" y="410" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="418" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">The Decision Tree-Awareness (Book)</text>
+		
+		<rect x="370" y="435" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="443" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Mind0-Body Medicine (Book)</text>
+		
+		<rect x="370" y="460" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="468" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Integral Health - The Four Quadrants-(Video)</text>
+		
+		<rect x="370" y="485" width="10" height="10" style="fill:#FFF;stroke:#000000;stroke-width:1.5" />
+		<text x="390" y="493" fill="#000000" font-size="10pt" font-family="Myriad Pro Light">Integral Spirituality (Book)</text>
+	</g>
+	
+	
+	
+	
+	<text x="300" y="1090" fill="#54184f" font-size="12pt" font-family="Myriad Pro Light">Step two - mentor</text>
+</svg>

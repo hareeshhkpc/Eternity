@@ -1,0 +1,73 @@
+<message config="PRPA_MT201000HT03" >
+
+    <PRPA_MT201000HT03>
+
+        <identifiedPerson>
+        
+        	<id root="C1234" extension="11" assigningAuthority="ETERNITY"/>
+
+            <name>
+                <prefix>ms</prefix>
+
+                <family>Geeta</family>
+
+                <given>ccccc</given>
+
+                <suffix>hhhhhhhhh</suffix>
+            </name>
+
+            <statusCode code="active" />
+
+            <telecom use="sssssssssss" />
+
+            <addr>
+
+                <country>mmmmmmmm</country>
+
+                <state>nnnn</state>
+
+                <city>hhhhhhhhhh</city>
+
+                <houseNumber>dddddddddd</houseNumber>
+
+                <streetName>ggggggggg</streetName>
+
+                <postalCode>xxxxxx</postalCode>
+            </addr>
+
+            <birthTime value="12/12/2012" />
+
+            <maritalStatusCode code="single" />
+
+            <administrativeGenderCode code="female" />
+
+            <religiousAffiliationCode code="hindu" />
+            
+            <raceCode>
+            	<item code="HN">
+            		<originalText>Hindu</originalText>
+            	</item>
+            	<item code="CHR">
+            		<originalText>Christian</originalText>
+            	</item>
+            </raceCode>
+
+			<asIdentifications>
+				<id root="Wound scar on left arm"/>
+			</asIdentifications>
+			<asIdentifications>
+				<id root="Finger fractures"/>
+			</asIdentifications>
+
+        </identifiedPerson>
+
+        <effectiveTime>
+
+            <low value="12/12/2012"></low>
+
+            <high value="12/12/2012">
+            </high>
+        </effectiveTime>
+    </PRPA_MT201000HT03>
+
+</message>

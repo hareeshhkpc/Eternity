@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Message Api</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../html/js/jquery.mobile-1.0.1.min.css" />
+<link rel="stylesheet" href="../html/css/hin.css" />
+<link rel="stylesheet" href="../html/css/violet.css" />
+<link rel="stylesheet" href="../html/css/mobile.css" />
+
+<script src="../html/js/jquery-1.6.4.min.js"></script>
+<script src="../html/js/jquery.json-2.3.js"></script>
+<script src="../html/js/jquery.mobile-1.0.1.min.js"></script>
+
+<script src="../html/js/hl7adapter_new.js"></script>
+<script type="text/javascript" src="../html/js/xml2json.js"></script>
+<script type="text/javascript" src="../html/js/json2xml.js"></script>
+
+<script src="../html/js/XmlUtil.js"></script> 
+<script src="../html/js/DataTypeAPI.js"></script>
+<script src="../html/js/MessageAndUIBinder.js"></script>
+<script src="../html/js/UpdatePathfield.js"></script>
+<script src="../html/js/jquery.easydate-0.2.4.js"></script>
+
+<script src="MessageInitScriptTest.js"></script>
+
+<script>
+
+var tester = null, msg = null;
+$(document).ready(function(){
+	
+	tester = new MessageInitScriptTest('runPRPA_MT201000HT03_result');
+	
+	$('#runPRPA_MT201000HT03').click(function(){
+		tester.testRun('PRPA_MT201000HT03', testPRPA_MT201000HT03_Before_Test, testPRPA_MT201000HT03_After_Test);
+	});
+
+});
+
+function testPRPA_MT201000HT03_Before_Test(messageAndUIBinder){
+	tester.logTest("Before running my tests: " + messageAndUIBinder.messageTypeID);
+	
+	tester.param.v2XmlDoc = "Sample";
+	
+	var fields = "";	
+	var type = "II";
+	var tagName = "id";
+	var pathFields = fields.split(',');					
+	var instanceObject = ['123-456', 'MRN-1001', 'iCT'];
+	
+	msg = messageAndUIBinder.messageObject;
+	
+	messageAndUIBinder.writeValueToMessage(tagName, pathFields, type, instanceObject);
+}
+
+function testPRPA_MT201000HT03_After_Test(messageAndUIBinder){
+	tester.logTest("Test is over: " + messageAndUIBinder.messageTypeID);
+}
+
+</script>
+</head>
+<body id='test-result'>
+ Test message init scripts.
+ 
+ <input type="button" id="runPRPA_MT201000HT03" value="Test create PRPA_MT201000HT03">
+ <textarea id="runPRPA_MT201000HT03_result" style="height: 300px;"></textarea>
+ 
+</body>
+</html>

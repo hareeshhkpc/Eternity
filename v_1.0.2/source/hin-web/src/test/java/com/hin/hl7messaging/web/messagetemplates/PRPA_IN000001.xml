@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><PRPA_IN000001 ITSVersion="XML_1.0" id="id1_1">
+	<id extension="" id="id1_1_id747_1" root=""/>
+	<creationTime id="id1_1_id748_1" value=""/>
+	<responseModeCode id="id1_1_id750_1" nullFlavor=""/>
+	<versionCode code="" id="id1_1_id751_1"/>
+	<!-- Interaction is a notification of a person registration -->
+	<interactionId extension="" id="id1_1_id752_1" root=""/>
+	<processingCode code="" id="id1_1_id754_1"/>
+	<processingModeCode code="" id="id1_1_id755_1"/>
+	<acceptAckCode code="" id="id1_1_id756_1"/>
+	<receiver id="id1_1_id758_1" typeCode="">
+		<device classCode="" determinerCode="" id="id1_1_id758_1_id57_1">
+			<id extension="" id="id1_1_id758_1_id57_1_id39_1" root=""/>
+		</device>
+	</receiver>
+	<sender id="id1_1_id760_1" typeCode="">
+		<device classCode="" determinerCode="" id="id1_1_id760_1_id61_1">
+			<id extension="" id="id1_1_id760_1_id61_1_id39_1" root=""/>
+		</device>
+	</sender>
+	<controlActProcess id="id1_1_id763_1">
+		<code id="id1_1_id763_1_id20_1" nullFlavor=""/>
+		<subject id="id1_1_id763_1_id28_1">
+			<registrationEvent id="id1_1_id763_1_id28_1_id29_1" moodCode="">
+				<code id="id1_1_id763_1_id28_1_id29_1_id31_1" nullFlavor=""/>
+				<subject id="id1_1_id763_1_id28_1_id29_1_id32_1">
+					<identifiedEntity classCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1">
+						<identifiedPerson classCode="MRI" determinerCode="ABC" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1">
+							<id extension="HIN" root="emp00001"/>
+							<name id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id352_1">
+								<prefix>Mr.</prefix>
+								<given>Arun</given>
+								<family>Melethil</family>
+							</name>
+							<statusCode code="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id354_1"/>
+							<telecom use="abdul.kahar@imtacict.com" value="abdul.kahar@imtacict.com" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id355_1"/>
+							<telecom id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id355_2"/>
+							<administrativeGenderCode code="M" codeSystemName="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id357_1"/>
+							<birthTime id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id358_1" value="198201011100"/>
+							<addr id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id364_1">
+								<country>India</country>
+								<state>Karnataka</state>
+								<city>Bangalore</city>
+								<postalCode>560048</postalCode>
+								<streetName>Whitefield Road</streetName>
+								<houseNumber>#2G05</houseNumber>
+							</addr>
+							<maritalStatusCode code="M" codeSystem="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id365_1"/>
+							
+							<!-- asEmployment -->
+							 <asEmployment classCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id372_1">
+							 	<id extension="HIN" root="hindemo"/>
+								<employerOrganization classCode="" determinerCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id372_1_id298_1">
+									<name id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id372_1_id298_1_id75_1">Imtac iCT</name>
+									<telecom use="admin@imtacict.com" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id372_1_id298_1_id78_1"/>
+									<telecom id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id372_1_id298_1_id78_2"/>
+									<addr id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id372_1_id298_1_id79_1">
+										<country>India</country>
+								<state>Karnataka</state>
+								<city>Bangalore</city>
+								<postalCode>560048</postalCode>
+								<streetName>Whitefield Road</streetName>
+										<houseNumber>2nd Floor</houseNumber>	 								
+									</addr>
+								</employerOrganization>
+ 							</asEmployment>
+ 							
+							<asCitizen classCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id373_1">
+								<politicalNation classCode="" determinerCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id373_1_id274_1">
+									<code id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id373_1_id274_1_id342_1" nullFlavor=""/>
+								</politicalNation>
+							</asCitizen>
+							<asStudent classCode="BE" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id374_1"/>
+							
+							<!-- asIdentifications -->
+							<asIdentifications classCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id375_1" nullFlavor="">
+								<assigningOrganization id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id375_1_id325_1">
+									<name id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id375_1_id325_1_id75_1"/>
+									<name id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id375_1_id325_1_id75_2"/>
+								</assigningOrganization>
+							</asIdentifications>
+							
+							<!-- next of kin -->
+							<nextOfKin classCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id377_1">
+								<telecom id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id377_1_id347_1"/>
+								<nextOfKinContactPerson classCode="" determinerCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id377_1_id350_1">
+									<id extension="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id377_1_id350_1_id87_1" root=""/>
+									<name id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id377_1_id350_1_id88_1">
+										<prefix></prefix>
+										<given></given>
+										<family></family>
+									</name>
+								</nextOfKinContactPerson>
+							</nextOfKin>
+							
+							<!-- emergencyContact -->
+							<emergencyContact classCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id378_1">
+								<emergencyContactPerson classCode="" determinerCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id378_1_id289_1">
+									<id extension="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id378_1_id289_1_id87_1" root=""/>
+									<name id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id378_1_id289_1_id88_1">
+										<prefix></prefix>
+										<given></given>
+										<family></family>
+									</name>
+								</emergencyContactPerson>
+							</emergencyContact>
+							
+							<!-- guardian -->
+							<guardian classCode="LKM" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id380_1">
+								<telecom id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id380_1_id315_1"/>					
+								<guardianPerson classCode="POI" determinerCode="ERT" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id380_1_id320_1">
+									<id extension="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id380_1_id320_1_id87_1" root=""/>
+									<name id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id380_1_id320_1_id88_1">
+										<prefix/>
+										<given/>
+										<family/>
+									</name>									
+								</guardianPerson>			
+							</guardian>
+							
+							<personalRelationship classCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id382_1">
+								<code id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id382_1_id386_1" nullFlavor=""/> 
+								<relationshipHolder classCode="" determinerCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id382_1_id388_1">
+									<name id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id382_1_id388_1_id470_1"/>
+									<id extension="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id382_1_id388_1_id469_1" root=""/>
+								</relationshipHolder>
+							</personalRelationship>
+							
+							<!-- Insurance Info -->
+							<coveredParty classCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id384_1">
+								<id extension="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id384_1_id522_1" root=""/>
+								<beneficiaryOf id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id384_1_id525_1" nullFlavor="" typeCode="">
+									<policyOrAccount classCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id384_1_id525_1_id518_1" moodCode="" nullFlavor="">
+										<id extension="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id384_1_id525_1_id518_1_id539_1" root=""/>
+										<author id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id384_1_id525_1_id518_1_id544_1" nullFlavor="" typeCode="">
+											<carrierRole classCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id384_1_id525_1_id518_1_id544_1_id516_1" nullFlavor="">
+												<id extension="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id384_1_id525_1_id518_1_id544_1_id516_1_id520_1" root=""/>
+												<underwritingCarrierOrganization classCode="" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id384_1_id525_1_id518_1_id544_1_id516_1_id521_1">
+													<name id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id384_1_id525_1_id518_1_id544_1_id516_1_id521_1_id519_1"> 
+														<prefix/>
+														<given/>
+														<family/>
+													</name>
+												</underwritingCarrierOrganization>
+											</carrierRole>
+										</author>
+									</policyOrAccount>
+								</beneficiaryOf>
+							</coveredParty>
+							
+							<languageCommunication id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id385_1" languageCode=""/>
+						</identifiedPerson>
+					</identifiedEntity>
+				</subject>
+			</registrationEvent>
+		</subject>
+	</controlActProcess>
+</PRPA_IN000001>

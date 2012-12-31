@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><POXX_IN121001 ITSVersion="XML_1.0" id="id1_1">
+	<!-- This is for lab observation -->
+	<id extension="" id="id1_1_id2158_1" root=""/>
+	<creationTime id="id1_1_id2159_1" value=""/>
+	<responseModeCode id="id1_1_id2161_1" nullFlavor=""/>
+	<versionCode code="" id="id1_1_id2162_1"/>
+	<interactionId extension="" id="id1_1_id2163_1" root=""/>
+	<processingCode code="" id="id1_1_id2165_1"/>
+	<processingModeCode code="" id="id1_1_id2166_1"/>
+	<acceptAckCode code="" id="id1_1_id2167_1"/>
+	<receiver id="id1_1_id2169_1" typeCode="">
+		<device classCode="" determinerCode="" id="id1_1_id2169_1_id56_1">
+			<id extension="" id="id1_1_id2169_1_id56_1_id38_1" root=""/>
+		</device>
+	</receiver>
+	<sender id="id1_1_id2171_1" typeCode="">
+		<device classCode="" determinerCode="" id="id1_1_id2171_1_id60_1">
+			<id extension="" id="id1_1_id2171_1_id60_1_id38_1" root=""/>
+		</device>
+	</sender>
+	<controlActProcess id="id1_1_id2174_1" moodCode="">
+	
+		<subject id="id1_1_id2174_1_id31_1">
+			<specimenObservationOrder classCode="" id="id1_1_id2174_1_id31_1_id32_1" moodCode="">
+					<!-- service center & service name-->
+				<location id=""/>
+				<service id=""/>
+				<service id=""/>
+				<service id=""/>
+				
+				<id extension="" id="id1_1_id2174_1_id31_1_id32_1_id262_1" root=""/>
+				<code id="id1_1_id2174_1_id31_1_id32_1_id263_1" nullFlavor=""/>
+				<statusCode code="" id="id1_1_id2174_1_id31_1_id32_1_id265_1"/>
+				<effectiveTime id="id1_1_id2174_1_id31_1_id32_1_id266_1" value=""/>
+				<priorityCode code="" id="id1_1_id2174_1_id31_1_id32_1_id268_1"/>                                            
+				<subject id="id1_1_id2174_1_id31_1_id32_1_id275_1" typeCode="">
+					<specimen classCode="" id="id1_1_id2174_1_id31_1_id32_1_id275_1_id290_1">
+						<id extension="" id="id1_1_id2174_1_id31_1_id32_1_id275_1_id290_1_id382_1" root=""/>
+						<code id="id1_1_id2174_1_id31_1_id32_1_id275_1_id290_1_id383_1" nullFlavor=""/>
+						<specimenMaterial classCode="" determinerCode="" id="id1_1_id2174_1_id31_1_id32_1_id275_1_id290_1_id384_1">
+							<code id="id1_1_id2174_1_id31_1_id32_1_id275_1_id290_1_id384_1_id349_1" nullFlavor=""/>
+							<quantity id="id1_1_id2174_1_id31_1_id32_1_id275_1_id290_1_id384_1_id350_1" value=""/>
+						</specimenMaterial>
+					</specimen>
+				</subject>
+				<author id="id1_1_id2174_1_id31_1_id32_1_id278_1" typeCode="">
+					<employmentStaff classCode="" id="id1_1_id2174_1_id31_1_id32_1_id278_1_id238_1">
+						<id extension="" id="id1_1_id2174_1_id31_1_id32_1_id278_1_id238_1_id686_1" root=""/>
+						<employeePerson classCode="" determinerCode="" id="id1_1_id2174_1_id31_1_id32_1_id278_1_id238_1_id692_1">
+							<id extension="" id="id1_1_id2174_1_id31_1_id32_1_id278_1_id238_1_id692_1_id698_1" root=""/>
+							<name id="id1_1_id2174_1_id31_1_id32_1_id278_1_id238_1_id692_1_id699_1">
+								<prefix/>
+								<given/>
+								<family/>
+							</name>							
+							</employeePerson>						
+					</employmentStaff>
+				</author>
+				
+				<recordTarget id="id1_1_id2174_1_id31_1_id32_1_id276_1" typeCode="">
+					<patient classCode="" id="id1_1_id2174_1_id31_1_id32_1_id276_1_id257_1">
+						<id extension="" id="id1_1_id2174_1_id31_1_id32_1_id276_1_id257_1_id743_1" root=""/>
+						<patientPerson classCode="" determinerCode="" id="id1_1_id2174_1_id31_1_id32_1_id276_1_id257_1_id750_1">
+							<id extension="" id="id1_1_id2174_1_id31_1_id32_1_id276_1_id257_1_id750_1_id492_1" root=""/>
+							<name id="id1_1_id2174_1_id31_1_id32_1_id276_1_id257_1_id750_1_id493_1">
+								<prefix/>
+								<given/>
+								<family/>
+							</name>
+							<administrativeGenderCode code="" codeSystem="" id="id1_1_id2174_1_id31_1_id32_1_id276_1_id257_1_id750_1_id497_1"/>
+							<birthTime id="id1_1_id2174_1_id31_1_id32_1_id276_1_id257_1_id750_1_id498_1" value=""/>
+						</patientPerson>
+					</patient>
+				</recordTarget>
+			</specimenObservationOrder>
+		</subject>
+	</controlActProcess>
+</POXX_IN121001>

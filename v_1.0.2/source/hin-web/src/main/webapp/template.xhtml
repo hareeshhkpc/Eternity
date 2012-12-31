@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Eternity</title>
+    </h:head>
+    
+    <h:body>
+   
+		<h:outputStylesheet library="css" name="layout.css" target="head"/>
+        <div id="container">
+            <div id="top">
+                <div id="flag"><!--h:graphicImage value="#{resource['images:country_flag.gif']}" /--></div>
+                 <h:form>
+            	<table>
+            		<tr>
+            			<td>
+            				<h:graphicImage value="#{resource['images:eternity.png']}" style="height:80px" />
+            			</td>
+            			<a4j:region rendered="#{!loginBean.logout}">
+            			<td width="1075px" align="right">
+            				<h:outputText class="loginUserName" value="UserName :" />
+            				<h:outputText width="100px"  class="loginUserName" value="#{loginBean.userVO.userName}," />
+            				<h:commandLink action="#{loginBean.logout}"><!-- <h:graphicImage value="#{resource['images:logout.jpg']}" style="height:15px;width:50px; padding-left:10px" /> --><h:outputText class="loginUserName" value="Logout" /></h:commandLink>           				
+            			</td>
+            			</a4j:region>
+            		</tr>
+            	</table>
+            	</h:form>            	          
+            </div>
+           
+            <div id="content" style="height:100%;width:80%">
+            <!-- 	<div style="position:absolute;float:left;z-index:0">	<h:graphicImage value="#{resource['images:login-left.png']}"  /></div> -->
+                <ui:insert name="content" />
+            </div>
+             <div id="rightnav" style="height:100%">
+	            <ui:insert name="leftnav" />
+            </div>
+            <div id="footer">
+               ICT Health
+            </div>
+        </div>
+      
+    </h:body>
+    
+</html>

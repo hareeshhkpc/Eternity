@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PRPA_IN000001 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ITSVersion="XML_1.0" id="id1_1" xsi:schemaLocation="urn:hl7-org:v3 E:/HIN/source/message-configuration/src/main/resources/messageconfig/htb/schemas/PRPA_IN000001.xsd">
+	<id extension="3948375" id="id1_1_id747_1" root="2.16.528.1.1007.3.2.700363.2288.1.2.3.4"/>
+	<creationTime id="id1_1_id748_1" value="20120725140010"/>
+	<responseModeCode id="id1_1_id750_1" nullFlavor="NI"/>
+	<versionCode code="NE2006" id="id1_1_id751_1"/>
+	<!-- Interaction is a notification of a person registration -->
+	<interactionId extension="PRPA_IN000001" id="id1_1_id752_1" root="2.16.840.1.113883.1.6"/>
+	<processingCode code="P" id="id1_1_id754_1"/>
+	<processingModeCode code="T" id="id1_1_id755_1"/>
+	<acceptAckCode code="ER" id="id1_1_id756_1"/>
+	<receiver id="id1_1_id758_1" typeCode="RCV">
+		<device classCode="DEV" determinerCode="INSTANCE" id="id1_1_id758_1_id57_1">
+			<id extension="922" id="id1_1_id758_1_id57_1_id39_1" root="2.16.840.1.113883.2.6.6"/>
+		</device>
+	</receiver>
+	<sender id="id1_1_id760_1" typeCode="SND">
+		<device classCode="DEV" determinerCode="INSTANCE" id="id1_1_id760_1_id61_1">
+			<id extension="1" id="id1_1_id760_1_id61_1_id39_1" root="2.16.840.1.113883.2.6.6"/>
+		</device>
+	</sender>
+	<controlActProcess id="id1_1_id763_1">
+		<code id="id1_1_id763_1_id20_1" nullFlavor="NI"/>
+		<subject id="id1_1_id763_1_id28_1">
+			<registrationEvent id="id1_1_id763_1_id28_1_id29_1" moodCode="EVN">
+				<code id="id1_1_id763_1_id28_1_id29_1_id31_1" nullFlavor="NI"/>
+				<subject id="id1_1_id763_1_id28_1_id29_1_id32_1">
+					<identifiedEntity classCode="IDENT" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1">
+						<identifiedPerson classCode="PSN" determinerCode="INSTANCE" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1">
+							<id extension="04P800000-1049151" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id351_1" root="2.16.840.1.113883.19.4"/>
+							<name id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id352_1">
+								<prefix>Mr</prefix>
+								<given>John</given>
+								<family>Citizen</family>
+							</name>
+							<!-- profile image -->
+							<desc id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id353_1" mediaType="text/plain"/>
+							<statusCode code="active" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id354_1"/>
+							<telecom id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id355_1"/>
+							<administrativeGenderCode code="M" codeSystemName="2.16.840.1.113883.5.1" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id357_1"/>
+							<birthTime id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id358_1" value="17091988"/>
+							<addr id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id364_1">
+								<country>India</country>
+								<state>Karnataka</state>
+								<city>Hubli</city>
+								<postalCode>574140</postalCode>
+								<streetName>Nagundanahalli</streetName>
+								<houseNumber>67</houseNumber>
+							</addr>
+							<maritalStatusCode code="M" codeSystem="2.16.840.1.113883.5.2" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id365_1"/>
+							<religiousAffiliationCode code="H" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id369_1"/>
+							<asEmployment classCode="EMP" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id372_1">
+							</asEmployment>
+							<asCitizen classCode="CIT" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id373_1">
+								<politicalNation classCode="NAT" determinerCode="INSTANCE" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id373_1_id274_1">
+									<code id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id373_1_id274_1_id342_1" nullFlavor="NI"/>
+								</politicalNation>
+							</asCitizen>
+							<emergencyContact classCode="ECON" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id378_1">
+								<emergencyContactPerson classCode="PSN" determinerCode="INSTANCE" id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id378_1_id289_1">
+									<name id="id1_1_id763_1_id28_1_id29_1_id32_1_id33_1_id331_1_id378_1_id289_1_id88_1">
+										<prefix>Mr</prefix>
+										<given>Tippe</given>
+										<family>Gowda</family>
+									</name>
+								</emergencyContactPerson>
+							</emergencyContact>
+						</identifiedPerson>
+					</identifiedEntity>
+				</subject>
+			</registrationEvent>
+		</subject>
+	</controlActProcess>
+</PRPA_IN000001>

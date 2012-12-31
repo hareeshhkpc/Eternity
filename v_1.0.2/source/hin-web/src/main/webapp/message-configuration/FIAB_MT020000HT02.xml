@@ -1,0 +1,237 @@
+<HL7MessageConfiguration>
+  <MetaInfo artifactID="FIAB_MT020000HT02" createdDate="2012-09-18 05:04:05.962 UTC" entryPoint="FIAB_MT020000HT02.FinancialTransaction" description="Financial Transaction Message"/>
+  <IndexConfiguration indexName="FIAB_MT020000HT02_Index">
+    <Field name="messageId" indexed="true" xpath="message/FIAB_MT020000HT02/id[root=&apos;HIN_MSG_ID&apos;]/extension" analyzed="false"/>
+    <Field name="documentId" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;HIN_DOC_ID&apos;]/extension" analyzed="true"/>
+    <Field name="subscriberId" indexed="true" xpath="message/FIAB_MT020000HT02/postingTo/patientAccount/pertinentInformation/encounterEvent/subject/patient/patientPerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="false"/>
+    <Field name="subscriberName" indexed="true" xpath="message/FIAB_MT020000HT02/postingTo/patientAccount/pertinentInformation/encounterEvent/subject/patient/patientPerson/name/given"/>
+    <Field name="subscriberTelecom" indexed="true" xpath="message/FIAB_MT020000HT02/postingTo/patientAccount/pertinentInformation/encounterEvent/subject/patient/patientPerson/telecom/value"/>
+    <Field name="consultant" indexed="true" xpath="message/FIAB_MT020000HT02/postingTo/patientAccount/pertinentInformation/encounterEvent/consultant/employmentStaff/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" analyzed="false" dataType="STRING"/>
+    <Field name="transactionType" indexed="true" xpath="message/FIAB_MT020000HT02/id[root=&apos;TRANSACTION_TYPE&apos;]/extension"/>
+    <Field name="programId" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;PROGRAM_ID&apos;]/extension" analyzed="false"/>
+    <Field name="messageTitle" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;MSG_TITLE&apos;]/extension" analyzed="true"/>
+    <Field name="transactionStatus" indexed="true" xpath="message/FIAB_MT020000HT02/id[root=&apos;TRANSACTION_STATUS&apos;]/extension"/>
+    <Field name="messageStatus" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;MSG_STATUS&apos;]/extension" analyzed="true"/>
+    <Field name="financeStatus" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;FINANCE_STATUS&apos;]/extension" analyzed="true"/>
+    <Field name="organizationId" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;ORGANIZATION_ID&apos;]/extension" analyzed="false"/>
+    <Field name="commissionStatus" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;COMMISSION_STATUS&apos;]/extension" analyzed="true"/>
+     <Field name="invoiceAmount" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;INVOICE_AMOUNT&apos;]/extension" analyzed="true"/>
+      <Field name="invoiceId" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;INVOICE_ID&apos;]/extension" analyzed="true"/>
+  </IndexConfiguration>
+  <ArchiveConfiguration columnFamilyName="FIAB_MT020000HT02">
+    <Field name="messageId" indexed="true" xpath="message/FIAB_MT020000HT02/id[root=&apos;HIN_MSG_ID&apos;]/extension" type="ROWKEY"/>
+    <Field name="documentId" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;HIN_DOC_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="subscriberId" indexed="true" xpath="message/FIAB_MT020000HT02/postingTo/patientAccount/pertinentInformation/encounterEvent/subject/patient/patientPerson/id[root=&apos;SUBSCRIBER_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="subscriberName" indexed="true" xpath="message/FIAB_MT020000HT02/postingTo/patientAccount/pertinentInformation/encounterEvent/subject/patient/patientPerson/name/given" type="COLUMN"/>
+    <Field name="subscriberTelecom" indexed="true" xpath="message/FIAB_MT020000HT02/postingTo/patientAccount/pertinentInformation/encounterEvent/subject/patient/patientPerson/telecom/value" type="COLUMN"/>
+    <Field name="consultant" indexed="false" xpath="message/FIAB_MT020000HT02/postingTo/patientAccount/pertinentInformation/encounterEvent/consultant/employmentStaff/id/root" type="COLUMN"/>
+    <Field name="transactionType" indexed="true" xpath="message/FIAB_MT020000HT02/id[root=&apos;TRANSACTION_TYPE&apos;]/extension" type="COLUMN"/>
+    <Field name="programId" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;PROGRAM_ID&apos;]/extension" type="COLUMN"/>
+    <Field name="messageTitle" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;MSG_TITLE&apos;]/extension" type="COLUMN"/>
+    <Field name="transactionStatus" indexed="true" xpath="message/FIAB_MT020000HT02/id[root=&apos;TRANSACTION_STATUS&apos;]/extension" type="COLUMN"/>
+    <Field name="messageStatus" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;MSG_STATUS&apos;]/extension" type="COLUMN"/>
+    <Field name="financeStatus" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;FINANCE_STATUS&apos;]/extension" type="COLUMN"/>
+     <Field name="invoiceAmount" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;INVOICE_AMOUNT&apos;]/extension" type="COLUMN"/>
+     <Field name="invoiceId" indexed="true" xpath="//FIAB_MT020000HT02/id[root=&apos;INVOICE_ID&apos;]/extension" analyzed="true"/>
+  </ArchiveConfiguration>
+  <WorkFlowDefinition id="id">
+    <name>Workflow Configuration For: FIAB_MT020000HT02</name>
+    <start g="20,20,48,48">
+      <transition name="true" to="Save"/>
+    </start>
+    <task name="Save">
+      <transition name="Save" to="Save"/>
+    </task>
+  </WorkFlowDefinition>
+  <Class rimType="ACT" tagName="FIAB_MT020000HT02" type="FIAB_MT020000HT02.FinancialTransaction">
+    <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+    <Field tagName="code" type="CD" inputControl="II" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="statusCode" type="CS" inputControl="CD" label="Status Code" displayOrder="2" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="effectiveTime" type="TS" inputControl="CS" label="Effective Time" displayOrder="3" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="activityTime" type="TS" inputControl="TS" label="Activity Time" displayOrder="4" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="amt" type="MO" inputControl="TS" label="Amt" displayOrder="5" minOccurs="1" maxOccurs="1"/>
+    <Field tagName="creditExchangeRateQuantity" type="REAL" inputControl="REAL" label="Credit Exchange Rate Quantity" displayOrder="6" minOccurs="0" maxOccurs="1"/>
+    <Field tagName="debitExchangeRateQuantity" type="REAL" inputControl="REAL" label="Debit Exchange Rate Quantity" displayOrder="7" minOccurs="0" maxOccurs="1"/>
+    <Class rimType="ACTRELATIONSHIP" tagName="pertinentInformation" type="FIAB_MT020000HT02.PertinentInformation1" label="Pertinent Information" displayOrder="9" minOccurs="0" maxOccurs="1">
+      <Class rimType="ACT" tagName="observationOrder" type="COCT_MT970000HT04.ObservationOrder" label="Observation Order" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+      </Class>
+      <Class rimType="ACT" tagName="observationEventGeneral" type="COCT_MT120500HT04.ObservationEventGeneral" label="Observation Event General" displayOrder="1" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+      </Class>
+      <Class rimType="ACT" tagName="procedureOrder" type="COCT_MT950000HT04.ProcedureOrder" label="Procedure Order" displayOrder="2" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="2" minOccurs="1" maxOccurs="1"/>
+        <Class rimType="PARTICIPATION" tagName="subject" type="COCT_MT950000HT04.Subject" label="Subject" displayOrder="3" minOccurs="1" maxOccurs="1">
+          <Class rimType="ROLE" tagName="patient" type="COCT_MT050000HT04.Patient" label="Patient" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+          </Class>
+        </Class>
+      </Class>
+      <Class rimType="ACT" tagName="procedureEvent" type="COCT_MT951000HT02.ProcedureEvent" label="Procedure Event" displayOrder="3" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+      </Class>
+      <Class rimType="ACT" tagName="substanceAdministrationOrder" type="COCT_MT920000HT02.SubstanceAdministrationOrder" label="Substance Administration Order" displayOrder="4" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="2" minOccurs="1" maxOccurs="1"/>
+        <Class rimType="PARTICIPATION" tagName="subject" type="COCT_MT920000HT02.Subject" label="Subject" displayOrder="3" minOccurs="1" maxOccurs="1">
+          <Class rimType="ROLE" tagName="patient" type="COCT_MT050000HT04.Patient" label="Patient" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+          </Class>
+        </Class>
+        <Class rimType="PARTICIPATION" tagName="consumable" type="COCT_MT920000HT02.Consumable" label="Consumable" displayOrder="4" minOccurs="1" maxOccurs="1">
+          <Class rimType="ROLE" tagName="materialMedProduct" type="COCT_MT920010HT03.MaterialMedProduct" label="Material Med Product" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Class rimType="ENTITY" tagName="manufacturedMaterialKind" type="COCT_MT920010HT03.ManufacturedMaterialKind" label="Manufactured Material Kind" displayOrder="0" minOccurs="1" maxOccurs="1">
+              <Field tagName="code" type="CE" inputControl="CE" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+            </Class>
+          </Class>
+        </Class>
+      </Class>
+      <Class rimType="ACT" tagName="substanceAdministrationEvent" type="COCT_MT920100HT02.SubstanceAdministrationEvent" label="Substance Administration Event" displayOrder="5" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="2" minOccurs="1" maxOccurs="1"/>
+        <Class rimType="PARTICIPATION" tagName="subject" type="COCT_MT920100HT02.Subject" label="Subject" displayOrder="3" minOccurs="1" maxOccurs="1">
+          <Class rimType="ROLE" tagName="patient" type="COCT_MT050000HT04.Patient" label="Patient" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+          </Class>
+        </Class>
+        <Class rimType="PARTICIPATION" tagName="consumable" type="COCT_MT920100HT02.Consumable" label="Consumable" displayOrder="4" minOccurs="1" maxOccurs="1">
+          <Class rimType="ROLE" tagName="medication" type="COCT_MT220100HT02.Medication" label="Medication" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Class rimType="ENTITY" tagName="manufacturedMaterial" type="COCT_MT220100HT02.ManufacturedMaterial" label="Manufactured Material" displayOrder="0" minOccurs="1" maxOccurs="1">
+              <Field tagName="code" type="CE" inputControl="CE" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+            </Class>
+          </Class>
+        </Class>
+      </Class>
+      <Class rimType="ACT" tagName="specimenObservationOrder" type="COCT_MT971000HT03.SpecimenObservationOrder" label="Specimen Observation Order" displayOrder="6" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+      </Class>
+      <Class rimType="ACT" tagName="specimenObservationEvent" type="COCT_MT121500HT03.SpecimenObservationEvent" label="Specimen Observation Event" displayOrder="7" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+      </Class>
+      <Class rimType="ACT" tagName="diagnosticReportObservationEvent" type="COCT_MT122500HT03.DiagnosticReportObservationEvent" label="Diagnostic Report Observation Event" displayOrder="8" minOccurs="1" maxOccurs="1">
+        <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+        <Class rimType="PARTICIPATION" tagName="recordTarget" type="COCT_MT122500HT03.RecordTarget" label="Record Target" displayOrder="2" minOccurs="1" maxOccurs="1">
+          <Class rimType="ROLE" tagName="patient" type="COCT_MT050000HT04.Patient" label="Patient" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+          </Class>
+        </Class>
+      </Class>
+      <Class rimType="ACT" tagName="supplyRequest" type="COCT_MT940000HT02.SupplyRequest" label="Supply Request" displayOrder="9" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="2" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="quantity" type="PQ" inputControl="PQ" label="Quantity" displayOrder="3" minOccurs="1" maxOccurs="1"/>
+        <Class rimType="PARTICIPATION" tagName="subject" type="COCT_MT940000HT02.Subject" label="Subject" displayOrder="4" minOccurs="1" maxOccurs="1">
+          <Class rimType="ROLE" tagName="patient" type="COCT_MT050000HT04.Patient" label="Patient" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+          </Class>
+        </Class>
+        <Class rimType="PARTICIPATION" tagName="product" type="COCT_MT940000HT02.Product" label="Product" displayOrder="5" minOccurs="1" maxOccurs="1">
+          <Class rimType="ROLE" tagName="supplyItem" type="COCT_MT940010HT02.SupplyItem" label="Supply Item" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Class rimType="ENTITY" tagName="distributedManufacturedMaterialKind" type="COCT_MT940010HT02.ManufacturedMaterialKind" label="Distributed Manufactured Material Kind" displayOrder="0" minOccurs="1" maxOccurs="1">
+              <Field tagName="code" type="CE" inputControl="CE" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+            </Class>
+          </Class>
+        </Class>
+        <Class rimType="PARTICIPATION" tagName="author" type="COCT_MT940000HT02.Author" label="Author" displayOrder="6" minOccurs="1" maxOccurs="-1">
+          <Field tagName="time" type="IVL_TS" inputControl="IVL_TS" label="Time" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+          <Class rimType="ROLE" tagName="assignedEntity" type="COCT_MT090400HT02.AssignedEntity" label="Assigned Entity" displayOrder="2" minOccurs="1" maxOccurs="1">
+            <Class rimType="ENTITY" tagName="assignedPerson" type="COCT_MT090400HT02.Person" label="Assigned Person" displayOrder="0" minOccurs="1" maxOccurs="1">
+              <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+            </Class>
+            <Class rimType="ENTITY" tagName="assignedOrganization" type="COCT_MT090400HT02.Organization" label="Assigned Organization" displayOrder="1" minOccurs="1" maxOccurs="1">
+              <Field tagName="name" type="ON" inputControl="ON" label="Name" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+            </Class>
+          </Class>
+        </Class>
+      </Class>
+      <Class rimType="ACT" tagName="dietRequest" type="COCT_MT941010HT02.DietRequest" label="Diet Request" displayOrder="10" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+        <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="2" minOccurs="1" maxOccurs="1"/>
+        <Class rimType="PARTICIPATION" tagName="subject" type="COCT_MT941010HT02.Subject" label="Subject" displayOrder="3" minOccurs="1" maxOccurs="1">
+          <Class rimType="ROLE" tagName="patient" type="COCT_MT050000HT04.Patient" label="Patient" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+          </Class>
+        </Class>
+        <Class rimType="PARTICIPATION" tagName="author" type="COCT_MT941010HT02.Author" label="Author" displayOrder="4" minOccurs="1" maxOccurs="-1">
+          <Field tagName="time" type="IVL_TS" inputControl="IVL_TS" label="Time" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+          <Class rimType="ROLE" tagName="assignedEntity" type="COCT_MT090400HT02.AssignedEntity" label="Assigned Entity" displayOrder="2" minOccurs="1" maxOccurs="1">
+            <Class rimType="ENTITY" tagName="assignedPerson" type="COCT_MT090400HT02.Person" label="Assigned Person" displayOrder="0" minOccurs="1" maxOccurs="1">
+              <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+            </Class>
+            <Class rimType="ENTITY" tagName="assignedOrganization" type="COCT_MT090400HT02.Organization" label="Assigned Organization" displayOrder="1" minOccurs="1" maxOccurs="1">
+              <Field tagName="name" type="ON" inputControl="ON" label="Name" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+            </Class>
+          </Class>
+        </Class>
+      </Class>
+      <Class rimType="ACT" tagName="accommodationSupplied" type="COCT_MT310000HT02.AccommodationSupplied" label="Accommodation Supplied" displayOrder="11" minOccurs="1" maxOccurs="1">
+        <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="effectiveTime" type="IVL_TS" inputControl="IVL_TS" label="Effective Time" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="reasonCode" type="CE" inputControl="CE" label="Reason Code" displayOrder="2" minOccurs="1" maxOccurs="-1"/>
+        <Class rimType="ACTRELATIONSHIP" tagName="pertinentInformation2" type="COCT_MT310000HT02.PertinentInformation2" label="Pertinent Information2" displayOrder="4" minOccurs="1" maxOccurs="1">
+          <Class rimType="ACT" tagName="encounter" type="COCT_MT310000HT02.Encounter" label="Encounter" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Field tagName="effectiveTime" type="IVL_TS" inputControl="IVL_TS" label="Effective Time" displayOrder="0" minOccurs="1" maxOccurs="1"/>
+          </Class>
+        </Class>
+      </Class>
+    </Class>
+    <Class rimType="ACTRELATIONSHIP" tagName="component" type="FIAB_MT020000HT02.Component" label="Component" displayOrder="10" minOccurs="0" maxOccurs="-1">
+      <Class rimType="ACT" tagName="financialTransactionChargeDetail" type="FIAB_MT020000HT02.FinancialTransactionChargeDetail" label="Financial Transaction Charge Detail" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+        <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="title" type="ST" inputControl="ST" label="Title" displayOrder="2" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="3" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="effectiveTime" type="IVL_TS" inputControl="IVL_TS" label="Effective Time" displayOrder="4" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="activityTime" type="TS" inputControl="TS" label="Activity Time" displayOrder="5" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="unitQuantity" type="RTO_PQ_PQ" inputControl="RTO_PQ_PQ" label="Unit Quantity" displayOrder="6" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="unitPriceAmt" type="RTO_MO_PQ" inputControl="RTO_MO_PQ" label="Unit Price Amt" displayOrder="7" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="netAmt" type="MO" inputControl="MO" label="Net Amt" displayOrder="8" minOccurs="1" maxOccurs="1"/>
+      </Class>
+    </Class>
+    <Class rimType="ACTRELATIONSHIP" tagName="postingTo" type="FIAB_MT020000HT02.Posting" label="Posting To" displayOrder="11" minOccurs="1" maxOccurs="1">
+      <Class rimType="ACT" tagName="patientAccount" type="FIAB_MT020000HT02.PatientAccount" label="Patient Account" displayOrder="0" minOccurs="1" maxOccurs="1">
+        <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+        <Field tagName="code" type="CV" inputControl="CV" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="2" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="activityTime" type="IVL_TS" inputControl="IVL_TS" label="Activity Time" displayOrder="3" minOccurs="1" maxOccurs="1"/>
+        <Field tagName="balanceAmt" type="MO" inputControl="MO" label="Balance Amt" displayOrder="4" minOccurs="1" maxOccurs="1"/>
+        <Class rimType="ACTRELATIONSHIP" tagName="pertinentInformation" type="FIAB_MT020000HT02.PertinentInformation2" label="Pertinent Information" displayOrder="6" minOccurs="1" maxOccurs="-1">
+          <Class rimType="ACT" tagName="encounterEvent" type="COCT_MT010100HT02.EncounterEvent" label="Encounter Event" displayOrder="0" minOccurs="1" maxOccurs="1">
+            <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+            <Field tagName="code" type="CD" inputControl="CD" label="Code" displayOrder="1" minOccurs="1" maxOccurs="1"/>
+            <Field tagName="statusCode" type="CS" inputControl="CS" label="Status Code" displayOrder="2" minOccurs="1" maxOccurs="1"/>
+            <Class rimType="PARTICIPATION" tagName="subject" type="COCT_MT010100HT02.Subject1" label="Subject" displayOrder="3" minOccurs="0" maxOccurs="1">
+              <Class rimType="ROLE" tagName="patient" type="COCT_MT050000HT04.Patient" label="Patient" displayOrder="0" minOccurs="1" maxOccurs="1">
+                <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="1" maxOccurs="-1"/>
+                <Class rimType="ENTITY" tagName="patientPerson" type="COCT_MT030000HT01.Person" label="Patient Person" displayOrder="1" minOccurs="1" maxOccurs="1">
+                  <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+                  <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="1" minOccurs="0" maxOccurs="-1"/>
+                  <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="2" minOccurs="0" maxOccurs="-1"/>
+                </Class>
+              </Class>
+            </Class>
+            <Class rimType="PARTICIPATION" tagName="consultant" type="COCT_MT010100HT02.Consultant" label="Consultant" displayOrder="4" minOccurs="0" maxOccurs="-1">
+              <Class rimType="ROLE" tagName="employmentStaff" type="COCT_MT410000HT02.EmploymentStaff" label="Employment Staff" displayOrder="0" minOccurs="1" maxOccurs="1">
+                <Class rimType="ENTITY" tagName="employeePerson" type="COCT_MT410000HT02.Person" label="Employee Person" displayOrder="0" minOccurs="0" maxOccurs="1">
+                  <Field tagName="id" type="II" inputControl="II" label="Id" displayOrder="0" minOccurs="0" maxOccurs="-1"/>
+                  <Field tagName="name" type="PN" inputControl="PN" label="Name" displayOrder="1" minOccurs="1" maxOccurs="-1"/>
+                  <Field tagName="telecom" type="TEL" inputControl="TEL" label="Telecom" displayOrder="2" minOccurs="0" maxOccurs="-1"/>
+                </Class>
+              </Class>
+            </Class>
+          </Class>
+        </Class>
+      </Class>
+    </Class>
+  </Class>
+</HL7MessageConfiguration>

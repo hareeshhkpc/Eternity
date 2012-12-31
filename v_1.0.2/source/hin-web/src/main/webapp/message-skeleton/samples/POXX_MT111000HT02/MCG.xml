@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POXX_MT111000HT02">
+	<POXX_MT111000HT02>
+		<id />
+		
+		<!-- Test code / test name -->
+		<code code="MCG" displayName="MCG"/>
+		<statusCode />
+		
+		<!-- Test date -->
+		<effectiveTime value="1338815438656" />
+		
+		<!-- Test value(s) -->
+		<value>
+			<item code="">
+				<originalText>123</originalText>
+			</item>
+			<item>
+				<originalText>345</originalText>
+			</item>
+		</value>
+		<subject>
+			<specimen>
+				<code />
+				<specimenMaterial>
+					<code />
+				</specimenMaterial>
+				<sourcePerson>
+					<id />
+				</sourcePerson>
+			</specimen>
+		</subject>
+		<recordTarget>
+			<patient>
+				<id />
+			</patient>
+		</recordTarget>
+		<author>
+			<employmentStaff>
+				<employeePerson>
+					<id />
+					<name />
+				</employeePerson>
+			</employmentStaff>
+		</author>
+	</POXX_MT111000HT02>
+</message>

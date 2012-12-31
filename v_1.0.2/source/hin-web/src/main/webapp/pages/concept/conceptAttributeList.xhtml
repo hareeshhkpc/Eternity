@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<ui:composition template="../index.xhtml">
+	<ui:define name="content">
+		<h:outputScript name="jsf.js" library="javax.faces" target="body"></h:outputScript>
+		<h:form>
+			<a4j:jsFunction name="chooseConceptAttribute"
+				execute="conceptClassAttribute"
+				action="#{conceptAttributeBean.getConceptAttributeForAutoComplete}"
+				render="conceptsAttributes" />
+			<rich:toolbar height="26" itemSeparator="grid" width="700">
+				<rich:toolbarGroup>
+					<h:commandLink
+						action="#{conceptAttributeBean.addNewConceptAttribute}"
+						value="Add Concept Attribute">
+					</h:commandLink>
+				</rich:toolbarGroup>
+				<rich:toolbarGroup location="right">
+					<h:outputText value="Search:" />
+					<rich:autocomplete id="conceptClassAttribute"
+						value="#{conceptAttributeBean.selectedConceptAttribute}"
+						mode="ajax" layout="table" var="var" fetchValue="#{var.key}"
+						autocompleteMethod="#{conceptAttributeBean.conceptAttributeAutoCompleteList}"
+						onkeyup="chooseConceptAttribute()"
+						onselectitem="chooseConceptAttribute()" autoFill="false"
+						selectFirst="false">
+						<rich:column>
+							<h:outputText value="#{var.key}" />
+						</rich:column>
+						<a4j:ajax event="change" />
+					</rich:autocomplete>
+				</rich:toolbarGroup>
+			</rich:toolbar>
+			<br />
+			<rich:dataTable id="conceptsAttributes"
+				value="#{conceptAttributeBean.conceptAttributeList}"
+				var="conceptAttributeObj" rows="10" style="width:700px">
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Key" />
+					</f:facet>
+					<h:outputText value="#{conceptAttributeObj.key}" />
+				</rich:column>
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Value" />
+					</f:facet>
+					<h:outputText value="#{conceptAttributeObj.value}" />
+				</rich:column>
+
+				<rich:column>
+					<f:facet name="header">
+						<h:outputText value="Edit" />
+					</f:facet>
+					<h:commandLink
+						action="#{conceptAttributeBean.editConceptAttribute}" value="edit">
+						<f:setPropertyActionListener
+							target="#{conceptAttributeBean.conceptAttributeId}"
+							value="#{conceptAttributeObj.id}" />
+					</h:commandLink>
+				</rich:column>
+				<f:facet name="footer">
+					<rich:dataScroller for="conceptsAttributes" align="right"
+						renderIfSinglePage="false" fastStep="5" fastControls="auto" />
+				</f:facet>
+			</rich:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><PRPA_IN410001 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ITSVersion="XML_1.0" id="id1_1" xsi:schemaLocation="urn:hl7-org:v3 E:/HIN/source/message-configuration/src/main/resources/messageconfig/htb/schemas/PRPA_IN410001.xsd">
+	<id extension="3948375" id="id1_1_id1125_1" root="2.16.528.1.1007.3.2.700363.2288"/>
+	<creationTime id="id1_1_id1126_1" value="20120726140010"/>
+	<responseModeCode id="id1_1_id1128_1" nullFlavor="NI"/>
+	<versionCode code="NE2006" id="id1_1_id1129_1"/>
+	<interactionId extension="PRPA_IN410001" id="id1_1_id1130_1" root="2.16.840.1.113883.1.6"/>
+	<processingCode code="P" id="id1_1_id1132_1"/>
+	<processingModeCode code="T" id="id1_1_id1133_1"/>
+	<acceptAckCode code="ER" id="id1_1_id1134_1"/>
+	<receiver id="id1_1_id1136_1" typeCode="RCV">
+		<device classCode="DEV" determinerCode="INSTANCE" id="id1_1_id1136_1_id56_1">
+			<id extension="922" id="id1_1_id1136_1_id56_1_id38_1" root="2.16.840.1.113883.2.6.6"/>
+		</device>
+	</receiver>
+	<sender id="id1_1_id1138_1" typeCode="SND">
+		<device classCode="DEV" determinerCode="INSTANCE" id="id1_1_id1138_1_id60_1">
+			<id extension="1" id="id1_1_id1138_1_id60_1_id38_1" root="2.16.840.1.113883.2.6.6"/>
+		</device>
+	</sender>
+	<controlActProcess id="id1_1_id1141_1" moodCode="EVN">
+		<subject id="id1_1_id1141_1_id31_1">
+			<encounterAppointment classCode="ENC" id="id1_1_id1141_1_id31_1_id32_1" moodCode="APT">
+
+				<id extension="1" id="id1_1_id1141_1_id31_1_id32_1_id238_1" root="2.16.840.1.113883.2.6.6"/>
+				<code id="id1_1_id1141_1_id31_1_id32_1_id239_1" nullFlavor="NI"/>
+				<statusCode code="active" id="id1_1_id1141_1_id31_1_id32_1_id240_1"/>
+				<subject contextControlCode="OP" id="id1_1_id1141_1_id31_1_id32_1_id249_1" typeCode="SBJ">
+					<patient classCode="PAT" id="id1_1_id1141_1_id31_1_id32_1_id249_1_id278_1">
+						<id extension="04P800000-1049151" id="id1_1_id1141_1_id31_1_id32_1_id249_1_id278_1_id358_1" root="2.16.840.1.113883.19.4"/>
+						<patientPerson classCode="PSN" determinerCode="INSTANCE" id="id1_1_id1141_1_id31_1_id32_1_id249_1_id278_1_id365_1">
+							<name id="id1_1_id1141_1_id31_1_id32_1_id249_1_id278_1_id365_1_id467_1">
+								<prefix>MR</prefix>
+								<given>John</given>
+								<family>Citizen</family>
+							</name>
+							<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" id="id1_1_id1141_1_id31_1_id32_1_id249_1_id278_1_id365_1_id471_1"/>
+							<birthTime id="id1_1_id1141_1_id31_1_id32_1_id249_1_id278_1_id365_1_id472_1" value="19730701"/>
+						</patientPerson>
+					</patient>
+				</subject>
+				<consultant id="id1_1_id1141_1_id31_1_id32_1_id253_1" typeCode="CON">
+					<employmentStaff classCode="EMP" id="id1_1_id1141_1_id31_1_id32_1_id253_1_id237_1">
+						<employeePerson classCode="PSN" determinerCode="INSTANCE" id="id1_1_id1141_1_id31_1_id32_1_id253_1_id237_1_id296_1">
+							<name id="id1_1_id1141_1_id31_1_id32_1_id253_1_id237_1_id296_1_id299_1">
+								<prefix>Dr</prefix>
+								<given>Kamalakhanth</given>
+								<family>Shenoy</family>
+							</name>
+						</employeePerson>
+					</employmentStaff>
+				</consultant>
+				<location id="id1_1_id1141_1_id31_1_id32_1_id254_1" typeCode="LOC">
+					<serviceDeliveryLocation classCode="SDLOC" id="id1_1_id1141_1_id31_1_id32_1_id254_1_id261_1">
+						<location classCode="PLC" determinerCode="INSTANCE" id="id1_1_id1141_1_id31_1_id32_1_id254_1_id261_1_id330_1">
+							<name id="id1_1_id1141_1_id31_1_id32_1_id254_1_id261_1_id330_1_id322_1">Neurology</name>
+						</location>
+					</serviceDeliveryLocation>
+				</location>
+				<responsibleParty id="id1_1_id1141_1_id31_1_id32_1_id250_1" typeCode="RESP">
+					<assignedEntityOrganization classCode="ASSIGNED" id="id1_1_id1141_1_id31_1_id32_1_id250_1_id277_1">
+						<assignedOrganization classCode="ORG" determinerCode="INSTANCE" id="id1_1_id1141_1_id31_1_id32_1_id250_1_id277_1_id286_1">
+							<id extension="1" id="id1_1_id1141_1_id31_1_id32_1_id250_1_id277_1_id286_1_id288_1" root="2.16.840.1.113883.2.6.6"/>
+						</assignedOrganization>
+					</assignedEntityOrganization>
+				</responsibleParty>
+			</encounterAppointment>
+		</subject>
+	</controlActProcess>
+</PRPA_IN410001>

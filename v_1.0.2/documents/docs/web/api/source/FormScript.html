@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='FormScript'>/**
+</span> * FormScript which control the form which is rendered in UI. It provides the
+ * following events like to loadScript, initialize, onLoad, reRender and
+ * onUnLoad.
+ * 
+ * @param message
+ * @param appController
+ * @param uiGenerator
+ * @returns {FormScript}
+ */
+function FormScript(message, appController, uiGenerator) {
+	var thisObject = this;
+<span id='FormScript-property-message'>	/**
+</span>	 * message holds the message object.
+	 */
+	this.message = message;
+<span id='FormScript-property-messageForm'>	/**
+</span>	 * messageForm holds the name of the form.
+	 */
+	this.messageForm = message.messageForm;
+	this.appController = appController;
+
+<span id='FormScript-property-formScriptObject'>	/**
+</span>	 * formScriptObject holds the instance of loaded form script object.
+	 */
+	this.formScriptObject = null;
+
+<span id='FormScript-property-uiGenerator'>	/**
+</span>	 * uiGenerator holds instance of ui object.
+	 */
+	this.uiGenerator = uiGenerator;
+	/*
+	 * if (!this.messageAndUIBinder) this.messageAndUIBinder = new
+	 * MessageAndUIBinder('', messageObject, messageType); else
+	 * this.messageAndUIBinder = messageAndUIBinder;
+	 */
+
+<span id='FormScript-method-loadScript'>	/**
+</span>	 * It instantiate form object base on the message form using eval()
+	 * expression.
+	 * 
+	 * @param scriptString:
+	 *            Its a string value, holds the stringified scrpit value.
+	 * @returns {void}
+	 */
+	this.loadScript = function(scriptString) {
+		try {
+
+			var scriptToRun = scriptString
+					+ '; thisObject.formScriptObject = new '
+					+ thisObject.messageForm
+					+ '(thisObject.message, thisObject.appController, thisObject.uiGenerator /* No logger */);'
+			// thisObject.log(scriptToRun);
+			eval(scriptToRun);
+		} catch (error) {
+			thisObject.log(error);
+		}
+	};
+
+<span id='FormScript-method-initialize'>	/**
+</span>	 * Trigger the initialize method implemented in the loaded form script.
+	 * 
+	 * @returns {void}
+	 */
+	this.initialize = function() {
+		try {
+			if (thisObject.formScriptObject
+					&amp;&amp; thisObject.formScriptObject.initialize) {
+				thisObject.formScriptObject.initialize();
+			} else {
+				throw &quot;Method initialize() not found in &quot;
+						+ thisObject.messageForm + &quot; script&quot;;
+			}
+		} catch (error) {
+			thisObject.log(&quot;Error in &quot; + thisObject.messageForm
+					+ &quot;.initialize(): &quot; + error);
+		}
+	};
+
+<span id='FormScript-method-onLoad'>	/**
+</span>	 * Trigger the onLoad method implemented in the loaded form script.
+	 * 
+	 * @param callback :
+	 *            Its a function which will be called after the completion of
+	 *            this method
+	 * @returns {void}.
+	 */
+	this.onLoad = function(callback) {
+		try {
+			if (thisObject.formScriptObject
+					&amp;&amp; thisObject.formScriptObject.onLoad) {
+				thisObject.formScriptObject.onLoad(callback);
+			} else {
+				throw &quot;Method onLoad() not found in &quot; + thisObject.messageForm
+						+ &quot; script&quot;;
+			}
+		} catch (error) {
+			thisObject.log(&quot;Error in &quot; + thisObject.messageForm + &quot;.onLoad(): &quot;
+					+ error);
+		}
+	};
+<span id='FormScript-method-reRender'>	/**
+</span>	 * Trigger the reRender method implemented in the loaded form script.
+	 * 
+	 * @param callback :
+	 *            Its a function which will be called after the completion of
+	 *            this method
+	 * @returns {void}.
+	 */
+	this.reRender = function(callback) {
+		try {
+			if (thisObject.formScriptObject
+					&amp;&amp; thisObject.formScriptObject.reRender) {
+				thisObject.formScriptObject.reRender(callback);
+			} else {
+				throw &quot;Method onLoad() not found in &quot; + thisObject.messageForm
+						+ &quot; script&quot;;
+			}
+		} catch (error) {
+			thisObject.log(&quot;Error in &quot; + thisObject.messageForm + &quot;.onLoad(): &quot;
+					+ error);
+		}
+	};
+
+<span id='FormScript-method-onUnLoad'>	/**
+</span>	 * Trigger the onUnLoad method implemented in the loaded form script.
+	 * 
+	 * @param callback :
+	 *            Its a function which will be called after the completion of
+	 *            this method
+	 * @returns {void}.
+	 */
+	this.onUnLoad = function(callback) {
+		try {
+			if (thisObject.formScriptObject
+					&amp;&amp; thisObject.formScriptObject.onUnLoad) {
+				thisObject.formScriptObject.onUnLoad(callback);
+			} else {
+				throw &quot;Method onUnLoad() not found in &quot;
+						+ thisObject.messageForm + &quot; script&quot;;
+			}
+		} catch (error) {
+			thisObject.log(&quot;Error in &quot; + thisObject.messageForm
+					+ &quot;.onUnLoad(): &quot; + error);
+		}
+	};
+
+	this.log = function(message) {
+		// alert(message);
+		console.log(message);
+	};
+};</pre>
+</body>
+</html>

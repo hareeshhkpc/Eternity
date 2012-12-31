@@ -1,0 +1,88 @@
+@CHARSET "ISO-8859-1";
+
+/* @font-face {
+	font-family: my-font;
+	src: url('MyriadPro-Light.otf');
+} */
+
+#programContent {
+	padding: 3px;
+	padding-top: -5px;
+	border-bottom: none;
+}
+
+#mainDiv {
+	width: 100%;
+	padding: 1px;
+	padding-top: 1px;
+	float: left;
+	border-color: #6E1766;
+	background-color: #FFFFFF;
+	padding: 1px;
+}
+
+.headerPage {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom: none;
+	padding-top: 3px;
+	margin-bottom:3px;
+}
+
+.increment
+{
+	float:left;
+	position:relative;
+	padding:5px;
+}
+.decrement
+{
+	position:relative;
+	float:left;
+	padding:5px;
+}
+#footer {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top: none;
+}
+
+.questions {
+	background-color: #F3F3F3;
+	float: left;
+	font-weight: bold;
+	padding: 5px;
+	width: 98.5%;
+}
+
+
+
+.hiddenDivs {
+	display: none;
+}
+
+
+#numericHealth {
+	text-align: center;
+	font-weight: bold;
+	padding: 15px;
+	vertical-align:6px;
+}
+
+
+.program1 {
+	width: 80%;
+	padding: 5px;
+}
+
+.insideheaderAllignment
+{
+	width:98%;
+	float:left;
+}
+.headerAllignment
+{
+	width:100%;
+	float:left;
+}
+

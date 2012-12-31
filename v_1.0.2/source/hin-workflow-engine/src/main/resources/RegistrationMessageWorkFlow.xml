@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WorkFlowDefinition id="1" version="1.0">
+    <name>New Patient Registration</name>
+  <start g="20,20,48,48">
+    <transition name="true" to="register" />
+  </start>
+    <task name="register" >
+       		 <privacy>
+        			<Location></Location>
+       			    <Role></Role>
+                    <OrgStructure></OrgStructure>
+   			 </privacy>
+   			 <Timer></Timer>
+      		 <transition name="true" to="CPOE" />
+      		 <transition name="false" to="ABC" />
+  	</task>		
+  	<task name="CPOE" >
+       		 <privacy>
+        			<Location></Location>
+       			    <Role></Role>
+                    <OrgStructure></OrgStructure>
+   			 </privacy>
+   			 <Timer></Timer>
+  	</task>	
+  	<task name="ABC" >
+       		 <privacy>
+        			<Location></Location>
+       			    <Role></Role>
+                    <OrgStructure></OrgStructure>
+   			 </privacy>
+   			 <Timer></Timer>
+  	</task>	
+ </WorkFlowDefinition>  

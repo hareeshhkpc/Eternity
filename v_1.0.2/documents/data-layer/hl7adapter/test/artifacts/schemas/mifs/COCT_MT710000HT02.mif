@@ -1,0 +1,205 @@
+<!--$Header: /lafrz/jw1_top/CVS/hc/ctb_docs/cscg/input/artifacts/cmets/mifs/COCT_MT710000HT02.mif,v 1.1 2008/04/17 03:44:27 katryan Exp $-->
+<mif:serializedStaticModel xmlns:mif="urn:hl7-org:v3/mif"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                           xsi:schemaLocation=""
+                           packageKind="version"
+                           representationKind="serialized"
+                           isSerializable="true"
+                           isAbstract="false"
+                           name="02">
+   <mif:packageLocation root="DEFN" section="IM" subSection="CO" domain="CT" artifact="MT-deprecated"
+                        realm="HT"
+                        version="02"
+                        id="710000"/>
+   <mif:header>
+      <mif:renderingInformation schemaVersion="1" application="Visio to MIF transform"/>
+      <mif:legalese copyrightOwner="Health Level Seven" copyrightYears="2007"/>
+   </mif:header>
+   <mif:graphicRepresentation presentation="HL7">
+      <mif:graphElement name="Main">
+         <mif:position x="0.0" y="0.0"/>
+         <mif:size width="4.344" height="4.191"/>
+      </mif:graphElement>
+   </mif:graphicRepresentation>
+   <mif:derivationSupplier staticModelDerivationId="1">
+      <mif:targetStaticModel root="DEFN" artifact="RIM" version="00"/>
+   </mif:derivationSupplier>
+   <mif:derivationSupplier staticModelDerivationId="2">
+      <mif:targetStaticModel root="DEFN" section="IM" subSection="CO" domain="CT" artifact="RM-deprecated"
+                             realm="HT"
+                             version="02"
+                             id="710000"/>
+   </mif:derivationSupplier>
+   <mif:derivationSupplier staticModelDerivationId="3">
+      <mif:targetStaticModel root="DEFN" section="IM" subSection="CO" domain="CT" artifact="HD-deprecated"
+                             realm="HT"
+                             version="02"
+                             id="710000"/>
+   </mif:derivationSupplier>
+   <mif:ownedEntryPoint id="COCT_MT710000HT02" name="E_Place" isAbstract="false">
+      <mif:annotations>
+         <mif:description>
+            <mif:text>Used to identify a physical location</mif:text>
+         </mif:description>
+      </mif:annotations>
+      <mif:graphicRepresentation>
+         <mif:graphElement shapeId="Sheet.9" containerDiagramName="Main">
+            <mif:position x="2.045" y="0.448"/>
+            <mif:size width="1.816" height="0.453"/>
+            <mif:anchorage connectToShapeId="Sheet.9">
+               <mif:position x="2.933" y="0.901"/>
+               <mif:graphEdge>
+                  <mif:anchor connectToShapeId="Sheet.1">
+                     <mif:position x="2.973" y="1.576"/>
+                  </mif:anchor>
+               </mif:graphEdge>
+            </mif:anchorage>
+         </mif:graphElement>
+      </mif:graphicRepresentation>
+      <mif:specializedClass>
+         <mif:class name="Place" isAbstract="false">
+            <mif:derivationSupplier staticModelDerivationId="1" className="Place"/>
+            <mif:derivationSupplier staticModelDerivationId="2" className="Place"/>
+            <mif:derivationSupplier staticModelDerivationId="3" className="Place"/>
+            <mif:graphicRepresentation presentation="HL7">
+               <mif:graphElement shapeId="Sheet.1" containerDiagramName="Main" shapeTemplate="Entity"
+                                 isWidthAutoSize="true"
+                                 isHeightAutoSize="true">
+                  <mif:position x="1.910" y="1.576"/>
+                  <mif:size width="2.124" height="2.114"/>
+               </mif:graphElement>
+            </mif:graphicRepresentation>
+            <mif:attribute name="classCode" sortKey="1" minimumMultiplicity="1" maximumMultiplicity="1"
+                           conformance="R"
+                           isMandatory="true"
+                           isStructural="true">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="classCode"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="classCode"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="classCode"/>
+               <mif:type name="CS"/>
+               <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="EntityClass" mnemonic="PLC"/>
+            </mif:attribute>
+            <mif:attribute name="determinerCode" sortKey="2" minimumMultiplicity="1"
+                           maximumMultiplicity="1"
+                           conformance="R"
+                           isMandatory="true"
+                           isStructural="true">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="determinerCode"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="determinerCode"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="determinerCode"/>
+               <mif:type name="CS"/>
+               <mif:supplierDomainSpecification codingStrength="CNE" codeSystemName="EntityDeterminer" mnemonic="INSTANCE"/>
+            </mif:attribute>
+            <mif:attribute name="id" sortKey="3" minimumMultiplicity="0" maximumMultiplicity="*"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="id"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="id"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="id"/>
+               <mif:type name="SET">
+                  <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="II"/>
+               </mif:type>
+            </mif:attribute>
+            <mif:attribute name="code" sortKey="4" minimumMultiplicity="0" maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="code"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="code"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="code"/>
+               <mif:type name="CE"/>
+               <mif:supplierDomainSpecification codingStrength="CWE" domainName="EntityCode"/>
+            </mif:attribute>
+            <mif:attribute name="name" sortKey="5" minimumMultiplicity="0" maximumMultiplicity="*"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="name"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="name"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="name"/>
+               <mif:type name="BAG">
+                  <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="EN"/>
+               </mif:type>
+            </mif:attribute>
+            <mif:attribute name="desc" sortKey="6" minimumMultiplicity="0" maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="desc"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="desc"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="desc"/>
+               <mif:type name="ED"/>
+            </mif:attribute>
+            <mif:attribute name="statusCode" sortKey="7" minimumMultiplicity="0" maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="statusCode"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="statusCode"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="statusCode"/>
+               <mif:type name="CS"/>
+               <mif:supplierDomainSpecification codingStrength="CNE" domainName="EntityStatus"/>
+            </mif:attribute>
+            <mif:attribute name="existenceTime" sortKey="8" minimumMultiplicity="0"
+                           maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="existenceTime"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="existenceTime"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="existenceTime"/>
+               <mif:type name="IVL">
+                  <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="TS"/>
+               </mif:type>
+            </mif:attribute>
+            <mif:attribute name="telecom" sortKey="9" minimumMultiplicity="0" maximumMultiplicity="*"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="telecom"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="telecom"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="telecom"/>
+               <mif:type name="BAG">
+                  <supplierBindingArgumentDatatype xmlns="urn:hl7-org:v3/mif" name="TEL"/>
+               </mif:type>
+            </mif:attribute>
+            <mif:attribute name="mobileInd" sortKey="10" minimumMultiplicity="0" maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="mobileInd"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="mobileInd"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="mobileInd"/>
+               <mif:type name="BL"/>
+            </mif:attribute>
+            <mif:attribute name="addr" sortKey="11" minimumMultiplicity="0" maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="addr"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="addr"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="addr"/>
+               <mif:type name="AD"/>
+            </mif:attribute>
+            <mif:attribute name="directionsText" sortKey="12" minimumMultiplicity="0"
+                           maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="directionsText"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="directionsText"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="directionsText"/>
+               <mif:type name="ED"/>
+            </mif:attribute>
+            <mif:attribute name="positionText" sortKey="13" minimumMultiplicity="0"
+                           maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="positionText"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="positionText"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="positionText"/>
+               <mif:type name="ED"/>
+            </mif:attribute>
+            <mif:attribute name="gpsText" sortKey="14" minimumMultiplicity="0" maximumMultiplicity="1"
+                           isMandatory="false"
+                           isStructural="false">
+               <mif:derivationSupplier staticModelDerivationId="1" className="Place" attributeName="gpsText"/>
+               <mif:derivationSupplier staticModelDerivationId="2" className="Place" attributeName="gpsText"/>
+               <mif:derivationSupplier staticModelDerivationId="3" className="Place" attributeName="gpsText"/>
+               <mif:type name="ST"/>
+            </mif:attribute>
+         </mif:class>
+      </mif:specializedClass>
+   </mif:ownedEntryPoint>
+</mif:serializedStaticModel>

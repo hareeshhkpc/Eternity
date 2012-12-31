@@ -1,0 +1,152 @@
+create keyspace HIN_ETERNITY;
+
+use HIN_ETERNITY;
+
+create column family ROLE_DEFINITION with comparator = UTF8Type and column_type = 'Super' and default_validation_class = UTF8Type and subcomparator = UTF8Type;
+
+create column family ROLE with comparator = UTF8Type and column_type = 'Super' and default_validation_class = UTF8Type and subcomparator = UTF8Type;
+
+create column family WORKFLOW_DEFINITION
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: MESSAGEWORKFLOW, validation_class: UTF8Type}
+	];
+
+create column family MESSAGE_STORE
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: MESSAGETYPE, validation_class: UTF8Type},
+		{column_name: MESSAGESTAUS, validation_class: UTF8Type},
+		{column_name: MESSAGE, validation_class: UTF8Type}
+	];
+
+create column family SUBSCRIBER_PROFILE
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: USERNAME, validation_class: UTF8Type, index_type: KEYS, index_name: username},
+		{column_name: PASSWORD, validation_class: UTF8Type, index_type: KEYS, index_name: password},
+		{column_name: SUBSCRIBER_TYPE, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SECURITY_QUESTION, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SECURITY_ANSWER, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: EMAIL, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: FULLNAME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SUBSCRIBER_ACTIVE, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SUBSCRIBER_CREATION_TIME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SUBSCRIBER_CREATED_BY, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SUBSCRIBER_LAST_MODIFIED_TIME, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: SUBSCRIBER_MODIFIED_BY, validation_class: UTF8Type, index_type: KEYS}
+	];
+
+create column family PERMISSION
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: PERMISSIONID, validation_class: UTF8Type}
+	];
+
+create column family ENTITY_STATE
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: checkedin, validation_class: UTF8Type, index_type: KEYS},
+		{column_name: active, validation_class: UTF8Type, index_type: KEYS}
+	];
+
+create column family MESSAGECODEDETAILS
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: SUFFIX, validation_class: UTF8Type},
+		{column_name: PREFIX, validation_class: UTF8Type},
+		{column_name: CURRENTNUM, validation_class: UTF8Type}
+	];
+
+create column family WORKFLOW_TASK
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: MESSAGETYPE, validation_class: UTF8Type, index_type: KEYS, index_name: msgType},
+		{column_name: TASKSTATUS, validation_class: UTF8Type, index_type: KEYS, index_name: msgStatus},
+		{column_name: MESSAGEID, validation_class: UTF8Type, index_type: KEYS, index_name: msgId},
+		{column_name: USERID, validation_class: UTF8Type, index_type: KEYS, index_name: userId},
+		{column_name: TASKNAME, validation_class: UTF8Type, index_type: KEYS, index_name: taskName}
+	];
+
+create column family MESSAGE_PARTICIPANT
+	with comparator = 'UTF8Type'
+	and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type'
+	and column_metadata = [
+		{column_name: MESSAGEID, validation_class: UTF8Type, index_type: KEYS, index_name: partMsgId},
+		{column_name: USERID, validation_class: UTF8Type, index_type: KEYS, index_name: partUserId}
+	];
+
+create column family PATIENT_OBSERVATIONS 
+	with comparator = 'UTF8Type' and key_validation_class = 'UTF8Type' 
+	and default_validation_class = 'UTF8Type';
+
+assume ROLE keys as utf8;
+
+set ROLE['1']['ebe9211c-c14a-17e8-0c66-368b6b726b9b']['BLOCKED'] = 'FALSE';
+
+set ROLE['1']['ebe9211c-c14a-17e8-0c66-368b6b726b9b']['MESSAGE'] = '<message config="ROLE_USER"><ROLE_USER><id><root>HIN_MSG_ID</root><extension>ebe9211c-c14a-17e8-0c66-368b6b726b9b</extension></id><id><root>SUBSCRIBER_ID</root><extension>1</extension></id><id><root>ROLE_NAME</root><extension>user</extension></id><providerOrganization><name><prefix>HIN</prefix></name></providerOrganization></ROLE_USER></message>';
+
+set ROLE['1']['ebe9211c-c14a-17e8-0c66-368b6b726b9b']['ROLE_NAME'] = 'user';
+
+set ROLE['1']['ebe9211c-c14a-17e8-0c66-368b6b726b9b']['ROLE_STATUS'] = 'ACTIVE';
+
+assume ROLE_DEFINITION keys as utf8;
+
+set ROLE_DEFINITION['1']['adminstrator']['DEFINITION'] = '<?xml version="1.0" encoding="UTF-8" standalone="no"?><PRPA_IN000001 name="Person Registration"><asEmployment name="Employment"><id defaultValue="default" displayIndex="1" inputControl="II" label="Employment Id" lookup="" mandatory="yes" maxOccurs="unbounded" minOccurs="1" nullValue="not set" type="II"/><addr defaultValue="default" displayIndex="2" inputControl="AD" label="Organization Address" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="AD"/><telecom defaultValue="default" displayIndex="3" inputControl="TEL" label="Telephone Numbers" lookup="" mandatory="yes" maxOccurs="unbounded" minOccurs="1" nullValue="not set" type="TEL"/><jobTitleName defaultValue="default" displayIndex="4" inputControl="SC" label="Job Title" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="SC"/></asEmployment><asMember name="Member"><id defaultValue="default" displayIndex="1" inputControl="II" label="Identification Id" lookup="" mandatory="yes" maxOccurs="unbounded" minOccurs="0" nullValue="not set" type="II"/><code defaultValue="default" displayIndex="2" inputControl="CE" label="Code" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="CE"/><statusCode defaultValue="" displayIndex="3" inputControl="CS" label="Status Code" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="CS"/><effectiveTime defaultValue="default" displayIndex="4" inputControl="IVL_TS" label="Effective Time" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="IVL_TS"/></asMember></PRPA_IN000001>';
+
+set ROLE_DEFINITION['2']['patient']['DEFINITION'] = '<?xml version="1.0" encoding="UTF-8" standalone="no"?><PRPA_IN000001 name="Person Registration"><asEmployment name="Employment"><id defaultValue="default" displayIndex="1" inputControl="II" label="Employment Id" lookup="" mandatory="yes" maxOccurs="unbounded" minOccurs="1" nullValue="not set" type="II"/><addr defaultValue="default" displayIndex="2" inputControl="AD" label="Organization Address" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="AD"/><telecom defaultValue="default" displayIndex="3" inputControl="TEL" label="Telephone Numbers" lookup="" mandatory="yes" maxOccurs="unbounded" minOccurs="1" nullValue="not set" type="TEL"/><jobTitleName defaultValue="default" displayIndex="4" inputControl="SC" label="Job Title" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="SC"/></asEmployment><asMember name="Member"><id defaultValue="default" displayIndex="1" inputControl="II" label="Identification Id" lookup="" mandatory="yes" maxOccurs="unbounded" minOccurs="0" nullValue="not set" type="II"/><code defaultValue="default" displayIndex="2" inputControl="CE" label="Code" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="CE"/><statusCode defaultValue="" displayIndex="3" inputControl="CS" label="Status Code" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="CS"/><effectiveTime defaultValue="default" displayIndex="4" inputControl="IVL_TS" label="Effective Time" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="IVL_TS"/></asMember></PRPA_IN000001>';
+
+set ROLE_DEFINITION['3']['physician']['DEFINITION'] = '<?xml version="1.0" encoding="UTF-8" standalone="no"?><PRPA_IN000001 name="Person Registration"><asEmployment name="Employment"><id defaultValue="default" displayIndex="1" inputControl="II" label="Employment Id" lookup="" mandatory="yes" maxOccurs="unbounded" minOccurs="1" nullValue="not set" type="II"/><addr defaultValue="default" displayIndex="2" inputControl="AD" label="Organization Address" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="AD"/><telecom defaultValue="default" displayIndex="3" inputControl="TEL" label="Telephone Numbers" lookup="" mandatory="yes" maxOccurs="unbounded" minOccurs="1" nullValue="not set" type="TEL"/><jobTitleName defaultValue="default" displayIndex="4" inputControl="SC" label="Job Title" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="SC"/></asEmployment><asMember name="Member"><id defaultValue="default" displayIndex="1" inputControl="II" label="Identification Id" lookup="" mandatory="yes" maxOccurs="unbounded" minOccurs="0" nullValue="not set" type="II"/><code defaultValue="default" displayIndex="2" inputControl="CE" label="Code" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="CE"/><statusCode defaultValue="" displayIndex="3" inputControl="CS" label="Status Code" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="CS"/><effectiveTime defaultValue="default" displayIndex="4" inputControl="IVL_TS" label="Effective Time" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="IVL_TS"/></asMember></PRPA_IN000001>';
+
+set ROLE_DEFINITION['4']['user']['DEFINITION'] = '<?xml version="1.0" encoding="UTF-8" standalone="no"?><PRPA_IN000001 name="Person Registration"><asEmployment name="Employment"><id defaultValue="default" displayIndex="1" inputControl="II" label="Employment Id" lookup="" mandatory="yes" maxOccurs="unbounded" minOccurs="1" nullValue="not set" type="II"/><addr defaultValue="default" displayIndex="2" inputControl="AD" label="Organization Address" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="AD"/><telecom defaultValue="default" displayIndex="3" inputControl="TEL" label="Telephone Numbers" lookup="" mandatory="yes" maxOccurs="unbounded" minOccurs="1" nullValue="not set" type="TEL"/><jobTitleName defaultValue="default" displayIndex="4" inputControl="SC" label="Job Title" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="SC"/></asEmployment><asMember name="Member"><id defaultValue="default" displayIndex="1" inputControl="II" label="Identification Id" lookup="" mandatory="yes" maxOccurs="unbounded" minOccurs="0" nullValue="not set" type="II"/><code defaultValue="default" displayIndex="2" inputControl="CE" label="Code" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="CE"/><statusCode defaultValue="" displayIndex="3" inputControl="CS" label="Status Code" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="CS"/><effectiveTime defaultValue="default" displayIndex="4" inputControl="IVL_TS" label="Effective Time" lookup="" mandatory="yes" maxOccurs="1" minOccurs="0" nullValue="not set" type="IVL_TS"/></asMember></PRPA_IN000001>';
+
+set SUBSCRIBER_PROFILE['1']['KEY']= '1';
+
+set SUBSCRIBER_PROFILE['1']['MESSAGE']= '<message config="PRPA_MT201000HT03"><PRPA_MT201000HT03><identifiedPerson><name><given>admin</given></name></identifiedPerson><id><root>HIN_MSG_ID</root><extension>1</extension></id><id><root>SUBSCRIBER_ID</root><extension>1</extension></id><id><root>USERNAME</root><extension>admin</extension></id><id><root>PASSWORD</root><extension>admin123</extension></id></PRPA_MT201000HT03></message>';
+
+set SUBSCRIBER_PROFILE['1']['PASSWORD']= 'admin123';
+
+set SUBSCRIBER_PROFILE['1']['USERNAME']= 'admin';
+
+set PERMISSION['ebe9211c-c14a-17e8-0c66-368b6b726b9b']['ADMINSTRATION']= '1';
+set PERMISSION['ebe9211c-c14a-17e8-0c66-368b6b726b9b']['ARCHIVE']= '1';
+set PERMISSION['ebe9211c-c14a-17e8-0c66-368b6b726b9b']['CALENDAR']= '1';
+set PERMISSION['ebe9211c-c14a-17e8-0c66-368b6b726b9b']['LIBRARY']= '1';
+set PERMISSION['ebe9211c-c14a-17e8-0c66-368b6b726b9b']['LICENSEES']= '1';
+set PERMISSION['ebe9211c-c14a-17e8-0c66-368b6b726b9b']['PATIENTS']= '1';
+set PERMISSION['ebe9211c-c14a-17e8-0c66-368b6b726b9b']['PROFILE']= '1';
+set PERMISSION['ebe9211c-c14a-17e8-0c66-368b6b726b9b']['STATISTICS']= '1';
+
+set MESSAGE_STORE['HINORG']['1']='<?xml version="1.0" encoding="UTF-8"?><message config="COCT_MT150000HT04"><COCT_MT150000HT04><id><root>SUBSCRIBER_ID</root><extension>HINORG</extension></id><id><root>HIN_MSG_ID</root><extension>HINORG</extension></id><name><prefix>Eternity</prefix></name><desc /><telecom><use>EmailB</use><value>admin@eternity.org</value></telecom><addr /><contactParty><telecom /><contactPerson><name /><telecom /><asPersonDomain><id /><code /></asPersonDomain></contactPerson></contactParty></COCT_MT150000HT04></message>';
+
+set MESSAGE_STORE['669eeb90-9250-411f-90e5-f9ca9a6e78f2']['1']='<message config="PRPA_MT201000HT03" ><PRPA_MT201000HT03><id><root>HIN_MSG_ID</root><extension>669eeb90-9250-411f-90e5-f9ca9a6e78f2</extension></id><id><root>SUBSCRIBER_ID</root><extension>669eeb90-9250-411f-90e5-f9ca9a6e78f2</extension></id><id><root>USERNAME</root></id><id><root>PASSWORD</root></id><assigningOrganization><id><root>SUBSCRIBER_ID</root><extension>a12-bsd-23h-op1</extension></id></assigningOrganization><identifiedPerson><name><prefix>dr</prefix><family>M</family><given>Anjali</given><suffix>Patel</suffix></name></identifiedPerson></PRPA_MT201000HT03></message>';
+
+set MESSAGE_STORE['669eeb90-9250-411f-90e5-f9ca9a6e78f2']['VERSION']='1';
+
+set MESSAGE_STORE['d606de4e-abe6-44b7-b85c-7157b3193f31']['1']='<message config="PRPA_MT201000HT03" ><PRPA_MT201000HT03><id><root>HIN_MSG_ID</root><extension>d606de4e-abe6-44b7-b85c-7157b3193f31</extension></id><id><root>SUBSCRIBER_ID</root><extension>d606de4e-abe6-44b7-b85c-7157b3193f31</extension></id><id><root>USERNAME</root></id><id><root>PASSWORD</root></id><assigningOrganization><id><root>SUBSCRIBER_ID</root><extension>a12-bsd-23h-op1</extension></id></assigningOrganization><identifiedPerson><name><prefix>dr</prefix><family>John</family><given>Christopher</given><suffix>Nicholas</suffix></name></identifiedPerson></PRPA_MT201000HT03></message>';
+
+set MESSAGE_STORE['d606de4e-abe6-44b7-b85c-7157b3193f31']['VERSION']='1';
+
+set MESSAGE_STORE['3b72e087-b967-4989-82c2-2c3cbb57cc14']['1']='<message config="PRPA_MT201000HT03" ><PRPA_MT201000HT03><id><root>HIN_MSG_ID</root><extension>3b72e087-b967-4989-82c2-2c3cbb57cc14</extension></id><id><root>SUBSCRIBER_ID</root><extension>3b72e087-b967-4989-82c2-2c3cbb57cc14</extension></id><id><root>USERNAME</root></id><id><root>PASSWORD</root></id><assigningOrganization><id><root>SUBSCRIBER_ID</root><extension>a12-bsd-23h-op1</extension></id></assigningOrganization><identifiedPerson><name><prefix>dr</prefix><family>Shetty</family><given>Shakuntala</given><suffix></suffix></name></identifiedPerson></PRPA_MT201000HT03></message>';
+
+set MESSAGE_STORE['3b72e087-b967-4989-82c2-2c3cbb57cc14']['VERSION']='1';
+
+set MESSAGE_STORE['0d001cc1-5ad2-4270-923c-af349db4784c']['1']='<message config="PRPA_MT201000HT03" ><PRPA_MT201000HT03><id><root>HIN_MSG_ID</root><extension>0d001cc1-5ad2-4270-923c-af349db4784c</extension></id><id><root>SUBSCRIBER_ID</root><extension>0d001cc1-5ad2-4270-923c-af349db4784c</extension></id><id><root>USERNAME</root></id><id><root>PASSWORD</root></id><assigningOrganization><id><root>SUBSCRIBER_ID</root><extension>a12-bsd-23h-op1</extension></id></assigningOrganization><identifiedPerson><name><prefix>dr</prefix><family>Mazumdar</family><given>Kiran</given><suffix>Shaw</suffix></name></identifiedPerson></PRPA_MT201000HT03></message>';
+
+set MESSAGE_STORE['0d001cc1-5ad2-4270-923c-af349db4784c']['VERSION']='1';
+

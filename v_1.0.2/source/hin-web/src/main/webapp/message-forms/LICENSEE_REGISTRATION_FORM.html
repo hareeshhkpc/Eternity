@@ -1,0 +1,50 @@
+<form name="licenseeRegistrationForm" id="licenseeRegistrationForm">
+	<div data-role="none" class="ui-align-text">
+		<div class="ui-form-fields">
+			<div class="ui-box-align">
+				<div isEditor="true" editorLabel="Name(s):" pathFields=""
+					tagName="name" dataType="ON" editorType="ON"
+					configParams="[{name:'orgNameTypeConceptClass',value:'orgNameType'},{name:'orgNameTypeLookupType',value:'static'},
+				{name:'orgNameTypeLookupSelectType',value:'single'},{name:'orgNameTypeLookupControl',value:'multiple'},{name:'validate',value:'validate[required]'}]"></div>
+			</div>
+
+			<div isEditor="true" editorLabel="ID:" pathFields="" tagName="id"
+				dataType="II" editorType="II" style="display: none"
+				groupId="idFields" idSuffix="1"></div>
+
+			<div isEditor="true" editorLabel="ID:" pathFields="" tagName="id"
+				dataType="II" editorType="II" style="display: none"
+				groupId="idFields" idSuffix="2"></div>
+
+			<div class="ui-box-align">
+				<div isEditor="true" editorLabel="Region:" pathFields=""
+					tagName="code" dataType="CE" editorType="CERegion"
+					configParams="[{name:'conceptClass',value:'Regions'},{name:'lookupType',value:'dynamic'},
+				           {name:'lookupSelectType',value:'single'},{name:'lookupControl',value:'autoComplete'},{name:'validate',value:'validate[required]'}]"
+					idSuffix="1" groupId="codeGroup"></div>
+			</div>
+
+			<div class="ui-box-align">
+				<div isEditor="true" editorLabel="Address:" pathFields=""
+					tagName="addr" dataType="AD" editorType="Grid" style="width: 98%"
+					configParams="[{name:'cityConceptClass',value:'city'},{name:'cityLookupType',value:'dynamic'},
+				           {name:'cityLookupSelectType',value:'single'},{name:'cityLookupControl',value:'autoComplete'},
+				           {name:'stateConceptClass',value:'state'},{name:'stateLookupType',value:'dynamic'},
+				           {name:'stateLookupSelectType',value:'single'},{name:'stateLookupControl',value:'autoComplete'},
+				           {name:'countryConceptClass',value:'country'},{name:'countryLookupType',value:'dynamic'},
+				           {name:'countryLookupSelectType',value:'single'},{name:'countryLookupControl',value:'autoComplete'},
+				           {name:'houseNumberLabel',value:'Location'},{name:'ADstreetName',value:'hide'}]"
+					gridEditorType="AD" idSuffix="1" groupId="registrationAddr"></div>
+			</div>
+
+			<div class="ui-box-align">
+				<div isEditor="true" editorLabel="Telecoms:" pathFields=""
+					tagName="telecom" dataType="TEL" editorType="Grid"
+					style="width: 98%"
+					configParams="[{name:'telecomUseConceptClass',value:'telecomUse'},{name:'telecomUseLookupType',value:'static'},
+			                    {name:'telecomUseLookupSelectType',value:'single'},{name:'telecomUseLookupControl',value:'multiple'}]"
+					gridEditorType="TEL" idSuffix="1" groupId="registrationTel"></div>
+			</div>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message config="POXX_MT111000HT02_BIOCLIP">
+	<POXX_MT111000HT02_BIOCLIP>
+		<observation>
+			<id />
+			<code code="Vascular Age" displayName="Vascular Age"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="54"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="Heart Rate" displayName="Heart Rate"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="55"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="SI" displayName="SI"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="56"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="RI" displayName="RI"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="57"/>
+		</observation>
+		<observation>
+			<id />
+			<code code="SP02(Oxygenation)" displayName="SP02(Oxygenation)"/>
+			<statusCode />
+			<effectiveTime />
+			<value value="58"/>
+		</observation>
+		<subject>
+			<specimen>
+				<code />
+				<specimenMaterial>
+					<code />
+				</specimenMaterial>
+				<sourcePerson>
+					<id />
+				</sourcePerson>
+			</specimen>
+		</subject>
+		<recordTarget>
+			<patient>
+				<id />
+			</patient>
+		</recordTarget>
+		<author>
+			<employmentStaff>
+				<employeePerson>
+					<id />
+					<name />
+				</employeePerson>
+			</employmentStaff>
+		</author>
+	</POXX_MT111000HT02_BIOCLIP>
+</message>

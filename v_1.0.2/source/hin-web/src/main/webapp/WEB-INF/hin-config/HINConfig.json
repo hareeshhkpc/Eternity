@@ -1,0 +1,21 @@
+#HIN configuration propertes
+#Fri Jan 06 08:44:07 GMT+05:30 2012
+MESSAGE_REPOSITORY_CONNECTION_PROPERTIES=WEB-INF/hin-config/cassandra-connection.properties
+ACCOUNT_ACTIVATION_URL=http\://localhost\:8088/hin-web/Activation?orgUserProfileKey\=
+CASSANDRA_CLIENT_INIT_METHOD=connect
+CASSANDRA_CLIENT_IMPLEMENTATION=com.hin.hl7messaging.cassandra.CassandraClient
+CASSANDRA_CLIENT_INJECTION_METHOD=setCassandraClient
+CASSANDRA_CLIENT_SELECT_KEYSPACE_METHOD=selectKeySpace
+REPOSITORY_STANDARD_LAYER_IMPLEMENTATION=com.hin.hl7messaging.repository.MessageRepositoryStandard
+REPOSITORY_LAYER_IMPLEMENTATION=com.hin.hl7messaging.repository.MessageRepository
+HIS_LOOKUP_SERVICE=http://172.25.250.81:8080/sunray/df/hin/services?
+WORKFLOW_DEPLOYMENT_PATH=WEB-INF/workflow
+WORKFLOW_CONFIG_PATH=WEB-INF/hin-config/jbpm.cfg.xml
+CONTEXT_PATH=http\://localhost\:8080/hin-web
+MESSAGE_DEFAULT_IMAGE_PATH=WEB-INF/message-default-images
+
+CALENDAR_EVENT_READ_XPATH=//controlActProcess/subject/encounterEvent/effectiveTime/@value
+CALENDAR_EVENT_ARTIFACT=PRPA_IN400000
+MESSAGE_POST_SERVER_URL=http://172.25.250.211:8080/hin/
+DEPLOY_WORKFLOW=false
+MESSAGE_ARCHIVE_CONFIGURATION_PATH=WEB-INF/hin-config/archive-config/
